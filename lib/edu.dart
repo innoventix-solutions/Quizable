@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:newpro/global.dart';
 
 class edu extends StatefulWidget {
   @override
@@ -31,24 +32,24 @@ class _eduState extends State<edu> {
                     child: Text(
                       "eduSupport",
                       style: TextStyle(
-                          color: Colors.pink,
-                          fontSize: 22,
+                          color:darkpink,
+                          fontSize: 25,
                           fontWeight: FontWeight.bold),
                     ),
                   ),
                   Text(
                     "Supporting,improving",
                     textAlign: TextAlign.left,
-                    style: TextStyle(color: Colors.white, fontSize: 20),
+                    style: TextStyle(color: Colors.white, fontSize: 25),
                   ),
                   Text(
                     "the health of edjucation ",
                     textAlign: TextAlign.left,
-                    style: TextStyle(color: Colors.white, fontSize: 20),
+                    style: TextStyle(color: Colors.white, fontSize: 25),
                   ),
                   Text(
                     "through technology",
-                    style: TextStyle(color: Colors.white, fontSize: 20),
+                    style: TextStyle(color: Colors.white, fontSize: 25),
                   ),
 
                   Expanded(child: Text(""),),
@@ -56,11 +57,8 @@ class _eduState extends State<edu> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      Container(
-                        width: 250,
-                        height: 42,
-                        margin: EdgeInsets.only(top: 15, left: 10),
-                        child: RaisedButton(
+                      Expanded(
+                        child: RaisedButton(padding:EdgeInsets.only(top:15,bottom: 15),
                           color: Colors.white,
                           shape: new RoundedRectangleBorder(
                               borderRadius: new BorderRadius.circular(30.0)),
@@ -78,30 +76,7 @@ class _eduState extends State<edu> {
                     ],
                   ),
                   //signup_selection
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Container(
-                        width: 250,
-                        height: 42,
-                        margin: EdgeInsets.only(top: 15, left: 10),
-                        child: RaisedButton(
-                          color: Colors.blueAccent,
-                          shape: new RoundedRectangleBorder(
-                              borderRadius: new BorderRadius.circular(30.0)),
-                          onPressed: () {
-                            Navigator.of(context)
-                                .pushNamed('login');
-                          },
-                          child: Text(
-                            'Log In',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(color: Colors.white),
-                          ),
-                        ),
-                      ),
-                    ],
-                  )
+
                 ],
               ),
             ),

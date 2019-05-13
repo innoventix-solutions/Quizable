@@ -5,6 +5,7 @@ Color white = Color(0XffFFFFFF);
 Color purple = Color(0Xff7629FB);
 Color pink = Color(0xffDA29E6);
 Color black = Color(0Xff878787);
+Color darkpink = Color(0XffFF4779);
 
 Color gradientStart = Colors.blue; //Change start gradient color here
 Color gradientEnd = Colors.purple;
@@ -121,7 +122,7 @@ class CustomTextFieldBorder extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(left: 20,right: 20),
+      padding: EdgeInsets.only(left: 30,right: 30,top: 15),
 
       child: Theme(
         data: ThemeData(hintColor: hintColor),
