@@ -43,7 +43,7 @@ class _eduState extends State<edu> {
                     style: TextStyle(color: Colors.white, fontSize: 25),
                   ),
                   Text(
-                    "the health of edjucation ",
+                    "the health of education ",
                     textAlign: TextAlign.left,
                     style: TextStyle(color: Colors.white, fontSize: 25),
                   ),
@@ -54,30 +54,71 @@ class _eduState extends State<edu> {
 
                   Expanded(child: Text(""),),
 
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                  Column(
                     children: <Widget>[
-                      Expanded(
-                        child: RaisedButton(padding:EdgeInsets.only(top:15,bottom: 15),
-                          color: Colors.white,
-                          shape: new RoundedRectangleBorder(
-                              borderRadius: new BorderRadius.circular(30.0)),
-                          onPressed: () {
-                            Navigator.of(context)
-                                .pushNamed('signup_selection');
-                          },
-                          child: Text(
-                            'Sign Up ',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(color: Colors.blue),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Expanded(
+                            child: RaisedButton(padding:EdgeInsets.only(top:15,bottom: 15),
+                              color: Colors.white,
+                              shape: new RoundedRectangleBorder(
+                                  borderRadius: new BorderRadius.circular(30.0)),
+                              onPressed: () {
+                                Navigator.of(context)
+                                    .pushNamed('signup_selection');
+                              },
+                              child: Text(
+                                'Sign Up ',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(color: Colors.blue,fontSize: 18),
+                              ),
+                            ),
                           ),
-                        ),
+
+
+
+                        ],
+
+                      ),
+                      SizedBox(height: 20),
+                      Row(
+                        children: <Widget>[
+                          Expanded(
+                            child: RaisedButton(padding:EdgeInsets.only(top:15,bottom: 15),
+                              color: blue,
+                              shape: new RoundedRectangleBorder(
+                                  borderRadius: new BorderRadius.circular(30.0)),
+                              onPressed: () {
+                                Navigator.of(context)
+                                    .pushNamed('signup_selection');
+                              },
+                              child: Text(
+                                'Log In',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(color: Colors.white,fontSize: 18),
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ],
                   ),
                   //signup_selection
 
+                  Padding(
+                    padding: const EdgeInsets.only(top: 32,bottom: 20),
+                    child: Center(
+                      child: GestureDetector(
+                          child: Text("Parent Login Here", style: TextStyle(decoration: TextDecoration.underline, color: Colors.white,fontSize: 18)),
+                          onTap: () {
+                            // do what you need to do when "Click here" gets clicked
+                          }
+                      ),
+                    ),
+                  )
                 ],
+
               ),
             ),
           )
