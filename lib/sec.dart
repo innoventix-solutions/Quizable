@@ -87,57 +87,57 @@ class _secState extends State<sec> {
                         hintText: "Account Name",
                         icon: Icon(
                           Icons.account_circle,
-                          color: blue,
+                          color: lightblue,
                         ),
                       ),
 
                       CustomTextFieldBorder(
                         controller: username,
-                        hintColor: blue,
+                        hintColor: lightblue,
                         hintStyle: TextStyle(
                           color: black,
                         ),
                         hintText: "User Name",
                         icon: Icon(
                           Icons.account_circle,
-                          color: blue,
+                          color: lightblue,
                         ),
                       ),
                       CustomTextFieldBorder(
                         controller: email,
-                        hintColor: blue,
+                        hintColor: lightblue,
                         hintStyle: TextStyle(
                           color: black,
                         ),
                         hintText: "Email Address",
                         icon: Icon(
                           Icons.mail,
-                          color: blue,
+                          color: lightblue,
                         ),
                       ),
 
                       CustomTextFieldBorder(
                         controller: phone,
-                        hintColor: blue,
+                        hintColor: lightblue,
                         hintStyle: TextStyle(
                           color: black,
                         ),
                         hintText: "Phone Number",
                         icon: Icon(
                           Icons.phone_android,
-                          color: blue,
+                          color: lightblue,
                         ),
                       ),
 
                       CustomTextFieldBorder(controller:
-                      password,hintColor: blue,hintStyle: TextStyle(color: black,),hintText: "Password",icon: Icon(Icons.lock,color: blue,),),
+                      password,hintColor: lightblue,hintStyle: TextStyle(color: black,),hintText: "Password",icon: Icon(Icons.lock,color: lightblue,),),
 
                       CustomTextFieldBorder(controller:
-                      disc,hintColor: blue,hintStyle: TextStyle(color: black,),hintText: "Discipline",icon: Icon(Icons.speaker_notes,color: blue,),),
+                      disc,hintColor: lightblue,hintStyle: TextStyle(color: black,),hintText: "Discipline",icon: Icon(Icons.speaker_notes,color: lightblue,),),
                       CustomTextFieldBorder(controller:
-                      dob,hintColor: blue,hintStyle: TextStyle(color: black,),hintText: "DOB",icon: Icon(Icons.calendar_today,color: blue,),),
+                      dob,hintColor: lightblue,hintStyle: TextStyle(color: black,),hintText: "DOB",icon: Icon(Icons.calendar_today,color: lightblue,),),
                       CustomTextFieldBorder(controller:
-                      gender,hintColor: blue,hintStyle: TextStyle(color: black,),hintText: "Gender",icon: Icon(Icons.line_weight,color: blue,),),
+                      gender,hintColor: lightblue,hintStyle: TextStyle(color: black,),hintText: "Gender",icon: Icon(Icons.line_weight,color: lightblue,),),
                       new Container(
                         padding: EdgeInsets.only(top: 25),
                         child: Center(

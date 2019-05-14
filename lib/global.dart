@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 
+Color gradientblue = Color(0Xff1F0BE5);//a
+Color gradientviolet = Color(0Xff730676);//a
+
 Color blue = Color(0Xff575DFF);
 Color white = Color(0XffFFFFFF);
 Color purple = Color(0Xff7629FB);
 Color pink = Color(0xffDA29E6);
 Color black = Color(0Xff878787);
 Color darkpink = Color(0XffFF4779);
-
+Color lightblue = Color(0Xff6B70FC);
 Color gradientStart = Colors.blue; //Change start gradient color here
 Color gradientEnd = Colors.purple;
 
@@ -18,6 +21,15 @@ var bg = new BoxDecoration(
       stops: [0.0, 1.0],
       tileMode: TileMode.clamp),
 );
+
+var bg12 = BoxDecoration(
+  gradient: LinearGradient(
+    colors: <Color>[gradientblue, gradientviolet],
+    begin: Alignment.topCenter,
+    end: Alignment.topRight,
+  ),
+);
+
 
 class Mydropdown extends StatelessWidget {
   final List<String> dropdownValues;
