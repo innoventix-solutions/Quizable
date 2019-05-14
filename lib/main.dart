@@ -11,7 +11,8 @@ import 'login.dart';
 import 'splash.dart';
 import 'edu.dart';
 import 'select.dart';
-
+import 'screen5.dart';
+import 'screen7.dart';
 
 void main() {
   runApp(MyApp());
@@ -20,7 +21,9 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(home: splash(),debugShowCheckedModeBanner: false,
+    return MaterialApp(
+      theme: ThemeData(fontFamily: 'yu'),
+      home: splash(),debugShowCheckedModeBanner: false,
     routes: {
       'signup_teacher':(context)=>sec(),
       'login':(context)=>third(),

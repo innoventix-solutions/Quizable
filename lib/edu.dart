@@ -34,7 +34,7 @@ class _eduState extends State<edu> {
                       style: TextStyle(
                           color:darkpink,
                           fontSize: 25,
-                          fontWeight: FontWeight.bold),
+                          fontWeight: FontWeight.bold,)
                     ),
                   ),
                   Text(

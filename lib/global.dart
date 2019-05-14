@@ -6,6 +6,10 @@ Color purple = Color(0Xff7629FB);
 Color pink = Color(0xffDA29E6);
 Color black = Color(0Xff878787);
 Color darkpink = Color(0XffFF4779);
+Color darkblue = Color(0Xff1F0BE5);
+Color darkpurple = Color(0Xff730676);
+Color lightblue = Color(0Xff6B70FC);
+Color gray = Color(0Xff000000);
 
 Color gradientStart = Colors.blue; //Change start gradient color here
 Color gradientEnd = Colors.purple;
@@ -138,6 +142,46 @@ class CustomTextFieldBorder extends StatelessWidget {
               hintStyle: hintStyle),
         ),
       ),
+    );
+  }
+}
+class appbar extends StatefulWidget {
+  @override
+  _appbarState createState() => _appbarState();
+}
+
+class _appbarState extends State<appbar> {
+  @override
+  Widget build(BuildContext context) {
+    return
+      AppBar(
+
+
+    automaticallyImplyLeading: true,
+    leading: IconButton(icon:Icon(Icons.arrow_back,color: Colors.white,size: 20,),
+
+    ),
+
+    title: Center(child: Text("Add Student",style: TextStyle(fontSize: 22),),),
+    flexibleSpace: Container(
+    decoration: BoxDecoration(
+    gradient: LinearGradient(
+    begin: Alignment.centerLeft,
+    end: Alignment.centerRight,
+    colors: [
+    darkblue,
+    darkpurple
+    ],
+    ),
+    ),
+    ),
+    actions: <Widget>[
+    IconButton(
+    icon: Icon(Icons.account_circle,color: Colors.white,size: 20,),),
+
+
+
+    ],
     );
   }
 }
