@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:newpro/global.dart';
 
+
 class select extends StatefulWidget {
   @override
   _selectState createState() => _selectState();
@@ -30,15 +31,15 @@ class _selectState extends State<select> {
                     Text(
                       'Sign Up',
                       textAlign: TextAlign.center,
-                      style: TextStyle(color: Colors.white,fontSize:22),
+                      style: TextStyle(color: Colors.white,fontSize:22,fontFamily: "yu"),
                     ),
                     Padding(padding: EdgeInsets.all(5)),
                     Column(
                       children: <Widget>[
                         Container(
-                          width: 300,
-                          height: 42,
-                          child: RaisedButton(
+
+                          child: RaisedButton(padding:EdgeInsets.only(left:90,right: 90,top:15,bottom: 15),
+
                             color: Colors.white,
                             shape: new RoundedRectangleBorder(
                                 borderRadius: new BorderRadius.circular(30.0)),
@@ -50,15 +51,14 @@ class _selectState extends State<select> {
                             child: Text(
                               'I\'m a Teacher',
                               textAlign: TextAlign.center,
-                              style: TextStyle(color:blue,fontSize: 18),
+                              style: TextStyle(color:blue,fontSize: 18,fontFamily: "yu"),
                             ),
                           ),
                         ),
                         Padding(padding: EdgeInsets.all(12)),
                         Container(
-                          width: 300,
-                          height: 42,
-                          child: RaisedButton(
+
+                          child: RaisedButton(padding:EdgeInsets.only(left:90,right: 90,top:15,bottom: 15),
                             color: Colors.blue,
                             shape: new RoundedRectangleBorder(
                                 borderRadius: new BorderRadius.circular(30.0)),
@@ -66,7 +66,7 @@ class _selectState extends State<select> {
                             child: Text(
                               'I\'m a Student',
                               textAlign: TextAlign.center,
-                              style: TextStyle(color:Colors.white,fontSize: 18),
+                              style: TextStyle(color:Colors.white,fontSize: 18,fontFamily:"yu"),
                             ),
                           ),
                         ),
