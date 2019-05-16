@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
 
-Color gradientblue = Color(0Xff1F0BE5);//a
-Color gradientviolet = Color(0Xff730676);//a
-
 Color blue = Color(0Xff575DFF);
 Color white = Color(0XffFFFFFF);
 Color purple = Color(0Xff7629FB);
 Color pink = Color(0xffDA29E6);
 Color black = Color(0Xff878787);
 Color darkpink = Color(0XffFF4779);
+Color darkblue = Color(0Xff1F0BE5);
+Color darkpurple = Color(0Xff730676);
 Color lightblue = Color(0Xff6B70FC);
+Color gray = Color(0Xff000000);
+Color green = Color(0Xff19CB60);
+Color navy = Color(0Xff29D7FB);
+Color navyblue = Color(0xff5D63C2);
+
 Color gradientStart = Colors.blue; //Change start gradient color here
 Color gradientEnd = Colors.purple;
 
@@ -21,15 +25,6 @@ var bg = new BoxDecoration(
       stops: [0.0, 1.0],
       tileMode: TileMode.clamp),
 );
-
-var bg12 = BoxDecoration(
-  gradient: LinearGradient(
-    colors: <Color>[gradientblue, gradientviolet],
-    begin: Alignment.topCenter,
-    end: Alignment.topRight,
-  ),
-);
-
 
 class Mydropdown extends StatelessWidget {
   final List<String> dropdownValues;
@@ -148,6 +143,82 @@ class CustomTextFieldBorder extends StatelessWidget {
               prefixIcon: icon,
               hintText: hintText,
               hintStyle: hintStyle),
+        ),
+      ),
+    );
+  }
+}
+class appbar extends StatefulWidget {
+  @override
+  _appbarState createState() => _appbarState();
+}
+
+class _appbarState extends State<appbar> {
+  @override
+  Widget build(BuildContext context) {
+    return
+      AppBar(
+
+
+    automaticallyImplyLeading: true,
+    leading: IconButton(icon:Icon(Icons.arrow_back,color: Colors.white,size: 20,),
+
+    ),
+
+    title: Center(child: Text("Add Student",style: TextStyle(fontSize: 22),),),
+    flexibleSpace: Container(
+    decoration: BoxDecoration(
+    gradient: LinearGradient(
+    begin: Alignment.centerLeft,
+    end: Alignment.centerRight,
+    colors: [
+    darkblue,
+    darkpurple
+    ],
+    ),
+    ),
+    ),
+    actions: <Widget>[
+    IconButton(
+    icon: Icon(Icons.account_circle,color: Colors.white,size: 20,),),
+
+
+
+    ],
+    );
+  }
+}
+
+
+class GradientButtonText extends StatelessWidget {
+
+  final Text text;
+  final LinearGradient linearGradient;
+  final VoidCallback ButtonClick;
+
+  GradientButtonText({this.ButtonClick,this.text,this.linearGradient});
+
+
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(padding: EdgeInsets.only(left: 40,right: 40,top: 5,bottom: 5),
+      decoration: BoxDecoration(
+          gradient: linearGradient,
+          borderRadius: BorderRadius.all(Radius.circular(100))),
+      child: Material(
+        color: Colors.transparent,
+        child: InkWell(
+          borderRadius: BorderRadius.all(Radius.circular(100)),
+          splashColor: Colors.blue,
+          onTap: (){
+            ButtonClick();
+          },
+
+          child: Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: text,
+          ),
         ),
       ),
     );
