@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 
+Color gradientblue = Color(0Xff1F0BE5);//a
+Color gradientviolet = Color(0Xff730676);//a
+Color bluecard = Color(0Xff1560A1);//a
+Color pinkcard = Color(0XffEF5F7D);//a
 Color blue = Color(0Xff575DFF);
 Color white = Color(0XffFFFFFF);
 Color purple = Color(0Xff7629FB);
@@ -25,6 +29,54 @@ var bg = new BoxDecoration(
       stops: [0.0, 1.0],
       tileMode: TileMode.clamp),
 );
+
+var bg12 = BoxDecoration(
+  gradient: LinearGradient(
+    colors: <Color>[gradientblue, gradientviolet],
+    begin: Alignment.topCenter,
+    end: Alignment.topRight,
+  ),
+);
+/*Custom Card*/
+class CustomCard extends StatelessWidget {
+
+  final Color cardcolor;
+  final String text;
+  //final Icon icon;
+  final Image image;
+
+
+  CustomCard({this.cardcolor, this.text, this.image});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: <Widget>[
+        Row(children: <Widget>[
+          Padding(
+            padding: const EdgeInsets.only(top: 35,left: 25),
+            child: SizedBox(width: 165 ,height: 100,
+              child: Card(color: cardcolor,
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 10,left: 5,right: 5),
+                  child: Column(children: <Widget>[
+                    image,
+                    Padding(
+                      padding: const EdgeInsets.only(top: 5),
+                      child: Text(text,style: TextStyle(fontSize:13,color: white,
+                          fontWeight: FontWeight.bold),),
+                    ),
+                  ],),
+                ),),
+            ),
+          ),
+        ],)
+      ],
+    );
+  }
+}
+/*Custom dropdown*/
+
 
 class Mydropdown extends StatelessWidget {
   final List<String> dropdownValues;
