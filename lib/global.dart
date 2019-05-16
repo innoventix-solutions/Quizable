@@ -10,6 +10,9 @@ Color darkblue = Color(0Xff1F0BE5);
 Color darkpurple = Color(0Xff730676);
 Color lightblue = Color(0Xff6B70FC);
 Color gray = Color(0Xff000000);
+Color green = Color(0Xff19CB60);
+Color navy = Color(0Xff29D7FB);
+Color navyblue = Color(0xff5D63C2);
 
 Color gradientStart = Colors.blue; //Change start gradient color here
 Color gradientEnd = Colors.purple;
@@ -182,6 +185,42 @@ class _appbarState extends State<appbar> {
 
 
     ],
+    );
+  }
+}
+
+
+class GradientButtonText extends StatelessWidget {
+
+  final Text text;
+  final LinearGradient linearGradient;
+  final VoidCallback ButtonClick;
+
+  GradientButtonText({this.ButtonClick,this.text,this.linearGradient});
+
+
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(padding: EdgeInsets.only(left: 40,right: 40,top: 5,bottom: 5),
+      decoration: BoxDecoration(
+          gradient: linearGradient,
+          borderRadius: BorderRadius.all(Radius.circular(100))),
+      child: Material(
+        color: Colors.transparent,
+        child: InkWell(
+          borderRadius: BorderRadius.all(Radius.circular(100)),
+          splashColor: Colors.blue,
+          onTap: (){
+            ButtonClick();
+          },
+
+          child: Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: text,
+          ),
+        ),
+      ),
     );
   }
 }

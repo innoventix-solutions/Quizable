@@ -13,6 +13,8 @@ import 'edu.dart';
 import 'select.dart';
 import 'screen5.dart';
 import 'screen7.dart';
+import 'screen13.dart';
+import 'screen14.dart';
 
 void main() {
   runApp(MyApp());
@@ -23,7 +25,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(fontFamily: 'yu'),
-      home: splash(),debugShowCheckedModeBanner: false,
+      home: screen14(),debugShowCheckedModeBanner: false,
     routes: {
       'signup_teacher':(context)=>sec(),
       'login':(context)=>third(),
