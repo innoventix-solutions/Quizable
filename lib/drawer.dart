@@ -53,7 +53,7 @@ class _drawerState extends State<drawer> {
                 Padding(
                   padding: const EdgeInsets.only(top: 15),
                   child: Container(
-                    child: CircleAvatar(backgroundImage: AssetImage('assets/images/pic.png',),
+                    child: CircleAvatar(backgroundImage: AssetImage('assets/image/pic.png',),
                       radius: 35.0,
                     ),
                   ),
@@ -69,8 +69,76 @@ class _drawerState extends State<drawer> {
               ],
             ),
           ),
+
+          Padding(
+            padding: const EdgeInsets.only(top: 45),
+            child: Column(
+              children: <Widget>[
+                Row(
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.only(right: 5),
+                      child: CustomCard(cardcolor: bluecard,
+                        image: Image(image: AssetImage('assets/image/project.png')),
+                        text: 'Manage My \nClassrooms',),
+                    ),
+
+
+                    Padding(
+                      padding: const EdgeInsets.only(left: 0),
+                      child: CustomCard(cardcolor:pinkcard,
+                        image: Image(image: AssetImage('assets/image/dashboard.png')),
+                        text: 'Teacher’s Board\n',),
+                    ),
+
+                  ],
+                ),
+
+
+
+                Padding(
+                  padding: const EdgeInsets.only(top:0),
+                  child: Row(
+                    children: <Widget>[
+                      Padding(
+                        padding: const EdgeInsets.only(right: 5),
+                        child: CustomCard(cardcolor: bluecard,
+                          image: Image(image: AssetImage('assets/image/project.png')),
+                          text: 'Manage My \nClassrooms',),
+                      ),
+
+
+                      Padding(
+                        padding: const EdgeInsets.only(left: 0),
+                        child: CustomCard(cardcolor:pinkcard,
+                          image: Image(image: AssetImage('assets/image/dashboard.png')),
+                          text: 'Teacher’s Board\n',),
+                      ),
+
+
+
+
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+
+          Padding(
+            padding: const EdgeInsets.only(top: 50),
+            child: GestureDetector(
+              child: Text('Switch Classroom',style: TextStyle(
+                  color:lightblue,fontSize: 22,fontWeight: FontWeight.bold,
+                  decoration: TextDecoration.underline
+              ),),onTap: (){},
+            ),
+          ),
+
         ],
       ),
+
+
       drawer: Drawer(
         // Add a ListView to the drawer. This ensures the user can scroll
         // through the options in the Drawer if there isn't enough vertical
@@ -79,47 +147,116 @@ class _drawerState extends State<drawer> {
           // Important: Remove any padding from the ListView.
           padding: EdgeInsets.zero,
           children: <Widget>[
-            DrawerHeader(child: Image.asset('assets/images/bg.png')),
-            ListTile(
-              leading: Icon(Icons.home),
-              title: Text('Home'),
-              onTap: () {
-                // Update the state of the app
-                // ...
-                // Then close the drawer
-                Navigator.pop(context);
-              },
+            Container(child: Padding(
+              padding: const EdgeInsets.only(bottom: 40,top: 25),
+              child: DrawerHeader(child: Container(
+                child: Row(
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.only(left: 5),
+                      child: CircleAvatar(backgroundImage: AssetImage('assets/image/pic.png',),
+                        radius: 35.0,),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 15),
+                      child: Column(mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[Padding(
+                          padding: const EdgeInsets.only(bottom: 15),
+                          child: Text('Stanley Ohanugo',
+                            style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,
+                                fontSize: 20),),
+                        ),
+
+                          Text('Distance Learning Institute',
+                            style: TextStyle(color: Colors.white,fontSize: 15),)
+                        ],),
+                    )
+                  ],),
+              ),),
+            ),decoration: bg12,),
+
+            Padding(
+              padding: const EdgeInsets.only(left: 45,top:30),
+              child: Row(children: <Widget>[Icon(Icons.home,color: lightblue,),
+                Padding(
+                  padding: const EdgeInsets.only(left: 20),
+                  child: Text('Home',style: TextStyle(
+                      color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
+                )],),
             ),
-            ListTile(
-              leading: Icon(Icons.star),
-              title: Text('About Edjusupport'),
-              onTap: () {
-                // Update the state of the app
-                // ...
-                // Then close the drawer
-                Navigator.pop(context);
-              },
+
+            Padding(
+              padding: const EdgeInsets.only(left: 45,top:20),
+              child: Row(children: <Widget>[Icon(Icons.info,color: lightblue,),
+                Padding(
+                  padding: const EdgeInsets.only(left: 20),
+                  child: Text('About EduSupport',style: TextStyle(
+                      color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
+                )],),
             ),
-            ListTile(
-              leading: Icon(Icons.line_weight),
-              title: Text('List Of Classroom'),
-              onTap: () {
-                // Update the state of the app
-                // ...
-                // Then close the drawer
-                Navigator.pop(context);
-              },
+
+            Padding(
+              padding: const EdgeInsets.only(left: 45,top:20),
+              child: Row(children: <Widget>[Icon(Icons.dehaze,color: lightblue,),
+                Padding(
+                  padding: const EdgeInsets.only(left: 20),
+                  child: Text('List of Classrooms',style: TextStyle(
+                      color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
+                )],),
             ),
-            ListTile(
-              leading: Icon(Icons.account_circle),
-              title: Text('Edit Profile'),
-              onTap: () {
-                // Update the state of the app
-                // ...
-                // Then close the drawer
-                Navigator.pop(context);
-              },
+
+            Padding(
+              padding: const EdgeInsets.only(left: 45,top:20),
+              child: Row(children: <Widget>[Icon(Icons.person,color: lightblue,),
+                Padding(
+                  padding: const EdgeInsets.only(left: 20),
+                  child: Text('Edit Profile',style: TextStyle(
+                      color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
+                )],),
             ),
+
+            Padding(
+              padding: const EdgeInsets.only(left: 45,top:20),
+              child: Row(children: <Widget>[Icon(Icons.settings,color: lightblue,),
+                Padding(
+                  padding: const EdgeInsets.only(left: 20),
+                  child: Text('Manage Account',style: TextStyle(
+                      color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
+                )],),
+            ),
+
+            Padding(
+              padding: const EdgeInsets.only(left: 45,top:20),
+              child: Row(children: <Widget>[Icon(Icons.notifications,color: lightblue,),
+                Padding(
+                  padding: const EdgeInsets.only(left: 20),
+                  child: Text('Announcements',style: TextStyle(
+                      color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
+                )],),
+            ),
+
+            Padding(
+              padding: const EdgeInsets.only(left: 45,top:20),
+              child: Row(children: <Widget>[Icon(Icons.share,color: lightblue,),
+                Padding(
+                  padding: const EdgeInsets.only(left: 20),
+                  child: Text('Share App',style: TextStyle(
+                      color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
+                )],),
+            ),
+
+            Padding(
+              padding: const EdgeInsets.only(left: 45,top:20),
+              child: Row(children: <Widget>[Icon(Icons.power_settings_new,color: lightblue,),
+                Padding(
+                  padding: const EdgeInsets.only(left: 20),
+                  child: Text('Log out',style: TextStyle(
+                      color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
+                )],),
+            ),
+
+
           ],
         ),
       ),
