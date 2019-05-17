@@ -15,6 +15,7 @@ import 'screen5.dart';
 import 'screen7.dart';
 import 'screen13.dart';
 import 'screen14.dart';
+import 'invitecode.dart';
 
 void main() {
   runApp(MyApp());
@@ -25,7 +26,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(fontFamily: 'yu'),
-      home: screen7(),debugShowCheckedModeBanner: false,
+      home: invitecode(),debugShowCheckedModeBanner: false,
     routes: {
       'signup_teacher':(context)=>sec(),
       'login':(context)=>third(),
