@@ -217,7 +217,10 @@ class _drawerState extends State<drawer> {
           Padding(
             padding: const EdgeInsets.only(top: 40),
             child: GestureDetector(
-                child: Text("Switch Classroom", style: TextStyle(decoration: TextDecoration.underline, color: lightblue,fontSize: 22)),
+                child: Text("Switch Classroom", style: TextStyle(decoration: TextDecoration.underline,
+                    color: lightblue,
+                    fontSize: 22,
+                    fontWeight: FontWeight.bold)),
                 onTap: () {
                   // do what you need to do when "Click here" gets clicked
                 }
