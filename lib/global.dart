@@ -4,6 +4,7 @@ Color gradientblue = Color(0Xff1F0BE5);//a
 Color gradientviolet = Color(0Xff730676);//a
 Color bluecard = Color(0Xff1560A1);//a
 Color pinkcard = Color(0XffEF5F7D);//a
+
 Color blue = Color(0Xff575DFF);
 Color white = Color(0XffFFFFFF);
 Color purple = Color(0Xff7629FB);
@@ -17,6 +18,8 @@ Color gray = Color(0Xff000000);
 Color green = Color(0Xff19CB60);
 Color navy = Color(0Xff29D7FB);
 Color navyblue = Color(0xff5D63C2);
+Color orange = Color(0xffFF8658);
+Color greencard = Color(0xff6DCE8A);
 
 Color gradientStart = Colors.blue; //Change start gradient color here
 Color gradientEnd = Colors.purple;
@@ -42,6 +45,7 @@ class CustomCard extends StatelessWidget {
 
   final Color cardcolor;
   final String text;
+
   //final Icon icon;
   final Image image;
 
@@ -55,17 +59,20 @@ class CustomCard extends StatelessWidget {
         Row(children: <Widget>[
           Padding(
             padding: const EdgeInsets.only(top: 35,left: 25),
-            child: SizedBox(width: 165 ,height: 100,
+            child: SizedBox(
               child: Card(color: cardcolor,
                 child: Padding(
-                  padding: const EdgeInsets.only(top: 10,left: 5,right: 5),
+                  padding: const EdgeInsets.only(top: 20,left: 25,right: 25),
                   child: Column(children: <Widget>[
                     image,
                     Padding(
                       padding: const EdgeInsets.only(top: 5),
                       child: Text(text,style: TextStyle(fontSize:13,color: white,
                           fontWeight: FontWeight.bold),),
+
                     ),
+
+
                   ],),
                 ),),
             ),

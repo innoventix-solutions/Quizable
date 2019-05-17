@@ -24,22 +24,39 @@ class _drawerState extends State<drawer> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          flexibleSpace: Container(
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: <Color>[gradientblue, gradientviolet],
-                begin: Alignment.topCenter,
-                end: Alignment.bottomRight,
-              ),
+        automaticallyImplyLeading: true,
+        leading: IconButton(
+          icon: Icon(
+            Icons.arrow_back,
+            color: Colors.white,
+            size: 20,
+          ),
+        ),
+        title: Center(
+          child: Text(
+            "Admin Dashboard",
+            style: TextStyle(fontSize: 20),
+          ),
+        ),
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.centerLeft,
+              end: Alignment.centerRight,
+              colors: [darkblue, darkpurple],
             ),
           ),
-          title: Padding(
-            padding: const EdgeInsets.only(left: 60),
-            child: Text(
-              'Admin Dashboard',
-              style: TextStyle(fontSize: 20),
+        ),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(
+              Icons.account_circle,
+              color: Colors.transparent,
+              size: 20,
             ),
-          )),
+          ),
+        ],
+      ),
 
 
       body: Column(
@@ -53,7 +70,7 @@ class _drawerState extends State<drawer> {
                 Padding(
                   padding: const EdgeInsets.only(top: 15),
                   child: Container(
-                    child: CircleAvatar(backgroundImage: AssetImage('assets/image/pic.png',),
+                    child: CircleAvatar(backgroundImage: AssetImage('assets/images/pic.png',),
                       radius: 35.0,
                     ),
                   ),
@@ -70,68 +87,140 @@ class _drawerState extends State<drawer> {
             ),
           ),
 
-          Padding(
-            padding: const EdgeInsets.only(top: 45),
-            child: Column(
-              children: <Widget>[
-                Row(
-                  children: <Widget>[
-                    Padding(
-                      padding: const EdgeInsets.only(right: 5),
-                      child: CustomCard(cardcolor: bluecard,
-                        image: Image(image: AssetImage('assets/image/project.png')),
-                        text: 'Manage My \nClassrooms',),
+
+
+          Center(
+            child: Container(
+
+              child: Column(
+
+                children: <Widget>[
+
+                  Padding(
+                    padding: const EdgeInsets.only(top: 70),
+                    child: Row(mainAxisAlignment: MainAxisAlignment.center,
+                      children:
+                      <Widget>[
+
+
+    Padding(
+    padding: const EdgeInsets.only(left: 15),
+    child: Container(height: 100,width: 150,
+
+
+    child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(10),),color:bluecard,),
+
+
+    child:Center(
+    child: Column(mainAxisAlignment: MainAxisAlignment.center,
+    children: <Widget>[
+    Icon(Icons.settings,size: 50,color: Colors.white,),
+    Text("Manage My",textAlign: TextAlign.center,style: TextStyle(color: Colors.white,fontSize: 13,fontWeight: FontWeight.bold),),
+      Text("Classrooms",textAlign: TextAlign.center,style: TextStyle(color: Colors.white,fontSize: 13,fontWeight: FontWeight.bold),),
+    ],
+    ),
+    ),
+    ),
+    ),
+
+    ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 15,right: 15),
+                          child: Container(height: 100,width: 150,
+
+
+                            child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(10),),color:pinkcard,),
+
+
+                              child:Center(
+                                child: Column(mainAxisAlignment: MainAxisAlignment.center,
+                                  children: <Widget>[
+                                    Icon(Icons.crop_square,size: 60,color: Colors.white,),
+                                    Text("Teacher's Board",textAlign: TextAlign.center,style: TextStyle(color: Colors.white,fontSize: 13,fontWeight: FontWeight.bold),),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+
+                        )
+
+
+
+                      ],
                     ),
-
-
-                    Padding(
-                      padding: const EdgeInsets.only(left: 0),
-                      child: CustomCard(cardcolor:pinkcard,
-                        image: Image(image: AssetImage('assets/image/dashboard.png')),
-                        text: 'Teacher’s Board\n',),
-                    ),
-
-                  ],
-                ),
-
-
-
-                Padding(
-                  padding: const EdgeInsets.only(top:0),
-                  child: Row(
-                    children: <Widget>[
-                      Padding(
-                        padding: const EdgeInsets.only(right: 5),
-                        child: CustomCard(cardcolor: bluecard,
-                          image: Image(image: AssetImage('assets/image/project.png')),
-                          text: 'Manage My \nClassrooms',),
-                      ),
-
-
-                      Padding(
-                        padding: const EdgeInsets.only(left: 0),
-                        child: CustomCard(cardcolor:pinkcard,
-                          image: Image(image: AssetImage('assets/image/dashboard.png')),
-                          text: 'Teacher’s Board\n',),
-                      ),
-
-
-
-
-                    ],
                   ),
-                ),
-              ],
+                  Padding(
+                    padding: const EdgeInsets.only(top: 30,left: 15),
+                    child: Row(mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Container(height: 100,width: 150,decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(10),),color:greencard,),
+
+
+
+
+
+                              child:Center(
+                                child: Column(mainAxisAlignment: MainAxisAlignment.center,
+                                  children: <Widget>[
+                                    Icon(Icons.local_activity,size: 50,color: Colors.white,),
+                                    Text("Manage Class",textAlign: TextAlign.center,style: TextStyle(color: Colors.white,fontSize: 13,fontWeight: FontWeight.bold),),
+                                    Text('Activities',textAlign: TextAlign.center,style: TextStyle(color: Colors.white,fontSize: 13,fontWeight: FontWeight.bold),),
+                                  ],
+                                ),
+                              ),
+
+
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 15,right: 15),
+                          child: Container(height: 100,width: 150,
+
+
+    child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(10),),color:orange,),
+
+
+                                child:Center(
+                                  child: Column(mainAxisAlignment: MainAxisAlignment.center,
+                                    children: <Widget>[
+                                      Icon(Icons.speaker_notes,size: 50,color: Colors.white,),
+                                      Text("Report",textAlign: TextAlign.center,style: TextStyle(color: Colors.white,fontSize: 13,fontWeight: FontWeight.bold),),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+
+                        ),
+                      ],
+                    ),
+                  ),
+
+                ],
+              ),
+
             ),
           ),
 
+
+
+
+
+
+
+
+
+
+
+
+
           Padding(
-            padding: const EdgeInsets.only(top: 50),
+            padding: const EdgeInsets.only(top: 40),
             child: GestureDetector(
-              child: Text('Switch Classroom',style: TextStyle(
-                  color:lightblue,fontSize: 22,fontWeight: FontWeight.bold,
-                  decoration: TextDecoration.underline
-              ),),onTap: (){},
+                child: Text("Switch Classroom", style: TextStyle(decoration: TextDecoration.underline, color: lightblue,fontSize: 22)),
+                onTap: () {
+                  // do what you need to do when "Click here" gets clicked
+                }
             ),
           ),
 
@@ -154,7 +243,7 @@ class _drawerState extends State<drawer> {
                   children: <Widget>[
                     Padding(
                       padding: const EdgeInsets.only(left: 5),
-                      child: CircleAvatar(backgroundImage: AssetImage('assets/image/pic.png',),
+                      child: CircleAvatar(backgroundImage: AssetImage('assets/images/pic.png',),
                         radius: 35.0,),
                     ),
                     Padding(
