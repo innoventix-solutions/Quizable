@@ -16,6 +16,8 @@ import 'screen7.dart';
 import 'screen13.dart';
 import 'screen14.dart';
 import 'invitecode.dart';
+import 'screen25.dart';
+import 'screen101.dart';
 
 void main() {
   runApp(MyApp());
@@ -26,7 +28,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(fontFamily: 'yu'),
-      home: drawer(),debugShowCheckedModeBanner: false,
+      home: screen101(),debugShowCheckedModeBanner: false,
     routes: {
       'signup_teacher':(context)=>sec(),
       'login':(context)=>third(),
