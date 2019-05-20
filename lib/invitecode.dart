@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'global.dart';
+import 'package:share/share.dart';
 
 void main() {
   runApp(Myapp());
@@ -131,7 +132,7 @@ class _invitecodeState extends State<invitecode> {
                       //borderRadius: new BorderRadius.circular(10.0),
                       color: lightblue,
                     ),
-                    child: IconButton(
+                    child: IconButton(onPressed: (){Share.share('check out my website https://example.com');},
                       icon: Icon(
                         Icons.share,
                         color: white,
@@ -204,7 +205,7 @@ class _invitecodeState extends State<invitecode> {
                       //borderRadius: new BorderRadius.circular(10.0),
                       color: lightblue,
                     ),
-                    child: IconButton(
+                    child: IconButton(onPressed: (){Share.share('check out my website https://example.com');},
                       icon: Icon(
                         Icons.share,
                         color: white,
