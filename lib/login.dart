@@ -19,6 +19,8 @@ class _thirdState extends State<third> {
 
   TextEditingController email = new TextEditingController();
   TextEditingController pass = new TextEditingController();
+  TextEditingController usertype = new TextEditingController();
+
   Show_toast(String msg,Color color){
     Fluttertoast.showToast(
         msg: msg,
@@ -31,9 +33,10 @@ class _thirdState extends State<third> {
     );
   }
   login() async {
-    http.post("http://edusupport.innoventixsolutions.com/login.php",body: {
-      "email":email.text.toString(),
-      "password":pass.text.toString()
+    http.post("http://edusupportapp.com/api/login.php",body: {
+      "username_email":email.text.toString(),
+      "password":pass.text.toString(),
+      "user_type":usertype.text.toString()
     }).then((response){
       print(response.body.toString());
       if(response.body.toString()=="1"){

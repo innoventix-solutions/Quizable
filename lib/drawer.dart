@@ -25,13 +25,7 @@ class _drawerState extends State<drawer> {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: true,
-        leading: IconButton(
-          icon: Icon(
-            Icons.arrow_back,
-            color: Colors.white,
-            size: 20,
-          ),
-        ),
+
         title: Center(
           child: Text(
             "Admin Dashboard",

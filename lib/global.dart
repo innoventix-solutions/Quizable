@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
+
 Color gradientblue = Color(0Xff1F0BE5);//a
 Color gradientviolet = Color(0Xff730676);//a
 Color bluecard = Color(0Xff1560A1);//a
 Color pinkcard = Color(0XffEF5F7D);//a
-
 Color blue = Color(0Xff575DFF);
 Color white = Color(0XffFFFFFF);
 Color purple = Color(0Xff7629FB);
