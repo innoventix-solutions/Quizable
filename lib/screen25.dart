@@ -1,34 +1,20 @@
 import 'package:flutter/material.dart';
-import 'global.dart';
-
-void main() {
-  runApp(Myapp());
+import 'package:newpro/global.dart';
+class screen25 extends StatefulWidget {
+  @override
+  _screen25State createState() => _screen25State();
 }
 
-class Myapp extends StatelessWidget {
+class _screen25State extends State<screen25> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: drawer(),
-    );
-  }
-}
-
-class drawer extends StatefulWidget {
-  @override
-  _drawerState createState() => _drawerState();
-}
-
-class _drawerState extends State<drawer> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
+    return  Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: true,
-
+        
         title: Center(
           child: Text(
-            "Admin Dashboard",
+            "Teacher Dashboard",
             style: TextStyle(fontSize: 20),
           ),
         ),
@@ -97,27 +83,27 @@ class _drawerState extends State<drawer> {
                       <Widget>[
 
 
-    Padding(
-    padding: const EdgeInsets.only(left: 15),
-    child: Container(height: 100,width: 150,
+                        Padding(
+                          padding: const EdgeInsets.only(left: 15),
+                          child: Container(height: 100,width: 150,
 
 
-    child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(10),),color:bluecard,),
+                            child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(10),),color:bluecard,),
 
 
-    child:Center(
-    child: Column(mainAxisAlignment: MainAxisAlignment.center,
-    children: <Widget>[
-    Icon(Icons.settings,size: 50,color: Colors.white,),
-    Text("Manage My",textAlign: TextAlign.center,style: TextStyle(color: Colors.white,fontSize: 13,fontWeight: FontWeight.bold),),
-      Text("Classrooms",textAlign: TextAlign.center,style: TextStyle(color: Colors.white,fontSize: 13,fontWeight: FontWeight.bold),),
-    ],
-    ),
-    ),
-    ),
-    ),
+                              child:Center(
+                                child: Column(mainAxisAlignment: MainAxisAlignment.center,
+                                  children: <Widget>[
+                                    Icon(Icons.settings,size: 50,color: Colors.white,),
+                                    Text("Manage My",textAlign: TextAlign.center,style: TextStyle(color: Colors.white,fontSize: 13,fontWeight: FontWeight.bold),),
+                                    Text("Classrooms",textAlign: TextAlign.center,style: TextStyle(color: Colors.white,fontSize: 13,fontWeight: FontWeight.bold),),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
 
-    ),
+                        ),
                         Padding(
                           padding: const EdgeInsets.only(left: 15,right: 15),
                           child: Container(height: 100,width: 150,
@@ -154,15 +140,15 @@ class _drawerState extends State<drawer> {
 
 
 
-                              child:Center(
-                                child: Column(mainAxisAlignment: MainAxisAlignment.center,
-                                  children: <Widget>[
-                                    Icon(Icons.local_activity,size: 50,color: Colors.white,),
-                                    Text("Manage Class",textAlign: TextAlign.center,style: TextStyle(color: Colors.white,fontSize: 13,fontWeight: FontWeight.bold),),
-                                    Text('Activities',textAlign: TextAlign.center,style: TextStyle(color: Colors.white,fontSize: 13,fontWeight: FontWeight.bold),),
-                                  ],
-                                ),
-                              ),
+                          child:Center(
+                            child: Column(mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                Icon(Icons.local_activity,size: 50,color: Colors.white,),
+                                Text("Manage Class",textAlign: TextAlign.center,style: TextStyle(color: Colors.white,fontSize: 13,fontWeight: FontWeight.bold),),
+                                Text('Activities',textAlign: TextAlign.center,style: TextStyle(color: Colors.white,fontSize: 13,fontWeight: FontWeight.bold),),
+                              ],
+                            ),
+                          ),
 
 
                         ),
@@ -171,19 +157,19 @@ class _drawerState extends State<drawer> {
                           child: Container(height: 100,width: 150,
 
 
-    child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(10),),color:orange,),
+                            child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(10),),color:orange,),
 
 
-                                child:Center(
-                                  child: Column(mainAxisAlignment: MainAxisAlignment.center,
-                                    children: <Widget>[
-                                      Icon(Icons.speaker_notes,size: 50,color: Colors.white,),
-                                      Text("Report",textAlign: TextAlign.center,style: TextStyle(color: Colors.white,fontSize: 13,fontWeight: FontWeight.bold),),
-                                    ],
-                                  ),
+                              child:Center(
+                                child: Column(mainAxisAlignment: MainAxisAlignment.center,
+                                  children: <Widget>[
+                                    Icon(Icons.speaker_notes,size: 50,color: Colors.white,),
+                                    Text("Report",textAlign: TextAlign.center,style: TextStyle(color: Colors.white,fontSize: 13,fontWeight: FontWeight.bold),),
+                                  ],
                                 ),
                               ),
                             ),
+                          ),
 
                         ),
                       ],

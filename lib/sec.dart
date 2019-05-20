@@ -10,6 +10,9 @@ class sec extends StatefulWidget {
 }
 
 class _secState extends State<sec> {
+
+
+
   TextEditingController acc = new TextEditingController();
   TextEditingController username = new TextEditingController();
   TextEditingController email = new TextEditingController();
@@ -53,6 +56,9 @@ class _secState extends State<sec> {
       }
     });
   }
+
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -135,9 +141,19 @@ class _secState extends State<sec> {
                       CustomTextFieldBorder(controller:
                       disc,hintColor: lightblue,hintStyle: TextStyle(color: black,),hintText: "Discipline",icon: Icon(Icons.speaker_notes,color: lightblue,),),
                       CustomTextFieldBorder(controller:
-                      dob,hintColor: lightblue,hintStyle: TextStyle(color: black,),hintText: "DOB",icon: Icon(Icons.calendar_today,color: lightblue,),),
+                      dob,hintColor: lightblue,hintStyle: TextStyle(color: black,),hintText: "DOB",icon: Icon(Icons.calendar_today,color: lightblue,)
+                        ,
+                      ),
                       CustomTextFieldBorder(controller:
-                      gender,hintColor: lightblue,hintStyle: TextStyle(color: black,),hintText: "Gender",icon: Icon(Icons.line_weight,color: lightblue,),),
+                      gender,hintColor: lightblue,hintStyle: TextStyle(color: black,),hintText: "Gender",icon: Icon(Icons.line_weight,color: lightblue,)
+                        ,
+                      ),
+
+
+
+
+
+
                       new Container(
                         padding: EdgeInsets.only(top: 25),
                         child: Center(
@@ -159,8 +175,7 @@ class _secState extends State<sec> {
                         ),
                       ),
 
-//
-//            ),
+
                       new Container(
                           padding: EdgeInsets.only(top: 5),
                           child: Text(
@@ -200,3 +215,5 @@ class _secState extends State<sec> {
     );
   }
 }
+
+
