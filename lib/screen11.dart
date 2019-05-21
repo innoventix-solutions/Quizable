@@ -77,21 +77,15 @@ class _screen11State extends State<screen11> {
 
                 Expanded(
                   child: Padding(
-                    padding: const EdgeInsets.only(bottom: 25),
-                    child: Row(mainAxisAlignment: MainAxisAlignment.end,
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: <Widget>[
-                        FlatButton.icon(
-
-                          label: Text('Proceed',
-                            style: TextStyle(color: white,fontSize: 22,fontWeight: FontWeight.bold),),
-                          icon: Icon(Icons.arrow_forward_ios,color: white,),
-
-                          onPressed: () {
-                            //Code to execute when Floating Action Button is clicked
-                            //...
-                          }, ),
-                        ],),
+                    padding: const EdgeInsets.only(bottom: 25,right: 25),
+                    child: GestureDetector(
+                      child: Row(mainAxisAlignment: MainAxisAlignment.end,
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: <Widget>[
+                        Text('Proceed',style: TextStyle(fontSize: 22,fontWeight: FontWeight.bold,color: white),
+                        ),Icon(Icons.arrow_forward_ios,color: white,)
+                          ],),onTap: (){},
+                    ),
                   ),
                 )
 
