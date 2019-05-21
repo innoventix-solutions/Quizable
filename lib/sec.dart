@@ -19,7 +19,7 @@ class _secState extends State<sec> {
   TextEditingController phone = new TextEditingController();
   TextEditingController password = new TextEditingController();
   TextEditingController disc = new TextEditingController();
-  TextEditingController dob = new TextEditingController();
+
   TextEditingController gender = new TextEditingController();
 
   Show_toast(String msg, Color color) {
@@ -41,7 +41,7 @@ class _secState extends State<sec> {
       "password": password.text.toString(),
       "mobile": phone.text.toString(),
       "discipline": disc.text.toString(),
-      "dob": dob.text.toString(),
+
       "gender": gender.text.toString(),
       "role": "1",
       "par_email": "asdf".toString(),
@@ -55,6 +55,21 @@ class _secState extends State<sec> {
         Show_toast("Something Went Wrong", Colors.red);
       }
     });
+  }
+
+
+  DateTime selectedDate = DateTime.now();
+
+  Future<Null> _selectDate(BuildContext context) async {
+    final DateTime picked = await showDatePicker(
+        context: context,
+        initialDate: selectedDate,
+        firstDate: DateTime(2015, 8),
+        lastDate: DateTime(2101));
+    if (picked != null && picked != selectedDate)
+      setState(() {
+        selectedDate = picked;
+      });
   }
 
 
@@ -140,14 +155,31 @@ class _secState extends State<sec> {
 
                       CustomTextFieldBorder(controller:
                       disc,hintColor: lightblue,hintStyle: TextStyle(color: black,),hintText: "Discipline",icon: Icon(Icons.speaker_notes,color: lightblue,),),
-                      CustomTextFieldBorder(controller:
-                      dob,hintColor: lightblue,hintStyle: TextStyle(color: black,),hintText: "DOB",icon: Icon(Icons.calendar_today,color: lightblue,)
-                        ,
+                      Padding(
+                        padding: const EdgeInsets.only(top: 15),
+                        child: GestureDetector(
+
+                          onTap: (){
+                          _selectDate(context);
+                        },
+                          child: Container(width: 300,height: 48,decoration: BoxDecoration(border:Border.all(color: lightblue),borderRadius: BorderRadius.circular(30) ),
+                              child: Row(
+                                children: <Widget>[
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 10,right: 5),
+                                  child: Icon(
+                                  Icons.calendar_today,
+                                  color: blue,
+                              ),
+                                ),
+                                  Text("${selectedDate.toLocal()}".substring(0,10),style: TextStyle(color: black),),
+                                ],
+                              )),
+                        ),
                       ),
-                      CustomTextFieldBorder(controller:
-                      gender,hintColor: lightblue,hintStyle: TextStyle(color: black,),hintText: "Gender",icon: Icon(Icons.line_weight,color: lightblue,)
-                        ,
-                      ),
+                      SizedBox(height: 20.0,),
+
+                     Radio(value: "abc", groupValue: null, onChanged: null),
 
 
 
@@ -165,7 +197,7 @@ class _secState extends State<sec> {
                               print(phone.text.toString());
                               print(password.text.toString());
                               print(disc.text.toString());
-                              print(dob.text.toString());
+
                               print(gender.text.toString());
                               Signup();
                             },

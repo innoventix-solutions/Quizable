@@ -30,7 +30,7 @@ void main() {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(fontFamily: 'yu'),
-      home: screen14(),debugShowCheckedModeBanner: false,
+      home: sec(),debugShowCheckedModeBanner: false,
     routes: {
       'signup_teacher':(context)=>sec(),
       'login':(context)=>third(),
