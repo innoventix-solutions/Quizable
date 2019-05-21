@@ -35,8 +35,8 @@ class _drawerState extends State<drawer> {
         flexibleSpace: Container(
           decoration: BoxDecoration(
             gradient: LinearGradient(
-              begin: Alignment.centerLeft,
-              end: Alignment.centerRight,
+              begin: Alignment.topCenter,
+              end: Alignment.bottomRight,
               colors: [darkblue, darkpurple],
             ),
           ),

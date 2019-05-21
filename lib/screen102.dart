@@ -23,14 +23,14 @@ class _screen102State extends State<screen102> {
             title: Center(
               child: Text(
                 "Join Class",
-                style: TextStyle(fontSize: 21),
+                style: TextStyle(fontSize: 20),
               ),
             ),
             flexibleSpace: Container(
               decoration: BoxDecoration(
                 gradient: LinearGradient(
-                  begin: Alignment.centerLeft,
-                  end: Alignment.centerRight,
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomRight,
                   colors: [darkblue, darkpurple],
                 ),
               ),
@@ -45,6 +45,7 @@ class _screen102State extends State<screen102> {
               ),
             ],
           ),
+
           body: SingleChildScrollView(
             child: Column(
               children: <Widget>[
@@ -110,7 +111,7 @@ class _screen102State extends State<screen102> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(top: 10),
+                  padding: const EdgeInsets.only(top: 20),
                   child: Container(
                     width: 200,
                     child: GradientButtonText(

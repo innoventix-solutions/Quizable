@@ -37,7 +37,7 @@ var bg12 = BoxDecoration(
   gradient: LinearGradient(
     colors: <Color>[gradientblue, gradientviolet],
     begin: Alignment.topCenter,
-    end: Alignment.topRight,
+    end: Alignment.bottomRight,
   ),
 );
 
