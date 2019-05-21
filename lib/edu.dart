@@ -38,7 +38,7 @@ class _eduState extends State<edu> {
                     ),
                   ),
                   Text(
-                    "Supporting,improving",
+                    "Supporting and improving",
                     textAlign: TextAlign.left,
                     style: TextStyle(color: Colors.white, fontSize: 25),
                   ),

@@ -290,6 +290,3 @@ class GradientButtonText extends StatelessWidget {
     );
   }
 }
-
-
-
