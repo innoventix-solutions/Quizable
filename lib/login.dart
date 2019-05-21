@@ -33,8 +33,8 @@ class _thirdState extends State<third> {
     );
   }
   login() async {
-    http.post("http://edusupport.innoventixsolutions.com/login.php",body: {
-      "email":email.text.toString(),
+    http.post("http://edusupportapp.com/api/login.php",body: {
+      "username_email":email.text.toString(),
       "password":pass.text.toString()
 
     }).then((response){
