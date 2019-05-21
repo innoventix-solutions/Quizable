@@ -28,8 +28,8 @@ class _screen101State extends State<screen101> {
           flexibleSpace: Container(
             decoration: BoxDecoration(
               gradient: LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomRight,
+                begin: Alignment.centerLeft,
+                end: Alignment.centerRight,
                 colors: [darkblue, darkpurple],
               ),
             ),
@@ -57,29 +57,24 @@ class _screen101State extends State<screen101> {
                       )
                   )
               ),
-              Text('Welcome Smith',style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold,color:gray),),
+              Text('Welcome Smith',style: TextStyle(fontSize: 20),),
               Padding(
-                padding: const EdgeInsets.only(top: 40,left: 50,right: 50),
+                padding: const EdgeInsets.all(20),
                 child: Card(
                   child: Padding(
                     padding: const EdgeInsets.all(20),
                     child: Column(mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        Padding(
-                          padding: const EdgeInsets.only(top: 35),
-                          child: Text('Get Started',style: TextStyle(fontSize: 25,
-                              fontWeight: FontWeight.bold),),
-                        ),
+                        Text('Get Started',style: TextStyle(fontSize: 25,
+                            fontWeight: FontWeight.bold),),
                         SizedBox(height: 20,),
 
                         Row(
                           children: <Widget>[
                             Expanded(
-                                child: Container(padding: EdgeInsets.only(bottom: 50,top: 20,right: 25,left: 25),
+                                child: Container(padding: EdgeInsets.only(bottom: 35,top: 20),
                                   child: GradientButtonText(
-                                    linearGradient:LinearGradient(colors: <Color>[navy,navyblue]) ,
-                                    text: Text("Join a Class",style: TextStyle(color: Colors.white,
-                                      fontWeight: FontWeight.bold,fontSize: 18,),textAlign: TextAlign.center,),
+                                    linearGradient:LinearGradient(colors: <Color>[navy,navyblue]) ,text: Text("Join a Class",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 14,),textAlign: TextAlign.center,),
                                   ),
                                 )
                             ),
@@ -90,13 +85,10 @@ class _screen101State extends State<screen101> {
 
                 ),
               ),
-            Container(padding: EdgeInsets.only(top: 80),
-                child: Text('or Play Global Quiz',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18,color: lightblue),)),
-              Padding(
-                padding: const EdgeInsets.all(5.0),
-                child: Text('&',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18,color: lightblue),),
-              ),
-          Text('Spelling Challenge',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18,color: lightblue),)
+              Container(padding: EdgeInsets.only(top: 50),
+                  child: Text('or Play Global Quiz',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18,color: lightblue),)),
+              Text('&',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18,color: lightblue),),
+              Text('Spelling Challenge',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18,color: lightblue),)
             ],
           ),
         ),

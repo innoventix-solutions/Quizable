@@ -179,7 +179,7 @@ class _secState extends State<sec> {
                       ),
                       SizedBox(height: 20.0,),
 
-                     Radio(value: "abc", groupValue: null, onChanged: null),
+                     Radio(value: "abc", groupValue: 0, onChanged: (acd){}),
 
 
 
