@@ -88,7 +88,8 @@ class _screen101State extends State<screen101> {
               Container(padding: EdgeInsets.only(top: 50),
                   child: Text('or Play Global Quiz',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18,color: lightblue),)),
               Text('&',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18,color: lightblue),),
-              Text('Spelling Challenge',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18,color: lightblue),)
+              Text('Spelling Challenge',
+                style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18,color: lightblue),)
             ],
           ),
         ),

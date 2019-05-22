@@ -23,17 +23,11 @@ class _screen14State extends State<screen14> {
           title: Center(
             child: Text(
               "Create New Classroom",
-              style: TextStyle(fontSize: 21),
+              style: TextStyle(fontSize: 22),
             ),
           ),
           flexibleSpace: Container(
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.centerLeft,
-                end: Alignment.centerRight,
-                colors: [darkblue, darkpurple],
-              ),
-            ),
+            decoration: bg12,
           ),
           actions: <Widget>[
             IconButton(
@@ -64,9 +58,11 @@ class _screen14State extends State<screen14> {
                   padding: const EdgeInsets.all(40),
                   child: Column(
                     children: <Widget>[
-                      Container(width: 250,
-                          child: Text('Name of Classroom',style: TextStyle(color: lightblue,
-                          fontSize: 18,fontWeight: FontWeight.bold),)),
+                      Container(
+                          child: Align(alignment: Alignment.bottomLeft,
+                            child: Text('Name of Classroom',style: TextStyle(color: lightblue,
+                            fontSize: 18,fontWeight: FontWeight.bold,),textAlign: TextAlign.left,),
+                          ),),
                       Card(elevation: 5.0,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10.0),

@@ -27,13 +27,7 @@ child: Scaffold(
       ),
     ),
     flexibleSpace: Container(
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.centerLeft,
-          end: Alignment.centerRight,
-          colors: [darkblue, darkpurple],
-        ),
-      ),
+      decoration: bg12,
     ),
     actions: <Widget>[
       IconButton(
@@ -58,9 +52,9 @@ child: Scaffold(
                 )
             )
         ),
-      Text('Welcome Stanley Ohanugo',style: TextStyle(fontSize: 20),),
+      Text('Welcome Stanley Ohanugo',style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
         Padding(
-          padding: const EdgeInsets.all(20),
+          padding: const EdgeInsets.only(top: 45,right: 45,left: 45),
           child: Card(
             child: Padding(
               padding: const EdgeInsets.all(20),
@@ -68,23 +62,29 @@ child: Scaffold(
                 children: <Widget>[
                   Text('Get Started',style: TextStyle(fontSize: 25,
                     fontWeight: FontWeight.bold),),
-                  SizedBox(height: 20,),
-              Row(
-                children: <Widget>[
-                  Expanded(
-                    child: GradientButtonText(
-                      linearGradient:LinearGradient(colors: <Color>[purple,pink]) ,text: Text("Create a Class",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 14),textAlign: TextAlign.center,),
-                    )),
-                ],
-              ),SizedBox(height: 10),
-                  Row(
-                    children: <Widget>[
-                      Expanded(
-                          child: GradientButtonText(
-                            linearGradient:LinearGradient(colors: <Color>[navy,navyblue]) ,text: Text("Join a Class",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 14,),textAlign: TextAlign.center,),
-                          )
-                      ),
-                    ],
+                  //SizedBox(height: 20,),
+              Padding(
+                padding: const EdgeInsets.only(top: 20,left: 20,right: 20,bottom: 10),
+                child: Row(
+                  children: <Widget>[
+                    Expanded(
+                      child: GradientButtonText(
+                        linearGradient:LinearGradient(colors: <Color>[purple,pink]) ,text: Text("Create a Class",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 14),textAlign: TextAlign.center,),
+                      )),
+                  ],
+                ),
+              ),//SizedBox(height: 10),
+                  Padding(
+                    padding: const EdgeInsets.only(top:10,left: 20,right: 20,bottom: 30),
+                    child: Row(
+                      children: <Widget>[
+                        Expanded(
+                            child: GradientButtonText(
+                              linearGradient:LinearGradient(colors: <Color>[navy,navyblue]) ,text: Text("Join a Class",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 14,),textAlign: TextAlign.center,),
+                            )
+                        ),
+                      ],
+                    ),
                   ),],
               ),
             ),

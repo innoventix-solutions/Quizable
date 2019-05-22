@@ -20,6 +20,7 @@ import 'invitecode.dart';
 import 'screen25.dart';
 import 'screen101.dart';
 import 'screen102.dart';
+import 'studentjoinclass.dart';
 
 void main() {
   runApp(MyApp());
@@ -30,7 +31,7 @@ void main() {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(fontFamily: 'yu'),
-      home: screen101(),debugShowCheckedModeBanner: false,
+      home: studentjoin(),debugShowCheckedModeBanner: false,
     routes: {
       'signup_teacher':(context)=>sec(),
       'login':(context)=>third(),
