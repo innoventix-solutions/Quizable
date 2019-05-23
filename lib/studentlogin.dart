@@ -1,18 +1,15 @@
 import 'package:flutter/material.dart';
-import 'utilities.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:newpro/utilities.dart';
 import 'global.dart';
 import 'package:http/http.dart' as http;
-import 'package:fluttertoast/fluttertoast.dart';
 
-class sec extends StatefulWidget {
-
-
+class studentlogin extends StatefulWidget {
   @override
-  _secState createState() => _secState();
+  _studentloginState createState() => _studentloginState();
 }
 
-class _secState extends State<sec> {
-
+class _studentloginState extends State<studentlogin> {
 
 
   TextEditingController acc = new TextEditingController();
@@ -20,7 +17,9 @@ class _secState extends State<sec> {
   TextEditingController email = new TextEditingController();
   TextEditingController phone = new TextEditingController();
   TextEditingController password = new TextEditingController();
-  TextEditingController disc = new TextEditingController();
+
+TextEditingController par_email = new TextEditingController();
+  TextEditingController par_phone = new TextEditingController();
 
   TextEditingController gender = new TextEditingController();
 
@@ -42,12 +41,12 @@ class _secState extends State<sec> {
       "email": email.text.toString(),
       "password": password.text.toString(),
       "mobile": phone.text.toString(),
-      "discipline": disc.text.toString(),
+      "par_email": par_email.text.toString(),
+      "par_mobile": par_phone.text.toString(),
       "dob": selectedDate.toString().substring(0,10),
       "gender": gendersel.toString(),
       "role": "1",
-      "par_email": "asdf".toString(),
-      "par_mobile": "sadf"
+
     }).then((response) {
       print(response.body.toString());
 
@@ -75,7 +74,8 @@ class _secState extends State<sec> {
   }
 
 
- String gendersel = "Male";
+  String gendersel = "Male";
+
 
   @override
   Widget build(BuildContext context) {
@@ -107,7 +107,7 @@ class _secState extends State<sec> {
                         hintStyle: TextStyle(
                           color: black,
                         ),
-                        hintText: "Account Name",
+                        hintText: "Full Name",
                         icon: Icon(
                           Icons.account_circle,
                           color: lightblue,
@@ -156,24 +156,26 @@ class _secState extends State<sec> {
                       password,hintColor: lightblue,hintStyle: TextStyle(color: black,),hintText: "Password",icon: Icon(Icons.lock,color: lightblue,),),
 
                       CustomTextFieldBorder(controller:
-                      disc,hintColor: lightblue,hintStyle: TextStyle(color: black,),hintText: "Discipline",icon: Icon(Icons.speaker_notes,color: lightblue,),),
+                      par_email,hintColor: lightblue,hintStyle: TextStyle(color: black,),hintText: "Parent’s Email",icon: Icon(Icons.email,color: lightblue,),),
+                      CustomTextFieldBorder(controller:
+                      par_phone,hintColor: lightblue,hintStyle: TextStyle(color: black,),hintText: "Parent’s Mobile Number",icon: Icon(Icons.phone_android,color: lightblue,),),
                       Padding(
                         padding: const EdgeInsets.only(top: 15),
                         child: GestureDetector(
 
                           onTap: (){
-                          _selectDate(context);
-                        },
+                            _selectDate(context);
+                          },
                           child: Container(width: 300,height: 48,decoration: BoxDecoration(border:Border.all(color: lightblue),borderRadius: BorderRadius.circular(30) ),
                               child: Row(
                                 children: <Widget>[
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 10,right: 5),
-                                  child: Icon(
-                                  Icons.calendar_today,
-                                  color: blue,
-                              ),
-                                ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 10,right: 5),
+                                    child: Icon(
+                                      Icons.calendar_today,
+                                      color: blue,
+                                    ),
+                                  ),
                                   Text("${selectedDate.toLocal()}".substring(0,10),style: TextStyle(color: black),),
                                 ],
                               )),
@@ -211,7 +213,7 @@ class _secState extends State<sec> {
                             new Text(
                               'Female',
                               style: new TextStyle(
-                                fontSize: 16.0,color: black
+                                  fontSize: 16.0,color: black
                               ),
                             ),
                             new Radio(
@@ -226,7 +228,7 @@ class _secState extends State<sec> {
                             new Text(
                               'Other',
                               style: new TextStyle(
-                                fontSize: 16.0,color: black
+                                  fontSize: 16.0,color: black
                               ),
                             ),
                           ],
@@ -252,24 +254,19 @@ class _secState extends State<sec> {
 
 
 
-
-
-
-
-
-
                       new Container(
                         padding: EdgeInsets.only(top: 25),
                         child: Center(
                           child: GradientButton(
-                            () {
+                                () {
                               print(acc.text.toString());
                               print(username.text.toString());
                               print(email.text.toString());
                               print(phone.text.toString());
                               print(password.text.toString());
-                              print(disc.text.toString());
 
+                              print(par_email.toString());
+                              print(par_phone.toString());
                               print(selectedDate.toString().substring(0,10));
                               print(gendersel.toString());
 
@@ -290,26 +287,26 @@ class _secState extends State<sec> {
                           )),
                       new Container(
                           child: Text(
-                        'Terms & Conditions and Privacy Policy.',
-                        style: TextStyle(color: black, fontSize: 15),
-                      )),
+                            'Terms & Conditions and Privacy Policy.',
+                            style: TextStyle(color: black, fontSize: 15),
+                          )),
                       Padding(padding: EdgeInsets.only(top: 10)),
                       Container(
                           child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          Text(
-                            'Already have account?',
-                            style: TextStyle(color: black, fontSize: 15),
-                            textAlign: TextAlign.center,
-                          ),
-                          Text(" "),
-                          Text(
-                            'Sign In',
-                            style: TextStyle(color: blue, fontSize: 20),
-                          )
-                        ],
-                      )),
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              Text(
+                                'Already have account?',
+                                style: TextStyle(color: black, fontSize: 15),
+                                textAlign: TextAlign.center,
+                              ),
+                              Text(" "),
+                              Text(
+                                'Sign In',
+                                style: TextStyle(color: blue, fontSize: 20),
+                              )
+                            ],
+                          )),
 
                       /* add child content here */
                     ]),
@@ -321,5 +318,3 @@ class _secState extends State<sec> {
     );
   }
 }
-
-

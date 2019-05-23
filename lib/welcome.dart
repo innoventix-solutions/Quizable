@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:newpro/global.dart';
 import 'package:newpro/utilities.dart';
-class screen13 extends StatefulWidget {
+class welcome extends StatefulWidget {
   @override
-  _screen13State createState() => _screen13State();
+  _welcomeState createState() => _welcomeState();
 }
 
-class _screen13State extends State<screen13> {
+class _welcomeState extends State<welcome> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(

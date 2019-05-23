@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:newpro/global.dart';
-class screen7 extends StatefulWidget {
+class accounttype extends StatefulWidget {
   @override
-  _screen7State createState() => _screen7State();
+  _accounttypeState createState() => _accounttypeState();
 }
 
-class _screen7State extends State<screen7> {
+class _accounttypeState extends State<accounttype> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(

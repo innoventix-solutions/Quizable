@@ -198,7 +198,11 @@ class CustomTextFieldBorder extends StatelessWidget {
       padding: EdgeInsets.only(left: 30, right: 30, top: 15),
       child: Theme(
         data: ThemeData(hintColor: hintColor),
-        child: TextField(
+        child: TextFormField(validator: (value) {
+          if (value.isEmpty) {
+            return 'Please enter some text';
+          }
+        },
           controller: controller,
           decoration: InputDecoration(
               contentPadding: EdgeInsets.only(left: 5),

@@ -13,13 +13,14 @@ import 'splash.dart';
 import 'edu.dart';
 import 'select.dart';
 import 'screen5.dart';
-import 'screen7.dart';
-import 'screen13.dart';
+import 'accounttype.dart';
+import 'welcome.dart';
 import 'screen14.dart';
 import 'invitecode.dart';
 import 'screen25.dart';
 import 'screen101.dart';
 import 'screen102.dart';
+import 'studentlogin.dart';
 
 void main() {
   runApp(MyApp());
@@ -30,7 +31,7 @@ void main() {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(fontFamily: 'yu'),
-      home: screen101(),debugShowCheckedModeBanner: false,
+      home: screen4(),debugShowCheckedModeBanner: false,
     routes: {
       'signup_teacher':(context)=>sec(),
       'login':(context)=>third(),
