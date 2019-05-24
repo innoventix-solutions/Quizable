@@ -21,12 +21,16 @@ class invitecode extends StatefulWidget {
 }
 
 class _invitecodeState extends State<invitecode> {
+
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: true,
         leading: IconButton(
+          onPressed: (){},
           icon: Icon(
             Icons.arrow_back,
             color: Colors.white,
@@ -63,7 +67,7 @@ class _invitecodeState extends State<invitecode> {
 
           Padding(
             padding: const EdgeInsets.only(top: 10,bottom: 10),
-            child: Text('Messiah Classroom',
+            child: Text(GlobalData.class_name,
               style:TextStyle(fontSize: 15,color: gray,fontWeight: FontWeight.bold) ,),
           ),
 
@@ -95,6 +99,7 @@ class _invitecodeState extends State<invitecode> {
 
                     ),
                     child: IconButton(
+                      onPressed: (){},
                       icon: Icon(
                         Icons.share,
                         color:Colors.transparent,
@@ -115,7 +120,7 @@ class _invitecodeState extends State<invitecode> {
                             padding: const EdgeInsets.only(
                                 top: 15, bottom: 15, left: 45, right: 45),
                             child: Text(
-                              '117CBD',
+                              GlobalData.student_code,
                               textAlign: TextAlign.center,
                               style: TextStyle(fontSize: 25,color: gray,fontWeight: FontWeight.bold),
                             ),
@@ -132,7 +137,7 @@ class _invitecodeState extends State<invitecode> {
                       //borderRadius: new BorderRadius.circular(10.0),
                       color: lightblue,
                     ),
-                    child: IconButton(onPressed: (){Share.share('check out my website https://example.com');},
+                    child: IconButton(onPressed: (){Share.share(GlobalData.student_code+" Please use this code to Join the Class.");},
                       icon: Icon(
                         Icons.share,
                         color: white,
@@ -168,6 +173,7 @@ class _invitecodeState extends State<invitecode> {
 
                     ),
                     child: IconButton(
+                      onPressed: (){},
                       icon: Icon(
                         Icons.share,
                         color:Colors.transparent,
@@ -188,7 +194,7 @@ class _invitecodeState extends State<invitecode> {
                             padding: const EdgeInsets.only(
                                 top: 15, bottom: 15, left: 45, right: 45),
                             child: Text(
-                              '117CBD',
+                              GlobalData.teacher_code,
                               textAlign: TextAlign.center,
                               style: TextStyle(fontSize: 25,color: gray,fontWeight: FontWeight.bold),
                             ),
@@ -205,7 +211,8 @@ class _invitecodeState extends State<invitecode> {
                       //borderRadius: new BorderRadius.circular(10.0),
                       color: lightblue,
                     ),
-                    child: IconButton(onPressed: (){Share.share('check out my website https://example.com');},
+                    child: IconButton(onPressed: (){Share.share(GlobalData.teacher_code+" Please use this code to Join the Class.");},
+
                       icon: Icon(
                         Icons.share,
                         color: white,

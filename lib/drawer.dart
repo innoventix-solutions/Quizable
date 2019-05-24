@@ -43,6 +43,7 @@ class _drawerState extends State<drawer> {
         ),
         actions: <Widget>[
           IconButton(
+            onPressed: (){},
             icon: Icon(
               Icons.account_circle,
               color: Colors.transparent,

@@ -1,165 +1,145 @@
 import 'package:flutter/material.dart';
-import 'package:newpro/global.dart';
+import 'global.dart';
+
 class accounttype extends StatefulWidget {
   @override
   _accounttypeState createState() => _accounttypeState();
 }
 
 class _accounttypeState extends State<accounttype> {
+
+  String selectedvalue = "Basic School";
+
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-          appBar: AppBar(
-            automaticallyImplyLeading: true,
-            leading: IconButton(
-              icon: Icon(
-                Icons.arrow_back,
-                color: Colors.white,
-                size: 20,
-              ),
-            ),
-            title: Center(
-              child: Text(
-                "Messiah Classrooms",
-                style: TextStyle(fontSize: 22),
-              ),
-            ),
-            flexibleSpace: Container(
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment.centerLeft,
-                  end: Alignment.centerRight,
-                  colors: [darkblue, darkpurple],
-                ),
-              ),
-            ),
-            actions: <Widget>[
-              IconButton(
-                icon: Icon(
-                  Icons.account_circle,
-                  color: Colors.white,
-                  size: 20,
-                ),
-              ),
-            ],
-          ),
-          body:Column(
-            children: <Widget>[
-              Expanded(
-                child: new
-                ListView.builder(
-                  //gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 1),
+    return Scaffold(
 
-                    itemBuilder: (BuildContext ctxt, int index) {
-                      return  Column(
-                        children: <Widget>[
-                          Row(
+      appBar: AppBar(automaticallyImplyLeading: true,
+          leading: IconButton(
+            onPressed: (){},
+            icon: Icon(
+              Icons.arrow_back,
+              color: Colors.white,
+              size: 20,
+            ),
+          ),backgroundColor: Color(0Xff1F0BE5)),
+
+      body:
+      Container(
+        decoration: BoxDecoration(gradient: LinearGradient(
+          colors: <Color>[gradientblue, gradientviolet],
+          begin: Alignment.centerLeft,
+          end: Alignment.bottomCenter,
+        ),),
+
+
+          child: Center(
+            child: Column(
+              children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.only(top: 60,bottom: 55),
+                  child: Text('Select an Account Type',
+                    style:TextStyle(color: white,fontSize: 22,fontWeight: FontWeight.bold) ,),
+                ),
+
+                Padding(
+                  padding: const EdgeInsets.only(left: 35,right: 25),
+                  child: Text('An Admin Teacher may set up an account \n'
+                      'to manage a Class in an educational \ninstitution. '
+                      'Please select the type of \ninstitution your classroom belongs.',
+                    style:TextStyle(color: white,fontSize: 16,fontWeight: FontWeight.bold,
+                        height: 1.1),),
+                ),
+
+                Padding(
+                  padding: const EdgeInsets.only(top: 45,left: 45,right: 45),
+                  child: Card(shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15.0),
+                  ),
+                    child: Column(mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Container(
+                          child: Column(crossAxisAlignment: CrossAxisAlignment.center,
                             children: <Widget>[
-                              Stack(
-                                children: <Widget>[
-                                  Container(height: 70,width: 70,margin: EdgeInsets.only(left: 20,top: 15,bottom: 10),
-                                      decoration: new BoxDecoration(
-                                          shape: BoxShape.circle,
-                                          image: new DecorationImage(
-                                            fit: BoxFit.fill,
-                                            image:AssetImage('assets/images/bg.png'),
-                                          )
-                                      )
-                                  ),
-                                  Positioned(
-                                    right: 8,bottom: 8,
-                                    child: Card(color: Colors.green,elevation: 5.0,
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(40.0),
-                                      ),
-                                      child: Padding(
-                                        padding: const EdgeInsets.all(4.0),
-                                        child: Container(
+                              Center(child:
 
 
+                              DropdownButton(
+                                value: selectedvalue,
+                                isDense: true,
+                                hint:Text( "Type of Institution"),
+                                onChanged: (String newValue) {
+                                 selectedvalue=newValue;
 
+                                 setState(() {
 
-                                            child: Text('P',style: TextStyle(color: Colors.white,fontSize: 5),)),
-                                      ),
-                                    ),
-                                  ),
-                                ],
+                                 });
+                                },
+                                items: ["Basic School", "Distance Learning Institute",
+                                  "Religious Institute", "Secondary School",
+                                  "Tertiary Institution","Vocational & Remedial Institute",
+                                  "Other"].map((String value) {
+                                  return DropdownMenuItem(
+                                    value: value,
+                                    child: Text(value),
+                                  );
+                                }).toList(),
                               ),
 
 
 
 
 
-                              Expanded(
-                                child: Padding(
-                                  padding: const EdgeInsets.only(left:30),
-                                  child: Column(mainAxisAlignment: MainAxisAlignment.start,crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: <Widget>[
-                                      Text('Messih Class',style: TextStyle(fontSize: 15),textAlign: TextAlign.left,),
-                                      Padding(
-                                        padding: const EdgeInsets.only(top:5),
-                                        child: Text('"I\'m Victor"',style: TextStyle(fontSize: 12),),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ), Padding(
-                                padding: const EdgeInsets.only(right:16),
-                                child: PopupMenuButton(
-                                  child: Icon(Icons.more_vert),
-                                  itemBuilder: (_) => <PopupMenuItem<String>>[
-                                    new PopupMenuItem<String>(
-                                        child: new Text('Short Easy'), value: 'Short Easy'),
-                                    new PopupMenuItem<String>(
-                                        child: new Text('Assignment'), value: 'Assignment'),
-                                  ],
-                                  onSelected: ( value){},
-                                ),
+
+
+
+
+
+
+
+
+
+//                              Mydropdown(
+//                                dropdownValues: <String>
+//                                ["Basic School", "Distance Learning Institute",
+//                                  "Religious Institute", "Secondary School",
+//                                  "Tertiary Institution","Vocational & Remedial Institute",
+//                                  "Other"],
+//                                hint: "Type of Institution",
+//                              onChanged: (value){
+//
+//                              },),
                               ),
-                            ], ),
-
-
-
-                          new Divider(
-                            color: Colors.black,
-                          ), ],
-                      );
-                    }
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(18.0),
-                child: Column(
-                  children: <Widget>[
-                    Text('P Stand for student parent',style: TextStyle(color: green,fontWeight: FontWeight.bold,fontSize: 15),),
-                    Text('email or phone number',style: TextStyle(color: green,fontWeight: FontWeight.bold,fontSize: 15),)
-                  ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(bottom: 10,right: 20),
-                child: Row(mainAxisAlignment:MainAxisAlignment.end,
-                  children: <Widget>[
-                    Padding(
-                      padding: const EdgeInsets.only(right: 10),
-                      child: Text('Add Student',style: TextStyle(color: lightblue,fontSize: 15,fontWeight: FontWeight.bold),),
+                            ],
+                          ),),
+                      ],
                     ),
-
-                    Card(shape: CircleBorder(),
-                        elevation: 0.0,
-                        child: Padding(
-                          padding: const EdgeInsets.all(4.0),
-                          child: new Icon(Icons.add,color: white,),
-                        ),
-                       color:lightblue,
-
-                    ),
-                  ],
+                  ),
                 ),
-              )
-            ],
-          )
+
+
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.only(bottom: 25,right: 25),
+                    child: GestureDetector(
+                      child: Row(mainAxisAlignment: MainAxisAlignment.end,
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: <Widget>[
+                        Text('Proceed',style: TextStyle(fontSize: 22,fontWeight: FontWeight.bold,color: white),
+                        ),Icon(Icons.arrow_forward_ios,color: white,)
+                          ],),onTap: (){
+                      GlobalData.accounttype=selectedvalue;
+                      Navigator.of(context)
+                          .pushNamed('signup');
+                    },
+                    ),
+                  ),
+                )
+
+              ],
+            ),
+          ),
+
       ),
     );
   }

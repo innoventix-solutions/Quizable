@@ -13,6 +13,7 @@ class _screen101State extends State<screen101> {
         appBar: AppBar(
           automaticallyImplyLeading: true,
           leading: IconButton(
+            onPressed: (){},
             icon: Icon(
               Icons.arrow_back,
               color: Colors.white,
@@ -36,6 +37,7 @@ class _screen101State extends State<screen101> {
           ),
           actions: <Widget>[
             IconButton(
+              onPressed: (){},
               icon: Icon(
                 Icons.account_circle,
                 color: Colors.transparent,
@@ -88,7 +90,8 @@ class _screen101State extends State<screen101> {
               Container(padding: EdgeInsets.only(top: 50),
                   child: Text('or Play Global Quiz',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18,color: lightblue),)),
               Text('&',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18,color: lightblue),),
-              Text('Spelling Challenge',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18,color: lightblue),)
+              Text('Spelling Challenge',
+                style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18,color: lightblue),)
             ],
           ),
         ),

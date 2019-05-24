@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 Color gradientblue = Color(0Xff1F0BE5); //a
 Color gradientviolet = Color(0Xff730676); //a
 Color bluecard = Color(0Xff1560A1); //a
 Color pinkcard = Color(0XffEF5F7D); //a
-
 Color blue = Color(0Xff575DFF);
 Color white = Color(0XffFFFFFF);
 Color purple = Color(0Xff7629FB);
@@ -20,9 +20,32 @@ Color navy = Color(0Xff29D7FB);
 Color navyblue = Color(0xff5D63C2);
 Color orange = Color(0xffFF8658);
 Color greencard = Color(0xff6DCE8A);
-
+Color pinkred =  Color(0xffFF1665);
 Color gradientStart = Colors.blue; //Change start gradient color here
 Color gradientEnd = Colors.purple;
+
+
+class GlobalData{
+  static String userType;
+  static String accounttype;
+  static String uid;
+  static String class_name;
+  static String class_icon;
+  static String student_code;
+  static String teacher_code;
+}
+
+Show_toast_Now(String msg,Color color){
+  Fluttertoast.showToast(
+      msg: msg,
+      toastLength: Toast.LENGTH_SHORT,
+      gravity: ToastGravity.CENTER,
+      timeInSecForIos: 1,
+      backgroundColor: color,
+      textColor: Colors.white,
+      fontSize: 16.0
+  );
+}
 
 var bg = new BoxDecoration(
   gradient: new LinearGradient(
@@ -96,8 +119,9 @@ class Mydropdown extends StatelessWidget {
   final List<String> dropdownValues;
 
   final String hint;
+  final VoidCallback onChanged;
 
-  Mydropdown({this.dropdownValues, this.hint});
+  Mydropdown({this.dropdownValues, this.hint,this.onChanged});
 
   @override
   Widget build(BuildContext context) {
@@ -108,7 +132,7 @@ class Mydropdown extends StatelessWidget {
                 value: value,
               ))
           .toList(),
-      onChanged: (String value) {},
+      onChanged:(value){ onChanged;},
       isExpanded: false,
       hint: Text(hint),
     );
@@ -198,11 +222,7 @@ class CustomTextFieldBorder extends StatelessWidget {
       padding: EdgeInsets.only(left: 30, right: 30, top: 15),
       child: Theme(
         data: ThemeData(hintColor: hintColor),
-        child: TextFormField(validator: (value) {
-          if (value.isEmpty) {
-            return 'Please enter some text';
-          }
-        },
+        child: TextField(
           controller: controller,
           decoration: InputDecoration(
               contentPadding: EdgeInsets.only(left: 5),
@@ -229,6 +249,7 @@ class _appbarState extends State<appbar> {
     return AppBar(
       automaticallyImplyLeading: true,
       leading: IconButton(
+        onPressed: (){},
         icon: Icon(
           Icons.arrow_back,
           color: Colors.white,
@@ -252,6 +273,7 @@ class _appbarState extends State<appbar> {
       ),
       actions: <Widget>[
         IconButton(
+          onPressed: (){},
           icon: Icon(
             Icons.account_circle,
             color: Colors.white,

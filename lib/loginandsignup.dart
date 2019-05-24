@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:newpro/global.dart';
 
-class edu extends StatefulWidget {
+class loginandsignup extends StatefulWidget {
   @override
-  _eduState createState() => _eduState();
+  _loginandsignupState createState() => _loginandsignupState();
 }
 
-class _eduState extends State<edu> {
+class _loginandsignupState extends State<loginandsignup> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -91,7 +91,7 @@ class _eduState extends State<edu> {
                                   borderRadius: new BorderRadius.circular(30.0)),
                               onPressed: () {
                                 Navigator.of(context)
-                                    .pushNamed('signup_selection');
+                                    .pushNamed('login');
                               },
                               child: Text(
                                 'Log In',
