@@ -3,47 +3,60 @@ import 'package:share/share.dart';
 import 'globalvar.dart';
 import 'sec.dart';
 import 'card.dart';
-import 'list.dart';
-import 'screen4.dart';
-import 'screen9.dart';
-import 'screen11.dart';
+import 'teacheroption.dart';
+import 'accounttype.dart';
 import 'drawer.dart';
 import 'login.dart';
 import 'splash.dart';
-import 'edu.dart';
+import 'loginandsignup.dart';
 import 'select.dart';
-import 'screen5.dart';
-import 'accounttype.dart';
+import 'addstudent.dart';
+import 'classroomstudent.dart';
 import 'welcome.dart';
-import 'screen14.dart';
+import 'createnewclass.dart';
 import 'invitecode.dart';
-import 'screen25.dart';
+import 'teacherdashboard.dart';
 import 'screen101.dart';
-import 'screen102.dart';
-import 'studentlogin.dart';
+import 'techerjoinclass.dart';
+import 'infoofedusupport.dart';
+import 'studentreg.dart';
+import 'studentjoinclass.dart';
+
 
 void main() {
   runApp(MyApp());
 }
 
-  class MyApp extends StatelessWidget {
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(fontFamily: 'yu'),
-      home: screen4(),debugShowCheckedModeBanner: false,
-    routes: {
-      'signup_teacher':(context)=>sec(),
-      'login':(context)=>third(),
-      'teacher':(context)=>screen4(),
-      'loging_selection':(context)=>edu(),
-      'signup_selection':(context)=>select(),
-
-
-
-    },);
+      home: splash(),
+      debugShowCheckedModeBanner: false,
+      routes: {
+       // 'signup_teacher': (context) => sec(),
+        'login': (context) => login(),
+        'teacher': (context) => infoofedusupport(),
+        'loging_selection': (context) => loginandsignup(),
+        'signup_selection': (context) => select(),
+        'signup_teacher': (context) => teacheroption(),
+        'accouttypeselect': (context) => accounttype(),
+        'signup': (context)=> sec(),
+        'welcome': (context)=> welcome(),
+        'createnewclass': (context)=> createnewclass(),
+        'invitecode': (context)=> invitecode(),
+        'techerjoinclass': (context) => techerjoinclass(),
+        'studentjoinclass': (context) => studentjoin(),
+        'register': (context) => sec(),
+        'signup_student': (context) => studentreg(),
+        'studentjoin': (context) => studentjoin(),
+        'adminteacherjoinclass': (context) => techerjoinclass(),
+      },
+    );
   }
 }
+
 class Myapplication extends StatefulWidget {
   @override
   _MyapplicationState createState() => _MyapplicationState();
@@ -53,43 +66,50 @@ class _MyapplicationState extends State<Myapplication> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body:Container(
+      body: Container(
         decoration: BoxDecoration(
-    image: DecorationImage(
-    image:AssetImage('assets/images/bg.png'),
-    fit: BoxFit.cover
-    ) ,
-      ),
-
-        child: Center(child: Column(mainAxisAlignment: MainAxisAlignment.center,
+          image: DecorationImage(
+              image: AssetImage('assets/images/bg.png'), fit: BoxFit.cover),
+        ),
+        child: Center(
+            child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Padding(
               padding: const EdgeInsets.all(10.0),
-              child: Text("Sign Up",style: TextStyle(color: Colors.white,fontSize: 18),),
+              child: Text(
+                "Sign Up",
+                style: TextStyle(color: Colors.white, fontSize: 18),
+              ),
             ),
-            RaisedButton(color: Colors.white,padding: EdgeInsets.only(left: 80,right: 80),
-    child: new Text("I'm a Teacher",style: TextStyle(color: bluecolor),),
-    onPressed:(){},
-    shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0))
-    ),
-Padding(padding: EdgeInsets.all(5),),
-            RaisedButton(color:bluecolor,padding: EdgeInsets.only(left: 80,right: 80),
-                child: new Text("I'm a Student",style: TextStyle(color: Colors.white,),),
-                onPressed:(){},
-                shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0))
+            RaisedButton(
+                color: Colors.white,
+                padding: EdgeInsets.only(left: 80, right: 80),
+                child: new Text(
+                  "I'm a Teacher",
+                  style: TextStyle(color: bluecolor),
+                ),
+                onPressed: () {},
+                shape: new RoundedRectangleBorder(
+                    borderRadius: new BorderRadius.circular(30.0))),
+            Padding(
+              padding: EdgeInsets.all(5),
             ),
+            RaisedButton(
+                color: bluecolor,
+                padding: EdgeInsets.only(left: 80, right: 80),
+                child: new Text(
+                  "I'm a Student",
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
+                ),
+                onPressed: () {},
+                shape: new RoundedRectangleBorder(
+                    borderRadius: new BorderRadius.circular(30.0))),
           ],
-
-
-
-        )
+        )),
       ),
-
-
-
-
-
-),
     );
   }
 }
