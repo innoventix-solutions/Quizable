@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'global.dart';
@@ -8,14 +10,14 @@ import 'package:http/http.dart' as http;
 
 
 
-class third extends StatefulWidget {
+class login extends StatefulWidget {
   @override
 
 
-  _thirdState createState() => _thirdState();
+  _loginState createState() => _loginState();
 }
 
-class _thirdState extends State<third> {
+class _loginState extends State<login> {
 
   TextEditingController email = new TextEditingController();
   TextEditingController pass = new TextEditingController();
@@ -38,9 +40,29 @@ class _thirdState extends State<third> {
       "password":pass.text.toString()
 
     }).then((response){
+      var statuss = jsonDecode(response.body);
+
+
       print(response.body.toString());
-      if(response.body.toString()=="1"){
+  //    print(response.body.toString());
+      if(statuss['status']==1){
         Show_toast("Logged in Successfully",Colors.green);
+
+     print(   statuss['userdata']['user_type']);
+     GlobalData.uid=statuss['userdata']['ID'].toString();
+
+     if(statuss['userdata']['user_type']=="teacher")
+       {
+         Navigator.of(context).pushReplacementNamed('techerjoinclass');
+       }else if(statuss['userdata']['user_type']=="admin_teacher")
+         {
+           Navigator.of(context).pushReplacementNamed('welcome');
+         }
+     else
+     {
+       Navigator.of(context).pushReplacementNamed('studentjoinclass');
+     }
+
       }else
       {
         Show_toast("Invalid Username or Password",Colors.red);
@@ -67,7 +89,7 @@ class _thirdState extends State<third> {
             child: Column(
               children: <Widget>[
                 Theme(data: ThemeData(hintColor: white),
-                  child: TextField(controller: email,
+                  child: TextField(style: TextStyle(color: Colors.white,fontSize: 18),controller: email,
                     decoration: InputDecoration(contentPadding: EdgeInsets.only(left: 5),
                         border: new OutlineInputBorder(
                           borderRadius: new BorderRadius.circular(50.0),borderSide: BorderSide(color: Colors.white)
@@ -84,7 +106,7 @@ class _thirdState extends State<third> {
                   padding: const EdgeInsets.only(top: 20),
                   child: Container(width: 300,
                     child: Theme(data: ThemeData(hintColor: white),
-                      child: TextField(controller: pass,
+                      child: TextField(style: TextStyle(color: Colors.white,fontSize: 18),controller: pass,
                         decoration: InputDecoration(contentPadding: EdgeInsets.only(left: 5),
                             border: new OutlineInputBorder(
                               borderRadius: new BorderRadius.circular(50.0),

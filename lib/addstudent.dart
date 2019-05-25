@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:newpro/global.dart';
 
-class screen5 extends StatefulWidget {
+class addstudent extends StatefulWidget {
   @override
-  _screen5State createState() => _screen5State();
+  _addstudentState createState() => _addstudentState();
 }
 
-class _screen5State extends State<screen5> {
+class _addstudentState extends State<addstudent> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: true,
         leading: IconButton(
+          onPressed: (){},
           icon: Icon(
             Icons.arrow_back,
             color: Colors.white,
@@ -36,6 +37,7 @@ class _screen5State extends State<screen5> {
         ),
         actions: <Widget>[
           IconButton(
+            onPressed: (){},
             icon: Icon(
               Icons.account_circle,
               color: Colors.white,
@@ -86,6 +88,7 @@ class _screen5State extends State<screen5> {
 
     ),
     child: IconButton(
+      onPressed: (){},
     icon: Icon(
     Icons.share,
     color:Colors.transparent,
@@ -121,6 +124,7 @@ class _screen5State extends State<screen5> {
                     color: blue,
                   ),
                   child: IconButton(
+                    onPressed: (){},
                     icon: Icon(
                       Icons.share,
                       color: white,

@@ -45,6 +45,7 @@ class _selectState extends State<select> {
                                 borderRadius: new BorderRadius.circular(30.0)),
                             onPressed: () {
 
+                            GlobalData.userType="teacher";
                               Navigator.of(context).pushNamed('signup_teacher');
 
                             },
@@ -62,7 +63,10 @@ class _selectState extends State<select> {
                             color: Colors.blue,
                             shape: new RoundedRectangleBorder(
                                 borderRadius: new BorderRadius.circular(30.0)),
-                            onPressed: () {},
+                            onPressed: () {
+                              GlobalData.userType="student";
+                            Navigator.of(context).pushNamed('signup_student');
+                            },
                             child: Text(
                               'I\'m a Student',
                               textAlign: TextAlign.center,

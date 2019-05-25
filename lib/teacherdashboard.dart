@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:newpro/global.dart';
-class screen25 extends StatefulWidget {
+class teacherdashboard extends StatefulWidget {
   @override
-  _screen25State createState() => _screen25State();
+  _teacherdashboardState createState() => _teacherdashboardState();
 }
 
-class _screen25State extends State<screen25> {
+class _teacherdashboardState extends State<teacherdashboard> {
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
@@ -28,7 +28,7 @@ class _screen25State extends State<screen25> {
           ),
         ),
         actions: <Widget>[
-          IconButton(
+          IconButton(onPressed: (){},
             icon: Icon(
               Icons.account_circle,
               color: Colors.transparent,

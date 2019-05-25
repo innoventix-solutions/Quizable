@@ -13,6 +13,7 @@ class _screen101State extends State<screen101> {
         appBar: AppBar(
           automaticallyImplyLeading: true,
           leading: IconButton(
+            onPressed: (){},
             icon: Icon(
               Icons.arrow_back,
               color: Colors.white,
@@ -36,6 +37,7 @@ class _screen101State extends State<screen101> {
           ),
           actions: <Widget>[
             IconButton(
+              onPressed: (){},
               icon: Icon(
                 Icons.account_circle,
                 color: Colors.transparent,
@@ -74,7 +76,7 @@ class _screen101State extends State<screen101> {
                             Expanded(
                                 child: Container(padding: EdgeInsets.only(bottom: 35,top: 20),
                                   child: GradientButtonText(
-                                    linearGradient:LinearGradient(colors: <Color>[navy,navyblue]) ,text: Text("Join a Class",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 14,),textAlign: TextAlign.center,),
+                                    linearGradient:LinearGradient(colors: <Color>[navy,navyblue]) ,text: Text("Join a Class",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 16,),textAlign: TextAlign.center,),
                                   ),
                                 )
                             ),

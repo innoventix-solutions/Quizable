@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:newpro/global.dart';
-class screen7 extends StatefulWidget {
+class classroomstudent extends StatefulWidget {
   @override
-  _screen7State createState() => _screen7State();
+  _classroomstudentState createState() => _classroomstudentState();
 }
 
-class _screen7State extends State<screen7> {
+class _classroomstudentState extends State<classroomstudent> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -13,6 +13,7 @@ class _screen7State extends State<screen7> {
           appBar: AppBar(
             automaticallyImplyLeading: true,
             leading: IconButton(
+              onPressed: (){},
               icon: Icon(
                 Icons.arrow_back,
                 color: Colors.white,
@@ -36,6 +37,7 @@ class _screen7State extends State<screen7> {
             ),
             actions: <Widget>[
               IconButton(
+                onPressed: (){},
                 icon: Icon(
                   Icons.account_circle,
                   color: Colors.white,

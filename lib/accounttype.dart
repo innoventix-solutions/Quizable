@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'global.dart';
 
-class screen11 extends StatefulWidget {
+class accounttype extends StatefulWidget {
   @override
-  _screen11State createState() => _screen11State();
+  _accounttypeState createState() => _accounttypeState();
 }
 
-class _screen11State extends State<screen11> {
+class _accounttypeState extends State<accounttype> {
 
+  String selectedvalue = "Basic School";
 
   @override
   Widget build(BuildContext context) {
@@ -15,6 +16,7 @@ class _screen11State extends State<screen11> {
 
       appBar: AppBar(automaticallyImplyLeading: true,
           leading: IconButton(
+            onPressed: (){},
             icon: Icon(
               Icons.arrow_back,
               color: Colors.white,
@@ -59,13 +61,54 @@ class _screen11State extends State<screen11> {
                         Container(
                           child: Column(crossAxisAlignment: CrossAxisAlignment.center,
                             children: <Widget>[
-                              Center(child: Mydropdown(
-                                dropdownValues: <String>
-                                ["Basic School", "Distance Learning Institute",
+                              Center(child:
+
+
+                              DropdownButton(
+                                value: selectedvalue,
+                                isDense: true,
+                                hint:Text( "Type of Institution"),
+                                onChanged: (String newValue) {
+                                 selectedvalue=newValue;
+
+                                 setState(() {
+
+                                 });
+                                },
+                                items: ["Basic School", "Distance Learning Institute",
                                   "Religious Institute", "Secondary School",
                                   "Tertiary Institution","Vocational & Remedial Institute",
-                                  "Other"],
-                                hint: "Type of Institution",),
+                                  "Other"].map((String value) {
+                                  return DropdownMenuItem(
+                                    value: value,
+                                    child: Text(value),
+                                  );
+                                }).toList(),
+                              ),
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//                              Mydropdown(
+//                                dropdownValues: <String>
+//                                ["Basic School", "Distance Learning Institute",
+//                                  "Religious Institute", "Secondary School",
+//                                  "Tertiary Institution","Vocational & Remedial Institute",
+//                                  "Other"],
+//                                hint: "Type of Institution",
+//                              onChanged: (value){
+//
+//                              },),
                               ),
                             ],
                           ),),
@@ -84,7 +127,11 @@ class _screen11State extends State<screen11> {
                         children: <Widget>[
                         Text('Proceed',style: TextStyle(fontSize: 22,fontWeight: FontWeight.bold,color: white),
                         ),Icon(Icons.arrow_forward_ios,color: white,)
-                          ],),onTap: (){},
+                          ],),onTap: (){
+                      GlobalData.accounttype=selectedvalue;
+                      Navigator.of(context)
+                          .pushNamed('signup');
+                    },
                     ),
                   ),
                 )

@@ -1,3 +1,5 @@
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:newpro/global.dart';
 
@@ -7,13 +9,33 @@ class studentjoin extends StatefulWidget {
 }
 
 class _studentjoinState extends State<studentjoin> {
+
+  joinclass() async{
+    http.post("http://edusupportapp.com/api/join_class.php",
+        body: {
+          'UserId':GlobalData.uid,
+          'Invite_Code':classjoinstu.text.toString()
+        }).then((response){
+      print(response.body);
+      var statuss = jsonDecode(response.body);
+      if (statuss['status'].toString() == "1") {
+        Show_toast_Now(statuss['msg'], Colors.green);
+
+      } else {
+        Show_toast_Now(statuss['msg'], Colors.red);
+      }
+    });
+
+  }
+  TextEditingController classjoinstu = new TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
           appBar: AppBar(
             automaticallyImplyLeading: true,
-            leading: IconButton(
+            leading: IconButton(onPressed: (){},
               icon: Icon(
                 Icons.arrow_back,
                 color: Colors.white,
@@ -36,7 +58,7 @@ class _studentjoinState extends State<studentjoin> {
               ),
             ),
             actions: <Widget>[
-              IconButton(
+              IconButton(onPressed: (){},
                 icon: Icon(
                   Icons.arrow_back_ios,
                   color: Colors.transparent,
@@ -55,7 +77,7 @@ class _studentjoinState extends State<studentjoin> {
                     child: Column(
                       children: <Widget>[
                         Text(
-                          "Ask Teacher for Class Code then\n enter it here:",
+                          "Ask Admin Teacher for Class Code \n then enter it here:",
                           style: TextStyle(
                               fontSize: 18, fontWeight: FontWeight.bold),
                         ),
@@ -84,7 +106,7 @@ class _studentjoinState extends State<studentjoin> {
                       child: Padding(
                         padding: const EdgeInsets.only(
                             top: 5, bottom: 5, left: 50, right: 50),
-                        child: TextField(decoration: InputDecoration(
+                        child: TextField(controller: classjoinstu,decoration: InputDecoration(
                             border: InputBorder.none),
                           textAlign: TextAlign.center,
                         ),
@@ -97,8 +119,7 @@ class _studentjoinState extends State<studentjoin> {
                   child: Container(
                     width: 200,
                     child: GradientButtonText(
-                      linearGradient:
-                      LinearGradient(colors: <Color>[purple, pink]),
+                      linearGradient: LinearGradient(colors: <Color>[purple, pink]),
                       text: Text(
                         "Join",
                         style: TextStyle(
@@ -107,7 +128,9 @@ class _studentjoinState extends State<studentjoin> {
                             fontSize: 17),
                         textAlign: TextAlign.center,
                       ),
-                    ),
+                   ButtonClick: (){
+                    joinclass();
+                   }, ),
                   ),
                 ),
                 Padding(

@@ -1,19 +1,44 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:newpro/global.dart';
+import 'package:http/http.dart' as http;
 
-class screen102 extends StatefulWidget {
+class techerjoinclass extends StatefulWidget {
   @override
-  _screen102State createState() => _screen102State();
+  _techerjoinclassState createState() => _techerjoinclassState();
 }
 
-class _screen102State extends State<screen102> {
+class _techerjoinclassState extends State<techerjoinclass> {
+
+  TextEditingController classjointec = new TextEditingController();
+
+  joinclass() async{
+    http.post("http://edusupportapp.com/api/join_class.php",
+        body: {
+          'UserId':GlobalData.uid,
+          'Invite_Code':classjointec.text.toString()
+        }).then((response){
+      print(response.body);
+      var statuss = jsonDecode(response.body);
+      if (statuss['status'].toString() == "1") {
+        Show_toast_Now(statuss['msg'], Colors.green);
+
+      } else {
+        Show_toast_Now(statuss['msg'], Colors.red);
+      }
+    });
+
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
           appBar: AppBar(
             automaticallyImplyLeading: true,
-            leading: IconButton(
+            leading: IconButton(onPressed: (){},
               icon: Icon(
                 Icons.arrow_back,
                 color: Colors.white,
@@ -36,7 +61,7 @@ class _screen102State extends State<screen102> {
               ),
             ),
             actions: <Widget>[
-              IconButton(
+              IconButton(onPressed: (){},
                 icon: Icon(
                   Icons.arrow_back_ios,
                   color: Colors.transparent,
@@ -84,7 +109,9 @@ class _screen102State extends State<screen102> {
                       child: Padding(
                         padding: const EdgeInsets.only(
                             top: 5, bottom: 5, left: 50, right: 50),
-                        child: TextField(decoration: InputDecoration(
+                        child: TextField(controller: classjointec,
+
+                          decoration: InputDecoration(
                           border: InputBorder.none),
                           textAlign: TextAlign.center,
                         ),
@@ -107,6 +134,10 @@ class _screen102State extends State<screen102> {
                             fontSize: 17),
                         textAlign: TextAlign.center,
                       ),
+                      ButtonClick: (){
+                        joinclass();
+                      }
+                      ,
                     ),
                   ),
                 ),
@@ -125,7 +156,11 @@ class _screen102State extends State<screen102> {
                             fontSize: 17),
                         textAlign: TextAlign.center,
                       ),
-                    ),
+                    ButtonClick: (){
+
+
+
+                    },),
                   ),
                 ),
 

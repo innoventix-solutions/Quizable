@@ -1,28 +1,28 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'utilities.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:newpro/utilities.dart';
 import 'global.dart';
 import 'package:http/http.dart' as http;
-import 'package:fluttertoast/fluttertoast.dart';
-
-class sec extends StatefulWidget {
 
 
+class studentreg extends StatefulWidget {
   @override
-  _secState createState() => _secState();
+  _studentregState createState() => _studentregState();
 }
 
-class _secState extends State<sec> {
-
-
-
+class _studentregState extends State<studentreg> {
   TextEditingController acc = new TextEditingController();
   TextEditingController username = new TextEditingController();
   TextEditingController email = new TextEditingController();
   TextEditingController phone = new TextEditingController();
   TextEditingController password = new TextEditingController();
-  TextEditingController disc = new TextEditingController();
+  TextEditingController selectDate = new TextEditingController();
+
+  TextEditingController par_email = new TextEditingController();
+  TextEditingController par_phone = new TextEditingController();
+
   TextEditingController gender = new TextEditingController();
 
   Show_toast(String msg, Color color) {
@@ -43,18 +43,16 @@ class _secState extends State<sec> {
       "UserEmail": email.text.toString(),
       "password": password.text.toString(),
       "phone_no": phone.text.toString(),
-      "specification": disc.text.toString(),
-      "birthdate": "11-11-12".toString(),
+      "birthdate": selectedDate.toString().substring(0, 10),
       "gender": gendersel.toString(),
+      "specification": "",
       "user_type": GlobalData.userType,
-     "parents_email": "asdf".toString(),
-     "parents_phone_no": "sadf".toString(),
-    //  "user_type":"student".toString(),
+      "parents_email": par_email.text.toString(),
+      "parents_phone_no": par_phone.text.toString(),
       "accout_type":GlobalData.accounttype,
-
-
-
     }).then((response) {
+      print(response.body.toString());
+
       var statuss = jsonDecode(response.body);
 
 
@@ -62,19 +60,27 @@ class _secState extends State<sec> {
 
       if (statuss['status'].toString() == "1") {
         Show_toast("Registered Successfully", Colors.green);
-        Navigator.of(context)
-            .pushNamed('login');
       } else {
         Show_toast(statuss['msg'], Colors.red);
       }
     });
   }
 
+  DateTime selectedDate = DateTime.now();
 
+  Future<Null> _selectDate(BuildContext context) async {
+    final DateTime picked = await showDatePicker(
+        context: context,
+        initialDate: selectedDate,
+        firstDate: DateTime(2015, 8),
+        lastDate: DateTime(2101));
+    if (picked != null && picked != selectedDate)
+      setState(() {
+        selectedDate = picked;
+      });
+  }
 
-
-
- String gendersel = "Male";
+  String gendersel = "Male";
 
   @override
   Widget build(BuildContext context) {
@@ -83,7 +89,7 @@ class _secState extends State<sec> {
         body: Center(
           child: SingleChildScrollView(
             child: Padding(
-              padding: const EdgeInsets.only(top: 25,bottom: 25),
+              padding: const EdgeInsets.only(top: 25, bottom: 25),
               child: Center(
                 child: new Column(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -99,20 +105,18 @@ class _secState extends State<sec> {
                           ),
                         ),
                       ),
-
                       CustomTextFieldBorder(
                         controller: acc,
                         hintColor: blue,
                         hintStyle: TextStyle(
                           color: black,
                         ),
-                        hintText: "Account Name",
+                        hintText: "Full Name",
                         icon: Icon(
                           Icons.account_circle,
                           color: lightblue,
                         ),
                       ),
-
                       CustomTextFieldBorder(
                         controller: username,
                         hintColor: lightblue,
@@ -137,7 +141,6 @@ class _secState extends State<sec> {
                           color: lightblue,
                         ),
                       ),
-
                       CustomTextFieldBorder(
                         controller: phone,
                         hintColor: lightblue,
@@ -150,121 +153,161 @@ class _secState extends State<sec> {
                           color: lightblue,
                         ),
                       ),
+                      CustomTextFieldBorder(
+                        controller: password,
+                        hintColor: lightblue,
+                        hintStyle: TextStyle(
+                          color: black,
+                        ),
+                        hintText: "Password",
+                        icon: Icon(
+                          Icons.lock,
+                          color: lightblue,
+                        ),
+                      ),
+                      CustomTextFieldBorder(
+                        controller: par_email,
+                        hintColor: lightblue,
+                        hintStyle: TextStyle(
+                          color: black,
+                        ),
+                        hintText: "Parent’s Email",
+                        icon: Icon(
+                          Icons.email,
+                          color: lightblue,
+                        ),
+                      ),
+                      CustomTextFieldBorder(
+                        controller: par_phone,
+                        hintColor: lightblue,
+                        hintStyle: TextStyle(
+                          color: black,
+                        ),
+                        hintText: "Parent’s Mobile Number",
+                        icon: Icon(
+                          Icons.phone_android,
+                          color: lightblue,
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 15),
+                        child: GestureDetector(
+                          onTap: () {
+                            _selectDate(context);
+                          },
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 30,right: 30),
+                            child: Container(
 
-                      CustomTextFieldBorder(controller:
-                      password,hintColor: lightblue,hintStyle: TextStyle(color: black,),hintText: "Password",icon: Icon(Icons.lock,color: lightblue,),),
-
-                      CustomTextFieldBorder(controller:
-                      disc,hintColor: lightblue,hintStyle: TextStyle(color: black,),hintText: "Discipline",icon: Icon(Icons.speaker_notes,color: lightblue,),),
-
-                      SizedBox(height: 15.0,),
-
+                                height: 48,
+                                decoration: BoxDecoration(
+                                    border: Border.all(color: lightblue),
+                                    borderRadius: BorderRadius.circular(30)),
+                                child: Row(
+                                  children: <Widget>[
+                                    Padding(
+                                      padding: const EdgeInsets.only(
+                                          left: 10, right: 5),
+                                      child: Icon(
+                                        Icons.calendar_today,
+                                        color: blue,
+                                      ),
+                                    ),
+                                    Text(
+                                      "${selectedDate.toLocal()}"
+                                          .substring(0, 10),
+                                      style: TextStyle(color: black),
+                                    ),
+                                  ],
+                                )),
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 15.0,
+                      ),
                       Padding(
                         padding: const EdgeInsets.only(left: 30,right: 30),
-                        child: Container(height: 48,decoration: BoxDecoration(border:Border.all(color: lightblue),borderRadius: BorderRadius.circular(30) ),
+                        child: Container(
+
+                          height: 48,
+                          decoration: BoxDecoration(
+                              border: Border.all(color: lightblue),
+                              borderRadius: BorderRadius.circular(30)),
                           child: Row(
                             children: <Widget>[
                               new Radio(
                                 value: "Male",
                                 groupValue: gendersel,
-                                onChanged:( value ){gendersel = value;
-                                setState(() {
-
-                                });
-
+                                onChanged: (value) {
+                                  gendersel = value;
+                                  setState(() {});
                                 },
                                 activeColor: blue,
                               ),
                               new Text(
                                 'Male',
-                                style: new TextStyle(fontSize: 16.0,color: black),
+                                style:
+                                    new TextStyle(fontSize: 16.0, color: black),
                               ),
                               new Radio(
                                 value: "Female",
                                 groupValue: gendersel,
-                                onChanged: (value ){gendersel= value;
-                                setState(() {
-
-                                });},
+                                onChanged: (value) {
+                                  gendersel = value;
+                                  setState(() {});
+                                },
                                 activeColor: blue,
                               ),
                               new Text(
                                 'Female',
-                                style: new TextStyle(
-                                  fontSize: 16.0,color: black
-                                ),
+                                style:
+                                    new TextStyle(fontSize: 16.0, color: black),
                               ),
                               new Radio(
                                 value: "Other",
                                 groupValue: gendersel,
-                                onChanged: (value){gendersel = value;
-                                setState(() {
-
-                                });},
+                                onChanged: (value) {
+                                  gendersel = value;
+                                  setState(() {});
+                                },
                                 activeColor: blue,
                               ),
                               new Text(
                                 'Other',
-                                style: new TextStyle(
-                                  fontSize: 16.0,color: black
-                                ),
+                                style:
+                                    new TextStyle(fontSize: 16.0, color: black),
                               ),
                             ],
                           ),
                         ),
                       ),
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                       new Container(
                         padding: EdgeInsets.only(top: 25),
                         child: Center(
                           child: GradientButton(
                             () {
+                              Navigator.of(context)
+                                  .pushNamed('studentjoin');
 
                               print(acc.text.toString());
                               print(username.text.toString());
                               print(email.text.toString());
                               print(phone.text.toString());
                               print(password.text.toString());
-                              print(disc.text.toString());
 
-                             // print(selectedDate.toString().substring(0,10));
+                              print(par_email.toString());
+                              print(par_phone.toString());
+                              print(selectedDate.toString().substring(0, 10));
                               print(gendersel.toString());
 
                               Signup();
                             },
                             "Get Started",
                             LinearGradient(colors: <Color>[purple, pink]),
-
-                           ),
+                          ),
                         ),
                       ),
-
-
                       new Container(
                           padding: EdgeInsets.only(top: 5),
                           child: Text(
@@ -304,5 +347,3 @@ class _secState extends State<sec> {
     );
   }
 }
-
-
