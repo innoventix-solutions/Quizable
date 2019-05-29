@@ -21,7 +21,7 @@ import 'techerjoinclass.dart';
 import 'infoofedusupport.dart';
 import 'studentreg.dart';
 import 'studentjoinclass.dart';
-
+import 'manageclassactivites.dart';
 
 void main() {
   runApp(MyApp());
@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(fontFamily: 'yu'),
-      home: splash(),
+      home: questionmenu(),
       debugShowCheckedModeBanner: false,
       routes: {
        // 'signup_teacher': (context) => sec(),
