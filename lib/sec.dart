@@ -194,7 +194,7 @@ class _secState extends State<sec> {
                                   fontSize: 16.0,color: black
                                 ),
                               ),
-                              new Radio(
+                              /*new Radio(
                                 value: "Other",
                                 groupValue: gendersel,
                                 onChanged: (value){gendersel = value;
@@ -208,7 +208,7 @@ class _secState extends State<sec> {
                                 style: new TextStyle(
                                   fontSize: 16.0,color: black
                                 ),
-                              ),
+                              ),*/
                             ],
                           ),
                         ),
@@ -289,7 +289,7 @@ class _secState extends State<sec> {
                           Text(" "),
                           Text(
                             'Sign In',
-                            style: TextStyle(color: blue, fontSize: 20),
+                            style: TextStyle(color: blue, fontSize: 16,fontWeight: FontWeight.bold),
                           )
                         ],
                       )),

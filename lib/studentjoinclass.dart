@@ -45,18 +45,10 @@ class _studentjoinState extends State<studentjoin> {
             title: Center(
               child: Text(
                 "Join Class",
-                style: TextStyle(fontSize: 20),
+                style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),
               ),
             ),
-            flexibleSpace: Container(
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomRight,
-                  colors: [darkblue, darkpurple],
-                ),
-              ),
-            ),
+
             actions: <Widget>[
               IconButton(onPressed: (){},
                 icon: Icon(
@@ -65,7 +57,7 @@ class _studentjoinState extends State<studentjoin> {
                   size: 10,
                 ),
               ),
-            ],
+            ],backgroundColor: Color(0Xff1F0BE6),
           ),
 
           body: SingleChildScrollView(
@@ -77,13 +69,13 @@ class _studentjoinState extends State<studentjoin> {
                     child: Column(
                       children: <Widget>[
                         Text(
-                          "Ask Admin Teacher for Class Code \n then enter it here:",
+                          "Ask Teacher for Class Code then \nenter it here:",
                           style: TextStyle(
                               fontSize: 18, fontWeight: FontWeight.bold),
                         ),
                         Container(
                             width: 250,
-                            padding: EdgeInsets.only(top: 20),
+                            padding: EdgeInsets.only(top: 30),
                             child: Text(
                               'Class Code',
                               style: TextStyle(

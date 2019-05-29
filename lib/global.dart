@@ -21,6 +21,9 @@ Color navyblue = Color(0xff5D63C2);
 Color orange = Color(0xffFF8658);
 Color greencard = Color(0xff6DCE8A);
 Color pinkred =  Color(0xffFF1665);
+Color bgblue = Color(0xff4268B3);
+Color bgdarkblue = Color(0xff4267B8);
+
 Color gradientStart = Colors.blue; //Change start gradient color here
 Color gradientEnd = Colors.purple;
 

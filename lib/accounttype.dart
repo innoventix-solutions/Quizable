@@ -15,22 +15,18 @@ class _accounttypeState extends State<accounttype> {
     return Scaffold(
 
       appBar: AppBar(automaticallyImplyLeading: true,
-          leading: IconButton(
-            onPressed: (){},
-            icon: Icon(
-              Icons.arrow_back,
-              color: Colors.white,
-              size: 20,
-            ),
-          ),backgroundColor: Color(0Xff1F0BE5)),
+        leading: IconButton(
+          onPressed: (){},
+          icon: Icon(
+            Icons.arrow_back,
+            color: Colors.white,
+            size: 20,
+          ),
+        ),backgroundColor: Color(0Xff1F0BE6)),
 
       body:
       Container(
-        decoration: BoxDecoration(gradient: LinearGradient(
-          colors: <Color>[gradientblue, gradientviolet],
-          begin: Alignment.centerLeft,
-          end: Alignment.bottomCenter,
-        ),),
+        decoration: BoxDecoration(color: bgblue),
 
 
           child: Center(
@@ -43,7 +39,7 @@ class _accounttypeState extends State<accounttype> {
                 ),
 
                 Padding(
-                  padding: const EdgeInsets.only(left: 35,right: 25),
+                  padding: const EdgeInsets.only(left: 35,right: 25,top: 50),
                   child: Text('An Admin Teacher may set up an account \n'
                       'to manage a Class in an educational \ninstitution. '
                       'Please select the type of \ninstitution your classroom belongs.',
@@ -52,7 +48,7 @@ class _accounttypeState extends State<accounttype> {
                 ),
 
                 Padding(
-                  padding: const EdgeInsets.only(top: 45,left: 45,right: 45),
+                  padding: const EdgeInsets.only(top: 45,left: 35,right: 35),
                   child: Card(shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(15.0),
                   ),
