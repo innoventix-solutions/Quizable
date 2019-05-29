@@ -60,6 +60,8 @@ class _studentregState extends State<studentreg> {
 
       if (statuss['status'].toString() == "1") {
         Show_toast("Registered Successfully", Colors.green);
+        Navigator.of(context)
+            .pushNamed('studentjoin');
       } else {
         Show_toast(statuss['msg'], Colors.red);
       }
@@ -287,8 +289,7 @@ class _studentregState extends State<studentreg> {
                         child: Center(
                           child: GradientButton(
                             () {
-                              Navigator.of(context)
-                                  .pushNamed('studentjoin');
+
 
                               print(acc.text.toString());
                               print(username.text.toString());
@@ -330,9 +331,15 @@ class _studentregState extends State<studentreg> {
                             textAlign: TextAlign.center,
                           ),
                           Text(" "),
-                          Text(
-                            'Sign In',
-                            style: TextStyle(color: blue, fontSize: 20),
+                          GestureDetector(
+                            onTap: (){
+                              Navigator.of(context)
+                                  .pushNamed('login');
+                            },
+                            child: Text(
+                              'Sign In',
+                              style: TextStyle(color: blue, fontSize: 20),
+                            ),
                           )
                         ],
                       )),

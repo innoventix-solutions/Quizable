@@ -287,9 +287,15 @@ class _secState extends State<sec> {
                             textAlign: TextAlign.center,
                           ),
                           Text(" "),
-                          Text(
-                            'Sign In',
-                            style: TextStyle(color: blue, fontSize: 20),
+                          GestureDetector(
+                            onTap: (){
+                              Navigator.of(context)
+                                  .pushNamed('login');
+                            },
+                            child: Text(
+                              'Sign In',
+                              style: TextStyle(color: blue, fontSize: 20),
+                            ),
                           )
                         ],
                       )),

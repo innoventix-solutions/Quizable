@@ -21,6 +21,12 @@ import 'techerjoinclass.dart';
 import 'infoofedusupport.dart';
 import 'studentreg.dart';
 import 'studentjoinclass.dart';
+import 'greenclassroom.dart';
+import 'viewteacher.dart';
+import 'temp2.dart';
+import 'viewteacherdropdown.dart';
+import 'addteacher.dart';
+import 'adminprofile.dart';
 
 
 void main() {
@@ -32,7 +38,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(fontFamily: 'yu'),
-      home: splash(),
+      home: adminprofile(),
       debugShowCheckedModeBanner: false,
       routes: {
        // 'signup_teacher': (context) => sec(),
