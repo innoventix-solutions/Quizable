@@ -48,18 +48,10 @@ class _techerjoinclassState extends State<techerjoinclass> {
             title: Center(
               child: Text(
                 "Join Class",
-                style: TextStyle(fontSize: 20),
+                style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),
               ),
             ),
-            flexibleSpace: Container(
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomRight,
-                  colors: [darkblue, darkpurple],
-                ),
-              ),
-            ),
+
             actions: <Widget>[
               IconButton(onPressed: (){},
                 icon: Icon(
@@ -68,7 +60,7 @@ class _techerjoinclassState extends State<techerjoinclass> {
                   size: 10,
                 ),
               ),
-            ],
+            ],backgroundColor: Color(0Xff1F0BE6),
           ),
 
           body: SingleChildScrollView(
@@ -80,7 +72,7 @@ class _techerjoinclassState extends State<techerjoinclass> {
                     child: Column(
                       children: <Widget>[
                         Text(
-                          "Ask Teacher for Class Code then\n enter it here:",
+                          "Ask Admin Teacher for Class Code then\nenter it here:",
                           style: TextStyle(
                               fontSize: 18, fontWeight: FontWeight.bold),
                         ),

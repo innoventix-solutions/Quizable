@@ -10,6 +10,7 @@ class _teacheroptionState extends State<teacheroption> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
       body: Container(
         decoration: bg12,
         child: Column(
@@ -160,6 +161,7 @@ class _teacheroptionState extends State<teacheroption> {
                       ),
                     ],
                   ),
+
                 ),
               ),
             ),

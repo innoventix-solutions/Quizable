@@ -23,7 +23,7 @@ import 'studentreg.dart';
 import 'studentjoinclass.dart';
 import 'greenclassroom.dart';
 import 'viewteacher.dart';
-import 'temp2.dart';
+
 import 'viewteacherdropdown.dart';
 import 'addteacher.dart';
 import 'adminprofile.dart';

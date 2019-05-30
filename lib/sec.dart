@@ -194,7 +194,7 @@ class _secState extends State<sec> {
                                   fontSize: 16.0,color: black
                                 ),
                               ),
-                              new Radio(
+                              /*new Radio(
                                 value: "Other",
                                 groupValue: gendersel,
                                 onChanged: (value){gendersel = value;
@@ -208,7 +208,7 @@ class _secState extends State<sec> {
                                 style: new TextStyle(
                                   fontSize: 16.0,color: black
                                 ),
-                              ),
+                              ),*/
                             ],
                           ),
                         ),
@@ -287,8 +287,7 @@ class _secState extends State<sec> {
                             textAlign: TextAlign.center,
                           ),
                           Text(" "),
-                          GestureDetector(
-                            onTap: (){
+                          GestureDetector(onTap: (){
                               Navigator.of(context)
                                   .pushNamed('login');
                             },

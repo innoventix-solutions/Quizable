@@ -21,6 +21,9 @@ Color navyblue = Color(0xff5D63C2);
 Color orange = Color(0xffFF8658);
 Color greencard = Color(0xff6DCE8A);
 Color pinkred =  Color(0xffFF1665);
+Color bgblue = Color(0xff4268B3);
+Color bgdarkblue = Color(0xff4267B8);
+
 Color gradientStart = Colors.blue; //Change start gradient color here
 Color gradientEnd = Colors.purple;
 
@@ -316,3 +319,48 @@ class GradientButtonText extends StatelessWidget {
     );
   }
 }
+
+class CustomTextField extends StatelessWidget {
+  final Color hintColor;
+  final String Texth;
+  final TextEditingController controller;
+  final TextStyle hintStyle;
+
+  CustomTextField(
+      {this.controller,
+        this.hintColor,
+
+        this.Texth,
+        this.hintStyle});
+
+  @override
+  Widget build(BuildContext context) {
+    return  Column(
+      children: <Widget>[
+        Container(
+          child: Align(
+            alignment: Alignment.bottomLeft,
+
+          ),
+        ),
+        Card(
+          elevation: 5.0,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10.0),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.only(
+                top: 5, bottom: 5, left: 50, right: 50),
+            child: TextField(
+
+              decoration:
+              InputDecoration(border: InputBorder.none),
+              textAlign: TextAlign.center,
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+}
+

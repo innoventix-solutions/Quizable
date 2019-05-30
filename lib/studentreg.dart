@@ -74,7 +74,7 @@ class _studentregState extends State<studentreg> {
     final DateTime picked = await showDatePicker(
         context: context,
         initialDate: selectedDate,
-        firstDate: DateTime(2015, 8),
+        firstDate: DateTime(1975),
         lastDate: DateTime(2101));
     if (picked != null && picked != selectedDate)
       setState(() {
@@ -266,7 +266,7 @@ class _studentregState extends State<studentreg> {
                                 style:
                                     new TextStyle(fontSize: 16.0, color: black),
                               ),
-                              new Radio(
+                             /* new Radio(
                                 value: "Other",
                                 groupValue: gendersel,
                                 onChanged: (value) {
@@ -279,7 +279,7 @@ class _studentregState extends State<studentreg> {
                                 'Other',
                                 style:
                                     new TextStyle(fontSize: 16.0, color: black),
-                              ),
+                              ),*/
                             ],
                           ),
                         ),
@@ -331,16 +331,8 @@ class _studentregState extends State<studentreg> {
                             textAlign: TextAlign.center,
                           ),
                           Text(" "),
-                          GestureDetector(
-                            onTap: (){
-                              Navigator.of(context)
-                                  .pushNamed('login');
-                            },
-                            child: Text(
-                              'Sign In',
-                              style: TextStyle(color: blue, fontSize: 20),
-                            ),
-                          )
+
+
                         ],
                       )),
 
