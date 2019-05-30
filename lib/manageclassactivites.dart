@@ -266,30 +266,30 @@ class _questionmenuState extends State<questionmenu> {
 
 
             Padding(
-              padding: const EdgeInsets.only(left: 45,top:30),
+              padding: const EdgeInsets.only(left: 35,top:30),
               child: Row(children: <Widget>[Icon(Icons.home,color: lightblue,),
                 Padding(
-                  padding: const EdgeInsets.only(left: 20),
+                  padding: const EdgeInsets.only(left: 10),
                   child: Text('Home',style: TextStyle(
                       color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
                 )],),
             ),
 
             Padding(
-              padding: const EdgeInsets.only(left: 45,top:20),
+              padding: const EdgeInsets.only(left: 35,top:20),
               child: Row(children: <Widget>[Icon(Icons.assignment,color: lightblue,),
                 Padding(
-                  padding: const EdgeInsets.only(left: 20),
+                  padding: const EdgeInsets.only(left: 10),
                   child: Text('Assignment Question Bank',style: TextStyle(
                       color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
                 )],),
             ),
 
             Padding(
-              padding: const EdgeInsets.only(left: 45,top:20),
+              padding: const EdgeInsets.only(left: 35,top:20),
               child: Row(children: <Widget>[Icon(Icons.live_help,color: lightblue,),
                 Padding(
-                  padding: const EdgeInsets.only(left: 20),
+                  padding: const EdgeInsets.only(left: 10),
                   child: Text('Set Quiz Questions',style: TextStyle(
                       color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
                 )],),
@@ -297,10 +297,10 @@ class _questionmenuState extends State<questionmenu> {
 
             GestureDetector(
               child: Padding(
-                padding: const EdgeInsets.only(left: 45,top:20),
+                padding: const EdgeInsets.only(left: 35,top:20),
                 child: Row(children: <Widget>[Icon(Icons.offline_pin,color: lightblue,),
                   Padding(
-                    padding: const EdgeInsets.only(left: 20),
+                    padding: const EdgeInsets.only(left: 10),
                     child: Text('Set Spelling Challenge',style: TextStyle(
                         color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
                   ),],),

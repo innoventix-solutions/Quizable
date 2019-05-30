@@ -144,49 +144,255 @@ class _setquizquestionState extends State<setquizquestion> {
       ),
 
 
-      body: Column(mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.center,children: <Widget>[
+      body: SingleChildScrollView(
+        child: Column(mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,children: <Widget>[
 
-        Padding(
-            padding: const EdgeInsets.only(top: 40,left: 40,right: 50),
-            child: Column(
-              children: <Widget>[
-                Container(
-                  child: Align(
-                    alignment: Alignment.bottomLeft,
-                    child: Text(
-                      'Teachers Name',
-                      style: TextStyle(
-                        color: lightblue,
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                      ),
-                      textAlign: TextAlign.left,
-                    ),
-                  ),
-                ),
-                Card(
-                  elevation: 5.0,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(5.0),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.only(top:10,left: 10, right: 50),
-                    child: SizedBox(height: 45,width: 260,
+          Container(
+            child: Padding(
+                padding: const EdgeInsets.only(top: 40,left: 40,right: 60),
+                child: Column(
+                  children: <Widget>[
+                    Align(
+                      alignment: Alignment.bottomLeft,
                       child: Text(
-                        'Stanley Ohanugo',
+                        'Teachers Name',
+                        style: TextStyle(
+                          color: lightblue,
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
                         textAlign: TextAlign.left,
-                        style: TextStyle(fontSize: 16,color: black),
                       ),
                     ),
-                  ),
-                ),
-              ],
-            )),
+                   CustomTextField(),
 
 
 
-      ],),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 20),
+                      child: Align(alignment: Alignment.bottomLeft,
+                        child: Text(
+                          'Title of Quiz',
+                          style: TextStyle(
+                            color: lightblue,
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                          ),
+                          textAlign: TextAlign.left,
+                        ),
+                      ),
+                    ),CustomTextField(),
+
+
+
+
+                    Center(
+                      child: Container(
+
+                        child: Column(
+
+                          children: <Widget>[
+
+                            Row(mainAxisAlignment: MainAxisAlignment.center,
+                              children:
+                              <Widget>[
+
+
+                                SizedBox(height: 150,width: 150,
+
+
+                                  child: Container
+                                    (
+                                    child:Center(
+                                      child: Column(mainAxisAlignment: MainAxisAlignment.center,
+                                        children: <Widget>[
+                                          Align(alignment: Alignment.bottomLeft,
+                                            child: Text(
+                                              'Nos. of Quiz Levels.',
+                                              style: TextStyle(
+                                                color: lightblue,
+                                                fontSize: 18,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                              textAlign: TextAlign.left,
+                                            ),
+                                          ),CustomTextField(),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ),
+
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 5),
+                                  child: Container(height: 150,width: 150,
+
+
+                                    child: Container
+                                      (
+                                      child:Center(
+                                        child: Column(mainAxisAlignment: MainAxisAlignment.center,
+                                          children: <Widget>[
+                                            Align(alignment: Alignment.bottomLeft,
+                                              child: Text(
+                                                'Nos. of Questions In each Level.',
+                                                style: TextStyle(
+                                                  color: lightblue,
+                                                  fontSize: 18,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                                textAlign: TextAlign.left,
+                                              ),
+                                            ),CustomTextField(),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+
+                                ),
+
+
+
+                              ],
+                            ),
+
+
+                          ],
+                        ),
+
+                      ),
+                    ),
+
+
+
+
+                    Padding(
+                      padding: const EdgeInsets.only(top: 0),
+                      child: Align(alignment: Alignment.bottomLeft,
+                        child: Text(
+                          'Duration of each Level.',
+                          style: TextStyle(
+                            color: lightblue,
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                          ),
+                          textAlign: TextAlign.left,
+                        ),
+                      ),
+                    ),CustomTextField(),
+
+
+
+
+
+                    Padding(
+                      padding: const EdgeInsets.only(top: 20),
+                      child: Align(alignment: Alignment.bottomLeft,
+                        child: Text(
+                          'Select Quiz Subject Category.',
+                          style: TextStyle(
+                            color: lightblue,
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                          ),
+                          textAlign: TextAlign.left,
+                        ),
+                      ),
+                    ),CustomTextField(),
+
+
+
+
+                    Padding(
+                      padding: const EdgeInsets.only(top: 20),
+                      child: Align(alignment: Alignment.bottomLeft,
+                        child: Text(
+                          'Select Class(es)you want to see task.',
+                          style: TextStyle(
+                            color: lightblue,
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                          ),
+                          textAlign: TextAlign.left,
+                        ),
+                      ),
+                    ),CustomTextField(),
+
+
+
+
+
+                    Row(mainAxisAlignment: MainAxisAlignment.center,children: <Widget>[
+                      Padding(
+                        padding: const EdgeInsets.only(top: 25,bottom: 40),
+                        child: GradientButtonText(
+                          linearGradient:LinearGradient(colors: <Color>[navy,navyblue]) ,
+                          text: Text("Back",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 18,),
+                            textAlign: TextAlign.center,),
+                        ),
+                      ),
+
+                      Padding(
+                        padding: const EdgeInsets.only(left:20,top: 25,bottom: 40),
+                        child: GradientButtonText(
+                          linearGradient:LinearGradient(colors: <Color>[purple,pink]) ,
+                          text: Text("Save",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 18,),
+                            textAlign: TextAlign.center,),
+                        ),
+                      ),
+
+
+
+
+                    ],
+
+                    ),
+
+
+
+
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 25,right: 5),
+                      child: GestureDetector(
+                        child: Row(mainAxisAlignment: MainAxisAlignment.end,
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: <Widget>[
+                            Text('Set Questions ',style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold,color: lightblue),
+                            ),Icon(Icons.arrow_forward_ios,color: lightblue,size: 18,)
+                          ],),onTap: (){
+
+                      },
+                      ),
+                    ),
+
+                    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                  ],
+                )),
+          ),
+
+
+
+        ],),
+      ),
 
 
     );
