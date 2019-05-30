@@ -47,38 +47,19 @@ class _teacheroptionState extends State<teacheroption> {
                         new Divider(
                           color: Colors.blue,
                         ),
-                      Column(mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          Padding(
-                            padding: const EdgeInsets.only(top: 5),
-                            child: Text('As a Teacher, you can join existing classes \n'
-                                'by Teacher Admin invitation, then you can \n'
-                                'add students to the class and set tasks for \n'
-                                'your classroom members.',
+                      Container(
+                        padding: EdgeInsets.all(15),
+                        child: Column(
+                          children: <Widget>[
+                            Text('As a Teacher, you can join existing classes by Teacher Admin invitation, then you can add students to the class and set tasks for your classroom members.\n\nBut if you want to create a new class, you will need to sign up for an Admin account.\n\nDo you want to set up Admin Account?',
                                 style: TextStyle(fontWeight: FontWeight.bold,
-                                fontSize: 15,color: black)),
-                          ),
+                                fontSize: 15,color: black),textAlign: TextAlign.justify,),
 
-                        ],
+                          ],
+                        ),
                       ),
-                        Padding(
-                          padding: const EdgeInsets.only(top:30),
-                          child: Column(mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              Text('But if you want to create a new class, you \nwill need to sign up for an Admin account.',
-                                style: TextStyle(
-                                fontSize: 15,fontWeight: FontWeight.bold,color: black
-                              ),),
 
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 30,bottom: 10),
-                          child: Text('Do you want to set up Admin Account?',style: TextStyle(
-                            color: black,fontSize: 15,fontWeight: FontWeight.bold
-                          ),),
-                        ),
+
                       Padding(
                         padding: const EdgeInsets.only(bottom: 30),
                         child: Row(mainAxisAlignment: MainAxisAlignment.center,

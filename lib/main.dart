@@ -22,6 +22,7 @@ import 'infoofedusupport.dart';
 import 'studentreg.dart';
 import 'studentjoinclass.dart';
 import 'manageclassactivites.dart';
+import 'setquizquestion.dart';
 
 void main() {
   runApp(MyApp());
@@ -32,7 +33,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(fontFamily: 'yu'),
-      home: teacheroption(),
+      home: setquizquestion(),
       debugShowCheckedModeBanner: false,
       routes: {
        // 'signup_teacher': (context) => sec(),

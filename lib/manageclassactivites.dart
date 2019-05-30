@@ -28,7 +28,7 @@ class _questionmenuState extends State<questionmenu> {
 
         title: Center(
           child: Text(
-            "Admin Dashboard",
+            "Manage Class Activities",
             style: TextStyle(fontSize: 20),
           ),
         ),
@@ -54,7 +54,7 @@ class _questionmenuState extends State<questionmenu> {
       ),
 
 
-      body: Column(
+      /*body: Column(
         children: <Widget>[
           Container(
             width: MediaQuery.of(context).size.width,
@@ -223,7 +223,7 @@ class _questionmenuState extends State<questionmenu> {
           ),
 
         ],
-      ),
+      ),*/
 
 
       drawer: Drawer(
@@ -263,6 +263,8 @@ class _questionmenuState extends State<questionmenu> {
               ),),
             ),decoration: bg12,),
 
+
+
             Padding(
               padding: const EdgeInsets.only(left: 45,top:30),
               child: Row(children: <Widget>[Icon(Icons.home,color: lightblue,),
@@ -275,73 +277,37 @@ class _questionmenuState extends State<questionmenu> {
 
             Padding(
               padding: const EdgeInsets.only(left: 45,top:20),
-              child: Row(children: <Widget>[Icon(Icons.info,color: lightblue,),
+              child: Row(children: <Widget>[Icon(Icons.assignment,color: lightblue,),
                 Padding(
                   padding: const EdgeInsets.only(left: 20),
-                  child: Text('About EduSupport',style: TextStyle(
+                  child: Text('Assignment Question Bank',style: TextStyle(
                       color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
                 )],),
             ),
 
             Padding(
               padding: const EdgeInsets.only(left: 45,top:20),
-              child: Row(children: <Widget>[Icon(Icons.dehaze,color: lightblue,),
+              child: Row(children: <Widget>[Icon(Icons.live_help,color: lightblue,),
                 Padding(
                   padding: const EdgeInsets.only(left: 20),
-                  child: Text('List of Classrooms',style: TextStyle(
+                  child: Text('Set Quiz Questions',style: TextStyle(
                       color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
                 )],),
             ),
 
-            Padding(
-              padding: const EdgeInsets.only(left: 45,top:20),
-              child: Row(children: <Widget>[Icon(Icons.person,color: lightblue,),
-                Padding(
-                  padding: const EdgeInsets.only(left: 20),
-                  child: Text('Edit Profile',style: TextStyle(
-                      color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
-                )],),
+            GestureDetector(
+              child: Padding(
+                padding: const EdgeInsets.only(left: 45,top:20),
+                child: Row(children: <Widget>[Icon(Icons.offline_pin,color: lightblue,),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 20),
+                    child: Text('Set Spelling Challenge',style: TextStyle(
+                        color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
+                  ),],),
+              ),onTap: (){},
             ),
 
-            Padding(
-              padding: const EdgeInsets.only(left: 45,top:20),
-              child: Row(children: <Widget>[Icon(Icons.settings,color: lightblue,),
-                Padding(
-                  padding: const EdgeInsets.only(left: 20),
-                  child: Text('Manage Account',style: TextStyle(
-                      color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
-                )],),
-            ),
 
-            Padding(
-              padding: const EdgeInsets.only(left: 45,top:20),
-              child: Row(children: <Widget>[Icon(Icons.notifications,color: lightblue,),
-                Padding(
-                  padding: const EdgeInsets.only(left: 20),
-                  child: Text('Announcements',style: TextStyle(
-                      color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
-                )],),
-            ),
-
-            Padding(
-              padding: const EdgeInsets.only(left: 45,top:20),
-              child: Row(children: <Widget>[Icon(Icons.share,color: lightblue,),
-                Padding(
-                  padding: const EdgeInsets.only(left: 20),
-                  child: Text('Share App',style: TextStyle(
-                      color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
-                )],),
-            ),
-
-            Padding(
-              padding: const EdgeInsets.only(left: 45,top:20),
-              child: Row(children: <Widget>[Icon(Icons.power_settings_new,color: lightblue,),
-                Padding(
-                  padding: const EdgeInsets.only(left: 20),
-                  child: Text('Log out',style: TextStyle(
-                      color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
-                )],),
-            ),
 
 
           ],
