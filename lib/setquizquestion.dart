@@ -199,9 +199,7 @@ class _setquizquestionState extends State<setquizquestion> {
                               <Widget>[
 
 
-                                SizedBox(height: 150,width: 150,
-
-
+                                Container(height: 150,width: 150,
                                   child: Container
                                     (
                                     child:Center(
