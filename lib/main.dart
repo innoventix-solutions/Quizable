@@ -39,6 +39,8 @@ import 'selectquizsubject.dart';
 import 'selectquizclass.dart';
 import 'studentdashboard.dart';
 import 'myclassactivities.dart';
+import 'level1complete.dart';
+import 'alllevelcomplete.dart';
 
 
 

@@ -300,7 +300,7 @@ class GradientButtonText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(left: 40, right: 40, top: 5, bottom: 5),
+      padding: EdgeInsets.only(top: 5, bottom: 5),
       decoration: BoxDecoration(
           gradient: linearGradient,
           borderRadius: BorderRadius.all(Radius.circular(100))),

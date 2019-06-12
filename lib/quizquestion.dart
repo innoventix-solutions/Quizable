@@ -12,13 +12,21 @@ class _quizquestionState extends State<quizquestion> {
 
   String selectedvalue = "Fill-in the Blanks";
 
+  /*true or false*/
   bool value1 = true;
   bool value2 = true;
 
+  /*multiple answers*/
   bool value3 = true;
   bool value4 = true;
   bool value5 = true;
   bool value6 = true;
+
+  /*single answers*/
+  bool value7 = true;
+  bool value8 = true;
+  bool value9 = true;
+  bool value10 = true;
 
 
 
@@ -482,7 +490,16 @@ class _quizquestionState extends State<quizquestion> {
                                     ],
                                   ),
 
-
+                                  Padding(
+                                    padding: const EdgeInsets.all(10.0),
+                                    child: Row(
+                                      children: <Widget>[
+                                        Text('* Select True Answer',
+                                          style: TextStyle(fontSize: 12,color: pinkred,
+                                              fontWeight: FontWeight.bold),),
+                                      ],
+                                    ),
+                                  )
 
                                 ],
                               ),
@@ -638,10 +655,10 @@ class _quizquestionState extends State<quizquestion> {
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     children: <Widget>[
                                       Checkbox(
-                                        value: value1,
+                                        value: value3,
                                         onChanged: (bool value) {
                                           setState(() {
-                                            value1 = value;
+                                            value3 = value;
                                           });
                                         },
                                       ),
@@ -655,10 +672,10 @@ class _quizquestionState extends State<quizquestion> {
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     children: <Widget>[
                                       Checkbox(
-                                        value: value2,
+                                        value: value4,
                                         onChanged: (bool value) {
                                           setState(() {
-                                            value2 = value;
+                                            value4 = value;
                                           });
                                         },
                                       ),
@@ -671,10 +688,10 @@ class _quizquestionState extends State<quizquestion> {
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     children: <Widget>[
                                       Checkbox(
-                                        value: value2,
+                                        value: value5,
                                         onChanged: (bool value) {
                                           setState(() {
-                                            value2 = value;
+                                            value5 = value;
                                           });
                                         },
                                       ),
@@ -687,10 +704,10 @@ class _quizquestionState extends State<quizquestion> {
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     children: <Widget>[
                                       Checkbox(
-                                        value: value2,
+                                        value: value6,
                                         onChanged: (bool value) {
                                           setState(() {
-                                            value2 = value;
+                                            value6 = value;
                                           });
                                         },
                                       ),
@@ -698,6 +715,17 @@ class _quizquestionState extends State<quizquestion> {
 
                                     ],
                                   ),
+
+                                  Padding(
+                                    padding: const EdgeInsets.all(10.0),
+                                    child: Row(
+                                      children: <Widget>[
+                                        Text('* Select True Answer',
+                                          style: TextStyle(fontSize: 12,color: pinkred,
+                                              fontWeight: FontWeight.bold),),
+                                      ],
+                                    ),
+                                  )
 
 
 
@@ -707,6 +735,111 @@ class _quizquestionState extends State<quizquestion> {
                           ),
                         ),
                       ),
+
+
+                      /* Single Answer option */
+                      Padding(
+                        padding: const EdgeInsets.only(top: 25),
+                        child: Container(width: 400,
+                          child: Card(
+                            elevation: 5.0,
+                            child:  Container(
+                              padding: EdgeInsets.only(top: 5,left: 5),
+                              child:  Column(
+                                children: <Widget>[
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 10,bottom: 5,left: 10),
+                                    child: Row(
+                                      children: <Widget>[
+                                        Text("Select one True Answer",style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold),
+                                          textAlign:TextAlign.left ,),
+                                      ],
+                                    ),
+                                  ),
+
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: <Widget>[
+                                      Checkbox(
+                                        value: value7,
+                                        onChanged: (bool value) {
+                                          setState(() {
+                                            value7 = value;
+                                          });
+                                        },
+                                      ),
+                                      Text("False",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 14),),
+
+                                    ],
+                                  ),
+
+
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: <Widget>[
+                                      Checkbox(
+                                        value: value8,
+                                        onChanged: (bool value) {
+                                          setState(() {
+                                            value8 = value;
+                                          });
+                                        },
+                                      ),
+                                      Text("True",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 14),),
+
+                                    ],
+                                  ),
+
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: <Widget>[
+                                      Checkbox(
+                                        value: value9,
+                                        onChanged: (bool value) {
+                                          setState(() {
+                                            value9 = value;
+                                          });
+                                        },
+                                      ),
+                                      Text("True",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 14),),
+
+                                    ],
+                                  ),
+
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: <Widget>[
+                                      Checkbox(
+                                        value: value10,
+                                        onChanged: (bool value) {
+                                          setState(() {
+                                            value10 = value;
+                                          });
+                                        },
+                                      ),
+                                      Text("True",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 14),),
+
+                                    ],
+                                  ),
+                                      Padding(
+                                        padding: const EdgeInsets.all(10.0),
+                                        child: Row(
+                                          children: <Widget>[
+                                            Text('* Select True Answer',
+                                            style: TextStyle(fontSize: 12,color: pinkred,
+                                            fontWeight: FontWeight.bold),),
+                                          ],
+                                        ),
+                                      )
+
+
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+
 
 
 

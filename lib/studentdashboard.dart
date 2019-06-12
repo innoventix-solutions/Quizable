@@ -226,19 +226,21 @@ class _studentdashboardState extends State<studentdashboard> {
                 children: <Widget>[
 
                   Padding(
-                    padding: const EdgeInsets.only(top:15,left: 20,right: 20,bottom: 5),
+                    padding: const EdgeInsets.only(top:15,left: 20,right:20,bottom: 5),
                     child: Row(
                       children: <Widget>[
-                        GradientButtonText(
-                          linearGradient:LinearGradient(begin:Alignment.topCenter,
-                              end: Alignment.bottomCenter,
-                              colors: <Color>[yellow,pinkred]) ,
-                          text: Text("Quiz",
-                            style: TextStyle(color: Colors.white,
-                              fontWeight: FontWeight.bold,fontSize: 15,),
-                            textAlign: TextAlign.center,),
-                          ButtonClick: (){
-                            },),
+                        SizedBox(width: 100,
+                          child: GradientButtonText(
+                            linearGradient:LinearGradient(begin:Alignment.topCenter,
+                                end: Alignment.bottomCenter,
+                                colors: <Color>[yellow,pinkred]) ,
+                            text: Text("Quiz",
+                              style: TextStyle(color: Colors.white,
+                                fontWeight: FontWeight.bold,fontSize: 15,),
+                              textAlign: TextAlign.center,),
+                            ButtonClick: (){
+                              },),
+                        ),
                       ],
                     ),
                   ),
@@ -277,19 +279,21 @@ class _studentdashboardState extends State<studentdashboard> {
                   ),
 
                   Padding(
-                    padding: const EdgeInsets.only(top:15,left: 20,right: 20,bottom: 5),
+                    padding: const EdgeInsets.only(top:15,left: 20,right: 20,bottom: 10),
                     child: Row(
                       children: <Widget>[
-                        GradientButtonText(
-                          linearGradient:LinearGradient(begin:Alignment.topCenter,
-                              end: Alignment.bottomCenter,
-                              colors: <Color>[pinkred,lightpink]) ,
-                          text: Text("Closing",
-                            style: TextStyle(color: Colors.white,
-                              fontWeight: FontWeight.bold,fontSize: 15,),
-                            textAlign: TextAlign.center,),
-                          ButtonClick: (){
-                          },),
+                        SizedBox(width: 100,
+                          child: GradientButtonText(
+                            linearGradient:LinearGradient(begin:Alignment.topCenter,
+                                end: Alignment.bottomCenter,
+                                colors: <Color>[pinkred,lightpink]) ,
+                            text: Text("Closing",
+                              style: TextStyle(color: Colors.white,
+                                fontWeight: FontWeight.bold,fontSize: 15,),
+                              textAlign: TextAlign.center,),
+                            ButtonClick: (){
+                            },),
+                        ),
 
                         Padding(
                           padding: const EdgeInsets.only(left: 5),
@@ -360,12 +364,12 @@ class _studentdashboardState extends State<studentdashboard> {
                                 ],
                               ),
                             ),
-                            
+
                           ],
                         ),
-                        
+
                       ),
-                      
+
                     ),
                   ),
 
