@@ -1,18 +1,7 @@
 import 'package:flutter/material.dart';
 import 'global.dart';
 
-void main() {
-  runApp(Myapp());
-}
 
-class Myapp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: quizquestion(),
-    );
-  }
-}
 
 class quizquestion extends StatefulWidget {
   @override
@@ -22,6 +11,20 @@ class quizquestion extends StatefulWidget {
 class _quizquestionState extends State<quizquestion> {
 
   String selectedvalue = "Fill-in the Blanks";
+
+  bool value1 = true;
+  bool value2 = true;
+
+  bool value3 = true;
+  bool value4 = true;
+  bool value5 = true;
+  bool value6 = true;
+
+
+
+
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -172,9 +175,13 @@ class _quizquestionState extends State<quizquestion> {
                                           child: Column(
                                             children: <Widget>[
                                               Padding(
-                                                padding: const EdgeInsets.only(top: 5,bottom: 5),
-                                                child: Text('Question 1 of 25',textAlign: TextAlign.left,
-                                                  style: TextStyle(color: Colors.white,fontSize: 15,fontWeight: FontWeight.bold),),
+                                                padding: const EdgeInsets.only(top: 5,bottom: 5,left: 10),
+                                                child: Row(
+                                                  children: <Widget>[
+                                                    Text('Question 1 of 25',textAlign: TextAlign.left,
+                                                      style: TextStyle(color: Colors.white,fontSize: 15,fontWeight: FontWeight.bold),),
+                                                  ],
+                                                ),
                                               ),
 
                                             ],
@@ -226,8 +233,12 @@ class _quizquestionState extends State<quizquestion> {
                                 padding: EdgeInsets.only(top: 5,left: 5),
                                   child:  Column(
                                     children: <Widget>[
-                                       Text("Point Awarded",style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold),
-                                         textAlign:TextAlign.left ,),
+                                       Row(
+                                         children: <Widget>[
+                                           Text("Point Awarded",style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold),
+                                             textAlign:TextAlign.left ,),
+                                         ],
+                                       ),
                                          TextField(
                                            decoration: InputDecoration(border: InputBorder.none),
                                            style: TextStyle(fontSize: 14,),
@@ -250,8 +261,12 @@ class _quizquestionState extends State<quizquestion> {
                                   padding: EdgeInsets.only(top: 5,left: 5),
                                   child:  Column(
                                     children: <Widget>[
-                                      Text("Answer Type",style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold),
-                                        textAlign:TextAlign.left ,),
+                                      Row(
+                                        children: <Widget>[
+                                          Text("Answer Type",style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold),
+                                            textAlign:TextAlign.left ,),
+                                        ],
+                                      ),
                                       Padding(
                                         padding: const EdgeInsets.only(top: 10),
                                         child: DropdownButton(
@@ -303,8 +318,12 @@ class _quizquestionState extends State<quizquestion> {
                                 children: <Widget>[
                                   Padding(
                                     padding: const EdgeInsets.only(top: 10,bottom: 10),
-                                    child: Text("Match provided options",style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold),
-                                      textAlign:TextAlign.left ,),
+                                    child: Row(
+                                      children: <Widget>[
+                                        Text("Match provided options",style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold),
+                                          textAlign:TextAlign.left ,),
+                                      ],
+                                    ),
                                   ),
 
                                 ],
@@ -313,6 +332,7 @@ class _quizquestionState extends State<quizquestion> {
                           ),
                         ),
                       ),
+
 
                       Padding(
                         padding: const EdgeInsets.only(top: 10),
@@ -325,8 +345,12 @@ class _quizquestionState extends State<quizquestion> {
                                 children: <Widget>[
                                   Padding(
                                     padding: const EdgeInsets.only(top: 10,bottom: 10),
-                                    child: Text("Answers",style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold),
-                                      textAlign:TextAlign.left ,),
+                                    child: Row(
+                                      children: <Widget>[
+                                        Text("Answers",style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold),
+                                          textAlign:TextAlign.left ,),
+                                      ],
+                                    ),
                                   ),
 
                                 ],
@@ -388,6 +412,190 @@ class _quizquestionState extends State<quizquestion> {
                       ),
 
 
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 25,right: 5,top: 20),
+                        child: GestureDetector(
+                          child: Row(mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: <Widget>[
+                              Icon(Icons.add_circle,color: lightblue,),
+                              Text('More',style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold,color: lightblue),
+                              ),
+                            ],),onTap: (){
+
+                        },
+                        ),
+                      ),
+
+
+
+                      /* True or false option */
+                      Padding(
+                        padding: const EdgeInsets.only(top: 25),
+                        child: Container(width: 400,
+                          child: Card(
+                            elevation: 5.0,
+                            child:  Container(
+                              padding: EdgeInsets.only(top: 5,left: 5),
+                              child:  Column(
+                                children: <Widget>[
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 10,bottom: 5,left: 10),
+                                    child: Row(
+                                      children: <Widget>[
+                                        Text("Answers",style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold),
+                                          textAlign:TextAlign.left ,),
+                                      ],
+                                    ),
+                                  ),
+
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: <Widget>[
+                                      Checkbox(
+                                        value: value1,
+                                        onChanged: (bool value) {
+                                          setState(() {
+                                            value1 = value;
+                                          });
+                                        },
+                                      ),
+                                      Text("False",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 14),),
+
+                                    ],
+                                  ),
+
+
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: <Widget>[
+                                      Checkbox(
+                                        value: value2,
+                                        onChanged: (bool value) {
+                                          setState(() {
+                                            value2 = value;
+                                          });
+                                        },
+                                      ),
+                                      Text("True",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 14),),
+
+                                    ],
+                                  ),
+
+
+
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+
+                      /* Fill in the blank option */
+
+                      Padding(
+                        padding: const EdgeInsets.only(top: 25),
+                        child: Container(width: 400,
+                          child: Card(
+                            elevation: 5.0,
+                            child:  Container(
+                              padding: EdgeInsets.only(top: 5,left: 5),
+                              child:  Column(
+                                children: <Widget>[
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 10,bottom: 10),
+                                    child: Row(
+                                      children: <Widget>[
+                                        Text("Type true answers in the blank spaces.",style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold),
+                                          textAlign:TextAlign.left ,),
+                                      ],
+                                    ),
+                                  ),
+
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+
+
+                      Padding(
+                        padding: const EdgeInsets.only(top: 10),
+                        child: Container(width: 400,
+                          child: Card(
+                            elevation: 5.0,
+                            child:  Container(
+                              padding: EdgeInsets.only(top: 5,left: 5),
+                              child:  Column(
+                                children: <Widget>[
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 10,bottom: 10),
+                                    child: Row(
+                                      children: <Widget>[
+                                        Text("Answers",style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold),
+                                          textAlign:TextAlign.left ,),
+                                      ],
+                                    ),
+                                  ),
+
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+
+
+                      Padding(
+                        padding: const EdgeInsets.only(top: 10),
+                        child: Row(
+                          children: <Widget>[
+                            Container(width: 160,
+                              child: Card(
+                                elevation: 5.0,
+                                child:  Container(
+                                  padding: EdgeInsets.only(top: 5,left: 5),
+                                  child:  Column(
+                                    children: <Widget>[
+
+                                      TextField(
+                                        decoration: InputDecoration(border: InputBorder.none),
+                                        style: TextStyle(fontSize: 14,),
+
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+
+
+                            Padding(
+                              padding: const EdgeInsets.only(left: 40),
+                              child: Container(width: 160,
+                                child: Card(
+                                  elevation: 5.0,
+                                  child:  Container(
+                                    padding: EdgeInsets.only(top: 5,left: 5),
+                                    child:  Column(
+                                      children: <Widget>[
+
+                                        TextField(
+                                          decoration: InputDecoration(border: InputBorder.none),
+                                          style: TextStyle(fontSize: 14,),
+
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+
+                          ],
+                        ),
+                      ),
 
 
                       Padding(
@@ -404,6 +612,106 @@ class _quizquestionState extends State<quizquestion> {
                         },
                         ),
                       ),
+
+
+                      /* Multiple Answer option */
+                      Padding(
+                        padding: const EdgeInsets.only(top: 25),
+                        child: Container(width: 400,
+                          child: Card(
+                            elevation: 5.0,
+                            child:  Container(
+                              padding: EdgeInsets.only(top: 5,left: 5),
+                              child:  Column(
+                                children: <Widget>[
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 10,bottom: 5,left: 10),
+                                    child: Row(
+                                      children: <Widget>[
+                                        Text("Select two or more True Answers",style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold),
+                                          textAlign:TextAlign.left ,),
+                                      ],
+                                    ),
+                                  ),
+
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: <Widget>[
+                                      Checkbox(
+                                        value: value1,
+                                        onChanged: (bool value) {
+                                          setState(() {
+                                            value1 = value;
+                                          });
+                                        },
+                                      ),
+                                      Text("False",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 14),),
+
+                                    ],
+                                  ),
+
+
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: <Widget>[
+                                      Checkbox(
+                                        value: value2,
+                                        onChanged: (bool value) {
+                                          setState(() {
+                                            value2 = value;
+                                          });
+                                        },
+                                      ),
+                                      Text("True",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 14),),
+
+                                    ],
+                                  ),
+
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: <Widget>[
+                                      Checkbox(
+                                        value: value2,
+                                        onChanged: (bool value) {
+                                          setState(() {
+                                            value2 = value;
+                                          });
+                                        },
+                                      ),
+                                      Text("True",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 14),),
+
+                                    ],
+                                  ),
+
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: <Widget>[
+                                      Checkbox(
+                                        value: value2,
+                                        onChanged: (bool value) {
+                                          setState(() {
+                                            value2 = value;
+                                          });
+                                        },
+                                      ),
+                                      Text("True",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 14),),
+
+                                    ],
+                                  ),
+
+
+
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+
+
+
+
+
 
 
 

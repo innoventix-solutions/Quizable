@@ -1,18 +1,8 @@
 import 'package:flutter/material.dart';
 import 'global.dart';
 
-void main() {
-  runApp(Myapp());
-}
 
-class Myapp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: questionmenu(),
-    );
-  }
-}
+
 
 class questionmenu extends StatefulWidget {
   @override
@@ -270,8 +260,12 @@ class _questionmenuState extends State<questionmenu> {
               child: Row(children: <Widget>[Icon(Icons.home,color: lightblue,),
                 Padding(
                   padding: const EdgeInsets.only(left: 10),
-                  child: Text('Home',style: TextStyle(
-                      color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
+                  child: GestureDetector(
+                    child: Text('Home',style: TextStyle(
+                        color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
+                    onTap: (){Navigator.of(context)
+                        .pushNamed('dashboard');},
+                  ),
                 )],),
             ),
 
@@ -290,8 +284,12 @@ class _questionmenuState extends State<questionmenu> {
               child: Row(children: <Widget>[Icon(Icons.live_help,color: lightblue,),
                 Padding(
                   padding: const EdgeInsets.only(left: 10),
-                  child: Text('Set Quiz Questions',style: TextStyle(
-                      color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
+                  child: GestureDetector(
+                    child: Text('Set Quiz Questions',style: TextStyle(
+                        color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
+                 onTap: (){Navigator.of(context)
+                     .pushNamed('setquizquestions');},
+                  ),
                 )],),
             ),
 

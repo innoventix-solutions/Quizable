@@ -23,6 +23,8 @@ Color greencard = Color(0xff6DCE8A);
 Color pinkred =  Color(0xffFF1665);
 Color bgblue = Color(0xff4268B3);
 Color bgdarkblue = Color(0xff4267B8);
+Color yellow = Color(0xffE39917);
+Color lightpink = Color(0xffE16B8B);
 
 Color gradientStart = Colors.blue; //Change start gradient color here
 Color gradientEnd = Colors.purple;

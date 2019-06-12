@@ -13,7 +13,7 @@ class _techerjoinclassState extends State<techerjoinclass> {
 
   TextEditingController classjointec = new TextEditingController();
 
-  joinclass() async{
+  /*joinclass() async{
     http.post("http://edusupportapp.com/api/join_class.php",
         body: {
           'UserId':GlobalData.uid,
@@ -29,7 +29,7 @@ class _techerjoinclassState extends State<techerjoinclass> {
       }
     });
 
-  }
+  }*/
 
 
   @override
@@ -127,7 +127,8 @@ class _techerjoinclassState extends State<techerjoinclass> {
                         textAlign: TextAlign.center,
                       ),
                       ButtonClick: (){
-                        joinclass();
+                        Navigator.of(context)
+                            .pushNamed('teacherjoinclass');
                       }
                       ,
                     ),
