@@ -475,39 +475,43 @@ class _setquizquestionState extends State<setquizquestion> {
                         children: <Widget>[
                           Padding(
                             padding: const EdgeInsets.only(top: 25, bottom: 40),
-                            child: GradientButtonText(
-                              linearGradient: LinearGradient(
-                                  colors: <Color>[navy, navyblue]),
-                              text: Text(
-                                "Back",
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 18,
+                            child: SizedBox(width: 100,
+                              child: GradientButtonText(
+                                linearGradient: LinearGradient(
+                                    colors: <Color>[navy, navyblue]),
+                                text: Text(
+                                  "Back",
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 18,
+                                  ),
+                                  textAlign: TextAlign.center,
                                 ),
-                                textAlign: TextAlign.center,
                               ),
                             ),
                           ),
                           Padding(
                             padding: const EdgeInsets.only(
                                 left: 20, top: 25, bottom: 40),
-                            child: GradientButtonText(
-                              linearGradient:
-                              LinearGradient(colors: <Color>[purple, pink]),
-                              text: Text(
-                                "Save",
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 18,
-                                ),
-                                textAlign: TextAlign.center,
-                              ),ButtonClick: (){
-                              Navigator.of(context)
-                                  .pushNamed(
-                                  'setquestion');
-                            },
+                            child: SizedBox(width: 100,
+                              child: GradientButtonText(
+                                linearGradient:
+                                LinearGradient(colors: <Color>[purple, pink]),
+                                text: Text(
+                                  "Save",
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 18,
+                                  ),
+                                  textAlign: TextAlign.center,
+                                ),ButtonClick: (){
+                                Navigator.of(context)
+                                    .pushNamed(
+                                    'setquestion');
+                              },
+                              ),
                             ),
                           ),
                         ],

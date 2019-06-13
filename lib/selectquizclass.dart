@@ -117,12 +117,14 @@ class _quizclassState extends State<quizclass> {
                     padding: const EdgeInsets.only(bottom:20,top: 10),
                     child: Row(mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        GradientButtonText(
-                          linearGradient:LinearGradient(colors: <Color>[purple,pink]) ,
-                          text: Text("Apply",
-                            style: TextStyle(color: Colors.white,
-                              fontWeight: FontWeight.bold,fontSize: 18,),
-                            textAlign: TextAlign.center,),
+                        SizedBox(width: 100,
+                          child: GradientButtonText(
+                            linearGradient:LinearGradient(colors: <Color>[purple,pink]) ,
+                            text: Text("Apply",
+                              style: TextStyle(color: Colors.white,
+                                fontWeight: FontWeight.bold,fontSize: 18,),
+                              textAlign: TextAlign.center,),
+                          ),
                         ),
                       ],
                     ),

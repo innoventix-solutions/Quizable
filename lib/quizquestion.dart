@@ -1021,22 +1021,27 @@ class _quizquestionState extends State<quizquestion> {
 
 
 
-                      Row(mainAxisAlignment: MainAxisAlignment.center,children: <Widget>[
+                      Row(mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
                         Padding(
                           padding: const EdgeInsets.only(top: 25,bottom: 40),
-                          child: GradientButtonText(
-                            linearGradient:LinearGradient(colors: <Color>[navy,navyblue]) ,
-                            text: Text("Back",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 18,),
-                              textAlign: TextAlign.center,),
+                          child: SizedBox(width: 100,
+                            child: GradientButtonText(
+                              linearGradient:LinearGradient(colors: <Color>[navy,navyblue]) ,
+                              text: Text("Back",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 18,),
+                                textAlign: TextAlign.center,),
+                            ),
                           ),
                         ),
 
                         Padding(
                           padding: const EdgeInsets.only(left:20,top: 25,bottom: 40),
-                          child: GradientButtonText(
-                            linearGradient:LinearGradient(colors: <Color>[purple,pink]) ,
-                            text: Text("Save",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 18,),
-                              textAlign: TextAlign.center,),
+                          child: SizedBox(width: 100,
+                            child: GradientButtonText(
+                              linearGradient:LinearGradient(colors: <Color>[purple,pink]) ,
+                              text: Text("Save",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 18,),
+                                textAlign: TextAlign.center,),
+                            ),
                           ),
                         ),
 

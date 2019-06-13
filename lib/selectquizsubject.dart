@@ -338,10 +338,12 @@ class _selectquizsubjectState extends State<selectquizsubject> {
 
                 Padding(
                   padding: const EdgeInsets.only(top: 25),
-                  child: GradientButtonText(
-                    linearGradient:LinearGradient(colors: <Color>[purple,pink]) ,
-                    text: Text("Apply",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 18,),
-                      textAlign: TextAlign.center,),
+                  child: SizedBox(width: 100,
+                    child: GradientButtonText(
+                      linearGradient:LinearGradient(colors: <Color>[purple,pink]) ,
+                      text: Text("Apply",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 18,),
+                        textAlign: TextAlign.center,),
+                    ),
                   ),
                 ),
 
