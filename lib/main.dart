@@ -23,10 +23,27 @@ import 'studentreg.dart';
 import 'studentjoinclass.dart';
 import 'greenclassroom.dart';
 import 'viewteacher.dart';
-
 import 'viewteacherdropdown.dart';
 import 'addteacher.dart';
 import 'adminprofile.dart';
+import 'setquizquestion.dart';
+import 'manageclassactivites.dart';
+import 'assignmentquestionbank.dart';
+import 'json.dart';
+import 'cal.dart';
+import 'quizquestion.dart';
+import 'cal2.dart';
+import 'cal3.dart';
+import 'checkbox.dart';
+import 'selectquizsubject.dart';
+import 'selectquizclass.dart';
+import 'studentdashboard.dart';
+import 'myclassactivities.dart';
+import 'level1complete.dart';
+import 'alllevelcomplete.dart';
+
+
+
 
 
 void main() {
@@ -38,7 +55,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(fontFamily: 'yu'),
-      home: adminprofile(),
+      home:myclassactivities(),
       debugShowCheckedModeBanner: false,
       routes: {
        // 'signup_teacher': (context) => sec(),
@@ -58,6 +75,13 @@ class MyApp extends StatelessWidget {
         'signup_student': (context) => studentreg(),
         'studentjoin': (context) => studentjoin(),
         'adminteacherjoinclass': (context) => techerjoinclass(),
+        'teacherjoinclass': (context) => teacherdashboard(),
+        'manageclassactivities': (context) => questionmenu(),
+        'setquizquestions':(context) => setquizquestion(),
+        'selectsubject':(context) => selectquizsubject(),
+        'selectclass':(context) => quizclass(),
+        'dashboard':(context) => teacherdashboard(),
+        'setquestion':(context) => quizquestion(),
       },
     );
   }

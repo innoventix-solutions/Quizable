@@ -23,6 +23,8 @@ Color greencard = Color(0xff6DCE8A);
 Color pinkred =  Color(0xffFF1665);
 Color bgblue = Color(0xff4268B3);
 Color bgdarkblue = Color(0xff4267B8);
+Color yellow = Color(0xffE39917);
+Color lightpink = Color(0xffE16B8B);
 
 Color gradientStart = Colors.blue; //Change start gradient color here
 Color gradientEnd = Colors.purple;
@@ -298,7 +300,7 @@ class GradientButtonText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(left: 40, right: 40, top: 5, bottom: 5),
+      padding: EdgeInsets.only(top: 5, bottom: 5),
       decoration: BoxDecoration(
           gradient: linearGradient,
           borderRadius: BorderRadius.all(Radius.circular(100))),

@@ -134,23 +134,26 @@ class _teacherdashboardState extends State<teacherdashboard> {
                     padding: const EdgeInsets.only(top: 30,left: 15),
                     child: Row(mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        Container(height: 100,width: 150,decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(10),),color:greencard,),
+                        GestureDetector(
+                          child: Container(height: 100,width: 150,decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(10),),color:greencard,),
 
 
 
 
 
-                          child:Center(
-                            child: Column(mainAxisAlignment: MainAxisAlignment.center,
-                              children: <Widget>[
-                                Icon(Icons.local_activity,size: 50,color: Colors.white,),
-                                Text("Manage Class",textAlign: TextAlign.center,style: TextStyle(color: Colors.white,fontSize: 13,fontWeight: FontWeight.bold),),
-                                Text('Activities',textAlign: TextAlign.center,style: TextStyle(color: Colors.white,fontSize: 13,fontWeight: FontWeight.bold),),
-                              ],
+                            child:Center(
+                              child: Column(mainAxisAlignment: MainAxisAlignment.center,
+                                children: <Widget>[
+                                  Icon(Icons.local_activity,size: 50,color: Colors.white,),
+                                  Text("Manage Class",textAlign: TextAlign.center,style: TextStyle(color: Colors.white,fontSize: 13,fontWeight: FontWeight.bold),),
+                                  Text('Activities',textAlign: TextAlign.center,style: TextStyle(color: Colors.white,fontSize: 13,fontWeight: FontWeight.bold),),
+                                ],
+                              ),
                             ),
-                          ),
 
 
+                          ),onTap: (){Navigator.of(context)
+                            .pushNamed('manageclassactivities');},
                         ),
                         Padding(
                           padding: const EdgeInsets.only(left: 15,right: 15),
