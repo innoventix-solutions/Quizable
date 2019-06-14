@@ -29,12 +29,9 @@ import 'adminprofile.dart';
 import 'setquizquestion.dart';
 import 'manageclassactivites.dart';
 import 'assignmentquestionbank.dart';
-import 'json.dart';
-import 'cal.dart';
+
 import 'quizquestion.dart';
-import 'cal2.dart';
-import 'cal3.dart';
-import 'checkbox.dart';
+
 import 'selectquizsubject.dart';
 import 'selectquizclass.dart';
 import 'studentdashboard.dart';
@@ -55,7 +52,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(fontFamily: 'yu'),
-      home:myclassactivities(),
+      home:setquizquestion(),
       debugShowCheckedModeBanner: false,
       routes: {
        // 'signup_teacher': (context) => sec(),
