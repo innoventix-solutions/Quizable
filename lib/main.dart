@@ -38,6 +38,8 @@ import 'studentdashboard.dart';
 import 'myclassactivities.dart';
 import 'level1complete.dart';
 import 'alllevelcomplete.dart';
+import 'myclassroom.dart';
+import 'manageclassactivites.dart';
 
 
 

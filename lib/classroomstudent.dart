@@ -106,7 +106,8 @@ class _classroomstudentState extends State<classroomstudent> {
                                     ],
                                   ),
                                 ),
-                              ), Padding(
+                              ),
+                              Padding(
                                 padding: const EdgeInsets.only(right:16),
                                 child: PopupMenuButton(
                                   child: Icon(Icons.more_vert),
