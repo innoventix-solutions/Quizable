@@ -146,210 +146,212 @@ class _selectquizsubjectState extends State<selectquizsubject> {
         ),
 
 
-        body: Padding(
-          padding: const EdgeInsets.only(top: 35,left: 25),
-          child: Container(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: <Widget>[
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.only(top: 35,left: 25),
+            child: Container(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: <Widget>[
 
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: <Widget>[
-                    Checkbox(
-                      value: value1,
-                      onChanged: (bool value) {
-                        setState(() {
-                          value1 = value;
-                        });
-                      },
-                    ),
-                    Text("Religion",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),),
-
-                  ],
-                ),
-
-
-
-                Padding(
-                  padding: const EdgeInsets.only(top: 20),
-                  child: Row(
+                  Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: <Widget>[
                       Checkbox(
-                        value: value2,
+                        value: value1,
                         onChanged: (bool value) {
                           setState(() {
-                            value2 = value;
+                            value1 = value;
                           });
                         },
                       ),
-                      Text("Arts & Literature",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),),
+                      Text("Religion",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),),
 
                     ],
                   ),
-                ),
-
-
-            Padding(
-              padding: const EdgeInsets.only(top: 20),
-                child:Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: <Widget>[
-                    Checkbox(
-                      value: value3,
-                      onChanged: (bool value) {
-                        setState(() {
-                          value3 = value;
-                        });
-                      },
-                    ),
-                    Text("Current Affairs",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),),
-
-                  ],
-                ),
-            ),
 
 
 
-                Padding(
-                  padding: const EdgeInsets.only(top: 20),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: <Widget>[
-                      Checkbox(
-                        value: value4,
-                        onChanged: (bool value) {
-                          setState(() {
-                            value4 = value;
-                          });
-                        },
-                      ),
-                      Text("Entertainment & Sports",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 20),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: <Widget>[
+                        Checkbox(
+                          value: value2,
+                          onChanged: (bool value) {
+                            setState(() {
+                              value2 = value;
+                            });
+                          },
+                        ),
+                        Text("Arts & Literature",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),),
 
-                    ],
-                  ),
-                ),
-
-
-
-                Padding(
-                  padding: const EdgeInsets.only(top: 20),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: <Widget>[
-                      Checkbox(
-                        value: value5,
-                        onChanged: (bool value) {
-                          setState(() {
-                            value5 = value;
-                          });
-                        },
-                      ),
-                      Text("Geography",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),),
-
-                    ],
-                  ),
-                ),
-
-
-
-                Padding(
-                  padding: const EdgeInsets.only(top: 20),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: <Widget>[
-                      Checkbox(
-                        value: value6,
-                        onChanged: (bool value) {
-                          setState(() {
-                            value6 = value;
-                          });
-                        },
-                      ),
-                      Text("History",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),),
-
-                    ],
-                  ),
-                ),
-
-
-
-                Padding(
-                  padding: const EdgeInsets.only(top: 20),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: <Widget>[
-                      Checkbox(
-                        value: value7,
-                        onChanged: (bool value) {
-                          setState(() {
-                            value7 = value;
-                          });
-                        },
-                      ),
-                      Text("Mathematics",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),),
-
-                    ],
-                  ),
-                ),
-
-
-
-                Padding(
-                  padding: const EdgeInsets.only(top: 20),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: <Widget>[
-                      Checkbox(
-                        value: value8,
-                        onChanged: (bool value) {
-                          setState(() {
-                            value8 = value;
-                          });
-                        },
-                      ),
-                      Text("Science",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),),
-
-                    ],
-                  ),
-                ),
-
-
-
-                Padding(
-                  padding: const EdgeInsets.only(top: 20),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: <Widget>[
-                      Checkbox(
-                        value: value9,
-                        onChanged: (bool value) {
-                          setState(() {
-                            value9 = value;
-                          });
-                        },
-                      ),
-                      Text("General Knowledge",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),),
-
-                    ],
-                  ),
-                ),
-
-                Padding(
-                  padding: const EdgeInsets.only(top: 25),
-                  child: SizedBox(width: 100,
-                    child: GradientButtonText(
-                      linearGradient:LinearGradient(colors: <Color>[purple,pink]) ,
-                      text: Text("Apply",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 18,),
-                        textAlign: TextAlign.center,),
+                      ],
                     ),
                   ),
-                ),
+
+
+              Padding(
+                padding: const EdgeInsets.only(top: 20),
+                  child:Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: <Widget>[
+                      Checkbox(
+                        value: value3,
+                        onChanged: (bool value) {
+                          setState(() {
+                            value3 = value;
+                          });
+                        },
+                      ),
+                      Text("Current Affairs",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),),
+
+                    ],
+                  ),
+              ),
 
 
 
-              ],
+                  Padding(
+                    padding: const EdgeInsets.only(top: 20),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: <Widget>[
+                        Checkbox(
+                          value: value4,
+                          onChanged: (bool value) {
+                            setState(() {
+                              value4 = value;
+                            });
+                          },
+                        ),
+                        Text("Entertainment & Sports",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),),
+
+                      ],
+                    ),
+                  ),
+
+
+
+                  Padding(
+                    padding: const EdgeInsets.only(top: 20),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: <Widget>[
+                        Checkbox(
+                          value: value5,
+                          onChanged: (bool value) {
+                            setState(() {
+                              value5 = value;
+                            });
+                          },
+                        ),
+                        Text("Geography",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),),
+
+                      ],
+                    ),
+                  ),
+
+
+
+                  Padding(
+                    padding: const EdgeInsets.only(top: 20),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: <Widget>[
+                        Checkbox(
+                          value: value6,
+                          onChanged: (bool value) {
+                            setState(() {
+                              value6 = value;
+                            });
+                          },
+                        ),
+                        Text("History",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),),
+
+                      ],
+                    ),
+                  ),
+
+
+
+                  Padding(
+                    padding: const EdgeInsets.only(top: 20),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: <Widget>[
+                        Checkbox(
+                          value: value7,
+                          onChanged: (bool value) {
+                            setState(() {
+                              value7 = value;
+                            });
+                          },
+                        ),
+                        Text("Mathematics",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),),
+
+                      ],
+                    ),
+                  ),
+
+
+
+                  Padding(
+                    padding: const EdgeInsets.only(top: 20),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: <Widget>[
+                        Checkbox(
+                          value: value8,
+                          onChanged: (bool value) {
+                            setState(() {
+                              value8 = value;
+                            });
+                          },
+                        ),
+                        Text("Science",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),),
+
+                      ],
+                    ),
+                  ),
+
+
+
+                  Padding(
+                    padding: const EdgeInsets.only(top: 20),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: <Widget>[
+                        Checkbox(
+                          value: value9,
+                          onChanged: (bool value) {
+                            setState(() {
+                              value9 = value;
+                            });
+                          },
+                        ),
+                        Text("General Knowledge",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),),
+
+                      ],
+                    ),
+                  ),
+
+                  Padding(
+                    padding: const EdgeInsets.only(top: 25),
+                    child: SizedBox(width: 100,
+                      child: GradientButtonText(
+                        linearGradient:LinearGradient(colors: <Color>[purple,pink]) ,
+                        text: Text("Apply",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 18,),
+                          textAlign: TextAlign.center,),
+                      ),
+                    ),
+                  ),
+
+
+
+                ],
+              ),
             ),
           ),
         ));

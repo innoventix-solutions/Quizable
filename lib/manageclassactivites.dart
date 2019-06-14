@@ -146,109 +146,18 @@ class _questionmenuState extends State<questionmenu> {
 
 
 
-      body: Column(
+      body:
+      Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
-          Container(decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(40))),
-            child: Card(elevation: 5.0,shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(5.0),
-            ),
-              child: Column(mainAxisAlignment: MainAxisAlignment.start,
-                children: <Widget>[
-                  Row(
-                    children: <Widget>[
-                      Expanded(
-                        child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(5),),color: green),
 
-                          child: Padding(
-                            padding: const EdgeInsets.only(top: 5,bottom: 5),
-                            child: Column(
-                              children: <Widget>[
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 5,bottom: 5,left: 10),
-                                  child: Row(
-                                    children: <Widget>[
-                                      Expanded(
-                                        child: Text('Quiz Excersize',textAlign: TextAlign.left,
-                                          style: TextStyle(color: Colors.white,fontSize: 15,fontWeight: FontWeight.bold),),
-                                      ),
-                                      Expanded(
-                                        child:  Row(mainAxisAlignment: MainAxisAlignment.end,
-                                          children: <Widget>[
-                                            PopupMenuButton(
-                                              child: Icon(Icons.more_vert),
-                                              itemBuilder: (_) => <PopupMenuItem<String>>[
-                                                new PopupMenuItem<String>(
-                                                    child: Row(
-                                                      children: <Widget>[
-                                                        Padding(
-                                                          padding: const EdgeInsets.only(right: 4),
-                                                          child: Icon(
-                                                            Icons.edit,
-                                                            color: lightblue,size: 12,
-                                                          ),
-                                                        ),
-                                                        new Text('Edit',style: TextStyle(fontSize: 15),),
-                                                      ],
-                                                    ), value: ''),
-
-
-                                                new PopupMenuItem<String>(
-                                                    child: Row(
-                                                      children: <Widget>[
-                                                        Padding(
-                                                          padding: const EdgeInsets.only(right: 4,top: 1),
-                                                          child: Icon(
-                                                            Icons.cancel,
-                                                            color: darkpink,size: 12,
-                                                          ),
-                                                        ),
-                                                        new Text('Delete',style: TextStyle(fontSize: 15),),
-                                                      ],
-                                                    ), value: ''),
-
-                                              ],
-                                              onSelected: ( value){},
-                                            ),
-                                          ],
-                                        ),
-                                      ), ],
-                                  ),
-                                ),
-
-                              ],
-
-                            ),
-                          ),
-
-                        ),
-                      ),
-                    ],
-                  ),
-                  Container(
-                    padding: EdgeInsets.only(left: 25,top: 20,right: 30,bottom: 30),
-                    child: Column(
-                      children: <Widget>[
-                        Text('Congratulations! You have completed the questions for Level 1 Quiz.\n\n\n Use the Next button to continue to set questions for Level 2 Quiz.',
-                          style: TextStyle(fontWeight: FontWeight.bold,
-                              fontSize: 15,color: gray),textAlign: TextAlign.justify,),
-
-
-                      ],
-                    ),
-                  ),
-
-
-
-
-
-                ],
-              ),
-
-            ),
+          Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: classactivitys(color: pinkred,heading: "dasada",paragraph: "wdada",),
           ),
         ],
       ),
+
     );
   }
 }
