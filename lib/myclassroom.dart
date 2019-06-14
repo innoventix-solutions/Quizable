@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:newpro/global.dart';
+
+
 class myclassroom extends StatefulWidget {
   @override
   _myclassroomState createState() => _myclassroomState();
@@ -110,7 +112,7 @@ class _myclassroomState extends State<myclassroom> {
                       children: <Widget>[
                         Expanded(
                           child: GradientButtonText(
-                            linearGradient:LinearGradient(colors: <Color>[purple,pink]) ,text: Text("Create a Class",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 12.5,),textAlign: TextAlign.center,),
+                            linearGradient:LinearGradient(colors: <Color>[purple,pink]) ,text: Text("Create a Class",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 18,),textAlign: TextAlign.center,),
                           ),
                         ),
                       ],
@@ -122,7 +124,7 @@ class _myclassroomState extends State<myclassroom> {
                       children: <Widget>[
                         Expanded(
                           child: GradientButtonText(
-                            linearGradient:LinearGradient(colors: <Color>[navy,navyblue]) ,text: Text("Join a Class",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 12.5,),textAlign: TextAlign.center,),
+                            linearGradient:LinearGradient(colors: <Color>[navy,navyblue]) ,text: Text("Join a Class",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 18,),textAlign: TextAlign.center,),
                           ),
                         ),
                       ],
