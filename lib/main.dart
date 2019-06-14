@@ -41,6 +41,8 @@ import 'studentdashboard.dart';
 import 'myclassactivities.dart';
 import 'level1complete.dart';
 import 'alllevelcomplete.dart';
+import 'myclassroom.dart';
+import 'manageclassactivites.dart';
 
 
 
@@ -55,7 +57,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(fontFamily: 'yu'),
-      home:myclassactivities(),
+      home:setquizquestion(),
       debugShowCheckedModeBanner: false,
       routes: {
        // 'signup_teacher': (context) => sec(),

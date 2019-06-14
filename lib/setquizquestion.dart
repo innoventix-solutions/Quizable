@@ -292,7 +292,7 @@ class _setquizquestionState extends State<setquizquestion> {
                                 children: <Widget>[
                                   Container(
                                     height: 150,
-                                    width: 150,
+                                    width: 100,
                                     child: Container(
                                       child: Center(
                                         child: Column(
