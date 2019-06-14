@@ -10,6 +10,105 @@ class alllevel extends StatefulWidget {
 
 class _alllevelState extends State<alllevel> {
 
+  void _confirmDialog(BuildContext context)  {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+
+          return AlertDialog(
+            backgroundColor:Colors.transparent,
+
+
+            content: Column(mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Center(
+                  child: Container(
+                    child: new Card(shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15.0),
+                    ),
+                      child: Column(mainAxisAlignment: MainAxisAlignment.start,
+                        children: <Widget>[
+                          Container(
+
+                            child: Column(
+                              children: <Widget>[
+                                Center(child: Padding(
+                                  padding: const EdgeInsets.only(top:15),
+
+                                  child: Text('Confirmation',textAlign: TextAlign.center,
+                                    style: TextStyle(color: lightblue,fontSize: 25,fontWeight: FontWeight.bold),),
+                                )),
+
+
+                                new Divider(
+                                  color: gray,
+                                ),
+                                Container(
+                                  padding: EdgeInsets.all(30),
+                                  child: Column(
+                                    children: <Widget>[
+                                      Text('You have completed all the \nquestions levels for this Quiz\nexercise. \nDo you want to preview \nquestions before publishing?',
+                                        style: TextStyle(fontWeight: FontWeight.bold,
+                                            fontSize: 15,color: black),textAlign: TextAlign.center,),
+
+                                    ],
+                                  ),
+                                ),
+
+
+                                Padding(
+                                  padding: const EdgeInsets.only(bottom: 30),
+                                  child: Row(mainAxisAlignment: MainAxisAlignment.center,
+                                    children: <Widget>[
+
+                                      Container(padding: EdgeInsets.all(5),
+                                        child: SizedBox(width: 100,
+                                          child: GradientButtonText(linearGradient:
+                                          LinearGradient(colors: <Color>[navy,navyblue]),
+                                            text: Text('Preview',style: TextStyle(color: Colors.white,
+                                              fontWeight: FontWeight.bold,fontSize: 12,),textAlign: TextAlign.center,),
+
+                                          ),
+                                        ),
+                                      ),
+
+
+                                      Container(padding: EdgeInsets.all(5),
+                                        child: SizedBox(width: 100,
+                                          child: GradientButtonText(linearGradient:
+                                          LinearGradient(colors: <Color>[purple,pink]),
+                                            text: Text('Publish',style: TextStyle(color: Colors.white,
+                                              fontWeight: FontWeight.bold,fontSize: 12,),textAlign: TextAlign.center,),
+
+                                          ),
+                                        ),
+                                      ),
+
+                                    ],
+                                  ),
+                                )],
+
+                            ),
+
+                          ),
+
+
+
+                        ],
+
+
+                      ),
+                    ),
+                  ),
+                ),
+
+              ],
+            ),
+
+
+          );
+        });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -235,7 +334,7 @@ class _alllevelState extends State<alllevel> {
                                         linearGradient:LinearGradient(colors: <Color>[purple,pink]) ,
                                         text: Text("Finish",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 18,),
                                           textAlign: TextAlign.center,),
-                                        ButtonClick: (){}
+                                        ButtonClick: ()=> _confirmDialog(context),
                                       ),
                                     ),
                                   ),
