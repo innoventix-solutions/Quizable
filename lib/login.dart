@@ -1,5 +1,5 @@
 import 'dart:convert';
-
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'global.dart';
@@ -19,8 +19,23 @@ class login extends StatefulWidget {
 
 class _loginState extends State<login> {
 
+  SharedPreferences prefs ;
+
   TextEditingController email = new TextEditingController();
   TextEditingController pass = new TextEditingController();
+
+  GetShared()async{
+    prefs = await SharedPreferences.getInstance();
+  }
+
+
+
+  @override
+  void initState() {
+    GetShared();
+    // TODO: implement initState
+    super.initState();
+  }
 
 
   Show_toast(String msg,Color color){
@@ -47,6 +62,10 @@ class _loginState extends State<login> {
   //    print(response.body.toString());
       if(statuss['status']==1){
         Show_toast("Logged in Successfully",Colors.green);
+
+        prefs.setString("Id", statuss['userdata']['ID']);
+        prefs.setString("type", statuss['userdata']['user_type']);
+        prefs.setString("name", statuss['userdata']['username']);
 
      print(   statuss['userdata']['user_type']);
      GlobalData.uid=statuss['userdata']['ID'].toString();

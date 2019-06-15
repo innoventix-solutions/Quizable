@@ -37,6 +37,10 @@ class _secState extends State<sec> {
   }
 
   Signup() async {
+
+
+    print(GlobalData.accounttype);
+
     http.post("http://edusupportapp.com/api/register.php", body: {
       "Fullname": acc.text.toString(),
       "Username": username.text.toString(),
@@ -50,7 +54,7 @@ class _secState extends State<sec> {
      "parents_email": "asdf".toString(),
      "parents_phone_no": "sadf".toString(),
     //  "user_type":"student".toString(),
-      "accout_type":GlobalData.accounttype,
+    "accout_type":GlobalData.accounttype,
 
 
 
@@ -83,7 +87,7 @@ class _secState extends State<sec> {
         body: Center(
           child: SingleChildScrollView(
             child: Padding(
-              padding: const EdgeInsets.only(top: 25,bottom: 25),
+              padding: const EdgeInsets.all(30),
               child: Center(
                 child: new Column(
                     mainAxisAlignment: MainAxisAlignment.center,

@@ -1,8 +1,11 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'global.dart';
 import 'package:http/http.dart' as http;
 import 'utilities.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class setquizquestion extends StatefulWidget {
   @override
@@ -13,15 +16,31 @@ class _setquizquestionState extends State<setquizquestion> {
 
   String selectedvalue = "Select Quiz Subject";
   String selectedvalue2 = "Select Class";
-
-  /*TextEditingController quiztitle = new TextEditingController();
-  TextEditingController quizlevel = new TextEditingController();
-  TextEditingController queslevel = new TextEditingController();
-  TextEditingController durlevel = new TextEditingController();
+  TextEditingController teacher = new TextEditingController(text:GlobalData.Username );
+  TextEditingController quiztitle = new TextEditingController(text:GlobalData.QuizTitle );
+  TextEditingController quizlevel = new TextEditingController(text: GlobalData.QuizLevels);
+  TextEditingController queslevel = new TextEditingController(text: GlobalData.NosofQuesPerLevel);
+  TextEditingController durlevel = new TextEditingController(text: GlobalData.DurationofEachLevel);
   TextEditingController quizsubject = new TextEditingController();
   TextEditingController quizclass = new TextEditingController();
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
 
-  Show_toast(String msg, Color color) {
+
+
+  }
+
+setalldetails(){
+  GlobalData.QuizTitle  = quiztitle.text;
+  GlobalData.QuizLevels = quizlevel.text;
+  GlobalData.NosofQuesPerLevel = queslevel.text;
+  GlobalData.DurationofEachLevel =  durlevel.text;
+}
+
+
+ /* Show_toast(String msg, Color color) {
     Fluttertoast.showToast(
         msg: msg,
         toastLength: Toast.LENGTH_SHORT,
@@ -40,10 +59,6 @@ class _setquizquestionState extends State<setquizquestion> {
       "dur_each_level": durlevel.text.toString(),
       "quiz_subject": quizsubject.text.toString(),
       "class_id": quizclass.text.toString(),
-
-
-
-
     }).then((response) {
       var status = jsonDecode(response.body);
 
@@ -238,8 +253,6 @@ class _setquizquestionState extends State<setquizquestion> {
           ],
         ),
       ),
-
-
       body: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -247,7 +260,7 @@ class _setquizquestionState extends State<setquizquestion> {
           children: <Widget>[
             Container(
               child: Padding(
-                  padding: const EdgeInsets.only(top: 40, left: 40, right: 60),
+                  padding: const EdgeInsets.only(top: 20, left: 20, right: 20),
                   child: Column(
                     children: <Widget>[
                       Align(
@@ -262,9 +275,7 @@ class _setquizquestionState extends State<setquizquestion> {
                           textAlign: TextAlign.left,
                         ),
                       ),
-                      CustomTextField(),
-
-
+                      CustomTextField(controller:teacher,enabled: false,),
                       Padding(
                         padding: const EdgeInsets.only(top: 20),
                         child: Align(
@@ -280,7 +291,7 @@ class _setquizquestionState extends State<setquizquestion> {
                           ),
                         ),
                       ),
-                      CustomTextField(),
+                      CustomTextField(controller: quiztitle,),
 
 
                       Center(
@@ -290,38 +301,9 @@ class _setquizquestionState extends State<setquizquestion> {
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: <Widget>[
-                                  Container(
-                                    height: 150,
-                                    width: 100,
+                                  Expanded(
                                     child: Container(
-                                      child: Center(
-                                        child: Column(
-                                          mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                          children: <Widget>[
-                                            Align(
-                                              alignment: Alignment.bottomLeft,
-                                              child: Text(
-                                                'Nos. of Quiz Levels.',
-                                                style: TextStyle(
-                                                  color: lightblue,
-                                                  fontSize: 18,
-                                                  fontWeight: FontWeight.bold,
-                                                ),
-                                                textAlign: TextAlign.left,
-                                              ),
-                                            ),
-                                            CustomTextField(),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 5),
-                                    child: Container(
-                                      height: 150,
-                                      width: 150,
+                                      
                                       child: Container(
                                         child: Center(
                                           child: Column(
@@ -331,7 +313,7 @@ class _setquizquestionState extends State<setquizquestion> {
                                               Align(
                                                 alignment: Alignment.bottomLeft,
                                                 child: Text(
-                                                  'Nos. of Questions In each Level.',
+                                                  'Nos. of Quiz Levels.',
                                                   style: TextStyle(
                                                     color: lightblue,
                                                     fontSize: 18,
@@ -340,8 +322,40 @@ class _setquizquestionState extends State<setquizquestion> {
                                                   textAlign: TextAlign.left,
                                                 ),
                                               ),
-                                              CustomTextField(),
+                                              CustomTextField(Inputnumber: true,controller: quizlevel,),
                                             ],
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  Expanded(
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(left: 5),
+                                      child: Container(
+                                        height: 150,
+                                        width: 150,
+                                        child: Container(
+                                          child: Center(
+                                            child: Column(
+                                              mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                              children: <Widget>[
+                                                Align(
+                                                  alignment: Alignment.bottomLeft,
+                                                  child: Text(
+                                                    'Nos. of Questions In each Level.',
+                                                    style: TextStyle(
+                                                      color: lightblue,
+                                                      fontSize: 18,
+                                                      fontWeight: FontWeight.bold,
+                                                    ),
+                                                    textAlign: TextAlign.left,
+                                                  ),
+                                                ),
+                                                CustomTextField(Inputnumber: true,controller: queslevel,),
+                                              ],
+                                            ),
                                           ),
                                         ),
                                       ),
@@ -370,7 +384,7 @@ class _setquizquestionState extends State<setquizquestion> {
                           ),
                         ),
                       ),
-                      CustomTextField(),
+                      CustomTextField(controller: durlevel,),
 
 
                       Padding(
@@ -402,16 +416,16 @@ class _setquizquestionState extends State<setquizquestion> {
                                   children: <Widget>[
 
                                     Expanded(
-                                      child: Text('Select Quiz Subject',style: TextStyle(
+                                      child: Text(GlobalData.Selected_subject==null?'Click Select Quiz Subject':GlobalData.Selected_subject,style: TextStyle(
                                           fontSize: 15,fontWeight: FontWeight.bold
                                       ),),
                                     ),
 
-                                    Expanded(child: Icon(Icons.arrow_drop_down,),),
-
-
                                   ],
                                 ),onTap: (){
+
+                                  setalldetails();
+
                                 Navigator.of(context)
                                     .pushNamed(
                                     'selectsubject');
@@ -427,7 +441,7 @@ class _setquizquestionState extends State<setquizquestion> {
                         child: Align(
                           alignment: Alignment.bottomLeft,
                           child: Text(
-                            'Select Class(es)you want to see task.',
+                            'Select Class(es) you want to see task.',
                             style: TextStyle(
                               color: lightblue,
                               fontSize: 18,
@@ -451,12 +465,11 @@ class _setquizquestionState extends State<setquizquestion> {
                                   children: <Widget>[
 
                                     Expanded(
-                                      child: Text('Select Class',style: TextStyle(
+                                      child: Text('Click to Select Class',style: TextStyle(
                                         fontSize: 15,fontWeight: FontWeight.bold
                                       ),),
                                     ),
 
-                                     Expanded(child: Icon(Icons.arrow_drop_down),),
 
 
                                   ],
@@ -507,9 +520,12 @@ class _setquizquestionState extends State<setquizquestion> {
                                   ),
                                   textAlign: TextAlign.center,
                                 ),ButtonClick: (){
-                                Navigator.of(context)
-                                    .pushNamed(
-                                    'setquestion');
+
+                                  setalldetails();
+                                  SaveQuiz();
+                                  Navigator.of(context)
+                                      .pushNamed(
+                                      'questions');
                               },
                               ),
                             ),
@@ -537,9 +553,9 @@ class _setquizquestionState extends State<setquizquestion> {
                               )
                             ],
                           ),
-                          onTap: () {Navigator.of(context)
+                          onTap: () {setalldetails();SaveQuiz();Navigator.of(context)
                               .pushNamed(
-                              'setquestion');},
+                              'questions');},
                         ),
                       ),
                     ],
@@ -550,4 +566,74 @@ class _setquizquestionState extends State<setquizquestion> {
       ),
     );
   }
+
+  void _showDialog() {
+    // flutter defined function
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        // return object of type Dialog
+        return AlertDialog(
+          title: new Text("Some Values Missing"),
+          content: new Text("Please Fill All the Values"),
+          actions: <Widget>[
+            // usually buttons at the bottom of the dialog
+            new FlatButton(
+              child: new Text("Close",style: TextStyle(color: Colors.black),),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+
+
+
+  SaveQuiz()async {
+    if (GlobalData.QuizTitle == null || GlobalData.QuizLevels == null ||
+        GlobalData.NosofQuesPerLevel == null ||
+        GlobalData.DurationofEachLevel == null ||
+        GlobalData.Selected_subject == null) {
+
+      _showDialog();
+    }
+    else{
+      http.post("http://edusupportapp.com/api/create_quiz.php", body: {
+        "quiz_title": GlobalData.QuizTitle,
+        "techer_id": GlobalData.uid,
+        "no_of_level": GlobalData.QuizLevels,
+        "que_each_level": GlobalData.NosofQuesPerLevel,
+        "dur_each_level": GlobalData.DurationofEachLevel,
+        "quiz_subject": GlobalData.Selected_subject,
+        "class_id": "100"
+      }).then((response) {
+        print(response.body.toString());
+        var statuss = jsonDecode(response.body);
+
+
+        print(response.body.toString());
+            print(response.body.toString());
+      if(statuss['status']==1){
+
+
+      }else
+      {
+
+      }
+        Navigator.of(context)
+            .pushNamed(
+            'questions');
+      }
+
+      );
+  }
+  }
+
+
+
+
 }

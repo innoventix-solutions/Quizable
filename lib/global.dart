@@ -31,13 +31,22 @@ Color gradientEnd = Colors.purple;
 
 
 class GlobalData{
+  static int QuestionNumber=1;
   static String userType;
-  static String accounttype;
+  static String accounttype="";
   static String uid;
   static String class_name;
   static String class_icon;
   static String student_code;
   static String teacher_code;
+  static String Username;
+  static String Selected_subject;
+  static List<bool> Slected_subject_bool=[false,false,false,false,false,false,false,false,false];
+  static String QuizTitle="";
+  static String QuizLevels="";
+  static String NosofQuesPerLevel="";
+  static String DurationofEachLevel="";
+
 }
 
 Show_toast_Now(String msg,Color color){
@@ -327,12 +336,15 @@ class CustomTextField extends StatelessWidget {
   final String Texth;
   final TextEditingController controller;
   final TextStyle hintStyle;
+  final bool Inputnumber ;
+  final bool enabled;
 
   CustomTextField(
       {this.controller,
         this.hintColor,
-
+        this.Inputnumber,
         this.Texth,
+        this.enabled,
         this.hintStyle});
 
   @override
@@ -351,13 +363,14 @@ class CustomTextField extends StatelessWidget {
             borderRadius: BorderRadius.circular(10.0),
           ),
           child: Padding(
-            padding: const EdgeInsets.only(
-                top: 5, bottom: 5, left: 50, right: 50),
+            padding: const EdgeInsets.all(5),
             child: TextField(
-
+              enabled: enabled==null?true:false,
+              keyboardType: Inputnumber==true?TextInputType.numberWithOptions(decimal: false,signed:false):TextInputType.text,
               decoration:
               InputDecoration(border: InputBorder.none),
               textAlign: TextAlign.center,
+              controller: controller,
             ),
           ),
         ),

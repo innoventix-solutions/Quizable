@@ -10,15 +10,12 @@ class selectquizsubject extends StatefulWidget {
   _selectquizsubjectState createState() => _selectquizsubjectState();
 }
 class _selectquizsubjectState extends State<selectquizsubject> {
-  bool value1 = false;
-  bool value2 = false;
-  bool value3 = false;
-  bool value4 = false;
-  bool value5 = false;
-  bool value6 = false;
-  bool value7 = false;
-  bool value8 = false;
-  bool value9 = false;
+
+
+
+  List<String> Textvalues = ["Religion","Arts & Literature","Current Affairs","Entertainment & Sports","Geography","History","Mathematics","Science","General Knowledge"];
+
+
 
 
 
@@ -54,8 +51,6 @@ class _selectquizsubjectState extends State<selectquizsubject> {
             ),
           ],
         ),
-
-
 
         drawer: Drawer(
           // Add a ListView to the drawer. This ensures the user can scroll
@@ -146,210 +141,232 @@ class _selectquizsubjectState extends State<selectquizsubject> {
         ),
 
 
-        body: Padding(
-          padding: const EdgeInsets.only(top: 35,left: 25),
-          child: Container(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: <Widget>[
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.only(top: 35,left: 25),
+            child: Container(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: <Widget>[
 
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: <Widget>[
-                    Checkbox(
-                      value: value1,
-                      onChanged: (bool value) {
-                        setState(() {
-                          value1 = value;
-                        });
-                      },
-                    ),
-                    Text("Religion",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),),
-
-                  ],
-                ),
-
-
-
-                Padding(
-                  padding: const EdgeInsets.only(top: 20),
-                  child: Row(
+                  Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: <Widget>[
                       Checkbox(
-                        value: value2,
+                        value: GlobalData.Slected_subject_bool[0],
                         onChanged: (bool value) {
                           setState(() {
-                            value2 = value;
+                            GlobalData.Slected_subject_bool[0] = value;
                           });
                         },
                       ),
-                      Text("Arts & Literature",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),),
+                      Text("Religion",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),),
 
                     ],
                   ),
-                ),
-
-
-            Padding(
-              padding: const EdgeInsets.only(top: 20),
-                child:Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: <Widget>[
-                    Checkbox(
-                      value: value3,
-                      onChanged: (bool value) {
-                        setState(() {
-                          value3 = value;
-                        });
-                      },
-                    ),
-                    Text("Current Affairs",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),),
-
-                  ],
-                ),
-            ),
 
 
 
-                Padding(
-                  padding: const EdgeInsets.only(top: 20),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: <Widget>[
-                      Checkbox(
-                        value: value4,
-                        onChanged: (bool value) {
-                          setState(() {
-                            value4 = value;
-                          });
-                        },
-                      ),
-                      Text("Entertainment & Sports",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 20),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: <Widget>[
+                        Checkbox(
+                          value: GlobalData.Slected_subject_bool[1],
+                          onChanged: (bool value) {
+                            setState(() {
+                              GlobalData.Slected_subject_bool[1] = value;
+                            });
+                          },
+                        ),
+                        Text("Arts & Literature",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),),
 
-                    ],
-                  ),
-                ),
-
-
-
-                Padding(
-                  padding: const EdgeInsets.only(top: 20),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: <Widget>[
-                      Checkbox(
-                        value: value5,
-                        onChanged: (bool value) {
-                          setState(() {
-                            value5 = value;
-                          });
-                        },
-                      ),
-                      Text("Geography",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),),
-
-                    ],
-                  ),
-                ),
-
-
-
-                Padding(
-                  padding: const EdgeInsets.only(top: 20),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: <Widget>[
-                      Checkbox(
-                        value: value6,
-                        onChanged: (bool value) {
-                          setState(() {
-                            value6 = value;
-                          });
-                        },
-                      ),
-                      Text("History",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),),
-
-                    ],
-                  ),
-                ),
-
-
-
-                Padding(
-                  padding: const EdgeInsets.only(top: 20),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: <Widget>[
-                      Checkbox(
-                        value: value7,
-                        onChanged: (bool value) {
-                          setState(() {
-                            value7 = value;
-                          });
-                        },
-                      ),
-                      Text("Mathematics",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),),
-
-                    ],
-                  ),
-                ),
-
-
-
-                Padding(
-                  padding: const EdgeInsets.only(top: 20),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: <Widget>[
-                      Checkbox(
-                        value: value8,
-                        onChanged: (bool value) {
-                          setState(() {
-                            value8 = value;
-                          });
-                        },
-                      ),
-                      Text("Science",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),),
-
-                    ],
-                  ),
-                ),
-
-
-
-                Padding(
-                  padding: const EdgeInsets.only(top: 20),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: <Widget>[
-                      Checkbox(
-                        value: value9,
-                        onChanged: (bool value) {
-                          setState(() {
-                            value9 = value;
-                          });
-                        },
-                      ),
-                      Text("General Knowledge",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),),
-
-                    ],
-                  ),
-                ),
-
-                Padding(
-                  padding: const EdgeInsets.only(top: 25),
-                  child: SizedBox(width: 100,
-                    child: GradientButtonText(
-                      linearGradient:LinearGradient(colors: <Color>[purple,pink]) ,
-                      text: Text("Apply",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 18,),
-                        textAlign: TextAlign.center,),
+                      ],
                     ),
                   ),
-                ),
+
+
+              Padding(
+                padding: const EdgeInsets.only(top: 20),
+                  child:Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: <Widget>[
+                      Checkbox(
+                        value: GlobalData.Slected_subject_bool[2],
+                        onChanged: (bool value) {
+                          setState(() {
+                            GlobalData.Slected_subject_bool[2] = value;
+                          });
+                        },
+                      ),
+                      Text("Current Affairs",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),),
+
+                    ],
+                  ),
+              ),
 
 
 
-              ],
+                  Padding(
+                    padding: const EdgeInsets.only(top: 20),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: <Widget>[
+                        Checkbox(
+                          value: GlobalData.Slected_subject_bool[3],
+                          onChanged: (bool value) {
+                            setState(() {
+                              GlobalData.Slected_subject_bool[3] = value;
+                            });
+                          },
+                        ),
+                        Text("Entertainment & Sports",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),),
+
+                      ],
+                    ),
+                  ),
+
+
+
+                  Padding(
+                    padding: const EdgeInsets.only(top: 20),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: <Widget>[
+                        Checkbox(
+                          value: GlobalData.Slected_subject_bool[4],
+                          onChanged: (bool value) {
+                            setState(() {
+                              GlobalData.Slected_subject_bool[4] = value;
+                            });
+                          },
+                        ),
+                        Text("Geography",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),),
+
+                      ],
+                    ),
+                  ),
+
+
+
+                  Padding(
+                    padding: const EdgeInsets.only(top: 20),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: <Widget>[
+                        Checkbox(
+                          value: GlobalData.Slected_subject_bool[5],
+                          onChanged: (bool value) {
+                            setState(() {
+                              GlobalData.Slected_subject_bool[5] = value;
+                            });
+                          },
+                        ),
+                        Text("History",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),),
+
+                      ],
+                    ),
+                  ),
+
+
+
+                  Padding(
+                    padding: const EdgeInsets.only(top: 20),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: <Widget>[
+                        Checkbox(
+                          value: GlobalData.Slected_subject_bool[6],
+                          onChanged: (bool value) {
+                            setState(() {
+                              GlobalData.Slected_subject_bool[6] = value;
+                            });
+                          },
+                        ),
+                        Text("Mathematics",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),),
+
+                      ],
+                    ),
+                  ),
+
+
+
+                  Padding(
+                    padding: const EdgeInsets.only(top: 20),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: <Widget>[
+                        Checkbox(
+                          value:GlobalData.Slected_subject_bool[7],
+                          onChanged: (bool value) {
+                            setState(() {
+                              GlobalData.Slected_subject_bool[7] = value;
+                            });
+                          },
+                        ),
+                        Text("Science",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),),
+
+                      ],
+                    ),
+                  ),
+
+
+
+                  Padding(
+                    padding: const EdgeInsets.only(top: 20),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: <Widget>[
+                        Checkbox(
+                          value: GlobalData.Slected_subject_bool[8],
+                          onChanged: (bool value) {
+                            setState(() {
+                              GlobalData.Slected_subject_bool[8] = value;
+                            });
+                          },
+                        ),
+                        Text("General Knowledge",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),),
+
+                      ],
+                    ),
+                  ),
+
+                  Padding(
+                    padding: const EdgeInsets.only(top: 25),
+                    child: SizedBox(width: 100,
+                      child: GradientButtonText(
+                        ButtonClick: (){
+                          GlobalData.Selected_subject=null;
+
+                          for(int i=0;i<GlobalData.Slected_subject_bool.length;i++) {
+                            if(GlobalData.Slected_subject_bool[i]==true) {
+                              if (GlobalData.Selected_subject == null) {
+                                GlobalData.Selected_subject=Textvalues[i];
+                              }else
+                                {
+                                  GlobalData.Selected_subject+=", "+Textvalues[i];
+                                }
+                            }
+                          }
+
+                          Navigator.of(context).pushNamed('setquizquestions');
+
+
+
+
+                        },
+                        linearGradient:LinearGradient(colors: <Color>[purple,pink]) ,
+                        text: Text("Apply",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 18,),
+                          textAlign: TextAlign.center,),
+                      ),
+                    ),
+                  ),
+
+
+
+                ],
+              ),
             ),
           ),
         ));
