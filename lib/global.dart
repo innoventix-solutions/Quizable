@@ -403,7 +403,8 @@ class classactivitys extends StatelessWidget {
                               child: Row(
                                 children: <Widget>[
                                   Expanded(
-                                    child: Text(heading),
+                                    child: Text(heading,textAlign: TextAlign.left,
+                                      style: TextStyle(color: Colors.white,fontSize: 15,fontWeight: FontWeight.bold),),
                                   ),
                                   Expanded(
                                     child:  Row(mainAxisAlignment: MainAxisAlignment.end,
@@ -462,7 +463,8 @@ class classactivitys extends StatelessWidget {
                 padding: EdgeInsets.only(left: 25,top: 20,right: 30,bottom: 30),
                 child: Column(
                   children: <Widget>[
-                    Text(paragraph),
+                    Text(paragraph,style: TextStyle(fontWeight: FontWeight.bold,
+                        fontSize: 15,color: gray),textAlign: TextAlign.justify,),
 
                   ],
                 ),
@@ -482,5 +484,83 @@ class classactivitys extends StatelessWidget {
 
 
 
+
+
+
+class levelcomplete extends StatelessWidget {
+
+  final String heading;
+  final String paragraph;
+  final Color color;
+
+  levelcomplete(
+      {
+        this.heading,
+        this.paragraph,
+        this.color});
+
+  @override
+  Widget build(BuildContext context) {
+    return
+      Container(decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(40))),
+        child: Card(elevation: 5.0,shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(5.0),
+        ),
+          child: Column(mainAxisAlignment: MainAxisAlignment.start,
+            children: <Widget>[
+              Row(
+                children: <Widget>[
+                  Expanded(
+                    child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(5),),color: color),
+
+                      child: Padding(
+                        padding: const EdgeInsets.only(top: 5,bottom: 5),
+                        child: Column(
+                          children: <Widget>[
+                            Padding(
+                              padding: const EdgeInsets.only(top: 5,bottom: 5,left: 10),
+                              child: Row(
+                                children: <Widget>[
+                                  Text(heading,textAlign: TextAlign.left,
+                                    style: TextStyle(color: Colors.white,fontSize: 15,fontWeight: FontWeight.bold),),
+                                ],
+                              ),
+                            ),
+
+                          ],
+
+                        ),
+                      ),
+
+                    ),
+                  ),
+                ],
+              ),
+              Container(
+                padding: EdgeInsets.only(left: 25,top: 20,right: 30,bottom: 30),
+                child: Column(
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 30),
+                      child: Text(paragraph,
+                        style: TextStyle(fontWeight: FontWeight.bold,
+                            fontSize: 15,color: gray),textAlign: TextAlign.justify,),
+                    ),
+
+                  ],
+                ),
+              ),
+
+
+
+
+
+            ],
+          ),
+
+        ),
+      );
+  }
+}
 
 

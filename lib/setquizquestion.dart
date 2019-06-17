@@ -14,7 +14,7 @@ class _setquizquestionState extends State<setquizquestion> {
   String selectedvalue = "Select Quiz Subject";
   String selectedvalue2 = "Select Class";
 
-  /*TextEditingController quiztitle = new TextEditingController();
+  TextEditingController quiztitle = new TextEditingController();
   TextEditingController quizlevel = new TextEditingController();
   TextEditingController queslevel = new TextEditingController();
   TextEditingController durlevel = new TextEditingController();
@@ -44,8 +44,10 @@ class _setquizquestionState extends State<setquizquestion> {
 
 
 
+
     }).then((response) {
-      var status = jsonDecode(response.body);
+      var JSON;
+      var status = JSON.decode(response.body);
 
 
       print("result from Server : "+status['status'].toString());
@@ -53,12 +55,12 @@ class _setquizquestionState extends State<setquizquestion> {
       if (status['status'].toString() == "1") {
         Show_toast("Registered Successfully", Colors.green);
         Navigator.of(context)
-            .pushNamed('login');
+            .pushNamed('setquestion');
       } else {
         Show_toast(status['msg'], Colors.red);
       }
     });
-  }*/
+  }
 
 
 
@@ -280,7 +282,7 @@ class _setquizquestionState extends State<setquizquestion> {
                           ),
                         ),
                       ),
-                      CustomTextField(),
+                      CustomTextField(controller: quiztitle,),
 
 
                       Center(
@@ -311,7 +313,7 @@ class _setquizquestionState extends State<setquizquestion> {
                                                 textAlign: TextAlign.left,
                                               ),
                                             ),
-                                            CustomTextField(),
+                                            CustomTextField(controller: quizlevel,),
                                           ],
                                         ),
                                       ),
@@ -340,7 +342,7 @@ class _setquizquestionState extends State<setquizquestion> {
                                                   textAlign: TextAlign.left,
                                                 ),
                                               ),
-                                              CustomTextField(),
+                                              CustomTextField(controller: queslevel,),
                                             ],
                                           ),
                                         ),
@@ -370,7 +372,7 @@ class _setquizquestionState extends State<setquizquestion> {
                           ),
                         ),
                       ),
-                      CustomTextField(),
+                      CustomTextField(controller: durlevel,),
 
 
                       Padding(
