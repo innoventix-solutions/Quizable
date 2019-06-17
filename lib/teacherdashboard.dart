@@ -56,7 +56,7 @@ class _teacherdashboardState extends State<teacherdashboard> {
                   ),
                 ),Padding(
                   padding: const EdgeInsets.only(top: 10),
-                  child: Text(GlobalData.Username.toUpperCase(),style:
+                  child: Text('Stanley Ohanugo',style:
                   TextStyle(fontSize: 20,color: Colors.white,fontWeight: FontWeight.bold),),
                 ),
                /* Padding(

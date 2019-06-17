@@ -153,7 +153,7 @@ class _questionmenuState extends State<questionmenu> {
 
           Padding(
             padding: const EdgeInsets.all(20.0),
-            child: classactivitys(color: pinkred,heading: "dasada",paragraph: "wdada",),
+            child: classactivitys(color: pinkred,heading: "Quiz Exercise",paragraph: "The World and Climate Change",),
           ),
         ],
       ),

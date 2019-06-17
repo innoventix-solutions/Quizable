@@ -40,7 +40,7 @@ setalldetails(){
 }
 
 
- /* Show_toast(String msg, Color color) {
+  Show_toast(String msg, Color color) {
     Fluttertoast.showToast(
         msg: msg,
         toastLength: Toast.LENGTH_SHORT,
@@ -73,7 +73,7 @@ setalldetails(){
         Show_toast(status['msg'], Colors.red);
       }
     });
-  }*/
+  }
 
 
 

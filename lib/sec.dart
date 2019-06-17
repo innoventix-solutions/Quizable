@@ -87,7 +87,7 @@ class _secState extends State<sec> {
         body: Center(
           child: SingleChildScrollView(
             child: Padding(
-              padding: const EdgeInsets.all(30),
+              padding: const EdgeInsets.only(top: 25,bottom: 25),
               child: Center(
                 child: new Column(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -95,7 +95,7 @@ class _secState extends State<sec> {
                     children: <Widget>[
                       Center(
                         child: Padding(
-                          padding: const EdgeInsets.all(10),
+                          padding: const EdgeInsets.all(30),
                           child: Container(
                             width: 70,
                             height: 70,

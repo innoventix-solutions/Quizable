@@ -234,18 +234,21 @@ class CustomTextFieldBorder extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
 
-      child: Theme(
-        data: ThemeData(hintColor: hintColor),
-        child: TextField(
-          controller: controller,
-          decoration: InputDecoration(
-              contentPadding: EdgeInsets.only(left: 5),
-              border: new OutlineInputBorder(
-                  borderRadius: new BorderRadius.circular(50.0),
-                  borderSide: BorderSide(color: Colors.white)),
-              prefixIcon: icon,
-              hintText: hintText,
-              hintStyle: hintStyle),
+      child: Padding(
+        padding: const EdgeInsets.only(left: 30, right: 30, top: 15),
+        child: Theme(
+          data: ThemeData(hintColor: hintColor),
+          child: TextField(
+            controller: controller,
+            decoration: InputDecoration(
+                contentPadding: EdgeInsets.only(left: 5),
+                border: new OutlineInputBorder(
+                    borderRadius: new BorderRadius.circular(50.0),
+                    borderSide: BorderSide(color: Colors.white)),
+                prefixIcon: icon,
+                hintText: hintText,
+                hintStyle: hintStyle),
+          ),
         ),
       ),
     );
