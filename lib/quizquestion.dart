@@ -29,6 +29,11 @@ class _quizquestionState extends State<quizquestion> {
   bool value10 = true;
 
 
+  TextEditingController que = new TextEditingController();
+  TextEditingController point = new TextEditingController();
+
+
+
 
 
 
@@ -204,7 +209,7 @@ class _quizquestionState extends State<quizquestion> {
                                 Padding(
                                   padding: const EdgeInsets.only(top: 10,left: 10,bottom: 35,right: 35),
                                   child: Container(
-                                    child: TextField(decoration: InputDecoration(border: InputBorder.none),
+                                    child: TextField(controller: que,decoration: InputDecoration(border: InputBorder.none),
                                       style: TextStyle(fontSize: 14,fontWeight: FontWeight.bold)),
                                   ),
                                 ),
@@ -247,7 +252,7 @@ class _quizquestionState extends State<quizquestion> {
                                              textAlign:TextAlign.left ,),
                                          ],
                                        ),
-                                         TextField(
+                                         TextField(controller: point,
                                            decoration: InputDecoration(border: InputBorder.none),
                                            style: TextStyle(fontSize: 14,),
 
@@ -1100,3 +1105,6 @@ class _quizquestionState extends State<quizquestion> {
     );
   }
 }
+
+
+
