@@ -43,7 +43,7 @@ import 'myclassroom.dart';
 import 'manageclassactivites.dart';
 import 'Questions.dart';
 import 'myquizexercise.dart';
-import 'table.dart';
+
 
 
 
@@ -58,7 +58,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(fontFamily: 'yu'),
-      home:aritmethicquiz(),
+      home:splash(),
       debugShowCheckedModeBanner: false,
       routes: {
        // 'signup_teacher': (context) => sec(),
