@@ -10,15 +10,12 @@ class selectquizsubject extends StatefulWidget {
   _selectquizsubjectState createState() => _selectquizsubjectState();
 }
 class _selectquizsubjectState extends State<selectquizsubject> {
-  bool value1 = false;
-  bool value2 = false;
-  bool value3 = false;
-  bool value4 = false;
-  bool value5 = false;
-  bool value6 = false;
-  bool value7 = false;
-  bool value8 = false;
-  bool value9 = false;
+
+
+
+  List<String> Textvalues = ["Religion","Arts & Literature","Current Affairs","Entertainment & Sports","Geography","History","Mathematics","Science","General Knowledge"];
+
+
 
 
 
@@ -54,8 +51,6 @@ class _selectquizsubjectState extends State<selectquizsubject> {
             ),
           ],
         ),
-
-
 
         drawer: Drawer(
           // Add a ListView to the drawer. This ensures the user can scroll
@@ -158,10 +153,10 @@ class _selectquizsubjectState extends State<selectquizsubject> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: <Widget>[
                       Checkbox(
-                        value: value1,
+                        value: GlobalData.Slected_subject_bool[0],
                         onChanged: (bool value) {
                           setState(() {
-                            value1 = value;
+                            GlobalData.Slected_subject_bool[0] = value;
                           });
                         },
                       ),
@@ -178,10 +173,10 @@ class _selectquizsubjectState extends State<selectquizsubject> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: <Widget>[
                         Checkbox(
-                          value: value2,
+                          value: GlobalData.Slected_subject_bool[1],
                           onChanged: (bool value) {
                             setState(() {
-                              value2 = value;
+                              GlobalData.Slected_subject_bool[1] = value;
                             });
                           },
                         ),
@@ -198,10 +193,10 @@ class _selectquizsubjectState extends State<selectquizsubject> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: <Widget>[
                       Checkbox(
-                        value: value3,
+                        value: GlobalData.Slected_subject_bool[2],
                         onChanged: (bool value) {
                           setState(() {
-                            value3 = value;
+                            GlobalData.Slected_subject_bool[2] = value;
                           });
                         },
                       ),
@@ -219,10 +214,10 @@ class _selectquizsubjectState extends State<selectquizsubject> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: <Widget>[
                         Checkbox(
-                          value: value4,
+                          value: GlobalData.Slected_subject_bool[3],
                           onChanged: (bool value) {
                             setState(() {
-                              value4 = value;
+                              GlobalData.Slected_subject_bool[3] = value;
                             });
                           },
                         ),
@@ -240,10 +235,10 @@ class _selectquizsubjectState extends State<selectquizsubject> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: <Widget>[
                         Checkbox(
-                          value: value5,
+                          value: GlobalData.Slected_subject_bool[4],
                           onChanged: (bool value) {
                             setState(() {
-                              value5 = value;
+                              GlobalData.Slected_subject_bool[4] = value;
                             });
                           },
                         ),
@@ -261,10 +256,10 @@ class _selectquizsubjectState extends State<selectquizsubject> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: <Widget>[
                         Checkbox(
-                          value: value6,
+                          value: GlobalData.Slected_subject_bool[5],
                           onChanged: (bool value) {
                             setState(() {
-                              value6 = value;
+                              GlobalData.Slected_subject_bool[5] = value;
                             });
                           },
                         ),
@@ -282,10 +277,10 @@ class _selectquizsubjectState extends State<selectquizsubject> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: <Widget>[
                         Checkbox(
-                          value: value7,
+                          value: GlobalData.Slected_subject_bool[6],
                           onChanged: (bool value) {
                             setState(() {
-                              value7 = value;
+                              GlobalData.Slected_subject_bool[6] = value;
                             });
                           },
                         ),
@@ -303,10 +298,10 @@ class _selectquizsubjectState extends State<selectquizsubject> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: <Widget>[
                         Checkbox(
-                          value: value8,
+                          value:GlobalData.Slected_subject_bool[7],
                           onChanged: (bool value) {
                             setState(() {
-                              value8 = value;
+                              GlobalData.Slected_subject_bool[7] = value;
                             });
                           },
                         ),
@@ -324,10 +319,10 @@ class _selectquizsubjectState extends State<selectquizsubject> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: <Widget>[
                         Checkbox(
-                          value: value9,
+                          value: GlobalData.Slected_subject_bool[8],
                           onChanged: (bool value) {
                             setState(() {
-                              value9 = value;
+                              GlobalData.Slected_subject_bool[8] = value;
                             });
                           },
                         ),
@@ -341,6 +336,26 @@ class _selectquizsubjectState extends State<selectquizsubject> {
                     padding: const EdgeInsets.only(top: 25),
                     child: SizedBox(width: 100,
                       child: GradientButtonText(
+                        ButtonClick: (){
+                          GlobalData.Selected_subject=null;
+
+                          for(int i=0;i<GlobalData.Slected_subject_bool.length;i++) {
+                            if(GlobalData.Slected_subject_bool[i]==true) {
+                              if (GlobalData.Selected_subject == null) {
+                                GlobalData.Selected_subject=Textvalues[i];
+                              }else
+                                {
+                                  GlobalData.Selected_subject+=", "+Textvalues[i];
+                                }
+                            }
+                          }
+
+                          Navigator.of(context).pushNamed('setquizquestions');
+
+
+
+
+                        },
                         linearGradient:LinearGradient(colors: <Color>[purple,pink]) ,
                         text: Text("Apply",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 18,),
                           textAlign: TextAlign.center,),

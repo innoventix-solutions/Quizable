@@ -29,9 +29,10 @@ import 'adminprofile.dart';
 import 'setquizquestion.dart';
 import 'manageclassactivites.dart';
 import 'assignmentquestionbank.dart';
-
+import 'json.dart';
+import 'cal.dart';
 import 'quizquestion.dart';
-
+import 'cal3.dart';
 import 'selectquizsubject.dart';
 import 'selectquizclass.dart';
 import 'studentdashboard.dart';
@@ -40,6 +41,10 @@ import 'level1complete.dart';
 import 'alllevelcomplete.dart';
 import 'myclassroom.dart';
 import 'manageclassactivites.dart';
+import 'Questions.dart';
+import 'myquizexercise.dart';
+import 'table.dart';
+
 
 
 
@@ -53,7 +58,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(fontFamily: 'yu'),
-      home:splash(),
+      home:aritmethicquiz(),
       debugShowCheckedModeBanner: false,
       routes: {
        // 'signup_teacher': (context) => sec(),
@@ -79,7 +84,8 @@ class MyApp extends StatelessWidget {
         'selectsubject':(context) => selectquizsubject(),
         'selectclass':(context) => quizclass(),
         'dashboard':(context) => teacherdashboard(),
-        //'setquestion':(context) => quizquestion(),
+        'setquestion':(context) => quizquestion(),
+        'questions':(context)=>Questions()
       },
     );
   }

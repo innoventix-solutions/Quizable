@@ -29,15 +29,139 @@ Color lightpink = Color(0xffE16B8B);
 Color gradientStart = Colors.blue; //Change start gradient color here
 Color gradientEnd = Colors.purple;
 
+                                  //Custom drawer for quiz menu
+class drawerquiz extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Drawer(
+      // Add a ListView to the drawer. This ensures the user can scroll
+      // through the options in the Drawer if there isn't enough vertical
+      // space to fit everything.
+      child: ListView(
+        // Important: Remove any padding from the ListView.
+        padding: EdgeInsets.zero,
+        children: <Widget>[
+          Container(child: Padding(
+            padding: const EdgeInsets.only(bottom: 40,top: 25),
+            child: DrawerHeader(child: Container(
+              child: Row(
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.only(left: 5),
+                    child: CircleAvatar(backgroundImage: AssetImage('assets/images/pic.png',),
+                      radius: 35.0,),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 15),
+                    child: Column(mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[Padding(
+                        padding: const EdgeInsets.only(bottom: 15),
+                        child: Text('Stanley Ohanugo',
+                          style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,
+                              fontSize: 16),),
+                      ),
+
+                        Text('Distance Learning Institute',
+                          style: TextStyle(color: Colors.white,fontSize: 13),)
+                      ],),
+                  )
+                ],),
+            ),),
+          ),decoration: bg12,),
+
+
+
+          Padding(
+            padding: const EdgeInsets.only(left: 35,top:30),
+            child: Row(children: <Widget>[Icon(Icons.home,color: lightblue,),
+              Padding(
+                padding: const EdgeInsets.only(left: 10),
+                child: GestureDetector(
+                  child: Text('Home',style: TextStyle(
+                      color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
+                  onTap: (){Navigator.of(context)
+                      .pushNamed('dashboard');},
+                ),
+              )],),
+          ),
+
+          Padding(
+            padding: const EdgeInsets.only(left: 35,top:20),
+            child: Row(children: <Widget>[Icon(Icons.assignment,color: lightblue,),
+              Padding(
+                padding: const EdgeInsets.only(left: 10),
+                child: Text('Assignment Question Bank',style: TextStyle(
+                    color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
+              )],),
+          ),
+
+          Padding(
+            padding: const EdgeInsets.only(left: 35,top:20),
+            child: Row(children: <Widget>[Icon(Icons.live_help,color: lightblue,),
+              Padding(
+                padding: const EdgeInsets.only(left: 10),
+                child: GestureDetector(
+                  child: Text('Set Quiz Questions',style: TextStyle(
+                      color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
+                  onTap: (){Navigator.of(context)
+                      .pushNamed('setquizquestions');},
+                ),
+              )],),
+          ),
+
+          GestureDetector(
+            child: Padding(
+              padding: const EdgeInsets.only(left: 35,top:20),
+              child: Row(children: <Widget>[Icon(Icons.offline_pin,color: lightblue,),
+                Padding(
+                  padding: const EdgeInsets.only(left: 10),
+                  child: Text('Set Spelling Challenge',style: TextStyle(
+                      color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
+                ),],),
+            ),onTap: (){},
+          ),
+
+          GestureDetector(
+            child: Padding(
+              padding: const EdgeInsets.only(left: 35,top:20),
+              child: Row(children: <Widget>[Icon(Icons.power_settings_new,color: lightblue,),
+                Padding(
+                  padding: const EdgeInsets.only(left: 10),
+                  child: Text('Log out',style: TextStyle(
+                      color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
+                ),],),
+            ),onTap: (){},
+          ),
+
+
+
+
+        ],
+      ),
+    );
+  }
+}
+
+
 
 class GlobalData{
+  static int QuestionNumber=1;
   static String userType;
-  static String accounttype;
+  static String accounttype="";
   static String uid;
   static String class_name;
   static String class_icon;
   static String student_code;
   static String teacher_code;
+  static String Username;
+  static String Selected_subject;
+  static List<bool> Slected_subject_bool=[false,false,false,false,false,false,false,false,false];
+  static String QuizTitle="";
+  static String QuizLevels="";
+  static String NosofQuesPerLevel="";
+  static String DurationofEachLevel="";
+
 }
 
 Show_toast_Now(String msg,Color color){
@@ -225,18 +349,21 @@ class CustomTextFieldBorder extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
 
-      child: Theme(
-        data: ThemeData(hintColor: hintColor),
-        child: TextField(
-          controller: controller,
-          decoration: InputDecoration(
-              contentPadding: EdgeInsets.only(left: 5),
-              border: new OutlineInputBorder(
-                  borderRadius: new BorderRadius.circular(50.0),
-                  borderSide: BorderSide(color: Colors.white)),
-              prefixIcon: icon,
-              hintText: hintText,
-              hintStyle: hintStyle),
+      child: Padding(
+        padding: const EdgeInsets.only(left: 30, right: 30, top: 15),
+        child: Theme(
+          data: ThemeData(hintColor: hintColor),
+          child: TextField(
+            controller: controller,
+            decoration: InputDecoration(
+                contentPadding: EdgeInsets.only(left: 5),
+                border: new OutlineInputBorder(
+                    borderRadius: new BorderRadius.circular(50.0),
+                    borderSide: BorderSide(color: Colors.white)),
+                prefixIcon: icon,
+                hintText: hintText,
+                hintStyle: hintStyle),
+          ),
         ),
       ),
     );
@@ -327,12 +454,15 @@ class CustomTextField extends StatelessWidget {
   final String Texth;
   final TextEditingController controller;
   final TextStyle hintStyle;
+  final bool Inputnumber ;
+  final bool enabled;
 
   CustomTextField(
       {this.controller,
         this.hintColor,
-
+        this.Inputnumber,
         this.Texth,
+        this.enabled,
         this.hintStyle});
 
   @override
@@ -351,13 +481,14 @@ class CustomTextField extends StatelessWidget {
             borderRadius: BorderRadius.circular(10.0),
           ),
           child: Padding(
-            padding: const EdgeInsets.only(
-                top: 5, bottom: 5, left: 50, right: 50),
+            padding: const EdgeInsets.all(5),
             child: TextField(
-
+              enabled: enabled==null?true:false,
+              keyboardType: Inputnumber==true?TextInputType.numberWithOptions(decimal: false,signed:false):TextInputType.text,
               decoration:
-              InputDecoration(border: InputBorder.none),
+              InputDecoration(border: InputBorder.none,hintText: Texth,hintStyle: hintStyle),
               textAlign: TextAlign.center,
+              controller: controller,
             ),
           ),
         ),
@@ -366,6 +497,34 @@ class CustomTextField extends StatelessWidget {
   }
 }
 
+class calc extends StatelessWidget {
+
+  final String number;
+
+
+  calc(
+  {
+    this.number,
+
+}
+      );
+  @override
+  Widget build(BuildContext context) {
+    return
+      Container(
+        child: Column(
+          children: <Widget>[
+            RaisedButton(
+              child: Text(number,style: TextStyle(
+                fontSize: 14,color: gray,
+              ),),onPressed: (){},color: white
+            )
+          ],
+        ),
+
+      );
+  }
+}
 
 
 class classactivitys extends StatelessWidget {

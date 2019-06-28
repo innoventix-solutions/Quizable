@@ -58,11 +58,12 @@ class _teacherdashboardState extends State<teacherdashboard> {
                   padding: const EdgeInsets.only(top: 10),
                   child: Text('Stanley Ohanugo',style:
                   TextStyle(fontSize: 20,color: Colors.white,fontWeight: FontWeight.bold),),
-                ),Padding(
+                ),
+               /* Padding(
                   padding: const EdgeInsets.only(top: 10),
                   child: Text('Distance Learning Institute',style:
                   TextStyle(fontSize: 15,color: Colors.white),),
-                ),
+                ),*/
               ],
             ),
           ),
