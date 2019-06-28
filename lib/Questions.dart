@@ -170,7 +170,7 @@ class _QuestionsState extends State<Questions> {
                                         ),
                                         Row(
                                           children: <Widget>[
-                                            Expanded(child: TextField(controller: value2,decoration: InputDecoration(hintText: "Valu 2"),))
+                                            Expanded(child: TextField(controller: value2,decoration: InputDecoration(hintText: "Value 2"),))
                                           ],
 
                                         ),
@@ -238,7 +238,7 @@ class _QuestionsState extends State<Questions> {
   Widget MyQuestionType(String type) {
 
     switch (type){
-      case 'Multiple Answer':
+      case 'Multiple Answers':
         return Card(
           child: Column(
             children: <Widget>[
@@ -509,7 +509,7 @@ class _QuestionsState extends State<Questions> {
   String MyQuestionAnswer(String type) {
 
     switch (type){
-      case 'Multiple Answer':
+      case 'Multiple Answers':
         return jsonEncode(Options).toString();
       case 'Match Type':
         return jsonEncode(Matches).toString();
@@ -635,7 +635,7 @@ class _QuestionsState extends State<Questions> {
                                 new DropdownButton(
                                  value:SelectedType ,
 
-                                  items: <String>['Fill in the blanks', 'Match Type', 'Single Answer', 'Multiple Answer','True or False'].map((String value) {
+                                  items: <String>['Fill in the blanks', 'Match Type', 'Single Answer', 'Multiple Answers','True or False'].map((String value) {
                                     return new DropdownMenuItem<String>(
                                       value: value,
                                       child: new Text(value),

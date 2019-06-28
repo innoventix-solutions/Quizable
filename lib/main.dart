@@ -42,10 +42,8 @@ import 'alllevelcomplete.dart';
 import 'myclassroom.dart';
 import 'manageclassactivites.dart';
 import 'Questions.dart';
-
-
-
-
+import 'test.dart';
+import 'test2.dart';
 
 void main() {
   runApp(MyApp());
@@ -56,20 +54,20 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(fontFamily: 'yu'),
-      home:splash(),
+      home: splash(),
       debugShowCheckedModeBanner: false,
       routes: {
-       // 'signup_teacher': (context) => sec(),
+        // 'signup_teacher': (context) => sec(),
         'login': (context) => login(),
         'teacher': (context) => infoofedusupport(),
         'loging_selection': (context) => loginandsignup(),
         'signup_selection': (context) => select(),
         'signup_teacher': (context) => teacheroption(),
         'accouttypeselect': (context) => accounttype(),
-        'signup': (context)=> sec(),
-        'welcome': (context)=> welcome(),
-        'createnewclass': (context)=> createnewclass(),
-        'invitecode': (context)=> invitecode(),
+        'signup': (context) => sec(),
+        'welcome': (context) => welcome(),
+        'createnewclass': (context) => createnewclass(),
+        'invitecode': (context) => invitecode(),
         'techerjoinclass': (context) => techerjoinclass(),
         'studentjoinclass': (context) => studentjoin(),
         'register': (context) => sec(),
@@ -78,12 +76,14 @@ class MyApp extends StatelessWidget {
         'adminteacherjoinclass': (context) => techerjoinclass(),
         'teacherjoinclass': (context) => teacherdashboard(),
         'manageclassactivities': (context) => questionmenu(),
-        'setquizquestions':(context) => setquizquestion(),
-        'selectsubject':(context) => selectquizsubject(),
-        'selectclass':(context) => quizclass(),
-        'dashboard':(context) => teacherdashboard(),
-        'setquestion':(context) => quizquestion(),
-        'questions':(context)=>Questions()
+        'setquizquestions': (context) => setquizquestion(),
+        'selectsubject': (context) => selectquizsubject(),
+        'selectclass': (context) => quizclass(),
+        'dashboard': (context) => teacherdashboard(),
+        'setquestion': (context) => quizquestion(),
+        'questions': (context) => Questions(),
+        'test2' :  (context) => test2()
+
       },
     );
   }

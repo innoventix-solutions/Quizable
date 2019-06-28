@@ -155,7 +155,7 @@ class _studentregState extends State<studentreg> {
                           color: lightblue,
                         ),
                       ),
-                      CustomTextFieldBorder(
+                      CustomTextFieldBorder(password: true,
                         controller: password,
                         hintColor: lightblue,
                         hintStyle: TextStyle(
@@ -166,6 +166,7 @@ class _studentregState extends State<studentreg> {
                           Icons.lock,
                           color: lightblue,
                         ),
+
                       ),
                       CustomTextFieldBorder(
                         controller: par_email,

@@ -155,8 +155,10 @@ class _secState extends State<sec> {
                         ),
                       ),
 
-                      CustomTextFieldBorder(controller:
+                      CustomTextFieldBorder(password:true,
+                        controller:
                       password,hintColor: lightblue,hintStyle: TextStyle(color: black,),hintText: "Password",icon: Icon(Icons.lock,color: lightblue,),),
+
 
                       CustomTextFieldBorder(controller:
                       disc,hintColor: lightblue,hintStyle: TextStyle(color: black,),hintText: "Discipline",icon: Icon(Icons.speaker_notes,color: lightblue,),),
