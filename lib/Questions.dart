@@ -9,9 +9,11 @@ class Questions extends StatefulWidget {
 
 class _QuestionsState extends State<Questions> {
   String SelectedType = 'Fill in the blanks';
+  List<String> ListofTypes = ['Fill in the blanks', 'Match Type', 'Single Answer', 'Multiple Answer','True or False'];
   List<option> Options = new List();
   List<MatchClass> Matches = new List();
   String TrueorFalse = "False";
+  List<String> Type = ["fillups","matchtype","single","multi","tf"];
 
   TextEditingController QuestionName = new TextEditingController();
   TextEditingController Points = new TextEditingController();
@@ -84,6 +86,97 @@ class _QuestionsState extends State<Questions> {
 
                                               }
                                             ,linearGradient:
+                                            LinearGradient(colors: <Color>[navy,navyblue]),
+                                              text: Text('Add',style: TextStyle(color: Colors.white,
+                                                fontWeight: FontWeight.bold,fontSize: 12,),textAlign: TextAlign.center,),
+                                            ),
+                                          ),
+                                        ),
+
+
+
+
+                                      ],
+                                    ),
+                                  )],
+
+                              ),
+
+                            ),
+
+
+
+                          ],
+
+
+                        ),
+                      ),
+                    ),
+                  ),
+
+                ],
+              ),
+            ),
+
+
+          );
+        });
+  }
+
+  void QuizCompleted(BuildContext context)  {
+    bool Selected = false;
+    TextEditingController optioncontroller = new TextEditingController();
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            backgroundColor:Colors.transparent,
+            elevation: 0,
+            content: SingleChildScrollView(
+              child: Column(mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Center(
+                    child: Container(
+                      child: new Card(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(15.0),
+                        ),
+                        child: Column(mainAxisAlignment: MainAxisAlignment.start,
+                          children: <Widget>[
+                            Container(
+
+                              child: Column(
+                                children: <Widget>[
+                                  Center(child: Padding(
+                                    padding: const EdgeInsets.only(top:15),
+
+                                    child: Text('Quiz Submitted',textAlign: TextAlign.center,
+                                      style: TextStyle(color: lightblue,fontSize: 25,fontWeight: FontWeight.bold),),
+                                  )),
+
+
+                                  new Divider(
+                                    color: gray,
+                                  ),
+
+
+                                  Padding(
+                                    padding: const EdgeInsets.only(bottom: 30),
+                                    child: Row(mainAxisAlignment: MainAxisAlignment.center,
+                                      children: <Widget>[
+
+                                        Container(padding: EdgeInsets.all(5),
+                                          child: SizedBox(width: 100,
+                                            child: GradientButtonText(
+                                              ButtonClick: (){
+
+                                                Navigator.of(context).pop();
+                                                setState(() {
+
+                                                });
+
+                                              }
+                                              ,linearGradient:
                                             LinearGradient(colors: <Color>[navy,navyblue]),
                                               text: Text('Add',style: TextStyle(color: Colors.white,
                                                 fontWeight: FontWeight.bold,fontSize: 12,),textAlign: TextAlign.center,),
@@ -575,13 +668,14 @@ class _QuestionsState extends State<Questions> {
                   Row(
                     children: <Widget>[
                       Expanded(
-                        child: Container(padding: EdgeInsets.all(5),color:green,child: Text("Question "+(GlobalData.QuestionNumber%int.parse(GlobalData.NosofQuesPerLevel)).toString()+" of "+GlobalData.NosofQuesPerLevel,style: TextStyle(color: Colors.white,fontSize: 15,fontWeight: FontWeight.bold),)),
+                        child: Container(padding: EdgeInsets.all(5),color:green,
+                            child: Text(
+                              "Question "+((GlobalData.QuestionNumber%int.parse(GlobalData.NosofQuesPerLevel))+1).toString()+" of "+GlobalData.NosofQuesPerLevel,style: TextStyle(color: Colors.white,fontSize: 15,fontWeight: FontWeight.bold),)),
                       ),
                       Container(
                           padding: EdgeInsets.all(5),color:green,
-                        child:  Text("Level "+((GlobalData.QuestionNumber/int.parse(GlobalData.NosofQuesPerLevel)).floor()+1).toString()+" of "+GlobalData.NosofQuesPerLevel,style: TextStyle(color: Colors.white,fontSize: 15,fontWeight: FontWeight.bold),)
+                        child:  Text("Level "+((GlobalData.QuestionNumber/int.parse(GlobalData.NosofQuesPerLevel)).floor()+1).toString()+" of "+GlobalData.QuizLevels,style: TextStyle(color: Colors.white,fontSize: 15,fontWeight: FontWeight.bold),)
                       )
-
                     ],
                   ),
                   Row(
@@ -636,7 +730,7 @@ class _QuestionsState extends State<Questions> {
                                 new DropdownButton(
                                  value:SelectedType ,
 
-                                  items: <String>['Fill in the blanks', 'Match Type', 'Single Answer', 'Multiple Answer','True or False'].map((String value) {
+                                  items: ListofTypes.map((String value) {
                                     return new DropdownMenuItem<String>(
                                       value: value,
                                       child: new Text(value),
@@ -676,7 +770,11 @@ class _QuestionsState extends State<Questions> {
                       child: SizedBox(width: 100,
                         child: GradientButtonText(
                           ButtonClick: (){
+
+
+
                             SaveQuizQuestion();
+
 
                           },
                           linearGradient:LinearGradient(colors: <Color>[purple,pink]) ,
@@ -746,12 +844,13 @@ class _QuestionsState extends State<Questions> {
     }else{
 
 
+
     http.post(
         "http://edusupportapp.com/api/create_update_quiz_questions.php", body: {
       "question": QuestionName.text.toString(),
       "point_awarded": Points.text.toString(),
       "answer_type": SelectedType.toString(),
-      "quiz_id": "25",
+      "quiz_id": GlobalData.QuizID,
       "answer_options": MyQuestionAnswer(SelectedType),
 
 
@@ -769,14 +868,18 @@ class _QuestionsState extends State<Questions> {
         setState(() {
 
         });
-      } else {
+      } else{
 
       }
-      Navigator.of(context).pushNamed('questions');
+      if(GlobalData.QuestionNumber>=(int.parse(GlobalData.NosofQuesPerLevel)*int.parse(GlobalData.QuizLevels)))
+      {
+        QuizCompleted(context);
+      }else {
+        Navigator.of(context).pushNamed('questions');
+      }
     });
   }
   }
-
 }
 
 
@@ -810,26 +913,3 @@ class MatchClass {
         'val2': val2,
       };
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

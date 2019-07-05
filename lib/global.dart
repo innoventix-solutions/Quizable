@@ -29,6 +29,27 @@ Color lightpink = Color(0xffE16B8B);
 Color gradientStart = Colors.blue; //Change start gradient color here
 Color gradientEnd = Colors.purple;
 
+
+class GlobalData{
+  static int QuestionNumber=0;
+  static String userType;
+  static String accounttype="";
+  static String uid;
+  static String class_name;
+  static String class_icon;
+  static String student_code;
+  static String teacher_code;
+  static String Username;
+  static String Selected_subject;
+  static List<bool> Slected_subject_bool=[false,false,false,false,false,false,false,false,false];
+  static String QuizTitle="";
+  static String QuizLevels="";
+  static String NosofQuesPerLevel="";
+  static String DurationofEachLevel="";
+  static String QuizID="";
+
+
+}
                                   //Custom drawer for quiz menu
 class drawerquiz extends StatelessWidget {
   @override
@@ -145,24 +166,7 @@ class drawerquiz extends StatelessWidget {
 
 
 
-class GlobalData{
-  static int QuestionNumber=1;
-  static String userType;
-  static String accounttype="";
-  static String uid;
-  static String class_name;
-  static String class_icon;
-  static String student_code;
-  static String teacher_code;
-  static String Username;
-  static String Selected_subject;
-  static List<bool> Slected_subject_bool=[false,false,false,false,false,false,false,false,false];
-  static String QuizTitle="";
-  static String QuizLevels="";
-  static String NosofQuesPerLevel="";
-  static String DurationofEachLevel="";
 
-}
 
 Show_toast_Now(String msg,Color color){
   Fluttertoast.showToast(

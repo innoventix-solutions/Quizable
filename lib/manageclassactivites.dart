@@ -1,6 +1,9 @@
-import 'package:flutter/material.dart';
-import 'global.dart';
+import 'dart:convert';
 
+import 'package:flutter/material.dart';
+import 'Pojo/pojo_quizzes.dart';
+import 'global.dart';
+import 'package:http/http.dart' as http;
 
 
 
@@ -10,6 +13,34 @@ class questionmenu extends StatefulWidget {
 }
 
 class _questionmenuState extends State<questionmenu> {
+
+  List<Pojo_quizzes> Quizz_List = new List();
+
+  GetTest() async{
+
+    await http.post("http://edusupportapp.com/api/get_quizzes.php",
+    body: {
+      "UserId":GlobalData.uid
+    }).then((res){
+      print(res.body);
+
+      var ParsedJson = jsonDecode(res.body);
+      Quizz_List = (ParsedJson['quizdata'] as List).map((data)=>Pojo_quizzes.fromJson(data)).toList();
+
+      print(Quizz_List.length);
+      setState(() {
+
+      });
+    });
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    GetTest();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,27 +74,32 @@ class _questionmenuState extends State<questionmenu> {
         ],
       ),
 
-
-
-
-
       drawer:
       drawerquiz(),
 
-
-
-
       body:
-      Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: <Widget>[
+          Column(
+            children: <Widget>[
+              Expanded(
+                child: ListView.builder(
+                    itemCount: Quizz_List.length,
+                    itemBuilder: (c,i){
+                  return  GestureDetector(
+                    onTap: (){
+                      GlobalData.QuizID=Quizz_List[i].id;
+                      Navigator.of(context).pushNamed('exam');
+                    },
+                    child: classactivitys(
+                      color: pinkred,
+                      heading: Quizz_List[i].quiz_title+" - "+Quizz_List[i].id,
+                      paragraph: Quizz_List[i].quiz_subject,
+                    ),
+                  );
+                }),
+              ),
+            ],
+          )
 
-          Padding(
-            padding: const EdgeInsets.all(20.0),
-            child: classactivitys(color: pinkred,heading: "Quiz Exercise",paragraph: "The World and Climate Change",),
-          ),
-        ],
-      ),
 
     );
   }
