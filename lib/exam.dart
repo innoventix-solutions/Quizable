@@ -20,6 +20,8 @@ class _ExamState extends State<Exam> {
   List<Pojo_Matchs> matchs = new List();
 
 
+  ScrollController controller = new ScrollController();
+
   GetQuestions() async{
 
     print(GlobalData.QuizID);
@@ -29,9 +31,9 @@ class _ExamState extends State<Exam> {
       print(res.body);
       var ParsedJson = jsonDecode(res.body);
       Quetions = (ParsedJson['quizquestionsdata'] as List).map((data)=>Pojo_questions.fromJson(data)).toList();
-setState(() {
+      setState(() {
 
-});
+      });
     });
 
 
@@ -51,15 +53,7 @@ setState(() {
             /*List<Pojo_Matchs> matchs = new List();
             matchs = (Quetions[i].anwer_options as List).map((data)=>Pojo_Matchs.fromJson((data))).toList();*/
 
-            return Container(
-              child: Column(
-                children: <Widget>[
-                  Expanded(
-                    child: Text( "as"),
-                  ),
-                ],
-              ),
-            );
+            return null;
             default:
     }
   }
@@ -80,8 +74,10 @@ setState(() {
   Widget build(BuildContext context) {
 
 
-    List<String> Value2 = List();
     List<String> Value1 = List();
+    List<String> Value2 = List();
+
+
 
     for(var item in Quetions[0].anwer_options){
       Value1.add(item.val1);
@@ -93,41 +89,75 @@ setState(() {
     print(Value1.length);
 
     return Scaffold(
-      body: Row(
-        children: <Widget>[
-          Expanded(child: ListView.builder(
-              itemCount: Value1.length,
-              itemBuilder: (c,i){
-               return ListTile(key: Key("${Value1}"), title: Text("${Value1}"), trailing: Icon(Icons.menu),);
+      body: ListView.builder(itemBuilder: (c,i){
+        return Card(
+          child: Column(
+            children: <Widget>[
+              Text(i.toString()),
 
-              })),
-          Expanded(
-            child: ReorderableListView(children:  Value2.map((item) => ListTile(key: Key("${item}"), title: Text("${item}"), trailing: Icon(Icons.menu),)).toList(), onReorder: (int start, int current) {
-              // dragging from top to bottom
-              if (start < current) {
-                int end = current - 1;
-                String startItem = Value2[start];
-                int i = 0;
-                int local = start;
-                do {
-                  Value2[local] = Value2[++local];
-                  i++;
-                } while (i < end - start);
-                Value2[end] = startItem;
-              }
-              // dragging from bottom to top
-              else if (start > current) {
-                String startItem = Value2[start];
-                for (int i = start; i > current; i--) {
-                  Value2[i] = Value2[i - 1];
-                }
-                Value2[current] = startItem;
-              }
-              setState(() {});
-            },),
+              Text(Quetions[i].answer_type.toString()),
+              Text(Quetions[i].question.toString()),
+              Text(Quetions[i].anwer_options.length.toString())
+            ],
           ),
-        ],
-      )
+        );
+      })
+
+
+
+
+      /*SafeArea(
+        child: Row(
+          children: <Widget>[
+            Expanded(
+              child: Row(
+                children: <Widget>[
+                  Expanded(
+                    child: ListView.builder(
+                        controller:controller ,itemCount: Value1.length,itemBuilder: (c,i){
+                      return ListTile(title: Text(Value1[i]),leading: Icon(Icons.menu),);
+                    }),
+                  ),
+                ],
+              ),
+            ),
+            Expanded(
+              child: Row(
+                children: <Widget>[
+                  Expanded(
+                    child: ReorderableListView(
+
+
+                      children:  Value2.map((item) => ListTile(key: Key("${item}"), title: Text("${item}"), trailing: Icon(Icons.menu),)).toList(), onReorder: (int start, int current) {
+                      // dragging from top to bottom
+                      if (start < current) {
+                        int end = current - 1;
+                        String startItem = Value2[start];
+                        int i = 0;
+                        int local = start;
+                        do {
+                          Value2[local] = Value2[++local];
+                          i++;
+                        } while (i < end - start);
+                        Value2[end] = startItem;
+                      }
+                      // dragging from bottom to top
+                      else if (start > current) {
+                        String startItem = Value2[start];
+                        for (int i = start; i > current; i--) {
+                          Value2[i] = Value2[i - 1];
+                        }
+                        Value2[current] = startItem;
+                      }
+                      setState(() {});
+                    },),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      )*/
 
     );
   }
