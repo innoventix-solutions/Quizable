@@ -385,7 +385,7 @@ class _QuestionsState extends State<Questions> {
                                     Options[index].selected=value;setState(() {
 
                                     });},),
-                                  Text(Options[index].Text,maxLines: 4,)
+                                  Expanded(child: Text(Options[index].Text,maxLines: 4,)),
 
 
 
@@ -432,7 +432,7 @@ class _QuestionsState extends State<Questions> {
                                     Options[index].selected=value;setState(() {
 
                                     });},),
-                                  Text(Options[index].Text)
+                                  Expanded(child: Text(Options[index].Text)),
 
 
 
@@ -751,7 +751,7 @@ class _QuestionsState extends State<Questions> {
       "question": QuestionName.text.toString(),
       "point_awarded": Points.text.toString(),
       "answer_type": SelectedType.toString(),
-      "quiz_id": "25",
+      "quiz_id": "30",
       "answer_options": MyQuestionAnswer(SelectedType),
 
 
