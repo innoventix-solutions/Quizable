@@ -11,7 +11,13 @@ class Pojo_Matchs{
     return Pojo_Matchs(
       val1: parsedJson['val1'].toString(),
       val2: parsedJson['val2'].toString(),
-
     );
   }
+
+  Map<String, dynamic> toJson() =>
+      {
+        'val1': val1,
+        'val2': val2,
+      };
+
 }

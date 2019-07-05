@@ -884,32 +884,3 @@ class _QuestionsState extends State<Questions> {
 
 
 
-
-
-class option {
-   bool selected;
-   String Text;
-   option({this.selected,this.Text});
-   option.fromJson(Map<String, dynamic> json)
-       : selected = json['selected'],
-         Text = json['Text'];
-   Map<String, dynamic> toJson() =>
-       {
-         'Selected': selected,
-         'Text': Text,
-       };
-}
-
-class MatchClass {
-  String val1;
-  String val2;
-  MatchClass({this.val1,this.val2});
-  MatchClass.fromJson(Map<String, dynamic> json)
-      : val1 = json['val1'],
-        val2 = json['val2'];
-  Map<String, dynamic> toJson() =>
-      {
-        'val1': val1,
-        'val2': val2,
-      };
-}

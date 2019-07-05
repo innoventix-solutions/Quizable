@@ -1,5 +1,5 @@
 class Pojo_Answers{
-  String selected;
+  bool selected;
   String Name;
 
   Pojo_Answers({this.Name,this.selected});
@@ -9,8 +9,15 @@ class Pojo_Answers{
 
 
     return Pojo_Answers(
-      selected: parsedJson['Selected'].toString(),
+      selected: parsedJson['Selected'],
       Name: parsedJson['Text'].toString()
     );
   }
+
+  Map<String, dynamic> toJson() =>
+      {
+        'Selected': selected,
+        'Text': Name,
+      };
+
 }
