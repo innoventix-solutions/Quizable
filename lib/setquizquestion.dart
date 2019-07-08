@@ -6,6 +6,7 @@ import 'package:http/http.dart' as http;
 import 'utilities.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 
 class setquizquestion extends StatefulWidget {
   @override
@@ -13,6 +14,9 @@ class setquizquestion extends StatefulWidget {
 }
 
 class _setquizquestionState extends State<setquizquestion> {
+
+  DateTime date1;
+  DateTime date2;
 
   String selectedvalue = "Select Quiz Subject";
   String selectedvalue2 = "Select Class";
@@ -23,6 +27,8 @@ class _setquizquestionState extends State<setquizquestion> {
   TextEditingController durlevel = new TextEditingController(text: GlobalData.DurationofEachLevel);
   TextEditingController quizsubject = new TextEditingController();
   TextEditingController quizclass = new TextEditingController();
+  TextEditingController publishdate= new TextEditingController();
+  TextEditingController closingdate= new TextEditingController();
   @override
   void initState() {
     // TODO: implement initState
@@ -59,6 +65,9 @@ setalldetails(){
       "dur_each_level": durlevel.text.toString(),
       "quiz_subject": quizsubject.text.toString(),
       "class_id": quizclass.text.toString(),
+      "techer_id": teacher.text.toString(),
+      "publish_date":publishdate.text.toString(),
+      "closing_date":closingdate.text.toString(),
     }).then((response) {
       var status = jsonDecode(response.body);
 
@@ -108,151 +117,8 @@ setalldetails(){
           ),
         ],
       ),
-      drawer: Drawer(
-        // Add a ListView to the drawer. This ensures the user can scroll
-        // through the options in the Drawer if there isn't enough vertical
-        // space to fit everything.
-        child: ListView(
-          // Important: Remove any padding from the ListView.
-          padding: EdgeInsets.zero,
-          children: <Widget>[
-            Container(
-              child: Padding(
-                padding: const EdgeInsets.only(bottom: 40, top: 25),
-                child: DrawerHeader(
-                  child: Container(
-                    child: Row(
-                      children: <Widget>[
-                        Padding(
-                          padding: const EdgeInsets.only(left: 5),
-                          child: CircleAvatar(
-                            backgroundImage: AssetImage(
-                              'assets/images/pic.png',
-                            ),
-                            radius: 35.0,
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 15),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              Padding(
-                                padding: const EdgeInsets.only(bottom: 15),
-                                child: Text(
-                                  'Stanley Ohanugo',
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 20),
-                                ),
-                              ),
-                              Text(
-                                'Distance Learning Institute',
-                                style: TextStyle(
-                                    color: Colors.white, fontSize: 15),
-                              )
-                            ],
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-              decoration: bg12,
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 45, top: 30),
-              child: Row(
-                children: <Widget>[
-                  Icon(
-                    Icons.home,
-                    color: lightblue,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 20),
-                    child: Text(
-                      'Home',
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 15,
-                          fontWeight: FontWeight.bold),
-                    ),
-                  )
-                ],
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 45, top: 20),
-              child: Row(
-                children: <Widget>[
-                  Icon(
-                    Icons.assignment,
-                    color: lightblue,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 20),
-                    child: Text(
-                      'Assignment Question Bank',
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 15,
-                          fontWeight: FontWeight.bold),
-                    ),
-                  )
-                ],
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 45, top: 20),
-              child: Row(
-                children: <Widget>[
-                  Icon(
-                    Icons.live_help,
-                    color: lightblue,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 20),
-                    child: Text(
-                      'Set Quiz Questions',
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 15,
-                          fontWeight: FontWeight.bold),
-                    ),
-                  )
-                ],
-              ),
-            ),
-            GestureDetector(
-              child: Padding(
-                padding: const EdgeInsets.only(left: 45, top: 20),
-                child: Row(
-                  children: <Widget>[
-                    Icon(
-                      Icons.offline_pin,
-                      color: lightblue,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 20),
-                      child: Text(
-                        'Set Spelling Challenge',
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 15,
-                            fontWeight: FontWeight.bold),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              onTap: () {},
-            ),
-          ],
-        ),
-      ),
+      drawer:
+      drawerquiz(),
       body: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -313,7 +179,7 @@ setalldetails(){
                                               Align(
                                                 alignment: Alignment.bottomLeft,
                                                 child: Text(
-                                                  'Nos. of Quiz Levels.',
+                                                  'Nos. of Quiz\nLevels.',
                                                   style: TextStyle(
                                                     color: lightblue,
                                                     fontSize: 18,
@@ -384,7 +250,7 @@ setalldetails(){
                           ),
                         ),
                       ),
-                      CustomTextField(controller: durlevel,),
+                      CustomTextField(Inputnumber: true,controller: durlevel,Texth: "10",hintStyle: TextStyle(fontSize: 20),),
 
 
                       Padding(
@@ -483,6 +349,91 @@ setalldetails(){
                           ),
                         ),
                       ),
+
+
+                                    /* Select starting date and time */
+
+
+                      Padding(
+                        padding: const EdgeInsets.only(top: 20),
+                        child: Align(
+                          alignment: Alignment.bottomLeft,
+                          child: Text(
+                            'Select Date and Time',
+                            style: TextStyle(
+                              color: lightblue,
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                            ),
+                            textAlign: TextAlign.left,
+                          ),
+                        ),
+                      ),
+
+                      Container(
+                        child: Card(elevation: 5.0,shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0),),
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 20),
+                            child: DateTimePickerFormField(inputType: InputType.both,
+                              //format: DateFormat("EEEE, MMMM d, yyyy 'at' h:mma"),
+
+                              initialDate: DateTime(2019, 1, 1),
+                              editable: false,
+                              decoration: InputDecoration(border: InputBorder.none,
+                                  labelText: 'Select Date and Time',
+                                  hasFloatingPlaceholder: false
+                              ),
+                              onChanged: (dt) {
+                            //    setState(() => GlobalData. = dt);
+                                print('Selected date: $date1');
+                              },),
+                          ),
+                        ),
+                      ),
+
+
+                                  /* Select ending date*/
+
+
+                      Padding(
+                        padding: const EdgeInsets.only(top: 20),
+                        child: Align(
+                          alignment: Alignment.bottomLeft,
+                          child: Text(
+                            'Select Closing Date',
+                            style: TextStyle(
+                              color: lightblue,
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                            ),
+                            textAlign: TextAlign.left,
+                          ),
+                        ),
+                      ),
+
+                      Container(
+                        child: Card(elevation: 5.0,shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0),),
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 20),
+                            child: DateTimePickerFormField(inputType: InputType.date,
+                              //format: DateFormat("yyyy-MM-dd"),
+
+                              initialDate: DateTime(2019, 1, 1),
+                              editable: false,
+                              decoration: InputDecoration(border: InputBorder.none,
+                                  labelText: 'Select Closing Date',
+                                  hasFloatingPlaceholder: false
+                              ),
+                              onChanged: (dt) {
+                                setState(() => date2 = dt);
+                                print('Selected date: $date2');
+                              },),
+                          ),
+                        ),
+                      ),
+
+
+
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
@@ -594,6 +545,21 @@ setalldetails(){
 
 
   SaveQuiz()async {
+
+    print(
+      "quiz_title : "+ GlobalData.QuizTitle +
+      "techer_id : "+ GlobalData.uid +
+      "no_of_levels : "+ GlobalData.QuizLevels +
+      "que_each_level :"+ GlobalData.NosofQuesPerLevel +
+      "dur_each_level :"+ GlobalData.DurationofEachLevel +
+      "quiz_subject : "+ GlobalData.Selected_subject +
+      "class_id : [1,2,3,4,5,6,1]"+
+      "publish_date : 2019-06-23 00:00:01"+
+      "closing_date : 2019-06-26 00:00:01"
+
+    );
+
+
     if (GlobalData.QuizTitle == null || GlobalData.QuizLevels == null ||
         GlobalData.NosofQuesPerLevel == null ||
         GlobalData.DurationofEachLevel == null ||
@@ -605,11 +571,13 @@ setalldetails(){
       http.post("http://edusupportapp.com/api/create_quiz.php", body: {
         "quiz_title": GlobalData.QuizTitle,
         "techer_id": GlobalData.uid,
-        "no_of_level": GlobalData.QuizLevels,
+        "no_of_levels": GlobalData.QuizLevels,
         "que_each_level": GlobalData.NosofQuesPerLevel,
         "dur_each_level": GlobalData.DurationofEachLevel,
         "quiz_subject": GlobalData.Selected_subject,
-        "class_id": "100"
+        "class_id": "[1,2,3,4,5,6,1]",
+        "publish_date":"2019-06-23 00:00:01",
+        "closing_date":"2019-06-26 00:00:01",
       }).then((response) {
         print(response.body.toString());
         var statuss = jsonDecode(response.body);

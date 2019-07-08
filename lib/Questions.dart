@@ -245,7 +245,7 @@ class _QuestionsState extends State<Questions> {
               Row(
                 children: <Widget>[
                   Expanded(
-                    child: Container(padding: EdgeInsets.all(5),child: Text("Select Two or More Answer",style: TextStyle(color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),)),
+                    child: Container(padding: EdgeInsets.all(5),child: Text("Select Two or More Answers",style: TextStyle(color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),)),
                   ),
                   Row(children: <Widget>[
                     FlatButton.icon(onPressed: (){_confirmDialog(context);}, icon: Icon( Icons.add_circle,color: lightblue,), label: Text("More",style: TextStyle(color: lightblue,fontSize: 15,fontWeight: FontWeight.bold)))
@@ -268,7 +268,7 @@ class _QuestionsState extends State<Questions> {
                                     Options[index].selected=value;setState(() {
 
                                     });},),
-                                  Text(Options[index].Text)
+                                  Expanded(child: Container(child: Text(Options[index].Text)))
 
 
 
@@ -294,7 +294,7 @@ class _QuestionsState extends State<Questions> {
                 Row(
                   children: <Widget>[
                     Expanded(
-                      child: Container(padding: EdgeInsets.all(5),child: Text("",style: TextStyle(color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),)),
+                      child: Container(padding: EdgeInsets.all(5),child: Text("Select Pairs of Matching Terms.",style: TextStyle(color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),)),
                     ),
                     Row(children: <Widget>[
                       FlatButton.icon(onPressed: (){_confirmDialogMatches(context);}, icon: Icon( Icons.add_circle,color: lightblue,), label: Text("More",style: TextStyle(color: lightblue,fontSize: 15,fontWeight: FontWeight.bold)))
@@ -354,7 +354,7 @@ class _QuestionsState extends State<Questions> {
               Row(
                 children: <Widget>[
                   Expanded(
-                    child: Container(padding: EdgeInsets.all(5),child: Text("Select One Answer",style: TextStyle(color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),)),
+                    child: Container(padding: EdgeInsets.all(5),child: Text("List Options and Select One Answer ",style: TextStyle(color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),)),
                   ),
                   Row(children: <Widget>[
                     FlatButton.icon(onPressed: (){_confirmDialog(context);}, icon: Icon( Icons.add_circle,color: lightblue,), label: Text("More",style: TextStyle(color: lightblue,fontSize: 15,fontWeight: FontWeight.bold)))
@@ -366,6 +366,7 @@ class _QuestionsState extends State<Questions> {
                   Expanded(
                     child: Container(
                       height: Options.isEmpty?50.0:Options.length*50.0,
+
                       child: Column(
                         children: <Widget>[
                           Expanded(
@@ -384,7 +385,7 @@ class _QuestionsState extends State<Questions> {
                                     Options[index].selected=value;setState(() {
 
                                     });},),
-                                  Text(Options[index].Text)
+                                  Text(Options[index].Text,maxLines: 4,)
 
 
 
@@ -408,7 +409,7 @@ class _QuestionsState extends State<Questions> {
               Row(
                 children: <Widget>[
                   Expanded(
-                    child: Container(padding: EdgeInsets.all(5),child: Text("Select Answer(s)",style: TextStyle(color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),)),
+                    child: Container(padding: EdgeInsets.all(5),child: Text("List Options and Select Answer(s)",style: TextStyle(color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),)),
                   ),
                   Row(children: <Widget>[
                     FlatButton.icon(onPressed: (){_confirmDialog(context);}, icon: Icon( Icons.add_circle,color: lightblue,), label: Text("More",style: TextStyle(color: lightblue,fontSize: 15,fontWeight: FontWeight.bold)))
@@ -455,7 +456,7 @@ class _QuestionsState extends State<Questions> {
               Row(
                 children: <Widget>[
                   Expanded(
-                    child: Container(padding: EdgeInsets.all(5),child: Text("Select Answer(s)",style: TextStyle(color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),)),
+                    child: Container(padding: EdgeInsets.all(5),child: Text("Select Answer",style: TextStyle(color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),)),
                   ),
 
                 ],
@@ -594,7 +595,7 @@ class _QuestionsState extends State<Questions> {
                                   controller: QuestionName,
                                 maxLines: 4,
                                   keyboardType: TextInputType.text,
-                                  decoration: InputDecoration(border: InputBorder.none,),
+                                  decoration: InputDecoration(border: InputBorder.none,hintText: "Type question here"),
                                   style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold),
                                 ),
                               ),
@@ -616,7 +617,7 @@ class _QuestionsState extends State<Questions> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
-                              Text("Points",style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold),),
+                              Text("Points Awarded",style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold),),
                               TextField(controller: Points,decoration: InputDecoration(border: InputBorder.none),keyboardType: TextInputType.numberWithOptions(signed: false,decimal: false),)
                             ],
                           ),
@@ -750,8 +751,8 @@ class _QuestionsState extends State<Questions> {
       "question": QuestionName.text.toString(),
       "point_awarded": Points.text.toString(),
       "answer_type": SelectedType.toString(),
-      "quiz_id": "30",
-      "answer_options ": MyQuestionAnswer(SelectedType),
+      "quiz_id": "27",
+      "answer_options": MyQuestionAnswer(SelectedType),
 
 
     }).then((response) {
@@ -809,3 +810,26 @@ class MatchClass {
         'val2': val2,
       };
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

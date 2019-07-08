@@ -29,6 +29,121 @@ Color lightpink = Color(0xffE16B8B);
 Color gradientStart = Colors.blue; //Change start gradient color here
 Color gradientEnd = Colors.purple;
 
+                                  //Custom drawer for quiz menu
+class drawerquiz extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Drawer(
+      // Add a ListView to the drawer. This ensures the user can scroll
+      // through the options in the Drawer if there isn't enough vertical
+      // space to fit everything.
+      child: ListView(
+        // Important: Remove any padding from the ListView.
+        padding: EdgeInsets.zero,
+        children: <Widget>[
+          Container(child: Padding(
+            padding: const EdgeInsets.only(bottom: 40,top: 25),
+            child: DrawerHeader(child: Container(
+              child: Row(
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.only(left: 5),
+                    child: CircleAvatar(backgroundImage: AssetImage('assets/images/pic.png',),
+                      radius: 35.0,),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 15),
+                    child: Column(mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[Padding(
+                        padding: const EdgeInsets.only(bottom: 15),
+                        child: Text('Stanley Ohanugo',
+                          style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,
+                              fontSize: 16),),
+                      ),
+
+                        Text('Distance Learning Institute',
+                          style: TextStyle(color: Colors.white,fontSize: 13),)
+                      ],),
+                  )
+                ],),
+            ),),
+          ),decoration: bg12,),
+
+
+
+          Padding(
+            padding: const EdgeInsets.only(left: 35,top:30),
+            child: Row(children: <Widget>[Icon(Icons.home,color: lightblue,),
+              Padding(
+                padding: const EdgeInsets.only(left: 10),
+                child: GestureDetector(
+                  child: Text('Home',style: TextStyle(
+                      color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
+                  onTap: (){Navigator.of(context)
+                      .pushNamed('dashboard');},
+                ),
+              )],),
+          ),
+
+          Padding(
+            padding: const EdgeInsets.only(left: 35,top:20),
+            child: Row(children: <Widget>[Icon(Icons.assignment,color: lightblue,),
+              Padding(
+                padding: const EdgeInsets.only(left: 10),
+                child: Text('Assignment Question Bank',style: TextStyle(
+                    color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
+              )],),
+          ),
+
+          Padding(
+            padding: const EdgeInsets.only(left: 35,top:20),
+            child: Row(children: <Widget>[Icon(Icons.live_help,color: lightblue,),
+              Padding(
+                padding: const EdgeInsets.only(left: 10),
+                child: GestureDetector(
+                  child: Text('Set Quiz Questions',style: TextStyle(
+                      color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
+                  onTap: (){Navigator.of(context)
+                      .pushNamed('setquizquestions');},
+                ),
+              )],),
+          ),
+
+          GestureDetector(
+            child: Padding(
+              padding: const EdgeInsets.only(left: 35,top:20),
+              child: Row(children: <Widget>[Icon(Icons.offline_pin,color: lightblue,),
+                Padding(
+                  padding: const EdgeInsets.only(left: 10),
+                  child: Text('Set Spelling Challenge',style: TextStyle(
+                      color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
+                ),],),
+            ),onTap: (){},
+          ),
+
+          GestureDetector(
+            child: Padding(
+              padding: const EdgeInsets.only(left: 35,top:20),
+              child: Row(children: <Widget>[Icon(Icons.power_settings_new,color: lightblue,),
+                Padding(
+                  padding: const EdgeInsets.only(left: 10),
+                  child: Text('Log out',style: TextStyle(
+                      color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
+                ),],),
+            ),onTap: (){},
+          ),
+
+
+
+
+        ],
+      ),
+    );
+  }
+}
+
+
 
 class GlobalData{
   static int QuestionNumber=1;
@@ -379,7 +494,7 @@ class CustomTextField extends StatelessWidget {
               enabled: enabled==null?true:false,
               keyboardType: Inputnumber==true?TextInputType.numberWithOptions(decimal: false,signed:false):TextInputType.text,
               decoration:
-              InputDecoration(border: InputBorder.none),
+              InputDecoration(border: InputBorder.none,hintText: Texth,hintStyle: hintStyle),
               textAlign: TextAlign.center,
               controller: controller,
             ),
@@ -390,6 +505,34 @@ class CustomTextField extends StatelessWidget {
   }
 }
 
+class calc extends StatelessWidget {
+
+  final String number;
+
+
+  calc(
+  {
+    this.number,
+
+}
+      );
+  @override
+  Widget build(BuildContext context) {
+    return
+      Container(
+        child: Column(
+          children: <Widget>[
+            RaisedButton(
+              child: Text(number,style: TextStyle(
+                fontSize: 14,color: gray,
+              ),),onPressed: (){},color: white
+            )
+          ],
+        ),
+
+      );
+  }
+}
 
 
 class classactivitys extends StatelessWidget {
@@ -427,7 +570,8 @@ class classactivitys extends StatelessWidget {
                               child: Row(
                                 children: <Widget>[
                                   Expanded(
-                                    child: Text(heading),
+                                    child: Text(heading,textAlign: TextAlign.left,
+                                      style: TextStyle(color: Colors.white,fontSize: 15,fontWeight: FontWeight.bold),),
                                   ),
                                   Expanded(
                                     child:  Row(mainAxisAlignment: MainAxisAlignment.end,
@@ -486,7 +630,8 @@ class classactivitys extends StatelessWidget {
                 padding: EdgeInsets.only(left: 25,top: 20,right: 30,bottom: 30),
                 child: Column(
                   children: <Widget>[
-                    Text(paragraph),
+                    Text(paragraph,style: TextStyle(fontWeight: FontWeight.bold,
+                        fontSize: 15,color: gray),textAlign: TextAlign.justify,),
 
                   ],
                 ),
@@ -506,5 +651,83 @@ class classactivitys extends StatelessWidget {
 
 
 
+
+
+
+class levelcomplete extends StatelessWidget {
+
+  final String heading;
+  final String paragraph;
+  final Color color;
+
+  levelcomplete(
+      {
+        this.heading,
+        this.paragraph,
+        this.color});
+
+  @override
+  Widget build(BuildContext context) {
+    return
+      Container(decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(40))),
+        child: Card(elevation: 5.0,shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(5.0),
+        ),
+          child: Column(mainAxisAlignment: MainAxisAlignment.start,
+            children: <Widget>[
+              Row(
+                children: <Widget>[
+                  Expanded(
+                    child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(5),),color: color),
+
+                      child: Padding(
+                        padding: const EdgeInsets.only(top: 5,bottom: 5),
+                        child: Column(
+                          children: <Widget>[
+                            Padding(
+                              padding: const EdgeInsets.only(top: 5,bottom: 5,left: 10),
+                              child: Row(
+                                children: <Widget>[
+                                  Text(heading,textAlign: TextAlign.left,
+                                    style: TextStyle(color: Colors.white,fontSize: 15,fontWeight: FontWeight.bold),),
+                                ],
+                              ),
+                            ),
+
+                          ],
+
+                        ),
+                      ),
+
+                    ),
+                  ),
+                ],
+              ),
+              Container(
+                padding: EdgeInsets.only(left: 25,top: 20,right: 30,bottom: 30),
+                child: Column(
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 30),
+                      child: Text(paragraph,
+                        style: TextStyle(fontWeight: FontWeight.bold,
+                            fontSize: 15,color: gray),textAlign: TextAlign.justify,),
+                    ),
+
+                  ],
+                ),
+              ),
+
+
+
+
+
+            ],
+          ),
+
+        ),
+      );
+  }
+}
 
 

@@ -245,64 +245,8 @@ class _alllevelState extends State<alllevel> {
                     child: Column(
                       children: <Widget>[
                         Center(
-                          child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(40))),
-                            child: Card(elevation: 5.0,shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(5.0),
-                            ),
-                              child: Column(mainAxisAlignment: MainAxisAlignment.start,
-                                children: <Widget>[
-                                  Row(
-                                    children: <Widget>[
-                                      Expanded(
-                                        child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(5),),color: blue),
-
-                                          child: Padding(
-                                            padding: const EdgeInsets.only(top: 5,bottom: 5),
-                                            child: Column(
-                                              children: <Widget>[
-                                                Padding(
-                                                  padding: const EdgeInsets.only(top: 5,bottom: 5,left: 10),
-                                                  child: Row(
-                                                    children: <Widget>[
-                                                      Text('Level N Completed',textAlign: TextAlign.left,
-                                                        style: TextStyle(color: Colors.white,fontSize: 15,fontWeight: FontWeight.bold),),
-                                                    ],
-                                                  ),
-                                                ),
-
-                                              ],
-
-                                            ),
-                                          ),
-
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  Container(
-                                    padding: EdgeInsets.only(left: 25,top: 20,right: 30,bottom: 30),
-                                    child: Column(
-                                      children: <Widget>[
-                                        Padding(
-                                          padding: const EdgeInsets.only(bottom: 30),
-                                          child: Text('Congratulations! You have completed\nthe questions for all the Levels you \nlisted for this Quiz.',
-                                            style: TextStyle(fontWeight: FontWeight.bold,
-                                                fontSize: 15,color: gray),textAlign: TextAlign.justify,),
-                                        ),
-
-                                      ],
-                                    ),
-                                  ),
-
-
-
-
-
-                                ],
-                              ),
-
-                            ),
-                          ),
+                          child:
+                            levelcomplete(heading: "Level N Completed",paragraph: "Congratulations! You have completed the questions for all the Levels you listed for this Quiz.",color: blue,)
 
                         ),
 
