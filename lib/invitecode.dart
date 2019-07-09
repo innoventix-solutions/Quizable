@@ -29,14 +29,7 @@ class _invitecodeState extends State<invitecode> {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: true,
-        leading: IconButton(
-          onPressed: (){},
-          icon: Icon(
-            Icons.arrow_back,
-            color: Colors.white,
-            size: 20,
-          ),
-        ),
+
         title: Text(
           "Create New Classroom",
           style: TextStyle(fontSize: 22),
@@ -229,22 +222,16 @@ class _invitecodeState extends State<invitecode> {
             Padding(
               padding: const EdgeInsets.only(top: 100),
               child: GestureDetector(
-                child: Text('Go back to Home Page',style: TextStyle(
+                child: Text('Go back to Dashboard',style: TextStyle(
                     color:lightblue,fontSize: 15,fontWeight: FontWeight.bold,
                     decoration: TextDecoration.underline
-                ),),onTap: (){},
+                ),),onTap: (){
+                Navigator.of(context)
+                    .pushNamed('admindashboard');},
               ),
             ),
 
-            Padding(
-              padding: const EdgeInsets.only(top: 15),
-              child: GestureDetector(
-                child: Text('Other Classrooms',style: TextStyle(
-                    color:lightblue,fontSize: 15,fontWeight: FontWeight.bold,
-                    decoration: TextDecoration.underline
-                ),),onTap: (){},
-              ),
-            ),
+
 
 
 

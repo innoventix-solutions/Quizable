@@ -68,14 +68,7 @@ class _createnewclassState extends State<createnewclass> {
       child: Scaffold(
         appBar: AppBar(
           automaticallyImplyLeading: true,
-          leading: IconButton(
-            onPressed: (){},
-            icon: Icon(
-              Icons.arrow_back,
-              color: Colors.white,
-              size: 20,
-            ),
-          ),
+
           title: Center(
             child: Text(
               "Create New Classroom",

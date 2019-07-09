@@ -44,8 +44,9 @@ import 'manageclassactivites.dart';
 import 'Questions.dart';
 import 'myquizexercise.dart';
 import 'exam.dart';
-
-
+import 'functionclass.dart';
+import 'admindashboard.dart';
+import 'adminprofile.dart';
 
 
 
@@ -72,6 +73,7 @@ class MyApp extends StatelessWidget {
         'welcome': (context)=> welcome(),
         'createnewclass': (context)=> createnewclass(),
         'invitecode': (context)=> invitecode(),
+        'admindashboard': (context)=> admindashboard(),
         'techerjoinclass': (context) => techerjoinclass(),
         'studentjoinclass': (context) => studentjoin(),
         'register': (context) => sec(),

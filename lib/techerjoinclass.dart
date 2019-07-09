@@ -23,6 +23,8 @@ class _techerjoinclassState extends State<techerjoinclass> {
       var statuss = jsonDecode(response.body);
       if (statuss['status'].toString() == "1") {
         Show_toast_Now(statuss['msg'], Colors.green);
+        Navigator.of(context)
+            .pushNamed('teacherjoinclass');
 
       } else {
         Show_toast_Now(statuss['msg'], Colors.red);
@@ -127,8 +129,8 @@ class _techerjoinclassState extends State<techerjoinclass> {
                         textAlign: TextAlign.center,
                       ),
                       ButtonClick: (){
-                        Navigator.of(context)
-                            .pushNamed('teacherjoinclass');
+                        joinclass();
+
                       }
                       ,
                     ),
