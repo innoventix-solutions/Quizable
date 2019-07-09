@@ -31,6 +31,7 @@ Color gradientEnd = Colors.purple;
 
 
 class GlobalData{
+  static bool LoadData = true;
   static int QuestionNumber=0;
   static String userType;
   static String accounttype="";
@@ -46,6 +47,7 @@ class GlobalData{
   static String QuizLevels="";
   static String NosofQuesPerLevel="";
   static String DurationofEachLevel="";
+  static String ExamQuiz="";
   static String QuizID="";
 
 
@@ -727,3 +729,32 @@ class levelcomplete extends StatelessWidget {
 }
 
 
+
+
+class option {
+  bool selected;
+  String Text;
+  option({this.selected,this.Text});
+  option.fromJson(Map<String, dynamic> json)
+      : selected = json['selected'],
+        Text = json['Text'];
+  Map<String, dynamic> toJson() =>
+      {
+        'Selected': selected,
+        'Text': Text,
+      };
+}
+
+class MatchClass {
+  String val1;
+  String val2;
+  MatchClass({this.val1,this.val2});
+  MatchClass.fromJson(Map<String, dynamic> json)
+      : val1 = json['val1'],
+        val2 = json['val2'];
+  Map<String, dynamic> toJson() =>
+      {
+        'val1': val1,
+        'val2': val2,
+      };
+}

@@ -21,6 +21,9 @@ class Pojo_questions{
   factory Pojo_questions.fromJson(Map<String, dynamic> parsedJson){
     List<Pojo_Matchs> matchs = new List();
     List<Pojo_Answers> answers = new List();
+    String Answer="";
+
+
 
     if(parsedJson['answer_type'].toString()=="Match Type")
       {
@@ -29,6 +32,10 @@ class Pojo_questions{
     if(parsedJson['answer_type'].toString()!="Match Type" && parsedJson['answer_type'].toString()!="True or False")
     {
       answers= (jsonDecode(parsedJson['anwer_options']) as List).map((data)=>Pojo_Answers.fromJson((data))).toList();
+    }
+    if(parsedJson['answer_type'].toString()=="True or False")
+    {
+      Answer=parsedJson['anwer_options'];
     }
 
     return Pojo_questions(
@@ -40,7 +47,7 @@ class Pojo_questions{
       point_awarded: parsedJson['point_awarded'].toString(),
       level_no: parsedJson['level_no'].toString(),
       quiz_id: parsedJson['quiz_id'].toString(),
-      TrueorFalse: parsedJson['anwer_options']=="True or False"?parsedJson['anwer_options']:""
+      TrueorFalse: Answer
     );
   }
 }

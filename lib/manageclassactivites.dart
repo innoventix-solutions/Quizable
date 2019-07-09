@@ -87,6 +87,7 @@ class _questionmenuState extends State<questionmenu> {
                   return  GestureDetector(
                     onTap: (){
                       GlobalData.QuizID=Quizz_List[i].id;
+                      GlobalData.ExamQuiz=Quizz_List[i].quiz_title;
                       Navigator.of(context).pushNamed('exam');
                     },
                     child: classactivitys(
