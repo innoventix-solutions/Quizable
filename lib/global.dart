@@ -29,6 +29,29 @@ Color lightpink = Color(0xffE16B8B);
 Color gradientStart = Colors.blue; //Change start gradient color here
 Color gradientEnd = Colors.purple;
 
+
+class GlobalData{
+  static bool LoadData = true;
+  static int QuestionNumber=0;
+  static String userType;
+  static String accounttype="";
+  static String uid;
+  static String class_name;
+  static String class_icon;
+  static String student_code;
+  static String teacher_code;
+  static String Username;
+  static String Selected_subject;
+  static List<bool> Slected_subject_bool=[false,false,false,false,false,false,false,false,false];
+  static String QuizTitle="";
+  static String QuizLevels="";
+  static String NosofQuesPerLevel="";
+  static String DurationofEachLevel="";
+  static String ExamQuiz="";
+  static String QuizID="";
+
+
+}
                                   //Custom drawer for quiz menu
 class drawerquiz extends StatelessWidget {
   @override
@@ -145,24 +168,7 @@ class drawerquiz extends StatelessWidget {
 
 
 
-class GlobalData{
-  static int QuestionNumber=1;
-  static String userType;
-  static String accounttype="";
-  static String uid;
-  static String class_name;
-  static String class_icon;
-  static String student_code;
-  static String teacher_code;
-  static String Username;
-  static String Selected_subject;
-  static List<bool> Slected_subject_bool=[false,false,false,false,false,false,false,false,false];
-  static String QuizTitle="";
-  static String QuizLevels="";
-  static String NosofQuesPerLevel="";
-  static String DurationofEachLevel="";
 
-}
 
 Show_toast_Now(String msg,Color color){
   Fluttertoast.showToast(
@@ -731,3 +737,32 @@ class levelcomplete extends StatelessWidget {
 }
 
 
+
+
+class option {
+  bool selected;
+  String Text;
+  option({this.selected,this.Text});
+  option.fromJson(Map<String, dynamic> json)
+      : selected = json['selected'],
+        Text = json['Text'];
+  Map<String, dynamic> toJson() =>
+      {
+        'Selected': selected,
+        'Text': Text,
+      };
+}
+
+class MatchClass {
+  String val1;
+  String val2;
+  MatchClass({this.val1,this.val2});
+  MatchClass.fromJson(Map<String, dynamic> json)
+      : val1 = json['val1'],
+        val2 = json['val2'];
+  Map<String, dynamic> toJson() =>
+      {
+        'val1': val1,
+        'val2': val2,
+      };
+}

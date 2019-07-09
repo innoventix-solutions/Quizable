@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'global.dart';
 import 'package:http/http.dart' as http;
 import 'utilities.dart';
@@ -85,6 +86,16 @@ setalldetails(){
   }
 
 
+  final formats = {
+    InputType.both: DateFormat("yyyy-MM-dd h:mma"),
+    InputType.date: DateFormat('yyyy-MM-dd'),
+    InputType.time: DateFormat("HH:mm"),
+  };
+
+  InputType inputType = InputType.both;
+  bool editable = true;
+  DateTime Starting_date;
+  DateTime Closing_date;
 
   @override
   Widget build(BuildContext context) {
@@ -370,26 +381,25 @@ setalldetails(){
                         ),
                       ),
 
+
+
+
                       Container(
                         child: Card(elevation: 5.0,shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0),),
                           child: Padding(
                             padding: const EdgeInsets.only(left: 20),
-                            child: DateTimePickerFormField(inputType: InputType.both,
-                              //format: DateFormat("EEEE, MMMM d, yyyy 'at' h:mma"),
-
-                              initialDate: DateTime(2019, 1, 1),
+                            child: DateTimePickerFormField(
+                              inputType:  inputType,
+                              format: formats[inputType],
                               editable: false,
-                              decoration: InputDecoration(border: InputBorder.none,
-                                  labelText: 'Select Date and Time',
-                                  hasFloatingPlaceholder: false
-                              ),
-                              onChanged: (dt) {
-                            //    setState(() => GlobalData. = dt);
-                                print('Selected date: $date1');
-                              },),
+                              decoration: InputDecoration(
+                                  labelText: 'Date/Time', hasFloatingPlaceholder: false,border:InputBorder.none),
+                              onChanged: (dt) => setState(() => Starting_date = dt),
+                            ),
                           ),
                         ),
                       ),
+
 
 
                                   /* Select ending date*/
@@ -415,23 +425,17 @@ setalldetails(){
                         child: Card(elevation: 5.0,shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0),),
                           child: Padding(
                             padding: const EdgeInsets.only(left: 20),
-                            child: DateTimePickerFormField(inputType: InputType.date,
-                              //format: DateFormat("yyyy-MM-dd"),
-
-                              initialDate: DateTime(2019, 1, 1),
+                            child: DateTimePickerFormField(
+                              inputType:  inputType,
+                              format: formats[inputType],
                               editable: false,
-                              decoration: InputDecoration(border: InputBorder.none,
-                                  labelText: 'Select Closing Date',
-                                  hasFloatingPlaceholder: false
-                              ),
-                              onChanged: (dt) {
-                                setState(() => date2 = dt);
-                                print('Selected date: $date2');
-                              },),
+                              decoration: InputDecoration(
+                                  labelText: 'Date/Time', hasFloatingPlaceholder: false,border:InputBorder.none),
+                              onChanged: (dt) => setState(() => Closing_date = dt),
+                            ),
                           ),
                         ),
                       ),
-
 
 
                       Row(
@@ -474,9 +478,7 @@ setalldetails(){
 
                                   setalldetails();
                                   SaveQuiz();
-                                  Navigator.of(context)
-                                      .pushNamed(
-                                      'questions');
+
                               },
                               ),
                             ),
@@ -504,9 +506,11 @@ setalldetails(){
                               )
                             ],
                           ),
-                          onTap: () {setalldetails();SaveQuiz();Navigator.of(context)
-                              .pushNamed(
-                              'questions');},
+                          onTap: () {setalldetails();SaveQuiz();
+//                          Navigator.of(context)
+//                              .pushNamed(
+//                              'questions');
+                              },
                         ),
                       ),
                     ],
@@ -576,25 +580,30 @@ setalldetails(){
         "dur_each_level": GlobalData.DurationofEachLevel,
         "quiz_subject": GlobalData.Selected_subject,
         "class_id": "[1,2,3,4,5,6,1]",
-        "publish_date":"2019-06-23 00:00:01",
-        "closing_date":"2019-06-26 00:00:01",
+        "publish_date":Starting_date.toString(),
+        "closing_date":Closing_date.toString(),
       }).then((response) {
         print(response.body.toString());
         var statuss = jsonDecode(response.body);
 
-
-        print(response.body.toString());
-            print(response.body.toString());
       if(statuss['status']==1){
+
+
+        GlobalData.QuizID=statuss['quizdata']['ID'];
+        print(GlobalData.QuizID);
+       Navigator.of(context).pushNamed('questions');
 
 
       }else
       {
 
+
+
+
       }
-        Navigator.of(context)
-            .pushNamed(
-            'questions');
+//        Navigator.of(context)
+//            .pushNamed(
+//            'questions');
       }
 
       );

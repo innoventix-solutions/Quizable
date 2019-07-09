@@ -43,7 +43,7 @@ import 'myclassroom.dart';
 import 'manageclassactivites.dart';
 import 'Questions.dart';
 import 'myquizexercise.dart';
-
+import 'exam.dart';
 
 
 
@@ -85,7 +85,8 @@ class MyApp extends StatelessWidget {
         'selectclass':(context) => quizclass(),
         'dashboard':(context) => teacherdashboard(),
         'setquestion':(context) => quizquestion(),
-        'questions':(context)=>Questions()
+        'questions':(context)=>Questions(),
+        'exam':(context)=>Exam()
       },
     );
   }
