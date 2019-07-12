@@ -28,6 +28,8 @@ class _techerjoinclassState extends State<techerjoinclass> {
 
       } else {
         Show_toast_Now(statuss['msg'], Colors.red);
+        Navigator.of(context)
+            .pushNamed('teacherjoinclass');
       }
     });
 
