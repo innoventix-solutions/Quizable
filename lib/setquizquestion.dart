@@ -86,6 +86,9 @@ setalldetails(){
   }
 
 
+
+
+
   final formats = {
     InputType.both: DateFormat("yyyy-MM-dd h:mma"),
     InputType.date: DateFormat('yyyy-MM-dd'),
