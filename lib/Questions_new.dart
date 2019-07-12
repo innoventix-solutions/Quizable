@@ -170,7 +170,7 @@ class _QuestionsState extends State<Questions> {
                                             child: GradientButtonText(
                                               ButtonClick: (){
 
-                                                Navigator.of(context).pop();
+                                                Navigator.of(context).pushNamed('manageclassactivities');
                                                 setState(() {
 
                                                 });
@@ -178,7 +178,7 @@ class _QuestionsState extends State<Questions> {
                                               }
                                               ,linearGradient:
                                             LinearGradient(colors: <Color>[navy,navyblue]),
-                                              text: Text('Add',style: TextStyle(color: Colors.white,
+                                              text: Text('Ok',style: TextStyle(color: Colors.white,
                                                 fontWeight: FontWeight.bold,fontSize: 12,),textAlign: TextAlign.center,),
                                             ),
                                           ),
@@ -326,7 +326,6 @@ class _QuestionsState extends State<Questions> {
           );
         });
   }
-
 
   Widget MyQuestionType(String type) {
 
@@ -629,11 +628,6 @@ class _QuestionsState extends State<Questions> {
 
   }
 
-
-
-
-
-
   @override
   Widget build(BuildContext context) {
 
@@ -781,12 +775,7 @@ class _QuestionsState extends State<Questions> {
                       child: SizedBox(width: 100,
                         child: GradientButtonText(
                           ButtonClick: (){
-
-
-
                             SaveQuizQuestion();
-
-
                           },
                           linearGradient:LinearGradient(colors: <Color>[purple,pink]) ,
                           text: Text("Save",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 18,),
@@ -869,8 +858,8 @@ class _QuestionsState extends State<Questions> {
       "answer_type": SelectedType.toString(),
       "quiz_id": GlobalData.QuizID,
       "answer_options": MyQuestionAnswer(SelectedType),
-
-
+      "level_no": ((GlobalData.QuestionNumber/int.parse(GlobalData.NosofQuesPerLevel)).floor()+1).toString(),
+      "ques_no": ((GlobalData.QuestionNumber%int.parse(GlobalData.NosofQuesPerLevel))+1).toString(),
     }).then((response) {
       var statuss = jsonDecode(response.body);
 

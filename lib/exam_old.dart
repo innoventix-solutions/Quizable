@@ -16,7 +16,6 @@ class Exam extends StatefulWidget {
 
 class _ExamState extends State<Exam> {
 
-
   int CurrentPage =0;
   PageController pageController = new PageController();
   List<Pojo_questions> Quetions = new List();
@@ -31,14 +30,7 @@ class _ExamState extends State<Exam> {
   List<int> Selecteditem=new List();
   String TrueorFalse = "";
   List<String> _list = new List();
-
-  bool isloading = true;
-
   GetQuestions() async{
-    isloading = true;
-    setState(() {
-
-    });
     print(GlobalData.QuizID);
     http.post("http://edusupportapp.com/api/get_quiz_questions.php",body: {
       "QuizId":GlobalData.QuizID
@@ -48,10 +40,6 @@ class _ExamState extends State<Exam> {
       Quetions = (ParsedJson['quizquestionsdata'] as List).map((data)=>Pojo_questions.fromJson(data)).toList();
       setState(() {
       });
-    });
-    isloading=false;
-    setState(() {
-
     });
   }
 
@@ -64,6 +52,7 @@ class _ExamState extends State<Exam> {
 
     Matches=Data;
     Options = Answers;
+
     print(GlobalData.LoadData.toString());
 
     if(_list.length==0) {
@@ -78,8 +67,7 @@ class _ExamState extends State<Exam> {
     {
           case "Match Type":
 
-            return Container(
-              height: Matches.isEmpty?50.0:Matches.length*60.0,
+            return Expanded(
               child: Row(
                 children: <Widget>[
                   Expanded(child: Column(
@@ -137,7 +125,7 @@ class _ExamState extends State<Exam> {
             );
 
 
-      case "True False":
+      case "True or False":
           return Card(
             child: Column(
               children: <Widget>[
@@ -250,143 +238,6 @@ class _ExamState extends State<Exam> {
   }
 
 
-  Widget MYQue(){
-    return SafeArea(
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-          children: <Widget>[
-
-
-            Container(
-
-              child: Card(
-                child: Column(
-                  children: <Widget>[
-                    Container(
-                      color: Colors.blue,
-                      child: Row(
-                        children: <Widget>[
-                          Expanded(child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text("Level ${Quetions[i].level_no.toString()}",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
-                          )),
-                        ],
-                      ),
-                    ),
-                    Container(
-                      color: Colors.brown,
-                      child: Row(
-                        children: <Widget>[
-                          Expanded(child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text("Question ${i+1} of ${Quetions.length}",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
-                          )),
-                        ],
-                      ),
-                    ),
-                    Container(
-
-                      child: Row(
-                        children: <Widget>[
-                          Expanded(child: Padding(
-                            padding: const EdgeInsets.all(20.0),
-                            child: Container(child: Text(Quetions[i].question,style: TextStyle(fontWeight: FontWeight.bold),)),
-                          )),
-                        ],
-                      ),
-                    ),
-                    AnswerNow(Quetions[i].answer_type,Quetions[i].anwer_options,Quetions[i].Options),
-                    Container(
-
-                      child: Row(
-                        children: <Widget>[
-                          Expanded(child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Container(child: Text(Quetions[i].answer_type,style: TextStyle(color: Colors.blue,fontWeight: FontWeight.bold),)),
-                          )),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Card(color: Colors.blue,child: Padding(
-                              padding: const EdgeInsets.fromLTRB(10,4, 10, 4),
-                              child: Text(Quetions[i].point_awarded+" Pts",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
-                            )),
-                          ),
-                        ],
-                      ),
-                    ),
-
-                  ],
-                ),
-              ),
-            ),
-
-            Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: Row(
-                children: <Widget>[
-                  SizedBox(width: 15,),
-                  Expanded(
-                    child: GradientButtonText(
-                      ButtonClick: (){
-                        if(CurrentPage-2<Quetions.length)
-                          pageController.jumpToPage(CurrentPage++);
-                      },
-                      linearGradient:LinearGradient(colors: <Color>[navy,navyblue]) ,
-                      text: Text("Skip",textAlign: TextAlign.center,style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
-                    ),
-                  ),
-                  SizedBox(width: 15,),
-                  Expanded(
-                    child: GradientButtonText(
-                      ButtonClick: (){
-
-                        String answ="";
-
-                        if(Quetions[i].answer_type=="Match Type")
-                          {
-
-                            for(int i=0;i<Matches.length;i++)
-                              {
-                                Matches[i].val2=_list[i];
-                              }
-
-
-                            answ=jsonEncode(Matches);
-                            print(answ);
-
-                          }else {
-                          for (int i = 0; i < Options.length; i++) {
-                            if (Options[i].trueanswer == true) {
-                              answ += Options[i].value;
-                            }
-                          }
-                        }
-
-                        GiveAnswer(answ);
-                        i++;
-                        if(i==Quetions.length)
-                        {
-                          ExamCompleted(context);
-                        }
-                        setState(() {
-
-                        });
-                      },
-                      linearGradient:LinearGradient(colors: <Color>[navyblue,pink]) ,
-                      text: Text((i+1)==Quetions.length?"Submit":"Next",textAlign: TextAlign.center,style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
-                    ),
-                  ),
-                  SizedBox(width: 15,),
-                ],
-              ),
-            )
-
-          ],
-        ),
-      ),
-    );
-  }
 
 
 
@@ -413,7 +264,137 @@ class _ExamState extends State<Exam> {
 Matches =Quetions[i].anwer_options;
     return Scaffold(
       appBar: AppBar(title: Text("My Quiz Exercises"),centerTitle: true,),
-      body: isloading==true?Center(child: Text("Loading...")):MYQue()
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            children: <Widget>[
+
+              Expanded(
+                child: PageView.builder(
+                  onPageChanged: (val){
+                    CurrentPage = val;
+                  },
+                  controller: pageController,
+                    itemCount: Quetions.length,
+                    itemBuilder: (c,i){
+
+                      return Container(
+
+                        child: Card(
+                          child: Column(
+                            children: <Widget>[
+                              Container(
+                                color: Colors.blue,
+                                child: Row(
+                                  children: <Widget>[
+                                    Expanded(child: Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Text("Level ${Quetions[i].level_no.toString()}",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
+                                    )),
+                                  ],
+                                ),
+                              ),
+                              Container(
+                                color: Colors.brown,
+                                child: Row(
+                                  children: <Widget>[
+                                    Expanded(child: Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Text("Question ${i+1} of ${Quetions.length}",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
+                                    )),
+                                  ],
+                                ),
+                              ),
+                              Container(
+
+                                child: Row(
+                                  children: <Widget>[
+                                    Expanded(child: Padding(
+                                      padding: const EdgeInsets.all(20.0),
+                                      child: Container(child: Text(Quetions[i].question,style: TextStyle(fontWeight: FontWeight.bold),)),
+                                    )),
+                                  ],
+                                ),
+                              ),
+                            AnswerNow(Quetions[i].answer_type,Quetions[i].anwer_options,Quetions[i].Options),
+                              Container(
+
+                                child: Row(
+                                  children: <Widget>[
+                                    Expanded(child: Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Container(child: Text(Quetions[i].answer_type,style: TextStyle(color: Colors.blue,fontWeight: FontWeight.bold),)),
+                                    )),
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Card(color: Colors.blue,child: Padding(
+                                        padding: const EdgeInsets.fromLTRB(10,4, 10, 4),
+                                        child: Text(Quetions[i].point_awarded+" Pts",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
+                                      )),
+                                    ),
+                                  ],
+                                ),
+                              ),
+
+                            ],
+                          ),
+                        ),
+                      );
+
+
+
+                 /* return Card(
+                    child: Column(
+                      children: <Widget>[
+                        Text(i.toString()),
+
+                        Text(Quetions[i].answer_type.toString()),
+                        Text(Quetions[i].question.toString()),
+                        Text(Quetions[i].anwer_options.length.toString()),
+                        Text(Quetions[i].Options.length.toString()),
+                        Text(Quetions[i].TrueorFalse.toString())
+                      ],
+                    ),
+                  );*/
+                }),
+              ),
+
+              Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Row(
+                  children: <Widget>[
+                    SizedBox(width: 15,),
+                    Expanded(
+                      child: GradientButtonText(
+                        ButtonClick: (){
+                          if(CurrentPage-2<Quetions.length)
+                          pageController.jumpToPage(CurrentPage++);
+                        },
+                        linearGradient:LinearGradient(colors: <Color>[navy,navyblue]) ,
+                        text: Text("Skip",textAlign: TextAlign.center,style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
+                      ),
+                    ),
+                    SizedBox(width: 15,),
+                    Expanded(
+                      child: GradientButtonText(
+                        ButtonClick: (){
+                          if(CurrentPage-2<Quetions.length)
+                            pageController.jumpToPage(CurrentPage++);
+                        },
+                        linearGradient:LinearGradient(colors: <Color>[navyblue,pink]) ,
+                        text: Text("Next",textAlign: TextAlign.center,style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
+                      ),
+                    ),
+      SizedBox(width: 15,),
+                  ],
+                ),
+              )
+
+            ],
+          ),
+        ),
+      )
 
 
 
@@ -473,117 +454,4 @@ Matches =Quetions[i].anwer_options;
 
     );
   }
-  
-  
-  
-  
-  
-  GiveAnswer(String answer)async{
-    
-    http.post("http://edusupportapp.com/api/quiz_answer.php",body: {
-      "user_id":GlobalData.uid,
-      "question_id":Quetions[i].id,
-      "quiz_id":Quetions[i].quiz_id,
-      "answer":answer
-    }).then((res){
-      print(res.body);
-    });
-    
-  }
-
-
-  void ExamCompleted(BuildContext context)  {
-    bool Selected = false;
-    TextEditingController optioncontroller = new TextEditingController();
-    showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            backgroundColor:Colors.transparent,
-            elevation: 0,
-            content: SingleChildScrollView(
-              child: Column(mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Center(
-                    child: Container(
-                      child: new Card(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(15.0),
-                        ),
-                        child: Column(mainAxisAlignment: MainAxisAlignment.start,
-                          children: <Widget>[
-                            Container(
-
-                              child: Column(
-                                children: <Widget>[
-                                  Center(child: Padding(
-                                    padding: const EdgeInsets.only(top:15),
-
-                                    child: Text('Quiz Completed',textAlign: TextAlign.center,
-                                      style: TextStyle(color: lightblue,fontSize: 25,fontWeight: FontWeight.bold),),
-                                  )),
-
-
-                                  new Divider(
-                                    color: gray,
-                                  ),
-
-
-                                  Padding(
-                                    padding: const EdgeInsets.only(bottom: 30),
-                                    child: Row(mainAxisAlignment: MainAxisAlignment.center,
-                                      children: <Widget>[
-
-                                        Container(padding: EdgeInsets.all(5),
-                                          child: SizedBox(width: 100,
-                                            child: GradientButtonText(
-                                              ButtonClick: (){
-
-                                                Navigator.of(context).pushNamed('manageclassactivities');
-                                                setState(() {
-
-                                                });
-
-                                              }
-                                              ,linearGradient:
-                                            LinearGradient(colors: <Color>[navy,navyblue]),
-                                              text: Text('Ok',style: TextStyle(color: Colors.white,
-                                                fontWeight: FontWeight.bold,fontSize: 12,),textAlign: TextAlign.center,),
-                                            ),
-                                          ),
-                                        ),
-
-
-
-
-                                      ],
-                                    ),
-                                  )],
-
-                              ),
-
-                            ),
-
-
-
-                          ],
-
-
-                        ),
-                      ),
-                    ),
-                  ),
-
-                ],
-              ),
-            ),
-
-
-          );
-        });
-  }
-  
-  
-  
-  
 }
