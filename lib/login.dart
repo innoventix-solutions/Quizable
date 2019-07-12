@@ -96,7 +96,7 @@ class _loginState extends State<login> {
         child:Center(
         child: Column(mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          Image.asset('assets/images/logo.png',width: 80,),
+          Image.asset('assets/images/logo.jpg',width: 80,),
           Container(width: 300,padding: EdgeInsets.only(top: 20),
             child: Column(
               children: <Widget>[

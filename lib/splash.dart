@@ -71,7 +71,7 @@ class _splashState extends State<splash> {
     child:Center(
     child: Column(mainAxisAlignment: MainAxisAlignment.center,
     children: <Widget>[
-    Image.asset('assets/images/logo.png',width: 100,),
+    Image.asset('assets/images/logo.jgp',width: 100,),
    ], ),),),
     );
   }

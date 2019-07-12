@@ -557,7 +557,7 @@ setalldetails(){
       "que_each_level :"+ GlobalData.NosofQuesPerLevel +
       "dur_each_level :"+ GlobalData.DurationofEachLevel +
       "quiz_subject : "+ GlobalData.Selected_subject +
-      "class_id : [1,2,3,4,5,6,1]"+
+      "class_id : 1"+
       "publish_date : 2019-06-23 00:00:01"+
       "closing_date : 2019-06-26 00:00:01"
 
@@ -579,7 +579,7 @@ setalldetails(){
         "que_each_level": GlobalData.NosofQuesPerLevel,
         "dur_each_level": GlobalData.DurationofEachLevel,
         "quiz_subject": GlobalData.Selected_subject,
-        "class_id": "[1,2,3,4,5,6,1]",
+        "class_id": "1,2,3",
         "publish_date":Starting_date.toString(),
         "closing_date":Closing_date.toString(),
       }).then((response) {
@@ -591,6 +591,7 @@ setalldetails(){
 
         GlobalData.QuizID=statuss['quizdata']['ID'];
         print(GlobalData.QuizID);
+        print("gonadsf to qwesdf");
        Navigator.of(context).pushNamed('questions');
 
 

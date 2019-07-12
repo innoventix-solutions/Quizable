@@ -737,9 +737,7 @@ class levelcomplete extends StatelessWidget {
 }
 
 
-
-
-class option {
+/*class option {
   bool selected;
   String Text;
   option({this.selected,this.Text});
@@ -749,6 +747,22 @@ class option {
   Map<String, dynamic> toJson() =>
       {
         'Selected': selected,
+        'Text': Text,
+      };
+}*/
+
+
+
+class option {
+  bool trueanswer;
+  String value;
+  option({this.trueanswer,this.value});
+  option.fromJson(Map<String, dynamic> json)
+      : trueanswer = json['trueanswer'],
+        value = json['value'];
+  Map<String, dynamic> toJson() =>
+      {
+        'Selected': trueanswer,
         'Text': Text,
       };
 }

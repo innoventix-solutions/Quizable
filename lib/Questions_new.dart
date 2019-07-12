@@ -8,16 +8,8 @@ class Questions extends StatefulWidget {
 }
 
 class _QuestionsState extends State<Questions> {
-  @override
-  Widget build(BuildContext context) {
-    // TODO: implement build
-    return null;
-  }
-
-
-
- /* String SelectedType = 'Fill in the blanks';
-  List<String> ListofTypes = ['Fill in the blanks', 'Match Type', 'Single Answer', 'Multiple Answer','True or False'];
+  String SelectedType = 'Fill-in the gaps';
+  List<String> ListofTypes = ['Fill-in the gaps', 'Match Type', 'Single Answer', 'Multiple Answers','True False'];
   List<option> Options = new List();
   List<MatchClass> Matches = new List();
   String TrueorFalse = "False";
@@ -86,7 +78,7 @@ class _QuestionsState extends State<Questions> {
                                             child: GradientButtonText(
                                               ButtonClick: (){
 
-                                                Options.add(option(selected: Selected,Text:optioncontroller.text ));
+                                                Options.add(option(trueanswer: Selected,value:optioncontroller.text ));
                                                 Navigator.of(context).pop();
                                                 setState(() {
 
@@ -186,7 +178,7 @@ class _QuestionsState extends State<Questions> {
                                               }
                                               ,linearGradient:
                                             LinearGradient(colors: <Color>[navy,navyblue]),
-                                              text: Text('Ok',style: TextStyle(color: Colors.white,
+                                              text: Text('Add',style: TextStyle(color: Colors.white,
                                                 fontWeight: FontWeight.bold,fontSize: 12,),textAlign: TextAlign.center,),
                                             ),
                                           ),
@@ -339,7 +331,7 @@ class _QuestionsState extends State<Questions> {
   Widget MyQuestionType(String type) {
 
     switch (type){
-      case 'Multiple Answer':
+      case 'Multiple Answers':
         return Card(
           child: Column(
             children: <Widget>[
@@ -365,11 +357,11 @@ class _QuestionsState extends State<Questions> {
                                 itemCount: Options.length,itemBuilder: (context,index){
                               return Container(child: Row(
                                 children: <Widget>[
-                                  Checkbox(value: Options[index].selected, onChanged: (value){
-                                    Options[index].selected=value;setState(() {
+                                  Checkbox(value: Options[index].trueanswer, onChanged: (value){
+                                    Options[index].trueanswer=value;setState(() {
 
                                     });},),
-                                  Expanded(child: Container(child: Text(Options[index].Text)))
+                                  Expanded(child: Container(child: Text(Options[index].value)))
 
 
 
@@ -475,18 +467,18 @@ class _QuestionsState extends State<Questions> {
                                 itemCount: Options.length,itemBuilder: (context,index){
                               return Container(child: Row(
                                 children: <Widget>[
-                                  Checkbox(value: Options[index].selected, onChanged: (value){
+                                  Checkbox(value: Options[index].trueanswer, onChanged: (value){
 
 
                                     for(int i=0;i<Options.length;i++){
-                                      Options[i].selected=false;
+                                      Options[i].trueanswer=false;
                                     }
 
 
-                                    Options[index].selected=value;setState(() {
+                                    Options[index].trueanswer=value;setState(() {
 
                                     });},),
-                                  Text(Options[index].Text,maxLines: 4,)
+                                  Text(Options[index].value,maxLines: 4,)
 
 
 
@@ -503,7 +495,8 @@ class _QuestionsState extends State<Questions> {
 
             ],
           ),);
-      case 'Fill in the blanks':
+
+      case 'Fill-in the gaps':
         return Card(
           child: Column(
             children: <Widget>[
@@ -529,11 +522,11 @@ class _QuestionsState extends State<Questions> {
                                 itemCount: Options.length,itemBuilder: (context,index){
                               return Container(child: Row(
                                 children: <Widget>[
-                                  Checkbox(value: Options[index].selected, onChanged: (value){
-                                    Options[index].selected=value;setState(() {
+                                  Checkbox(value: Options[index].trueanswer, onChanged: (value){
+                                    Options[index].trueanswer=value;setState(() {
 
                                     });},),
-                                  Text(Options[index].Text)
+                                  Text(Options[index].value)
 
 
 
@@ -550,7 +543,7 @@ class _QuestionsState extends State<Questions> {
 
             ],
           ),);
-      case 'True or False':
+      case 'True False':
         return Card(
           child: Column(
             children: <Widget>[
@@ -611,16 +604,25 @@ class _QuestionsState extends State<Questions> {
   String MyQuestionAnswer(String type) {
 
     switch (type){
-      case 'Multiple Answer':
+      case 'Multiple Answers':
         return jsonEncode(Options).toString();
       case 'Match Type':
         return jsonEncode(Matches).toString();
       case 'Single Answer':
         return jsonEncode(Options).toString();
-      case 'Fill in the blanks':
+      case 'Fill-in the gaps':
         return jsonEncode(Options).toString();
-      case 'True or False':
-        return TrueorFalse;
+      case 'True False':
+        Options.clear();
+        if(TrueorFalse==true){
+          Options.add(option(trueanswer: true,value: "True"));
+          Options.add(option(trueanswer: false,value: "False"));
+        }else
+          {
+            Options.add(option(trueanswer: false,value: "True"));
+            Options.add(option(trueanswer: true,value: "False"));
+          }
+        return jsonEncode(Options).toString();
       default:
         return "Sorry";
     }
@@ -634,6 +636,7 @@ class _QuestionsState extends State<Questions> {
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
      appBar: AppBar(
         automaticallyImplyLeading: true,
@@ -730,7 +733,7 @@ class _QuestionsState extends State<Questions> {
                       child: Card(
 
                           child:Padding(
-                            padding: const EdgeInsets.all(20),
+                            padding: const EdgeInsets.fromLTRB(20,20,0,20),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: <Widget>[
@@ -877,7 +880,8 @@ class _QuestionsState extends State<Questions> {
       if (statuss['status'] == 1) {
         Options.clear();
         Matches.clear();
-        SelectedType = "Fill in the blanks";
+
+        SelectedType = "Fill-in the gaps";
         GlobalData.QuestionNumber++;
         setState(() {
 
@@ -893,7 +897,7 @@ class _QuestionsState extends State<Questions> {
       }
     });
   }
-  }*/
+  }
 }
 
 
