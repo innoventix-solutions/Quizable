@@ -1,6 +1,13 @@
+import 'dart:convert';
+import 'Pojo/pojo_getclasses.dart';
 import 'package:flutter/material.dart';
-import 'package:newpro/global.dart';
-
+import 'package:intl/intl.dart';
+import 'global.dart';
+import 'package:http/http.dart' as http;
+import 'utilities.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 class quizclass extends StatefulWidget {
   @override
   _quizclassState createState() => _quizclassState();
@@ -9,7 +16,44 @@ class quizclass extends StatefulWidget {
 class _quizclassState extends State<quizclass> {
 
 
+  List<getclasses> Class_list = new List();
   bool isSelected = false;
+
+  Show_toast(String msg, Color color) {
+    Fluttertoast.showToast(
+        msg: msg,
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.CENTER,
+        timeInSecForIos: 1,
+        backgroundColor: color,
+        textColor: Colors.white,
+        fontSize: 16.0);
+  }
+
+  Getteacherclasses() async{
+    await http.post("http://edusupportapp.com/api/get_teacher_classes.php",body: {
+      "UserId":GlobalData.uid,
+
+    }).then((response) {
+      print(response.body);
+
+
+      var ParsedJson=jsonDecode(response.body);
+      Class_list=(ParsedJson['join_classdata'] as List).map((data)=>getclasses.fromJson(data)).toList();
+      print(Class_list.length);
+      setState(() {
+
+      });
+
+    });
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    Getteacherclasses();
+  }
 
 
   @override
@@ -21,7 +65,7 @@ class _quizclassState extends State<quizclass> {
 
           title: Center(
             child: Text(
-              "My Classrooms",
+              "Select Classes",
               style: TextStyle(fontSize: 22),
             ),
           ),
@@ -52,7 +96,7 @@ class _quizclassState extends State<quizclass> {
 
                 child: new
                 ListView.builder(
-                  //gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 1),
+                    itemCount: Class_list.length,
 
                     itemBuilder: (BuildContext ctxt, int index) {
                       return  Column(
@@ -81,7 +125,7 @@ class _quizclassState extends State<quizclass> {
                                   padding: const EdgeInsets.only(left:30),
                                   child: Column(mainAxisAlignment: MainAxisAlignment.start,crossAxisAlignment: CrossAxisAlignment.start,
                                     children: <Widget>[
-                                      Text('Messih Class',style: TextStyle(fontSize: 15),textAlign: TextAlign.left,),
+                                      Text(Class_list[index].classname,style: TextStyle(fontSize: 15),textAlign: TextAlign.left,),
                                       Padding(
                                         padding: const EdgeInsets.only(top:5),
                                         child: Text('12 Students',style: TextStyle(fontSize: 12),),
