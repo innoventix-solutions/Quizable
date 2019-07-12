@@ -79,6 +79,7 @@ class MyApp extends StatelessWidget {
         'register': (context) => sec(),
         'signup_student': (context) => studentreg(),
         'studentjoin': (context) => studentjoin(),
+        'studentjoinclass': (context) => studentdashboard(),
         'adminteacherjoinclass': (context) => techerjoinclass(),
         'teacherjoinclass': (context) => teacherdashboard(),
         'manageclassactivities': (context) => questionmenu(),

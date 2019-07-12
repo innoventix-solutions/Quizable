@@ -178,7 +178,7 @@ class _QuestionsState extends State<Questions> {
                                               }
                                               ,linearGradient:
                                             LinearGradient(colors: <Color>[navy,navyblue]),
-                                              text: Text('Add',style: TextStyle(color: Colors.white,
+                                              text: Text('Ok',style: TextStyle(color: Colors.white,
                                                 fontWeight: FontWeight.bold,fontSize: 12,),textAlign: TextAlign.center,),
                                             ),
                                           ),

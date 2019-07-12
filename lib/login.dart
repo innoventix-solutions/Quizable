@@ -79,7 +79,7 @@ class _loginState extends State<login> {
          }
      else
      {
-       Navigator.of(context).pushReplacementNamed('studentjoinclass');
+       Navigator.of(context).pushReplacementNamed('studentjoin');
      }
 
       }else
