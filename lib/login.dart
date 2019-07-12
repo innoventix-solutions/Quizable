@@ -5,15 +5,8 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'global.dart';
 import 'package:http/http.dart' as http;
 
-
-
-
-
-
 class login extends StatefulWidget {
   @override
-
-
   _loginState createState() => _loginState();
 }
 

@@ -343,13 +343,20 @@ class CustomTextFieldBorder extends StatelessWidget {
   final Icon icon;
   final TextEditingController controller;
   final TextStyle hintStyle;
+  final bool password;
+
+
+
+
 
   CustomTextFieldBorder(
       {this.controller,
       this.hintColor,
       this.icon,
       this.hintText,
-      this.hintStyle});
+      this.hintStyle,
+      this.password,
+      });
 
   @override
   Widget build(BuildContext context) {
@@ -360,6 +367,7 @@ class CustomTextFieldBorder extends StatelessWidget {
         child: Theme(
           data: ThemeData(hintColor: hintColor),
           child: TextField(
+            obscureText: password == null?false:true,
             controller: controller,
             decoration: InputDecoration(
                 contentPadding: EdgeInsets.only(left: 5),
@@ -368,7 +376,7 @@ class CustomTextFieldBorder extends StatelessWidget {
                     borderSide: BorderSide(color: Colors.white)),
                 prefixIcon: icon,
                 hintText: hintText,
-                hintStyle: hintStyle),
+                hintStyle: hintStyle)
           ),
         ),
       ),
