@@ -75,7 +75,7 @@ class _myclassroomState extends State<myclassroom> {
                                 padding: const EdgeInsets.only(left:30),
                                 child: Column(mainAxisAlignment: MainAxisAlignment.start,crossAxisAlignment: CrossAxisAlignment.start,
                                   children: <Widget>[
-                                    Text(GlobalData.class_name.toString(),style: TextStyle(fontSize: 15),textAlign: TextAlign.left,),
+                                    Text('Messih Class',style: TextStyle(fontSize: 15),textAlign: TextAlign.left,),
                                     Padding(
                                       padding: const EdgeInsets.only(top:5),
                                       child: Text('12 Students',style: TextStyle(fontSize: 12),),
