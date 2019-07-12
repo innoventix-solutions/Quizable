@@ -103,7 +103,7 @@ class _studentregState extends State<studentreg> {
                           child: Container(
                             width: 70,
                             height: 70,
-                            child: Image.asset('assets/images/logo.png'),
+                            child: Image.asset('assets/images/logo.jpg'),
                           ),
                         ),
                       ),

@@ -20,6 +20,9 @@ class _studentjoinState extends State<studentjoin> {
       var statuss = jsonDecode(response.body);
       if (statuss['status'].toString() == "1") {
         Show_toast_Now(statuss['msg'], Colors.green);
+        Navigator.of(context)
+            .pushNamed('studentjoinclass');
+
 
       } else {
         Show_toast_Now(statuss['msg'], Colors.red);
