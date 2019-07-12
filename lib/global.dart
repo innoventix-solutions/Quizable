@@ -762,8 +762,8 @@ class option {
         value = json['value'];
   Map<String, dynamic> toJson() =>
       {
-        'Selected': trueanswer,
-        'Text': Text,
+        'trueanswer': trueanswer,
+        'value': value,
       };
 }
 
