@@ -99,75 +99,75 @@ class _secState extends State<sec> {
                           child: Container(
                             width: 70,
                             height: 70,
-                            child: Image.asset('assets/images/logo.jpg'),
+                            child: Image.asset('assets/images/logo.png'),
                           ),
                         ),
                       ),
 
                       CustomTextFieldBorder(
                         controller: acc,
-                        hintColor: blue,
+                        hintColor: GlobalData.blue,
                         hintStyle: TextStyle(
-                          color: black,
+                          color: GlobalData.black,
                         ),
                         hintText: "Account Name",
                         icon: Icon(
                           Icons.account_circle,
-                          color: lightblue,
+                          color: GlobalData.lightblue,
                         ),
                       ),
 
                       CustomTextFieldBorder(
                         controller: username,
-                        hintColor: lightblue,
+                        hintColor: GlobalData.lightblue,
                         hintStyle: TextStyle(
-                          color: black,
+                          color:GlobalData.black,
                         ),
                         hintText: "User Name",
                         icon: Icon(
                           Icons.account_circle,
-                          color: lightblue,
+                          color: GlobalData.lightblue,
                         ),
                       ),
                       CustomTextFieldBorder(
                         controller: email,
-                        hintColor: lightblue,
+                        hintColor: GlobalData.lightblue,
                         hintStyle: TextStyle(
-                          color: black,
+                          color: GlobalData.black,
                         ),
                         hintText: "Email Address",
                         icon: Icon(
                           Icons.mail,
-                          color: lightblue,
+                          color: GlobalData.lightblue,
                         ),
                       ),
 
                       CustomTextFieldBorder(
                         controller: phone,
-                        hintColor: lightblue,
+                        hintColor: GlobalData.lightblue,
                         hintStyle: TextStyle(
-                          color: black,
+                          color: GlobalData.black,
                         ),
                         hintText: "Phone Number",
                         icon: Icon(
                           Icons.phone_android,
-                          color: lightblue,
+                          color: GlobalData.lightblue,
                         ),
                       ),
 
                       CustomTextFieldBorder(password:true,
                         controller:
-                      password,hintColor: lightblue,hintStyle: TextStyle(color: black,),hintText: "Password",icon: Icon(Icons.lock,color: lightblue,),),
+                      password,hintColor: GlobalData.lightblue,hintStyle: TextStyle(color: GlobalData.black,),hintText: "Password",icon: Icon(Icons.lock,color: GlobalData.lightblue,),),
 
 
                       CustomTextFieldBorder(controller:
-                      disc,hintColor: lightblue,hintStyle: TextStyle(color: black,),hintText: "Discipline",icon: Icon(Icons.speaker_notes,color: lightblue,),),
+                      disc,hintColor: GlobalData.lightblue,hintStyle: TextStyle(color: GlobalData.black,),hintText: "Discipline",icon: Icon(Icons.speaker_notes,color: GlobalData.lightblue,),),
 
                       SizedBox(height: 15.0,),
 
                       Padding(
                         padding: const EdgeInsets.only(left: 30,right: 30),
-                        child: Container(height: 48,decoration: BoxDecoration(border:Border.all(color: lightblue),borderRadius: BorderRadius.circular(30) ),
+                        child: Container(height: 48,decoration: BoxDecoration(border:Border.all(color: GlobalData.lightblue),borderRadius: BorderRadius.circular(30) ),
                           child: Row(
                             children: <Widget>[
                               new Radio(
@@ -179,11 +179,11 @@ class _secState extends State<sec> {
                                 });
 
                                 },
-                                activeColor: blue,
+                                activeColor: GlobalData.blue,
                               ),
                               new Text(
                                 'Male',
-                                style: new TextStyle(fontSize: 16.0,color: black),
+                                style: new TextStyle(fontSize: 16.0,color: GlobalData.black),
                               ),
                               new Radio(
                                 value: "Female",
@@ -192,12 +192,12 @@ class _secState extends State<sec> {
                                 setState(() {
 
                                 });},
-                                activeColor: blue,
+                                activeColor: GlobalData.blue,
                               ),
                               new Text(
                                 'Female',
                                 style: new TextStyle(
-                                  fontSize: 16.0,color: black
+                                  fontSize: 16.0,color: GlobalData.black
                                 ),
                               ),
                               /*new Radio(
@@ -264,7 +264,7 @@ class _secState extends State<sec> {
                               Signup();
                             },
                             "Get Started",
-                            LinearGradient(colors: <Color>[purple, pink]),
+                            LinearGradient(colors: <Color>[GlobalData.purple, GlobalData.pink]),
 
                            ),
                         ),
@@ -275,12 +275,12 @@ class _secState extends State<sec> {
                           padding: EdgeInsets.only(top: 5),
                           child: Text(
                             'By creating an account , you agree to our',
-                            style: TextStyle(color: black, fontSize: 15),
+                            style: TextStyle(color: GlobalData.black, fontSize: 15),
                           )),
                       new Container(
                           child: Text(
                         'Terms & Conditions and Privacy Policy.',
-                        style: TextStyle(color: black, fontSize: 15),
+                        style: TextStyle(color: GlobalData.black, fontSize: 15),
                       )),
                       Padding(padding: EdgeInsets.only(top: 10)),
                       Container(
@@ -289,7 +289,7 @@ class _secState extends State<sec> {
                         children: <Widget>[
                           Text(
                             'Already have account?',
-                            style: TextStyle(color: black, fontSize: 15),
+                            style: TextStyle(color: GlobalData.black, fontSize: 15),
                             textAlign: TextAlign.center,
                           ),
                           Text(" "),
@@ -299,7 +299,7 @@ class _secState extends State<sec> {
                             },
                             child: Text(
                               'Sign In',
-                              style: TextStyle(color: blue, fontSize: 20),
+                              style: TextStyle(color: GlobalData.blue, fontSize: 20),
                             ),
                           )
                         ],

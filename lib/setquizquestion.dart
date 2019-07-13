@@ -116,7 +116,7 @@ setalldetails(){
             gradient: LinearGradient(
               begin: Alignment.topCenter,
               end: Alignment.bottomRight,
-              colors: [darkblue, darkpurple],
+              colors: [GlobalData.darkblue, GlobalData.darkpurple],
             ),
           ),
         ),
@@ -148,7 +148,7 @@ setalldetails(){
                         child: Text(
                           'Teachers Name',
                           style: TextStyle(
-                            color: lightblue,
+                            color: GlobalData.lightblue,
                             fontSize: 18,
                             fontWeight: FontWeight.bold,
                           ),
@@ -163,7 +163,7 @@ setalldetails(){
                           child: Text(
                             'Title of Quiz',
                             style: TextStyle(
-                              color: lightblue,
+                              color: GlobalData.lightblue,
                               fontSize: 18,
                               fontWeight: FontWeight.bold,
                             ),
@@ -195,7 +195,7 @@ setalldetails(){
                                                 child: Text(
                                                   'Nos. of Quiz\nLevels.',
                                                   style: TextStyle(
-                                                    color: lightblue,
+                                                    color: GlobalData.lightblue,
                                                     fontSize: 18,
                                                     fontWeight: FontWeight.bold,
                                                   ),
@@ -226,7 +226,7 @@ setalldetails(){
                                                   child: Text(
                                                     'Nos. of Questions In each Level.',
                                                     style: TextStyle(
-                                                      color: lightblue,
+                                                      color: GlobalData.lightblue,
                                                       fontSize: 18,
                                                       fontWeight: FontWeight.bold,
                                                     ),
@@ -256,7 +256,7 @@ setalldetails(){
                           child: Text(
                             'Duration of each Level.',
                             style: TextStyle(
-                              color: lightblue,
+                              color: GlobalData.lightblue,
                               fontSize: 18,
                               fontWeight: FontWeight.bold,
                             ),
@@ -274,7 +274,7 @@ setalldetails(){
                           child: Text(
                             'Select Quiz Subject Category.',
                             style: TextStyle(
-                              color: lightblue,
+                              color: GlobalData.lightblue,
                               fontSize: 18,
                               fontWeight: FontWeight.bold,
                             ),
@@ -323,7 +323,7 @@ setalldetails(){
                           child: Text(
                             'Select Class(es) you want to see task.',
                             style: TextStyle(
-                              color: lightblue,
+                              color: GlobalData.lightblue,
                               fontSize: 18,
                               fontWeight: FontWeight.bold,
                             ),
@@ -375,7 +375,7 @@ setalldetails(){
                           child: Text(
                             'Select Date and Time',
                             style: TextStyle(
-                              color: lightblue,
+                              color: GlobalData.lightblue,
                               fontSize: 18,
                               fontWeight: FontWeight.bold,
                             ),
@@ -415,7 +415,7 @@ setalldetails(){
                           child: Text(
                             'Select Closing Date',
                             style: TextStyle(
-                              color: lightblue,
+                              color: GlobalData.lightblue,
                               fontSize: 18,
                               fontWeight: FontWeight.bold,
                             ),
@@ -449,7 +449,7 @@ setalldetails(){
                             child: SizedBox(width: 100,
                               child: GradientButtonText(
                                 linearGradient: LinearGradient(
-                                    colors: <Color>[navy, navyblue]),
+                                    colors: <Color>[GlobalData.navy, GlobalData.navyblue]),
                                 text: Text(
                                   "Back",
                                   style: TextStyle(
@@ -468,7 +468,7 @@ setalldetails(){
                             child: SizedBox(width: 100,
                               child: GradientButtonText(
                                 linearGradient:
-                                LinearGradient(colors: <Color>[purple, pink]),
+                                LinearGradient(colors: <Color>[GlobalData.purple, GlobalData.pink]),
                                 text: Text(
                                   "Save",
                                   style: TextStyle(
@@ -500,11 +500,11 @@ setalldetails(){
                                 style: TextStyle(
                                     fontSize: 18,
                                     fontWeight: FontWeight.bold,
-                                    color: lightblue),
+                                    color: GlobalData.lightblue),
                               ),
                               Icon(
                                 Icons.arrow_forward_ios,
-                                color: lightblue,
+                                color: GlobalData.lightblue,
                                 size: 18,
                               )
                             ],

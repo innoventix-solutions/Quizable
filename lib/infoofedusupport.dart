@@ -15,7 +15,7 @@ class _infoofedusupportState extends State<infoofedusupport> {
     return Scaffold(
       body: Container(
         decoration: new BoxDecoration(
-          gradient: new LinearGradient(colors: [darkblue, darkpurple],
+          gradient: new LinearGradient(colors: [GlobalData.darkblue, GlobalData.darkpurple],
             begin: Alignment.topCenter,
             end: Alignment.bottomRight,
 
@@ -37,7 +37,7 @@ class _infoofedusupportState extends State<infoofedusupport> {
                         Row(
                           children: <Widget>[
                             Expanded(
-                              child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(5),),color: blue),
+                              child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(5),),color: GlobalData.blue),
 
                                 child: Padding(
                                   padding: const EdgeInsets.only(top: 5,bottom: 5),
@@ -78,7 +78,7 @@ class _infoofedusupportState extends State<infoofedusupport> {
                             child: Padding(
                               padding: const EdgeInsets.only(top: 15,bottom: 10,left: 20,right: 20),
                               child:GradientButtonText(
-                                linearGradient:LinearGradient(colors: <Color>[purple,pink]) ,text: Text("Proceed",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 16,),textAlign: TextAlign.center,),
+                                linearGradient:LinearGradient(colors: <Color>[GlobalData.purple,GlobalData.pink]) ,text: Text("Proceed",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 16,),textAlign: TextAlign.center,),
                               ),
                             ),
                           ),),

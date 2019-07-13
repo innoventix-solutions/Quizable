@@ -23,7 +23,7 @@ class _admindashboardState extends State<admindashboard> {
             gradient: LinearGradient(
               begin: Alignment.centerLeft,
               end: Alignment.centerRight,
-              colors: [darkblue, darkpurple],
+              colors: [GlobalData.darkblue, GlobalData.darkpurple],
             ),
           ),
         ),
@@ -89,7 +89,7 @@ class _admindashboardState extends State<admindashboard> {
                           child: Container(height: 100,width: 150,
 
 
-                            child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(10),),color:bluecard,),
+                            child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(10),),color:GlobalData.bluecard,),
 
 
                               child:Center(
@@ -110,7 +110,7 @@ class _admindashboardState extends State<admindashboard> {
                           child: Container(height: 100,width: 150,
 
 
-                            child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(10),),color:pinkcard,),
+                            child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(10),),color:GlobalData.pinkcard,),
 
 
                               child:Center(
@@ -136,7 +136,7 @@ class _admindashboardState extends State<admindashboard> {
                     child: Row(mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         GestureDetector(
-                          child: Container(height: 100,width: 150,decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(10),),color:greencard,),
+                          child: Container(height: 100,width: 150,decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(10),),color:GlobalData.greencard,),
 
 
 
@@ -161,7 +161,7 @@ class _admindashboardState extends State<admindashboard> {
                           child: Container(height: 100,width: 150,
 
 
-                            child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(10),),color:orange,),
+                            child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(10),),color:GlobalData.orange,),
 
 
                               child:Center(
@@ -202,7 +202,7 @@ class _admindashboardState extends State<admindashboard> {
             padding: const EdgeInsets.only(top: 40),
             child: GestureDetector(
                 child: Text("Switch Classroom", style: TextStyle(decoration: TextDecoration.underline,
-                    color: lightblue,
+                    color: GlobalData.lightblue,
                     fontSize: 22,
                     fontWeight: FontWeight.bold)),
                 onTap: () {
@@ -254,7 +254,7 @@ class _admindashboardState extends State<admindashboard> {
 
             Padding(
               padding: const EdgeInsets.only(left: 45,top:30),
-              child: Row(children: <Widget>[Icon(Icons.home,color: lightblue,),
+              child: Row(children: <Widget>[Icon(Icons.home,color: GlobalData.lightblue,),
                 Padding(
                   padding: const EdgeInsets.only(left: 20),
                   child: Text('Home',style: TextStyle(
@@ -264,7 +264,7 @@ class _admindashboardState extends State<admindashboard> {
 
             Padding(
               padding: const EdgeInsets.only(left: 45,top:20),
-              child: Row(children: <Widget>[Icon(Icons.info,color: lightblue,),
+              child: Row(children: <Widget>[Icon(Icons.info,color: GlobalData.lightblue,),
                 Padding(
                   padding: const EdgeInsets.only(left: 20),
                   child: Text('About EduSupport',style: TextStyle(
@@ -274,7 +274,7 @@ class _admindashboardState extends State<admindashboard> {
 
             Padding(
               padding: const EdgeInsets.only(left: 45,top:20),
-              child: Row(children: <Widget>[Icon(Icons.dehaze,color: lightblue,),
+              child: Row(children: <Widget>[Icon(Icons.dehaze,color: GlobalData.lightblue,),
                 Padding(
                   padding: const EdgeInsets.only(left: 20),
                   child: Text('Switch Classroom',style: TextStyle(
@@ -284,7 +284,7 @@ class _admindashboardState extends State<admindashboard> {
 
             Padding(
               padding: const EdgeInsets.only(left: 45,top:20),
-              child: Row(children: <Widget>[Icon(Icons.person,color: lightblue,),
+              child: Row(children: <Widget>[Icon(Icons.person,color: GlobalData.lightblue,),
                 Padding(
                   padding: const EdgeInsets.only(left: 20),
                   child: Text('Edit Profile',style: TextStyle(
@@ -304,7 +304,7 @@ class _admindashboardState extends State<admindashboard> {
 
             Padding(
               padding: const EdgeInsets.only(left: 45,top:20),
-              child: Row(children: <Widget>[Icon(Icons.notifications,color: lightblue,),
+              child: Row(children: <Widget>[Icon(Icons.notifications,color: GlobalData.lightblue,),
                 Padding(
                   padding: const EdgeInsets.only(left: 20),
                   child: Text('Announcements',style: TextStyle(
@@ -314,7 +314,7 @@ class _admindashboardState extends State<admindashboard> {
 
             Padding(
               padding: const EdgeInsets.only(left: 45,top:20),
-              child: Row(children: <Widget>[Icon(Icons.share,color: lightblue,),
+              child: Row(children: <Widget>[Icon(Icons.share,color: GlobalData.lightblue,),
                 Padding(
                   padding: const EdgeInsets.only(left: 20),
                   child: Text('Share App',style: TextStyle(
@@ -324,7 +324,7 @@ class _admindashboardState extends State<admindashboard> {
 
             Padding(
               padding: const EdgeInsets.only(left: 45,top:20),
-              child: Row(children: <Widget>[Icon(Icons.power_settings_new,color: lightblue,),
+              child: Row(children: <Widget>[Icon(Icons.power_settings_new,color: GlobalData.lightblue,),
                 Padding(
                   padding: const EdgeInsets.only(left: 20),
                   child: Text('Log out',style: TextStyle(

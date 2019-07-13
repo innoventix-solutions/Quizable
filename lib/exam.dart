@@ -40,7 +40,7 @@ class _ExamState extends State<Exam> {
 
     });
     print(GlobalData.QuizID);
-    http.post("http://edusupportapp.com/api/get_quiz_questions.php",body: {
+   await http.post("http://edusupportapp.com/api/get_quiz_questions.php",body: {
       "QuizId":GlobalData.QuizID
     }).then((res){
       print(res.body);
@@ -332,7 +332,7 @@ class _ExamState extends State<Exam> {
                         if(CurrentPage-2<Quetions.length)
                           pageController.jumpToPage(CurrentPage++);
                       },
-                      linearGradient:LinearGradient(colors: <Color>[navy,navyblue]) ,
+                      linearGradient:LinearGradient(colors: <Color>[GlobalData.navy,GlobalData.navyblue]) ,
                       text: Text("Skip",textAlign: TextAlign.center,style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
                     ),
                   ),
@@ -368,12 +368,13 @@ class _ExamState extends State<Exam> {
                         if(i==Quetions.length)
                         {
                           ExamCompleted(context);
-                        }
-                        setState(() {
+                        }else {
+                          setState(() {
 
-                        });
+                          });
+                        }
                       },
-                      linearGradient:LinearGradient(colors: <Color>[navyblue,pink]) ,
+                      linearGradient:LinearGradient(colors: <Color>[GlobalData.navyblue,GlobalData.pink]) ,
                       text: Text((i+1)==Quetions.length?"Submit":"Next",textAlign: TextAlign.center,style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
                     ),
                   ),
@@ -393,7 +394,7 @@ class _ExamState extends State<Exam> {
   @override
   Widget build(BuildContext context) {
 
-
+/*
     List<String> Value1 = List();
     List<String> Value2 = List();
 
@@ -406,11 +407,11 @@ class _ExamState extends State<Exam> {
 
 
     print(Value2.length);
-    print(Value1.length);
+    print(Value1.length);*/
 
 
-    print(Quetions[i].anwer_options.length.toString()+"  asdznaisdfmmb k");
-Matches =Quetions[i].anwer_options;
+    /*print(Quetions[i].anwer_options.length.toString()+"  asdznaisdfmmb k");
+Matches =Quetions[i].anwer_options;*/
     return Scaffold(
       appBar: AppBar(title: Text("My Quiz Exercises"),centerTitle: true,),
       body: isloading==true?Center(child: Text("Loading...")):MYQue()
@@ -520,12 +521,12 @@ Matches =Quetions[i].anwer_options;
                                     padding: const EdgeInsets.only(top:15),
 
                                     child: Text('Quiz Completed',textAlign: TextAlign.center,
-                                      style: TextStyle(color: lightblue,fontSize: 25,fontWeight: FontWeight.bold),),
+                                      style: TextStyle(color: GlobalData.lightblue,fontSize: 25,fontWeight: FontWeight.bold),),
                                   )),
 
 
                                   new Divider(
-                                    color: gray,
+                                    color: GlobalData.gray,
                                   ),
 
 
@@ -546,7 +547,7 @@ Matches =Quetions[i].anwer_options;
 
                                               }
                                               ,linearGradient:
-                                            LinearGradient(colors: <Color>[navy,navyblue]),
+                                            LinearGradient(colors: <Color>[GlobalData.navy,GlobalData.navyblue]),
                                               text: Text('Ok',style: TextStyle(color: Colors.white,
                                                 fontWeight: FontWeight.bold,fontSize: 12,),textAlign: TextAlign.center,),
                                             ),

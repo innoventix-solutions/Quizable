@@ -25,7 +25,7 @@ class _myclassactivitiesState extends State<myclassactivities> {
             gradient: LinearGradient(
               begin: Alignment.topCenter,
               end: Alignment.bottomRight,
-              colors: [darkblue, darkpurple],
+              colors: [GlobalData.darkblue, GlobalData.darkpurple],
             ),
           ),
         ),
@@ -84,7 +84,7 @@ class _myclassactivitiesState extends State<myclassactivities> {
 
             Padding(
               padding: const EdgeInsets.only(left: 45,top:30),
-              child: Row(children: <Widget>[Icon(Icons.home,color: lightblue,),
+              child: Row(children: <Widget>[Icon(Icons.home,color: GlobalData.lightblue,),
                 Padding(
                   padding: const EdgeInsets.only(left: 20),
                   child: Text('Home',style: TextStyle(
@@ -94,7 +94,7 @@ class _myclassactivitiesState extends State<myclassactivities> {
 
             Padding(
               padding: const EdgeInsets.only(left: 45,top:20),
-              child: Row(children: <Widget>[Icon(Icons.assignment,color: lightblue,),
+              child: Row(children: <Widget>[Icon(Icons.assignment,color: GlobalData.lightblue,),
                 Padding(
                   padding: const EdgeInsets.only(left: 20),
                   child: Text('Assignment Question Bank',style: TextStyle(
@@ -104,7 +104,7 @@ class _myclassactivitiesState extends State<myclassactivities> {
 
             Padding(
               padding: const EdgeInsets.only(left: 45,top:20),
-              child: Row(children: <Widget>[Icon(Icons.live_help,color: lightblue,),
+              child: Row(children: <Widget>[Icon(Icons.live_help,color: GlobalData.lightblue,),
                 Padding(
                   padding: const EdgeInsets.only(left: 20),
                   child: Text('Set Quiz Questions',style: TextStyle(
@@ -115,7 +115,7 @@ class _myclassactivitiesState extends State<myclassactivities> {
             GestureDetector(
               child: Padding(
                 padding: const EdgeInsets.only(left: 45,top:20),
-                child: Row(children: <Widget>[Icon(Icons.offline_pin,color: lightblue,),
+                child: Row(children: <Widget>[Icon(Icons.offline_pin,color: GlobalData.lightblue,),
                   Padding(
                     padding: const EdgeInsets.only(left: 20),
                     child: Text('Set Spelling Challenge',style: TextStyle(
@@ -143,7 +143,7 @@ class _myclassactivitiesState extends State<myclassactivities> {
                   Row(mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                     Text('Class Assignments',style: TextStyle(fontSize: 20,
-                    fontWeight:  FontWeight.bold,color: gray),),
+                    fontWeight:  FontWeight.bold,color: GlobalData.gray),),
                   ],)
                 ],),
               ),
@@ -164,7 +164,7 @@ class _myclassactivitiesState extends State<myclassactivities> {
                       children: <Widget>[
                         Expanded(
                             child: GradientButtonText(
-                              linearGradient:LinearGradient(colors: <Color>[purple,pink]) ,
+                              linearGradient:LinearGradient(colors: <Color>[GlobalData.purple,GlobalData.pink]) ,
                               text: Text("New Assignment",
                                 style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,
                                     fontSize: 18),textAlign: TextAlign.center,),
@@ -181,7 +181,7 @@ class _myclassactivitiesState extends State<myclassactivities> {
                         Expanded(
                             child: GradientButtonText(
                               linearGradient:LinearGradient(
-                                  colors: <Color>[navy,navyblue]) ,
+                                  colors: <Color>[GlobalData.navy,GlobalData.navyblue]) ,
                               text: Text("Assignments Log",
                                 style: TextStyle(color: Colors.white,
                                   fontWeight: FontWeight.bold,fontSize: 18,),
@@ -199,7 +199,7 @@ class _myclassactivitiesState extends State<myclassactivities> {
                         Expanded(
                             child: GradientButtonText(
                               linearGradient:LinearGradient(
-                                  colors: <Color>[pinkred,yellow]) ,
+                                  colors: <Color>[GlobalData.pinkred,GlobalData.yellow]) ,
                               text: Text("See my Results",
                                 style: TextStyle(color: Colors.white,
                                   fontWeight: FontWeight.bold,fontSize: 18,),
@@ -227,7 +227,7 @@ class _myclassactivitiesState extends State<myclassactivities> {
                         Row(mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
                             Text('Class Quiz',style: TextStyle(fontSize: 20,
-                                fontWeight:  FontWeight.bold,color: gray),),
+                                fontWeight:  FontWeight.bold,color: GlobalData.gray),),
                           ],)
                       ],),
                   ),
@@ -249,7 +249,7 @@ class _myclassactivitiesState extends State<myclassactivities> {
                       children: <Widget>[
                         Expanded(
                             child: GradientButtonText(
-                              linearGradient:LinearGradient(colors: <Color>[purple,pink]) ,
+                              linearGradient:LinearGradient(colors: <Color>[GlobalData.purple,GlobalData.pink]) ,
                               text: Text("New Quiz",
                                 style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,
                                     fontSize: 18),textAlign: TextAlign.center,),
@@ -266,7 +266,7 @@ class _myclassactivitiesState extends State<myclassactivities> {
                         Expanded(
                             child: GradientButtonText(
                               linearGradient:LinearGradient(
-                                  colors: <Color>[navy,navyblue]) ,
+                                  colors: <Color>[GlobalData.navy,GlobalData.navyblue]) ,
                               text: Text("Quiz Exercises Log",
                                 style: TextStyle(color: Colors.white,
                                   fontWeight: FontWeight.bold,fontSize: 18,),
@@ -284,7 +284,7 @@ class _myclassactivitiesState extends State<myclassactivities> {
                         Expanded(
                             child: GradientButtonText(
                               linearGradient:LinearGradient(
-                                  colors: <Color>[pinkred,yellow]) ,
+                                  colors: <Color>[GlobalData.pinkred,GlobalData.yellow]) ,
                               text: Text("See my Results",
                                 style: TextStyle(color: Colors.white,
                                   fontWeight: FontWeight.bold,fontSize: 18,),
@@ -312,7 +312,7 @@ class _myclassactivitiesState extends State<myclassactivities> {
                         Row(mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
                             Text('Spelling Challenge',style: TextStyle(fontSize: 20,
-                                fontWeight:  FontWeight.bold,color: gray),),
+                                fontWeight:  FontWeight.bold,color: GlobalData.gray),),
                           ],)
                       ],),
                   ),
@@ -334,7 +334,7 @@ class _myclassactivitiesState extends State<myclassactivities> {
                       children: <Widget>[
                         Expanded(
                             child: GradientButtonText(
-                              linearGradient:LinearGradient(colors: <Color>[purple,pink]) ,
+                              linearGradient:LinearGradient(colors: <Color>[GlobalData.purple,GlobalData.pink]) ,
                               text: Text("New Exercise",
                                 style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,
                                     fontSize: 18),textAlign: TextAlign.center,),
@@ -352,7 +352,7 @@ class _myclassactivitiesState extends State<myclassactivities> {
                         Expanded(
                             child: GradientButtonText(
                               linearGradient:LinearGradient(
-                                  colors: <Color>[pinkred,yellow]) ,
+                                  colors: <Color>[GlobalData.pinkred,GlobalData.yellow]) ,
                               text: Text("See my Results",
                                 style: TextStyle(color: Colors.white,
                                   fontWeight: FontWeight.bold,fontSize: 18,),

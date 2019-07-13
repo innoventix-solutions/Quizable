@@ -27,7 +27,7 @@ class _adminprofileState extends State<adminprofile> {
               gradient: LinearGradient(
                 begin: Alignment.centerLeft,
                 end: Alignment.centerRight,
-                colors: [darkblue, darkpurple],
+                colors: [GlobalData.darkblue, GlobalData.darkpurple],
               ),
             ),
           ),
@@ -196,7 +196,7 @@ class _adminprofileState extends State<adminprofile> {
                               padding: const EdgeInsets.only(top: 10),
                               child: GestureDetector(
                                 child: Text('Via Email',style: TextStyle(
-                                    color:lightblue,fontSize: 15,fontWeight: FontWeight.bold,
+                                    color:GlobalData.lightblue,fontSize: 15,fontWeight: FontWeight.bold,
                                     decoration: TextDecoration.underline
                                 ),),onTap: (){},
                               ),
@@ -205,7 +205,7 @@ class _adminprofileState extends State<adminprofile> {
                               padding: const EdgeInsets.only(top: 10),
                               child: GestureDetector(
                                 child: Text('Via SMS',style: TextStyle(
-                                    color:lightblue,fontSize: 15,fontWeight: FontWeight.bold,
+                                    color:GlobalData.lightblue,fontSize: 15,fontWeight: FontWeight.bold,
                                     decoration: TextDecoration.underline
                                 ),),onTap: (){},
                               ),
@@ -213,7 +213,7 @@ class _adminprofileState extends State<adminprofile> {
                             Padding(
                               padding: const EdgeInsets.only(top: 20,bottom: 20),
                               child: GradientButtonText(
-                                linearGradient:LinearGradient(colors: <Color>[purple,pink]) ,text: Text("Save Changes",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 15,),textAlign: TextAlign.center,),
+                                linearGradient:LinearGradient(colors: <Color>[GlobalData.purple,GlobalData.pink]) ,text: Text("Save Changes",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 15,),textAlign: TextAlign.center,),
                               ),
                             ),
                           ],

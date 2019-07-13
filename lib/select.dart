@@ -52,7 +52,7 @@ class _selectState extends State<select> {
                             child: Text(
                               'I\'m a Teacher',
                               textAlign: TextAlign.center,
-                              style: TextStyle(color:blue,fontSize: 18,fontFamily: "yu"),
+                              style: TextStyle(color:GlobalData.blue,fontSize: 18,fontFamily: "yu"),
                             ),
                           ),
                         ),

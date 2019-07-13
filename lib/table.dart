@@ -63,7 +63,7 @@ class aritmethicquizState extends State<aritmethicquiz> {
             ),
 
 
-            Divider(color: black,),
+            Divider(color: GlobalData.black,),
 
 
            Row(children: <Widget>[

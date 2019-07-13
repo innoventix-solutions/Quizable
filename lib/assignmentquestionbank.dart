@@ -26,7 +26,7 @@ class _assignmentquestionbankState extends State<assignmentquestionbank> {
           ),
           flexibleSpace: Container(
             decoration: BoxDecoration(
-              color: darkblue,
+              color: GlobalData.darkblue,
             ),
           ),
           actions: <Widget>[
@@ -194,7 +194,7 @@ child: DropdownButton(
                               padding: const EdgeInsets.only(top: 10),
                               child: GestureDetector(
                                 child: Text('Via Email',style: TextStyle(
-                                    color:lightblue,fontSize: 15,fontWeight: FontWeight.bold,
+                                    color:GlobalData.lightblue,fontSize: 15,fontWeight: FontWeight.bold,
                                     decoration: TextDecoration.underline
                                 ),),onTap: (){},
                               ),
@@ -203,7 +203,7 @@ child: DropdownButton(
                               padding: const EdgeInsets.only(top: 10),
                               child: GestureDetector(
                                 child: Text('Via SMS',style: TextStyle(
-                                    color:lightblue,fontSize: 15,fontWeight: FontWeight.bold,
+                                    color:GlobalData.lightblue,fontSize: 15,fontWeight: FontWeight.bold,
                                     decoration: TextDecoration.underline
                                 ),),onTap: (){},
                               ),
@@ -211,7 +211,7 @@ child: DropdownButton(
                             Padding(
                               padding: const EdgeInsets.only(top: 20,bottom: 20),
                               child: GradientButtonText(
-                                linearGradient:LinearGradient(colors: <Color>[purple,pink]) ,text: Text("Save Changes",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 15,),textAlign: TextAlign.center,),
+                                linearGradient:LinearGradient(colors: <Color>[GlobalData.purple,GlobalData.pink]) ,text: Text("Save Changes",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 15,),textAlign: TextAlign.center,),
                               ),
                             ),
                           ],

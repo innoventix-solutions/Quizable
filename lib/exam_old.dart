@@ -371,7 +371,7 @@ Matches =Quetions[i].anwer_options;
                           if(CurrentPage-2<Quetions.length)
                           pageController.jumpToPage(CurrentPage++);
                         },
-                        linearGradient:LinearGradient(colors: <Color>[navy,navyblue]) ,
+                        linearGradient:LinearGradient(colors: <Color>[GlobalData.navy,GlobalData.navyblue]) ,
                         text: Text("Skip",textAlign: TextAlign.center,style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
                       ),
                     ),
@@ -382,7 +382,7 @@ Matches =Quetions[i].anwer_options;
                           if(CurrentPage-2<Quetions.length)
                             pageController.jumpToPage(CurrentPage++);
                         },
-                        linearGradient:LinearGradient(colors: <Color>[navyblue,pink]) ,
+                        linearGradient:LinearGradient(colors: <Color>[GlobalData.navyblue,GlobalData.pink]) ,
                         text: Text("Next",textAlign: TextAlign.center,style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
                       ),
                     ),

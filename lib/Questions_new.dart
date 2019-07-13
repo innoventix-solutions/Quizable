@@ -46,12 +46,12 @@ class _QuestionsState extends State<Questions> {
                                     padding: const EdgeInsets.only(top:15),
 
                                     child: Text('Add Option',textAlign: TextAlign.center,
-                                      style: TextStyle(color: lightblue,fontSize: 25,fontWeight: FontWeight.bold),),
+                                      style: TextStyle(color: GlobalData.lightblue,fontSize: 25,fontWeight: FontWeight.bold),),
                                   )),
 
 
                                   new Divider(
-                                    color: gray,
+                                    color: GlobalData.gray,
                                   ),
                                   Container(
                                     padding: EdgeInsets.all(30),
@@ -86,7 +86,7 @@ class _QuestionsState extends State<Questions> {
 
                                               }
                                             ,linearGradient:
-                                            LinearGradient(colors: <Color>[navy,navyblue]),
+                                            LinearGradient(colors: <Color>[GlobalData.navy,GlobalData.navyblue]),
                                               text: Text('Add',style: TextStyle(color: Colors.white,
                                                 fontWeight: FontWeight.bold,fontSize: 12,),textAlign: TextAlign.center,),
                                             ),
@@ -151,12 +151,12 @@ class _QuestionsState extends State<Questions> {
                                     padding: const EdgeInsets.only(top:15),
 
                                     child: Text('Quiz Submitted',textAlign: TextAlign.center,
-                                      style: TextStyle(color: lightblue,fontSize: 25,fontWeight: FontWeight.bold),),
+                                      style: TextStyle(color: GlobalData.lightblue,fontSize: 25,fontWeight: FontWeight.bold),),
                                   )),
 
 
                                   new Divider(
-                                    color: gray,
+                                    color: GlobalData.gray,
                                   ),
 
 
@@ -177,7 +177,7 @@ class _QuestionsState extends State<Questions> {
 
                                               }
                                               ,linearGradient:
-                                            LinearGradient(colors: <Color>[navy,navyblue]),
+                                            LinearGradient(colors: <Color>[GlobalData.navy,GlobalData.navyblue]),
                                               text: Text('Ok',style: TextStyle(color: Colors.white,
                                                 fontWeight: FontWeight.bold,fontSize: 12,),textAlign: TextAlign.center,),
                                             ),
@@ -243,12 +243,12 @@ class _QuestionsState extends State<Questions> {
                                     padding: const EdgeInsets.only(top:15),
 
                                     child: Text('Add Option',textAlign: TextAlign.center,
-                                      style: TextStyle(color: lightblue,fontSize: 25,fontWeight: FontWeight.bold),),
+                                      style: TextStyle(color: GlobalData.lightblue,fontSize: 25,fontWeight: FontWeight.bold),),
                                   )),
 
 
                                   new Divider(
-                                    color: gray,
+                                    color: GlobalData.gray,
                                   ),
                                   Container(
                                     padding: EdgeInsets.all(30),
@@ -290,7 +290,7 @@ class _QuestionsState extends State<Questions> {
 
                                               }
                                               ,linearGradient:
-                                            LinearGradient(colors: <Color>[navy,navyblue]),
+                                            LinearGradient(colors: <Color>[GlobalData.navy,GlobalData.navyblue]),
                                               text: Text('Add',style: TextStyle(color: Colors.white,
                                                 fontWeight: FontWeight.bold,fontSize: 12,),textAlign: TextAlign.center,),
                                             ),
@@ -340,7 +340,7 @@ class _QuestionsState extends State<Questions> {
                     child: Container(padding: EdgeInsets.all(5),child: Text("Select Two or More Answers",style: TextStyle(color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),)),
                   ),
                   Row(children: <Widget>[
-                    FlatButton.icon(onPressed: (){_confirmDialog(context);}, icon: Icon( Icons.add_circle,color: lightblue,), label: Text("More",style: TextStyle(color: lightblue,fontSize: 15,fontWeight: FontWeight.bold)))
+                    FlatButton.icon(onPressed: (){_confirmDialog(context);}, icon: Icon( Icons.add_circle,color: GlobalData.lightblue,), label: Text("More",style: TextStyle(color: GlobalData.lightblue,fontSize: 15,fontWeight: FontWeight.bold)))
                   ],)
                 ],
               ),
@@ -389,7 +389,7 @@ class _QuestionsState extends State<Questions> {
                       child: Container(padding: EdgeInsets.all(5),child: Text("Select Pairs of Matching Terms.",style: TextStyle(color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),)),
                     ),
                     Row(children: <Widget>[
-                      FlatButton.icon(onPressed: (){_confirmDialogMatches(context);}, icon: Icon( Icons.add_circle,color: lightblue,), label: Text("More",style: TextStyle(color: lightblue,fontSize: 15,fontWeight: FontWeight.bold)))
+                      FlatButton.icon(onPressed: (){_confirmDialogMatches(context);}, icon: Icon( Icons.add_circle,color: GlobalData.lightblue,), label: Text("More",style: TextStyle(color: GlobalData.lightblue,fontSize: 15,fontWeight: FontWeight.bold)))
                     ],)
                   ],
                 ),
@@ -449,7 +449,7 @@ class _QuestionsState extends State<Questions> {
                     child: Container(padding: EdgeInsets.all(5),child: Text("List Options and Select One Answer ",style: TextStyle(color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),)),
                   ),
                   Row(children: <Widget>[
-                    FlatButton.icon(onPressed: (){_confirmDialog(context);}, icon: Icon( Icons.add_circle,color: lightblue,), label: Text("More",style: TextStyle(color: lightblue,fontSize: 15,fontWeight: FontWeight.bold)))
+                    FlatButton.icon(onPressed: (){_confirmDialog(context);}, icon: Icon( Icons.add_circle,color: GlobalData.lightblue,), label: Text("More",style: TextStyle(color: GlobalData.lightblue,fontSize: 15,fontWeight: FontWeight.bold)))
                   ],)
                 ],
               ),
@@ -505,7 +505,7 @@ class _QuestionsState extends State<Questions> {
                     child: Container(padding: EdgeInsets.all(5),child: Text("List Options and Select Answer(s)",style: TextStyle(color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),)),
                   ),
                   Row(children: <Widget>[
-                    FlatButton.icon(onPressed: (){_confirmDialog(context);}, icon: Icon( Icons.add_circle,color: lightblue,), label: Text("More",style: TextStyle(color: lightblue,fontSize: 15,fontWeight: FontWeight.bold)))
+                    FlatButton.icon(onPressed: (){_confirmDialog(context);}, icon: Icon( Icons.add_circle,color: GlobalData.lightblue,), label: Text("More",style: TextStyle(color: GlobalData.lightblue,fontSize: 15,fontWeight: FontWeight.bold)))
                   ],)
                 ],
               ),
@@ -645,7 +645,7 @@ class _QuestionsState extends State<Questions> {
             gradient: LinearGradient(
               begin: Alignment.topCenter,
               end: Alignment.bottomRight,
-              colors: [darkblue, darkpurple],
+              colors: [GlobalData.darkblue, GlobalData.darkpurple],
             ),
           ),
         ),
@@ -673,12 +673,12 @@ class _QuestionsState extends State<Questions> {
                   Row(
                     children: <Widget>[
                       Expanded(
-                        child: Container(padding: EdgeInsets.all(5),color:green,
+                        child: Container(padding: EdgeInsets.all(5),color:GlobalData.green,
                             child: Text(
                               "Question "+((GlobalData.QuestionNumber%int.parse(GlobalData.NosofQuesPerLevel))+1).toString()+" of "+GlobalData.NosofQuesPerLevel,style: TextStyle(color: Colors.white,fontSize: 15,fontWeight: FontWeight.bold),)),
                       ),
                       Container(
-                          padding: EdgeInsets.all(5),color:green,
+                          padding: EdgeInsets.all(5),color:GlobalData.green,
                         child:  Text("Level "+((GlobalData.QuestionNumber/int.parse(GlobalData.NosofQuesPerLevel)).floor()+1).toString()+" of "+GlobalData.QuizLevels,style: TextStyle(color: Colors.white,fontSize: 15,fontWeight: FontWeight.bold),)
                       )
                     ],
@@ -763,7 +763,7 @@ class _QuestionsState extends State<Questions> {
                       padding: const EdgeInsets.only(top: 25,bottom: 40),
                       child: SizedBox(width: 100,
                         child: GradientButtonText(
-                          linearGradient:LinearGradient(colors: <Color>[navy,navyblue]) ,
+                          linearGradient:LinearGradient(colors: <Color>[GlobalData.navy,GlobalData.navyblue]) ,
                           text: Text("Back",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 18,),
                             textAlign: TextAlign.center,),
                         ),
@@ -777,7 +777,7 @@ class _QuestionsState extends State<Questions> {
                           ButtonClick: (){
                             SaveQuizQuestion();
                           },
-                          linearGradient:LinearGradient(colors: <Color>[purple,pink]) ,
+                          linearGradient:LinearGradient(colors: <Color>[GlobalData.purple,GlobalData.pink]) ,
                           text: Text("Save",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 18,),
                             textAlign: TextAlign.center,),
                         ),
@@ -796,8 +796,8 @@ class _QuestionsState extends State<Questions> {
                     child: Row(mainAxisAlignment: MainAxisAlignment.end,
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: <Widget>[
-                        Text('Add Questions ',style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold,color: lightblue),
-                        ),Icon(Icons.add_circle,color: lightblue,)
+                        Text('Add Questions ',style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold,color: GlobalData.lightblue),
+                        ),Icon(Icons.add_circle,color: GlobalData.lightblue,)
                       ],),onTap: (){
 
                   },

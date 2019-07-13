@@ -39,7 +39,7 @@ class _invitecodeState extends State<invitecode> {
             gradient: LinearGradient(
               begin: Alignment.topCenter,
               end: Alignment.bottomRight,
-              colors: [gradientblue, gradientviolet],
+              colors: [GlobalData.gradientblue, GlobalData.gradientviolet],
             ),
           ),
         ),
@@ -55,25 +55,25 @@ class _invitecodeState extends State<invitecode> {
               child: Padding(
                 padding: const EdgeInsets.only(top: 35),
                 child: Text('You Successfully Created',
-                  style: TextStyle(color: black,fontSize: 15),),
+                  style: TextStyle(color: GlobalData.black,fontSize: 15),),
               ),
             ),
 
             Padding(
               padding: const EdgeInsets.only(top: 10,bottom: 10),
               child: Text(GlobalData.class_name,
-                style:TextStyle(fontSize: 15,color: gray,fontWeight: FontWeight.bold) ,),
+                style:TextStyle(fontSize: 15,color: GlobalData.gray,fontWeight: FontWeight.bold) ,),
             ),
 
             Text('Your Classroom Codes are:',
-              style: TextStyle(color: black,fontSize: 15),),
+              style: TextStyle(color: GlobalData.black,fontSize: 15),),
 
 
             Padding(
               padding: const EdgeInsets.only(top: 65),
               child: Text(
                 'Student Invite Code',
-                style: TextStyle(color: lightblue, fontSize: 18,fontWeight: FontWeight.bold),
+                style: TextStyle(color: GlobalData.lightblue, fontSize: 18,fontWeight: FontWeight.bold),
               ),
             ),
             Padding(
@@ -116,7 +116,7 @@ class _invitecodeState extends State<invitecode> {
                               child: Text(
                                 GlobalData.student_code,
                                 textAlign: TextAlign.center,
-                                style: TextStyle(fontSize: 25,color: gray,fontWeight: FontWeight.bold),
+                                style: TextStyle(fontSize: 25,color: GlobalData.gray,fontWeight: FontWeight.bold),
                               ),
                             )),
                       )),
@@ -129,12 +129,12 @@ class _invitecodeState extends State<invitecode> {
                         shape: BoxShape.circle,
                         // You can use like this way or like the below line
                         //borderRadius: new BorderRadius.circular(10.0),
-                        color: lightblue,
+                        color: GlobalData.lightblue,
                       ),
                       child: IconButton(onPressed: (){Share.share(GlobalData.student_code+" Please use this code to Join the Class.");},
                         icon: Icon(
                           Icons.share,
-                          color: white,
+                          color: GlobalData.white,
                           size: 20,
                         ),
                       ))
@@ -147,7 +147,7 @@ class _invitecodeState extends State<invitecode> {
               padding: const EdgeInsets.only(top: 25),
               child: Text(
                 'Teacher Invite Code',
-                style: TextStyle(color: lightblue, fontSize: 18,fontWeight: FontWeight.bold),
+                style: TextStyle(color: GlobalData.lightblue, fontSize: 18,fontWeight: FontWeight.bold),
               ),
             ),
             Padding(
@@ -190,7 +190,7 @@ class _invitecodeState extends State<invitecode> {
                               child: Text(
                                 GlobalData.teacher_code,
                                 textAlign: TextAlign.center,
-                                style: TextStyle(fontSize: 25,color: gray,fontWeight: FontWeight.bold),
+                                style: TextStyle(fontSize: 25,color: GlobalData.gray,fontWeight: FontWeight.bold),
                               ),
                             )),
                       )),
@@ -203,13 +203,13 @@ class _invitecodeState extends State<invitecode> {
                         shape: BoxShape.circle,
                         // You can use like this way or like the below line
                         //borderRadius: new BorderRadius.circular(10.0),
-                        color: lightblue,
+                        color: GlobalData.lightblue,
                       ),
                       child: IconButton(onPressed: (){Share.share(GlobalData.teacher_code+" Please use this code to Join the Class.");},
 
                         icon: Icon(
                           Icons.share,
-                          color: white,
+                          color: GlobalData.white,
                           size: 20,
                         ),
                       ))
@@ -223,7 +223,7 @@ class _invitecodeState extends State<invitecode> {
               padding: const EdgeInsets.only(top: 100),
               child: GestureDetector(
                 child: Text('Go back to Dashboard',style: TextStyle(
-                    color:lightblue,fontSize: 15,fontWeight: FontWeight.bold,
+                    color:GlobalData.lightblue,fontSize: 15,fontWeight: FontWeight.bold,
                     decoration: TextDecoration.underline
                 ),),onTap: (){
                 Navigator.of(context)

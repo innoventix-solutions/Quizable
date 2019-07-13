@@ -58,7 +58,7 @@ class _questionmenuState extends State<questionmenu> {
             gradient: LinearGradient(
               begin: Alignment.topCenter,
               end: Alignment.bottomRight,
-              colors: [darkblue, darkpurple],
+              colors: [GlobalData.darkblue, GlobalData.darkpurple],
             ),
           ),
         ),
@@ -91,7 +91,7 @@ class _questionmenuState extends State<questionmenu> {
                       Navigator.of(context).pushNamed('exam');
                     },
                     child: classactivitys(
-                      color: pinkred,
+                      color: GlobalData.pinkred,
                       heading: Quizz_List[i].quiz_title+" - "+Quizz_List[i].id,
                       paragraph: Quizz_List[i].quiz_subject,
                     ),

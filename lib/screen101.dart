@@ -31,7 +31,7 @@ class _screen101State extends State<screen101> {
               gradient: LinearGradient(
                 begin: Alignment.centerLeft,
                 end: Alignment.centerRight,
-                colors: [darkblue, darkpurple],
+                colors: [GlobalData.darkblue, GlobalData.darkpurple],
               ),
             ),
           ),
@@ -76,7 +76,7 @@ class _screen101State extends State<screen101> {
                             Expanded(
                                 child: Container(padding: EdgeInsets.only(bottom: 35,top: 20),
                                   child: GradientButtonText(
-                                    linearGradient:LinearGradient(colors: <Color>[navy,navyblue]) ,text: Text("Join a Class",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 16,),textAlign: TextAlign.center,),
+                                    linearGradient:LinearGradient(colors: <Color>[GlobalData.navy,GlobalData.navyblue]) ,text: Text("Join a Class",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 16,),textAlign: TextAlign.center,),
                                   ),
                                 )
                             ),
@@ -88,10 +88,10 @@ class _screen101State extends State<screen101> {
                 ),
               ),
               Container(padding: EdgeInsets.only(top: 50),
-                  child: Text('or Play Global Quiz',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18,color: lightblue),)),
-              Text('&',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18,color: lightblue),),
+                  child: Text('or Play Global Quiz',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18,color: GlobalData.lightblue),)),
+              Text('&',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18,color: GlobalData.lightblue),),
               Text('Spelling Challenge',
-                style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18,color: lightblue),)
+                style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18,color: GlobalData.lightblue),)
             ],
           ),
         ),

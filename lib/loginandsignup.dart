@@ -32,7 +32,7 @@ class _loginandsignupState extends State<loginandsignup> {
                     child: Text(
                       "eduSupport",
                       style: TextStyle(
-                          color:darkpink,
+                          color:GlobalData.darkpink,
                           fontSize: 25,
                           fontWeight: FontWeight.bold,)
                     ),
@@ -86,7 +86,7 @@ class _loginandsignupState extends State<loginandsignup> {
                         children: <Widget>[
                           Expanded(
                             child: RaisedButton(padding:EdgeInsets.only(top:15,bottom: 15),
-                              color: blue,
+                              color: GlobalData.blue,
                               shape: new RoundedRectangleBorder(
                                   borderRadius: new BorderRadius.circular(30.0)),
                               onPressed: () {
