@@ -25,7 +25,7 @@ class _viewteacherState extends State<viewteacher> {
               gradient: LinearGradient(
                 begin: Alignment.centerLeft,
                 end: Alignment.centerRight,
-                colors: [darkblue, darkpurple],
+                colors: [GlobalData.darkblue, GlobalData.darkpurple],
               ),
             ),
           ),
@@ -127,7 +127,7 @@ class _viewteacherState extends State<viewteacher> {
                                 child: Icon(Icons.more_vert),
                                 itemBuilder: (_) => <PopupMenuItem<String>>[
                                   new PopupMenuItem<String>(
-                                      child: new Text('Remove',style: TextStyle(color: darkpink),), value: 'Short Easy'),
+                                      child: new Text('Remove',style: TextStyle(color: GlobalData.darkpink),), value: 'Short Easy'),
 
                                 ],
                                 onSelected: ( value){},

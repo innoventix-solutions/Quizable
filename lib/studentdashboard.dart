@@ -25,7 +25,7 @@ class _studentdashboardState extends State<studentdashboard> {
             gradient: LinearGradient(
               begin: Alignment.topCenter,
               end: Alignment.bottomRight,
-              colors: [darkblue, darkpurple],
+              colors: [GlobalData.darkblue, GlobalData.darkpurple],
             ),
           ),
         ),
@@ -84,7 +84,7 @@ class _studentdashboardState extends State<studentdashboard> {
 
             Padding(
               padding: const EdgeInsets.only(left: 45,top:30),
-              child: Row(children: <Widget>[Icon(Icons.home,color: lightblue,),
+              child: Row(children: <Widget>[Icon(Icons.home,color: GlobalData.lightblue,),
                 Padding(
                   padding: const EdgeInsets.only(left: 20),
                   child: Text('Home',style: TextStyle(
@@ -94,7 +94,7 @@ class _studentdashboardState extends State<studentdashboard> {
 
             Padding(
               padding: const EdgeInsets.only(left: 45,top:20),
-              child: Row(children: <Widget>[Icon(Icons.assignment,color: lightblue,),
+              child: Row(children: <Widget>[Icon(Icons.assignment,color: GlobalData.lightblue,),
                 Padding(
                   padding: const EdgeInsets.only(left: 20),
                   child: Text('Assignment Question Bank',style: TextStyle(
@@ -104,7 +104,7 @@ class _studentdashboardState extends State<studentdashboard> {
 
             Padding(
               padding: const EdgeInsets.only(left: 45,top:20),
-              child: Row(children: <Widget>[Icon(Icons.live_help,color: lightblue,),
+              child: Row(children: <Widget>[Icon(Icons.live_help,color: GlobalData.lightblue,),
                 Padding(
                   padding: const EdgeInsets.only(left: 20),
                   child: Text('Set Quiz Questions',style: TextStyle(
@@ -115,7 +115,7 @@ class _studentdashboardState extends State<studentdashboard> {
             GestureDetector(
               child: Padding(
                 padding: const EdgeInsets.only(left: 45,top:20),
-                child: Row(children: <Widget>[Icon(Icons.offline_pin,color: lightblue,),
+                child: Row(children: <Widget>[Icon(Icons.offline_pin,color: GlobalData.lightblue,),
                   Padding(
                     padding: const EdgeInsets.only(left: 20),
                     child: Text('Set Spelling Challenge',style: TextStyle(
@@ -150,11 +150,11 @@ class _studentdashboardState extends State<studentdashboard> {
                   ),Padding(
                     padding: const EdgeInsets.only(top: 10),
                     child: Text('Messiah Classroom',style:
-                    TextStyle(fontSize: 18,color:gray,fontWeight: FontWeight.bold),),
+                    TextStyle(fontSize: 18,color:GlobalData.gray,fontWeight: FontWeight.bold),),
                   ),Padding(
                     padding: const EdgeInsets.only(top: 10),
                     child: Text('Switch Classroom',style:
-                    TextStyle(fontSize: 15,color: pinkred,decoration: TextDecoration.underline),),
+                    TextStyle(fontSize: 15,color: GlobalData.pinkred,decoration: TextDecoration.underline),),
                   ),
 
                   Padding(
@@ -163,7 +163,7 @@ class _studentdashboardState extends State<studentdashboard> {
                       children: <Widget>[
                         Expanded(
                             child: GradientButtonText(
-                              linearGradient:LinearGradient(colors: <Color>[purple,pink]) ,
+                              linearGradient:LinearGradient(colors: <Color>[GlobalData.purple,GlobalData.pink]) ,
                               text: Text("View my Class Activities",
                                 style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,
                                     fontSize: 18),textAlign: TextAlign.center,),
@@ -180,7 +180,7 @@ class _studentdashboardState extends State<studentdashboard> {
                         Expanded(
                             child: GradientButtonText(
                               linearGradient:LinearGradient(
-                                  colors: <Color>[navy,navyblue]) ,
+                                  colors: <Color>[GlobalData.navy,GlobalData.navyblue]) ,
                               text: Text("View my Classroom",
                                 style: TextStyle(color: Colors.white,
                                   fontWeight: FontWeight.bold,fontSize: 18,),
@@ -198,7 +198,7 @@ class _studentdashboardState extends State<studentdashboard> {
                         Expanded(
                             child: GradientButtonText(
                               linearGradient:LinearGradient(
-                                  colors: <Color>[pinkred,yellow]) ,
+                                  colors: <Color>[GlobalData.pinkred,GlobalData.yellow]) ,
                               text: Text("See my Results",
                                 style: TextStyle(color: Colors.white,
                                   fontWeight: FontWeight.bold,fontSize: 18,),
@@ -233,7 +233,7 @@ class _studentdashboardState extends State<studentdashboard> {
                           child: GradientButtonText(
                             linearGradient:LinearGradient(begin:Alignment.topCenter,
                                 end: Alignment.bottomCenter,
-                                colors: <Color>[yellow,pinkred]) ,
+                                colors: <Color>[GlobalData.yellow,GlobalData.pinkred]) ,
                             text: Text("Quiz",
                               style: TextStyle(color: Colors.white,
                                 fontWeight: FontWeight.bold,fontSize: 15,),
@@ -250,7 +250,7 @@ class _studentdashboardState extends State<studentdashboard> {
                     child: Row(
                       children: <Widget>[
                         Text('The World & Climate Change',style: TextStyle(
-                          fontSize: 18,fontWeight: FontWeight.bold,color:white
+                          fontSize: 18,fontWeight: FontWeight.bold,color:GlobalData.white
                         ),),
                       ],
                     ),
@@ -261,7 +261,7 @@ class _studentdashboardState extends State<studentdashboard> {
                     child: Row(
                       children: <Widget>[
                         Text('Anchor for the Quiz',style: TextStyle(
-                            fontSize: 15,fontWeight: FontWeight.bold,color:white
+                            fontSize: 15,fontWeight: FontWeight.bold,color:GlobalData.white
                         ),),
                       ],
                     ),
@@ -272,7 +272,7 @@ class _studentdashboardState extends State<studentdashboard> {
                     child: Row(
                       children: <Widget>[
                         Text('Matthew 1 – 11',style: TextStyle(
-                            fontSize: 18,fontWeight: FontWeight.bold,color:white
+                            fontSize: 18,fontWeight: FontWeight.bold,color:GlobalData.white
                         ),),
                       ],
                     ),
@@ -286,7 +286,7 @@ class _studentdashboardState extends State<studentdashboard> {
                           child: GradientButtonText(
                             linearGradient:LinearGradient(begin:Alignment.topCenter,
                                 end: Alignment.bottomCenter,
-                                colors: <Color>[pinkred,lightpink]) ,
+                                colors: <Color>[GlobalData.pinkred,GlobalData.lightpink]) ,
                             text: Text("Closing",
                               style: TextStyle(color: Colors.white,
                                 fontWeight: FontWeight.bold,fontSize: 15,),
@@ -298,7 +298,7 @@ class _studentdashboardState extends State<studentdashboard> {
                         Padding(
                           padding: const EdgeInsets.only(left: 5),
                           child: Text('Sat. 27 Mar, 2019, 12:00',style:TextStyle(
-                            fontSize: 15,color: white
+                            fontSize: 15,color: GlobalData.white
                           ) ,),
                         )
                       ],
@@ -323,7 +323,7 @@ class _studentdashboardState extends State<studentdashboard> {
                     child: Row(
                       children: <Widget>[
                         Text('Classroom Leaderboard',style:
-                        TextStyle(fontSize: 18,color:lightblue,fontWeight: FontWeight.bold),),
+                        TextStyle(fontSize: 18,color:GlobalData.lightblue,fontWeight: FontWeight.bold),),
                       ],
                     ),
                   ),
@@ -339,7 +339,7 @@ class _studentdashboardState extends State<studentdashboard> {
                               children: <Widget>[
                                 CircleAvatar(backgroundImage: AssetImage('assets/images/pic.png',),
                                   radius: 35.0,
-                                ),Text("Ginika Okputu",style: TextStyle(fontSize: 12,color: gray),),
+                                ),Text("Ginika Okputu",style: TextStyle(fontSize: 12,color: GlobalData.gray),),
                               ],
                             ),
 
@@ -349,7 +349,7 @@ class _studentdashboardState extends State<studentdashboard> {
                                 children: <Widget>[
                                   CircleAvatar(backgroundImage: AssetImage('assets/images/pic.png',),
                                     radius: 35.0,
-                                  ),Text("Ginika Okputu",style: TextStyle(fontSize: 12,color: gray),),
+                                  ),Text("Ginika Okputu",style: TextStyle(fontSize: 12,color: GlobalData.gray),),
                                 ],
                               ),
                             ),
@@ -360,7 +360,7 @@ class _studentdashboardState extends State<studentdashboard> {
                                 children: <Widget>[
                                   CircleAvatar(backgroundImage: AssetImage('assets/images/pic.png',),
                                     radius: 35.0,
-                                  ),Text("Ginika Okputu",style: TextStyle(fontSize: 12,color: gray),),
+                                  ),Text("Ginika Okputu",style: TextStyle(fontSize: 12,color: GlobalData.gray),),
                                 ],
                               ),
                             ),
@@ -376,7 +376,7 @@ class _studentdashboardState extends State<studentdashboard> {
                   Padding(
                     padding: const EdgeInsets.only(top: 15),
                     child: Text("Go to Global Quiz & Spelling Challenge",
-                    style: TextStyle(fontSize: 15,color: lightblue,
+                    style: TextStyle(fontSize: 15,color: GlobalData.lightblue,
                         fontWeight: FontWeight.bold),),
                   ),
 
@@ -384,7 +384,7 @@ class _studentdashboardState extends State<studentdashboard> {
                   Padding(
                     padding: const EdgeInsets.only(top: 15,bottom: 10),
                     child: Text("Parent Login Here",
-                      style: TextStyle(fontSize: 20,color: lightblue,
+                      style: TextStyle(fontSize: 20,color: GlobalData.lightblue,
                           fontWeight: FontWeight.bold,decoration: TextDecoration.underline),),
                   ),
 

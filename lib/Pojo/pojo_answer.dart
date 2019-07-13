@@ -1,23 +1,23 @@
 class Pojo_Answers{
-  bool selected;
-  String Name;
+  bool trueanswer;
+  String value;
 
-  Pojo_Answers({this.Name,this.selected});
+  Pojo_Answers({this.value,this.trueanswer});
 
   factory Pojo_Answers.fromJson(Map<String, dynamic> parsedJson){
 
 
 
     return Pojo_Answers(
-      selected: parsedJson['Selected'],
-      Name: parsedJson['Text'].toString()
+        trueanswer: parsedJson['trueanswer'],
+        value: parsedJson['value'].toString()
     );
   }
 
   Map<String, dynamic> toJson() =>
       {
-        'Selected': selected,
-        'Text': Name,
+        'trueanswer': trueanswer,
+        'value': value,
       };
 
 }

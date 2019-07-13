@@ -1,36 +1,43 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
-Color gradientblue = Color(0Xff1F0BE5); //a
-Color gradientviolet = Color(0Xff730676); //a
-Color bluecard = Color(0Xff1560A1); //a
-Color pinkcard = Color(0XffEF5F7D); //a
-Color blue = Color(0Xff575DFF);
-Color white = Color(0XffFFFFFF);
-Color purple = Color(0Xff7629FB);
-Color pink = Color(0xffDA29E6);
-Color black = Color(0Xff878787);
-Color darkpink = Color(0XffFF4779);
-Color darkblue = Color(0Xff1F0BE5);
-Color darkpurple = Color(0Xff730676);
-Color lightblue = Color(0Xff6B70FC);
-Color gray = Color(0Xff000000);
-Color green = Color(0Xff19CB60);
-Color navy = Color(0Xff29D7FB);
-Color navyblue = Color(0xff5D63C2);
-Color orange = Color(0xffFF8658);
-Color greencard = Color(0xff6DCE8A);
-Color pinkred =  Color(0xffFF1665);
-Color bgblue = Color(0xff4268B3);
-Color bgdarkblue = Color(0xff4267B8);
-Color yellow = Color(0xffE39917);
-Color lightpink = Color(0xffE16B8B);
-
-Color gradientStart = Colors.blue; //Change start gradient color here
-Color gradientEnd = Colors.purple;
 
 
 class GlobalData{
+
+
+
+  static Color gradientblue = Color(0Xff1F0BE5); //a
+  static Color gradientviolet = Color(0Xff730676); //a
+  static Color bluecard = Color(0Xff1560A1); //a
+  static Color pinkcard = Color(0XffEF5F7D); //a
+  static Color blue = Color(0Xff575DFF);
+  static Color white = Color(0XffFFFFFF);
+  static Color purple = Color(0Xff7629FB);
+  static Color pink = Color(0xffDA29E6);
+  static Color black = Color(0Xff878787);
+  static Color darkpink = Color(0XffFF4779);
+  static Color darkblue = Color(0Xff1F0BE5);
+  static Color darkpurple = Color(0Xff730676);
+  static Color lightblue = Color(0Xff6B70FC);
+  static Color gray = Color(0Xff000000);
+  static Color green = Color(0Xff19CB60);
+  static Color navy = Color(0Xff29D7FB);
+  static Color navyblue = Color(0xff5D63C2);
+  static Color orange = Color(0xffFF8658);
+  static Color greencard = Color(0xff6DCE8A);
+  static Color pinkred =  Color(0xffFF1665);
+  static Color bgblue = Color(0xff4268B3);
+  static Color bgdarkblue = Color(0xff4267B8);
+  static Color yellow = Color(0xffE39917);
+  static Color lightpink = Color(0xffE16B8B);
+
+  static Color gradientStart = Colors.blue; //Change start gradient color here
+  static Color gradientEnd = Colors.purple;
+
+
+
+
   static bool LoadData = true;
   static int QuestionNumber=0;
   static String userType;
@@ -97,7 +104,7 @@ class drawerquiz extends StatelessWidget {
 
           Padding(
             padding: const EdgeInsets.only(left: 35,top:30),
-            child: Row(children: <Widget>[Icon(Icons.home,color: lightblue,),
+            child: Row(children: <Widget>[Icon(Icons.home,color: GlobalData.lightblue,),
               Padding(
                 padding: const EdgeInsets.only(left: 10),
                 child: GestureDetector(
@@ -111,7 +118,7 @@ class drawerquiz extends StatelessWidget {
 
           Padding(
             padding: const EdgeInsets.only(left: 35,top:20),
-            child: Row(children: <Widget>[Icon(Icons.assignment,color: lightblue,),
+            child: Row(children: <Widget>[Icon(Icons.assignment,color: GlobalData.lightblue,),
               Padding(
                 padding: const EdgeInsets.only(left: 10),
                 child: Text('Assignment Question Bank',style: TextStyle(
@@ -121,7 +128,7 @@ class drawerquiz extends StatelessWidget {
 
           Padding(
             padding: const EdgeInsets.only(left: 35,top:20),
-            child: Row(children: <Widget>[Icon(Icons.live_help,color: lightblue,),
+            child: Row(children: <Widget>[Icon(Icons.live_help,color: GlobalData.lightblue,),
               Padding(
                 padding: const EdgeInsets.only(left: 10),
                 child: GestureDetector(
@@ -136,7 +143,7 @@ class drawerquiz extends StatelessWidget {
           GestureDetector(
             child: Padding(
               padding: const EdgeInsets.only(left: 35,top:20),
-              child: Row(children: <Widget>[Icon(Icons.offline_pin,color: lightblue,),
+              child: Row(children: <Widget>[Icon(Icons.offline_pin,color: GlobalData.lightblue,),
                 Padding(
                   padding: const EdgeInsets.only(left: 10),
                   child: Text('Set Spelling Challenge',style: TextStyle(
@@ -148,7 +155,7 @@ class drawerquiz extends StatelessWidget {
           GestureDetector(
             child: Padding(
               padding: const EdgeInsets.only(left: 35,top:20),
-              child: Row(children: <Widget>[Icon(Icons.power_settings_new,color: lightblue,),
+              child: Row(children: <Widget>[Icon(Icons.power_settings_new,color: GlobalData.lightblue,),
                 Padding(
                   padding: const EdgeInsets.only(left: 10),
                   child: Text('Log out',style: TextStyle(
@@ -184,7 +191,7 @@ Show_toast_Now(String msg,Color color){
 
 var bg = new BoxDecoration(
   gradient: new LinearGradient(
-      colors: [gradientStart, gradientEnd],
+      colors: [GlobalData.gradientStart, GlobalData.gradientEnd],
       begin: const FractionalOffset(0.5, 0.0),
       end: const FractionalOffset(0.0, 0.5),
       stops: [0.0, 1.0],
@@ -193,7 +200,7 @@ var bg = new BoxDecoration(
 
 var bg12 = BoxDecoration(
   gradient: LinearGradient(
-    colors: <Color>[gradientblue, gradientviolet],
+    colors: <Color>[GlobalData.gradientblue, GlobalData.gradientviolet],
     begin: Alignment.topCenter,
     end: Alignment.bottomRight,
   ),
@@ -232,7 +239,7 @@ class CustomCard extends StatelessWidget {
                             text,
                             style: TextStyle(
                                 fontSize: 13,
-                                color: white,
+                                color: GlobalData.white,
                                 fontWeight: FontWeight.bold),
                           ),
                         ),
@@ -303,7 +310,7 @@ class MyText extends StatelessWidget {
               ),
               prefixIcon: icon2,
               hintText: (hint),
-              hintStyle: TextStyle(color: black)),
+              hintStyle: TextStyle(color: GlobalData.black)),
         ),
       ),
     );
@@ -319,7 +326,7 @@ class _CusstomTextState extends State<CusstomText> {
   @override
   Widget build(BuildContext context) {
     return Theme(
-      data: ThemeData(hintColor: white),
+      data: ThemeData(hintColor: GlobalData.white),
       child: TextField(
         decoration: InputDecoration(
             contentPadding: EdgeInsets.only(left: 5),
@@ -328,10 +335,10 @@ class _CusstomTextState extends State<CusstomText> {
             ),
             prefixIcon: Icon(
               Icons.account_circle,
-              color: blue,
+              color: GlobalData.blue,
             ),
             hintText: 'User Name',
-            hintStyle: TextStyle(color: black)),
+            hintStyle: TextStyle(color: GlobalData.black)),
       ),
     );
   }
@@ -413,7 +420,7 @@ class _appbarState extends State<appbar> {
           gradient: LinearGradient(
             begin: Alignment.centerLeft,
             end: Alignment.centerRight,
-            colors: [darkblue, darkpurple],
+            colors: [GlobalData.darkblue, GlobalData.darkpurple],
           ),
         ),
       ),
@@ -530,8 +537,8 @@ class calc extends StatelessWidget {
           children: <Widget>[
             RaisedButton(
               child: Text(number,style: TextStyle(
-                fontSize: 14,color: gray,
-              ),),onPressed: (){},color: white
+                fontSize: 14,color: GlobalData.gray,
+              ),),onPressed: (){},color: GlobalData.white
             )
           ],
         ),
@@ -592,7 +599,7 @@ class classactivitys extends StatelessWidget {
                                                       padding: const EdgeInsets.only(right: 4),
                                                       child: Icon(
                                                         Icons.edit,
-                                                        color: lightblue,size: 12,
+                                                        color: GlobalData.lightblue,size: 12,
                                                       ),
                                                     ),
                                                     new Text('Edit',style: TextStyle(fontSize: 15),),
@@ -607,7 +614,7 @@ class classactivitys extends StatelessWidget {
                                                       padding: const EdgeInsets.only(right: 4,top: 1),
                                                       child: Icon(
                                                         Icons.cancel,
-                                                        color: darkpink,size: 12,
+                                                        color: GlobalData.darkpink,size: 12,
                                                       ),
                                                     ),
                                                     new Text('Delete',style: TextStyle(fontSize: 15),),
@@ -637,7 +644,7 @@ class classactivitys extends StatelessWidget {
                 child: Column(
                   children: <Widget>[
                     Text(paragraph,style: TextStyle(fontWeight: FontWeight.bold,
-                        fontSize: 15,color: gray),textAlign: TextAlign.justify,),
+                        fontSize: 15,color: GlobalData.gray),textAlign: TextAlign.justify,),
 
                   ],
                 ),
@@ -717,7 +724,7 @@ class levelcomplete extends StatelessWidget {
                       padding: const EdgeInsets.only(bottom: 30),
                       child: Text(paragraph,
                         style: TextStyle(fontWeight: FontWeight.bold,
-                            fontSize: 15,color: gray),textAlign: TextAlign.justify,),
+                            fontSize: 15,color: GlobalData.gray),textAlign: TextAlign.justify,),
                     ),
 
                   ],

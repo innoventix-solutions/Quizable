@@ -28,8 +28,7 @@ class _techerjoinclassState extends State<techerjoinclass> {
 
       } else {
         Show_toast_Now(statuss['msg'], Colors.red);
-        Navigator.of(context)
-            .pushNamed('teacherjoinclass');
+
       }
     });
 
@@ -86,7 +85,7 @@ class _techerjoinclassState extends State<techerjoinclass> {
                             child: Text(
                               'Class Code',
                               style: TextStyle(
-                                  color: lightblue,
+                                  color: GlobalData.lightblue,
                                   fontSize: 15,
                                   fontWeight: FontWeight.bold),
                             )),
@@ -121,7 +120,7 @@ class _techerjoinclassState extends State<techerjoinclass> {
                     width: 200,
                     child: GradientButtonText(
                       linearGradient:
-                          LinearGradient(colors: <Color>[purple, pink]),
+                          LinearGradient(colors: <Color>[GlobalData.purple, GlobalData.pink]),
                       text: Text(
                         "Join",
                         style: TextStyle(
@@ -144,7 +143,7 @@ class _techerjoinclassState extends State<techerjoinclass> {
                     width: 200,
                     child: GradientButtonText(
                       linearGradient:
-                          LinearGradient(colors: <Color>[navy, navyblue]),
+                          LinearGradient(colors: <Color>[GlobalData.navy, GlobalData.navyblue]),
                       text: Text(
                         "Cancel",
                         style: TextStyle(
@@ -155,7 +154,8 @@ class _techerjoinclassState extends State<techerjoinclass> {
                       ),
                     ButtonClick: (){
 
-
+                      Navigator.of(context)
+                          .pushNamed('teacherjoinclass');
 
                     },),
                   ),

@@ -55,7 +55,7 @@ class _quizquestionState extends State<quizquestion> {
             gradient: LinearGradient(
               begin: Alignment.topCenter,
               end: Alignment.bottomRight,
-              colors: [darkblue, darkpurple],
+              colors: [GlobalData.darkblue, GlobalData.darkpurple],
             ),
           ),
         ),
@@ -114,7 +114,7 @@ class _quizquestionState extends State<quizquestion> {
 
             Padding(
               padding: const EdgeInsets.only(left: 45,top:30),
-              child: Row(children: <Widget>[Icon(Icons.home,color: lightblue,),
+              child: Row(children: <Widget>[Icon(Icons.home,color: GlobalData.lightblue,),
                 Padding(
                   padding: const EdgeInsets.only(left: 20),
                   child: Text('Home',style: TextStyle(
@@ -124,7 +124,7 @@ class _quizquestionState extends State<quizquestion> {
 
             Padding(
               padding: const EdgeInsets.only(left: 45,top:20),
-              child: Row(children: <Widget>[Icon(Icons.assignment,color: lightblue,),
+              child: Row(children: <Widget>[Icon(Icons.assignment,color: GlobalData.lightblue,),
                 Padding(
                   padding: const EdgeInsets.only(left: 20),
                   child: Text('Assignment Question Bank',style: TextStyle(
@@ -134,7 +134,7 @@ class _quizquestionState extends State<quizquestion> {
 
             Padding(
               padding: const EdgeInsets.only(left: 45,top:20),
-              child: Row(children: <Widget>[Icon(Icons.live_help,color: lightblue,),
+              child: Row(children: <Widget>[Icon(Icons.live_help,color: GlobalData.lightblue,),
                 Padding(
                   padding: const EdgeInsets.only(left: 20),
                   child: Text('Set Quiz Questions',style: TextStyle(
@@ -145,7 +145,7 @@ class _quizquestionState extends State<quizquestion> {
             GestureDetector(
               child: Padding(
                 padding: const EdgeInsets.only(left: 45,top:20),
-                child: Row(children: <Widget>[Icon(Icons.offline_pin,color: lightblue,),
+                child: Row(children: <Widget>[Icon(Icons.offline_pin,color: GlobalData.lightblue,),
                   Padding(
                     padding: const EdgeInsets.only(left: 20),
                     child: Text('Set Spelling Challenge',style: TextStyle(
@@ -181,7 +181,7 @@ class _quizquestionState extends State<quizquestion> {
                                 Row(
                                   children: <Widget>[
                                     Expanded(
-                                      child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(5),),color: blue),
+                                      child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(5),),color: GlobalData.blue),
 
                                         child: Padding(
                                           padding: const EdgeInsets.only(top: 5,bottom: 5),
@@ -301,7 +301,7 @@ class _quizquestionState extends State<quizquestion> {
                                             return DropdownMenuItem(
                                               value: value,
                                               child: Text(value,
-                                                style: TextStyle(color: lightblue,fontWeight: FontWeight.bold,fontSize: 14),),
+                                                style: TextStyle(color: GlobalData.lightblue,fontWeight: FontWeight.bold,fontSize: 14),),
                                             );
                                           }).toList(),
                                         ),
@@ -431,8 +431,8 @@ class _quizquestionState extends State<quizquestion> {
                           child: Row(mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: <Widget>[
-                              Icon(Icons.add_circle,color: lightblue,),
-                              Text('More',style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold,color: lightblue),
+                              Icon(Icons.add_circle,color: GlobalData.lightblue,),
+                              Text('More',style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold,color: GlobalData.lightblue),
                               ),
                             ],),onTap: (){
 
@@ -500,7 +500,7 @@ class _quizquestionState extends State<quizquestion> {
                                     child: Row(
                                       children: <Widget>[
                                         Text('* Select True Answer',
-                                          style: TextStyle(fontSize: 12,color: pinkred,
+                                          style: TextStyle(fontSize: 12,color: GlobalData.pinkred,
                                               fontWeight: FontWeight.bold),),
                                       ],
                                     ),
@@ -626,8 +626,8 @@ class _quizquestionState extends State<quizquestion> {
                           child: Row(mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: <Widget>[
-                              Icon(Icons.add_circle,color: lightblue,),
-                              Text('More',style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold,color: lightblue),
+                              Icon(Icons.add_circle,color: GlobalData.lightblue,),
+                              Text('More',style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold,color: GlobalData.lightblue),
                               ),
                             ],),onTap: (){
 
@@ -726,7 +726,7 @@ class _quizquestionState extends State<quizquestion> {
                                     child: Row(
                                       children: <Widget>[
                                         Text('* Select True Answer',
-                                          style: TextStyle(fontSize: 12,color: pinkred,
+                                          style: TextStyle(fontSize: 12,color: GlobalData.pinkred,
                                               fontWeight: FontWeight.bold),),
                                       ],
                                     ),
@@ -831,7 +831,7 @@ class _quizquestionState extends State<quizquestion> {
                                         child: Row(
                                           children: <Widget>[
                                             Text('* Select True Answer',
-                                            style: TextStyle(fontSize: 12,color: pinkred,
+                                            style: TextStyle(fontSize: 12,color: GlobalData.pinkred,
                                             fontWeight: FontWeight.bold),),
                                           ],
                                         ),
@@ -1032,7 +1032,7 @@ class _quizquestionState extends State<quizquestion> {
                           padding: const EdgeInsets.only(top: 25,bottom: 40),
                           child: SizedBox(width: 100,
                             child: GradientButtonText(
-                              linearGradient:LinearGradient(colors: <Color>[navy,navyblue]) ,
+                              linearGradient:LinearGradient(colors: <Color>[GlobalData.navy,GlobalData.navyblue]) ,
                               text: Text("Back",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 18,),
                                 textAlign: TextAlign.center,),
                             ),
@@ -1043,7 +1043,7 @@ class _quizquestionState extends State<quizquestion> {
                           padding: const EdgeInsets.only(left:20,top: 25,bottom: 40),
                           child: SizedBox(width: 100,
                             child: GradientButtonText(
-                              linearGradient:LinearGradient(colors: <Color>[purple,pink]) ,
+                              linearGradient:LinearGradient(colors: <Color>[GlobalData.purple,GlobalData.pink]) ,
                               text: Text("Save",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 18,),
                                 textAlign: TextAlign.center,),
                             ),
@@ -1066,8 +1066,8 @@ class _quizquestionState extends State<quizquestion> {
                           child: Row(mainAxisAlignment: MainAxisAlignment.end,
                             crossAxisAlignment: CrossAxisAlignment.end,
                             children: <Widget>[
-                              Text('Add Questions ',style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold,color: lightblue),
-                              ),Icon(Icons.add_circle,color: lightblue,)
+                              Text('Add Questions ',style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold,color: GlobalData.lightblue),
+                              ),Icon(Icons.add_circle,color: GlobalData.lightblue,)
                             ],),onTap: (){
 
                         },

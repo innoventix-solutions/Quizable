@@ -19,7 +19,7 @@ class _accounttypeState extends State<accounttype> {
 
       body:
       Container(
-        decoration: BoxDecoration(color: bgblue),
+        decoration: BoxDecoration(color: GlobalData.bgblue),
 
 
           child: Center(
@@ -28,7 +28,7 @@ class _accounttypeState extends State<accounttype> {
                 Padding(
                   padding: const EdgeInsets.only(top: 60,bottom: 55),
                   child: Text('Select an Account Type',
-                    style:TextStyle(color: white,fontSize: 22,fontWeight: FontWeight.bold) ,),
+                    style:TextStyle(color: GlobalData.white,fontSize: 22,fontWeight: FontWeight.bold) ,),
                 ),
 
                 Padding(
@@ -36,7 +36,7 @@ class _accounttypeState extends State<accounttype> {
                   child: Text('An Admin Teacher may set up an account \n'
                       'to manage a Class in an educational \ninstitution. '
                       'Please select the type of \ninstitution your classroom belongs.',
-                    style:TextStyle(color: white,fontSize: 16,fontWeight: FontWeight.bold,
+                    style:TextStyle(color: GlobalData.white,fontSize: 16,fontWeight: FontWeight.bold,
                         height: 1.1),),
                 ),
 
@@ -114,8 +114,8 @@ class _accounttypeState extends State<accounttype> {
                       child: Row(mainAxisAlignment: MainAxisAlignment.end,
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: <Widget>[
-                        Text('Proceed',style: TextStyle(fontSize: 22,fontWeight: FontWeight.bold,color: white),
-                        ),Icon(Icons.arrow_forward_ios,color: white,)
+                        Text('Proceed',style: TextStyle(fontSize: 22,fontWeight: FontWeight.bold,color: GlobalData.white),
+                        ),Icon(Icons.arrow_forward_ios,color: GlobalData.white,)
                           ],),onTap: (){
                       GlobalData.accounttype=selectedvalue;
                       Navigator.of(context)

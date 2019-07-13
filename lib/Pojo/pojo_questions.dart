@@ -12,11 +12,12 @@ class Pojo_questions{
   String level_no;
   String quiz_id;
   String TrueorFalse;
+  String ques_no;
   List<Pojo_Answers> Options;
 
 
   Pojo_questions({this.id, this.question, this.point_awarded, this.answer_type,
-      this.anwer_options, this.level_no, this.quiz_id,this.TrueorFalse,this.Options});
+      this.anwer_options, this.level_no, this.quiz_id,this.TrueorFalse,this.Options,this.ques_no});
 
   factory Pojo_questions.fromJson(Map<String, dynamic> parsedJson){
     List<Pojo_Matchs> matchs = new List();
@@ -47,7 +48,8 @@ class Pojo_questions{
       point_awarded: parsedJson['point_awarded'].toString(),
       level_no: parsedJson['level_no'].toString(),
       quiz_id: parsedJson['quiz_id'].toString(),
-      TrueorFalse: Answer
+      TrueorFalse: Answer,
+      ques_no:parsedJson['ques_no'].toString()
     );
   }
 }

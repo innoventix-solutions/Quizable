@@ -25,7 +25,7 @@ class _viewteacherdropdownState extends State<viewteacherdropdown> {
               gradient: LinearGradient(
                 begin: Alignment.centerLeft,
                 end: Alignment.centerRight,
-                colors: [darkblue, darkpurple],
+                colors: [GlobalData.darkblue, GlobalData.darkpurple],
               ),
             ),
           ),
@@ -134,7 +134,7 @@ class _viewteacherdropdownState extends State<viewteacherdropdown> {
                                           padding: const EdgeInsets.only(right: 2),
                                           child: Icon(
                                             Icons.edit,
-                                            color: lightblue,size: 12,
+                                            color: GlobalData.lightblue,size: 12,
                                           ),
                                         ),
                                           new Text('Edit Profile',style: TextStyle(fontSize: 10),),
@@ -149,7 +149,7 @@ class _viewteacherdropdownState extends State<viewteacherdropdown> {
                                             padding: const EdgeInsets.only(right: 2,top: 1),
                                             child: Icon(
                                               Icons.cancel,
-                                              color: darkpink,size: 12,
+                                              color: GlobalData.darkpink,size: 12,
                                             ),
                                           ),
                                           new Text('Leave Class',style: TextStyle(fontSize: 10),),

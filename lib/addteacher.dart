@@ -25,7 +25,7 @@ class _addteacherState extends State<addteacher> {
             gradient: LinearGradient(
               begin: Alignment.centerLeft,
               end: Alignment.centerRight,
-              colors: [darkblue, darkpurple],
+              colors: [GlobalData.darkblue, GlobalData.darkpurple],
             ),
           ),
         ),
@@ -64,7 +64,7 @@ class _addteacherState extends State<addteacher> {
             padding: const EdgeInsets.only(top: 80),
             child: Text(
               'Teacher Invite Code',
-              style: TextStyle(color: blue, fontSize: 18,fontWeight: FontWeight.bold),
+              style: TextStyle(color: GlobalData.blue, fontSize: 18,fontWeight: FontWeight.bold),
             ),
           ),
           Row(
@@ -113,13 +113,13 @@ class _addteacherState extends State<addteacher> {
                     shape: BoxShape.circle,
                     // You can use like this way or like the below line
                     //borderRadius: new BorderRadius.circular(10.0),
-                    color: blue,
+                    color: GlobalData.blue,
                   ),
                   child: IconButton(
                     onPressed: (){},
                     icon: Icon(
                       Icons.share,
-                      color: white,
+                      color: GlobalData.white,
                       size: 20,
                     ),
                   ))
@@ -129,7 +129,7 @@ class _addteacherState extends State<addteacher> {
             padding: const EdgeInsets.only(top: 100),
             child: GestureDetector(
               child: Text('Next Teacher Section',style: TextStyle(
-                  color:lightblue,fontSize: 15,fontWeight: FontWeight.bold,
+                  color:GlobalData.lightblue,fontSize: 15,fontWeight: FontWeight.bold,
                   decoration: TextDecoration.underline
               ),),onTap: (){},
             ),

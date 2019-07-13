@@ -74,7 +74,7 @@ class _quizclassState extends State<quizclass> {
               gradient: LinearGradient(
                 begin: Alignment.topCenter,
                 end: Alignment.bottomRight,
-                colors: [darkblue, darkpurple],
+                colors: [GlobalData.darkblue, GlobalData.darkpurple],
               ),
             ),
           ),
@@ -156,7 +156,7 @@ class _quizclassState extends State<quizclass> {
                       children: <Widget>[
                         SizedBox(width: 100,
                           child: GradientButtonText(
-                            linearGradient:LinearGradient(colors: <Color>[purple,pink]) ,
+                            linearGradient:LinearGradient(colors: <Color>[GlobalData.purple,GlobalData.pink]) ,
                             text: Text("Apply",
                               style: TextStyle(color: Colors.white,
                                 fontWeight: FontWeight.bold,fontSize: 18,),

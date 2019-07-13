@@ -32,7 +32,7 @@ class _greenclassroomState extends State<greenclassroom> {
                 gradient: LinearGradient(
                   begin: Alignment.centerLeft,
                   end: Alignment.centerRight,
-                  colors: [darkblue, darkpurple],
+                  colors: [GlobalData.darkblue, GlobalData.darkpurple],
                 ),
               ),
             ),
@@ -110,7 +110,7 @@ class _greenclassroomState extends State<greenclassroom> {
                                   child: Icon(Icons.more_vert),
                                   itemBuilder: (_) => <PopupMenuItem<String>>[
                                     new PopupMenuItem<String>(
-                                        child: new Text('Remove',style: TextStyle(color: darkpink),), value: 'Short Easy'),
+                                        child: new Text('Remove',style: TextStyle(color: GlobalData.darkpink),), value: 'Short Easy'),
 
                                   ],
                                   onSelected: ( value){
@@ -136,16 +136,16 @@ class _greenclassroomState extends State<greenclassroom> {
                   children: <Widget>[
                     Padding(
                       padding: const EdgeInsets.only(right: 10),
-                      child: Text('Add Student',style: TextStyle(color: lightblue,fontSize: 15,fontWeight: FontWeight.bold),),
+                      child: Text('Add Student',style: TextStyle(color: GlobalData.lightblue,fontSize: 15,fontWeight: FontWeight.bold),),
                     ),
 
                     Card(shape: CircleBorder(),
                       elevation: 0.0,
                       child: Padding(
                         padding: const EdgeInsets.all(4.0),
-                        child: new Icon(Icons.add,color: white,),
+                        child: new Icon(Icons.add,color: GlobalData.white,),
                       ),
-                      color:lightblue,
+                      color:GlobalData.lightblue,
 
                     ),
                   ],

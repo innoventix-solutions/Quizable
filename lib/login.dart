@@ -91,7 +91,7 @@ class _loginState extends State<login> {
                 child: Column(
                   children: <Widget>[
                     Theme(
-                      data: ThemeData(hintColor: white),
+                      data: ThemeData(hintColor: GlobalData.white),
                       child: TextField(
                         style: TextStyle(color: Colors.white, fontSize: 18),
                         controller: email,
@@ -114,7 +114,7 @@ class _loginState extends State<login> {
                       child: Container(
                         width: 300,
                         child: Theme(
-                          data: ThemeData(hintColor: white),
+                          data: ThemeData(hintColor: GlobalData.white),
                           child: TextField(
                             style: TextStyle(color: Colors.white, fontSize: 18),
                             controller: pass,
@@ -149,7 +149,7 @@ class _loginState extends State<login> {
                       child: RaisedButton(
                           padding: EdgeInsets.only(
                               left: 80, right: 80, top: 13, bottom: 13),
-                          color: blue,
+                          color: GlobalData.blue,
                           child: new Text(
                             "Log in",
                             style: TextStyle(color: Colors.white, fontSize: 18),

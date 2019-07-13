@@ -121,7 +121,7 @@ class _createnewclassState extends State<createnewclass> {
                             child: Text(
                               'Name of Classroom',
                               style: TextStyle(
-                                color: lightblue,
+                                color: GlobalData.lightblue,
                                 fontSize: 18,
                                 fontWeight: FontWeight.bold,
                               ),
@@ -148,7 +148,7 @@ class _createnewclassState extends State<createnewclass> {
                       ],
                     )),
                 GradientButtonText(
-                  linearGradient: LinearGradient(colors: <Color>[purple, pink]),
+                  linearGradient: LinearGradient(colors: <Color>[GlobalData.purple, GlobalData.pink]),
                   text: Text(
                     "Create a Class",
                     style: TextStyle(

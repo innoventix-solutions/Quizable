@@ -36,12 +36,12 @@ class _alllevelState extends State<alllevel> {
                                   padding: const EdgeInsets.only(top:15),
 
                                   child: Text('Confirmation',textAlign: TextAlign.center,
-                                    style: TextStyle(color: lightblue,fontSize: 25,fontWeight: FontWeight.bold),),
+                                    style: TextStyle(color: GlobalData.lightblue,fontSize: 25,fontWeight: FontWeight.bold),),
                                 )),
 
 
                                 new Divider(
-                                  color: gray,
+                                  color: GlobalData.gray,
                                 ),
                                 Container(
                                   padding: EdgeInsets.all(30),
@@ -49,7 +49,7 @@ class _alllevelState extends State<alllevel> {
                                     children: <Widget>[
                                       Text('You have completed all the \nquestions levels for this Quiz\nexercise. \nDo you want to preview \nquestions before publishing?',
                                         style: TextStyle(fontWeight: FontWeight.bold,
-                                            fontSize: 15,color: black),textAlign: TextAlign.center,),
+                                            fontSize: 15,color: GlobalData.black),textAlign: TextAlign.center,),
 
                                     ],
                                   ),
@@ -64,7 +64,7 @@ class _alllevelState extends State<alllevel> {
                                       Container(padding: EdgeInsets.all(5),
                                         child: SizedBox(width: 100,
                                           child: GradientButtonText(linearGradient:
-                                          LinearGradient(colors: <Color>[navy,navyblue]),
+                                          LinearGradient(colors: <Color>[GlobalData.navy,GlobalData.navyblue]),
                                             text: Text('Preview',style: TextStyle(color: Colors.white,
                                               fontWeight: FontWeight.bold,fontSize: 12,),textAlign: TextAlign.center,),
 
@@ -76,7 +76,7 @@ class _alllevelState extends State<alllevel> {
                                       Container(padding: EdgeInsets.all(5),
                                         child: SizedBox(width: 100,
                                           child: GradientButtonText(linearGradient:
-                                          LinearGradient(colors: <Color>[purple,pink]),
+                                          LinearGradient(colors: <Color>[GlobalData.purple,GlobalData.pink]),
                                             text: Text('Publish',style: TextStyle(color: Colors.white,
                                               fontWeight: FontWeight.bold,fontSize: 12,),textAlign: TextAlign.center,),
 
@@ -127,7 +127,7 @@ class _alllevelState extends State<alllevel> {
             gradient: LinearGradient(
               begin: Alignment.topCenter,
               end: Alignment.bottomRight,
-              colors: [darkblue, darkpurple],
+              colors: [GlobalData.darkblue, GlobalData.darkpurple],
             ),
           ),
         ),
@@ -186,7 +186,7 @@ class _alllevelState extends State<alllevel> {
 
             Padding(
               padding: const EdgeInsets.only(left: 45,top:30),
-              child: Row(children: <Widget>[Icon(Icons.home,color: lightblue,),
+              child: Row(children: <Widget>[Icon(Icons.home,color: GlobalData.lightblue,),
                 Padding(
                   padding: const EdgeInsets.only(left: 20),
                   child: Text('Home',style: TextStyle(
@@ -196,7 +196,7 @@ class _alllevelState extends State<alllevel> {
 
             Padding(
               padding: const EdgeInsets.only(left: 45,top:20),
-              child: Row(children: <Widget>[Icon(Icons.assignment,color: lightblue,),
+              child: Row(children: <Widget>[Icon(Icons.assignment,color: GlobalData.lightblue,),
                 Padding(
                   padding: const EdgeInsets.only(left: 20),
                   child: Text('Assignment Question Bank',style: TextStyle(
@@ -206,7 +206,7 @@ class _alllevelState extends State<alllevel> {
 
             Padding(
               padding: const EdgeInsets.only(left: 45,top:20),
-              child: Row(children: <Widget>[Icon(Icons.live_help,color: lightblue,),
+              child: Row(children: <Widget>[Icon(Icons.live_help,color: GlobalData.lightblue,),
                 Padding(
                   padding: const EdgeInsets.only(left: 20),
                   child: Text('Set Quiz Questions',style: TextStyle(
@@ -217,7 +217,7 @@ class _alllevelState extends State<alllevel> {
             GestureDetector(
               child: Padding(
                 padding: const EdgeInsets.only(left: 45,top:20),
-                child: Row(children: <Widget>[Icon(Icons.offline_pin,color: lightblue,),
+                child: Row(children: <Widget>[Icon(Icons.offline_pin,color: GlobalData.lightblue,),
                   Padding(
                     padding: const EdgeInsets.only(left: 20),
                     child: Text('Set Spelling Challenge',style: TextStyle(
@@ -246,7 +246,7 @@ class _alllevelState extends State<alllevel> {
                       children: <Widget>[
                         Center(
                           child:
-                            levelcomplete(heading: "Level N Completed",paragraph: "Congratulations! You have completed the questions for all the Levels you listed for this Quiz.",color: blue,)
+                            levelcomplete(heading: "Level N Completed",paragraph: "Congratulations! You have completed the questions for all the Levels you listed for this Quiz.",color: GlobalData.blue,)
 
                         ),
 
@@ -261,7 +261,7 @@ class _alllevelState extends State<alllevel> {
                                     child: Padding(
                                       padding: const EdgeInsets.only(top: 25,bottom: 40),
                                       child: GradientButtonText(
-                                        linearGradient:LinearGradient(colors: <Color>[navy,navyblue]) ,
+                                        linearGradient:LinearGradient(colors: <Color>[GlobalData.navy,GlobalData.navyblue]) ,
                                         text: Text("Back",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 18,),
                                           textAlign: TextAlign.center,),
                                       ),
@@ -275,7 +275,7 @@ class _alllevelState extends State<alllevel> {
                                     child: Padding(
                                       padding: const EdgeInsets.only(top: 25,bottom: 40),
                                       child: GradientButtonText(
-                                        linearGradient:LinearGradient(colors: <Color>[purple,pink]) ,
+                                        linearGradient:LinearGradient(colors: <Color>[GlobalData.purple,GlobalData.pink]) ,
                                         text: Text("Finish",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 18,),
                                           textAlign: TextAlign.center,),
                                         ButtonClick: ()=> _confirmDialog(context),

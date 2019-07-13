@@ -76,7 +76,7 @@ class _studentjoinState extends State<studentjoin> {
                             child: Text(
                               'Class Code',
                               style: TextStyle(
-                                  color: lightblue,
+                                  color: GlobalData.lightblue,
                                   fontSize: 15,
                                   fontWeight: FontWeight.bold),
                             )),
@@ -108,7 +108,7 @@ class _studentjoinState extends State<studentjoin> {
                   child: Container(
                     width: 200,
                     child: GradientButtonText(
-                      linearGradient: LinearGradient(colors: <Color>[purple, pink]),
+                      linearGradient: LinearGradient(colors: <Color>[GlobalData.purple, GlobalData.pink]),
                       text: Text(
                         "Join",
                         style: TextStyle(
@@ -128,7 +128,7 @@ class _studentjoinState extends State<studentjoin> {
                     width: 200,
                     child: GradientButtonText(
                       linearGradient:
-                      LinearGradient(colors: <Color>[navy, navyblue]),
+                      LinearGradient(colors: <Color>[GlobalData.navy, GlobalData.navyblue]),
                       text: Text(
                         "Cancel",
                         style: TextStyle(
@@ -142,10 +142,10 @@ class _studentjoinState extends State<studentjoin> {
                 ),
 
                 Container(padding: EdgeInsets.only(top: 50),
-                    child: Text('or Play Global Quiz',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18,color: lightblue),)),
-                Text('&',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18,color: lightblue),),
+                    child: Text('or Play Global Quiz',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18,color: GlobalData.lightblue),)),
+                Text('&',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18,color: GlobalData.lightblue),),
                 Text('Spelling Challenge',
-                  style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18,color: lightblue),)
+                  style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18,color: GlobalData.lightblue),)
               ],
             ),
           )),

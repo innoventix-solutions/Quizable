@@ -24,7 +24,7 @@ class _classroomstudentState extends State<classroomstudent> {
                 gradient: LinearGradient(
                   begin: Alignment.centerLeft,
                   end: Alignment.centerRight,
-                  colors: [darkblue, darkpurple],
+                  colors: [GlobalData.darkblue, GlobalData.darkpurple],
                 ),
               ),
             ),
@@ -128,8 +128,8 @@ class _classroomstudentState extends State<classroomstudent> {
                 padding: const EdgeInsets.all(18.0),
                 child: Column(
                   children: <Widget>[
-                    Text('P Stand for student parent',style: TextStyle(color: green,fontWeight: FontWeight.bold,fontSize: 15),),
-                    Text('email or phone number',style: TextStyle(color: green,fontWeight: FontWeight.bold,fontSize: 15),)
+                    Text('P Stand for student parent',style: TextStyle(color: GlobalData.green,fontWeight: FontWeight.bold,fontSize: 15),),
+                    Text('email or phone number',style: TextStyle(color: GlobalData.green,fontWeight: FontWeight.bold,fontSize: 15),)
                   ],
                 ),
               ),
@@ -139,16 +139,16 @@ class _classroomstudentState extends State<classroomstudent> {
                   children: <Widget>[
                     Padding(
                       padding: const EdgeInsets.only(right: 10),
-                      child: Text('Add Student',style: TextStyle(color: lightblue,fontSize: 15,fontWeight: FontWeight.bold),),
+                      child: Text('Add Student',style: TextStyle(color: GlobalData.lightblue,fontSize: 15,fontWeight: FontWeight.bold),),
                     ),
 
                     Card(shape: CircleBorder(),
                         elevation: 0.0,
                         child: Padding(
                           padding: const EdgeInsets.all(4.0),
-                          child: new Icon(Icons.add,color: white,),
+                          child: new Icon(Icons.add,color: GlobalData.white,),
                         ),
-                       color:lightblue,
+                       color:GlobalData.lightblue,
 
                     ),
                   ],

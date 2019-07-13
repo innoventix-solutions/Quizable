@@ -109,87 +109,87 @@ class _studentregState extends State<studentreg> {
                       ),
                       CustomTextFieldBorder(
                         controller: acc,
-                        hintColor: blue,
+                        hintColor: GlobalData.blue,
                         hintStyle: TextStyle(
-                          color: black,
+                          color: GlobalData.black,
                         ),
                         hintText: "Full Name",
                         icon: Icon(
                           Icons.account_circle,
-                          color: lightblue,
+                          color: GlobalData.lightblue,
                         ),
                       ),
                       CustomTextFieldBorder(
                         controller: username,
-                        hintColor: lightblue,
+                        hintColor: GlobalData.lightblue,
                         hintStyle: TextStyle(
-                          color: black,
+                          color: GlobalData.black,
                         ),
                         hintText: "User Name",
                         icon: Icon(
                           Icons.account_circle,
-                          color: lightblue,
+                          color: GlobalData.lightblue,
                         ),
                       ),
                       CustomTextFieldBorder(
                         controller: email,
-                        hintColor: lightblue,
+                        hintColor: GlobalData.lightblue,
                         hintStyle: TextStyle(
-                          color: black,
+                          color: GlobalData.black,
                         ),
                         hintText: "Email Address",
                         icon: Icon(
                           Icons.mail,
-                          color: lightblue,
+                          color: GlobalData.lightblue,
                         ),
                       ),
                       CustomTextFieldBorder(
                         controller: phone,
-                        hintColor: lightblue,
+                        hintColor: GlobalData.lightblue,
                         hintStyle: TextStyle(
-                          color: black,
+                          color: GlobalData.black,
                         ),
                         hintText: "Phone Number",
                         icon: Icon(
                           Icons.phone_android,
-                          color: lightblue,
+                          color: GlobalData.lightblue,
                         ),
                       ),
                       CustomTextFieldBorder(password: true,
                         controller: password,
-                        hintColor: lightblue,
+                        hintColor: GlobalData.lightblue,
                         hintStyle: TextStyle(
-                          color: black,
+                          color: GlobalData.black,
                         ),
                         hintText: "Password",
                         icon: Icon(
                           Icons.lock,
-                          color: lightblue,
+                          color: GlobalData.lightblue,
                         ),
 
                       ),
                       CustomTextFieldBorder(
                         controller: par_email,
-                        hintColor: lightblue,
+                        hintColor: GlobalData.lightblue,
                         hintStyle: TextStyle(
-                          color: black,
+                          color: GlobalData.black,
                         ),
                         hintText: "Parent’s Email",
                         icon: Icon(
                           Icons.email,
-                          color: lightblue,
+                          color: GlobalData.lightblue,
                         ),
                       ),
                       CustomTextFieldBorder(
                         controller: par_phone,
-                        hintColor: lightblue,
+                        hintColor: GlobalData.lightblue,
                         hintStyle: TextStyle(
-                          color: black,
+                          color: GlobalData.black,
                         ),
                         hintText: "Parent’s Mobile Number",
                         icon: Icon(
                           Icons.phone_android,
-                          color: lightblue,
+                          color: GlobalData.lightblue,
                         ),
                       ),
                       Padding(
@@ -204,7 +204,7 @@ class _studentregState extends State<studentreg> {
 
                                 height: 48,
                                 decoration: BoxDecoration(
-                                    border: Border.all(color: lightblue),
+                                    border: Border.all(color: GlobalData.lightblue),
                                     borderRadius: BorderRadius.circular(30)),
                                 child: Row(
                                   children: <Widget>[
@@ -213,13 +213,13 @@ class _studentregState extends State<studentreg> {
                                           left: 10, right: 5),
                                       child: Icon(
                                         Icons.calendar_today,
-                                        color: blue,
+                                        color: GlobalData.blue,
                                       ),
                                     ),
                                     Text(
                                       "${selectedDate.toLocal()}"
                                           .substring(0, 10),
-                                      style: TextStyle(color: black),
+                                      style: TextStyle(color: GlobalData.black),
                                     ),
                                   ],
                                 )),
@@ -235,7 +235,7 @@ class _studentregState extends State<studentreg> {
 
                           height: 48,
                           decoration: BoxDecoration(
-                              border: Border.all(color: lightblue),
+                              border: Border.all(color: GlobalData.lightblue),
                               borderRadius: BorderRadius.circular(30)),
                           child: Row(
                             children: <Widget>[
@@ -246,12 +246,12 @@ class _studentregState extends State<studentreg> {
                                   gendersel = value;
                                   setState(() {});
                                 },
-                                activeColor: blue,
+                                activeColor: GlobalData.blue,
                               ),
                               new Text(
                                 'Male',
                                 style:
-                                    new TextStyle(fontSize: 16.0, color: black),
+                                    new TextStyle(fontSize: 16.0, color: GlobalData.black),
                               ),
                               new Radio(
                                 value: "Female",
@@ -260,12 +260,12 @@ class _studentregState extends State<studentreg> {
                                   gendersel = value;
                                   setState(() {});
                                 },
-                                activeColor: blue,
+                                activeColor: GlobalData.blue,
                               ),
                               new Text(
                                 'Female',
                                 style:
-                                    new TextStyle(fontSize: 16.0, color: black),
+                                    new TextStyle(fontSize: 16.0, color: GlobalData.black),
                               ),
                              /* new Radio(
                                 value: "Other",
@@ -306,7 +306,7 @@ class _studentregState extends State<studentreg> {
                               Signup();
                             },
                             "Get Started",
-                            LinearGradient(colors: <Color>[purple, pink]),
+                            LinearGradient(colors: <Color>[GlobalData.purple, GlobalData.pink]),
                           ),
                         ),
                       ),
@@ -314,12 +314,12 @@ class _studentregState extends State<studentreg> {
                           padding: EdgeInsets.only(top: 5),
                           child: Text(
                             'By creating an account , you agree to our',
-                            style: TextStyle(color: black, fontSize: 15),
+                            style: TextStyle(color: GlobalData.black, fontSize: 15),
                           )),
                       new Container(
                           child: Text(
                         'Terms & Conditions and Privacy Policy.',
-                        style: TextStyle(color: black, fontSize: 15),
+                        style: TextStyle(color: GlobalData.black, fontSize: 15),
                       )),
                       Padding(padding: EdgeInsets.only(top: 10)),
                       Container(
@@ -328,7 +328,7 @@ class _studentregState extends State<studentreg> {
                         children: <Widget>[
                           Text(
                             'Already have account?',
-                            style: TextStyle(color: black, fontSize: 15),
+                            style: TextStyle(color: GlobalData.black, fontSize: 15),
                             textAlign: TextAlign.center,
                           ),
                           Text(" "),

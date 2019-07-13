@@ -24,7 +24,7 @@ class _addstudentState extends State<addstudent> {
             gradient: LinearGradient(
               begin: Alignment.centerLeft,
               end: Alignment.centerRight,
-              colors: [darkblue, darkpurple],
+              colors: [GlobalData.darkblue, GlobalData.darkpurple],
             ),
           ),
         ),
@@ -63,7 +63,7 @@ class _addstudentState extends State<addstudent> {
             padding: const EdgeInsets.only(top: 80),
             child: Text(
               'Student Invite Code',
-              style: TextStyle(color: blue, fontSize: 18),
+              style: TextStyle(color: GlobalData.blue, fontSize: 18),
             ),
           ),
           Row(
@@ -114,13 +114,13 @@ class _addstudentState extends State<addstudent> {
                     shape: BoxShape.circle,
                     // You can use like this way or like the below line
                     //borderRadius: new BorderRadius.circular(10.0),
-                    color: blue,
+                    color: GlobalData.blue,
                   ),
                   child: IconButton(
                     onPressed: (){},
                     icon: Icon(
                       Icons.share,
-                      color: white,
+                      color: GlobalData.white,
                       size: 20,
                     ),
                   ))

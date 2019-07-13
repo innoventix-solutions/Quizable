@@ -37,7 +37,7 @@ class _drawerState extends State<drawer> {
             gradient: LinearGradient(
               begin: Alignment.topCenter,
               end: Alignment.bottomRight,
-              colors: [darkblue, darkpurple],
+              colors: [GlobalData.darkblue, GlobalData.darkpurple],
             ),
           ),
         ),
@@ -103,7 +103,7 @@ class _drawerState extends State<drawer> {
     child: Container(height: 100,width: 150,
 
 
-    child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(10),),color:bluecard,),
+    child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(10),),color:GlobalData.bluecard,),
 
 
     child:Center(
@@ -124,7 +124,7 @@ class _drawerState extends State<drawer> {
                           child: Container(height: 100,width: 150,
 
 
-                            child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(10),),color:pinkcard,),
+                            child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(10),),color:GlobalData.pinkcard,),
 
 
                               child:Center(
@@ -149,7 +149,7 @@ class _drawerState extends State<drawer> {
                     padding: const EdgeInsets.only(top: 30,left: 15),
                     child: Row(mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        Container(height: 100,width: 150,decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(10),),color:greencard,),
+                        Container(height: 100,width: 150,decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(10),),color:GlobalData.greencard,),
 
 
 
@@ -172,7 +172,7 @@ class _drawerState extends State<drawer> {
                           child: Container(height: 100,width: 150,
 
 
-    child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(10),),color:orange,),
+    child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(10),),color:GlobalData.orange,),
 
 
                                 child:Center(
@@ -213,7 +213,7 @@ class _drawerState extends State<drawer> {
             padding: const EdgeInsets.only(top: 40),
             child: GestureDetector(
                 child: Text("Switch Classroom", style: TextStyle(decoration: TextDecoration.underline,
-                    color: lightblue,
+                    color: GlobalData.lightblue,
                     fontSize: 22,
                     fontWeight: FontWeight.bold)),
                 onTap: () {
@@ -266,7 +266,7 @@ class _drawerState extends State<drawer> {
 
             Padding(
               padding: const EdgeInsets.only(left: 45,top:30),
-              child: Row(children: <Widget>[Icon(Icons.home,color: lightblue,),
+              child: Row(children: <Widget>[Icon(Icons.home,color: GlobalData.lightblue,),
                 Padding(
                   padding: const EdgeInsets.only(left: 20),
                   child: Text('Home',style: TextStyle(
@@ -276,7 +276,7 @@ class _drawerState extends State<drawer> {
 
             Padding(
               padding: const EdgeInsets.only(left: 45,top:20),
-              child: Row(children: <Widget>[Icon(Icons.info,color: lightblue,),
+              child: Row(children: <Widget>[Icon(Icons.info,color: GlobalData.lightblue,),
                 Padding(
                   padding: const EdgeInsets.only(left: 20),
                   child: Text('About EduSupport',style: TextStyle(
@@ -286,7 +286,7 @@ class _drawerState extends State<drawer> {
 
             Padding(
               padding: const EdgeInsets.only(left: 45,top:20),
-              child: Row(children: <Widget>[Icon(Icons.dehaze,color: lightblue,),
+              child: Row(children: <Widget>[Icon(Icons.dehaze,color: GlobalData.lightblue,),
                 Padding(
                   padding: const EdgeInsets.only(left: 20),
                   child: Text('List of Classrooms',style: TextStyle(
@@ -296,7 +296,7 @@ class _drawerState extends State<drawer> {
 
             Padding(
               padding: const EdgeInsets.only(left: 45,top:20),
-              child: Row(children: <Widget>[Icon(Icons.person,color: lightblue,),
+              child: Row(children: <Widget>[Icon(Icons.person,color: GlobalData.lightblue,),
                 Padding(
                   padding: const EdgeInsets.only(left: 20),
                   child: Text('Edit Profile',style: TextStyle(
@@ -306,7 +306,7 @@ class _drawerState extends State<drawer> {
 
             Padding(
               padding: const EdgeInsets.only(left: 45,top:20),
-              child: Row(children: <Widget>[Icon(Icons.settings,color: lightblue,),
+              child: Row(children: <Widget>[Icon(Icons.settings,color: GlobalData.lightblue,),
                 Padding(
                   padding: const EdgeInsets.only(left: 20),
                   child: Text('Manage Account',style: TextStyle(
@@ -316,7 +316,7 @@ class _drawerState extends State<drawer> {
 
             Padding(
               padding: const EdgeInsets.only(left: 45,top:20),
-              child: Row(children: <Widget>[Icon(Icons.notifications,color: lightblue,),
+              child: Row(children: <Widget>[Icon(Icons.notifications,color: GlobalData.lightblue,),
                 Padding(
                   padding: const EdgeInsets.only(left: 20),
                   child: Text('Announcements',style: TextStyle(
@@ -326,7 +326,7 @@ class _drawerState extends State<drawer> {
 
             Padding(
               padding: const EdgeInsets.only(left: 45,top:20),
-              child: Row(children: <Widget>[Icon(Icons.share,color: lightblue,),
+              child: Row(children: <Widget>[Icon(Icons.share,color: GlobalData.lightblue,),
                 Padding(
                   padding: const EdgeInsets.only(left: 20),
                   child: Text('Share App',style: TextStyle(
@@ -336,7 +336,7 @@ class _drawerState extends State<drawer> {
 
             Padding(
               padding: const EdgeInsets.only(left: 45,top:20),
-              child: Row(children: <Widget>[Icon(Icons.power_settings_new,color: lightblue,),
+              child: Row(children: <Widget>[Icon(Icons.power_settings_new,color: GlobalData.lightblue,),
                 Padding(
                   padding: const EdgeInsets.only(left: 20),
                   child: Text('Log out',style: TextStyle(

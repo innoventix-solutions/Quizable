@@ -25,7 +25,7 @@ class _myquizexerciseState extends State<myquizexercise> {
             gradient: LinearGradient(
               begin: Alignment.topCenter,
               end: Alignment.bottomRight,
-              colors: [darkblue, darkpurple],
+              colors: [GlobalData.darkblue, GlobalData.darkpurple],
             ),
           ),
         ),
@@ -56,7 +56,7 @@ class _myquizexerciseState extends State<myquizexercise> {
               width: MediaQuery.of(context).size.width,
 
               decoration: BoxDecoration(gradient: LinearGradient(
-                colors: <Color>[pinkred, yellow],
+                colors: <Color>[GlobalData.pinkred, GlobalData.yellow],
                 begin: Alignment.centerLeft,
                 end: Alignment.centerRight,),),
 
@@ -74,7 +74,7 @@ class _myquizexerciseState extends State<myquizexercise> {
                                 end: Alignment.bottomCenter,
                                 colors: <Color>[Colors.yellow,Colors.yellow]) ,
                             text: Text("New",
-                              style: TextStyle(color: gray,
+                              style: TextStyle(color: GlobalData.gray,
                                 fontWeight: FontWeight.bold,fontSize: 15,),
                               textAlign: TextAlign.center,),
                             ButtonClick: (){
@@ -83,7 +83,7 @@ class _myquizexerciseState extends State<myquizexercise> {
                         Padding(
                           padding: const EdgeInsets.only(left: 20),
                           child: Text('20-02-2019',style: TextStyle(
-                              fontSize: 15,fontWeight: FontWeight.bold,color:white
+                              fontSize: 15,fontWeight: FontWeight.bold,color:GlobalData.white
                           ),),
                         ),
                       ],
@@ -95,7 +95,7 @@ class _myquizexerciseState extends State<myquizexercise> {
                     child: Row(
                       children: <Widget>[
                         Text('The World and Climate Change',style: TextStyle(
-                            fontSize: 18,fontWeight: FontWeight.bold,color:white
+                            fontSize: 18,fontWeight: FontWeight.bold,color:GlobalData.white
                         ),),
                       ],
                     ),
@@ -108,12 +108,12 @@ class _myquizexerciseState extends State<myquizexercise> {
                         child: Row(
                           children: <Widget>[
                             Text('Level 1',style: TextStyle(
-                                fontSize: 15,fontWeight: FontWeight.bold,color:white
+                                fontSize: 15,fontWeight: FontWeight.bold,color:GlobalData.white
                             ),),
                             Padding(
                               padding: const EdgeInsets.only(left: 20),
                               child: Text('105 Minutes',style: TextStyle(
-                                  fontSize: 15,fontWeight: FontWeight.bold,color:white
+                                  fontSize: 15,fontWeight: FontWeight.bold,color:GlobalData.white
                               ),),
                             ),
                           ],
@@ -132,7 +132,7 @@ class _myquizexerciseState extends State<myquizexercise> {
                           child: GradientButtonText(
                             linearGradient:LinearGradient(begin:Alignment.topCenter,
                                 end: Alignment.bottomCenter,
-                                colors: <Color>[gray,gray]) ,
+                                colors: <Color>[GlobalData.gray,GlobalData.gray]) ,
                             text: Text("Closing",
                               style: TextStyle(color: Colors.white,
                                 fontWeight: FontWeight.bold,fontSize: 15,),
@@ -144,7 +144,7 @@ class _myquizexerciseState extends State<myquizexercise> {
                         Padding(
                           padding: const EdgeInsets.only(left: 20),
                           child: Text('Sat. 27 Mar, 2019, 12:00',style:TextStyle(
-                              fontSize: 15,color: white
+                              fontSize: 15,color: GlobalData.white
                           ) ,),
                         )
                       ],
@@ -165,7 +165,7 @@ class _myquizexerciseState extends State<myquizexercise> {
                 children: <Widget>[
                   Padding(
                     padding: const EdgeInsets.only(left: 5,right: 5,top: 5,bottom: 15),
-                    child: Card(elevation: 5.0,color: white,
+                    child: Card(elevation: 5.0,color: GlobalData.white,
                       child:Column(
                         children: <Widget>[
                           Padding(
@@ -181,7 +181,7 @@ class _myquizexerciseState extends State<myquizexercise> {
                                 Padding(
                                   padding: const EdgeInsets.only(right: 5),
                                   child: RaisedButton(child: Text("Status",style: TextStyle(
-                                    color: white
+                                    color: GlobalData.white
                                   ),),
                                     shape: RoundedRectangleBorder(borderRadius: new BorderRadius.circular(10.0)),),
                                 )
@@ -211,7 +211,7 @@ class _myquizexerciseState extends State<myquizexercise> {
 
                                 Padding(
                                   padding: const EdgeInsets.only(left: 10),
-                                  child: RaisedButton(child: Text("Status",style: TextStyle(color: white,
+                                  child: RaisedButton(child: Text("Status",style: TextStyle(color: GlobalData.white,
 
                                   ),),
                                     shape: RoundedRectangleBorder(borderRadius: new BorderRadius.circular(10.0)),),

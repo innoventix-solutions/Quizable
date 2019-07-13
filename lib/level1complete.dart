@@ -28,7 +28,7 @@ class _level1State extends State<level1> {
             gradient: LinearGradient(
               begin: Alignment.topCenter,
               end: Alignment.bottomRight,
-              colors: [darkblue, darkpurple],
+              colors: [GlobalData.darkblue, GlobalData.darkpurple],
             ),
           ),
         ),
@@ -87,7 +87,7 @@ class _level1State extends State<level1> {
 
             Padding(
               padding: const EdgeInsets.only(left: 45,top:30),
-              child: Row(children: <Widget>[Icon(Icons.home,color: lightblue,),
+              child: Row(children: <Widget>[Icon(Icons.home,color: GlobalData.lightblue,),
                 Padding(
                   padding: const EdgeInsets.only(left: 20),
                   child: Text('Home',style: TextStyle(
@@ -97,7 +97,7 @@ class _level1State extends State<level1> {
 
             Padding(
               padding: const EdgeInsets.only(left: 45,top:20),
-              child: Row(children: <Widget>[Icon(Icons.assignment,color: lightblue,),
+              child: Row(children: <Widget>[Icon(Icons.assignment,color: GlobalData.lightblue,),
                 Padding(
                   padding: const EdgeInsets.only(left: 20),
                   child: Text('Assignment Question Bank',style: TextStyle(
@@ -107,7 +107,7 @@ class _level1State extends State<level1> {
 
             Padding(
               padding: const EdgeInsets.only(left: 45,top:20),
-              child: Row(children: <Widget>[Icon(Icons.live_help,color: lightblue,),
+              child: Row(children: <Widget>[Icon(Icons.live_help,color: GlobalData.lightblue,),
                 Padding(
                   padding: const EdgeInsets.only(left: 20),
                   child: Text('Set Quiz Questions',style: TextStyle(
@@ -118,7 +118,7 @@ class _level1State extends State<level1> {
             GestureDetector(
               child: Padding(
                 padding: const EdgeInsets.only(left: 45,top:20),
-                child: Row(children: <Widget>[Icon(Icons.offline_pin,color: lightblue,),
+                child: Row(children: <Widget>[Icon(Icons.offline_pin,color: GlobalData.lightblue,),
                   Padding(
                     padding: const EdgeInsets.only(left: 20),
                     child: Text('Set Spelling Challenge',style: TextStyle(
@@ -147,7 +147,7 @@ class _level1State extends State<level1> {
                       children: <Widget>[
                         Center(
                           child:
-                          levelcomplete(color: blue,heading: "Level 1 Completed",paragraph: "Congratulations! You have completed the questions for Level 1 Quiz. Use the Next button to continue to set questions for Level 2 Quiz.",)
+                          levelcomplete(color: GlobalData.blue,heading: "Level 1 Completed",paragraph: "Congratulations! You have completed the questions for Level 1 Quiz. Use the Next button to continue to set questions for Level 2 Quiz.",)
 
                         ),
 
@@ -161,7 +161,7 @@ class _level1State extends State<level1> {
                                 child: Padding(
                                   padding: const EdgeInsets.only(top: 25,bottom: 40),
                                   child: GradientButtonText(
-                                    linearGradient:LinearGradient(colors: <Color>[navy,navyblue]) ,
+                                    linearGradient:LinearGradient(colors: <Color>[GlobalData.navy,GlobalData.navyblue]) ,
                                     text: Text("Back",style: TextStyle(color: Colors.white,
                                       fontWeight: FontWeight.bold,fontSize: 18,),
                                       textAlign: TextAlign.center,),
@@ -176,7 +176,7 @@ class _level1State extends State<level1> {
                                 child: Padding(
                                   padding: const EdgeInsets.only(top: 25,bottom: 40),
                                   child: GradientButtonText(
-                                    linearGradient:LinearGradient(colors: <Color>[purple,pink]) ,
+                                    linearGradient:LinearGradient(colors: <Color>[GlobalData.purple,GlobalData.pink]) ,
                                     text: Text("Next Level",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 18,),
                                       textAlign: TextAlign.center,),
                                   ),
