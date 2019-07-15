@@ -97,32 +97,67 @@ class _studentdashboardState extends State<studentdashboard> {
               child: Row(children: <Widget>[Icon(Icons.assignment,color: GlobalData.lightblue,),
                 Padding(
                   padding: const EdgeInsets.only(left: 20),
-                  child: Text('Assignment Question Bank',style: TextStyle(
+                  child: Text('About eduSupport',style: TextStyle(
                       color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
                 )],),
             ),
 
             Padding(
               padding: const EdgeInsets.only(left: 45,top:20),
-              child: Row(children: <Widget>[Icon(Icons.live_help,color: GlobalData.lightblue,),
+              child: Row(children: <Widget>[Icon(Icons.account_circle,color: GlobalData.lightblue,),
                 Padding(
                   padding: const EdgeInsets.only(left: 20),
-                  child: Text('Set Quiz Questions',style: TextStyle(
+                  child: Text('Edit Profile',style: TextStyle(
                       color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
                 )],),
             ),
 
+
             GestureDetector(
               child: Padding(
                 padding: const EdgeInsets.only(left: 45,top:20),
-                child: Row(children: <Widget>[Icon(Icons.offline_pin,color: GlobalData.lightblue,),
+                child: Row(children: <Widget>[Icon(Icons.gamepad,color: GlobalData.lightblue,),
                   Padding(
                     padding: const EdgeInsets.only(left: 20),
-                    child: Text('Set Spelling Challenge',style: TextStyle(
+                    child: Text('Game Room',style: TextStyle(
                         color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
                   ),],),
               ),onTap: (){},
             ),
+            GestureDetector(
+              child: Padding(
+                padding: const EdgeInsets.only(left: 45,top:20),
+                child: Row(children: <Widget>[Icon(Icons.surround_sound,color: GlobalData.lightblue,),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 20),
+                    child: Text('Announcements',style: TextStyle(
+                        color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
+                  ),],),
+              ),onTap: (){},
+            ),
+            GestureDetector(
+              child: Padding(
+                padding: const EdgeInsets.only(left: 45,top:20),
+                child: Row(children: <Widget>[Icon(Icons.share,color: GlobalData.lightblue,),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 20),
+                    child: Text('Share App',style: TextStyle(
+                        color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
+                  ),],),
+              ),onTap: (){},
+            ),
+            GestureDetector(
+              child: Padding(
+                padding: const EdgeInsets.only(left: 45,top:20),
+                child: Row(children: <Widget>[Icon(Icons.power_settings_new,color: GlobalData.lightblue,),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 20),
+                    child: Text('Log Out',style: TextStyle(
+                        color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
+                  ),],),
+              ),onTap: (){},
+            ),
+
 
 
 
