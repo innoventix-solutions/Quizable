@@ -139,7 +139,7 @@ class _loginState extends State<login> {
                       child: Container(
                           width: 270,
                           child: Text(
-                            'Forget Password?',
+                            'Forgot Password?',
                             textAlign: TextAlign.right,
                             style: TextStyle(color: Colors.white, fontSize: 15),
                           )),
