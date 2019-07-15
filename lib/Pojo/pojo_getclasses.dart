@@ -6,10 +6,11 @@ class getclasses{
   String studentinvitecode;
   String teacherinvitecode;
   String createddate;
+  bool selected;
 
 
   getclasses({this.id,this.userid,this.classname,this.classicon,this.studentinvitecode,
-  this.teacherinvitecode,this.createddate});
+  this.teacherinvitecode,this.createddate,this.selected});
 
 
   factory getclasses.fromJson(Map<String,dynamic> parsedJson){
@@ -22,6 +23,7 @@ class getclasses{
       studentinvitecode: parsedJson['student_invite_code'],
       teacherinvitecode: parsedJson['teacher_invite_code'],
       createddate: parsedJson['create_date'],
+      selected: false
     );
   }
 }

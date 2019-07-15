@@ -92,58 +92,73 @@ class _quizclassState extends State<quizclass> {
         body:Column(
           children: <Widget>[
             Expanded(
-              child: GestureDetector(
+              child: new
+              ListView.builder(
+                  itemCount: Class_list.length,
 
-                child: new
-                ListView.builder(
-                    itemCount: Class_list.length,
+                  itemBuilder: (BuildContext ctxt, int index) {
+                    return  GestureDetector(
+                      onTap: (){
 
-                    itemBuilder: (BuildContext ctxt, int index) {
-                      return  Column(
+                        if(Class_list[index].selected==false){
+                          Class_list[index].selected=true;
+                        }else{
+                          Class_list[index].selected=false;
+                        }
+                        setState(() {
+
+                        });
+
+
+                      },
+                      child: Column(
                         children: <Widget>[
-                          Row(
-                            children: <Widget>[
-                              Stack(
-                                children: <Widget>[
-                                  Container(height: 70,width: 70,margin: EdgeInsets.only(left: 20,top: 15,bottom: 10),
-                                    decoration: new BoxDecoration(
-                                        shape: BoxShape.circle,
-                                        image: new DecorationImage(
-                                          fit: BoxFit.fill,
-                                          image:AssetImage('assets/images/bg.png'),
-                                        )
-                                    ),),
-                                ],
-                              ),
+                          Container(
+                            color: Class_list[index].selected==true?Colors.blue[50]:Colors.white,
+                            child: Row(
+                              children: <Widget>[
+                                Stack(
+                                  children: <Widget>[
+                                    Container(height: 70,width: 70,margin: EdgeInsets.only(left: 20,top: 15,bottom: 10),
+                                      decoration: new BoxDecoration(
+                                          shape: BoxShape.circle,
+                                          image: new DecorationImage(
+                                            fit: BoxFit.fill,
+                                            image:AssetImage('assets/images/bg.png'),
+                                          )
+                                      ),),
+                                  ],
+                                ),
 
 
 
 
 
-                              Expanded(
-                                child: Padding(
-                                  padding: const EdgeInsets.only(left:30),
-                                  child: Column(mainAxisAlignment: MainAxisAlignment.start,crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: <Widget>[
-                                      Text(Class_list[index].classname,style: TextStyle(fontSize: 15),textAlign: TextAlign.left,),
-                                      Padding(
-                                        padding: const EdgeInsets.only(top:5),
-                                        child: Text('12 Students',style: TextStyle(fontSize: 12),),
-                                      ),
-                                    ],
+                                Expanded(
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(left:30),
+                                    child: Column(mainAxisAlignment: MainAxisAlignment.start,crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: <Widget>[
+                                        Text(Class_list[index].classname,style: TextStyle(fontSize: 15),textAlign: TextAlign.left,),
+                                        Padding(
+                                          padding: const EdgeInsets.only(top:5),
+                                          child: Text('12 Students',style: TextStyle(fontSize: 12),),
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                 ),
-                              ),
 
 
-                            ], ),
+                              ], ),
+                          ),
                           new Divider(
                             color: Colors.black,
                           ),
                         ],
-                      );
-                    }
-                ),
+                      ),
+                    );
+                  }
               ),
             ),
             Padding(
@@ -156,6 +171,27 @@ class _quizclassState extends State<quizclass> {
                       children: <Widget>[
                         SizedBox(width: 100,
                           child: GradientButtonText(
+                            ButtonClick: (){
+
+                              GlobalData.Selected_class=null;
+                              GlobalData.Selected_class_IDS=null;
+
+                              for(int i=0;i<Class_list.length;i++) {
+                                if(Class_list[i].selected==true) {
+                                  if (GlobalData.Selected_class == null) {
+                                    GlobalData.Selected_class=Class_list[i].classname;
+                                    GlobalData.Selected_class_IDS=Class_list[i].id;
+                                  }else
+                                  {
+                                    GlobalData.Selected_class+=", "+Class_list[i].classname;
+                                    GlobalData.Selected_class_IDS+=","+Class_list[i].id;
+                                  }
+                                }
+                              }
+
+                              Navigator.of(context).pushNamed('setquizquestions');
+
+                            },
                             linearGradient:LinearGradient(colors: <Color>[GlobalData.purple,GlobalData.pink]) ,
                             text: Text("Apply",
                               style: TextStyle(color: Colors.white,
