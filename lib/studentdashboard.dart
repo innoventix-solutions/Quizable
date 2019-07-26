@@ -67,7 +67,7 @@ class _studentdashboardState extends State<studentdashboard> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[Padding(
                           padding: const EdgeInsets.only(bottom: 15),
-                          child: Text('Stanley Ohanugo',
+                          child: Text(GlobalData.Username,
                             style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,
                                 fontSize: 20),),
                         ),
@@ -203,6 +203,8 @@ class _studentdashboardState extends State<studentdashboard> {
                                 style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,
                                     fontSize: 18),textAlign: TextAlign.center,),
                               ButtonClick: (){
+
+                                Navigator.of(context).pushNamed('Quiz_List_student');
 
                               },)),
                       ],

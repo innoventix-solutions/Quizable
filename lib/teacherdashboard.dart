@@ -239,7 +239,7 @@ class _teacherdashboardState extends State<teacherdashboard> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[Padding(
                           padding: const EdgeInsets.only(bottom: 15),
-                          child: Text('Stanley Ohanugo',
+                          child: Text(GlobalData.Username,
                             style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,
                                 fontSize: 20),),
                         ),

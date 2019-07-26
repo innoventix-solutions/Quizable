@@ -56,13 +56,14 @@ class _loginState extends State<login> {
 GlobalData.Username=statuss['userdata']['username'];
         print(statuss['userdata']['user_type']);
         GlobalData.uid = statuss['userdata']['ID'].toString();
+        GlobalData.Username = statuss['userdata']['username'].toString();
 
         if (statuss['userdata']['user_type'] == "teacher") {
           Navigator.of(context).pushReplacementNamed('techerjoinclass');
         } else if (statuss['userdata']['user_type'] == "admin_teacher") {
           Navigator.of(context).pushReplacementNamed('welcome');
         } else {
-          Navigator.of(context).pushReplacementNamed('studentjoinclass');
+          Navigator.of(context).pushReplacementNamed('studentjoin');
         }
       } else {
         Show_toast("Invalid Username or Password", Colors.red);
@@ -82,7 +83,7 @@ GlobalData.Username=statuss['userdata']['username'];
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Image.asset(
-                'assets/images/logo.png',
+                'assets/images/wlogo.png',
                 width: 80,
               ),
               Container(

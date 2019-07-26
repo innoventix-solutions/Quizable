@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:share/share.dart';
+import 'Questions_list.dart';
+import 'Quiz_list_student.dart';
 import 'globalvar.dart';
 import 'sec.dart';
 import 'card.dart';
@@ -81,6 +83,7 @@ class MyApp extends StatelessWidget {
         'signup_student': (context) => studentreg(),
         'studentjoin': (context) => studentjoin(),
         'studentjoinclass': (context) => studentdashboard(),
+        'studentdashboard': (context) => studentjoin(),
         'adminteacherjoinclass': (context) => techerjoinclass(),
         'teacherjoinclass': (context) => teacherdashboard(),
         'manageclassactivities': (context) => questionmenu(),
@@ -90,7 +93,9 @@ class MyApp extends StatelessWidget {
         'dashboard':(context) => teacherdashboard(),
         'setquestion':(context) => quizquestion(),
         'questions':(context)=>Questions(),
-        'exam':(context)=>Exam()
+        'exam':(context)=>Exam(),
+        'Quiz_List_student':(context)=>Quiz_List_student(),
+        'Question_List':(context)=>Question_List()
       },
     );
   }
@@ -102,6 +107,7 @@ class Myapplication extends StatefulWidget {
 }
 
 class _MyapplicationState extends State<Myapplication> {
+  var bluecolor=Color(0xff575DFF);
   @override
   Widget build(BuildContext context) {
     return Scaffold(

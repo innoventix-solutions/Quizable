@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 
 
@@ -49,6 +50,8 @@ class GlobalData{
   static String teacher_code;
   static String Username;
   static String Selected_subject;
+  static String Selected_class;
+  static String Selected_class_IDS;
   static List<bool> Slected_subject_bool=[false,false,false,false,false,false,false,false,false];
   static String QuizTitle="";
   static String QuizLevels="";
@@ -87,7 +90,7 @@ class drawerquiz extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[Padding(
                         padding: const EdgeInsets.only(bottom: 15),
-                        child: Text('Stanley Ohanugo',
+                        child: Text(GlobalData.Username,
                           style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,
                               fontSize: 16),),
                       ),
@@ -153,6 +156,7 @@ class drawerquiz extends StatelessWidget {
           ),
 
           GestureDetector(
+
             child: Padding(
               padding: const EdgeInsets.only(left: 35,top:20),
               child: Row(children: <Widget>[Icon(Icons.power_settings_new,color: GlobalData.lightblue,),
@@ -161,7 +165,14 @@ class drawerquiz extends StatelessWidget {
                   child: Text('Log out',style: TextStyle(
                       color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
                 ),],),
-            ),onTap: (){},
+            ),onTap: ()async{
+
+              SharedPreferences pre= await SharedPreferences.getInstance();
+              pre.clear();
+              Navigator.of(context).dispose();
+              Navigator.of(context).pushNamed('login');
+
+          },
           ),
 
 

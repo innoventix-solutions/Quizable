@@ -367,7 +367,10 @@ class _ExamState extends State<Exam> {
                         i++;
                         if(i==Quetions.length)
                         {
-                          ExamCompleted(context);
+                          getExamResult();
+
+                          i--;
+
                         }else {
                           setState(() {
 
@@ -389,6 +392,20 @@ class _ExamState extends State<Exam> {
     );
   }
 
+
+
+  getExamResult()async{
+    http.post("http://edusupportapp.com/api/get_user_quiz_result.php",body:{
+      "quiz_id":GlobalData.QuizID,
+      "user_id":GlobalData.uid
+    }).then((res){
+      print(res.body);
+      var parsedJson = jsonDecode(res.body);
+      print(parsedJson['useranswedata']['point_awarded']);
+
+      ExamCompleted(context,parsedJson['useranswedata']['point_awarded'].toString());
+    });
+  }
 
 
   @override
@@ -493,7 +510,7 @@ Matches =Quetions[i].anwer_options;*/
   }
 
 
-  void ExamCompleted(BuildContext context)  {
+  void ExamCompleted(BuildContext context,String Score)  {
     bool Selected = false;
     TextEditingController optioncontroller = new TextEditingController();
     showDialog(
@@ -523,11 +540,24 @@ Matches =Quetions[i].anwer_options;*/
                                     child: Text('Quiz Completed',textAlign: TextAlign.center,
                                       style: TextStyle(color: GlobalData.lightblue,fontSize: 25,fontWeight: FontWeight.bold),),
                                   )),
-
-
                                   new Divider(
                                     color: GlobalData.gray,
                                   ),
+                                  Center(child: Padding(
+                                    padding: const EdgeInsets.all(15),
+
+                                    child:
+                                    Image.asset("assets/images/trophy.png",height: 150,),
+                                  )),
+                                  Center(child: Padding(
+                                    padding: const EdgeInsets.only(top:15),
+
+                                    child: Text('Score : '+Score,textAlign: TextAlign.center,
+                                      style: TextStyle(color: GlobalData.lightblue,fontSize: 20,fontWeight: FontWeight.bold),),
+                                  )),
+
+
+
 
 
                                   Padding(
@@ -539,8 +569,10 @@ Matches =Quetions[i].anwer_options;*/
                                           child: SizedBox(width: 100,
                                             child: GradientButtonText(
                                               ButtonClick: (){
+                                                Navigator.of(context).pop();
 
-                                                Navigator.of(context).pushNamed('manageclassactivities');
+                                                Navigator.of(context).pop();
+                                                Navigator.of(context).pushNamed('Quiz_List_student');
                                                 setState(() {
 
                                                 });
