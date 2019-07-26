@@ -362,7 +362,19 @@ class _QuestionsState extends State<Questions> {
                                     });},),
                                   Expanded(child: Container(child: Text(Options[index].value)))
 
+                               , Padding(
+                                 padding: const EdgeInsets.all(8.0),
+                                 child: GestureDetector(
 
+                                     onTap: (){
+                                       Options.removeLast();
+                                       setState(() {
+
+                                       });
+
+                                     },
+                                     child: Icon(Icons.cancel,color: Colors.redAccent,size: 20,)),
+                               ),
 
                                 ],),);}),
                           ),
@@ -370,7 +382,7 @@ class _QuestionsState extends State<Questions> {
                       ),
                     ),
                   ),
-                ],
+                  ],
               ),
 
 
@@ -421,7 +433,14 @@ class _QuestionsState extends State<Questions> {
                                     ),
 
 
+                                    GestureDetector(onTap: (){
 
+                                      Matches.removeLast();
+                                      setState(() {
+
+                                      });
+                                    },
+                                        child: Icon(Icons.cancel,color: Colors.redAccent,size: 20,)),
 
 
 
@@ -477,8 +496,22 @@ class _QuestionsState extends State<Questions> {
                                     Options[index].trueanswer=value;setState(() {
 
                                     });},),
-                                  Text(Options[index].value,maxLines: 4,)
+                                  Expanded(child: Text(Options[index].value,maxLines: 4,)),
 
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: GestureDetector(
+
+                                      onTap: (){
+
+                                        Options.removeLast();
+                                        setState(() {
+
+                                        });
+                                      }
+
+                                        ,child: Icon(Icons.cancel,color: Colors.redAccent,size: 20,)),
+                                  ),
 
 
                                 ],),);}),
@@ -525,9 +558,22 @@ class _QuestionsState extends State<Questions> {
                                     Options[index].trueanswer=value;setState(() {
 
                                     });},),
-                                  Text(Options[index].value)
+                                  Expanded(child: Text(Options[index].value))
 
+,Padding(
+  padding: const EdgeInsets.all(8.0),
+  child:   GestureDetector(
+      onTap: (){
 
+        Options.removeLast();
+        setState(() {
+
+        });
+
+      },
+
+      child: Icon(Icons.cancel,color: Colors.redAccent,size: 20,)),
+),
 
                                 ],),);}),
                           ),

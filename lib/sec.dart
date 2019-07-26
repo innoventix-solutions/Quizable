@@ -22,8 +22,13 @@ class _secState extends State<sec> {
   TextEditingController email = new TextEditingController();
   TextEditingController phone = new TextEditingController();
   TextEditingController password = new TextEditingController();
+  TextEditingController cpass = new TextEditingController();
   TextEditingController disc = new TextEditingController();
   TextEditingController gender = new TextEditingController();
+
+
+
+
 
   Show_toast(String msg, Color color) {
     Fluttertoast.showToast(
@@ -37,6 +42,8 @@ class _secState extends State<sec> {
   }
 
   Signup() async {
+
+
 
 
     print(GlobalData.accounttype);
@@ -59,6 +66,9 @@ class _secState extends State<sec> {
 
 
     }).then((response) {
+
+
+
       var statuss = jsonDecode(response.body);
 
 
@@ -77,8 +87,51 @@ class _secState extends State<sec> {
 
 
 
+  check() {
+    bool emailValid = RegExp(r"^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[a-zA-Z]+").hasMatch(email.text.toString());
+    if(emailValid == false){
+
+      _showDialog1();
+    }
+      else
+    if (password.text.toString() == cpass.text.toString()) {
+      Signup();
+    } else {
+      _showDialog();
+    }
+  }
+
+  void _showDialog() {
+    // flutter defined function
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        // return object of type Dialog
+        return AlertDialog(
+          content: new Text("Password not matched"),
+        );
+      },
+    );
+  }
+
+  void _showDialog1() {
+    // flutter defined function
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        // return object of type Dialog
+        return AlertDialog(
+          content: new Text("Email is incorrect"),
+        );
+      },
+    );
+  }
+
+
 
  String gendersel = "Male";
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -155,10 +208,14 @@ class _secState extends State<sec> {
                         ),
                       ),
 
+
                       CustomTextFieldBorder(password:true,
                         controller:
                       password,hintColor: GlobalData.lightblue,hintStyle: TextStyle(color: GlobalData.black,),hintText: "Password",icon: Icon(Icons.lock,color: GlobalData.lightblue,),),
 
+                      CustomTextFieldBorder(password:true,
+                        controller:
+                        cpass,hintColor: GlobalData.lightblue,hintStyle: TextStyle(color: GlobalData.black,),hintText: "Confirm Password",icon: Icon(Icons.lock,color: GlobalData.lightblue,),),
 
                       CustomTextFieldBorder(controller:
                       disc,hintColor: GlobalData.lightblue,hintStyle: TextStyle(color: GlobalData.black,),hintText: "Discipline",icon: Icon(Icons.speaker_notes,color: GlobalData.lightblue,),),
@@ -261,8 +318,10 @@ class _secState extends State<sec> {
                              // print(selectedDate.toString().substring(0,10));
                               print(gendersel.toString());
 
-                              Signup();
-                            },
+                              check();
+
+
+                              },
                             "Get Started",
                             LinearGradient(colors: <Color>[GlobalData.purple, GlobalData.pink]),
 

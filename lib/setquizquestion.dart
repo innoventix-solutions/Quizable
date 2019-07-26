@@ -264,7 +264,7 @@ setalldetails(){
                           ),
                         ),
                       ),
-                      CustomTextField(Inputnumber: true,controller: durlevel,Texth: "10",hintStyle: TextStyle(fontSize: 20),),
+                      CustomTextField(Inputnumber: true,controller: durlevel,Texth: "10 Minutes",hintStyle: TextStyle(fontSize: 20),),
 
 
                       Padding(
@@ -481,6 +481,7 @@ setalldetails(){
 
                                   setalldetails();
                                   SaveQuiz();
+
 
                               },
                               ),

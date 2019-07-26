@@ -131,7 +131,8 @@ class _invitecodeState extends State<invitecode> {
                         //borderRadius: new BorderRadius.circular(10.0),
                         color: GlobalData.lightblue,
                       ),
-                      child: IconButton(onPressed: (){Share.share(GlobalData.student_code+" Please use this code to Join the Class.");},
+                      child: IconButton(onPressed: (){
+                        Share.share(GlobalData.Username +" Invites you to join the "+ GlobalData.class_name+" Please use this code "+GlobalData.student_code  +" to Join the Class.");},
                         icon: Icon(
                           Icons.share,
                           color: GlobalData.white,

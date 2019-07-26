@@ -137,15 +137,21 @@ class _techerjoinclassState extends State<techerjoinclass> {
                     ),
                   ),
                 ),
+
+
                 Padding(
-                  padding: const EdgeInsets.only(top: 20,bottom: 40),
+                  padding: const EdgeInsets.only(top: 10,bottom: 5),
+                  child: Text("Already joined a class?"),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 40),
                   child: Container(
                     width: 200,
                     child: GradientButtonText(
                       linearGradient:
                           LinearGradient(colors: <Color>[GlobalData.navy, GlobalData.navyblue]),
                       text: Text(
-                        "Cancel",
+                        "Proceed",
                         style: TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.bold,

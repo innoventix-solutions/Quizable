@@ -18,6 +18,7 @@ class _studentregState extends State<studentreg> {
   TextEditingController email = new TextEditingController();
   TextEditingController phone = new TextEditingController();
   TextEditingController password = new TextEditingController();
+  TextEditingController cpass = new TextEditingController();
   TextEditingController selectDate = new TextEditingController();
 
   TextEditingController par_email = new TextEditingController();
@@ -35,6 +36,7 @@ class _studentregState extends State<studentreg> {
         textColor: Colors.white,
         fontSize: 16.0);
   }
+
 
   Signup() async {
     http.post("http://edusupportapp.com/api/register.php", body: {
@@ -67,6 +69,28 @@ class _studentregState extends State<studentreg> {
       }
     });
   }
+
+  check() {
+    if (password.text.toString() == cpass.text.toString()) {
+      Signup();
+    } else {
+      _showDialog();
+    }
+  }
+
+  void _showDialog() {
+    // flutter defined function
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        // return object of type Dialog
+        return AlertDialog(
+          content: new Text("Password not matched"),
+        );
+      },
+    );
+  }
+
 
   DateTime selectedDate = DateTime.now();
 
@@ -103,7 +127,7 @@ class _studentregState extends State<studentreg> {
                           child: Container(
                             width: 70,
                             height: 70,
-                            child: Image.asset('assets/images/logo.jpg'),
+                            child: Image.asset('assets/images/logo.png'),
                           ),
                         ),
                       ),
@@ -168,6 +192,12 @@ class _studentregState extends State<studentreg> {
                         ),
 
                       ),
+
+                      CustomTextFieldBorder(password:true,
+                        controller:
+                        cpass,hintColor: GlobalData.lightblue,hintStyle: TextStyle(color: GlobalData.black,),hintText: "Confirm Password",icon: Icon(Icons.lock,color: GlobalData.lightblue,),),
+
+
                       CustomTextFieldBorder(
                         controller: par_email,
                         hintColor: GlobalData.lightblue,
@@ -219,7 +249,9 @@ class _studentregState extends State<studentreg> {
                                     Text(
                                       "${selectedDate.toLocal()}"
                                           .substring(0, 10),
-                                      style: TextStyle(color: GlobalData.black),
+                                      style: TextStyle(color: GlobalData.black,),
+
+                                      
                                     ),
                                   ],
                                 )),
@@ -303,7 +335,7 @@ class _studentregState extends State<studentreg> {
                               print(selectedDate.toString().substring(0, 10));
                               print(gendersel.toString());
 
-                              Signup();
+                              check();
                             },
                             "Get Started",
                             LinearGradient(colors: <Color>[GlobalData.purple, GlobalData.pink]),
@@ -326,13 +358,20 @@ class _studentregState extends State<studentreg> {
                           child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
-                          Text(
+                            Text(
                             'Already have account?',
                             style: TextStyle(color: GlobalData.black, fontSize: 15),
                             textAlign: TextAlign.center,
                           ),
                           Text(" "),
-
+                          GestureDetector(onTap: (){
+                            Navigator.of(context)
+                                .pushNamed('login');
+                          },
+                            child: Text(
+                              'Sign In',
+                              style: TextStyle(color: GlobalData.blue, fontSize: 20),
+                            ),)
 
                         ],
                       )),
