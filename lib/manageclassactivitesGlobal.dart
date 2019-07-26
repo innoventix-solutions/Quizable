@@ -49,7 +49,7 @@ class _questionmenuGlobalState extends State<questionmenuGlobal> {
 
         title: Center(
           child: Text(
-            "Manage Class Activities",
+            "Global Quiz",
             style: TextStyle(fontSize: 20),
           ),
         ),
