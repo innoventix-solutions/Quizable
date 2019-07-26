@@ -72,8 +72,7 @@ class _studentdashboardState extends State<studentdashboard> {
                                 fontSize: 20),),
                         ),
 
-                          Text('Distance Learning Institute',
-                            style: TextStyle(color: Colors.white,fontSize: 15),)
+
                         ],),
                     )
                   ],),

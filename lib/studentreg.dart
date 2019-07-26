@@ -92,6 +92,7 @@ class _studentregState extends State<studentreg> {
   }
 
 
+  //DateTime selectedDate = DateTime.now();
   DateTime selectedDate = DateTime.now();
 
   Future<Null> _selectDate(BuildContext context) async {
