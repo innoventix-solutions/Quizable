@@ -198,6 +198,24 @@ class _studentdashboardState extends State<studentdashboard> {
                         Expanded(
                             child: GradientButtonText(
                               linearGradient:LinearGradient(colors: <Color>[GlobalData.purple,GlobalData.pink]) ,
+                              text: Text("Global Quiz",
+                                style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,
+                                    fontSize: 18),textAlign: TextAlign.center,),
+                              ButtonClick: (){
+
+                                Navigator.of(context).pushNamed('GlobalQuiz');
+
+                              },)),
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 10,left: 35,right: 35,bottom: 5),
+                    child: Row(
+                      children: <Widget>[
+                        Expanded(
+                            child: GradientButtonText(
+                              linearGradient:LinearGradient(colors: <Color>[GlobalData.purple,GlobalData.pink]) ,
                               text: Text("View my Class Activities",
                                 style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,
                                     fontSize: 18),textAlign: TextAlign.center,),

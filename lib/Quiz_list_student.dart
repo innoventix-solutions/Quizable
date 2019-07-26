@@ -1,10 +1,7 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
-
 import 'Pojo/pojo_quizzes.dart';
 import 'package:http/http.dart' as http;
-
 import 'global.dart';
 
 class Quiz_List_student extends StatefulWidget {

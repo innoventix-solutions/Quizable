@@ -1,11 +1,12 @@
 import 'dart:convert';
-
+import 'package:countdown/countdown.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'Pojo/pojo_answer.dart';
 import 'Pojo/pojo_matchs.dart';
+import 'Utils/CustomWidgets.dart';
 import 'global.dart';
 import 'package:newpro/Pojo/pojo_questions.dart';
 
@@ -31,9 +32,25 @@ class _ExamState extends State<Exam> {
   List<int> Selecteditem=new List();
   String TrueorFalse = "";
   List<String> _list = new List();
-
   bool isloading = true;
+  String TimerText ="-:--:--";
 
+  Timmer(){
+    CountDown cd = CountDown(Duration(minutes:10));
+    var sub = cd.stream.listen(null);
+    // start your countdown by registering a listener
+    sub.onData((Duration d) {
+      print(d);
+      TimerText=d.toString().substring(0,7);
+      setState(() {
+
+      });
+    });
+    // when it finish the onDone cb is called
+    sub.onDone(() {
+      print("done");
+    });
+  }
   GetQuestions() async{
     isloading = true;
     setState(() {
@@ -54,10 +71,6 @@ class _ExamState extends State<Exam> {
 
     });
   }
-
-
-
-
 
   Widget AnswerNow(String type,List<Pojo_Matchs> Data,List<Pojo_Answers> Answers)
   {
@@ -245,6 +258,7 @@ class _ExamState extends State<Exam> {
     // TODO: implement initState
     super.initState();
 
+    Timmer();
     GetQuestions();
 
   }
@@ -256,6 +270,19 @@ class _ExamState extends State<Exam> {
         padding: const EdgeInsets.all(8.0),
         child: Column(
           children: <Widget>[
+
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                children: <Widget>[
+                  Text("Timer : ",style: TextStyle(color: Colors.blue),),
+                  Text(TimerText,style: TextStyle(fontWeight: FontWeight.bold),)
+                ],
+              ),
+            ),
+
+
+
 
 
             Container(

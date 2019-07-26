@@ -3,6 +3,7 @@ import 'package:share/share.dart';
 import 'Questions_list.dart';
 import 'Quiz_list_student.dart';
 import 'globalvar.dart';
+import 'manageclassactivitesGlobal.dart';
 import 'sec.dart';
 import 'card.dart';
 import 'teacheroption.dart';
@@ -87,6 +88,8 @@ class MyApp extends StatelessWidget {
         'adminteacherjoinclass': (context) => techerjoinclass(),
         'teacherjoinclass': (context) => teacherdashboard(),
         'manageclassactivities': (context) => questionmenu(),
+        'GlobalQuiz': (context) => questionmenuGlobal(),
+
         'setquizquestions':(context) => setquizquestion(),
         'selectsubject':(context) => selectquizsubject(),
         'selectclass':(context) => quizclass(),
