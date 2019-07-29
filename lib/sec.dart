@@ -159,18 +159,29 @@ class _secState extends State<sec> {
 
             GlobalData.userType=="teacher" ? Text("") :
 
-                      CustomTextFieldBorder(
-                        controller: acc,
-                        hintColor: GlobalData.blue,
-                        hintStyle: TextStyle(
-                          color: GlobalData.black,
-                        ),
-                        hintText: GlobalData.accounttype,
-                        icon: Icon(
-                          Icons.account_circle,
-                          color: GlobalData.lightblue,
-                        ),
+            Padding(
+              padding: const EdgeInsets.only(left: 30,right: 30),
+              child: Container(height: 48,decoration: BoxDecoration(border:Border.all(color: GlobalData.lightblue),borderRadius: BorderRadius.circular(30) ),
+                child: Row(
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.only(left: 10),
+                      child: Icon(Icons.account_circle,color: GlobalData.lightblue,),
+                    ),
+
+                    Padding(
+                      padding: const EdgeInsets.only(left: 10),
+                      child: new Text(
+                        GlobalData.accounttype,
+                        style: new TextStyle(fontSize: 16.0,color: GlobalData.gray),
                       ),
+                    ),
+
+
+                  ],
+                ),
+              ),
+            ),
 
                       CustomTextFieldBorder(
                         controller: username,
