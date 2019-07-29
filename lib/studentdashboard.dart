@@ -72,9 +72,7 @@ class _studentdashboardState extends State<studentdashboard> {
                                 fontSize: 20),),
                         ),
 
-                          Text(GlobalData.class_name,style: TextStyle(
-                            color: Colors.white,fontSize: 13,
-                          )),
+
 
 
                         ],),
