@@ -46,7 +46,7 @@ class _studentregState extends State<studentreg> {
       "UserEmail": email.text.toString(),
       "password": password.text.toString(),
       "phone_no": phone.text.toString(),
-      "birthdate": selectedDate.toString().substring(0, 10),
+      "birthdate": selectDate.toString(),
       "gender": gendersel.toString(),
       "specification": "",
       "user_type": GlobalData.userType,
