@@ -70,8 +70,127 @@ class _Quiz_List_studentState extends State<Quiz_List_student> {
           ],
         ),
 
-        drawer:
-        drawerquiz(),
+        drawer: Drawer(
+          // Add a ListView to the drawer. This ensures the user can scroll
+          // through the options in the Drawer if there isn't enough vertical
+          // space to fit everything.
+          child: ListView(
+            // Important: Remove any padding from the ListView.
+            padding: EdgeInsets.zero,
+            children: <Widget>[
+              Container(child: Padding(
+                padding: const EdgeInsets.only(bottom: 40,top: 25),
+                child: DrawerHeader(child: Container(
+                  child: Row(
+                    children: <Widget>[
+                      Padding(
+                        padding: const EdgeInsets.only(left: 5),
+                        child: CircleAvatar(backgroundImage: AssetImage('assets/images/pic.png',),
+                          radius: 35.0,),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 15),
+                        child: Column(mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[Padding(
+                            padding: const EdgeInsets.only(bottom: 15),
+                            child: Text(GlobalData.Username,
+                              style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,
+                                  fontSize: 20),),
+                          ),
+
+
+                          ],),
+                      )
+                    ],),
+                ),),
+              ),decoration: bg12,),
+
+
+
+              Padding(
+                padding: const EdgeInsets.only(left: 45,top:30),
+                child: Row(children: <Widget>[Icon(Icons.home,color: GlobalData.lightblue,),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 20),
+                    child: Text('Home',style: TextStyle(
+                        color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
+                  )],),
+              ),
+
+              Padding(
+                padding: const EdgeInsets.only(left: 45,top:20),
+                child: Row(children: <Widget>[Icon(Icons.assignment,color: GlobalData.lightblue,),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 20),
+                    child: Text('About eduSupport',style: TextStyle(
+                        color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
+                  )],),
+              ),
+
+              Padding(
+                padding: const EdgeInsets.only(left: 45,top:20),
+                child: Row(children: <Widget>[Icon(Icons.account_circle,color: GlobalData.lightblue,),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 20),
+                    child: Text('Edit Profile',style: TextStyle(
+                        color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
+                  )],),
+              ),
+
+
+              GestureDetector(
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 45,top:20),
+                  child: Row(children: <Widget>[Icon(Icons.gamepad,color: GlobalData.lightblue,),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 20),
+                      child: Text('Game Room',style: TextStyle(
+                          color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
+                    ),],),
+                ),onTap: (){},
+              ),
+              GestureDetector(
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 45,top:20),
+                  child: Row(children: <Widget>[Icon(Icons.surround_sound,color: GlobalData.lightblue,),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 20),
+                      child: Text('Announcements',style: TextStyle(
+                          color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
+                    ),],),
+                ),onTap: (){},
+              ),
+              GestureDetector(
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 45,top:20),
+                  child: Row(children: <Widget>[Icon(Icons.share,color: GlobalData.lightblue,),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 20),
+                      child: Text('Share App',style: TextStyle(
+                          color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
+                    ),],),
+                ),onTap: (){},
+              ),
+              GestureDetector(
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 45,top:20),
+                  child: Row(children: <Widget>[Icon(Icons.power_settings_new,color: GlobalData.lightblue,),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 20),
+                      child: Text('Log Out',style: TextStyle(
+                          color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
+                    ),],),
+                ),onTap: (){},
+              ),
+
+
+
+
+
+            ],
+          ),
+        ),
 
         body:
         Column(

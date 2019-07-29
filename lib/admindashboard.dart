@@ -56,12 +56,12 @@ class _admindashboardState extends State<admindashboard> {
                   ),
                 ),Padding(
                   padding: const EdgeInsets.only(top: 10),
-                  child: Text('Stanley Ohanugo',style:
+                  child: Text(GlobalData.Username,style:
                   TextStyle(fontSize: 20,color: Colors.white,fontWeight: FontWeight.bold),),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: 10),
-                  child: Text('Distance Learning Institute',style:
+                  child: Text(GlobalData.accounttype,style:
                   TextStyle(fontSize: 15,color: Colors.white),),
                 ),
               ],
@@ -239,12 +239,12 @@ class _admindashboardState extends State<admindashboard> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[Padding(
                           padding: const EdgeInsets.only(bottom: 15),
-                          child: Text('Stanley Ohanugo',
+                          child: Text(GlobalData.Username,
                             style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,
                                 fontSize: 20),),
                         ),
 
-                          Text('Distance Learning Institute',
+                          Text(GlobalData.accounttype,
                             style: TextStyle(color: Colors.white,fontSize: 15),)
                         ],),
                     )

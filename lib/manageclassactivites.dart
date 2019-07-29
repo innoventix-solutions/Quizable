@@ -81,7 +81,8 @@ class _questionmenuState extends State<questionmenu> {
           Column(
             children: <Widget>[
               Expanded(
-                child: ListView.builder(
+                child: Quizz_List.isEmpty ? Center(child: Text('You have not published any class activity yet')) :
+                ListView.builder(
                     itemCount: Quizz_List.length,
                     itemBuilder: (c,i){
                   return  GestureDetector(

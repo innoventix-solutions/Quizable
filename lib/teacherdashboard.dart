@@ -56,7 +56,7 @@ class _teacherdashboardState extends State<teacherdashboard> {
                   ),
                 ),Padding(
                   padding: const EdgeInsets.only(top: 10),
-                  child: Text('Stanley Ohanugo',style:
+                  child: Text(GlobalData.Username,style:
                   TextStyle(fontSize: 20,color: Colors.white,fontWeight: FontWeight.bold),),
                 ),
                /* Padding(
@@ -244,7 +244,7 @@ class _teacherdashboardState extends State<teacherdashboard> {
                                 fontSize: 20),),
                         ),
 
-                          Text('Distance Learning Institute',
+                          Text(GlobalData.class_name,
                             style: TextStyle(color: Colors.white,fontSize: 15),)
                         ],),
                     )
