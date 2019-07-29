@@ -117,7 +117,7 @@ class _studentregState extends State<studentreg> {
                           child: Container(
                             width: 70,
                             height: 70,
-                            child: Image.asset('assets/images/logo.jpg'),
+                            child: Image.asset('assets/images/logo.png'),
                           ),
                         ),
                       ),
@@ -209,15 +209,18 @@ class _studentregState extends State<studentreg> {
 
                       Padding(
                         padding: const EdgeInsets.only(left: 30, right: 30, top: 15),
-                        child: DateTimePickerFormField(
-                          inputType:  inputType,
-                          format: formats[inputType],
-                          editable: false,
-                          decoration: InputDecoration(contentPadding: EdgeInsets.only(left: 5),
-                              labelText: 'DOB', hasFloatingPlaceholder: false,border:OutlineInputBorder(
-                                  borderRadius: new BorderRadius.circular(50.0),
-                                  borderSide: BorderSide(color: Colors.white)),prefixIcon: Icon(Icons.calendar_today,color: GlobalData.blue,)),
-                          onChanged: (dt) => setState(() => Starting_date = dt),
+                        child: Theme(
+                          data:ThemeData(hintColor: GlobalData.lightblue) ,
+                          child: DateTimePickerFormField(
+                            inputType:  inputType,
+                            format: formats[inputType],
+                            editable: false,
+                            decoration: InputDecoration(contentPadding: EdgeInsets.only(left: 5),
+                                labelText: 'DOB', hasFloatingPlaceholder: false,border:OutlineInputBorder(
+                                    borderRadius: new BorderRadius.circular(50.0),
+                                    borderSide: BorderSide(color: Colors.white)),prefixIcon: Icon(Icons.calendar_today,color: GlobalData.blue,)),
+                            onChanged: (dt) => setState(() => Starting_date = dt),
+                          ),
                         ),
                       ),
 
