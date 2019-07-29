@@ -332,6 +332,15 @@ class _studentregState extends State<studentreg> {
                                 textAlign: TextAlign.center,
                               ),
                               Text(" "),
+                              GestureDetector(onTap: (){
+                                Navigator.of(context)
+                                    .pushNamed('login');
+                              },
+                                child: Text(
+                                  'Sign In',
+                                  style: TextStyle(color: GlobalData.blue, fontSize: 20),
+                                ),
+                              )
 
 
                             ],
