@@ -117,7 +117,7 @@ class _studentregState extends State<studentreg> {
                           child: Container(
                             width: 70,
                             height: 70,
-                            child: Image.asset('assets/images/logo.jpg'),
+                            child: Image.asset('assets/images/logo.png'),
                           ),
                         ),
                       ),
@@ -210,6 +210,7 @@ class _studentregState extends State<studentreg> {
                       Padding(
                         padding: const EdgeInsets.only(left: 30, right: 30, top: 15),
                         child: DateTimePickerFormField(
+
                           inputType:  inputType,
                           format: formats[inputType],
                           editable: false,
