@@ -152,10 +152,12 @@ class _secState extends State<sec> {
                           child: Container(
                             width: 70,
                             height: 70,
-                            child: Image.asset('assets/images/wlogo.png'),
+                            child: Image.asset('assets/images/logo.png'),
                           ),
                         ),
                       ),
+
+            GlobalData.userType=="teacher" ? Text("") :
 
                       CustomTextFieldBorder(
                         controller: acc,
@@ -163,7 +165,7 @@ class _secState extends State<sec> {
                         hintStyle: TextStyle(
                           color: GlobalData.black,
                         ),
-                        hintText: "Account Name",
+                        hintText: GlobalData.accounttype,
                         icon: Icon(
                           Icons.account_circle,
                           color: GlobalData.lightblue,
