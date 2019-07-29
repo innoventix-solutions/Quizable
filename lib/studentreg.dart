@@ -1,10 +1,13 @@
 import 'dart:convert';
+import 'package:intl/intl.dart';
 
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:newpro/utilities.dart';
 import 'global.dart';
 import 'package:http/http.dart' as http;
+import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
+
 
 
 class studentreg extends StatefulWidget {
@@ -18,7 +21,6 @@ class _studentregState extends State<studentreg> {
   TextEditingController email = new TextEditingController();
   TextEditingController phone = new TextEditingController();
   TextEditingController password = new TextEditingController();
-  TextEditingController cpass = new TextEditingController();
   TextEditingController selectDate = new TextEditingController();
 
   TextEditingController par_email = new TextEditingController();
@@ -36,7 +38,6 @@ class _studentregState extends State<studentreg> {
         textColor: Colors.white,
         fontSize: 16.0);
   }
-
 
   Signup() async {
     http.post("http://edusupportapp.com/api/register.php", body: {
@@ -70,32 +71,9 @@ class _studentregState extends State<studentreg> {
     });
   }
 
-  check() {
-    if (password.text.toString() == cpass.text.toString()) {
-      Signup();
-    } else {
-      _showDialog();
-    }
-  }
+  DateTime selectedDate;
 
-  void _showDialog() {
-    // flutter defined function
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        // return object of type Dialog
-        return AlertDialog(
-          content: new Text("Password not matched"),
-        );
-      },
-    );
-  }
-
-
-  //DateTime selectedDate = DateTime.now();
-  DateTime selectedDate = DateTime.now();
-
-  Future<Null> _selectDate(BuildContext context) async {
+  /*Future<Null> _selectDate(BuildContext context) async {
     final DateTime picked = await showDatePicker(
         context: context,
         initialDate: selectedDate,
@@ -105,7 +83,18 @@ class _studentregState extends State<studentreg> {
       setState(() {
         selectedDate = picked;
       });
-  }
+  }*/
+
+  final formats = {
+
+    InputType.date: DateFormat('yyyy-MM-dd'),
+
+  };
+
+  InputType inputType = InputType.date;
+  bool editable = true;
+  DateTime Starting_date;
+
 
   String gendersel = "Male";
 
@@ -128,7 +117,7 @@ class _studentregState extends State<studentreg> {
                           child: Container(
                             width: 70,
                             height: 70,
-                            child: Image.asset('assets/images/logo.png'),
+                            child: Image.asset('assets/images/logo.jpg'),
                           ),
                         ),
                       ),
@@ -193,12 +182,6 @@ class _studentregState extends State<studentreg> {
                         ),
 
                       ),
-
-                      CustomTextFieldBorder(password:true,
-                        controller:
-                        cpass,hintColor: GlobalData.lightblue,hintStyle: TextStyle(color: GlobalData.black,),hintText: "Confirm Password",icon: Icon(Icons.lock,color: GlobalData.lightblue,),),
-
-
                       CustomTextFieldBorder(
                         controller: par_email,
                         hintColor: GlobalData.lightblue,
@@ -223,42 +206,23 @@ class _studentregState extends State<studentreg> {
                           color: GlobalData.lightblue,
                         ),
                       ),
+
                       Padding(
-                        padding: const EdgeInsets.only(top: 15),
-                        child: GestureDetector(
-                          onTap: () {
-                            _selectDate(context);
-                          },
-                          child: Padding(
-                            padding: const EdgeInsets.only(left: 30,right: 30),
-                            child: Container(
-
-                                height: 48,
-                                decoration: BoxDecoration(
-                                    border: Border.all(color: GlobalData.lightblue),
-                                    borderRadius: BorderRadius.circular(30)),
-                                child: Row(
-                                  children: <Widget>[
-                                    Padding(
-                                      padding: const EdgeInsets.only(
-                                          left: 10, right: 5),
-                                      child: Icon(
-                                        Icons.calendar_today,
-                                        color: GlobalData.blue,
-                                      ),
-                                    ),
-                                    Text(
-                                      "${selectedDate.toLocal()}"
-                                          .substring(0, 10),
-                                      style: TextStyle(color: GlobalData.black,),
-
-                                      
-                                    ),
-                                  ],
-                                )),
-                          ),
+                        padding: const EdgeInsets.only(left: 30, right: 30, top: 15),
+                        child: DateTimePickerFormField(
+                          inputType:  inputType,
+                          format: formats[inputType],
+                          editable: false,
+                          decoration: InputDecoration(contentPadding: EdgeInsets.only(left: 5),
+                              labelText: 'DOB', hasFloatingPlaceholder: false,border:OutlineInputBorder(
+                                  borderRadius: new BorderRadius.circular(50.0),
+                                  borderSide: BorderSide(color: Colors.white)),prefixIcon: Icon(Icons.calendar_today,color: GlobalData.blue,)),
+                          onChanged: (dt) => setState(() => Starting_date = dt),
                         ),
                       ),
+
+
+
                       SizedBox(
                         height: 15.0,
                       ),
@@ -284,7 +248,7 @@ class _studentregState extends State<studentreg> {
                               new Text(
                                 'Male',
                                 style:
-                                    new TextStyle(fontSize: 16.0, color: GlobalData.black),
+                                new TextStyle(fontSize: 16.0, color: GlobalData.black),
                               ),
                               new Radio(
                                 value: "Female",
@@ -298,9 +262,9 @@ class _studentregState extends State<studentreg> {
                               new Text(
                                 'Female',
                                 style:
-                                    new TextStyle(fontSize: 16.0, color: GlobalData.black),
+                                new TextStyle(fontSize: 16.0, color: GlobalData.black),
                               ),
-                             /* new Radio(
+                              /* new Radio(
                                 value: "Other",
                                 groupValue: gendersel,
                                 onChanged: (value) {
@@ -322,7 +286,7 @@ class _studentregState extends State<studentreg> {
                         padding: EdgeInsets.only(top: 25),
                         child: Center(
                           child: GradientButton(
-                            () {
+                                () {
 
 
                               print(acc.text.toString());
@@ -336,7 +300,7 @@ class _studentregState extends State<studentreg> {
                               print(selectedDate.toString().substring(0, 10));
                               print(gendersel.toString());
 
-                              check();
+                              Signup();
                             },
                             "Get Started",
                             LinearGradient(colors: <Color>[GlobalData.purple, GlobalData.pink]),
@@ -351,31 +315,24 @@ class _studentregState extends State<studentreg> {
                           )),
                       new Container(
                           child: Text(
-                        'Terms & Conditions and Privacy Policy.',
-                        style: TextStyle(color: GlobalData.black, fontSize: 15),
-                      )),
+                            'Terms & Conditions and Privacy Policy.',
+                            style: TextStyle(color: GlobalData.black, fontSize: 15),
+                          )),
                       Padding(padding: EdgeInsets.only(top: 10)),
                       Container(
                           child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                            Text(
-                            'Already have account?',
-                            style: TextStyle(color: GlobalData.black, fontSize: 15),
-                            textAlign: TextAlign.center,
-                          ),
-                          Text(" "),
-                          GestureDetector(onTap: (){
-                            Navigator.of(context)
-                                .pushNamed('login');
-                          },
-                            child: Text(
-                              'Sign In',
-                              style: TextStyle(color: GlobalData.blue, fontSize: 20),
-                            ),)
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              Text(
+                                'Already have account?',
+                                style: TextStyle(color: GlobalData.black, fontSize: 15),
+                                textAlign: TextAlign.center,
+                              ),
+                              Text(" "),
 
-                        ],
-                      )),
+
+                            ],
+                          )),
 
                       /* add child content here */
                     ]),
