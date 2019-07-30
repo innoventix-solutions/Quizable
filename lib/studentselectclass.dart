@@ -1,47 +1,46 @@
 import 'package:flutter/material.dart';
-import 'package:newpro/global.dart';
+import 'global.dart';
 import'package:newpro/Pojo/pojo_getclasses.dart';
 
-
-class myclassroom extends StatefulWidget {
+class studentselectclass extends StatefulWidget {
   @override
-  _myclassroomState createState() => _myclassroomState();
+  _studentselectclassState createState() => _studentselectclassState();
 }
 
-class _myclassroomState extends State<myclassroom> {
+class _studentselectclassState extends State<studentselectclass> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-          appBar: AppBar(
-        automaticallyImplyLeading: true,
+        appBar: AppBar(
+          automaticallyImplyLeading: true,
 
-        title: Center(
-          child: Text(
-            "My Classrooms",
-            style: TextStyle(fontSize: 22),
-          ),
-        ),
-        flexibleSpace: Container(
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomRight,
-              colors: [GlobalData.darkblue, GlobalData.darkpurple],
+          title: Center(
+            child: Text(
+              "My Class",
+              style: TextStyle(fontSize: 22),
             ),
           ),
-        ),
-        actions: <Widget>[
-          IconButton(
-            onPressed: (){},
-            icon: Icon(
-              Icons.account_circle,
-              color: Colors.white,
-              size: 20,
+          flexibleSpace: Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomRight,
+                colors: [GlobalData.darkblue, GlobalData.darkpurple],
+              ),
             ),
           ),
-        ],
-      ),
+          actions: <Widget>[
+            IconButton(
+              onPressed: (){},
+              icon: Icon(
+                Icons.account_circle,
+                color: Colors.transparent,
+                size: 20,
+              ),
+            ),
+          ],
+        ),
         body:Column(
           children: <Widget>[
             Expanded(
@@ -53,22 +52,17 @@ class _myclassroomState extends State<myclassroom> {
                   itemBuilder: (BuildContext ctxt, int index) {
                     return  GestureDetector(
                       onTap: (){
-
-                        if(GlobalData.Class_list[index].selected==false){
-                          GlobalData.Class_list[index].selected=true;
-                        }else{
-                          GlobalData.Class_list[index].selected=false;
-                        }
-                        setState(() {
-
-                        });
+    GlobalData.activeclass = GlobalData.Class_list[index];
+                print(GlobalData.Class_list[index].classname);
+print(GlobalData.activeclass.classname);
+    Navigator.of(context).pushReplacementNamed('studentjoinclass');
 
 
                       },
                       child: Column(
                         children: <Widget>[
                           Container(
-                            color: GlobalData.Class_list[index].selected==true?Colors.blue[50]:Colors.white,
+
                             child: Row(
                               children: <Widget>[
                                 Stack(
@@ -94,10 +88,7 @@ class _myclassroomState extends State<myclassroom> {
                                     child: Column(mainAxisAlignment: MainAxisAlignment.start,crossAxisAlignment: CrossAxisAlignment.start,
                                       children: <Widget>[
                                         Text(GlobalData.Class_list[index].classname,style: TextStyle(fontSize: 15),textAlign: TextAlign.left,),
-                                        Padding(
-                                          padding: const EdgeInsets.only(top:5),
-                                          child: Text('12 Students',style: TextStyle(fontSize: 12),),
-                                        ),
+
                                       ],
                                     ),
                                   ),
@@ -124,25 +115,24 @@ class _myclassroomState extends State<myclassroom> {
                     child: Row(
                       children: <Widget>[
                         Expanded(
-                          child: GradientButtonText(
-                            linearGradient:LinearGradient(colors: <Color>[GlobalData.purple,GlobalData.pink]) ,text: Text("Create a Class",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 18,),textAlign: TextAlign.center,),
+                          child: GestureDetector(onTap:(){
+
+                            Navigator.of(context)
+                                .pushNamed('studentdashboard');
+
+                          } ,
+                            child: GradientButtonText(
+                              linearGradient:LinearGradient(
+                                  colors: <Color>[GlobalData.purple,
+                                    GlobalData.pink]) ,text:
+                            Text("Join New Class",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 18,),textAlign: TextAlign.center,),
+                            ),
                           ),
                         ),
                       ],
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 10),
-                    child: Row(
-                      children: <Widget>[
-                        Expanded(
-                          child: GradientButtonText(
-                            linearGradient:LinearGradient(colors: <Color>[GlobalData.navy,GlobalData.navyblue]) ,text: Text("Join a Class",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 18,),textAlign: TextAlign.center,),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ) ],
+                   ],
               ),
             ),
 

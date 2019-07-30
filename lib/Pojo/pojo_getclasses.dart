@@ -1,4 +1,4 @@
-class getclasses{
+class Classes{
   String id;
   String userid;
   String classname;
@@ -9,13 +9,13 @@ class getclasses{
   bool selected;
 
 
-  getclasses({this.id,this.userid,this.classname,this.classicon,this.studentinvitecode,
+  Classes({this.id,this.userid,this.classname,this.classicon,this.studentinvitecode,
   this.teacherinvitecode,this.createddate,this.selected});
 
 
-  factory getclasses.fromJson(Map<String,dynamic> parsedJson){
+  factory Classes.fromJson(Map<String,dynamic> parsedJson){
 
-    return getclasses(
+    return Classes(
       id: parsedJson['ID'],
       userid: parsedJson['user_id'],
       classname: parsedJson['class_name'],

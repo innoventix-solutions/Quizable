@@ -1,11 +1,51 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:newpro/global.dart';
+import 'Pojo/pojo_getclasses.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+
 class classroomstudent extends StatefulWidget {
   @override
   _classroomstudentState createState() => _classroomstudentState();
 }
 
 class _classroomstudentState extends State<classroomstudent> {
+
+  List<Classes> Class_list = new List();
+  bool isSelected = false;
+
+  Show_toast(String msg, Color color) {
+    Fluttertoast.showToast(
+        msg: msg,
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.CENTER,
+        timeInSecForIos: 1,
+        backgroundColor: color,
+        textColor: Colors.white,
+        fontSize: 16.0);
+  }
+
+  Getteacherclasses() async{
+    await http.post("http://edusupportapp.com/api/get_teacher_classes.php",body: {
+      "UserId":GlobalData.uid,
+
+    }).then((response) {
+      print(response.body);
+
+
+      var ParsedJson=jsonDecode(response.body);
+      Class_list=(ParsedJson['join_classdata'] as List).map((data)=>Classes.fromJson(data)).toList();
+      print(Class_list.length);
+      setState(() {
+
+      });
+
+    });
+  }
+
+
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(

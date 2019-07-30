@@ -64,7 +64,9 @@ class _teacherdashboardState extends State<teacherdashboard> {
                   child: Text('Distance Learning Institute',style:
                   TextStyle(fontSize: 15,color: Colors.white),),
                 ),*/
-              ],
+                Text(GlobalData.class_name,
+                  style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,
+                      fontSize: 16),),   ],
             ),
           ),
 
@@ -244,7 +246,9 @@ class _teacherdashboardState extends State<teacherdashboard> {
                                 fontSize: 20),),
                         ),
 
-
+                          Text(GlobalData.class_name,
+                            style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,
+                                fontSize: 16),),
                         ],),
                     )
                   ],),

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'global.dart';
+import 'package:newpro/Pojo/pojo_getclasses.dart';
+
 
 class studentdashboard extends StatefulWidget {
   @override
@@ -70,10 +72,15 @@ class _studentdashboardState extends State<studentdashboard> {
                           child: Text(GlobalData.Username,
                             style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,
                                 fontSize: 20),),
+
                         ),
 
 
-
+                          Container(
+                            child: Text(GlobalData.activeclass.classname,
+                              style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,
+                                  fontSize: 16),),
+                          ),
 
                         ],),
                     )
@@ -185,12 +192,16 @@ class _studentdashboardState extends State<studentdashboard> {
                     ),
                   ),Padding(
                     padding: const EdgeInsets.only(top: 10),
-                    child: Text('Messiah Classroom',style:
+                    child: Text(GlobalData.activeclass.classname,style:
                     TextStyle(fontSize: 18,color:GlobalData.gray,fontWeight: FontWeight.bold),),
                   ),Padding(
                     padding: const EdgeInsets.only(top: 10),
-                    child: Text('Switch Classroom',style:
-                    TextStyle(fontSize: 15,color: GlobalData.pinkred,decoration: TextDecoration.underline),),
+                    child: GestureDetector(onTap: (){
+                      Navigator.of(context).pushReplacementNamed('studentselectclass');
+                    },
+                      child: Text('Switch Classroom',style:
+                      TextStyle(fontSize: 15,color: GlobalData.pinkred,decoration: TextDecoration.underline),),
+                    ),
                   ),
 
                   Padding(
