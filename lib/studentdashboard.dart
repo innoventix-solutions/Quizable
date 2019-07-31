@@ -77,7 +77,7 @@ class _studentdashboardState extends State<studentdashboard> {
 
 
                           Container(
-                            child: Text(GlobalData.activeclass.classname,
+                            child: Text(GlobalData.activeclass!=null?GlobalData.activeclass.classname:"No Class Selected",
                               style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,
                                   fontSize: 16),),
                           ),
@@ -192,7 +192,7 @@ class _studentdashboardState extends State<studentdashboard> {
                     ),
                   ),Padding(
                     padding: const EdgeInsets.only(top: 10),
-                    child: Text(GlobalData.activeclass.classname,style:
+                    child: Text(GlobalData.activeclass!=null?GlobalData.activeclass.classname:"No Class Selected",style:
                     TextStyle(fontSize: 18,color:GlobalData.gray,fontWeight: FontWeight.bold),),
                   ),Padding(
                     padding: const EdgeInsets.only(top: 10),
