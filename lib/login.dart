@@ -56,8 +56,18 @@ class _loginState extends State<login> {
       //    print(response.body.toString());
       if (statuss['status'] == 1) {
 
-        GlobalData.Class_list=(statuss['join_classdata'] as List).map((data)=>Classes.fromJson(data)).toList();
 
+
+        if(statuss['join_classdata'] == false ){
+
+          print("error");
+
+        }
+        else {
+          GlobalData.Class_list =
+              (statuss['join_classdata'] as List).map((data) =>
+                  Classes.fromJson(data)).toList();
+        }
         print(GlobalData.Class_list.length.toString() + "Avilable class");
 
         Show_toast("Logged in Successfully", Colors.green);
