@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'global.dart';
 import 'package:newpro/Pojo/pojo_getclasses.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
 
 
 class studentdashboard extends StatefulWidget {
@@ -79,7 +81,7 @@ class _studentdashboardState extends State<studentdashboard> {
                           Container(
                             child: Text(GlobalData.activeclass!=null?GlobalData.activeclass.classname:"No Class Selected",
                               style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,
-                                  fontSize: 16),),
+                                  fontSize: 12),),
                           ),
 
                         ],),
@@ -163,7 +165,17 @@ class _studentdashboardState extends State<studentdashboard> {
                     child: Text('Log Out',style: TextStyle(
                         color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
                   ),],),
-              ),onTap: (){},
+              ),onTap: ()async{
+
+              SharedPreferences pre= await SharedPreferences.getInstance();
+              pre.clear();
+              Navigator.of(context).dispose();
+              Navigator.of(context).pushNamed('login');
+
+            },
+
+
+            
             ),
 
 
