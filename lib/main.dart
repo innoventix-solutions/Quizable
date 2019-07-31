@@ -90,7 +90,7 @@ class MyApp extends StatelessWidget {
         'teacherjoinclass': (context) => teacherdashboard(),
         'manageclassactivities': (context) => questionmenu(),
         'GlobalQuiz': (context) => questionmenuGlobal(),
-
+        'teacherdashboard': (context) => teacherdashboard(),
         'setquizquestions':(context) => setquizquestion(),
         'selectsubject':(context) => selectquizsubject(),
         'selectclass':(context) => quizclass(),
