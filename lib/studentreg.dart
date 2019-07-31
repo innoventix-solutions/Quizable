@@ -46,7 +46,7 @@ class _studentregState extends State<studentreg> {
       "UserEmail": email.text.toString(),
       "password": password.text.toString(),
       "phone_no": phone.text.toString(),
-      "birthdate": selectDate.toString(),
+      "birthdate": Starting_date.toString(),
       "gender": gendersel.toString(),
       "specification": "",
       "user_type": GlobalData.userType,
@@ -300,7 +300,7 @@ class _studentregState extends State<studentreg> {
 
                               print(par_email.toString());
                               print(par_phone.toString());
-                              print(selectedDate.toString().substring(0, 10));
+                              print(selectedDate.toString());
                               print(gendersel.toString());
 
                               Signup();

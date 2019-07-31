@@ -16,7 +16,7 @@ class quizclass extends StatefulWidget {
 class _quizclassState extends State<quizclass> {
 
 
-  List<getclasses> Class_list = new List();
+  List<Classes> Class_list = new List();
   bool isSelected = false;
 
   Show_toast(String msg, Color color) {
@@ -39,7 +39,7 @@ class _quizclassState extends State<quizclass> {
 
 
       var ParsedJson=jsonDecode(response.body);
-      Class_list=(ParsedJson['join_classdata'] as List).map((data)=>getclasses.fromJson(data)).toList();
+      Class_list=(ParsedJson['join_classdata'] as List).map((data)=>Classes.fromJson(data)).toList();
       print(Class_list.length);
       setState(() {
 

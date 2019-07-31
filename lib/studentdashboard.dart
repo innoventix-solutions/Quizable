@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'global.dart';
+import 'package:newpro/Pojo/pojo_getclasses.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+
 
 class studentdashboard extends StatefulWidget {
   @override
@@ -70,12 +74,15 @@ class _studentdashboardState extends State<studentdashboard> {
                           child: Text(GlobalData.Username,
                             style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,
                                 fontSize: 20),),
+
                         ),
 
-                          Text(GlobalData.class_name,style: TextStyle(
-                            color: Colors.white,fontSize: 13,
-                          )),
 
+                          Container(
+                            child: Text(GlobalData.activeclass!=null?GlobalData.activeclass.classname:"No Class Selected",
+                              style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,
+                                  fontSize: 12),),
+                          ),
 
                         ],),
                     )
@@ -158,7 +165,17 @@ class _studentdashboardState extends State<studentdashboard> {
                     child: Text('Log Out',style: TextStyle(
                         color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
                   ),],),
-              ),onTap: (){},
+              ),onTap: ()async{
+
+              SharedPreferences pre= await SharedPreferences.getInstance();
+              pre.clear();
+              Navigator.of(context).dispose();
+              Navigator.of(context).pushNamed('login');
+
+            },
+
+
+            
             ),
 
 
@@ -187,12 +204,16 @@ class _studentdashboardState extends State<studentdashboard> {
                     ),
                   ),Padding(
                     padding: const EdgeInsets.only(top: 10),
-                    child: Text('Messiah Classroom',style:
+                    child: Text(GlobalData.activeclass!=null?GlobalData.activeclass.classname:"No Class Selected",style:
                     TextStyle(fontSize: 18,color:GlobalData.gray,fontWeight: FontWeight.bold),),
                   ),Padding(
                     padding: const EdgeInsets.only(top: 10),
-                    child: Text('Switch Classroom',style:
-                    TextStyle(fontSize: 15,color: GlobalData.pinkred,decoration: TextDecoration.underline),),
+                    child: GestureDetector(onTap: (){
+                      Navigator.of(context).pushReplacementNamed('studentselectclass');
+                    },
+                      child: Text('Switch Classroom',style:
+                      TextStyle(fontSize: 15,color: GlobalData.pinkred,decoration: TextDecoration.underline),),
+                    ),
                   ),
 
                   Padding(

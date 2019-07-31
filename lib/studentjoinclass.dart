@@ -21,7 +21,7 @@ class _studentjoinState extends State<studentjoin> {
       if (statuss['status'].toString() == "1") {
         Show_toast_Now(statuss['msg'], Colors.green);
         Navigator.of(context)
-            .pushNamed('studentjoinclass');
+            .pushNamed('studentdashboard');
 
 
       } else {

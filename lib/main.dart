@@ -51,6 +51,7 @@ import 'exam.dart';
 import 'functionclass.dart';
 import 'admindashboard.dart';
 import 'adminprofile.dart';
+import 'studentselectclass.dart';
 
 
 
@@ -89,7 +90,6 @@ class MyApp extends StatelessWidget {
         'teacherjoinclass': (context) => teacherdashboard(),
         'manageclassactivities': (context) => questionmenu(),
         'GlobalQuiz': (context) => questionmenuGlobal(),
-
         'setquizquestions':(context) => setquizquestion(),
         'selectsubject':(context) => selectquizsubject(),
         'selectclass':(context) => quizclass(),
@@ -98,7 +98,10 @@ class MyApp extends StatelessWidget {
         'questions':(context)=>Questions(),
         'exam':(context)=>Exam(),
         'Quiz_List_student':(context)=>Quiz_List_student(),
-        'Question_List':(context)=>Question_List()
+        'Question_List':(context)=>Question_List(),
+        'classroomstudent':(context)=>classroomstudent(),
+        'myclassroom':(context)=>myclassroom(),
+        'studentselectclass':(context)=>studentselectclass()
       },
     );
   }

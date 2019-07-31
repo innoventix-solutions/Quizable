@@ -244,6 +244,7 @@ class _admindashboardState extends State<admindashboard> {
                                 fontSize: 20),),
                         ),
 
+
                           Text(GlobalData.accounttype,
                             style: TextStyle(color: Colors.white,fontSize: 15),)
                         ],),

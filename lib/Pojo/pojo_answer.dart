@@ -6,10 +6,8 @@ class Pojo_Answers{
 
   factory Pojo_Answers.fromJson(Map<String, dynamic> parsedJson){
 
-
-
     return Pojo_Answers(
-        trueanswer: parsedJson['trueanswer'],
+        trueanswer: parsedJson['trueanswer']==null?false:parsedJson['trueanswer']=="True"?true:parsedJson['trueanswer'],
         value: parsedJson['value'].toString()
     );
   }

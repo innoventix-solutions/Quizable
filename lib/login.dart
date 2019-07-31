@@ -2,8 +2,10 @@ import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'classroomstudent.dart';
 import 'global.dart';
 import 'package:http/http.dart' as http;
+import 'package:newpro/Pojo/pojo_getclasses.dart';
 
 class login extends StatefulWidget {
   @override
@@ -11,6 +13,9 @@ class login extends StatefulWidget {
 }
 
 class _loginState extends State<login> {
+
+
+
   SharedPreferences prefs;
 
   TextEditingController email = new TextEditingController();
@@ -19,6 +24,8 @@ class _loginState extends State<login> {
   GetShared() async {
     prefs = await SharedPreferences.getInstance();
   }
+
+
 
   @override
   void initState() {
@@ -48,12 +55,27 @@ class _loginState extends State<login> {
       print(response.body.toString());
       //    print(response.body.toString());
       if (statuss['status'] == 1) {
+
+
+
+        if(statuss['join_classdata'] == false ){
+
+          print("error");
+
+        }
+        else {
+          GlobalData.Class_list =
+              (statuss['join_classdata'] as List).map((data) =>
+                  Classes.fromJson(data)).toList();
+        }
+        print(GlobalData.Class_list.length.toString() + "Avilable class");
+
         Show_toast("Logged in Successfully", Colors.green);
 
         prefs.setString("Id", statuss['userdata']['ID']);
         prefs.setString("type", statuss['userdata']['user_type']);
         prefs.setString("name", statuss['userdata']['username']);
-GlobalData.Username=statuss['userdata']['username'];
+      GlobalData.Username=statuss['userdata']['username'];
         print(statuss['userdata']['user_type']);
         GlobalData.uid = statuss['userdata']['ID'].toString();
         GlobalData.Username = statuss['userdata']['username'].toString();
@@ -63,7 +85,15 @@ GlobalData.Username=statuss['userdata']['username'];
         } else if (statuss['userdata']['user_type'] == "admin_teacher") {
           Navigator.of(context).pushReplacementNamed('welcome');
         } else {
-          Navigator.of(context).pushReplacementNamed('studentjoin');
+        if(GlobalData.Class_list.length == 0)
+
+{ Navigator.of(context).pushReplacementNamed('studentjoin');}
+        else
+          {
+
+            Navigator.of(context).pushReplacementNamed('studentselectclass');
+          }
+
         }
       } else {
         Show_toast("Invalid Username or Password", Colors.red);
@@ -116,7 +146,7 @@ GlobalData.Username=statuss['userdata']['username'];
                         width: 300,
                         child: Theme(
                           data: ThemeData(hintColor: GlobalData.white),
-                          child: TextField(
+                          child: TextField(obscureText: true,
                             style: TextStyle(color: Colors.white, fontSize: 18),
                             controller: pass,
                             decoration: InputDecoration(

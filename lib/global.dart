@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'Pojo/pojo_getclasses.dart';
+
 
 
 class GlobalData{
+
 
 
 
@@ -38,6 +41,9 @@ class GlobalData{
 
 
 
+static List<Classes> Class_list = new List();
+
+  static Classes activeclass ;
 
   static bool LoadData = true;
   static int QuestionNumber=0;
@@ -95,7 +101,7 @@ class drawerquiz extends StatelessWidget {
                               fontSize: 16),),
                       ),
 
-                        Text('Distance Learning Institute',
+                        Text(GlobalData.class_name,
                           style: TextStyle(color: Colors.white,fontSize: 13),)
                       ],),
                   )
