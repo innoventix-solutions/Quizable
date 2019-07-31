@@ -101,7 +101,7 @@ class drawerquiz extends StatelessWidget {
                               fontSize: 16),),
                       ),
 
-                        Text('Distance Learning Institute',
+                        Text(GlobalData.class_name,
                           style: TextStyle(color: Colors.white,fontSize: 13),)
                       ],),
                   )
