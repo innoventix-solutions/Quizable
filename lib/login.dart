@@ -75,12 +75,13 @@ class _loginState extends State<login> {
         prefs.setString("Id", statuss['userdata']['ID']);
         prefs.setString("type", statuss['userdata']['user_type']);
         prefs.setString("name", statuss['userdata']['username']);
-        prefs.setString("classname", statuss['userdata']['classname']);
+        //prefs.setString("classname", statuss['join_classdata']['class_name']);
       GlobalData.Username=statuss['userdata']['username'];
         print(statuss['userdata']['user_type']);
+        print(statuss['userdata']['ID']);
         GlobalData.uid = statuss['userdata']['ID'].toString();
         GlobalData.Username = statuss['userdata']['username'].toString();
-        GlobalData.class_name = statuss['userdata']['classname'].toString();
+        //GlobalData.class_name = statuss['join_classdata']['class_name'].toString();
 
         if (statuss['userdata']['user_type'] == "teacher") {
           Navigator.of(context).pushReplacementNamed('techerjoinclass');
