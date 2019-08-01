@@ -64,7 +64,7 @@ class _studentregState extends State<studentreg> {
       if (statuss['status'].toString() == "1") {
         Show_toast("Registered Successfully", Colors.green);
         Navigator.of(context)
-            .pushNamed('studentjoin');
+            .pushNamed('login');
       } else {
         Show_toast(statuss['msg'], Colors.red);
       }
