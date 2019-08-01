@@ -75,10 +75,12 @@ class _loginState extends State<login> {
         prefs.setString("Id", statuss['userdata']['ID']);
         prefs.setString("type", statuss['userdata']['user_type']);
         prefs.setString("name", statuss['userdata']['username']);
+        prefs.setString("classname", statuss['userdata']['classname']);
       GlobalData.Username=statuss['userdata']['username'];
         print(statuss['userdata']['user_type']);
         GlobalData.uid = statuss['userdata']['ID'].toString();
         GlobalData.Username = statuss['userdata']['username'].toString();
+        GlobalData.class_name = statuss['userdata']['classname'].toString();
 
         if (statuss['userdata']['user_type'] == "teacher") {
           Navigator.of(context).pushReplacementNamed('techerjoinclass');
@@ -192,6 +194,27 @@ class _loginState extends State<login> {
                           },
                           shape: new RoundedRectangleBorder(
                               borderRadius: new BorderRadius.circular(30.0))),
+                    ),
+
+                    SizedBox(height: 25,width: 25,),
+
+                    Padding(
+                      padding: const EdgeInsets.only(top: 20),
+
+                      child: Text(
+                            "Dont't have account?",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(color: Colors.white, fontSize: 15),
+                          ),
+                    ),
+
+                    Padding(
+                      padding: const EdgeInsets.only(top: 5),
+                      child: GestureDetector(
+                        child: Text("Sign up",textAlign: TextAlign.center,
+                          style: TextStyle(color: Colors.white, fontSize: 15,fontWeight: FontWeight.bold),),
+                        onTap: (){Navigator.of(context).pushNamed('returnsignup');},
+                      ),
                     ),
                   ],
                 ),

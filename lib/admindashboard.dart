@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:newpro/global.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 class admindashboard extends StatefulWidget {
   @override
   _admindashboardState createState() => _admindashboardState();
@@ -61,7 +62,7 @@ class _admindashboardState extends State<admindashboard> {
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: 10),
-                  child: Text(GlobalData.accounttype,style:
+                  child: Text(GlobalData.class_name,style:
                   TextStyle(fontSize: 15,color: Colors.white),),
                 ),
               ],
@@ -153,8 +154,7 @@ class _admindashboardState extends State<admindashboard> {
                             ),
 
 
-                          ),onTap: (){Navigator.of(context)
-                            .pushNamed('manageclassactivities');},
+                          ),onTap: (){},
                         ),
                         Padding(
                           padding: const EdgeInsets.only(left: 15,right: 15),
@@ -245,7 +245,7 @@ class _admindashboardState extends State<admindashboard> {
                         ),
 
 
-                          Text(GlobalData.accounttype,
+                          Text(GlobalData.class_name,
                             style: TextStyle(color: Colors.white,fontSize: 15),)
                         ],),
                     )
@@ -253,14 +253,19 @@ class _admindashboardState extends State<admindashboard> {
               ),),
             ),decoration: bg12,),
 
-            Padding(
-              padding: const EdgeInsets.only(left: 45,top:30),
-              child: Row(children: <Widget>[Icon(Icons.home,color: GlobalData.lightblue,),
-                Padding(
-                  padding: const EdgeInsets.only(left: 20),
-                  child: Text('Home',style: TextStyle(
-                      color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
-                )],),
+            GestureDetector(
+              child: Padding(
+                padding: const EdgeInsets.only(left: 45,top:30),
+                child: Row(children: <Widget>[Icon(Icons.home,color: GlobalData.lightblue,),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 20),
+                    child: Text('Home',style: TextStyle(
+                        color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
+                  )],),
+              ),onTap: (){
+              Navigator.of(context)
+                  .pushNamed('admindashboard');
+            },
             ),
 
             Padding(
@@ -323,14 +328,24 @@ class _admindashboardState extends State<admindashboard> {
                 )],),
             ),
 
-            Padding(
-              padding: const EdgeInsets.only(left: 45,top:20),
-              child: Row(children: <Widget>[Icon(Icons.power_settings_new,color: GlobalData.lightblue,),
-                Padding(
-                  padding: const EdgeInsets.only(left: 20),
-                  child: Text('Log out',style: TextStyle(
-                      color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
-                )],),
+            GestureDetector(
+              child: Padding(
+                padding: const EdgeInsets.only(left: 45,top:20),
+                child: Row(children: <Widget>[Icon(Icons.power_settings_new,color: GlobalData.lightblue,),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 20),
+                    child: Text('Log out',style: TextStyle(
+                        color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
+                  )],),
+              ),onTap: ()
+    async{
+
+    SharedPreferences pre= await SharedPreferences.getInstance();
+    pre.clear();
+    Navigator.of(context).dispose();
+    Navigator.of(context).pushNamed('login');
+
+    },
             ),
 
 

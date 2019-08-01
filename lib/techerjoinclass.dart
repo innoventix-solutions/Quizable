@@ -24,7 +24,7 @@ class _techerjoinclassState extends State<techerjoinclass> {
       if (statuss['status'].toString() == "1") {
         Show_toast_Now(statuss['msg'], Colors.green);
         Navigator.of(context)
-            .pushNamed('teacherjoinclass');
+            .pushNamed('teacherdashboard');
 
       } else {
         Show_toast_Now(statuss['msg'], Colors.red);
