@@ -79,6 +79,16 @@ class _studentregState extends State<studentreg> {
     if(emailValid == false){
 
       _showDialog1();
+    }else if(phone.text.length!=10)
+    {
+      print(phone.text.toString());
+      print(phone.text.length.toString());
+      _showDialog(Msg: "Number is not Valid");
+    }
+    else if(par_phone.text.length!=10)
+    {
+
+      _showDialog(Msg: "Parent Number is not Valid");
     }
     else
     if (password.text.toString() == cpass.text.toString()) {
@@ -88,14 +98,14 @@ class _studentregState extends State<studentreg> {
     }
   }
 
-  void _showDialog() {
+  void _showDialog({String Msg}) {
     // flutter defined function
     showDialog(
       context: context,
       builder: (BuildContext context) {
         // return object of type Dialog
         return AlertDialog(
-          content: new Text("Password not matched"),
+          content: new Text(Msg==null?"Password not matched":Msg),
         );
       },
     );
