@@ -100,6 +100,12 @@ class _Quiz_List_studentState extends State<Quiz_List_student> {
                                   fontSize: 20),),
                           ),
 
+                            Container(
+                              child: Text(GlobalData.activeclass!=null?GlobalData.activeclass.classname:"No Class Selected",
+                                style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,
+                                    fontSize: 12),),
+                            ),
+
 
                           ],),
                       )
