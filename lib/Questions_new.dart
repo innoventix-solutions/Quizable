@@ -583,7 +583,9 @@ class _QuestionsState extends State<Questions> {
                   ),
                 ],
               ),
-
+Text("Enter Answer In Sequence With Underscore '_' in between the words",style: TextStyle(
+  fontSize: 16,color: Colors.red
+),),
 
 
             ],
