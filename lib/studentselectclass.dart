@@ -55,7 +55,7 @@ class _studentselectclassState extends State<studentselectclass> {
     GlobalData.activeclass = GlobalData.Class_list[index];
                 print(GlobalData.Class_list[index].classname);
 print(GlobalData.activeclass.classname);
-    Navigator.of(context).pushReplacementNamed('studentjoinclass');
+    Navigator.of(context).pushReplacementNamed('studentdashboard');
 
 
                       },

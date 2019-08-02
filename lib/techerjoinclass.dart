@@ -24,7 +24,7 @@ class _techerjoinclassState extends State<techerjoinclass> {
       if (statuss['status'].toString() == "1") {
         Show_toast_Now(statuss['msg'], Colors.green);
         Navigator.of(context)
-            .pushNamed('teacherjoinclass');
+            .pushNamed('teacherdashboard');
 
       } else {
         Show_toast_Now(statuss['msg'], Colors.red);
@@ -41,13 +41,7 @@ class _techerjoinclassState extends State<techerjoinclass> {
       child: Scaffold(
           appBar: AppBar(
             automaticallyImplyLeading: true,
-            leading: IconButton(onPressed: (){},
-              icon: Icon(
-                Icons.arrow_back,
-                color: Colors.white,
-                size: 20,
-              ),
-            ),
+
             title: Center(
               child: Text(
                 "Join Class",
