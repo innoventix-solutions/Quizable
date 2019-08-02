@@ -58,7 +58,7 @@ class _Question_ListState extends State<Question_List> {
 
 
 
-  Widget AnswerNow(String type,List<Pojo_Matchs> Data,List<Pojo_Answers> Answers)
+  Widget AnswerNow(String type,List<Pojo_Matchs> Data,List<Pojo_Answers> Answers,int index)
   {
 
     Matches=Data;
@@ -78,6 +78,7 @@ class _Question_ListState extends State<Question_List> {
       case "Match Type":
 
         return Container(
+          key: Key(index.toString()),
           height: Matches.isEmpty?50.0:Matches.length*60.0,
           child: Row(
             children: <Widget>[
@@ -298,7 +299,7 @@ class _Question_ListState extends State<Question_List> {
                           ],
                         ),
                       ),
-                      AnswerNow(Quetions[i].answer_type,Quetions[i].anwer_options,Quetions[i].Options),
+                      AnswerNow(Quetions[i].answer_type,Quetions[i].anwer_options,Quetions[i].Options,i),
                       Container(
 
                         child: Row(
