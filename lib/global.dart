@@ -103,7 +103,7 @@ class drawerquiz extends StatelessWidget {
                               fontSize: 16),),
                       ),
 
-                        Text(GlobalData.class_name,
+                        Text(GlobalData.activeclass!=null?GlobalData.activeclass.classname:"No Class Selected",
                           style: TextStyle(color: Colors.white,fontSize: 13),)
                       ],),
                   )
