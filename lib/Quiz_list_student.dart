@@ -188,12 +188,9 @@ class _Quiz_List_studentState extends State<Quiz_List_student> {
                           color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
                     ),],),
                 ),onTap: ()async{
-                SharedPreferences pre= await SharedPreferences.getInstance();
-                pre.clear();
-                Navigator.of(context).dispose();
-                Navigator.of(context).pushNamed('login');
-
+                LogoutFunction(context);
               },
+
               ),
 
 
