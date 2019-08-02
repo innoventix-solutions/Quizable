@@ -194,6 +194,23 @@ class _loginState extends State<login> {
                             shape: new RoundedRectangleBorder(
                                 borderRadius: new BorderRadius.circular(30.0))),
                       ),
+                      
+                      Padding(
+                        padding: const EdgeInsets.only(top: 10),
+                        child: Text("Don't have an account?",style: TextStyle(color: Colors.white,fontSize: 14),),
+                      ),
+
+                      GestureDetector(
+                        child: Padding(
+                          padding: const EdgeInsets.only(top: 10),
+                          child: Text("Sign up",style: TextStyle(color: Colors.white,fontSize: 16,
+                              fontWeight:FontWeight.bold ),),
+                        ),onTap: (){
+                        Navigator.of(context)
+                            .pushNamed('returnsignup');
+                      },
+                      ),
+
 
 
                     ],

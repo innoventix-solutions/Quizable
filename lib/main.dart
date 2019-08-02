@@ -89,6 +89,7 @@ class MyApp extends StatelessWidget {
         'studentjoinclass ': (context) => studentjoin(),
         'adminteacherjoinclass': (context) => techerjoinclass(),
         'teacherjoinclass': (context) => techerjoinclass(),
+        'teacherjoinclass': (context) => teacherdashboard(),
         'teacherdashboard': (context) => teacherdashboard(),
         'manageclassactivities': (context) => questionmenu(),
         'GlobalQuiz': (context) => questionmenuGlobal(),
