@@ -92,7 +92,10 @@ class _secState extends State<sec> {
     if(emailValid == false){
 
       _showDialog1();
-    }
+    }else if(phone.text.length!=10)
+      {
+        _showDialog(Msg: "Number is not Valid");
+      }
       else
     if (password.text.toString() == cpass.text.toString()) {
       Signup();
@@ -101,14 +104,14 @@ class _secState extends State<sec> {
     }
   }
 
-  void _showDialog() {
+  void _showDialog({String Msg}) {
     // flutter defined function
     showDialog(
       context: context,
       builder: (BuildContext context) {
         // return object of type Dialog
         return AlertDialog(
-          content: new Text("Password not matched"),
+          content: new Text(Msg==null?"Password not matched":Msg),
         );
       },
     );
@@ -203,6 +206,7 @@ class _secState extends State<sec> {
                       CustomTextFieldBorder(
                         keyboardtype: TextInputType.phone,
                         controller: phone,
+
                         hintColor: GlobalData.lightblue,
                         hintStyle: TextStyle(
                           color: GlobalData.black,

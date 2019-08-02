@@ -1,9 +1,11 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'Pojo/pojo_getclasses.dart';
-
+import 'package:http/http.dart' as http;
 
 
 class GlobalData{
@@ -369,6 +371,9 @@ class CustomTextFieldBorder extends StatelessWidget {
   final TextStyle hintStyle;
   final bool password;
   final keyboardtype;
+  final int min;
+  final int max;
+
 
 
 
@@ -382,6 +387,8 @@ class CustomTextFieldBorder extends StatelessWidget {
       this.hintStyle,
       this.password,
       this.keyboardtype,
+        this.max,
+        this.min
       });
 
   @override
@@ -402,13 +409,17 @@ class CustomTextFieldBorder extends StatelessWidget {
                     borderSide: BorderSide(color: Colors.white)),
                 prefixIcon: icon,
                 hintText: hintText,
-                hintStyle: hintStyle)
+                hintStyle: hintStyle,
+            ),
+
           ),
         ),
       ),
     );
   }
 }
+
+
 
 class appbar extends StatefulWidget {
   @override
@@ -805,4 +816,34 @@ class MatchClass {
         'val1': val1,
         'val2': val2,
       };
+}
+
+
+LogoutFunction(context)async {
+
+  SharedPreferences pre= await SharedPreferences.getInstance();
+  pre.clear();
+  // Navigator.of(context).dispose();
+  // await Navigator.of(context).dispose();
+  Navigator.of(context).pushNamed('login');
+
+}
+
+
+ GetMyClasses() async{
+
+  await http.post("http://edusupportapp.com/api/get_teacher_classes.php",body: {
+    "UserId":GlobalData.uid
+  }).then((res) async {
+
+    print(res.body);
+    var ParsedData = await jsonDecode(res.body);
+    GlobalData.Class_list =
+        (ParsedData['join_classdata'] as List).map((data) =>
+            Classes.fromJson(data)).toList();
+
+  }
+
+  );
+
 }

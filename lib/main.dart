@@ -52,6 +52,7 @@ import 'functionclass.dart';
 import 'admindashboard.dart';
 import 'adminprofile.dart';
 import 'studentselectclass.dart';
+import 'TeacherSelectClass.dart';
 
 
 
@@ -87,7 +88,7 @@ class MyApp extends StatelessWidget {
         'studentdashboard': (context) => studentdashboard(),
         'studentjoinclass ': (context) => studentjoin(),
         'adminteacherjoinclass': (context) => techerjoinclass(),
-        'teacherjoinclass': (context) => teacherdashboard(),
+        'teacherjoinclass': (context) => techerjoinclass(),
         'teacherdashboard': (context) => teacherdashboard(),
         'manageclassactivities': (context) => questionmenu(),
         'GlobalQuiz': (context) => questionmenuGlobal(),
@@ -103,6 +104,7 @@ class MyApp extends StatelessWidget {
         'classroomstudent':(context)=>classroomstudent(),
         'myclassroom':(context)=>myclassroom(),
         'studentselectclass':(context)=>studentselectclass(),
+        'teacherSelectClass':(context)=>TeacherSelectClass(),
         'returnsignup':(context)=>select(),
         'admindashboard':(context)=>admindashboard(),
         'studentdashboard':(context)=>studentdashboard(),
