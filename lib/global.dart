@@ -7,11 +7,14 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'Pojo/pojo_getclasses.dart';
 import 'package:http/http.dart' as http;
 
+import 'Pojo/pojo_questions.dart';
+
 
 class GlobalData{
 
 
-
+  static bool EditQuiz = false;
+  static Pojo_questions Current_Que_To_Edit;
 
   static Color gradientblue = Color(0Xff1F0BE5); //a
   static Color gradientviolet = Color(0Xff730676); //a
@@ -103,7 +106,7 @@ class drawerquiz extends StatelessWidget {
                               fontSize: 16),),
                       ),
 
-                        Text(GlobalData.class_name,
+                        Text(GlobalData.activeclass!=null?GlobalData.activeclass.classname:"No Class Selected",
                           style: TextStyle(color: Colors.white,fontSize: 13),)
                       ],),
                   )
@@ -578,12 +581,16 @@ class classactivitys extends StatelessWidget {
   final String heading;
   final String paragraph;
   final Color color;
+  final String title;
+  final String id;
 
   classactivitys(
       {
         this.heading,
         this.paragraph,
-        this.color});
+        this.color,
+      this.title,
+      this.id});
 
   @override
   Widget build(BuildContext context) {
@@ -629,7 +636,7 @@ class classactivitys extends StatelessWidget {
                                                     ),
                                                     new Text('Edit',style: TextStyle(fontSize: 15),),
                                                   ],
-                                                ), value: ''),
+                                                ), value: 'edit'),
 
 
                                             new PopupMenuItem<String>(
@@ -644,10 +651,18 @@ class classactivitys extends StatelessWidget {
                                                     ),
                                                     new Text('Delete',style: TextStyle(fontSize: 15),),
                                                   ],
-                                                ), value: ''),
+                                                ), value: 'delete'),
 
                                           ],
-                                          onSelected: ( value){},
+                                          onSelected: ( value){
+                                           if(value=="edit")
+                                             {
+                                               GlobalData.EditQuiz=true;
+                                               GlobalData.QuizID=id;
+                                               GlobalData.ExamQuiz=title;
+                                               Navigator.of(context).pushNamed('Question_List');
+                                             }
+                                          },
                                         ),
                                       ],
                                     ),
@@ -842,3 +857,4 @@ LogoutFunction(context)async {
   );
 
 }
+
