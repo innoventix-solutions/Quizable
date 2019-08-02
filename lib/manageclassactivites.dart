@@ -85,24 +85,25 @@ class _questionmenuState extends State<questionmenu> {
                 ListView.builder(
                     itemCount: Quizz_List.length,
                     itemBuilder: (c,i){
-                  return  GestureDetector(
+                    return GestureDetector(
                     onTap: (){
+                      GlobalData.EditQuiz=false;
                       GlobalData.QuizID=Quizz_List[i].id;
                       GlobalData.ExamQuiz=Quizz_List[i].quiz_title;
                       Navigator.of(context).pushNamed('Question_List');
                     },
                     child: classactivitys(
                       color: GlobalData.pinkred,
-                      heading: Quizz_List[i].quiz_title+" - "+Quizz_List[i].id,
+                      heading: Quizz_List[i].quiz_title,
                       paragraph: Quizz_List[i].quiz_subject,
+                      id:Quizz_List[i].id ,
+                      title: Quizz_List[i].quiz_title,
                     ),
                   );
                 }),
               ),
             ],
           )
-
-
     );
   }
 }
