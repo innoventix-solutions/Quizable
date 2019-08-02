@@ -52,7 +52,7 @@ class _selectquizsubjectState extends State<selectquizsubject> {
           ],
         ),
 
-        drawer: Drawer(
+        /*drawer: Drawer(
           // Add a ListView to the drawer. This ensures the user can scroll
           // through the options in the Drawer if there isn't enough vertical
           // space to fit everything.
@@ -138,7 +138,7 @@ class _selectquizsubjectState extends State<selectquizsubject> {
 
             ],
           ),
-        ),
+        ),*/
 
 
         body: SingleChildScrollView(

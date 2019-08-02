@@ -333,12 +333,8 @@ class _teacherdashboardState extends State<teacherdashboard> {
                   )],),
               ),
               onTap: ()async{
-              SharedPreferences pre= await SharedPreferences.getInstance();
-              pre.clear();
-
-              Navigator.of(context).pushNamed('login');
-
-            },
+                LogoutFunction(context);
+              },
             ),
 
 
