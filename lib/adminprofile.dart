@@ -32,15 +32,15 @@ class _adminprofileState extends State<adminprofile> {
             ),
           ),
           actions: <Widget>[
-            IconButton(
-              onPressed: () {},
-              icon: Icon(
-                Icons.account_circle,
-                color: Colors.transparent,
-                size: 20,
-              ),
+          IconButton(
+            onPressed: () {},
+            icon: Icon(
+              Icons.account_circle,
+              color: Colors.transparent,
+              size: 20,
             ),
-          ],
+          ),
+        ],
         ),
         body: Center(
           child: SingleChildScrollView(
