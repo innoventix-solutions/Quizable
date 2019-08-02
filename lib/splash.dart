@@ -1,9 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import 'Pojo/pojo_getclasses.dart';
 import 'global.dart';
 class splash extends StatefulWidget {
@@ -16,15 +14,12 @@ class _splashState extends State<splash> {
   GetUserdetails()async{
     prefs = await SharedPreferences.getInstance();
     print(prefs.get("Id"));
-
     if(prefs.get("Id")!=null)
     {
       print(await prefs.getString("Data"));
 
       var JionedClassJson = await jsonDecode(await prefs.getString("Data"));
-      GlobalData.Class_list =
-          await (JionedClassJson as List).map((data) =>
-              Classes.fromJson(data)).toList();
+      GlobalData.Class_list = await (JionedClassJson as List).map((data) =>Classes.fromJson(data)).toList();
 
 
       print(GlobalData.Class_list.length.toString());

@@ -17,6 +17,7 @@ class Exam extends StatefulWidget {
 
 class _ExamState extends State<Exam> {
 
+
   CountDown cd ;
   int CurrentPage =0;
   PageController pageController = new PageController();
@@ -35,8 +36,10 @@ class _ExamState extends State<Exam> {
   bool isloading = true;
   String TimerText ="-:--:--";
 
+  int timermins = 15;
+
   Timmer(){
-   cd = CountDown(Duration(seconds: 1));
+   cd = CountDown(Duration(minutes: timermins));
     var sub = cd.stream.listen(null);
     // start your countdown by registering a listener
     sub.onData((Duration d) {
@@ -235,7 +238,7 @@ class _ExamState extends State<Exam> {
                                   itemCount: Options.length,itemBuilder: (context,index){
                                 return Container(child: Row(
                                   children: <Widget>[
-                                    Checkbox(value: Options[index].trueanswer, onChanged: (value){
+                                    Checkbox(value: false/*Options[index].trueanswer*/, onChanged: (value){
 
 
                                       for(int i=0;i<Options.length;i++){
@@ -381,6 +384,7 @@ class _ExamState extends State<Exam> {
                   Expanded(
                     child: GradientButtonText(
                       ButtonClick: (){
+
 
                         String answ="";
 
