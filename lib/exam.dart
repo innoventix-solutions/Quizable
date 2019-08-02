@@ -97,7 +97,6 @@ class _ExamState extends State<Exam> {
     switch (type)
     {
           case "Match Type":
-
             return Container(
               height: Matches.isEmpty?50.0:Matches.length*60.0,
               child: Row(
@@ -108,10 +107,15 @@ class _ExamState extends State<Exam> {
                         child: ListView.builder(
                           controller: controller,
                           itemCount: Matches.length,
+
                             itemBuilder: (c,i){
-                            return ListTile(
-                              title: Text( Matches[i].val1),
-                              leading: Icon(Icons.add,color: Colors.transparent,),
+                            return Container(
+                              color: Colors.green[300],
+                              child: ListTile(
+
+                                title: Text( Matches[i].val1),
+                                leading: Icon(Icons.add,color: Colors.transparent,),
+                              ),
                             );
 
                         }),
@@ -123,7 +127,10 @@ class _ExamState extends State<Exam> {
                       children: <Widget>[
                         Expanded(
                           child: ReorderableListView(
-                            children: _list.map((item) => ListTile(key: Key("${item}"), title: Text("${item}"), trailing: Icon(Icons.menu),)).toList(),
+
+
+                            children: _list.map((item) => Container( key: Key("${item}"),
+                                color:Colors.amber,child: ListTile( key: Key("${item}"), title: Text("${item}"), trailing: Icon(Icons.menu),))).toList(),
                             onReorder: (int start, int current) {
                               // dragging from top to bottom
                               if (start < current) {

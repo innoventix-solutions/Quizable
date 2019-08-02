@@ -26,6 +26,20 @@ class Classes{
       selected: false
     );
   }
+
+  Map<String, dynamic> toJson() =>
+      {
+        'id':id,
+        'userid': userid,
+        'classname': classname,
+        'classicon':classicon,
+        'studentinvitecode': studentinvitecode,
+        'teacherinvitecode': teacherinvitecode,
+        'createddate': createddate,
+        'selected':true
+      };
+
+
 }
 
 

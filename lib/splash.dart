@@ -1,8 +1,10 @@
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'Pojo/pojo_getclasses.dart';
 import 'global.dart';
 class splash extends StatefulWidget {
   @override
@@ -14,21 +16,41 @@ class _splashState extends State<splash> {
   GetUserdetails()async{
     prefs = await SharedPreferences.getInstance();
     print(prefs.get("Id"));
+
     if(prefs.get("Id")!=null)
     {
+      print(await prefs.getString("Data"));
+
+      var JionedClassJson = await jsonDecode(await prefs.getString("Data"));
+      GlobalData.Class_list =
+          await (JionedClassJson as List).map((data) =>
+              Classes.fromJson(data)).toList();
+
+
+      print(GlobalData.Class_list.length.toString());
+      print(GlobalData.Class_list[0].classname);
+
+      print(jsonEncode(GlobalData.Class_list));
+
       GlobalData.uid=prefs.get("Id");
       GlobalData.Username=prefs.get("name");
       print( GlobalData.uid+"  "+GlobalData.Username);
+
+      await GetMyClasses();
+
       if(prefs.get("type")=="teacher")
       {
-        Navigator.of(context).pushReplacementNamed('techerjoinclass');
+
+        print(GlobalData.Class_list.isEmpty);
+
+        Navigator.of(context).pushReplacementNamed(GlobalData.Class_list.isEmpty?'techerjoinclass':'teacherSelectClass');
       }
       else  if(prefs.get("type")=="admin_teacher")
       {
         Navigator.of(context).pushReplacementNamed('welcome');
       }
       else{
-        Navigator.of(context).pushReplacementNamed('studentjoinclass');
+        Navigator.of(context).pushReplacementNamed(GlobalData.Class_list.isEmpty?'studentjoinclass':'studentselectclass');
       }
     }
     else

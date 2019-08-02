@@ -47,16 +47,13 @@ class _loginState extends State<login> {
 
   login() async {
     http.post("http://edusupportapp.com/api/login.php", body: {
-      "username_email": email.text.toString(),
-      "password": pass.text.toString()
-    }).then((response) {
-      var statuss = jsonDecode(response.body);
-
-      print(response.body.toString());
+        "username_email": email.text.toString(),
+        "password": pass.text.toString()
+      }).then((response) async {
+        var statuss = jsonDecode(response.body);
+        print(response.body.toString());
       //    print(response.body.toString());
-      if (statuss['status'] == 1) {
-
-
+        if (statuss['status'] == 1) {
 
         if(statuss['join_classdata'] == false ){
 
@@ -71,12 +68,12 @@ class _loginState extends State<login> {
         print(GlobalData.Class_list.length.toString() + "Avilable class");
 
         Show_toast("Logged in Successfully", Colors.green);
-
+        prefs.setString('Data',await jsonEncode(GlobalData.Class_list));
         prefs.setString("Id", statuss['userdata']['ID']);
         prefs.setString("type", statuss['userdata']['user_type']);
         prefs.setString("name", statuss['userdata']['username']);
         prefs.setString("classname", statuss['userdata']['class_name']);
-      GlobalData.Username=statuss['userdata']['username'];
+        GlobalData.Username=statuss['userdata']['username'];
         print(statuss['userdata']['user_type']);
         print(statuss['userdata']['ID']);
         GlobalData.uid = statuss['userdata']['ID'].toString();
@@ -84,16 +81,16 @@ class _loginState extends State<login> {
         GlobalData.class_name = statuss['userdata']['class_name'].toString();
 
         if (statuss['userdata']['user_type'] == "teacher") {
-          Navigator.of(context).pushReplacementNamed('techerjoinclass');
+          Navigator.of(context).pushReplacementNamed(GlobalData.Class_list.isEmpty?'techerjoinclass':'teacherSelectClass');
         } else if (statuss['userdata']['user_type'] == "admin_teacher") {
           Navigator.of(context).pushReplacementNamed('welcome');
         } else {
-        if(GlobalData.Class_list.length == 0)
+        if(GlobalData.Class_list.length == 0) {
+          Navigator.of(context).pushReplacementNamed('studentjoin');
 
-{ Navigator.of(context).pushReplacementNamed('studentjoin');}
+        }
         else
           {
-
             Navigator.of(context).pushReplacementNamed('studentselectclass');
           }
 

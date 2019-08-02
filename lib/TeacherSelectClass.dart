@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'global.dart';
 import'package:newpro/Pojo/pojo_getclasses.dart';
 
-class studentselectclass extends StatefulWidget {
+class TeacherSelectClass extends StatefulWidget {
   @override
-  _studentselectclassState createState() => _studentselectclassState();
+  _TeacherSelectClassState createState() => _TeacherSelectClassState();
 }
 
-class _studentselectclassState extends State<studentselectclass> {
+class _TeacherSelectClassState extends State<TeacherSelectClass> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -53,9 +53,10 @@ class _studentselectclassState extends State<studentselectclass> {
                     return  GestureDetector(
                       onTap: (){
     GlobalData.activeclass = GlobalData.Class_list[index];
+    GlobalData.class_name=GlobalData.Class_list[index].classname;
                 print(GlobalData.Class_list[index].classname);
 print(GlobalData.activeclass.classname);
-    Navigator.of(context).pushReplacementNamed('studentdashboard');
+    Navigator.of(context).pushReplacementNamed('teacherdashboard');
 
 
                       },
@@ -118,13 +119,13 @@ print(GlobalData.activeclass.classname);
                           child: GestureDetector(onTap:(){
 
                             Navigator.of(context)
-                                .pushNamed('studentjoinclass');
+                                .pushNamed('teacherjoinclass');
 
                           } ,
                             child: GradientButtonText(
                               ButtonClick: (){
                                 Navigator.of(context)
-                                    .pushNamed('studentjoinclass');
+                                    .pushNamed('teacherjoinclass');
                               },
                               linearGradient:LinearGradient(
                                   colors: <Color>[GlobalData.purple,
