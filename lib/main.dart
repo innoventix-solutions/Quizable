@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:share/share.dart';
+import 'Edit_Question.dart';
 import 'Questions_list.dart';
 import 'Quiz_list_student.dart';
 import 'globalvar.dart';
@@ -89,7 +90,6 @@ class MyApp extends StatelessWidget {
         'studentjoinclass ': (context) => studentjoin(),
         'adminteacherjoinclass': (context) => techerjoinclass(),
         'teacherjoinclass': (context) => techerjoinclass(),
-        'teacherjoinclass': (context) => teacherdashboard(),
         'teacherdashboard': (context) => teacherdashboard(),
         'manageclassactivities': (context) => questionmenu(),
         'GlobalQuiz': (context) => questionmenuGlobal(),
@@ -108,7 +108,7 @@ class MyApp extends StatelessWidget {
         'teacherSelectClass':(context)=>TeacherSelectClass(),
         'returnsignup':(context)=>select(),
         'admindashboard':(context)=>admindashboard(),
-        'studentdashboard':(context)=>studentdashboard(),
+        'edit_question':(context)=>Edit_Question(),
       },
     );
   }

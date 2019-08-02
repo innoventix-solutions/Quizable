@@ -31,7 +31,6 @@ class _Question_ListState extends State<Question_List> {
   List<int> Selecteditem=new List();
   String TrueorFalse = "";
   List<String> _list = new List();
-
   bool isloading = true;
 
   GetQuestions() async{
@@ -59,7 +58,7 @@ class _Question_ListState extends State<Question_List> {
 
 
 
-  Widget AnswerNow(String type,List<Pojo_Matchs> Data,List<Pojo_Answers> Answers)
+  Widget AnswerNow(String type,List<Pojo_Matchs> Data,List<Pojo_Answers> Answers,int index)
   {
 
     Matches=Data;
@@ -79,6 +78,7 @@ class _Question_ListState extends State<Question_List> {
       case "Match Type":
 
         return Container(
+          key: Key(index.toString()),
           height: Matches.isEmpty?50.0:Matches.length*60.0,
           child: Row(
             children: <Widget>[
@@ -135,8 +135,6 @@ class _Question_ListState extends State<Question_List> {
             ],
           ),
         );
-
-
       case "True False":
         return Card(
           child: Column(
@@ -159,26 +157,16 @@ class _Question_ListState extends State<Question_List> {
                           Container(child: Row(
                             children: <Widget>[
                               Radio(value: "false", groupValue: TrueorFalse, onChanged: (v){TrueorFalse=v;setState(() {
-
                               });}),
                               Text("True")
-
-
-
                             ],),),
                           Container(child: Row(
                             children: <Widget>[
                               Radio(value: "true", groupValue: TrueorFalse, onChanged: (v){TrueorFalse=v;
                               setState(() {
-
                               });}),
-
                               Text("False")
-
-
-
                             ],),)
-
                         ],
                       ),
                     ),
@@ -249,6 +237,10 @@ class _Question_ListState extends State<Question_List> {
 
   }
 
+  @override
+  dispose(){
+
+  }
 
   Widget MYQue(){
     return SafeArea(
@@ -274,6 +266,14 @@ class _Question_ListState extends State<Question_List> {
                               padding: const EdgeInsets.all(8.0),
                               child: Text("Level ${Quetions[i].level_no.toString()}",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
                             )),
+                           GlobalData.EditQuiz==false?Text(""): GestureDetector(
+                            onTap:(){
+
+                              GlobalData.Current_Que_To_Edit = Quetions[i];
+                              Navigator.of(context).pushNamed('edit_question');
+
+                            },child: Icon(Icons.edit,color: Colors.white,))
+                            ,SizedBox(width: 10,)
                           ],
                         ),
                       ),
@@ -299,7 +299,7 @@ class _Question_ListState extends State<Question_List> {
                           ],
                         ),
                       ),
-                      AnswerNow(Quetions[i].answer_type,Quetions[i].anwer_options,Quetions[i].Options),
+                      AnswerNow(Quetions[i].answer_type,Quetions[i].anwer_options,Quetions[i].Options,i),
                       Container(
 
                         child: Row(
