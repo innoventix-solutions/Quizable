@@ -129,7 +129,9 @@ print(GlobalData.activeclass.classname);
                               linearGradient:LinearGradient(
                                   colors: <Color>[GlobalData.purple,
                                     GlobalData.pink]) ,text:
-                            Text("Join New Class",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 18,),textAlign: TextAlign.center,),
+                            Text("Join New Class",
+                              style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,
+                                fontSize: 18,),textAlign: TextAlign.center,),
                             ),
                           ),
                         ),
