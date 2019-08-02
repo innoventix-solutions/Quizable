@@ -338,14 +338,9 @@ class _admindashboardState extends State<admindashboard> {
                         color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
                   )],),
               ),onTap: ()
-    async{
-
-    SharedPreferences pre= await SharedPreferences.getInstance();
-    pre.clear();
-    Navigator.of(context).dispose();
-    Navigator.of(context).pushNamed('login');
-
-    },
+            async{
+              LogoutFunction(context);
+            },
             ),
 
 
