@@ -75,13 +75,13 @@ class _loginState extends State<login> {
         prefs.setString("Id", statuss['userdata']['ID']);
         prefs.setString("type", statuss['userdata']['user_type']);
         prefs.setString("name", statuss['userdata']['username']);
-        //prefs.setString("classname", statuss['join_classdata']['class_name']);
+        prefs.setString("classname", statuss['userdata']['class_name']);
       GlobalData.Username=statuss['userdata']['username'];
         print(statuss['userdata']['user_type']);
         print(statuss['userdata']['ID']);
         GlobalData.uid = statuss['userdata']['ID'].toString();
         GlobalData.Username = statuss['userdata']['username'].toString();
-        //GlobalData.class_name = statuss['join_classdata']['class_name'].toString();
+        GlobalData.class_name = statuss['userdata']['class_name'].toString();
 
         if (statuss['userdata']['user_type'] == "teacher") {
           Navigator.of(context).pushReplacementNamed('techerjoinclass');
@@ -107,8 +107,8 @@ class _loginState extends State<login> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Container(
+      body:
+         Container(
           decoration: BoxDecoration(
               image: DecorationImage(
                   image: AssetImage('assets/images/bg2.png'), fit: BoxFit.cover)),
@@ -198,26 +198,7 @@ class _loginState extends State<login> {
                                 borderRadius: new BorderRadius.circular(30.0))),
                       ),
 
-                      SizedBox(height: 25,width: 25,),
 
-                      Padding(
-                        padding: const EdgeInsets.only(top: 20),
-
-                        child: Text(
-                              "Dont't have account?",
-                              textAlign: TextAlign.center,
-                              style: TextStyle(color: Colors.white, fontSize: 15),
-                            ),
-                      ),
-
-                      Padding(
-                        padding: const EdgeInsets.only(top: 5),
-                        child: GestureDetector(
-                          child: Text("Sign up",textAlign: TextAlign.center,
-                            style: TextStyle(color: Colors.white, fontSize: 15,fontWeight: FontWeight.bold),),
-                          onTap: (){Navigator.of(context).pushNamed('returnsignup');},
-                        ),
-                      ),
                     ],
                   ),
                 ),
@@ -225,7 +206,7 @@ class _loginState extends State<login> {
             ),
           ),
         ),
-      ),
+
     );
   }
 }
