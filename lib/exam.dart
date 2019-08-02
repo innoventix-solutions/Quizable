@@ -17,7 +17,7 @@ class Exam extends StatefulWidget {
 
 class _ExamState extends State<Exam> {
 
-
+  CountDown cd ;
   int CurrentPage =0;
   PageController pageController = new PageController();
   List<Pojo_questions> Quetions = new List();
@@ -36,7 +36,7 @@ class _ExamState extends State<Exam> {
   String TimerText ="-:--:--";
 
   Timmer(){
-    CountDown cd = CountDown(Duration(minutes:10));
+   cd = CountDown(Duration(seconds: 1));
     var sub = cd.stream.listen(null);
     // start your countdown by registering a listener
     sub.onData((Duration d) {
@@ -51,6 +51,13 @@ class _ExamState extends State<Exam> {
       print("done");
     });
   }
+
+  @override
+  dispose()
+  {
+
+  }
+
   GetQuestions() async{
     isloading = true;
     setState(() {

@@ -368,6 +368,7 @@ class CustomTextFieldBorder extends StatelessWidget {
   final TextEditingController controller;
   final TextStyle hintStyle;
   final bool password;
+  final keyboardtype;
 
 
 
@@ -380,6 +381,7 @@ class CustomTextFieldBorder extends StatelessWidget {
       this.hintText,
       this.hintStyle,
       this.password,
+      this.keyboardtype,
       });
 
   @override
@@ -390,7 +392,7 @@ class CustomTextFieldBorder extends StatelessWidget {
         padding: const EdgeInsets.only(left: 30, right: 30, top: 15),
         child: Theme(
           data: ThemeData(hintColor: hintColor),
-          child: TextField(
+          child: TextField(keyboardType: keyboardtype,
             obscureText: password == null?false:true,
             controller: controller,
             decoration: InputDecoration(

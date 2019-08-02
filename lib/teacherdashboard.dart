@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:newpro/global.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
 class teacherdashboard extends StatefulWidget {
   @override
   _teacherdashboardState createState() => _teacherdashboardState();
@@ -255,14 +257,20 @@ class _teacherdashboardState extends State<teacherdashboard> {
               ),),
             ),decoration: bg12,),
 
-            Padding(
-              padding: const EdgeInsets.only(left: 45,top:30),
-              child: Row(children: <Widget>[Icon(Icons.home,color: GlobalData.lightblue,),
-                Padding(
-                  padding: const EdgeInsets.only(left: 20),
-                  child: Text('Home',style: TextStyle(
-                      color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
-                )],),
+            GestureDetector(
+              child: Padding(
+                padding: const EdgeInsets.only(left: 45,top:30),
+                child: Row(children: <Widget>[Icon(Icons.home,color: GlobalData.lightblue,),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 20),
+                    child: Text('Home',style: TextStyle(
+                        color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
+                  )],),
+              ),
+              onTap: (){
+                Navigator.of(context)
+                    .pushNamed('dashboard');
+              },
             ),
 
             Padding(
@@ -325,14 +333,23 @@ class _teacherdashboardState extends State<teacherdashboard> {
                 )],),
             ),
 
-            Padding(
-              padding: const EdgeInsets.only(left: 45,top:20),
-              child: Row(children: <Widget>[Icon(Icons.power_settings_new,color: GlobalData.lightblue,),
-                Padding(
-                  padding: const EdgeInsets.only(left: 20),
-                  child: Text('Log out',style: TextStyle(
-                      color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
-                )],),
+            GestureDetector(
+              child: Padding(
+                padding: const EdgeInsets.only(left: 45,top:20),
+                child: Row(children: <Widget>[Icon(Icons.power_settings_new,color: GlobalData.lightblue,),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 20),
+                    child: Text('Log out',style: TextStyle(
+                        color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
+                  )],),
+              ),
+              onTap: ()async{
+              SharedPreferences pre= await SharedPreferences.getInstance();
+              pre.clear();
+              Navigator.of(context).dispose();
+              Navigator.of(context).pushNamed('login');
+
+            },
             ),
 
 

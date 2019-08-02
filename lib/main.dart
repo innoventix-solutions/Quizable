@@ -84,13 +84,13 @@ class MyApp extends StatelessWidget {
         'register': (context) => sec(),
         'signup_student': (context) => studentreg(),
         'studentjoin': (context) => studentjoin(),
-        'studentjoinclass': (context) => studentdashboard(),
-        'studentdashboard': (context) => studentjoin(),
+        'studentdashboard': (context) => studentdashboard(),
+        'studentjoinclass ': (context) => studentjoin(),
         'adminteacherjoinclass': (context) => techerjoinclass(),
         'teacherjoinclass': (context) => teacherdashboard(),
+        'teacherdashboard': (context) => teacherdashboard(),
         'manageclassactivities': (context) => questionmenu(),
         'GlobalQuiz': (context) => questionmenuGlobal(),
-
         'setquizquestions':(context) => setquizquestion(),
         'selectsubject':(context) => selectquizsubject(),
         'selectclass':(context) => quizclass(),
@@ -102,7 +102,9 @@ class MyApp extends StatelessWidget {
         'Question_List':(context)=>Question_List(),
         'classroomstudent':(context)=>classroomstudent(),
         'myclassroom':(context)=>myclassroom(),
-        'studentselectclass':(context)=>studentselectclass()
+        'studentselectclass':(context)=>studentselectclass(),
+        'returnsignup':(context)=>select(),
+        'admindashboard':(context)=>admindashboard(),
       },
     );
   }

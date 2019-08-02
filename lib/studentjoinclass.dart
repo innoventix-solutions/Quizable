@@ -135,7 +135,7 @@ class _studentjoinState extends State<studentjoin> {
                     child: GradientButtonText(
                       ButtonClick: (){
                         Navigator.of(context)
-                            .pushNamed('studentjoinclass');
+                            .pushNamed('studentdashboard');
                       },
                       linearGradient:
                       LinearGradient(colors: <Color>[GlobalData.navy, GlobalData.navyblue]),
