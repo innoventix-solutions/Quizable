@@ -92,14 +92,19 @@ class _studentdashboardState extends State<studentdashboard> {
 
 
 
-            Padding(
-              padding: const EdgeInsets.only(left: 45,top:30),
-              child: Row(children: <Widget>[Icon(Icons.home,color: GlobalData.lightblue,),
-                Padding(
-                  padding: const EdgeInsets.only(left: 20),
-                  child: Text('Home',style: TextStyle(
-                      color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
-                )],),
+            GestureDetector(
+              child: Padding(
+                padding: const EdgeInsets.only(left: 45,top:30),
+                child: Row(children: <Widget>[Icon(Icons.home,color: GlobalData.lightblue,),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 20),
+                    child: Text('Home',style: TextStyle(
+                        color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
+                  )],),
+              ),onTap: (){
+              Navigator.of(context)
+                  .pushNamed('studentdashboard');
+            },
             ),
 
             Padding(

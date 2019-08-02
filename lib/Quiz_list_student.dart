@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'Pojo/pojo_quizzes.dart';
 import 'package:http/http.dart' as http;
 import 'global.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Quiz_List_student extends StatefulWidget {
   @override
@@ -108,14 +109,19 @@ class _Quiz_List_studentState extends State<Quiz_List_student> {
 
 
 
-              Padding(
-                padding: const EdgeInsets.only(left: 45,top:30),
-                child: Row(children: <Widget>[Icon(Icons.home,color: GlobalData.lightblue,),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 20),
-                    child: Text('Home',style: TextStyle(
-                        color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
-                  )],),
+              GestureDetector(
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 45,top:30),
+                  child: Row(children: <Widget>[Icon(Icons.home,color: GlobalData.lightblue,),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 20),
+                      child: Text('Home',style: TextStyle(
+                          color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
+                    )],),
+                ),onTap: (){
+                Navigator.of(context)
+                    .pushNamed('studentdashboard');
+              },
               ),
 
               Padding(
@@ -181,7 +187,13 @@ class _Quiz_List_studentState extends State<Quiz_List_student> {
                       child: Text('Log Out',style: TextStyle(
                           color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
                     ),],),
-                ),onTap: (){},
+                ),onTap: ()async{
+                SharedPreferences pre= await SharedPreferences.getInstance();
+                pre.clear();
+                Navigator.of(context).dispose();
+                Navigator.of(context).pushNamed('login');
+
+              },
               ),
 
 

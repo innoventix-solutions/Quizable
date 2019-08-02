@@ -105,6 +105,7 @@ class MyApp extends StatelessWidget {
         'studentselectclass':(context)=>studentselectclass(),
         'returnsignup':(context)=>select(),
         'admindashboard':(context)=>admindashboard(),
+        'studentdashboard':(context)=>studentdashboard(),
       },
     );
   }
