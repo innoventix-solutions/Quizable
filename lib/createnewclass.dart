@@ -60,6 +60,15 @@ class _createnewclassState extends State<createnewclass> {
     });}
 
 
+    @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+    print(GlobalData.uid);
+
+  }
+
 
 
   @override

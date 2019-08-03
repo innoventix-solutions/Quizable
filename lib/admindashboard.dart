@@ -268,6 +268,21 @@ class _admindashboardState extends State<admindashboard> {
             },
             ),
 
+            GestureDetector(
+              child: Padding(
+                padding: const EdgeInsets.only(left: 45,top:30),
+                child: Row(children: <Widget>[Icon(Icons.share,color: GlobalData.lightblue,),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 20),
+                    child: Text('Share Class Code',style: TextStyle(
+                        color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
+                  )],),
+              ),onTap: (){
+              Navigator.of(context)
+                  .pushNamed('adminshareclass');
+            },
+            ),
+
             Padding(
               padding: const EdgeInsets.only(left: 45,top:20),
               child: Row(children: <Widget>[Icon(Icons.info,color: GlobalData.lightblue,),
@@ -340,10 +355,8 @@ class _admindashboardState extends State<admindashboard> {
               ),onTap: ()
             async{
               LogoutFunction(context);
-            },
+              },
             ),
-
-
           ],
         ),
       ),
