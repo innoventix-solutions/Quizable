@@ -160,8 +160,8 @@ class _createnewclassState extends State<createnewclass> {
                   ButtonClick: () {
                     createclass();
 
-//
-//                    print(classname.text.toString());
+
+                 //print(classname.text.toString());
                   },
                 )
               ],
