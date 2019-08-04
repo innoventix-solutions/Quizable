@@ -337,7 +337,17 @@ class _Question_ListState extends State<Question_List> {
     /*print(Quetions[i].anwer_options.length.toString()+"  asdznaisdfmmb k");
 Matches =Quetions[i].anwer_options;*/
     return Scaffold(
-        appBar: AppBar(title: Text("Questions List"),centerTitle: true,),
+        appBar: AppBar(title: Text("Questions List"),centerTitle: true,actions: <Widget>[IconButton(onPressed: ()
+        {
+          Navigator.of(context)
+              .pushNamed('teacherdashboard');
+        },
+          icon: Icon(
+            Icons.home,
+            color: Colors.white,
+            size: 22,
+          ),
+        ),],),
         body: isloading==true?Center(child: Text("Loading...")):MYQue()
 
 

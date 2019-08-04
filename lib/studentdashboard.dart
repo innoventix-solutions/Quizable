@@ -1,5 +1,5 @@
 import 'dart:convert';
-
+import 'package:share/share.dart';
 import 'package:flutter/material.dart';
 import 'Pojo/pojo_quizzes.dart';
 import 'global.dart';
@@ -208,7 +208,10 @@ class _studentdashboardState extends State<studentdashboard> {
                     child: Text('Share App',style: TextStyle(
                         color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
                   ),],),
-              ),onTap: (){},
+              ),onTap: (){
+              Share.share(GlobalData.Username +" is Sharing App - "+ "https://play.google.com/store/apps/details?id=com.innoventixsolutions.edusupport&hl=en");
+
+            },
             ),
             GestureDetector(
               child: Padding(

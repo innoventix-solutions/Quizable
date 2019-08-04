@@ -90,42 +90,50 @@ class _admindashboardState extends State<admindashboard> {
 
                         Padding(
                           padding: const EdgeInsets.only(left: 15),
-                          child: Container(height: 100,width: 150,
+                          child: GestureDetector(
+                            child: Container(height: 100,width: 150,
 
 
-                            child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(10),),color:GlobalData.bluecard,),
+                              child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(10),),color:GlobalData.bluecard,),
 
 
-                              child:Center(
-                                child: Column(mainAxisAlignment: MainAxisAlignment.center,
-                                  children: <Widget>[
-                                    Icon(Icons.settings,size: 50,color: Colors.white,),
-                                    Text("Manage My",textAlign: TextAlign.center,style: TextStyle(color: Colors.white,fontSize: 13,fontWeight: FontWeight.bold),),
-                                    Text("Classrooms",textAlign: TextAlign.center,style: TextStyle(color: Colors.white,fontSize: 13,fontWeight: FontWeight.bold),),
-                                  ],
+                                child:Center(
+                                  child: Column(mainAxisAlignment: MainAxisAlignment.center,
+                                    children: <Widget>[
+                                      Icon(Icons.settings,size: 50,color: Colors.white,),
+                                      Text("Manage My",textAlign: TextAlign.center,style: TextStyle(color: Colors.white,fontSize: 13,fontWeight: FontWeight.bold),),
+                                      Text("Classrooms",textAlign: TextAlign.center,style: TextStyle(color: Colors.white,fontSize: 13,fontWeight: FontWeight.bold),),
+                                    ],
+                                  ),
                                 ),
                               ),
-                            ),
+                            ),onTap: (){
+                              Navigator.of(context).pushReplacementNamed('StudentList');
+                              },
                           ),
 
                         ),
                         Padding(
                           padding: const EdgeInsets.only(left: 15,right: 15),
-                          child: Container(height: 100,width: 150,
+                          child: GestureDetector(
+                            child: Container(height: 100,width: 150,
 
 
-                            child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(10),),color:GlobalData.pinkcard,),
+                              child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(10),),color:GlobalData.pinkcard,),
 
 
-                              child:Center(
-                                child: Column(mainAxisAlignment: MainAxisAlignment.center,
-                                  children: <Widget>[
-                                    Icon(Icons.crop_square,size: 60,color: Colors.white,),
-                                    Text("Teacher's Board",textAlign: TextAlign.center,style: TextStyle(color: Colors.white,fontSize: 13,fontWeight: FontWeight.bold),),
-                                  ],
+                                child:Center(
+                                  child: Column(mainAxisAlignment: MainAxisAlignment.center,
+                                    children: <Widget>[
+                                      Icon(Icons.crop_square,size: 60,color: Colors.white,),
+                                      Text("Teacher's Board",textAlign: TextAlign.center,style: TextStyle(color: Colors.white,fontSize: 13,fontWeight: FontWeight.bold),),
+                                    ],
+                                  ),
                                 ),
                               ),
-                            ),
+                            ),onTap: (){
+                            Navigator.of(context).pushReplacementNamed('TeacherList');
+                          },
                           ),
 
                         )
@@ -209,7 +217,7 @@ class _admindashboardState extends State<admindashboard> {
                     fontSize: 22,
                     fontWeight: FontWeight.bold)),
                 onTap: () {
-                  // do what you need to do when "Click here" gets clicked
+                  Navigator.of(context).pushReplacementNamed('teacherSelectClass');
                 }
             ),
           ),
@@ -282,7 +290,7 @@ class _admindashboardState extends State<admindashboard> {
                   )],),
               ),onTap: (){
               Navigator.of(context)
-                  .pushNamed('adminshareclass');
+                  .pushNamed('TeacherClassList');
             },
             ),
 
@@ -300,14 +308,17 @@ class _admindashboardState extends State<admindashboard> {
               },
             ),
 
-            Padding(
-              padding: const EdgeInsets.only(left: 45,top:20),
-              child: Row(children: <Widget>[Icon(Icons.dehaze,color: GlobalData.lightblue,),
-                Padding(
-                  padding: const EdgeInsets.only(left: 20),
-                  child: Text('Switch Classroom',style: TextStyle(
-                      color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
-                )],),
+            GestureDetector(
+              child: Padding(
+                padding: const EdgeInsets.only(left: 45,top:20),
+                child: Row(children: <Widget>[Icon(Icons.dehaze,color: GlobalData.lightblue,),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 20),
+                    child: Text('Switch Classroom',style: TextStyle(
+                        color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
+                  )],),
+              ),onTap: (){Navigator.of(context).pushReplacementNamed('teacherSelectClass');
+            }
             ),
 
             GestureDetector(

@@ -79,7 +79,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(fontFamily: 'yu'),
-      home:TeacherList(),
+      home:splash(),
       debugShowCheckedModeBanner: false,
       routes: {
        // 'signup_teacher': (context) => sec(),
@@ -128,12 +128,14 @@ class MyApp extends StatelessWidget {
         'AboutEduSupport':(context)=>AboutEdusupport(),
         'ManageAccount':(context)=>ManageAccount(),
         'EditProfile':(context)=>adminprofile(),
-        'EditProfileStudent':(context)=>adminprofile(),
+        'EditProfileStudent':(context)=>StudentEditProfile(),
         'SetAssignment':(context)=>Assignment(),
         'SetSpelling':(context)=>SpellingChallange(),
         'TeacherInviteCode':(context)=>TeacherInviteCode(),
         'StudentInviteCode':(context)=>StudentInviteCode(),
         'GameRoom':(context)=>GameRoom(),
+        'StudentList':(context)=>StudentList(),
+        'TeacherList':(context)=>TeacherList(),
 
       },
     );
