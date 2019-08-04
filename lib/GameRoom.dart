@@ -16,7 +16,7 @@ class _GameRoomState extends State<GameRoom> {
 
           title: Center(
             child: Text(
-              "Game Room",
+              "EduSupport Game Room",
               style: TextStyle(fontSize: 22),
             ),
           ),
@@ -42,6 +42,11 @@ class _GameRoomState extends State<GameRoom> {
         ),
         body:Column(
           children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.all(9.0),
+              child: Text("Tap on games available to open game apps",
+              style: TextStyle(fontWeight: FontWeight.bold),),
+            ),
             Expanded(
               child: new
 
@@ -82,10 +87,10 @@ class _GameRoomState extends State<GameRoom> {
                                     padding: const EdgeInsets.only(left:30),
                                     child: Column(mainAxisAlignment: MainAxisAlignment.start,crossAxisAlignment: CrossAxisAlignment.start,
                                       children: <Widget>[
-                                        Text("Messhie Class",style: TextStyle(fontSize: 15),textAlign: TextAlign.left,),
+                                        Text("Scrabble Game",style: TextStyle(fontSize: 15),textAlign: TextAlign.left,),
                                         Padding(
                                           padding: const EdgeInsets.only(top:5),
-                                          child: Text('12 Students',style: TextStyle(fontSize: 12),),
+                                          child: Text('Punlish',style: TextStyle(fontSize: 12),),
                                         ),
                                       ],
                                     ),
