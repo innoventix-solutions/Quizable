@@ -828,6 +828,21 @@ class MatchClass {
       };
 }
 
+ClearRegisterData(){
+
+ GlobalData.Selected_subject=null;
+ GlobalData.Selected_class;
+ GlobalData.Selected_class_IDS;
+ GlobalData.Slected_subject_bool=[false,false,false,false,false,false,false,false,false];
+ GlobalData.QuizTitle="";
+ GlobalData.QuizLevels="";
+ GlobalData.NosofQuesPerLevel="";
+ GlobalData.DurationofEachLevel="";
+ GlobalData.ExamQuiz="";
+ GlobalData.QuizID="";
+
+}
+
 
 LogoutFunction(context)async {
 
@@ -835,7 +850,10 @@ LogoutFunction(context)async {
   pre.clear();
   // Navigator.of(context).dispose();
   // await Navigator.of(context).dispose();
-  Navigator.of(context).pushNamed('login');
+  // Navigator.of(context).pushNamed('login');
+  Navigator.of(context)
+      .pushNamedAndRemoveUntil('login', (Route<dynamic> route) => false);
+
 
 }
 

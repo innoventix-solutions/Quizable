@@ -3,6 +3,7 @@ import 'package:share/share.dart';
 import 'Edit_Question.dart';
 import 'Questions_list.dart';
 import 'Quiz_list_student.dart';
+import 'TeacherClassList.dart';
 import 'globalvar.dart';
 import 'manageclassactivitesGlobal.dart';
 import 'sec.dart';
@@ -110,7 +111,8 @@ class MyApp extends StatelessWidget {
         'returnsignup':(context)=>select(),
         'admindashboard':(context)=>admindashboard(),
         'edit_question':(context)=>Edit_Question(),
-        'adminclassshare':(context)=>AdminClassShare()
+        'adminclassshare':(context)=>AdminClassShare(),
+        'TeacherClassList':(context)=>TeacherClassList()
       },
     );
   }

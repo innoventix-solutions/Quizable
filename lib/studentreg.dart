@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'package:intl/intl.dart';
-
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:newpro/utilities.dart';
@@ -65,7 +64,7 @@ class _studentregState extends State<studentreg> {
       if (statuss['status'].toString() == "1") {
         Show_toast("Registered Successfully", Colors.green);
         Navigator.of(context)
-            .pushNamed('login');
+            .pushNamedAndRemoveUntil('login', (Route<dynamic> route) => false);
       } else {
         Show_toast(statuss['msg'], Colors.red);
       }

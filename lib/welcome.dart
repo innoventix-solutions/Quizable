@@ -12,7 +12,6 @@ class _welcomeState extends State<welcome> {
     return SafeArea(
 child: Scaffold(
   appBar: AppBar(
-    automaticallyImplyLeading: true,
 
     title: Center(
       child: Text(
