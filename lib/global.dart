@@ -51,7 +51,7 @@ static List<Classes> Class_list = new List();
   static Classes activeclass ;
 
   static bool LoadData = true;
-  static int QuestionNumber=0;
+  static int QuestionNumber=1;
   static String userType;
   static String accounttype="";
   static String uid;
@@ -853,8 +853,6 @@ LogoutFunction(context)async {
   // Navigator.of(context).pushNamed('login');
   Navigator.of(context)
       .pushNamedAndRemoveUntil('login', (Route<dynamic> route) => false);
-
-
 }
 
 
@@ -866,9 +864,12 @@ LogoutFunction(context)async {
 
     print(res.body);
     var ParsedData = await jsonDecode(res.body);
-    GlobalData.Class_list =
-        (ParsedData['join_classdata'] as List).map((data) =>
-            Classes.fromJson(data)).toList();
+
+    if(ParsedData['join_classdata'].toString()!="false") {
+      GlobalData.Class_list =
+          (ParsedData['join_classdata'] as List).map((data) =>
+              Classes.fromJson(data)).toList();
+    }
 
   }
 

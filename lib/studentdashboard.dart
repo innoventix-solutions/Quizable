@@ -15,14 +15,10 @@ class studentdashboard extends StatefulWidget {
 }
 
 class _studentdashboardState extends State<studentdashboard> {
-
-
-
   List<Pojo_quizzes> Quizz_List = new List();
-
   GetTest() async{
 
-    await http.post("http://edusupportapp.com/api/get_quizzes.php",
+    await http.post("http://edusupportapp.com/api/get_user_quizzes_by_join_class.php",
         body: {
           "UserId":GlobalData.uid
         }).then((res){
@@ -40,6 +36,12 @@ class _studentdashboardState extends State<studentdashboard> {
 
 
 
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    GetTest();
+  }
 
 
   @override
@@ -415,7 +417,7 @@ class _studentdashboardState extends State<studentdashboard> {
 
                         Padding(
                           padding: const EdgeInsets.only(left: 5),
-                          child: Text(Quizz_List.isNotEmpty?Quizz_List[0].closing_date:"",style:TextStyle(
+                          child: Text(Quizz_List.isNotEmpty?Quizz_List[0].closing_date.substring(0,19):"",style:TextStyle(
                             fontSize: 15,color: GlobalData.white
                           ) ,),
                         )

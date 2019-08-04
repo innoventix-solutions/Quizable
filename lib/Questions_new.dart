@@ -123,7 +123,19 @@ class _QuestionsState extends State<Questions> {
         });
   }
 
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+    print("Questiaosdnf asd");
+
+  }
+
+
+
   void QuizCompleted(BuildContext context)  {
+    ClearRegisterData();
     bool Selected = false;
     TextEditingController optioncontroller = new TextEditingController();
     showDialog(
@@ -170,7 +182,7 @@ class _QuestionsState extends State<Questions> {
                                             child: GradientButtonText(
                                               ButtonClick: (){
 
-                                                Navigator.of(context).pushNamed('manageclassactivities');
+                                                Navigator.of(context).pushReplacementNamed('manageclassactivities');
                                                 setState(() {
 
                                                 });

@@ -16,17 +16,12 @@ class _splashState extends State<splash> {
     print(prefs.get("Id"));
     if(prefs.get("Id")!=null)
     {
-      print(await prefs.getString("Data"));
-
+    /*  print(await prefs.getString("Data"));
       var JionedClassJson = await jsonDecode(await prefs.getString("Data"));
       GlobalData.Class_list = await (JionedClassJson as List).map((data) =>Classes.fromJson(data)).toList();
-
-
       print(GlobalData.Class_list.length.toString());
-      print(GlobalData.Class_list[0].classname);
-
-      print(jsonEncode(GlobalData.Class_list));
-
+   //   print(GlobalData.Class_list[0].classname);
+   //   print(jsonEncode(GlobalData.Class_list));*/
       GlobalData.uid=prefs.get("Id");
       GlobalData.Username=prefs.get("name");
       GlobalData.userType=prefs.get("type");
