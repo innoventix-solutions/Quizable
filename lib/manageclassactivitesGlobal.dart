@@ -87,7 +87,7 @@ class _questionmenuGlobalState extends State<questionmenuGlobal> {
                     onTap: (){
                       GlobalData.QuizID=Quizz_List[i].id;
                       GlobalData.ExamQuiz=Quizz_List[i].quiz_title;
-                      Navigator.of(context).pushNamed('Question_List');
+                      Navigator.of(context).pushNamed(GlobalData.userType=="student"?'exam':'Question_List');
                     },
                     child: classactivitys(
                       color: GlobalData.pinkred,
