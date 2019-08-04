@@ -128,7 +128,10 @@ class _GameRoomState extends State<GameRoom> {
                         Expanded(
                           child: GradientButtonText(
                             linearGradient:LinearGradient(colors: <Color>[GlobalData.navy,GlobalData.navyblue]) ,text: Text("Go To Dashboard",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 18,),textAlign: TextAlign.center,),
-                          ),
+                         ButtonClick: (){
+                           Navigator.of(context)
+                               .pushNamed('studentdashboard');
+                         }, ),
                         ),
                       ],
                     ),

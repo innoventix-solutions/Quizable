@@ -22,15 +22,19 @@ child: Scaffold(
     flexibleSpace: Container(
       decoration: bg12,
     ),
+
+
     actions: <Widget>[
-      IconButton(onPressed: (){},
+      IconButton(onPressed: (){
+        LogoutFunction(context);
+      },
         icon: Icon(
-          Icons.account_circle,
-          color: Colors.transparent,
-          size: 20,
+          Icons.exit_to_app,
+          color: Colors.white,
+          size: 22,
         ),
       ),
-    ],
+    ],backgroundColor: Color(0Xff1F0BE6),
   ),
   body: SingleChildScrollView(
     child: Center(
