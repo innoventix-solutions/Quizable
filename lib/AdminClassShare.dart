@@ -41,8 +41,7 @@ class _AdminClassShareState extends State<AdminClassShare> {
             ),
           ],
         ),
-        body:
-        Column(
+        body: Column(
           children: <Widget>[
             Expanded(
               child: new
@@ -82,12 +81,7 @@ class _AdminClassShareState extends State<AdminClassShare> {
                                     child: Column(mainAxisAlignment: MainAxisAlignment.start,crossAxisAlignment: CrossAxisAlignment.start,
                                       children: <Widget>[
                                         Text(GlobalData.Class_list[index].classname,style: TextStyle(fontSize: 15),textAlign: TextAlign.left,),
-                                        Text(GlobalData.student_code==null?"No Student code":GlobalData.student_code,
-                                          style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold,
-                                              fontSize: 16),),
-                                        Text(GlobalData.teacher_code==null?"No Teacher code":GlobalData.teacher_code,
-                                          style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold,
-                                              fontSize: 16),),
+
 
                                       ],
                                     ),

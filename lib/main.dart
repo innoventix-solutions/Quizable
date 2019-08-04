@@ -55,7 +55,7 @@ import 'adminprofile.dart';
 import 'studentselectclass.dart';
 import 'TeacherSelectClass.dart';
 import 'AdminClassShare.dart';
-import 'AdminSelectClass.dart';
+
 
 
 
@@ -112,7 +112,7 @@ class MyApp extends StatelessWidget {
         'admindashboard':(context)=>admindashboard(),
         'edit_question':(context)=>Edit_Question(),
         'adminshareclass':(context)=>AdminClassShare(),
-        'AdminSelectClass':(context)=>AdminSelectClass(),
+
 
       },
     );
