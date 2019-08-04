@@ -34,7 +34,7 @@ class _GameRoomState extends State<GameRoom> {
               onPressed: (){},
               icon: Icon(
                 Icons.account_circle,
-                color: Colors.white,
+                color: Colors.transparent,
                 size: 20,
               ),
             ),
