@@ -853,8 +853,6 @@ LogoutFunction(context)async {
   // Navigator.of(context).pushNamed('login');
   Navigator.of(context)
       .pushNamedAndRemoveUntil('login', (Route<dynamic> route) => false);
-
-
 }
 
 
