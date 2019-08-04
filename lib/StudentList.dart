@@ -2,20 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:share/share.dart';
 import 'global.dart';
 
-class TeacherClassList extends StatefulWidget {
+class StudentList extends StatefulWidget {
   @override
-  _TeacherClassListState createState() => _TeacherClassListState();
+  _StudentListState createState() => _StudentListState();
 }
 
-class _TeacherClassListState extends State<TeacherClassList> {
+class _StudentListState extends State<StudentList> {
 
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    print(GlobalData.userType);
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +40,7 @@ class _TeacherClassListState extends State<TeacherClassList> {
               child: new
 
               ListView.builder(
-                  itemCount: 0,
+                  itemCount: 10,
 
                   itemBuilder: (BuildContext ctxt, int index) {
                     return  Column(
@@ -74,48 +67,52 @@ class _TeacherClassListState extends State<TeacherClassList> {
 
 
 
-
-                                  Expanded(
-                                    child: Padding(
-                                      padding: const EdgeInsets.only(left:30),
-                                      child: Column(mainAxisAlignment: MainAxisAlignment.start,crossAxisAlignment: CrossAxisAlignment.start,
-                                        children: <Widget>[
-                                          Text("student name",style: TextStyle(fontSize: 15),textAlign: TextAlign.left,),
-
-
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                  Expanded(
-                                    child:  Row(mainAxisAlignment: MainAxisAlignment.end,
-                                      children: <Widget>[
-                                        PopupMenuButton(
-                                          child: Icon(Icons.more_vert),
-                                          itemBuilder: (_) => <PopupMenuItem<String>>[
-                                            new PopupMenuItem<String>(
-                                                child: Row(
-                                                  children: <Widget>[
-                                                    Padding(
-                                                      padding: const EdgeInsets.only(right: 4),
-                                                      child: Icon(
-                                                        Icons.remove,
-                                                        color: GlobalData.lightblue,size: 12,
-                                                      ),
-                                                    ),
-                                                    new Text('Edit',style: TextStyle(fontSize: 15),),
-                                                  ],
-                                                ), ),
-
-
+                                      Expanded(
+                                        child: Padding(
+                                        padding: const EdgeInsets.only(left:30),
+                                        child: Column(mainAxisAlignment: MainAxisAlignment.start,crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: <Widget>[
+                                            Text("student name",style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold),
+                                              textAlign: TextAlign.center,),
 
 
                                           ],
-
                                         ),
-                                      ],
                                     ),
+                                      ),
+
+
+                                  Padding(
+                                    padding: const EdgeInsets.only(right: 20),
+                                    child: Row(mainAxisAlignment: MainAxisAlignment.end,
+                                        children: <Widget>[
+                                          PopupMenuButton(
+                                            child: Icon(Icons.more_vert),
+                                            itemBuilder: (_) => <PopupMenuItem<String>>[
+                                              new PopupMenuItem<String>(
+                                                  child: Row(
+                                                    children: <Widget>[
+                                                      Padding(
+                                                        padding: const EdgeInsets.only(right: 4),
+                                                        child: Icon(
+                                                          Icons.remove,
+                                                          color: GlobalData.lightblue,size: 12,
+                                                        ),
+                                                      ),
+                                                      new Text('Remove',style: TextStyle(fontSize: 15),),
+                                                    ],
+                                                  ), ),
+
+
+
+
+                                            ],
+
+                                          ),
+                                        ],
+                                      ),
                                   ),
+
 
 
                                 ], ),
@@ -123,12 +120,41 @@ class _TeacherClassListState extends State<TeacherClassList> {
                             ],
                           ),
                         ),
-                        new Divider(
-                          color: Colors.black,
-                        ),
+
                       ],
                     );
                   }
+              ),
+            ),
+
+
+
+              Padding(
+              padding: const EdgeInsets.only(top:20,bottom: 25, right: 20),
+              child: GestureDetector(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: <Widget>[
+                    Text(
+                      'Add Student ',
+                      style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                          color: GlobalData.lightblue),
+                    ),
+                    Icon(
+                      Icons.add_circle,
+                      color: GlobalData.lightblue,
+                      size: 25,
+                    )
+                  ],
+                ),
+                onTap: () {
+                          Navigator.of(context)
+                             .pushNamed(
+                              'StudentInviteCode');
+                },
               ),
             ),
 

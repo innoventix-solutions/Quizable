@@ -262,14 +262,19 @@ class _teacherdashboardState extends State<teacherdashboard> {
               },
             ),
 
-            Padding(
-              padding: const EdgeInsets.only(left: 45,top:20),
-              child: Row(children: <Widget>[Icon(Icons.info,color: GlobalData.lightblue,),
-                Padding(
-                  padding: const EdgeInsets.only(left: 20),
-                  child: Text('About EduSupport',style: TextStyle(
-                      color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
-                )],),
+            GestureDetector(
+              child: Padding(
+                padding: const EdgeInsets.only(left: 45,top:20),
+                child: Row(children: <Widget>[Icon(Icons.info,color: GlobalData.lightblue,),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 20),
+                    child: Text('About EduSupport',style: TextStyle(
+                        color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
+                  )],),
+              ),onTap: (){
+              Navigator.of(context)
+                  .pushNamed('AboutEduSupport');
+            },
             ),
 
             GestureDetector(
@@ -287,34 +292,49 @@ class _teacherdashboardState extends State<teacherdashboard> {
               ),
             ),
 
-            Padding(
-              padding: const EdgeInsets.only(left: 45,top:20),
-              child: Row(children: <Widget>[Icon(Icons.person,color: GlobalData.lightblue,),
-                Padding(
-                  padding: const EdgeInsets.only(left: 20),
-                  child: Text('Edit Profile',style: TextStyle(
-                      color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
-                )],),
+            GestureDetector(
+              child: Padding(
+                padding: const EdgeInsets.only(left: 45,top:20),
+                child: Row(children: <Widget>[Icon(Icons.person,color: GlobalData.lightblue,),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 20),
+                    child: Text('Edit Profile',style: TextStyle(
+                        color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
+                  )],),
+              ),onTap: (){
+              Navigator.of(context)
+                  .pushNamed('EditProfile');
+            },
             ),
 
-            Padding(
-              padding: const EdgeInsets.only(left: 45,top:20),
-              child: Row(children: <Widget>[Icon(Icons.settings,color: GlobalData.lightblue,),
-                Padding(
-                  padding: const EdgeInsets.only(left: 20),
-                  child: Text('Manage Account',style: TextStyle(
-                      color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
-                )],),
+            GestureDetector(
+              child: Padding(
+                padding: const EdgeInsets.only(left: 45,top:20),
+                child: Row(children: <Widget>[Icon(Icons.settings,color: GlobalData.lightblue,),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 20),
+                    child: Text('Manage Account',style: TextStyle(
+                        color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
+                  )],),
+              ),onTap: (){
+              Navigator.of(context)
+                  .pushNamed('ManageAccount');
+            },
             ),
 
-            Padding(
-              padding: const EdgeInsets.only(left: 45,top:20),
-              child: Row(children: <Widget>[Icon(Icons.notifications,color: GlobalData.lightblue,),
-                Padding(
-                  padding: const EdgeInsets.only(left: 20),
-                  child: Text('Announcements',style: TextStyle(
-                      color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
-                )],),
+            GestureDetector(
+              child: Padding(
+                padding: const EdgeInsets.only(left: 45,top:20),
+                child: Row(children: <Widget>[Icon(Icons.notifications,color: GlobalData.lightblue,),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 20),
+                    child: Text('Announcements',style: TextStyle(
+                        color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
+                  )],),
+              ),onTap: (){
+              Navigator.of(context)
+                  .pushNamed('Announcements');
+            },
             ),
 
             GestureDetector(

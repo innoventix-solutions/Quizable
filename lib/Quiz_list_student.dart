@@ -130,24 +130,34 @@ class _Quiz_List_studentState extends State<Quiz_List_student> {
               },
               ),
 
-              Padding(
-                padding: const EdgeInsets.only(left: 45,top:20),
-                child: Row(children: <Widget>[Icon(Icons.assignment,color: GlobalData.lightblue,),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 20),
-                    child: Text('About eduSupport',style: TextStyle(
-                        color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
-                  )],),
+              GestureDetector(
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 45,top:20),
+                  child: Row(children: <Widget>[Icon(Icons.assignment,color: GlobalData.lightblue,),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 20),
+                      child: Text('About eduSupport',style: TextStyle(
+                          color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
+                    )],),
+                ),onTap: (){
+                Navigator.of(context)
+                    .pushNamed('AboutEduSupport');
+              },
               ),
 
-              Padding(
-                padding: const EdgeInsets.only(left: 45,top:20),
-                child: Row(children: <Widget>[Icon(Icons.account_circle,color: GlobalData.lightblue,),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 20),
-                    child: Text('Edit Profile',style: TextStyle(
-                        color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
-                  )],),
+              GestureDetector(
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 45,top:20),
+                  child: Row(children: <Widget>[Icon(Icons.account_circle,color: GlobalData.lightblue,),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 20),
+                      child: Text('Edit Profile',style: TextStyle(
+                          color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
+                    )],),
+                ),onTap: (){
+                Navigator.of(context)
+                    .pushNamed('EditProfileStudent');
+              },
               ),
 
 
@@ -160,7 +170,10 @@ class _Quiz_List_studentState extends State<Quiz_List_student> {
                       child: Text('Game Room',style: TextStyle(
                           color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
                     ),],),
-                ),onTap: (){},
+                ),onTap: (){
+                Navigator.of(context)
+                    .pushNamed('GameRoom');
+              },
               ),
               GestureDetector(
                 child: Padding(
@@ -171,7 +184,10 @@ class _Quiz_List_studentState extends State<Quiz_List_student> {
                       child: Text('Announcements',style: TextStyle(
                           color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
                     ),],),
-                ),onTap: (){},
+                ),onTap: (){
+                Navigator.of(context)
+                    .pushNamed('Announcements');
+              },
               ),
               GestureDetector(
                 child: Padding(

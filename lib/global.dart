@@ -130,14 +130,19 @@ class drawerquiz extends StatelessWidget {
               )],),
           ),
 
-          Padding(
-            padding: const EdgeInsets.only(left: 35,top:20),
-            child: Row(children: <Widget>[Icon(Icons.assignment,color: GlobalData.lightblue,),
-              Padding(
-                padding: const EdgeInsets.only(left: 10),
-                child: Text('Assignment Question Bank',style: TextStyle(
-                    color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
-              )],),
+          GestureDetector(
+            child: Padding(
+              padding: const EdgeInsets.only(left: 35,top:20),
+              child: Row(children: <Widget>[Icon(Icons.assignment,color: GlobalData.lightblue,),
+                Padding(
+                  padding: const EdgeInsets.only(left: 10),
+                  child: Text('Assignment Question Bank',style: TextStyle(
+                      color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
+                )],),
+            ),onTap: (){
+            Navigator.of(context)
+                .pushNamed('SetAssignment');
+          },
           ),
 
           Padding(
@@ -163,7 +168,10 @@ class drawerquiz extends StatelessWidget {
                   child: Text('Set Spelling Challenge',style: TextStyle(
                       color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
                 ),],),
-            ),onTap: (){},
+            ),onTap: (){
+            Navigator.of(context)
+                .pushNamed('SetSpelling');
+          },
           ),
 
           GestureDetector(

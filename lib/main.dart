@@ -27,7 +27,7 @@ import 'infoofedusupport.dart';
 import 'studentreg.dart';
 import 'studentjoinclass.dart';
 import 'greenclassroom.dart';
-import 'viewteacher.dart';
+import 'TeacherList.dart';
 import 'viewteacherdropdown.dart';
 import 'addteacher.dart';
 import 'adminprofile.dart';
@@ -56,8 +56,17 @@ import 'adminprofile.dart';
 import 'studentselectclass.dart';
 import 'TeacherSelectClass.dart';
 import 'AdminClassShare.dart';
-import 'myclassroom.dart';
-
+import 'Announcement.dart';
+import 'Assignment.dart';
+import 'SpellingChallange.dart';
+import 'ManageAccount.dart';
+import 'StudentList.dart';
+import 'AboutEdusupport.dart';
+import 'adminprofile.dart';
+import 'StudentEditProfile.dart';
+import 'StudentInviteCode.dart';
+import 'TeacherInviteCode.dart';
+import 'TeacherList.dart';
 
 
 void main() {
@@ -69,7 +78,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(fontFamily: 'yu'),
-      home:splash(),
+      home:TeacherList(),
       debugShowCheckedModeBanner: false,
       routes: {
        // 'signup_teacher': (context) => sec(),
@@ -112,8 +121,18 @@ class MyApp extends StatelessWidget {
         'returnsignup':(context)=>select(),
         'admindashboard':(context)=>admindashboard(),
         'edit_question':(context)=>Edit_Question(),
-        'adminclassshare':(context)=>AdminClassShare(),
-        'TeacherClassList':(context)=>TeacherClassList()
+        'adminshareclass':(context)=>AdminClassShare(),
+        'TeacherClassList':(context)=>TeacherClassList(),
+        'Announcements':(context)=>Announcement(),
+        'AboutEduSupport':(context)=>AboutEdusupport(),
+        'ManageAccount':(context)=>ManageAccount(),
+        'EditProfile':(context)=>adminprofile(),
+        'EditProfileStudent':(context)=>adminprofile(),
+        'SetAssignment':(context)=>Assignment(),
+        'SetSpelling':(context)=>SpellingChallange(),
+        'TeacherInviteCode':(context)=>TeacherInviteCode(),
+        'StudentInviteCode':(context)=>StudentInviteCode(),
+
       },
     );
   }
