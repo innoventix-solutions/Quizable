@@ -67,6 +67,7 @@ import 'StudentEditProfile.dart';
 import 'StudentInviteCode.dart';
 import 'TeacherInviteCode.dart';
 import 'TeacherList.dart';
+import 'GameRoom.dart';
 
 
 void main() {
@@ -132,6 +133,7 @@ class MyApp extends StatelessWidget {
         'SetSpelling':(context)=>SpellingChallange(),
         'TeacherInviteCode':(context)=>TeacherInviteCode(),
         'StudentInviteCode':(context)=>StudentInviteCode(),
+        'GameRoom':(context)=>GameRoom(),
 
       },
     );

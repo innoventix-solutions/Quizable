@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:newpro/global.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:share/share.dart';
+
+
 class admindashboard extends StatefulWidget {
   @override
   _admindashboardState createState() => _admindashboardState();
@@ -352,8 +355,14 @@ class _admindashboardState extends State<admindashboard> {
               child: Row(children: <Widget>[Icon(Icons.share,color: GlobalData.lightblue,),
                 Padding(
                   padding: const EdgeInsets.only(left: 20),
-                  child: Text('Share App',style: TextStyle(
-                      color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
+                  child: GestureDetector(onTap: (){
+
+                    Share.share(GlobalData.Username +" is Sharing App - "+ "https://play.google.com/store/apps/details?id=com.innoventixsolutions.edusupport&hl=en");
+                  },
+                    child: Text('Share App',style: TextStyle(
+                        color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
+                  ),
+
                 )],),
             ),
 
