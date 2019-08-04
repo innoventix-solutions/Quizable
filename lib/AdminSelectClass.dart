@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'global.dart';
 import'package:newpro/Pojo/pojo_getclasses.dart';
 
-class AdminClassShare extends StatefulWidget {
+class AdminSelectClass extends StatefulWidget {
   @override
-  _AdminClassShareState createState() => _AdminClassShareState();
+  _AdminSelectClassState createState() => _AdminSelectClassState();
 }
 
-class _AdminClassShareState extends State<AdminClassShare> {
+class _AdminSelectClassState extends State<AdminSelectClass> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -17,7 +17,7 @@ class _AdminClassShareState extends State<AdminClassShare> {
 
           title: Center(
             child: Text(
-              "My Classes",
+              "My Class",
               style: TextStyle(fontSize: 22),
             ),
           ),
@@ -41,8 +41,7 @@ class _AdminClassShareState extends State<AdminClassShare> {
             ),
           ],
         ),
-        body:
-        Column(
+        body:Column(
           children: <Widget>[
             Expanded(
               child: new
@@ -52,7 +51,15 @@ class _AdminClassShareState extends State<AdminClassShare> {
 
                   itemBuilder: (BuildContext ctxt, int index) {
                     return  GestureDetector(
+                      onTap: (){
+                        GlobalData.activeclass = GlobalData.Class_list[index];
+                        GlobalData.class_name=GlobalData.Class_list[index].classname;
+                        print(GlobalData.Class_list[index].classname);
+                        print(GlobalData.activeclass.classname);
+                        Navigator.of(context).pushReplacementNamed('admindashboard');
 
+
+                      },
                       child: Column(
                         children: <Widget>[
                           Container(
@@ -82,12 +89,6 @@ class _AdminClassShareState extends State<AdminClassShare> {
                                     child: Column(mainAxisAlignment: MainAxisAlignment.start,crossAxisAlignment: CrossAxisAlignment.start,
                                       children: <Widget>[
                                         Text(GlobalData.Class_list[index].classname,style: TextStyle(fontSize: 15),textAlign: TextAlign.left,),
-                                        Text(GlobalData.student_code==null?"No Student code":GlobalData.student_code,
-                                          style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold,
-                                              fontSize: 16),),
-                                        Text(GlobalData.teacher_code==null?"No Teacher code":GlobalData.teacher_code,
-                                          style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold,
-                                              fontSize: 16),),
 
                                       ],
                                     ),
@@ -106,7 +107,53 @@ class _AdminClassShareState extends State<AdminClassShare> {
                   }
               ),
             ),
-
+            Padding(
+              padding: const EdgeInsets.only(left: 60,right: 60),
+              child: Column(
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.only(left: 60,right: 60),
+                    child: Column(
+                      children: <Widget>[
+                        Padding(
+                          padding: const EdgeInsets.only(bottom:10,top: 10),
+                          child: Row(
+                            children: <Widget>[
+                              Expanded(
+                                child: GradientButtonText(
+                                  linearGradient:LinearGradient(colors: <Color>[GlobalData.purple,GlobalData.pink]) ,
+                                  text: Text("Create a Class",style: TextStyle(color: Colors.white,
+                                    fontWeight: FontWeight.bold,fontSize: 18,),textAlign: TextAlign.center,),
+                               ButtonClick: (){
+                                 Navigator.of(context)
+                                     .pushNamed('createnewclass');
+                               }, ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(bottom: 10),
+                          child: Row(
+                            children: <Widget>[
+                              Expanded(
+                                child: GradientButtonText(
+                                  linearGradient:LinearGradient(colors: <Color>[GlobalData.navy,GlobalData.navyblue]) ,
+                                  text: Text("Join a Class",style: TextStyle(color: Colors.white,
+                                    fontWeight: FontWeight.bold,fontSize: 18,),textAlign: TextAlign.center,),
+                                ButtonClick: (){
+                                  Navigator.of(context)
+                                      .pushNamed('teacherjoinclass');
+                                },),
+                              ),
+                            ],
+                          ),
+                        ) ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
 
           ],
         ),
@@ -117,6 +164,3 @@ class _AdminClassShareState extends State<AdminClassShare> {
     );
   }
 }
-
-
-

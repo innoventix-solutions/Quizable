@@ -83,7 +83,8 @@ class _loginState extends State<login> {
         if (statuss['userdata']['user_type'] == "teacher") {
           Navigator.of(context).pushReplacementNamed(GlobalData.Class_list.isEmpty?'techerjoinclass':'teacherSelectClass');
         } else if (statuss['userdata']['user_type'] == "admin_teacher") {
-          Navigator.of(context).pushReplacementNamed('welcome');
+          Navigator.of(context).pushReplacementNamed(GlobalData.Class_list.length==0?'welcome':'AdminSelectClass');
+         // Navigator.of(context).pushReplacementNamed('welcome');
         } else {
         if(GlobalData.Class_list.length == 0) {
           Navigator.of(context).pushReplacementNamed('studentjoin');

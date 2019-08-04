@@ -79,7 +79,7 @@ class _studentregState extends State<studentreg> {
     if(emailValid == false){
 
       _showDialog1();
-    }else if(phone.text.length!=10)
+    }else if(phone.text.length!=11)
     {
       print(phone.text.toString());
       print(phone.text.length.toString());
