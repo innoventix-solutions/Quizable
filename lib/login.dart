@@ -76,7 +76,9 @@ class _loginState extends State<login> {
         prefs.setString("type", statuss['userdata']['user_type']);
         prefs.setString("name", statuss['userdata']['username']);
         prefs.setString("classname", statuss['userdata']['classname']);
+
       GlobalData.Username=statuss['userdata']['username'];
+
         print(statuss['userdata']['user_type']);
         GlobalData.uid = statuss['userdata']['ID'].toString();
         GlobalData.Username = statuss['userdata']['username'].toString();

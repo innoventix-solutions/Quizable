@@ -584,7 +584,8 @@ class _QuestionsState extends State<Questions> {
                 ],
               ),
 
-
+Text("The answer you choose will be adds serial wise.",style:
+  TextStyle(color: Colors.red),)
 
             ],
           ),);
