@@ -17,6 +17,7 @@ class Exam extends StatefulWidget {
 
 class _ExamState extends State<Exam> {
 
+
   CountDown cd ;
   int CurrentPage =0;
   PageController pageController = new PageController();
@@ -35,8 +36,10 @@ class _ExamState extends State<Exam> {
   bool isloading = true;
   String TimerText ="-:--:--";
 
+  int timermins = 1;
+
   Timmer(){
-   cd = CountDown(Duration(seconds: 1));
+   cd = CountDown(Duration(seconds: timermins));
     var sub = cd.stream.listen(null);
     // start your countdown by registering a listener
     sub.onData((Duration d) {
@@ -52,9 +55,12 @@ class _ExamState extends State<Exam> {
     });
   }
 
+
   @override
   dispose()
   {
+    cd.isPaused=true;
+     super.dispose();
 
   }
 
@@ -97,7 +103,6 @@ class _ExamState extends State<Exam> {
     switch (type)
     {
           case "Match Type":
-
             return Container(
               height: Matches.isEmpty?50.0:Matches.length*60.0,
               child: Row(
@@ -108,10 +113,15 @@ class _ExamState extends State<Exam> {
                         child: ListView.builder(
                           controller: controller,
                           itemCount: Matches.length,
+
                             itemBuilder: (c,i){
-                            return ListTile(
-                              title: Text( Matches[i].val1),
-                              leading: Icon(Icons.add,color: Colors.transparent,),
+                            return Container(
+                              color: Colors.green[300],
+                              child: ListTile(
+
+                                title: Text( Matches[i].val1),
+                                leading: Icon(Icons.add,color: Colors.transparent,),
+                              ),
                             );
 
                         }),
@@ -123,7 +133,10 @@ class _ExamState extends State<Exam> {
                       children: <Widget>[
                         Expanded(
                           child: ReorderableListView(
-                            children: _list.map((item) => ListTile(key: Key("${item}"), title: Text("${item}"), trailing: Icon(Icons.menu),)).toList(),
+
+
+                            children: _list.map((item) => Container( key: Key("${item}con"),
+                                color:Colors.amber,child: ListTile( key: Key("${item}"), title: Text("${item}"), trailing: Icon(Icons.menu),))).toList(),
                             onReorder: (int start, int current) {
                               // dragging from top to bottom
                               if (start < current) {
@@ -228,7 +241,7 @@ class _ExamState extends State<Exam> {
                                   itemCount: Options.length,itemBuilder: (context,index){
                                 return Container(child: Row(
                                   children: <Widget>[
-                                    Checkbox(value: Options[index].trueanswer, onChanged: (value){
+                                    Checkbox(value: false/*Options[index].trueanswer*/, onChanged: (value){
 
 
                                       for(int i=0;i<Options.length;i++){
@@ -374,6 +387,7 @@ class _ExamState extends State<Exam> {
                   Expanded(
                     child: GradientButtonText(
                       ButtonClick: (){
+
 
                         String answ="";
 

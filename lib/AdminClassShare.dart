@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'global.dart';
 import'package:newpro/Pojo/pojo_getclasses.dart';
 
-class studentselectclass extends StatefulWidget {
+class AdminClassShare extends StatefulWidget {
   @override
-  _studentselectclassState createState() => _studentselectclassState();
+  _AdminClassShareState createState() => _AdminClassShareState();
 }
 
-class _studentselectclassState extends State<studentselectclass> {
+class _AdminClassShareState extends State<AdminClassShare> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -17,7 +17,7 @@ class _studentselectclassState extends State<studentselectclass> {
 
           title: Center(
             child: Text(
-              "My Class",
+              "My Classes",
               style: TextStyle(fontSize: 22),
             ),
           ),
@@ -51,14 +51,7 @@ class _studentselectclassState extends State<studentselectclass> {
 
                   itemBuilder: (BuildContext ctxt, int index) {
                     return  GestureDetector(
-                      onTap: (){
-    GlobalData.activeclass = GlobalData.Class_list[index];
-                print(GlobalData.Class_list[index].classname);
-print(GlobalData.activeclass.classname);
-    Navigator.of(context).pushReplacementNamed('studentdashboard');
 
-
-                      },
                       child: Column(
                         children: <Widget>[
                           Container(
@@ -106,41 +99,7 @@ print(GlobalData.activeclass.classname);
                   }
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.only(left: 60,right: 60),
-              child: Column(
-                children: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.only(bottom:10,top: 10),
-                    child: Row(
-                      children: <Widget>[
-                        Expanded(
-                          child: GestureDetector(onTap:(){
 
-                            Navigator.of(context)
-                                .pushNamed('studentjoinclass');
-
-                          } ,
-                            child: GradientButtonText(
-                              ButtonClick: (){
-                                Navigator.of(context)
-                                    .pushNamed('studentjoinclass');
-                              },
-                              linearGradient:LinearGradient(
-                                  colors: <Color>[GlobalData.purple,
-                                    GlobalData.pink]) ,text:
-                            Text("Join New Class",
-                              style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,
-                                fontSize: 18,),textAlign: TextAlign.center,),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                   ],
-              ),
-            ),
 
           ],
         ),

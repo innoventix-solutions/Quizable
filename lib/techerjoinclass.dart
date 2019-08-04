@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:newpro/global.dart';
 import 'package:http/http.dart' as http;
 
+import 'Pojo/pojo_getclasses.dart';
+
 class techerjoinclass extends StatefulWidget {
   @override
   _techerjoinclassState createState() => _techerjoinclassState();
@@ -18,19 +20,33 @@ class _techerjoinclassState extends State<techerjoinclass> {
         body: {
           'UserId':GlobalData.uid,
           'Invite_Code':classjointec.text.toString()
-        }).then((response){
+        }).then((response) async {
       print(response.body);
       var statuss = jsonDecode(response.body);
       if (statuss['status'].toString() == "1") {
-        Show_toast_Now(statuss['msg'], Colors.green);
-        Navigator.of(context)
-            .pushNamed('teacherdashboard');
+
+
+        await GetClasses(statuss['join_classdata'],statuss['classdata']);
+
+
+
+
 
       } else {
         Show_toast_Now(statuss['msg'], Colors.red);
 
       }
     });
+
+  }
+
+  void GetClasses(var Data,var CurrentClass) async
+  {
+
+    GlobalData.activeclass = Classes(id:CurrentClass['ID'],classname:CurrentClass['class_name'],classicon: CurrentClass['class_icon'],studentinvitecode: CurrentClass['student_invite_code'],teacherinvitecode:CurrentClass['teacher_invite_code'],   ) ;
+    GlobalData.class_name=GlobalData.activeclass.classname;
+    GlobalData.Class_list = await (Data as List).map((data) =>Classes.fromJson(data)).toList();
+    Navigator.of(context).pushNamed('teacherdashboard');
 
   }
 
@@ -41,13 +57,7 @@ class _techerjoinclassState extends State<techerjoinclass> {
       child: Scaffold(
           appBar: AppBar(
             automaticallyImplyLeading: true,
-            leading: IconButton(onPressed: (){},
-              icon: Icon(
-                Icons.arrow_back,
-                color: Colors.white,
-                size: 20,
-              ),
-            ),
+
             title: Center(
               child: Text(
                 "Join Class",
@@ -137,35 +147,42 @@ class _techerjoinclassState extends State<techerjoinclass> {
                     ),
                   ),
                 ),
+                SizedBox(height: 20,),
+                GlobalData.Class_list.isNotEmpty?
+                Column(
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.only(top: 10,bottom: 5),
+                      child: Text("Already joined a class?"),
+                    ),
+                    SizedBox(height: 5,),
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 40),
+                      child: Container(
+                        width: 200,
+                        child: GradientButtonText(
+                          linearGradient:
+                              LinearGradient(colors: <Color>[GlobalData.navy, GlobalData.navyblue]),
+                          text: Text(
+                            "Proceed",
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 17),
+                            textAlign: TextAlign.center,
+                          ),
+                        ButtonClick: (){
 
+                          Navigator.of(context)
+                              .pushNamed('teacherSelectClass');
 
-                Padding(
-                  padding: const EdgeInsets.only(top: 10,bottom: 5),
-                  child: Text("Already joined a class?"),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 40),
-                  child: Container(
-                    width: 200,
-                    child: GradientButtonText(
-                      linearGradient:
-                          LinearGradient(colors: <Color>[GlobalData.navy, GlobalData.navyblue]),
-                      text: Text(
-                        "Proceed",
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 17),
-                        textAlign: TextAlign.center,
+                        },),
                       ),
-                    ButtonClick: (){
+                    ),
 
-                      Navigator.of(context)
-                          .pushNamed('teacherjoinclass');
-
-                    },),
-                  ),
-                ),
+                  ],
+                ):
+                Text(""),
 
                 /*Container(padding: EdgeInsets.only(top: 50),
                     child: Text('or Play Global Quiz',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18,color: lightblue),)),

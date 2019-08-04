@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:share/share.dart';
+import 'Edit_Question.dart';
 import 'Questions_list.dart';
 import 'Quiz_list_student.dart';
+import 'TeacherClassList.dart';
 import 'globalvar.dart';
 import 'manageclassactivitesGlobal.dart';
 import 'sec.dart';
@@ -52,7 +54,12 @@ import 'functionclass.dart';
 import 'admindashboard.dart';
 import 'adminprofile.dart';
 import 'studentselectclass.dart';
-import 'AboutEdusupport.dart';
+import 'TeacherSelectClass.dart';
+import 'AdminClassShare.dart';
+import 'Announcement.dart';
+import 'Assignment.dart';
+import 'SpellingChallange.dart';
+import 'ManageAccount.dart';
 
 
 
@@ -65,7 +72,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(fontFamily: 'yu'),
-      home:splash(),
+      home:ManageAccount(),
       debugShowCheckedModeBanner: false,
       routes: {
        // 'signup_teacher': (context) => sec(),
@@ -88,7 +95,7 @@ class MyApp extends StatelessWidget {
         'studentdashboard': (context) => studentdashboard(),
         'studentjoinclass ': (context) => studentjoin(),
         'adminteacherjoinclass': (context) => techerjoinclass(),
-        'teacherjoinclass': (context) => teacherdashboard(),
+        'teacherjoinclass': (context) => techerjoinclass(),
         'teacherdashboard': (context) => teacherdashboard(),
         'manageclassactivities': (context) => questionmenu(),
         'GlobalQuiz': (context) => questionmenuGlobal(),
@@ -104,8 +111,12 @@ class MyApp extends StatelessWidget {
         'classroomstudent':(context)=>classroomstudent(),
         'myclassroom':(context)=>myclassroom(),
         'studentselectclass':(context)=>studentselectclass(),
+        'teacherSelectClass':(context)=>TeacherSelectClass(),
         'returnsignup':(context)=>select(),
         'admindashboard':(context)=>admindashboard(),
+        'edit_question':(context)=>Edit_Question(),
+        'adminclassshare':(context)=>AdminClassShare(),
+        'TeacherClassList':(context)=>TeacherClassList()
       },
     );
   }

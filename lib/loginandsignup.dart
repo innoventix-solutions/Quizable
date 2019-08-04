@@ -91,7 +91,7 @@ class _loginandsignupState extends State<loginandsignup> {
                                   borderRadius: new BorderRadius.circular(30.0)),
                               onPressed: () {
                                 Navigator.of(context)
-                                    .pushNamed('login');
+                                    .pushReplacementNamed('login');
                               },
                               child: Text(
                                 'Log In',

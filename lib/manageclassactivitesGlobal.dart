@@ -74,8 +74,7 @@ class _questionmenuGlobalState extends State<questionmenuGlobal> {
         ],
       ),
 
-      drawer:
-      drawerquiz(),
+
 
       body:
           Column(

@@ -2,12 +2,21 @@ import 'package:flutter/material.dart';
 import 'global.dart';
 import'package:newpro/Pojo/pojo_getclasses.dart';
 
-class studentselectclass extends StatefulWidget {
+class TeacherSelectClass extends StatefulWidget {
   @override
-  _studentselectclassState createState() => _studentselectclassState();
+  _TeacherSelectClassState createState() => _TeacherSelectClassState();
 }
 
-class _studentselectclassState extends State<studentselectclass> {
+class _TeacherSelectClassState extends State<TeacherSelectClass> {
+
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    print(GlobalData.userType);
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -53,9 +62,10 @@ class _studentselectclassState extends State<studentselectclass> {
                     return  GestureDetector(
                       onTap: (){
     GlobalData.activeclass = GlobalData.Class_list[index];
+    GlobalData.class_name=GlobalData.Class_list[index].classname;
                 print(GlobalData.Class_list[index].classname);
 print(GlobalData.activeclass.classname);
-    Navigator.of(context).pushReplacementNamed('studentdashboard');
+    Navigator.of(context).pushReplacementNamed('teacherdashboard');
 
 
                       },
@@ -106,6 +116,7 @@ print(GlobalData.activeclass.classname);
                   }
               ),
             ),
+            GlobalData.userType=="admin_teacher"?
             Padding(
               padding: const EdgeInsets.only(left: 60,right: 60),
               child: Column(
@@ -118,20 +129,51 @@ print(GlobalData.activeclass.classname);
                           child: GestureDetector(onTap:(){
 
                             Navigator.of(context)
-                                .pushNamed('studentjoinclass');
+                                .pushNamed('welcome');
 
                           } ,
                             child: GradientButtonText(
                               ButtonClick: (){
                                 Navigator.of(context)
-                                    .pushNamed('studentjoinclass');
+                                    .pushNamed('welcome');
                               },
                               linearGradient:LinearGradient(
                                   colors: <Color>[GlobalData.purple,
                                     GlobalData.pink]) ,text:
-                            Text("Join New Class",
-                              style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,
-                                fontSize: 18,),textAlign: TextAlign.center,),
+                            Text("Create New Class",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 18,),textAlign: TextAlign.center,),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ):Text(""),
+            Padding(
+              padding: const EdgeInsets.only(left: 60,right: 60),
+              child: Column(
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.only(bottom:10,top: 10),
+                    child: Row(
+                      children: <Widget>[
+                        Expanded(
+                          child: GestureDetector(onTap:(){
+
+                            Navigator.of(context)
+                                .pushNamed('teacherjoinclass');
+
+                          } ,
+                            child: GradientButtonText(
+                              ButtonClick: (){
+                                Navigator.of(context)
+                                    .pushNamed('teacherjoinclass');
+                              },
+                              linearGradient:LinearGradient(
+                                  colors: <Color>[GlobalData.purple,
+                                    GlobalData.pink]) ,text:
+                            Text("Join New Class",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 18,),textAlign: TextAlign.center,),
                             ),
                           ),
                         ),

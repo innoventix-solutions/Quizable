@@ -66,7 +66,7 @@ class _teacherdashboardState extends State<teacherdashboard> {
                   child: Text('Distance Learning Institute',style:
                   TextStyle(fontSize: 15,color: Colors.white),),
                 ),*/
-                Text(GlobalData.class_name,
+                Text(GlobalData.class_name==null?"No Class Selected":GlobalData.class_name,
                   style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,
                       fontSize: 16),),   ],
             ),
@@ -190,18 +190,6 @@ class _teacherdashboardState extends State<teacherdashboard> {
             ),
           ),
 
-
-
-
-
-
-
-
-
-
-
-
-
           Padding(
             padding: const EdgeInsets.only(top: 40),
             child: GestureDetector(
@@ -210,6 +198,7 @@ class _teacherdashboardState extends State<teacherdashboard> {
                     fontSize: 22,
                     fontWeight: FontWeight.bold)),
                 onTap: () {
+                  Navigator.of(context).pushReplacementNamed('teacherSelectClass');
                   // do what you need to do when "Click here" gets clicked
                 }
             ),
@@ -248,7 +237,7 @@ class _teacherdashboardState extends State<teacherdashboard> {
                                 fontSize: 20),),
                         ),
 
-                          Text(GlobalData.class_name,
+                          Text(GlobalData.class_name==null?"No Class Selected":GlobalData.class_name,
                             style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,
                                 fontSize: 16),),
                         ],),
@@ -283,14 +272,19 @@ class _teacherdashboardState extends State<teacherdashboard> {
                 )],),
             ),
 
-            Padding(
-              padding: const EdgeInsets.only(left: 45,top:20),
-              child: Row(children: <Widget>[Icon(Icons.dehaze,color: GlobalData.lightblue,),
-                Padding(
-                  padding: const EdgeInsets.only(left: 20),
-                  child: Text('List of Classrooms',style: TextStyle(
-                      color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
-                )],),
+            GestureDetector(
+              onTap: (){
+                Navigator.of(context).pushNamed('TeacherClassList');
+              },
+              child: Padding(
+                padding: const EdgeInsets.only(left: 45,top:20),
+                child: Row(children: <Widget>[Icon(Icons.dehaze,color: GlobalData.lightblue,),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 20),
+                    child: Text('List of Classrooms',style: TextStyle(
+                        color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
+                  )],),
+              ),
             ),
 
             Padding(
@@ -323,14 +317,17 @@ class _teacherdashboardState extends State<teacherdashboard> {
                 )],),
             ),
 
-            Padding(
-              padding: const EdgeInsets.only(left: 45,top:20),
-              child: Row(children: <Widget>[Icon(Icons.share,color: GlobalData.lightblue,),
-                Padding(
-                  padding: const EdgeInsets.only(left: 20),
-                  child: Text('Share App',style: TextStyle(
-                      color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
-                )],),
+            GestureDetector(
+              onTap: (){},
+              child: Padding(
+                padding: const EdgeInsets.only(left: 45,top:20),
+                child: Row(children: <Widget>[Icon(Icons.share,color: GlobalData.lightblue,),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 20),
+                    child: Text('Share App',style: TextStyle(
+                        color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
+                  )],),
+              ),
             ),
 
             GestureDetector(
@@ -344,12 +341,8 @@ class _teacherdashboardState extends State<teacherdashboard> {
                   )],),
               ),
               onTap: ()async{
-              SharedPreferences pre= await SharedPreferences.getInstance();
-              pre.clear();
-              Navigator.of(context).dispose();
-              Navigator.of(context).pushNamed('login');
-
-            },
+                LogoutFunction(context);
+              },
             ),
 
 

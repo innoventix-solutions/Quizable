@@ -1,7 +1,11 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'Pojo/pojo_quizzes.dart';
 import 'global.dart';
 import 'package:newpro/Pojo/pojo_getclasses.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:http/http.dart' as http;
 
 
 
@@ -11,6 +15,33 @@ class studentdashboard extends StatefulWidget {
 }
 
 class _studentdashboardState extends State<studentdashboard> {
+
+
+
+  List<Pojo_quizzes> Quizz_List = new List();
+
+  GetTest() async{
+
+    await http.post("http://edusupportapp.com/api/get_quizzes.php",
+        body: {
+          "UserId":GlobalData.uid
+        }).then((res){
+      print(res.body);
+
+      var ParsedJson = jsonDecode(res.body);
+      Quizz_List = (ParsedJson['quizdata'] as List).map((data)=>Pojo_quizzes.fromJson(data)).toList();
+
+      print(Quizz_List.length);
+      setState(() {
+
+      });
+    });
+  }
+
+
+
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -92,14 +123,19 @@ class _studentdashboardState extends State<studentdashboard> {
 
 
 
-            Padding(
-              padding: const EdgeInsets.only(left: 45,top:30),
-              child: Row(children: <Widget>[Icon(Icons.home,color: GlobalData.lightblue,),
-                Padding(
-                  padding: const EdgeInsets.only(left: 20),
-                  child: Text('Home',style: TextStyle(
-                      color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
-                )],),
+            GestureDetector(
+              child: Padding(
+                padding: const EdgeInsets.only(left: 45,top:30),
+                child: Row(children: <Widget>[Icon(Icons.home,color: GlobalData.lightblue,),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 20),
+                    child: Text('Home',style: TextStyle(
+                        color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
+                  )],),
+              ),onTap: (){
+              Navigator.of(context)
+                  .pushNamed('studentdashboard');
+            },
             ),
 
             Padding(
@@ -166,12 +202,7 @@ class _studentdashboardState extends State<studentdashboard> {
                         color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
                   ),],),
               ),onTap: ()async{
-
-              SharedPreferences pre= await SharedPreferences.getInstance();
-              pre.clear();
-              Navigator.of(context).dispose();
-              Navigator.of(context).pushNamed('login');
-
+           LogoutFunction(context);
             },
 
 
@@ -336,7 +367,7 @@ class _studentdashboardState extends State<studentdashboard> {
                     padding: const EdgeInsets.only(top: 10,left: 20),
                     child: Row(
                       children: <Widget>[
-                        Text('The World & Climate Change',style: TextStyle(
+                        Text(Quizz_List.isNotEmpty?Quizz_List[0].quiz_title:"No Quiz Available",style: TextStyle(
                           fontSize: 18,fontWeight: FontWeight.bold,color:GlobalData.white
                         ),),
                       ],
@@ -347,7 +378,7 @@ class _studentdashboardState extends State<studentdashboard> {
                     padding: const EdgeInsets.only(top: 15,left: 20),
                     child: Row(
                       children: <Widget>[
-                        Text('Anchor for the Quiz',style: TextStyle(
+                        Text(Quizz_List.isNotEmpty?Quizz_List[0].quiz_subject:"",style: TextStyle(
                             fontSize: 15,fontWeight: FontWeight.bold,color:GlobalData.white
                         ),),
                       ],
@@ -358,7 +389,7 @@ class _studentdashboardState extends State<studentdashboard> {
                     padding: const EdgeInsets.only(top: 5,left: 20),
                     child: Row(
                       children: <Widget>[
-                        Text('Matthew 1 – 11',style: TextStyle(
+                        Text(Quizz_List.isNotEmpty?Quizz_List[0].classes:"",style: TextStyle(
                             fontSize: 18,fontWeight: FontWeight.bold,color:GlobalData.white
                         ),),
                       ],
@@ -384,7 +415,7 @@ class _studentdashboardState extends State<studentdashboard> {
 
                         Padding(
                           padding: const EdgeInsets.only(left: 5),
-                          child: Text('Sat. 27 Mar, 2019, 12:00',style:TextStyle(
+                          child: Text(Quizz_List.isNotEmpty?Quizz_List[0].closing_date:"",style:TextStyle(
                             fontSize: 15,color: GlobalData.white
                           ) ,),
                         )

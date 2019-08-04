@@ -1,15 +1,20 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'Pojo/pojo_getclasses.dart';
+import 'package:http/http.dart' as http;
 
+import 'Pojo/pojo_questions.dart';
 
 
 class GlobalData{
 
 
-
+  static bool EditQuiz = false;
+  static Pojo_questions Current_Que_To_Edit;
 
   static Color gradientblue = Color(0Xff1F0BE5); //a
   static Color gradientviolet = Color(0Xff730676); //a
@@ -101,7 +106,7 @@ class drawerquiz extends StatelessWidget {
                               fontSize: 16),),
                       ),
 
-                        Text(GlobalData.class_name,
+                        Text(GlobalData.activeclass!=null?GlobalData.activeclass.classname:"No Class Selected",
                           style: TextStyle(color: Colors.white,fontSize: 13),)
                       ],),
                   )
@@ -172,12 +177,7 @@ class drawerquiz extends StatelessWidget {
                       color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
                 ),],),
             ),onTap: ()async{
-
-              SharedPreferences pre= await SharedPreferences.getInstance();
-              pre.clear();
-              Navigator.of(context).dispose();
-              Navigator.of(context).pushNamed('login');
-
+            LogoutFunction(context);
           },
           ),
 
@@ -369,6 +369,9 @@ class CustomTextFieldBorder extends StatelessWidget {
   final TextStyle hintStyle;
   final bool password;
   final keyboardtype;
+  final int min;
+  final int max;
+
 
 
 
@@ -382,6 +385,8 @@ class CustomTextFieldBorder extends StatelessWidget {
       this.hintStyle,
       this.password,
       this.keyboardtype,
+        this.max,
+        this.min
       });
 
   @override
@@ -402,13 +407,17 @@ class CustomTextFieldBorder extends StatelessWidget {
                     borderSide: BorderSide(color: Colors.white)),
                 prefixIcon: icon,
                 hintText: hintText,
-                hintStyle: hintStyle)
+                hintStyle: hintStyle,
+            ),
+
           ),
         ),
       ),
     );
   }
 }
+
+
 
 class appbar extends StatefulWidget {
   @override
@@ -572,12 +581,16 @@ class classactivitys extends StatelessWidget {
   final String heading;
   final String paragraph;
   final Color color;
+  final String title;
+  final String id;
 
   classactivitys(
       {
         this.heading,
         this.paragraph,
-        this.color});
+        this.color,
+      this.title,
+      this.id});
 
   @override
   Widget build(BuildContext context) {
@@ -623,7 +636,7 @@ class classactivitys extends StatelessWidget {
                                                     ),
                                                     new Text('Edit',style: TextStyle(fontSize: 15),),
                                                   ],
-                                                ), value: ''),
+                                                ), value: 'edit'),
 
 
                                             new PopupMenuItem<String>(
@@ -638,10 +651,18 @@ class classactivitys extends StatelessWidget {
                                                     ),
                                                     new Text('Delete',style: TextStyle(fontSize: 15),),
                                                   ],
-                                                ), value: ''),
+                                                ), value: 'delete'),
 
                                           ],
-                                          onSelected: ( value){},
+                                          onSelected: ( value){
+                                           if(value=="edit")
+                                             {
+                                               GlobalData.EditQuiz=true;
+                                               GlobalData.QuizID=id;
+                                               GlobalData.ExamQuiz=title;
+                                               Navigator.of(context).pushNamed('Question_List');
+                                             }
+                                          },
                                         ),
                                       ],
                                     ),
@@ -807,5 +828,51 @@ class MatchClass {
       };
 }
 
+ClearRegisterData(){
 
+ GlobalData.Selected_subject=null;
+ GlobalData.Selected_class;
+ GlobalData.Selected_class_IDS;
+ GlobalData.Slected_subject_bool=[false,false,false,false,false,false,false,false,false];
+ GlobalData.QuizTitle="";
+ GlobalData.QuizLevels="";
+ GlobalData.NosofQuesPerLevel="";
+ GlobalData.DurationofEachLevel="";
+ GlobalData.ExamQuiz="";
+ GlobalData.QuizID="";
+
+}
+
+
+LogoutFunction(context)async {
+
+  SharedPreferences pre= await SharedPreferences.getInstance();
+  pre.clear();
+  // Navigator.of(context).dispose();
+  // await Navigator.of(context).dispose();
+  // Navigator.of(context).pushNamed('login');
+  Navigator.of(context)
+      .pushNamedAndRemoveUntil('login', (Route<dynamic> route) => false);
+
+
+}
+
+
+ GetMyClasses() async{
+
+  await http.post("http://edusupportapp.com/api/get_teacher_classes.php",body: {
+    "UserId":GlobalData.uid
+  }).then((res) async {
+
+    print(res.body);
+    var ParsedData = await jsonDecode(res.body);
+    GlobalData.Class_list =
+        (ParsedData['join_classdata'] as List).map((data) =>
+            Classes.fromJson(data)).toList();
+
+  }
+
+  );
+
+}
 
