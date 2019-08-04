@@ -78,7 +78,7 @@ class _Question_ListState extends State<Question_List> {
       case "Match Type":
 
         return Container(
-          key: Key(index.toString()),
+
           height: Matches.isEmpty?50.0:Matches.length*60.0,
           child: Row(
             children: <Widget>[
@@ -102,31 +102,9 @@ class _Question_ListState extends State<Question_List> {
                 child: Column(
                   children: <Widget>[
                     Expanded(
-                      child: ReorderableListView(
-                        children: _list.map((item) => ListTile(key: Key("${item}"), title: Text("${item}"), trailing: Icon(Icons.menu),)).toList(),
-                        onReorder: (int start, int current) {
-                          // dragging from top to bottom
-                          if (start < current) {
-                            int end = current - 1;
-                            String startItem = _list[start];
-                            int i = 0;
-                            int local = start;
-                            do {
-                              _list[local] = _list[++local];
-                              i++;
-                            } while (i < end - start);
-                            _list[end] = startItem;
-                          }
-                          // dragging from bottom to top
-                          else if (start > current) {
-                            String startItem = _list[start];
-                            for (int i = start; i > current; i--) {
-                              _list[i] = _list[i - 1];
-                            }
-                            _list[current] = startItem;
-                          }
-                          setState(() {});
-                        },
+                      child: ListView(
+                        children: _list.map((item) => ListTile( title: Text("${item}"), )).toList(),
+
                       ),
                     ),
                   ],
@@ -156,15 +134,12 @@ class _Question_ListState extends State<Question_List> {
                         children: <Widget>[
                           Container(child: Row(
                             children: <Widget>[
-                              Radio(value: "false", groupValue: TrueorFalse, onChanged: (v){TrueorFalse=v;setState(() {
-                              });}),
+                              Radio(value: "false", groupValue: Answers[0].trueanswer, ),
                               Text("True")
                             ],),),
                           Container(child: Row(
                             children: <Widget>[
-                              Radio(value: "true", groupValue: TrueorFalse, onChanged: (v){TrueorFalse=v;
-                              setState(() {
-                              });}),
+                              Radio(value: "true", groupValue: Answers[0].trueanswer, ),
                               Text("False")
                             ],),)
                         ],
@@ -196,17 +171,7 @@ class _Question_ListState extends State<Question_List> {
                                 itemCount: Options.length,itemBuilder: (context,index){
                               return Container(child: Row(
                                 children: <Widget>[
-                                  Checkbox(value: Options[index].trueanswer, onChanged: (value){
-
-
-                                    for(int i=0;i<Options.length;i++){
-                                      Options[i].trueanswer=false;
-                                    }
-
-
-                                    Options[index].trueanswer=value;setState(() {
-
-                                    });},),
+                                  Checkbox(value: Options[index].trueanswer, ),
                                   Text(Options[index].value,maxLines: 4,)
 
 
@@ -372,7 +337,7 @@ class _Question_ListState extends State<Question_List> {
     /*print(Quetions[i].anwer_options.length.toString()+"  asdznaisdfmmb k");
 Matches =Quetions[i].anwer_options;*/
     return Scaffold(
-        appBar: AppBar(title: Text("Questions"),centerTitle: true,),
+        appBar: AppBar(title: Text("Questions List"),centerTitle: true,),
         body: isloading==true?Center(child: Text("Loading...")):MYQue()
 
 

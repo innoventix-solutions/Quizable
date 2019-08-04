@@ -3,6 +3,7 @@ import 'package:share/share.dart';
 import 'Edit_Question.dart';
 import 'Questions_list.dart';
 import 'Quiz_list_student.dart';
+import 'TeacherClassList.dart';
 import 'globalvar.dart';
 import 'manageclassactivitesGlobal.dart';
 import 'sec.dart';
@@ -55,7 +56,7 @@ import 'adminprofile.dart';
 import 'studentselectclass.dart';
 import 'TeacherSelectClass.dart';
 import 'AdminClassShare.dart';
-
+import 'myclassroom.dart';
 
 
 
@@ -68,7 +69,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(fontFamily: 'yu'),
-      home:splash(),
+      home:myclassroom(),
       debugShowCheckedModeBanner: false,
       routes: {
        // 'signup_teacher': (context) => sec(),
@@ -111,9 +112,8 @@ class MyApp extends StatelessWidget {
         'returnsignup':(context)=>select(),
         'admindashboard':(context)=>admindashboard(),
         'edit_question':(context)=>Edit_Question(),
-        'adminshareclass':(context)=>AdminClassShare(),
-
-
+        'adminclassshare':(context)=>AdminClassShare(),
+        'TeacherClassList':(context)=>TeacherClassList()
       },
     );
   }

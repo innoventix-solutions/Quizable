@@ -147,35 +147,42 @@ class _techerjoinclassState extends State<techerjoinclass> {
                     ),
                   ),
                 ),
+                SizedBox(height: 20,),
+                GlobalData.Class_list.isNotEmpty?
+                Column(
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.only(top: 10,bottom: 5),
+                      child: Text("Already joined a class?"),
+                    ),
+                    SizedBox(height: 5,),
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 40),
+                      child: Container(
+                        width: 200,
+                        child: GradientButtonText(
+                          linearGradient:
+                              LinearGradient(colors: <Color>[GlobalData.navy, GlobalData.navyblue]),
+                          text: Text(
+                            "Proceed",
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 17),
+                            textAlign: TextAlign.center,
+                          ),
+                        ButtonClick: (){
 
+                          Navigator.of(context)
+                              .pushNamed('teacherSelectClass');
 
-                Padding(
-                  padding: const EdgeInsets.only(top: 10,bottom: 5),
-                  child: Text("Already joined a class?"),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 40),
-                  child: Container(
-                    width: 200,
-                    child: GradientButtonText(
-                      linearGradient:
-                          LinearGradient(colors: <Color>[GlobalData.navy, GlobalData.navyblue]),
-                      text: Text(
-                        "Proceed",
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 17),
-                        textAlign: TextAlign.center,
+                        },),
                       ),
-                    ButtonClick: (){
+                    ),
 
-                      Navigator.of(context)
-                          .pushNamed('teacherdashboard');
-
-                    },),
-                  ),
-                ),
+                  ],
+                ):
+                Text(""),
 
                 /*Container(padding: EdgeInsets.only(top: 50),
                     child: Text('or Play Global Quiz',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18,color: lightblue),)),

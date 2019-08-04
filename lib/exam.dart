@@ -36,10 +36,10 @@ class _ExamState extends State<Exam> {
   bool isloading = true;
   String TimerText ="-:--:--";
 
-  int timermins = 15;
+  int timermins = 1;
 
   Timmer(){
-   cd = CountDown(Duration(minutes: timermins));
+   cd = CountDown(Duration(seconds: timermins));
     var sub = cd.stream.listen(null);
     // start your countdown by registering a listener
     sub.onData((Duration d) {
@@ -55,9 +55,12 @@ class _ExamState extends State<Exam> {
     });
   }
 
+
   @override
   dispose()
   {
+    cd.isPaused=true;
+     super.dispose();
 
   }
 
@@ -132,7 +135,7 @@ class _ExamState extends State<Exam> {
                           child: ReorderableListView(
 
 
-                            children: _list.map((item) => Container( key: Key("${item}"),
+                            children: _list.map((item) => Container( key: Key("${item}con"),
                                 color:Colors.amber,child: ListTile( key: Key("${item}"), title: Text("${item}"), trailing: Icon(Icons.menu),))).toList(),
                             onReorder: (int start, int current) {
                               // dragging from top to bottom
