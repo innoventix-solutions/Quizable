@@ -60,7 +60,7 @@ import 'Announcement.dart';
 import 'Assignment.dart';
 import 'SpellingChallange.dart';
 import 'ManageAccount.dart';
-
+import 'GameRoom.dart';
 
 
 void main() {
@@ -72,7 +72,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(fontFamily: 'yu'),
-      home:ManageAccount(),
+      home:GameRoom(),
       debugShowCheckedModeBanner: false,
       routes: {
        // 'signup_teacher': (context) => sec(),
