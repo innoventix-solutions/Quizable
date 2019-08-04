@@ -12,12 +12,15 @@ class Pojo_quizzes{
   String closing_date;
   String created_date;
   String classes;
+  bool is_taken;
+  String TotalQuizpoints;
+  String point_awarded;
 
 
   Pojo_quizzes({this.id, this.quiz_title, this.techer_id, this.no_of_levels,
       this.que_each_level, this.dur_each_level, this.quiz_subject,
       this.class_id, this.status, this.publish_date, this.closing_date,
-      this.created_date, this.classes});
+      this.created_date, this.classes,this.point_awarded,this.is_taken,this.TotalQuizpoints});
 
   factory Pojo_quizzes.fromJson(Map<String, dynamic> parsedJson){
     return Pojo_quizzes(
@@ -33,7 +36,10 @@ class Pojo_quizzes{
       quiz_subject: parsedJson['quiz_subject'].toString(),
       quiz_title: parsedJson['quiz_title'].toString(),
       status: parsedJson['status'].toString(),
-      techer_id: parsedJson['techer_id'].toString()
+      techer_id: parsedJson['techer_id'].toString(),
+      is_taken: parsedJson['is_taken'],
+      point_awarded: parsedJson['quiz_result']['point_awarded'].toString(),
+      TotalQuizpoints: parsedJson['quiz_result']['TotalQuizpoints'].toString(),
       
     );
   }

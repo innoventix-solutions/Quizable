@@ -39,7 +39,7 @@ class _ExamState extends State<Exam> {
   int timermins = 1;
 
   Timmer(){
-   cd = CountDown(Duration(seconds: timermins));
+   cd = CountDown(Duration(minutes: timermins));
     var sub = cd.stream.listen(null);
     // start your countdown by registering a listener
     sub.onData((Duration d) {
@@ -88,6 +88,8 @@ class _ExamState extends State<Exam> {
   Widget AnswerNow(String type,List<Pojo_Matchs> Data,List<Pojo_Answers> Answers)
   {
 
+ //   Show_toast_Now("Current Type :"+type, Colors.red);
+    print("Current Type :"+type);
     Matches=Data;
     Options = Answers;
     print(GlobalData.LoadData.toString());
@@ -102,6 +104,7 @@ class _ExamState extends State<Exam> {
 
     switch (type)
     {
+
           case "Match Type":
             return Container(
               height: Matches.isEmpty?50.0:Matches.length*60.0,
@@ -224,7 +227,49 @@ class _ExamState extends State<Exam> {
               ],
             ),);
 
+      case "Multiple Answers":
+        return Card(
+          child: Column(
+            children: <Widget>[
+              Row(
+                children: <Widget>[
+                  Expanded(
+                    child: Container(
+                      height: Options.isEmpty?50.0:Options.length*50.0,
+
+                      child: Column(
+                        children: <Widget>[
+                          Expanded(
+                            child: ListView.builder(
+                                itemCount: Options.length,itemBuilder: (context,index){
+                              return Container(child: Row(
+                                children: <Widget>[
+                                  Checkbox(value: Options[index].trueanswer, onChanged: (value){
+
+
+                                    Options[index].trueanswer=value;setState(() {
+
+                                    });},),
+                                  Text(Options[index].value,maxLines: 4,)
+
+
+
+                                ],),);}),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+
+
+
+            ],
+          ),);
+
       default:
+
           return Card(
             child: Column(
               children: <Widget>[
@@ -241,11 +286,14 @@ class _ExamState extends State<Exam> {
                                   itemCount: Options.length,itemBuilder: (context,index){
                                 return Container(child: Row(
                                   children: <Widget>[
-                                    Checkbox(value: false/*Options[index].trueanswer*/, onChanged: (value){
+                                    Checkbox(value: Options[index].trueanswer, onChanged: (value){
 
 
-                                      for(int i=0;i<Options.length;i++){
-                                        Options[i].trueanswer=false;
+                                      if(type!="Multiple Answer") {
+                                        for (int i = 0; i <
+                                            Options.length; i++) {
+                                          Options[i].trueanswer = false;
+                                        }
                                       }
 
 
@@ -285,6 +333,9 @@ class _ExamState extends State<Exam> {
 
 
   Widget MYQue(){
+
+
+
     return SafeArea(
       child: Padding(
         padding: const EdgeInsets.all(8.0),

@@ -58,11 +58,13 @@ class _studentjoinState extends State<studentjoin> {
             ),
 
             actions: <Widget>[
-              IconButton(onPressed: (){},
+              IconButton(onPressed: (){
+                LogoutFunction(context);
+              },
                 icon: Icon(
-                  Icons.arrow_back_ios,
-                  color: Colors.transparent,
-                  size: 10,
+                  Icons.exit_to_app,
+                  color: Colors.white,
+                  size: 22,
                 ),
               ),
             ],backgroundColor: Color(0Xff1F0BE6),

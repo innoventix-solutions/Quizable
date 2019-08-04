@@ -600,7 +600,7 @@ setalldetails(){
         GlobalData.QuizID=statuss['quizdata']['ID'];
         print(GlobalData.QuizID);
         print("gonadsf to qwesdf");
-        ClearRegisterData();
+      //  ClearRegisterData();
         Navigator.of(context).pushNamed('questions');
 
 
