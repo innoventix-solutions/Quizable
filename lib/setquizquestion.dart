@@ -559,7 +559,7 @@ setalldetails(){
       "\nque_each_level :"+ GlobalData.NosofQuesPerLevel +
       "\ndur_each_level :"+ GlobalData.DurationofEachLevel +
       "\nquiz_subject : "+ GlobalData.Selected_subject +
-      "\nclass_id : "+
+      "\nclass_id : "+GlobalData.Selected_class_IDS +
       "\npublish_date : 2019-06-23 00:00:01"+
       "\nclosing_date : 2019-06-26 00:00:01"
 

@@ -629,7 +629,7 @@ class classactivitys extends StatelessWidget {
                                   Expanded(
                                     child:  Row(mainAxisAlignment: MainAxisAlignment.end,
                                       children: <Widget>[
-                                        PopupMenuButton(
+                                        GlobalData.userType=="student"?Text(""):PopupMenuButton(
                                           child: Icon(Icons.more_vert),
                                           itemBuilder: (_) => <PopupMenuItem<String>>[
                                             new PopupMenuItem<String>(

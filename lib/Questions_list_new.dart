@@ -63,8 +63,7 @@ class _Question_ListState extends State<Question_List> {
 
     print(jsonEncode(Answers).toString());
 
-    Matches=Data;
-    Options = Answers;
+
     print(GlobalData.LoadData.toString());
 
     if(_list.length==0) {
@@ -79,83 +78,56 @@ class _Question_ListState extends State<Question_List> {
     {
       case "Match Type":
 
-        return Container(
-
-          height: Matches.isEmpty?50.0:Matches.length*60.0,
+        return Data.isEmpty? Text(""): Container(
+          height: Data.isEmpty?50.0:Data.length*60.0,
           child: Row(
             children: <Widget>[
-              Expanded(child: Column(
-                children: <Widget>[
-                  Expanded(
-                    child: ListView.builder(
-                      key:Key("MatchType"+index.toString()),
-                        controller: controller,
-                        itemCount: Matches.length,
-                        itemBuilder: (c,i){
-                          return ListTile(
-                            title: Text( Matches[i].val1),
-                            leading: Icon(Icons.add,color: Colors.transparent,),
-                          );
-
-                        }),
-                  ),
-                ],
-              ),),
-              Expanded(
+              Expanded(child: Container(
+                color:Colors.green[300],
                 child: Column(
                   children: <Widget>[
                     Expanded(
-                      child: ListView(
-                        children: _list.map((item) => ListTile( title: Text("${item}"), )).toList(),
+                      child: ListView.builder(
+                          shrinkWrap: true,
+                        key:Key("MatchType"+index.toString()),
+                          controller: controller,
+                          itemCount: Data.length,
+                          itemBuilder: (c,i){
+                            return Column(
+                              children: <Widget>[
 
-                      ),
+                                Row(
+                                  children: <Widget>[
+                                    Expanded(child: Card(
+
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Container(
+                                          height: 35,
+                                          child: Row(children: <Widget>[
+                                            Expanded(child: Text( Data[i].val1),),
+                            Expanded(child: Text( Data[i].val2),)
+                                          ],),
+                                        ),
+                                      ),
+                                    )),
+                                  ],
+                                )
+                              ],
+                            );
+
+                          }),
                     ),
                   ],
                 ),
-              ),
+              ),),
+
+
             ],
           ),
         );
       case "True False":
-       /* return Card(
-          child: Column(
-            children: <Widget>[
-              Row(
-                children: <Widget>[
-                  Expanded(
-                    child: Container(padding: EdgeInsets.all(5),child: Text("Select Answer",style: TextStyle(color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),)),
-                  ),
 
-                ],
-              ),
-              Row(
-                children: <Widget>[
-                  Expanded(
-                    child: Container(
-                      height: 110.0,
-                      child: Column(
-                        children: <Widget>[
-                          Container(child: Row(
-                            children: <Widget>[
-                              Radio(value: "true", groupValue: Answers[0].trueanswer.toString(), ),
-                              Text(Answers[0].value.toUpperCase())
-                            ],),),
-                          Container(child: Row(
-                            children: <Widget>[
-                              Radio(value: "true", groupValue: Answers[1].trueanswer.toString(), ),
-                              Text(Answers[1].value.toUpperCase())
-                            ],),)
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-
-
-
-            ],
-          ),);*/
         return Card(
           child: Column(
             children: <Widget>[
@@ -203,21 +175,22 @@ class _Question_ListState extends State<Question_List> {
                 children: <Widget>[
                   Expanded(
                     child: Container(
-                      height: Options.isEmpty?50.0:Options.length*50.0,
+                      height: Answers.isEmpty?50.0:Answers.length*50.0,
 
                       child: Column(
                         children: <Widget>[
                           Expanded(
-                            child: ListView.builder(
+                            child: Answers.isEmpty?Text(""): ListView.builder(
+                                shrinkWrap: true,
                                 key:Key(type+index.toString()),
-                                itemCount: Options.length,
+                                itemCount: Answers.length,
                                 itemBuilder: (context,index){
                               return Container(
                                
                                 child: Row(
                                 children: <Widget>[
-                                  Checkbox(value: Options[index].trueanswer, ),
-                                  Text(Options[index].value,maxLines: 4,)
+                                  Checkbox(value: Answers[index].trueanswer, ),
+                                  Text(Answers[index].value,maxLines: 4,)
 ],),);}),
                           ),
                         ],
