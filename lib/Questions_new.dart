@@ -18,6 +18,7 @@ class _QuestionsState extends State<Questions> {
   TextEditingController QuestionName = new TextEditingController();
   TextEditingController Points = new TextEditingController();
 
+
   void _confirmDialog(BuildContext context)  {
     bool Selected = false;
     TextEditingController optioncontroller = new TextEditingController();
@@ -758,7 +759,7 @@ Text("Enter answer in sequence with underscore '_' in between the words",style:
                                   style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold),
                                 ),
                               ),
-                              Text("Put '_' in place where gap needs to be displayed",style:
+                              Text(SelectedType=="Fill-in the gaps"?"Put '_' in place where gap needs to be displayed":"",style:
                               TextStyle(color: Colors.red),),
                             ],
                           ),
