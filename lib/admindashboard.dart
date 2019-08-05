@@ -165,7 +165,10 @@ class _admindashboardState extends State<admindashboard> {
                             ),
 
 
-                          ),onTap: (){},
+                          ),onTap: (){
+                          Navigator.of(context)
+                              .pushNamed('manageclassactivities');
+                        },
                         ),
                         Padding(
                           padding: const EdgeInsets.only(left: 15,right: 15),

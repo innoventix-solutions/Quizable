@@ -596,7 +596,7 @@ class _QuestionsState extends State<Questions> {
                 ],
               ),
 
-Text("The answer you choose will be adds serial wise.",style:
+Text("Enter answer in sequence with underscore '_' in between the words",style:
   TextStyle(color: Colors.red),)
 
             ],
@@ -757,6 +757,8 @@ Text("The answer you choose will be adds serial wise.",style:
                                   style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold),
                                 ),
                               ),
+                              Text("Put '_' in place where gap needs to be displayed",style:
+                              TextStyle(color: Colors.red),),
                             ],
                           ),
                       ),
