@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:share/share.dart';
 import 'Edit_Question.dart';
-import 'Questions_list.dart';
+import 'Questions_list_new.dart';
 import 'Quiz_list_student.dart';
 import 'TeacherClassList.dart';
 import 'globalvar.dart';

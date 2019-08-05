@@ -559,7 +559,7 @@ setalldetails(){
       "\nque_each_level :"+ GlobalData.NosofQuesPerLevel +
       "\ndur_each_level :"+ GlobalData.DurationofEachLevel +
       "\nquiz_subject : "+ GlobalData.Selected_subject +
-      "\nclass_id : "+ GlobalData.Selected_class_IDS +
+      "\nclass_id : "+
       "\npublish_date : 2019-06-23 00:00:01"+
       "\nclosing_date : 2019-06-26 00:00:01"
 
@@ -570,7 +570,7 @@ setalldetails(){
         GlobalData.NosofQuesPerLevel == null ||
         GlobalData.DurationofEachLevel == null ||
         GlobalData.Selected_subject == null||
-        GlobalData.Selected_class_IDS == null||
+        GlobalData.Selected_class== null||
         Starting_date==null||
         Closing_date==null) {
 
