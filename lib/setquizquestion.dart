@@ -479,11 +479,8 @@ setalldetails(){
                                   ),
                                   textAlign: TextAlign.center,
                                 ),ButtonClick: (){
-
                                   setalldetails();
                                   SaveQuiz();
-
-
                               },
                               ),
                             ),
