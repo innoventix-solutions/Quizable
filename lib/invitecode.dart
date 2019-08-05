@@ -178,7 +178,6 @@ class _invitecodeState extends State<invitecode> {
 
                   ),
 
-
                   Container(
                       child: Card(elevation: 5.0,
                         shape: RoundedRectangleBorder(
@@ -229,7 +228,7 @@ class _invitecodeState extends State<invitecode> {
                     decoration: TextDecoration.underline
                 ),),onTap: (){
                 Navigator.of(context)
-                    .pushNamed('admindashboard');},
+                    .pushNamed('teacherdashboard');},
               ),
             ),
 

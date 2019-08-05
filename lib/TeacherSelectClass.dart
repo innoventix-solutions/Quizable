@@ -14,6 +14,7 @@ class _TeacherSelectClassState extends State<TeacherSelectClass> {
   void initState() {
     // TODO: implement initState
     super.initState();
+    GetMyClasses();
     print(GlobalData.userType);
   }
 

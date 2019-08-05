@@ -61,6 +61,8 @@ class _Question_ListState extends State<Question_List> {
   Widget AnswerNow(String type,List<Pojo_Matchs> Data,List<Pojo_Answers> Answers,int index)
   {
 
+    print(jsonEncode(Answers).toString());
+
     Matches=Data;
     Options = Answers;
     print(GlobalData.LoadData.toString());
@@ -134,13 +136,13 @@ class _Question_ListState extends State<Question_List> {
                         children: <Widget>[
                           Container(child: Row(
                             children: <Widget>[
-                              Radio(value: "false", groupValue: Answers[0].trueanswer, ),
-                              Text("True")
+                              Radio(value: "true", groupValue: Answers[0].trueanswer.toString(), ),
+                              Text(Answers[0].value.toUpperCase())
                             ],),),
                           Container(child: Row(
                             children: <Widget>[
-                              Radio(value: "true", groupValue: Answers[0].trueanswer, ),
-                              Text("False")
+                              Radio(value: "true", groupValue: Answers[1].trueanswer.toString(), ),
+                              Text(Answers[1].value.toUpperCase())
                             ],),)
                         ],
                       ),

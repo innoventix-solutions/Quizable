@@ -10,7 +10,6 @@ class Pojo_Answers{
 
     return Pojo_Answers(
        trueanswer: GlobalData.userType=="student"?false:(parsedJson['trueanswer']==""||parsedJson['trueanswer']==null)?false:parsedJson['trueanswer'].toString().toLowerCase()=="true"?true:false,
-
         value: parsedJson['value'].toString()
     );
   }

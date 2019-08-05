@@ -15,7 +15,7 @@ List<String> ListofTypes = ['Fill-in the gaps', 'Match Type', 'Single Answer', '
 List<Pojo_Answers> Options = GlobalData.Current_Que_To_Edit.Options;
 List<Pojo_Matchs> Matches = GlobalData.Current_Que_To_Edit.anwer_options;
 
-String TrueorFalse = "False";
+String TrueorFalse=GlobalData.Current_Que_To_Edit.Options[0].trueanswer.toString();
 List<String> Type = ["fillups","matchtype","single","multi","tf"];
 TextEditingController QuestionName = new TextEditingController(text: GlobalData.Current_Que_To_Edit.question);
 TextEditingController Points = new TextEditingController(text: GlobalData.Current_Que_To_Edit.point_awarded);
@@ -611,7 +611,7 @@ Widget MyQuestionType(String type) {
                       children: <Widget>[
                         Container(child: Row(
                           children: <Widget>[
-                            Radio(value: "False", groupValue: TrueorFalse, onChanged: (v){TrueorFalse=v;setState(() {
+                            Radio(value: "true", groupValue: TrueorFalse, onChanged: (v){TrueorFalse=v;setState(() {
 
                             });}),
                             Text("True")
@@ -621,7 +621,7 @@ Widget MyQuestionType(String type) {
                           ],),),
                         Container(child: Row(
                           children: <Widget>[
-                            Radio(value: "True", groupValue: TrueorFalse, onChanged: (v){TrueorFalse=v;setState(() {
+                            Radio(value: "false", groupValue: TrueorFalse, onChanged: (v){TrueorFalse=v;setState(() {
 
                             });}),
 
@@ -661,7 +661,7 @@ String MyQuestionAnswer(String type) {
       return jsonEncode(Options).toString();
     case 'True False':
       Options.clear();
-      if(TrueorFalse==true){
+      if(TrueorFalse=="true"){
         Options.add(Pojo_Answers(trueanswer: true,value: "True"));
         Options.add(Pojo_Answers(trueanswer: false,value: "False"));
       }else
@@ -669,6 +669,8 @@ String MyQuestionAnswer(String type) {
         Options.add(Pojo_Answers(trueanswer: false,value: "True"));
         Options.add(Pojo_Answers(trueanswer: true,value: "False"));
       }
+      print(TrueorFalse);
+      print(jsonEncode(Options).toString());
       return jsonEncode(Options).toString();
     default:
       return "Sorry";
@@ -678,6 +680,8 @@ String MyQuestionAnswer(String type) {
 
 @override
 Widget build(BuildContext context) {
+
+
 
   return Scaffold(
     appBar: AppBar(
@@ -890,7 +894,7 @@ SaveQuizQuestion()async {
       "question_id":GlobalData.Current_Que_To_Edit.id.toString(),
     }).then((response) {
       var statuss = jsonDecode(response.body);
-      Navigator.of(context).pushNamed('Question_List');
+      Navigator.of(context).pushReplacementNamed('Question_List');
 
     });
   }
