@@ -51,7 +51,7 @@ static List<Classes> Class_list = new List();
   static Classes activeclass ;
 
   static bool LoadData = true;
-  static int QuestionNumber=1;
+  static int QuestionNumber=0;
   static String userType;
   static String accounttype="";
   static String uid;
@@ -848,7 +848,6 @@ ClearRegisterData(){
  GlobalData.DurationofEachLevel="";
  GlobalData.ExamQuiz="";
  GlobalData.QuizID="";
-
 }
 
 
@@ -856,6 +855,31 @@ LogoutFunction(context)async {
 
   SharedPreferences pre= await SharedPreferences.getInstance();
   pre.clear();
+
+
+  GlobalData.Class_list = new List();
+  GlobalData.activeclass=null;
+  GlobalData.LoadData = true;
+  GlobalData.QuestionNumber=0;
+  GlobalData.userType=null;
+  GlobalData.accounttype="";
+  GlobalData.uid;
+  GlobalData.class_name;
+  GlobalData.class_icon;
+  GlobalData.student_code;
+  GlobalData.teacher_code;
+  GlobalData.Username;
+  GlobalData.Selected_subject;
+  GlobalData.Selected_class;
+  GlobalData.Selected_class_IDS;
+  GlobalData.Slected_subject_bool=[false,false,false,false,false,false,false,false,false];
+  GlobalData.QuizTitle="";
+  GlobalData.QuizLevels="";
+  GlobalData.NosofQuesPerLevel="";
+  GlobalData.DurationofEachLevel="";
+  GlobalData.ExamQuiz="";
+  GlobalData.QuizID="";
+
   // Navigator.of(context).dispose();
   // await Navigator.of(context).dispose();
   // Navigator.of(context).pushNamed('login');
