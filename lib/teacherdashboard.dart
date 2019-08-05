@@ -245,7 +245,7 @@ class _teacherdashboardState extends State<teacherdashboard> {
                           padding: const EdgeInsets.only(bottom: 15),
                           child: Text(GlobalData.Username,
                             style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,
-                                fontSize: 20),),
+                                fontSize: 18),),
                         ),
 
                           Text(GlobalData.class_name==null?"No Class Selected":GlobalData.class_name,
