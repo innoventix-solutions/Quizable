@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:newpro/global.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:share/share.dart';
 
 class teacherdashboard extends StatefulWidget {
   @override
@@ -90,42 +91,52 @@ class _teacherdashboardState extends State<teacherdashboard> {
 
                         Padding(
                           padding: const EdgeInsets.only(left: 15),
-                          child: Container(height: 100,width: 150,
+                          child: GestureDetector(
+                            child: Container(height: 100,width: 150,
 
 
-                            child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(10),),color:GlobalData.bluecard,),
+                              child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(10),),color:GlobalData.bluecard,),
 
 
-                              child:Center(
-                                child: Column(mainAxisAlignment: MainAxisAlignment.center,
-                                  children: <Widget>[
-                                    Icon(Icons.settings,size: 50,color: Colors.white,),
-                                    Text("Manage My",textAlign: TextAlign.center,style: TextStyle(color: Colors.white,fontSize: 13,fontWeight: FontWeight.bold),),
-                                    Text("Classrooms",textAlign: TextAlign.center,style: TextStyle(color: Colors.white,fontSize: 13,fontWeight: FontWeight.bold),),
-                                  ],
+                                child:Center(
+                                  child: Column(mainAxisAlignment: MainAxisAlignment.center,
+                                    children: <Widget>[
+                                      Icon(Icons.settings,size: 50,color: Colors.white,),
+                                      Text("Manage My",textAlign: TextAlign.center,style: TextStyle(color: Colors.white,fontSize: 13,fontWeight: FontWeight.bold),),
+                                      Text("Classrooms",textAlign: TextAlign.center,style: TextStyle(color: Colors.white,fontSize: 13,fontWeight: FontWeight.bold),),
+                                    ],
+                                  ),
                                 ),
                               ),
-                            ),
+                            ),onTap: (){
+                            Navigator.of(context)
+                                .pushNamed('StudentList');
+                          },
                           ),
 
                         ),
                         Padding(
                           padding: const EdgeInsets.only(left: 15,right: 15),
-                          child: Container(height: 100,width: 150,
+                          child: GestureDetector(
+                            child: Container(height: 100,width: 150,
 
 
-                            child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(10),),color:GlobalData.pinkcard,),
+                              child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(10),),color:GlobalData.pinkcard,),
 
 
-                              child:Center(
-                                child: Column(mainAxisAlignment: MainAxisAlignment.center,
-                                  children: <Widget>[
-                                    Icon(Icons.crop_square,size: 60,color: Colors.white,),
-                                    Text("Teacher's Board",textAlign: TextAlign.center,style: TextStyle(color: Colors.white,fontSize: 13,fontWeight: FontWeight.bold),),
-                                  ],
+                                child:Center(
+                                  child: Column(mainAxisAlignment: MainAxisAlignment.center,
+                                    children: <Widget>[
+                                      Icon(Icons.crop_square,size: 60,color: Colors.white,),
+                                      Text("Teacher's Board",textAlign: TextAlign.center,style: TextStyle(color: Colors.white,fontSize: 13,fontWeight: FontWeight.bold),),
+                                    ],
+                                  ),
                                 ),
                               ),
-                            ),
+                            ),onTap: (){
+                            Navigator.of(context)
+                                .pushNamed('TeacherList');
+                          },
                           ),
 
                         )
@@ -262,64 +273,95 @@ class _teacherdashboardState extends State<teacherdashboard> {
               },
             ),
 
-            Padding(
-              padding: const EdgeInsets.only(left: 45,top:20),
-              child: Row(children: <Widget>[Icon(Icons.info,color: GlobalData.lightblue,),
-                Padding(
-                  padding: const EdgeInsets.only(left: 20),
-                  child: Text('About EduSupport',style: TextStyle(
-                      color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
-                )],),
+            GestureDetector(
+              child: Padding(
+                padding: const EdgeInsets.only(left: 45,top:20),
+                child: Row(children: <Widget>[Icon(Icons.info,color: GlobalData.lightblue,),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 20),
+                    child: Text('About EduSupport',style: TextStyle(
+                        color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
+                  )],),
+              ),onTap: (){
+              Navigator.of(context)
+                  .pushNamed('AboutEduSupport');
+            },
             ),
 
-            Padding(
-              padding: const EdgeInsets.only(left: 45,top:20),
-              child: Row(children: <Widget>[Icon(Icons.dehaze,color: GlobalData.lightblue,),
-                Padding(
-                  padding: const EdgeInsets.only(left: 20),
-                  child: Text('List of Classrooms',style: TextStyle(
-                      color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
-                )],),
+            GestureDetector(
+              onTap: (){
+                Navigator.of(context).pushNamed('TeacherClassList');
+              },
+              child: Padding(
+                padding: const EdgeInsets.only(left: 45,top:20),
+                child: Row(children: <Widget>[Icon(Icons.dehaze,color: GlobalData.lightblue,),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 20),
+                    child: Text('List of Classrooms',style: TextStyle(
+                        color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
+                  )],),
+              ),
             ),
 
-            Padding(
-              padding: const EdgeInsets.only(left: 45,top:20),
-              child: Row(children: <Widget>[Icon(Icons.person,color: GlobalData.lightblue,),
-                Padding(
-                  padding: const EdgeInsets.only(left: 20),
-                  child: Text('Edit Profile',style: TextStyle(
-                      color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
-                )],),
+            GestureDetector(
+              child: Padding(
+                padding: const EdgeInsets.only(left: 45,top:20),
+                child: Row(children: <Widget>[Icon(Icons.person,color: GlobalData.lightblue,),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 20),
+                    child: Text('Edit Profile',style: TextStyle(
+                        color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
+                  )],),
+              ),onTap: (){
+              Navigator.of(context)
+                  .pushNamed('EditProfile');
+            },
             ),
 
-            Padding(
-              padding: const EdgeInsets.only(left: 45,top:20),
-              child: Row(children: <Widget>[Icon(Icons.settings,color: GlobalData.lightblue,),
-                Padding(
-                  padding: const EdgeInsets.only(left: 20),
-                  child: Text('Manage Account',style: TextStyle(
-                      color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
-                )],),
+            GestureDetector(
+              child: Padding(
+                padding: const EdgeInsets.only(left: 45,top:20),
+                child: Row(children: <Widget>[Icon(Icons.settings,color: GlobalData.lightblue,),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 20),
+                    child: Text('Manage Account',style: TextStyle(
+                        color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
+                  )],),
+              ),onTap: (){
+              Navigator.of(context)
+                  .pushNamed('ManageAccount');
+            },
             ),
 
-            Padding(
-              padding: const EdgeInsets.only(left: 45,top:20),
-              child: Row(children: <Widget>[Icon(Icons.notifications,color: GlobalData.lightblue,),
-                Padding(
-                  padding: const EdgeInsets.only(left: 20),
-                  child: Text('Announcements',style: TextStyle(
-                      color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
-                )],),
+            GestureDetector(
+              child: Padding(
+                padding: const EdgeInsets.only(left: 45,top:20),
+                child: Row(children: <Widget>[Icon(Icons.notifications,color: GlobalData.lightblue,),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 20),
+                    child: Text('Announcements',style: TextStyle(
+                        color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
+                  )],),
+              ),onTap: (){
+              Navigator.of(context)
+                  .pushNamed('Announcements');
+            },
             ),
 
-            Padding(
-              padding: const EdgeInsets.only(left: 45,top:20),
-              child: Row(children: <Widget>[Icon(Icons.share,color: GlobalData.lightblue,),
-                Padding(
-                  padding: const EdgeInsets.only(left: 20),
-                  child: Text('Share App',style: TextStyle(
-                      color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
-                )],),
+            GestureDetector(
+              onTap: (){
+
+    Share.share(GlobalData.Username +" is Sharing App - "+ "https://play.google.com/store/apps/details?id=com.innoventixsolutions.edusupport&hl=en");
+    },
+              child: Padding(
+                padding: const EdgeInsets.only(left: 45,top:20),
+                child: Row(children: <Widget>[Icon(Icons.share,color: GlobalData.lightblue,),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 20),
+                    child: Text('Share App',style: TextStyle(
+                        color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
+                  )],),
+              ),
             ),
 
             GestureDetector(

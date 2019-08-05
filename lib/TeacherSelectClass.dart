@@ -8,6 +8,15 @@ class TeacherSelectClass extends StatefulWidget {
 }
 
 class _TeacherSelectClassState extends State<TeacherSelectClass> {
+
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    print(GlobalData.userType);
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -107,6 +116,40 @@ print(GlobalData.activeclass.classname);
                   }
               ),
             ),
+            GlobalData.userType=="admin_teacher"?
+            Padding(
+              padding: const EdgeInsets.only(left: 60,right: 60),
+              child: Column(
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.only(bottom:10,top: 10),
+                    child: Row(
+                      children: <Widget>[
+                        Expanded(
+                          child: GestureDetector(onTap:(){
+
+                            Navigator.of(context)
+                                .pushNamed('welcome');
+
+                          } ,
+                            child: GradientButtonText(
+                              ButtonClick: (){
+                                Navigator.of(context)
+                                    .pushNamed('welcome');
+                              },
+                              linearGradient:LinearGradient(
+                                  colors: <Color>[GlobalData.purple,
+                                    GlobalData.pink]) ,text:
+                            Text("Create New Class",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 18,),textAlign: TextAlign.center,),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ):Text(""),
             Padding(
               padding: const EdgeInsets.only(left: 60,right: 60),
               child: Column(

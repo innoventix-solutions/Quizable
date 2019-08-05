@@ -130,14 +130,19 @@ class drawerquiz extends StatelessWidget {
               )],),
           ),
 
-          Padding(
-            padding: const EdgeInsets.only(left: 35,top:20),
-            child: Row(children: <Widget>[Icon(Icons.assignment,color: GlobalData.lightblue,),
-              Padding(
-                padding: const EdgeInsets.only(left: 10),
-                child: Text('Assignment Question Bank',style: TextStyle(
-                    color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
-              )],),
+          GestureDetector(
+            child: Padding(
+              padding: const EdgeInsets.only(left: 35,top:20),
+              child: Row(children: <Widget>[Icon(Icons.assignment,color: GlobalData.lightblue,),
+                Padding(
+                  padding: const EdgeInsets.only(left: 10),
+                  child: Text('Assignment Question Bank',style: TextStyle(
+                      color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
+                )],),
+            ),onTap: (){
+            Navigator.of(context)
+                .pushNamed('SetAssignment');
+          },
           ),
 
           Padding(
@@ -163,7 +168,10 @@ class drawerquiz extends StatelessWidget {
                   child: Text('Set Spelling Challenge',style: TextStyle(
                       color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
                 ),],),
-            ),onTap: (){},
+            ),onTap: (){
+            Navigator.of(context)
+                .pushNamed('SetSpelling');
+          },
           ),
 
           GestureDetector(
@@ -828,15 +836,55 @@ class MatchClass {
       };
 }
 
+ClearRegisterData(){
+
+ GlobalData.Selected_subject=null;
+ GlobalData.Selected_class;
+ GlobalData.Selected_class_IDS;
+ GlobalData.Slected_subject_bool=[false,false,false,false,false,false,false,false,false];
+ GlobalData.QuizTitle="";
+ GlobalData.QuizLevels="";
+ GlobalData.NosofQuesPerLevel="";
+ GlobalData.DurationofEachLevel="";
+ GlobalData.ExamQuiz="";
+ GlobalData.QuizID="";
+}
+
 
 LogoutFunction(context)async {
 
   SharedPreferences pre= await SharedPreferences.getInstance();
   pre.clear();
+
+
+  GlobalData.Class_list = new List();
+  GlobalData.activeclass=null;
+  GlobalData.LoadData = true;
+  GlobalData.QuestionNumber=0;
+  GlobalData.userType=null;
+  GlobalData.accounttype="";
+  GlobalData.uid;
+  GlobalData.class_name;
+  GlobalData.class_icon;
+  GlobalData.student_code;
+  GlobalData.teacher_code;
+  GlobalData.Username;
+  GlobalData.Selected_subject;
+  GlobalData.Selected_class;
+  GlobalData.Selected_class_IDS;
+  GlobalData.Slected_subject_bool=[false,false,false,false,false,false,false,false,false];
+  GlobalData.QuizTitle="";
+  GlobalData.QuizLevels="";
+  GlobalData.NosofQuesPerLevel="";
+  GlobalData.DurationofEachLevel="";
+  GlobalData.ExamQuiz="";
+  GlobalData.QuizID="";
+
   // Navigator.of(context).dispose();
   // await Navigator.of(context).dispose();
-  Navigator.of(context).pushNamed('login');
-
+  // Navigator.of(context).pushNamed('login');
+  Navigator.of(context)
+      .pushNamedAndRemoveUntil('login', (Route<dynamic> route) => false);
 }
 
 
@@ -848,13 +896,89 @@ LogoutFunction(context)async {
 
     print(res.body);
     var ParsedData = await jsonDecode(res.body);
-    GlobalData.Class_list =
-        (ParsedData['join_classdata'] as List).map((data) =>
-            Classes.fromJson(data)).toList();
+
+    if(ParsedData['join_classdata'].toString()!="false") {
+      GlobalData.Class_list =
+          (ParsedData['join_classdata'] as List).map((data) =>
+              Classes.fromJson(data)).toList();
+    }
 
   }
 
   );
 
+}
+
+class shareclasscode extends StatelessWidget {
+
+  final String classname;
+  final String studentcode;
+  final String teachercode;
+  final Image image;
+
+  shareclasscode({this.classname, this.studentcode, this.teachercode,this.image});
+
+  @override
+  Widget build(BuildContext context) {
+    return
+      Column(
+        children: <Widget>[
+          Expanded(
+            child: new
+
+            ListView.builder(
+                itemCount: classname.length,
+
+                itemBuilder: (BuildContext ctxt, int index) {
+                  return  GestureDetector(
+
+                    child: Column(
+                      children: <Widget>[
+                        Container(
+
+                          child: Row(
+                            children: <Widget>[
+                              Stack(
+                                children: <Widget>[
+                                  image,
+                                ],
+                              ),
+
+
+                              Expanded(
+                                child: Padding(
+                                  padding: const EdgeInsets.only(left:30),
+                                  child: Column(mainAxisAlignment: MainAxisAlignment.start,crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: <Widget>[
+                                      Text(classname,style: TextStyle(fontSize: 15),textAlign: TextAlign.left,),
+                                      Text(studentcode,
+                                        style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold,
+                                            fontSize: 14),),
+                                      Text(teachercode,
+                                        style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold,
+                                            fontSize: 14),),
+
+                                    ],
+                                  ),
+                                ),
+                              ),
+
+
+                            ], ),
+                        ),
+                        new Divider(
+                          color: Colors.black,
+                        ),
+                      ],
+                    ),
+                  );
+                }
+            ),
+          ),
+
+
+        ],
+      );
+  }
 }
 

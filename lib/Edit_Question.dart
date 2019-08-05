@@ -890,7 +890,7 @@ SaveQuizQuestion()async {
       "question_id":GlobalData.Current_Que_To_Edit.id.toString(),
     }).then((response) {
       var statuss = jsonDecode(response.body);
-      Navigator.of(context).pushNamed('questions');
+      Navigator.of(context).pushNamed('Question_List');
 
     });
   }

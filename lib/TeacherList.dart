@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:newpro/global.dart';
 
-class viewteacher extends StatefulWidget {
+class TeacherList extends StatefulWidget {
   @override
-  _viewteacherState createState() => _viewteacherState();
+  _TeacherListState createState() => _TeacherListState();
 }
 
-class _viewteacherState extends State<viewteacher> {
+class _TeacherListState extends State<TeacherList> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -16,7 +16,7 @@ class _viewteacherState extends State<viewteacher> {
 
           title: Center(
             child: Text(
-              "Messiah Classroom ",
+              "Custom Classroom ",
               style: TextStyle(fontSize: 22),
             ),
           ),
@@ -141,7 +141,38 @@ class _viewteacherState extends State<viewteacher> {
                     );
                   }
               ),
-            ),],
+            ),
+
+
+            Padding(
+              padding: const EdgeInsets.only(top:20,bottom: 25, right: 20),
+              child: GestureDetector(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: <Widget>[
+                    Text(
+                      'Add Teacher ',
+                      style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                          color: GlobalData.lightblue),
+                    ),
+                    Icon(
+                      Icons.add_circle,
+                      color: GlobalData.lightblue,
+                      size: 25,
+                    )
+                  ],
+                ),
+                onTap: () {
+                          Navigator.of(context)
+                            .pushNamed(
+                              'TeacherInviteCode');
+                },
+              ),
+            ),
+          ],
         ),
       ),
     );

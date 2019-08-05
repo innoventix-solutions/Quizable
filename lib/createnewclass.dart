@@ -55,7 +55,7 @@ class _createnewclassState extends State<createnewclass> {
             Show_toast_Now(Res['msg'],Colors.green);
           }
 
-      print(response.body.toString());
+      //print(response.body.toString());
 
     });}
 
@@ -169,8 +169,8 @@ class _createnewclassState extends State<createnewclass> {
                   ButtonClick: () {
                     createclass();
 
-//
-//                    print(classname.text.toString());
+
+                 //print(classname.text.toString());
                   },
                 )
               ],

@@ -58,11 +58,13 @@ class _studentjoinState extends State<studentjoin> {
             ),
 
             actions: <Widget>[
-              IconButton(onPressed: (){},
+              IconButton(onPressed: (){
+                LogoutFunction(context);
+              },
                 icon: Icon(
-                  Icons.arrow_back_ios,
-                  color: Colors.transparent,
-                  size: 10,
+                  Icons.exit_to_app,
+                  color: Colors.white,
+                  size: 22,
                 ),
               ),
             ],backgroundColor: Color(0Xff1F0BE6),
@@ -162,11 +164,15 @@ class _studentjoinState extends State<studentjoin> {
                   ),
                 ),
 
-                Container(padding: EdgeInsets.only(top: 50),
-                    child: Text('or Play Global Quiz',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18,color: GlobalData.lightblue),)),
-                Text('&',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18,color: GlobalData.lightblue),),
+                GestureDetector(
+                  onTap: (){Navigator.of(context)
+                      .pushNamed('GlobalQuiz');},
+                  child: Container(padding: EdgeInsets.only(top: 50),
+                      child: Text('Play Global Quiz',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18,color: GlobalData.lightblue),)),
+                ),
+               /* Text('&',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18,color: GlobalData.lightblue),),
                 Text('Spelling Challenge',
-                  style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18,color: GlobalData.lightblue),)
+                  style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18,color: GlobalData.lightblue),)*/
               ],
             ),
           )),

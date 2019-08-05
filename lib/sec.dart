@@ -74,10 +74,9 @@ class _secState extends State<sec> {
 
       print("result from Server : "+statuss['status'].toString());
 
-      if (statuss['status'].toString() == "1") {
-        Show_toast("Registered Successfully", Colors.green);
+      if (statuss['status'].toString() == "1") { Show_toast("Registered Successfully", Colors.green);
         Navigator.of(context)
-            .pushNamed('login');
+            .pushNamedAndRemoveUntil('login', (Route<dynamic> route) => false);
       } else {
         Show_toast(statuss['msg'], Colors.red);
       }
@@ -92,7 +91,7 @@ class _secState extends State<sec> {
     if(emailValid == false){
 
       _showDialog1();
-    }else if(phone.text.length!=10)
+    }else if(phone.text.length>11 || phone.text.length<10)
       {
         _showDialog(Msg: "Number is not Valid");
       }

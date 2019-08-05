@@ -36,7 +36,7 @@ class _ExamState extends State<Exam> {
   bool isloading = true;
   String TimerText ="-:--:--";
 
-  int timermins = 15;
+  int timermins = 1;
 
   Timmer(){
    cd = CountDown(Duration(minutes: timermins));
@@ -55,9 +55,12 @@ class _ExamState extends State<Exam> {
     });
   }
 
+
   @override
   dispose()
   {
+    cd.isPaused=true;
+     super.dispose();
 
   }
 
@@ -85,6 +88,8 @@ class _ExamState extends State<Exam> {
   Widget AnswerNow(String type,List<Pojo_Matchs> Data,List<Pojo_Answers> Answers)
   {
 
+ //   Show_toast_Now("Current Type :"+type, Colors.red);
+    print("Current Type :"+type);
     Matches=Data;
     Options = Answers;
     print(GlobalData.LoadData.toString());
@@ -99,6 +104,7 @@ class _ExamState extends State<Exam> {
 
     switch (type)
     {
+
           case "Match Type":
             return Container(
               height: Matches.isEmpty?50.0:Matches.length*60.0,
@@ -132,7 +138,7 @@ class _ExamState extends State<Exam> {
                           child: ReorderableListView(
 
 
-                            children: _list.map((item) => Container( key: Key("${item}"),
+                            children: _list.map((item) => Container( key: Key("${item}con"),
                                 color:Colors.amber,child: ListTile( key: Key("${item}"), title: Text("${item}"), trailing: Icon(Icons.menu),))).toList(),
                             onReorder: (int start, int current) {
                               // dragging from top to bottom
@@ -221,10 +227,56 @@ class _ExamState extends State<Exam> {
               ],
             ),);
 
+      case "Multiple Answers":
+        return Card(
+          child: Column(
+            children: <Widget>[
+              Row(
+                children: <Widget>[
+                  Expanded(
+                    child: Container(
+                      height: Options.isEmpty?50.0:Options.length*50.0,
+
+                      child: Column(
+                        children: <Widget>[
+                          Expanded(
+                            child: ListView.builder(
+                                itemCount: Options.length,itemBuilder: (context,index){
+                              return Container(child: Row(
+                                children: <Widget>[
+                                  Checkbox(value: Options[index].trueanswer, onChanged: (value){
+
+
+                                    Options[index].trueanswer=value;setState(() {
+
+                                    });},),
+                                  Text(Options[index].value,maxLines: 4,)
+
+
+
+                                ],),);}),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+
+
+
+            ],
+          ),);
+
       default:
+
           return Card(
             child: Column(
               children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(type=="Fill-in the gaps"?"Note : For multiple blanks question please consider answer which has proper sequence of the words separated by underscore '_' .":"",style: TextStyle(color: Colors.red),),
+                ),
                 Row(
                   children: <Widget>[
                     Expanded(
@@ -238,11 +290,14 @@ class _ExamState extends State<Exam> {
                                   itemCount: Options.length,itemBuilder: (context,index){
                                 return Container(child: Row(
                                   children: <Widget>[
-                                    Checkbox(value: false/*Options[index].trueanswer*/, onChanged: (value){
+                                    Checkbox(value: Options[index].trueanswer, onChanged: (value){
 
 
-                                      for(int i=0;i<Options.length;i++){
-                                        Options[i].trueanswer=false;
+                                      if(type!="Multiple Answer") {
+                                        for (int i = 0; i <
+                                            Options.length; i++) {
+                                          Options[i].trueanswer = false;
+                                        }
                                       }
 
 
@@ -262,8 +317,6 @@ class _ExamState extends State<Exam> {
                   ],
                 ),
 
-
-
               ],
             ),);
     }
@@ -282,6 +335,9 @@ class _ExamState extends State<Exam> {
 
 
   Widget MYQue(){
+
+
+
     return SafeArea(
       child: Padding(
         padding: const EdgeInsets.all(8.0),

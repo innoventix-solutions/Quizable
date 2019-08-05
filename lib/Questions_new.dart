@@ -123,7 +123,19 @@ class _QuestionsState extends State<Questions> {
         });
   }
 
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+    print("Questiaosdnf asd");
+
+  }
+
+
+
   void QuizCompleted(BuildContext context)  {
+
     bool Selected = false;
     TextEditingController optioncontroller = new TextEditingController();
     showDialog(
@@ -170,7 +182,8 @@ class _QuestionsState extends State<Questions> {
                                             child: GradientButtonText(
                                               ButtonClick: (){
 
-                                                Navigator.of(context).pushNamed('manageclassactivities');
+                                                Navigator.of(context).pushReplacementNamed('manageclassactivities');
+                                                ClearRegisterData();
                                                 setState(() {
 
                                                 });
@@ -583,10 +596,9 @@ class _QuestionsState extends State<Questions> {
                   ),
                 ],
               ),
-Text("Enter Answer In Sequence With Underscore '_' in between the words",style: TextStyle(
-  fontSize: 16,color: Colors.red
-),),
 
+Text("Enter answer in sequence with underscore '_' in between the words",style:
+  TextStyle(color: Colors.red),)
 
             ],
           ),);
@@ -746,6 +758,8 @@ Text("Enter Answer In Sequence With Underscore '_' in between the words",style: 
                                   style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold),
                                 ),
                               ),
+                              Text("Put '_' in place where gap needs to be displayed",style:
+                              TextStyle(color: Colors.red),),
                             ],
                           ),
                       ),

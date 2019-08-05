@@ -1,3 +1,5 @@
+import '../global.dart';
+
 class Pojo_Answers{
   bool trueanswer;
   String value;
@@ -7,8 +9,8 @@ class Pojo_Answers{
   factory Pojo_Answers.fromJson(Map<String, dynamic> parsedJson){
 
     return Pojo_Answers(
-        trueanswer: parsedJson['trueanswer']==null?false:parsedJson['trueanswer']=="True"?true:parsedJson['trueanswer'],
-       // trueanswer:false,
+       trueanswer: GlobalData.userType=="student"?false:(parsedJson['trueanswer']==""||parsedJson['trueanswer']==null)?false:parsedJson['trueanswer'].toString().toLowerCase()=="true"?true:false,
+
         value: parsedJson['value'].toString()
     );
   }

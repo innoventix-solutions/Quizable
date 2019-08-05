@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:newpro/global.dart';
 
-class adminprofile extends StatefulWidget {
+class StudentEditProfile extends StatefulWidget {
   @override
-  _adminprofileState createState() => _adminprofileState();
+  _StudentEditProfileState createState() => _StudentEditProfileState();
 }
 
-class _adminprofileState extends State<adminprofile> {
-  String selectedvalue = "Economics";
+class _StudentEditProfileState extends State<StudentEditProfile> {
+  String selectedvalue = "Male";
 
   @override
   Widget build(BuildContext context) {
@@ -32,15 +32,15 @@ class _adminprofileState extends State<adminprofile> {
             ),
           ),
           actions: <Widget>[
-          IconButton(
-            onPressed: () {},
-            icon: Icon(
-              Icons.account_circle,
-              color: Colors.transparent,
-              size: 20,
+            IconButton(
+              onPressed: () {},
+              icon: Icon(
+                Icons.account_circle,
+                color: Colors.white,
+                size: 20,
+              ),
             ),
-          ),
-        ],
+          ],
         ),
         body: Center(
           child: SingleChildScrollView(
@@ -70,7 +70,7 @@ class _adminprofileState extends State<adminprofile> {
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: <Widget>[
                                 Text(
-                                  "Username",
+                                  "Name",
                                   style: TextStyle(fontSize: 18),
                                   textAlign: TextAlign.start,
                                 ),
@@ -90,7 +90,7 @@ class _adminprofileState extends State<adminprofile> {
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: <Widget>[
                                 Text(
-                                  "Account Name",
+                                  "DOB",
                                   style: TextStyle(fontSize: 18),
                                   textAlign: TextAlign.start,
                                 ),
@@ -101,6 +101,74 @@ class _adminprofileState extends State<adminprofile> {
                         ),
                       ),
                     ),
+
+                    Container(
+                      padding: EdgeInsets.only(left: 40, right: 40,top: 10),
+                      child: Center(
+                        child: Column(
+                          children: <Widget>[
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: <Widget>[
+                                Text(
+                                  "Change Mobile Number",
+                                  style: TextStyle(fontSize: 18),
+                                  textAlign: TextAlign.start,
+                                ),
+                              ],
+                            ),
+                            CustomTextField(),
+
+                          ],
+                        ),
+                      ),
+                    ),
+
+                    Container(
+                      padding: EdgeInsets.only(left: 40, right: 40,top: 10),
+                      child: Center(
+                        child: Column(
+                          children: <Widget>[
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: <Widget>[
+                                Text(
+                                  "Parent's Email",
+                                  style: TextStyle(fontSize: 18),
+                                  textAlign: TextAlign.start,
+                                ),
+                              ],
+                            ),
+                            CustomTextField(),
+
+                          ],
+                        ),
+                      ),
+                    ),
+
+                    Container(
+                      padding: EdgeInsets.only(left: 40, right: 40,top: 10),
+                      child: Center(
+                        child: Column(
+                          children: <Widget>[
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: <Widget>[
+                                Text(
+                                  "Parent's Mobile Number",
+                                  style: TextStyle(fontSize: 18),
+                                  textAlign: TextAlign.start,
+                                ),
+                              ],
+                            ),
+                            CustomTextField(),
+
+                          ],
+                        ),
+                      ),
+                    ),
+
+
                     Container(
                       padding: EdgeInsets.only(left: 40, right: 40,top: 10),
                       child: Center(
@@ -113,7 +181,7 @@ class _adminprofileState extends State<adminprofile> {
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: <Widget>[
                                     Text(
-                                      "Field/Specialization:",
+                                      "Gender",
                                       style: TextStyle(fontSize: 18),
                                       textAlign: TextAlign.start,
                                     ),
@@ -129,7 +197,7 @@ class _adminprofileState extends State<adminprofile> {
                                       Container(padding: EdgeInsets.only(left: 25,right: 30,top: 13,bottom: 13),
                                         child: Column(
                                           crossAxisAlignment:
-                                              CrossAxisAlignment.center,
+                                          CrossAxisAlignment.center,
                                           children: <Widget>[
                                             Center(
                                               child: DropdownButton(
@@ -142,11 +210,8 @@ class _adminprofileState extends State<adminprofile> {
                                                   setState(() {});
                                                 },
                                                 items: [
-                                                  "Economics",
-                                                  "Distance Learning Institute",
-                                                  "Religious Institute",
-
-                                                  "Other"
+                                                  "Male",
+                                                  "Female"
                                                 ].map((String value) {
                                                   return DropdownMenuItem(
                                                     value: value,
@@ -172,52 +237,35 @@ class _adminprofileState extends State<adminprofile> {
                         ),
                       ),
                     ),
-                    Container(
-                      padding: EdgeInsets.only(left: 40, right: 40,top: 10),
-                      child: Center(
-                        child: Column(
-                          children: <Widget>[
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: <Widget>[
-                                Text(
-                                  "Status",
-                                  style: TextStyle(fontSize: 18),
-                                  textAlign: TextAlign.start,
-                                ),
-                              ],
-                            ),
-                            CustomTextField(),
-                            Padding(
-                              padding: const EdgeInsets.only(top: 20),
-                              child: Text("Contact:",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(top: 10),
-                              child: GestureDetector(
-                                child: Text('Via Email',style: TextStyle(
-                                    color:GlobalData.lightblue,fontSize: 15,fontWeight: FontWeight.bold,
-                                    decoration: TextDecoration.underline
-                                ),),onTap: (){},
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(top: 10),
-                              child: GestureDetector(
-                                child: Text('Via SMS',style: TextStyle(
-                                    color:GlobalData.lightblue,fontSize: 15,fontWeight: FontWeight.bold,
-                                    decoration: TextDecoration.underline
-                                ),),onTap: (){},
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(top: 20,bottom: 20),
-                              child: GradientButtonText(
-                                linearGradient:LinearGradient(colors: <Color>[GlobalData.purple,GlobalData.pink]) ,text: Text("Save Changes",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 15,),textAlign: TextAlign.center,),
-                              ),
-                            ),
-                          ],
-                        ),
+
+
+
+                    Padding(
+                      padding: const EdgeInsets.only(top: 20),
+                      child: Text("Contact:",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 10),
+                      child: GestureDetector(
+                        child: Text('Via Email',style: TextStyle(
+                            color:GlobalData.lightblue,fontSize: 15,fontWeight: FontWeight.bold,
+                            decoration: TextDecoration.underline
+                        ),),onTap: (){},
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 10),
+                      child: GestureDetector(
+                        child: Text('Via SMS',style: TextStyle(
+                            color:GlobalData.lightblue,fontSize: 15,fontWeight: FontWeight.bold,
+                            decoration: TextDecoration.underline
+                        ),),onTap: (){},
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 20,bottom: 20),
+                      child: GradientButtonText(
+                        linearGradient:LinearGradient(colors: <Color>[GlobalData.purple,GlobalData.pink]) ,text: Text("Save Changes",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 15,),textAlign: TextAlign.center,),
                       ),
                     ),
 
