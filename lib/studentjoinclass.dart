@@ -168,11 +168,11 @@ class _studentjoinState extends State<studentjoin> {
                   onTap: (){Navigator.of(context)
                       .pushNamed('GlobalQuiz');},
                   child: Container(padding: EdgeInsets.only(top: 50),
-                      child: Text('or Play Global Quiz',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18,color: GlobalData.lightblue),)),
+                      child: Text('Play Global Quiz',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18,color: GlobalData.lightblue),)),
                 ),
-                Text('&',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18,color: GlobalData.lightblue),),
+               /* Text('&',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18,color: GlobalData.lightblue),),
                 Text('Spelling Challenge',
-                  style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18,color: GlobalData.lightblue),)
+                  style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18,color: GlobalData.lightblue),)*/
               ],
             ),
           )),
