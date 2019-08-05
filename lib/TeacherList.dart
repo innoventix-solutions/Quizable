@@ -82,64 +82,229 @@ class _TeacherListState extends State<TeacherList> {
                 ],
               ),
             ),
-            Expanded(
-              child: new
-              ListView.builder(
-                //gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 1),
+            Container(
 
-                  itemBuilder: (BuildContext ctxt, int index) {
-                    return  Column(
-                      children: <Widget>[
-                        Row(
+              child: Column(
+                children: <Widget>[
+                  Row(
+                    children: <Widget>[
+                      Stack(
+                        children: <Widget>[
+                          Container(height: 70,width: 70,margin: EdgeInsets.only(left: 20,top: 15,bottom: 10),
+                            decoration: new BoxDecoration(
+                                shape: BoxShape.circle,
+                                image: new DecorationImage(
+                                  fit: BoxFit.fill,
+                                  image:AssetImage('assets/images/bg.png'),
+                                )
+                            ),),
+                        ],
+                      ),
+
+
+
+
+                      Expanded(
+                        child: Padding(
+                          padding: const EdgeInsets.only(left:30),
+                          child: Column(mainAxisAlignment: MainAxisAlignment.start,crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              Text("Messie",style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold),
+                                textAlign: TextAlign.center,),
+
+
+                            ],
+                          ),
+                        ),
+                      ),
+
+
+                      Padding(
+                        padding: const EdgeInsets.only(right: 20),
+                        child: Row(mainAxisAlignment: MainAxisAlignment.end,
                           children: <Widget>[
-                            Stack(
-                              children: <Widget>[
-                                Container(height: 70,width: 70,margin: EdgeInsets.only(left: 20,top: 15,bottom: 10),
-                                    decoration: new BoxDecoration(
-                                        shape: BoxShape.circle,
-                                        image: new DecorationImage(
-                                          fit: BoxFit.fill,
-                                          image:AssetImage('assets/images/bg.png'),
-                                        )
-                                    )
-                                ),
+                            PopupMenuButton(
+                              child: Icon(Icons.more_vert),
+                              itemBuilder: (_) => <PopupMenuItem<String>>[
+                                new PopupMenuItem<String>(
+                                  child: Row(
+                                    children: <Widget>[
+                                      Padding(
+                                        padding: const EdgeInsets.only(right: 4),
+                                        child: Icon(
+                                          Icons.remove,
+                                          color: GlobalData.lightblue,size: 12,
+                                        ),
+                                      ),
+                                      new Text('Remove',style: TextStyle(fontSize: 15),),
+                                    ],
+                                  ), ),
+
+
+
 
                               ],
+
                             ),
+                          ],
+                        ),
+                      ),
+
+
+
+                    ], ),
+
+                ],
+              ),
+            ),
+            Container(
+
+              child: Column(
+                children: <Widget>[
+                  Row(
+                    children: <Widget>[
+                      Stack(
+                        children: <Widget>[
+                          Container(height: 70,width: 70,margin: EdgeInsets.only(left: 20,top: 15,bottom: 10),
+                            decoration: new BoxDecoration(
+                                shape: BoxShape.circle,
+                                image: new DecorationImage(
+                                  fit: BoxFit.fill,
+                                  image:AssetImage('assets/images/bg.png'),
+                                )
+                            ),),
+                        ],
+                      ),
 
 
 
 
+                      Expanded(
+                        child: Padding(
+                          padding: const EdgeInsets.only(left:30),
+                          child: Column(mainAxisAlignment: MainAxisAlignment.start,crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              Text("Messie",style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold),
+                                textAlign: TextAlign.center,),
 
-                            Expanded(
-                              child: Padding(
-                                padding: const EdgeInsets.only(left:20),
-                                child: Column(mainAxisAlignment: MainAxisAlignment.start,crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: <Widget>[
-                                    Text('Messih Class',style: TextStyle(fontSize: 15),textAlign: TextAlign.left,),
 
-                                  ],
-                                ),
-                              ),
-                            ), Padding(
-                              padding: const EdgeInsets.only(right:16),
-                              child: PopupMenuButton(
-                                child: Icon(Icons.more_vert),
-                                itemBuilder: (_) => <PopupMenuItem<String>>[
-                                  new PopupMenuItem<String>(
-                                      child: new Text('Remove',style: TextStyle(color: GlobalData.darkpink),), value: 'Short Easy'),
+                            ],
+                          ),
+                        ),
+                      ),
 
-                                ],
-                                onSelected: ( value){},
-                              ),
+
+                      Padding(
+                        padding: const EdgeInsets.only(right: 20),
+                        child: Row(mainAxisAlignment: MainAxisAlignment.end,
+                          children: <Widget>[
+                            PopupMenuButton(
+                              child: Icon(Icons.more_vert),
+                              itemBuilder: (_) => <PopupMenuItem<String>>[
+                                new PopupMenuItem<String>(
+                                  child: Row(
+                                    children: <Widget>[
+                                      Padding(
+                                        padding: const EdgeInsets.only(right: 4),
+                                        child: Icon(
+                                          Icons.remove,
+                                          color: GlobalData.lightblue,size: 12,
+                                        ),
+                                      ),
+                                      new Text('Remove',style: TextStyle(fontSize: 15),),
+                                    ],
+                                  ), ),
+
+
+
+
+                              ],
+
                             ),
-                          ], ),
+                          ],
+                        ),
+                      ),
 
 
 
-                      ],
-                    );
-                  }
+                    ], ),
+
+                ],
+              ),
+            ),
+            Container(
+
+              child: Column(
+                children: <Widget>[
+                  Row(
+                    children: <Widget>[
+                      Stack(
+                        children: <Widget>[
+                          Container(height: 70,width: 70,margin: EdgeInsets.only(left: 20,top: 15,bottom: 10),
+                            decoration: new BoxDecoration(
+                                shape: BoxShape.circle,
+                                image: new DecorationImage(
+                                  fit: BoxFit.fill,
+                                  image:AssetImage('assets/images/bg.png'),
+                                )
+                            ),),
+                        ],
+                      ),
+
+
+
+
+                      Expanded(
+                        child: Padding(
+                          padding: const EdgeInsets.only(left:30),
+                          child: Column(mainAxisAlignment: MainAxisAlignment.start,crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              Text("Messie",style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold),
+                                textAlign: TextAlign.center,),
+
+
+                            ],
+                          ),
+                        ),
+                      ),
+
+
+                      Padding(
+                        padding: const EdgeInsets.only(right: 20),
+                        child: Row(mainAxisAlignment: MainAxisAlignment.end,
+                          children: <Widget>[
+                            PopupMenuButton(
+                              child: Icon(Icons.more_vert),
+                              itemBuilder: (_) => <PopupMenuItem<String>>[
+                                new PopupMenuItem<String>(
+                                  child: Row(
+                                    children: <Widget>[
+                                      Padding(
+                                        padding: const EdgeInsets.only(right: 4),
+                                        child: Icon(
+                                          Icons.remove,
+                                          color: GlobalData.lightblue,size: 12,
+                                        ),
+                                      ),
+                                      new Text('Remove',style: TextStyle(fontSize: 15),),
+                                    ],
+                                  ), ),
+
+
+
+
+                              ],
+
+                            ),
+                          ],
+                        ),
+                      ),
+
+
+
+                    ], ),
+
+                ],
               ),
             ),
 
