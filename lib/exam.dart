@@ -273,6 +273,10 @@ class _ExamState extends State<Exam> {
           return Card(
             child: Column(
               children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(type=="Fill-in the gaps"?"Note : The answer choices have words separated by underscore in the sequence the gaps will be filled ":"",style: TextStyle(color: Colors.red),),
+                ),
                 Row(
                   children: <Widget>[
                     Expanded(
@@ -312,8 +316,6 @@ class _ExamState extends State<Exam> {
                     ),
                   ],
                 ),
-
-
 
               ],
             ),);

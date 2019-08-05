@@ -135,7 +135,7 @@ class _QuestionsState extends State<Questions> {
 
 
   void QuizCompleted(BuildContext context)  {
-    ClearRegisterData();
+
     bool Selected = false;
     TextEditingController optioncontroller = new TextEditingController();
     showDialog(
@@ -183,6 +183,7 @@ class _QuestionsState extends State<Questions> {
                                               ButtonClick: (){
 
                                                 Navigator.of(context).pushReplacementNamed('manageclassactivities');
+                                                ClearRegisterData();
                                                 setState(() {
 
                                                 });
