@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:newpro/global.dart';
 import 'package:http/http.dart' as http;
 
+import 'Pojo/pojo_getclasses.dart';
+
 class techerjoinclass extends StatefulWidget {
   @override
   _techerjoinclassState createState() => _techerjoinclassState();
@@ -18,19 +20,33 @@ class _techerjoinclassState extends State<techerjoinclass> {
         body: {
           'UserId':GlobalData.uid,
           'Invite_Code':classjointec.text.toString()
-        }).then((response){
+        }).then((response) async {
       print(response.body);
       var statuss = jsonDecode(response.body);
       if (statuss['status'].toString() == "1") {
-        Show_toast_Now(statuss['msg'], Colors.green);
-        Navigator.of(context)
-            .pushNamed('teacherdashboard');
+
+
+        await GetClasses(statuss['join_classdata'],statuss['classdata']);
+
+
+
+
 
       } else {
         Show_toast_Now(statuss['msg'], Colors.red);
 
       }
     });
+
+  }
+
+  void GetClasses(var Data,var CurrentClass) async
+  {
+
+    GlobalData.activeclass = Classes(id:CurrentClass['ID'],classname:CurrentClass['class_name'],classicon: CurrentClass['class_icon'],studentinvitecode: CurrentClass['student_invite_code'],teacherinvitecode:CurrentClass['teacher_invite_code'],   ) ;
+    GlobalData.class_name=GlobalData.activeclass.classname;
+    GlobalData.Class_list = await (Data as List).map((data) =>Classes.fromJson(data)).toList();
+    Navigator.of(context).pushNamed('teacherdashboard');
 
   }
 
@@ -155,7 +171,7 @@ class _techerjoinclassState extends State<techerjoinclass> {
                     ButtonClick: (){
 
                       Navigator.of(context)
-                          .pushNamed('teacherjoinclass');
+                          .pushNamed('teacherdashboard');
 
                     },),
                   ),
