@@ -592,13 +592,14 @@ class classactivitys extends StatelessWidget {
   final String title;
   final String id;
 
+
   classactivitys(
       {
         this.heading,
         this.paragraph,
         this.color,
       this.title,
-      this.id});
+      this.id,});
 
   @override
   Widget build(BuildContext context) {

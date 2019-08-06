@@ -79,6 +79,7 @@ class _loginState extends State<login> {
         GlobalData.uid = statuss['userdata']['ID'].toString();
         GlobalData.Username = statuss['userdata']['username'].toString();
         GlobalData.class_name = statuss['userdata']['class_name'].toString();
+        GlobalData.userType = statuss['userdata']['user_type'].toString();
 
         if (statuss['userdata']['user_type'] == "teacher") {
           Navigator.of(context).pushReplacementNamed(GlobalData.Class_list.isEmpty?'techerjoinclass':'teacherSelectClass');

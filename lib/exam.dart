@@ -17,7 +17,6 @@ class Exam extends StatefulWidget {
 
 class _ExamState extends State<Exam> {
 
-
   CountDown cd ;
   int CurrentPage =0;
   PageController pageController = new PageController();
@@ -35,8 +34,7 @@ class _ExamState extends State<Exam> {
   List<String> _list = new List();
   bool isloading = true;
   String TimerText ="-:--:--";
-
-  int timermins = 1;
+  int timermins = 15;
 
   Timmer(){
    cd = CountDown(Duration(minutes: timermins));
@@ -61,7 +59,6 @@ class _ExamState extends State<Exam> {
   {
     cd.isPaused=true;
      super.dispose();
-
   }
 
   GetQuestions() async{
@@ -116,17 +113,14 @@ class _ExamState extends State<Exam> {
                         child: ListView.builder(
                           controller: controller,
                           itemCount: Matches.length,
-
                             itemBuilder: (c,i){
                             return Container(
                               color: Colors.green[300],
                               child: ListTile(
-
                                 title: Text( Matches[i].val1),
                                 leading: Icon(Icons.add,color: Colors.transparent,),
                               ),
                             );
-
                         }),
                       ),
                     ],
@@ -136,8 +130,6 @@ class _ExamState extends State<Exam> {
                       children: <Widget>[
                         Expanded(
                           child: ReorderableListView(
-
-
                             children: _list.map((item) => Container( key: Key("${item}con"),
                                 color:Colors.amber,child: ListTile( key: Key("${item}"), title: Text("${item}"), trailing: Icon(Icons.menu),))).toList(),
                             onReorder: (int start, int current) {
@@ -171,8 +163,6 @@ class _ExamState extends State<Exam> {
                 ],
               ),
             );
-
-
       case "True False":
           return Card(
             child: Column(
@@ -328,6 +318,7 @@ class _ExamState extends State<Exam> {
     // TODO: implement initState
     super.initState();
 
+    print(GlobalData.userType);
     Timmer();
     GetQuestions();
 

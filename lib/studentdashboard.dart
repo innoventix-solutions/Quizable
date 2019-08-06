@@ -451,7 +451,7 @@ class _studentdashboardState extends State<studentdashboard> {
             ),
 
 
-            Container(
+           /* Container(
               width: MediaQuery.of(context).size.width,
 
               child: Column(
@@ -530,7 +530,7 @@ class _studentdashboardState extends State<studentdashboard> {
 
                 ],
               ),
-            ),
+            ),*/
 
           ],
         ),

@@ -184,7 +184,7 @@ class _TeacherListState extends State<TeacherList> {
                           padding: const EdgeInsets.only(left:30),
                           child: Column(mainAxisAlignment: MainAxisAlignment.start,crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
-                              Text("Messie",style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold),
+                              Text("Clarrie",style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold),
                                 textAlign: TextAlign.center,),
 
 
@@ -259,7 +259,7 @@ class _TeacherListState extends State<TeacherList> {
                           padding: const EdgeInsets.only(left:30),
                           child: Column(mainAxisAlignment: MainAxisAlignment.start,crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
-                              Text("Messie",style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold),
+                              Text("Sammy",style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold),
                                 textAlign: TextAlign.center,),
 
 
