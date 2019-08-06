@@ -39,7 +39,7 @@ class _studentjoinState extends State<studentjoin> {
     GlobalData.activeclass = Classes(id:CurrentClass['ID'],classname:CurrentClass['class_name'],classicon: CurrentClass['class_icon'],studentinvitecode: CurrentClass['student_invite_code'],teacherinvitecode:CurrentClass['teacher_invite_code'],   ) ;
     GlobalData.class_name=GlobalData.activeclass.classname;
     GlobalData.Class_list = await (Data as List).map((data) =>Classes.fromJson(data)).toList();
-    Navigator.of(context).pushNamed('teacherdashboard');
+    Navigator.of(context).pushNamed('studentdashboard');
 
   }
 
@@ -137,34 +137,38 @@ class _studentjoinState extends State<studentjoin> {
                 ),
 
 
-                Padding(
-                  padding: const EdgeInsets.only(top: 10,bottom: 5),
-                  child: Text("Already joined a class?"),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 40),
-                  child: Container(
-                    width: 200,
-                    child: GradientButtonText(
-                      ButtonClick: (){
-                        Navigator.of(context)
-                            .pushNamed('studentdashboard');
-                      },
-                      linearGradient:
-                      LinearGradient(colors: <Color>[GlobalData.navy, GlobalData.navyblue]),
-                      text: Text(
-                        "Proceed",
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 17),
-                        textAlign: TextAlign.center,
+                GlobalData.Class_list.isNotEmpty?Column(
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.only(top: 10,bottom: 5),
+                      child: Text("Already joined a class?"),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 40),
+                      child: Container(
+                        width: 200,
+                        child: GradientButtonText(
+                          ButtonClick: (){
+                            Navigator.of(context)
+                                .pushNamed('studentdashboard');
+                          },
+                          linearGradient:
+                          LinearGradient(colors: <Color>[GlobalData.navy, GlobalData.navyblue]),
+                          text: Text(
+                            "Proceed",
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 17),
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
                       ),
                     ),
-                  ),
-                ),
+                  ],
+                ):Text("")
 
-                GestureDetector(
+                ,GestureDetector(
                   onTap: (){Navigator.of(context)
                       .pushNamed('GlobalQuiz');},
                   child: Container(padding: EdgeInsets.only(top: 50),
