@@ -70,6 +70,8 @@ static List<Classes> Class_list = new List();
   static String DurationofEachLevel="";
   static String ExamQuiz="";
   static String QuizID="";
+  static String classid = "";
+  static String createdclassdate = "";
 
 
 }
@@ -880,6 +882,7 @@ LogoutFunction(context)async {
   GlobalData.DurationofEachLevel="";
   GlobalData.ExamQuiz="";
   GlobalData.QuizID="";
+
 
   // Navigator.of(context).dispose();
   // await Navigator.of(context).dispose();

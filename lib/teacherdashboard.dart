@@ -134,6 +134,7 @@ class _teacherdashboardState extends State<teacherdashboard> {
                                 ),
                               ),
                             ),onTap: (){
+
                             Navigator.of(context)
                                 .pushNamed('TeacherList');
                           },

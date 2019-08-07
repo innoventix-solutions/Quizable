@@ -62,6 +62,15 @@ class _TeacherSelectClassState extends State<TeacherSelectClass> {
                   itemBuilder: (BuildContext ctxt, int index) {
                     return  GestureDetector(
                       onTap: (){
+
+                        GlobalData.classid = GlobalData.Class_list[index].id;
+                        GlobalData.createdclassdate = GlobalData.Class_list[index].createddate;
+                        GlobalData.student_code = GlobalData.Class_list[index].studentinvitecode;
+                        GlobalData.teacher_code = GlobalData.Class_list[index].teacherinvitecode;
+
+                        GlobalData.class_name = GlobalData.Class_list[index].classname;
+
+
     GlobalData.activeclass = GlobalData.Class_list[index];
     GlobalData.class_name=GlobalData.Class_list[index].classname;
                 print(GlobalData.Class_list[index].classname);

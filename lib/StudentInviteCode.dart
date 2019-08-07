@@ -100,9 +100,9 @@ class _StudentInviteCodeState extends State<StudentInviteCode> {
                               padding: const EdgeInsets.only(
                                   top: 15, bottom: 15, left: 45, right: 45),
                               child: Text(
-                                "Student code",
+                                GlobalData.student_code,
                                 textAlign: TextAlign.center,
-                                style: TextStyle(fontSize: 18,color: GlobalData.gray,fontWeight: FontWeight.bold),
+                                style: TextStyle(fontSize: 25,color: GlobalData.gray,fontWeight: FontWeight.bold),
                               ),
                             )),
                       )),
