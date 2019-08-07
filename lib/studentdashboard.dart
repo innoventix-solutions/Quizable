@@ -106,7 +106,7 @@ class _studentdashboardState extends State<studentdashboard> {
                           padding: const EdgeInsets.only(bottom: 15),
                           child: Text(GlobalData.Username,
                             style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,
-                                fontSize: 20),),
+                                fontSize: 16),),
 
                         ),
 
