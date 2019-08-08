@@ -4,6 +4,7 @@ import 'Pojo/pojo_quizzes.dart';
 import 'package:http/http.dart' as http;
 import 'global.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'setquizquestion.dart';
 
 class Quiz_List_student extends StatefulWidget {
   @override
@@ -234,6 +235,7 @@ class _Quiz_List_studentState extends State<Quiz_List_student> {
                       onTap: (){
                         GlobalData.QuizID=Quizz_List[i].id;
                         GlobalData.ExamQuiz=Quizz_List[i].quiz_title;
+                        GlobalData.DurationofEachLevel=Quizz_List[i].dur_each_level;
                         Navigator.of(context).pushNamed('exam');
                       },
                       child: classactivitys(

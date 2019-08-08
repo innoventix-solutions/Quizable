@@ -22,6 +22,7 @@ class _ExamState extends State<Exam> {
   int CurrentPage =0;
   PageController pageController = new PageController();
   List<Pojo_questions> Quetions = new List();
+  List<Pojo_quizzes> timer = new List();
   int i=0;
   List<Pojo_Matchs> matchs = new List();
   String ExamAnswer ="";
@@ -35,10 +36,10 @@ class _ExamState extends State<Exam> {
   List<String> _list = new List();
   bool isloading = true;
   String TimerText ="-:--:--";
-  int timermins = 15;
+  String timermins = GlobalData.DurationofEachLevel;
 
   Timmer(){
-   cd = CountDown(Duration(minutes: timermins));
+   cd = CountDown(Duration(minutes: GlobalData.DurationofEachLevel.length));
     var sub = cd.stream.listen(null);
     // start your countdown by registering a listener
     sub.onData((Duration d) {
