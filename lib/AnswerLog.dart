@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'Pojo/pojo_anslog.dart';
 import 'global.dart';
 
 
@@ -10,6 +11,40 @@ class AnswerLog extends StatefulWidget {
 }
 
 class _AnswerLogState extends State<AnswerLog> {
+
+  List<pojo_anslog> anslist = new List();
+
+  anslog() async{
+    http.post("http://edusupportapp.com/api/get_user_quiz_question_answer.php",
+
+    body: {
+      "user_id" : GlobalData.uid,
+      "quiz_id" : GlobalData.QuizID
+
+    }
+
+    ).then((response){
+
+      print(response.body);
+
+      var pass = jsonDecode(response.body);
+
+      anslist = (pass['user_data'] as List)
+          .map((data) => pojo_anslog.fromJson(data))
+          .toList();
+
+      print(anslist.length);
+
+      setState(() {
+
+
+      });
+    });
+  }
+
+
+
+
 
   @override
 
@@ -52,7 +87,7 @@ class _AnswerLogState extends State<AnswerLog> {
                   
                   Padding(
                     padding: const EdgeInsets.only(top: 10,bottom: 5,left: 15),
-                    child: Text("Quiz Title",style: TextStyle(color:Colors.black,fontSize: 18),textAlign: TextAlign.left,),
+                    child: Text("",style: TextStyle(color:Colors.black,fontSize: 18),textAlign: TextAlign.left,),
                   ),
 
                   Padding(

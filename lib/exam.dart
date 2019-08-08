@@ -10,6 +10,7 @@ import 'Utils/CustomWidgets.dart';
 import 'global.dart';
 import 'package:newpro/Pojo/pojo_questions.dart';
 import 'package:newpro/Pojo/pojo_quizzes.dart';
+import 'package:newpro/Pojo/pojo_anslog.dart';
 
 class Exam extends StatefulWidget {
   @override
@@ -37,6 +38,9 @@ class _ExamState extends State<Exam> {
   bool isloading = true;
   String TimerText ="-:--:--";
   String timermins = GlobalData.DurationofEachLevel;
+
+
+  List<pojo_anslog> anslist = new List();
 
   Timmer(){
    cd = CountDown(Duration(minutes: GlobalData.DurationofEachLevel.length));
@@ -668,6 +672,9 @@ Matches =Quetions[i].anwer_options;*/
                                           child: SizedBox(width: 100,
                                             child: GradientButtonText(
                                               ButtonClick: (){
+
+                                               
+
                                                 Navigator.of(context).pop();
 
                                                 Navigator.of(context).pop();

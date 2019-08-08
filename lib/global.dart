@@ -72,6 +72,9 @@ static List<Classes> Class_list = new List();
   static String QuizID="";
   static String classid = "";
   static String createdclassdate = "";
+  static String question = "";
+  static String useranswer = "";
+  static String trueans = "";
 
 
 }
@@ -861,6 +864,7 @@ LogoutFunction(context)async {
 
 
   GlobalData.Class_list = new List();
+
   GlobalData.activeclass=null;
   GlobalData.LoadData = true;
   GlobalData.QuestionNumber=0;
