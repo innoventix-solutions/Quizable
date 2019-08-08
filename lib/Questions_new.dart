@@ -853,7 +853,7 @@ Text("Enter answer in sequence with underscore '_' in between the words",style:
                   ],
 
                 ),
-                Padding(
+               /* Padding(
                   padding: const EdgeInsets.only(bottom: 25,right: 5),
                   child: GestureDetector(
                     child: Row(mainAxisAlignment: MainAxisAlignment.end,
@@ -865,7 +865,7 @@ Text("Enter answer in sequence with underscore '_' in between the words",style:
 
                   },
                   ),
-                ),
+                ),*/
 
 
               ],

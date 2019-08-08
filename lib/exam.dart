@@ -9,6 +9,7 @@ import 'Pojo/pojo_matchs.dart';
 import 'Utils/CustomWidgets.dart';
 import 'global.dart';
 import 'package:newpro/Pojo/pojo_questions.dart';
+import 'package:newpro/Pojo/pojo_quizzes.dart';
 
 class Exam extends StatefulWidget {
   @override
@@ -114,11 +115,14 @@ class _ExamState extends State<Exam> {
                           controller: controller,
                           itemCount: Matches.length,
                             itemBuilder: (c,i){
-                            return Container(
-                              color: Colors.green[300],
-                              child: ListTile(
-                                title: Text( Matches[i].val1),
-                                leading: Icon(Icons.add,color: Colors.transparent,),
+                            return Padding(
+                              padding: const EdgeInsets.all(2.0),
+                              child: Container(
+                                color: Colors.green[300],
+                                child: ListTile(
+                                  title: Text( Matches[i].val1),
+                                  leading: Icon(Icons.add,color: Colors.transparent,),
+                                ),
                               ),
                             );
                         }),
@@ -130,8 +134,10 @@ class _ExamState extends State<Exam> {
                       children: <Widget>[
                         Expanded(
                           child: ReorderableListView(
-                            children: _list.map((item) => Container( key: Key("${item}con"),
-                                color:Colors.amber,child: ListTile( key: Key("${item}"), title: Text("${item}"), trailing: Icon(Icons.menu),))).toList(),
+                            children: _list.map((item) =>Padding(key: Key("${item}+padding"),
+  padding: const EdgeInsets.all(2.0),
+  child: Container( key: Key("${item}con"),
+                                color:Colors.amber,child: ListTile( key: Key("${item}"), title: Text("${item}"), trailing: Icon(Icons.menu),)),)).toList(),
                             onReorder: (int start, int current) {
                               // dragging from top to bottom
                               if (start < current) {

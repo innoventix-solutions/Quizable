@@ -141,6 +141,12 @@ print(GlobalData.activeclass.classname);
                    ],
               ),
             ),
+            GestureDetector(
+              onTap: (){Navigator.of(context)
+                  .pushNamed('GlobalQuiz');},
+              child: Container(padding: EdgeInsets.only(top: 5,bottom: 5),
+                  child: Text('Global Quiz',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18,color: GlobalData.lightblue),)),
+            ),
 
           ],
         ),

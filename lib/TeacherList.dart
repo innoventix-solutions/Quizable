@@ -214,11 +214,9 @@ class _TeacherListState extends State<TeacherList> {
         ),
 
 
+            GlobalData.userType=="teacher" ? Text("") :
 
-
-
-
-            Padding(
+          Padding(
               padding: const EdgeInsets.only(top:20,bottom: 25, right: 20),
               child: GestureDetector(
                 child: Row(

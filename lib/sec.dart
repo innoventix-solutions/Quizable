@@ -91,7 +91,7 @@ class _secState extends State<sec> {
     if(emailValid == false){
 
       _showDialog1();
-    }else if(phone.text.length>11 || phone.text.length<10)
+    }else if(phone.text.length>11 || phone.text.length<11)
       {
         _showDialog(Msg: "Number is not Valid");
       }

@@ -78,13 +78,13 @@ class _studentregState extends State<studentreg> {
     if(emailValid == false){
 
       _showDialog1();
-    }else if(phone.text.length>11 || phone.text.length<10)
+    }else if(phone.text.length>11 || phone.text.length<11)
     {
       print(phone.text.toString());
       print(phone.text.length.toString());
       _showDialog(Msg: "Number is not Valid");
     }
-    else if(par_phone.text.length!=10)
+    else if(par_phone.text.length!=0)
     {
 
       _showDialog(Msg: "Parent Number is not Valid");

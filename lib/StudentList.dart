@@ -179,7 +179,7 @@ class _StudentListState extends State<StudentList> {
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: <Widget>[
                     Text(
-                      'Add Teacher ',
+                      'Add Student ',
                       style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.bold,

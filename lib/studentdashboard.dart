@@ -266,7 +266,8 @@ class _studentdashboardState extends State<studentdashboard> {
                     padding: const EdgeInsets.only(top: 10),
                     child: Text(GlobalData.activeclass!=null?GlobalData.activeclass.classname:"No Class Selected",style:
                     TextStyle(fontSize: 18,color:GlobalData.gray,fontWeight: FontWeight.bold),),
-                  ),Padding(
+                  ),
+                  /*Padding(
                     padding: const EdgeInsets.only(top: 10),
                     child: GestureDetector(onTap: (){
                       Navigator.of(context).pushReplacementNamed('studentselectclass');
@@ -274,9 +275,9 @@ class _studentdashboardState extends State<studentdashboard> {
                       child: Text('Switch Classroom',style:
                       TextStyle(fontSize: 15,color: GlobalData.pinkred,decoration: TextDecoration.underline),),
                     ),
-                  ),
+                  ),*/
 
-                  Padding(
+                 /* Padding(
                     padding: const EdgeInsets.only(top: 10,left: 35,right: 35,bottom: 5),
                     child: Row(
                       children: <Widget>[
@@ -293,9 +294,9 @@ class _studentdashboardState extends State<studentdashboard> {
                               },)),
                       ],
                     ),
-                  ),
+                  ),*/
                   Padding(
-                    padding: const EdgeInsets.only(left: 35,right: 35,bottom: 5),
+                    padding: const EdgeInsets.only(top:10,left: 35,right: 35,bottom: 5),
                     child: Row(
                       children: <Widget>[
                         Expanded(
@@ -531,6 +532,13 @@ class _studentdashboardState extends State<studentdashboard> {
                 ],
               ),
             ),*/
+
+            GestureDetector(
+              onTap: (){Navigator.of(context)
+                  .pushNamed('GlobalQuiz');},
+              child: Container(padding: EdgeInsets.only(top: 15,bottom: 15),
+                  child: Text('Global Quiz',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18,color: GlobalData.lightblue),)),
+            ),
 
           ],
         ),

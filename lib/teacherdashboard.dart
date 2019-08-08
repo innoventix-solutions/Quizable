@@ -319,6 +319,8 @@ class _teacherdashboardState extends State<teacherdashboard> {
             },
             ),
 
+
+            GlobalData.userType=="teacher" ? SizedBox() :
             GestureDetector(
               child: Padding(
                 padding: const EdgeInsets.only(left: 45,top:20),
