@@ -1,5 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:newpro/global.dart';
+import 'dart:convert';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'global.dart';
+import 'dart:io';
+import 'package:image_picker/image_picker.dart';
+import 'package:http/http.dart' as http;
 
 class adminprofile extends StatefulWidget {
   @override
@@ -7,7 +13,72 @@ class adminprofile extends StatefulWidget {
 }
 
 class _adminprofileState extends State<adminprofile> {
-  String selectedvalue = "Economics";
+
+  TextEditingController Name = new TextEditingController(text: GlobalData.Username);
+
+
+
+  String image64 = "";
+  File _image;
+
+
+
+  editprofile()async{
+
+    await http.post("http://edusupportapp.com/api/update_profile.php",
+        body:{
+          "user_id":GlobalData.uid,
+          "image":image64,
+          "Fullname":Name.text.toString(),
+
+
+        }).then((response) async {
+      print(response.body);
+      var ParsedJson = jsonDecode(response.body);
+
+      if (ParsedJson['status'] == 1) {
+
+        ShowDialog();
+
+        SharedPreferences preferences =  await SharedPreferences.getInstance();
+        GlobalData.Username = Name.text;
+        preferences.setString("name",GlobalData.Username);
+      }else
+      {
+        ShowDialog();
+      }
+    });
+
+    setState(() {
+
+    });
+  }
+
+  void ShowDialog({String Msg}) {
+    // flutter defined function
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        // return object of type Dialog
+        return AlertDialog(
+          content: new Text(Msg==null?"Updated Successfully":Msg),
+        );
+      },
+    );
+  }
+  void ShowDialog1({String Msg}) {
+    // flutter defined function
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        // return object of type Dialog
+        return AlertDialog(
+          content: new Text(Msg==null?"Invalid user":Msg),
+        );
+      },
+    );
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -76,103 +147,13 @@ class _adminprofileState extends State<adminprofile> {
                                 ),
                               ],
                             ),
-                            CustomTextField(),
+                            CustomTextFieldBorder(controller: Name,),
                           ],
                         ),
                       ),
                     ),
-                    Container(
-                      padding: EdgeInsets.only(left: 40, right: 40, top: 10),
-                      child: Center(
-                        child: Column(
-                          children: <Widget>[
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: <Widget>[
-                                Text(
-                                  "Account Name",
-                                  style: TextStyle(fontSize: 18),
-                                  textAlign: TextAlign.start,
-                                ),
-                              ],
-                            ),
-                            CustomTextField(),
-                          ],
-                        ),
-                      ),
-                    ),
-                    Container(
-                      padding: EdgeInsets.only(left: 40, right: 40,top: 10),
-                      child: Center(
-                        child: Column(
-                          children: <Widget>[
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: <Widget>[
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: <Widget>[
-                                    Text(
-                                      "Field/Specialization:",
-                                      style: TextStyle(fontSize: 18),
-                                      textAlign: TextAlign.start,
-                                    ),
-                                  ],
-                                ),
-                                Card(elevation: 5.0,
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(10.0),),
 
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: <Widget>[
-                                      Container(padding: EdgeInsets.only(left: 25,right: 30,top: 13,bottom: 13),
-                                        child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.center,
-                                          children: <Widget>[
-                                            Center(
-                                              child: DropdownButton(
-                                                value: selectedvalue,
-                                                isDense: true,
-
-                                                onChanged: (String newValue) {
-                                                  selectedvalue = newValue;
-
-                                                  setState(() {});
-                                                },
-                                                items: [
-                                                  "Economics",
-                                                  "Distance Learning Institute",
-                                                  "Religious Institute",
-
-                                                  "Other"
-                                                ].map((String value) {
-                                                  return DropdownMenuItem(
-                                                    value: value,
-                                                    child: Text(value),
-                                                  );
-                                                }).toList(),
-                                              ),
-
-//
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
-
-
-
-                          ],
-                        ),
-                      ),
-                    ),
-                    Container(
+                   /*Container(
                       padding: EdgeInsets.only(left: 40, right: 40,top: 10),
                       child: Center(
                         child: Column(
@@ -181,14 +162,15 @@ class _adminprofileState extends State<adminprofile> {
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: <Widget>[
                                 Text(
-                                  "Status",
+                                  "Phone Number",
                                   style: TextStyle(fontSize: 18),
                                   textAlign: TextAlign.start,
                                 ),
                               ],
                             ),
                             CustomTextField(),
-                            Padding(
+
+                            /*Padding(
                               padding: const EdgeInsets.only(top: 20),
                               child: Text("Contact:",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
                             ),
@@ -210,17 +192,21 @@ class _adminprofileState extends State<adminprofile> {
                                 ),),onTap: (){},
                               ),
                             ),
-                            Padding(
-                              padding: const EdgeInsets.only(top: 20,bottom: 20),
-                              child: GradientButtonText(
-                                linearGradient:LinearGradient(colors: <Color>[GlobalData.purple,GlobalData.pink]) ,text: Text("Save Changes",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 15,),textAlign: TextAlign.center,),
-                              ),
-                            ),
+                            */
+
                           ],
                         ),
                       ),
+                    ),*/
+                    Padding(
+                      padding: const EdgeInsets.only(top: 20,bottom: 20),
+                      child: GradientButtonText(
+                        linearGradient:LinearGradient(colors: <Color>[GlobalData.purple,GlobalData.pink]) ,
+                        text: Text("Save Changes",style: TextStyle(color: Colors.white,
+                          fontWeight: FontWeight.bold,fontSize: 15,),textAlign: TextAlign.center,),
+                        ButtonClick: (){editprofile();},
+                      ),
                     ),
-
                   ],
                 )
               ],
