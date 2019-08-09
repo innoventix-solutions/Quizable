@@ -75,6 +75,7 @@ static List<Classes> Class_list = new List();
   static String question = "";
   static String useranswer = "";
   static String trueans = "";
+  static String CurrentStudentID="";
 
 
 }
@@ -700,6 +701,52 @@ class classactivitys extends StatelessWidget {
                     Text(paragraph,style: TextStyle(fontWeight: FontWeight.bold,
                         fontSize: 15,color: GlobalData.gray),textAlign: TextAlign.justify,),
 
+                  ],
+                ),
+              ),
+
+              GestureDetector(
+                onTap: (){
+
+                  GlobalData.QuizID=id;
+
+                  if(GlobalData.userType=="student") {
+                    GlobalData.CurrentStudentID=GlobalData.uid;
+                    Navigator.of(context).pushNamed('AnswerLog');
+                  }else
+                    {
+                      Navigator.of(context).pushNamed('StudentListByQuiz');
+                    }
+
+                },
+                child: Row(
+                  children: <Widget>[
+                    Expanded(
+                      child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(5),),color: Colors.blue),
+
+                        child: Padding(
+                          padding: const EdgeInsets.only(top: 5,bottom: 5),
+                          child: Column(
+                            children: <Widget>[
+                              Padding(
+                                padding: const EdgeInsets.only(top: 5,bottom: 5,left: 10),
+                                child: Row(
+                                  children: <Widget>[
+                                    Expanded(
+                                      child: Text("Report",textAlign: TextAlign.center,
+                                        style: TextStyle(color: Colors.white,fontSize: 15,fontWeight: FontWeight.bold),),
+                                    ),
+
+                                ]),
+                              ),
+
+                            ],
+
+                          ),
+                        ),
+
+                      ),
+                    ),
                   ],
                 ),
               ),

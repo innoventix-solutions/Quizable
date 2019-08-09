@@ -234,6 +234,7 @@ class _Quiz_List_studentState extends State<Quiz_List_student> {
                     return  GestureDetector(
                       onTap: (){
                         GlobalData.QuizID=Quizz_List[i].id;
+                        GlobalData.QuizLevels=Quizz_List[i].no_of_levels;
                         GlobalData.ExamQuiz=Quizz_List[i].quiz_title;
                         GlobalData.DurationofEachLevel=Quizz_List[i].dur_each_level;
                         Navigator.of(context).pushNamed('exam');

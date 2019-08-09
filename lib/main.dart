@@ -3,6 +3,7 @@ import 'package:share/share.dart';
 import 'Edit_Question.dart';
 import 'Questions_list_new.dart';
 import 'Quiz_list_student.dart';
+import 'StudentByQuiz.dart';
 import 'TeacherClassList.dart';
 import 'globalvar.dart';
 import 'manageclassactivitesGlobal.dart';
@@ -136,6 +137,8 @@ class MyApp extends StatelessWidget {
         'GameRoom':(context)=>GameRoom(),
         'StudentList':(context)=>StudentList(),
         'TeacherList':(context)=>TeacherList(),
+        'AnswerLog':(context)=>AnswerLog(),
+        'StudentListByQuiz':(context)=>StudentListByQuiz()
 
       },
     );

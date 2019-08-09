@@ -37,13 +37,13 @@ class _ExamState extends State<Exam> {
   List<String> _list = new List();
   bool isloading = true;
   String TimerText ="-:--:--";
-  String timermins = GlobalData.DurationofEachLevel;
+  int timermins = int.parse(GlobalData.DurationofEachLevel=="0"||null?"15".toString():GlobalData.DurationofEachLevel)*int.parse(GlobalData.QuizLevels);
 
 
   List<pojo_anslog> anslist = new List();
 
   Timmer(){
-   cd = CountDown(Duration(minutes: GlobalData.DurationofEachLevel.length));
+   cd = CountDown(Duration(minutes: timermins));
     var sub = cd.stream.listen(null);
     // start your countdown by registering a listener
     sub.onData((Duration d) {
