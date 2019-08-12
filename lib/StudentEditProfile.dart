@@ -145,7 +145,7 @@ class _StudentEditProfileState extends State<StudentEditProfile> {
                                 ),
                               ],
                             ),
-                            CustomTextFieldBorder(controller: Name,),
+                            CustomTextFieldBorderNew(controller: Name,),
                           ],
                         ),
                       ),

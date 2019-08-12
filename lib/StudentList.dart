@@ -122,7 +122,7 @@ class _StudentListState extends State<StudentList> {
                                 ),
 
 
-                                Padding(
+                               GlobalData.userType.toLowerCase()=="admin_teacher" ?Padding(
                                   padding: const EdgeInsets.only(right: 20),
                                   child: Row(mainAxisAlignment: MainAxisAlignment.end,
                                     children: <Widget>[
@@ -151,7 +151,7 @@ class _StudentListState extends State<StudentList> {
                                       ),
                                     ],
                                   ),
-                                ),
+                                ):SizedBox(),
 
 
 

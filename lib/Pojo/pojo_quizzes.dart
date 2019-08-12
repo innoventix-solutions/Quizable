@@ -24,7 +24,7 @@ class Pojo_quizzes{
 
   factory Pojo_quizzes.fromJson(Map<String, dynamic> parsedJson){
     return Pojo_quizzes(
-        id: parsedJson['ID'].toString(),
+      id: parsedJson['ID'].toString(),
       class_id: parsedJson['class_id'].toString(),
       classes: parsedJson['classes'].toString(),
       closing_date: parsedJson['closing_date'].toString(),
@@ -43,4 +43,10 @@ class Pojo_quizzes{
       
     );
   }
+
+  Map<String, dynamic> toJson() =>
+      {
+        'id':id,
+
+      };
 }

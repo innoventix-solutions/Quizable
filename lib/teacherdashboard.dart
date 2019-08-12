@@ -172,25 +172,28 @@ class _teacherdashboardState extends State<teacherdashboard> {
                           ),onTap: (){Navigator.of(context)
                             .pushNamed('manageclassactivities');},
                         ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 15,right: 15),
-                          child: Container(height: 100,width: 150,
+                        GestureDetector(onTap: (){Navigator.of(context)
+        .pushNamed('manageclassactivities');},
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 15,right: 15),
+                            child: Container(height: 100,width: 150,
 
 
-                            child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(10),),color:GlobalData.orange,),
+                              child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(10),),color:GlobalData.orange,),
 
 
-                              child:Center(
-                                child: Column(mainAxisAlignment: MainAxisAlignment.center,
-                                  children: <Widget>[
-                                    Icon(Icons.speaker_notes,size: 50,color: Colors.white,),
-                                    Text("Report",textAlign: TextAlign.center,style: TextStyle(color: Colors.white,fontSize: 13,fontWeight: FontWeight.bold),),
-                                  ],
+                                child:Center(
+                                  child: Column(mainAxisAlignment: MainAxisAlignment.center,
+                                    children: <Widget>[
+                                      Icon(Icons.speaker_notes,size: 50,color: Colors.white,),
+                                      Text("Report",textAlign: TextAlign.center,style: TextStyle(color: Colors.white,fontSize: 13,fontWeight: FontWeight.bold),),
+                                    ],
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
 
+                          ),
                         ),
                       ],
                     ),
