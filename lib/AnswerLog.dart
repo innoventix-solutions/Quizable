@@ -18,8 +18,8 @@ class _AnswerLogState extends State<AnswerLog> {
   anslog() async{
     http.post("http://edusupportapp.com/api/get_user_quiz_question_answer.php",
     body: {
-      "user_id" : GlobalData.QuizID,
-      "quiz_id" : GlobalData.CurrentStudentID
+      "user_id" : GlobalData.CurrentStudentID,
+      "quiz_id" : GlobalData.QuizID
     }
 
     ).then((response){

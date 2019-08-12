@@ -319,6 +319,7 @@ class _studentdashboardState extends State<studentdashboard> {
                       children: <Widget>[
                         Expanded(
                             child: GradientButtonText(
+
                               linearGradient:LinearGradient(
                                   colors: <Color>[GlobalData.navy,GlobalData.navyblue]) ,
                               text: Text("View my Classroom",
@@ -326,6 +327,7 @@ class _studentdashboardState extends State<studentdashboard> {
                                   fontWeight: FontWeight.bold,fontSize: 18,),
                                 textAlign: TextAlign.center,),
                               ButtonClick: (){
+                                Navigator.of(context).pushNamed('studentselectclass');
                                 },)
                         ),
                       ],
@@ -344,6 +346,7 @@ class _studentdashboardState extends State<studentdashboard> {
                                   fontWeight: FontWeight.bold,fontSize: 18,),
                                 textAlign: TextAlign.center,),
                               ButtonClick: (){
+                                Navigator.of(context).pushNamed('Quiz_List_student');
                                },)
                         ),
                       ],

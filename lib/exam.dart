@@ -19,6 +19,7 @@ class Exam extends StatefulWidget {
 
 class _ExamState extends State<Exam> {
 
+  int Changed=0;
   CountDown cd ;
   int CurrentPage =0;
   PageController pageController = new PageController();
@@ -37,7 +38,7 @@ class _ExamState extends State<Exam> {
   List<String> _list = new List();
   bool isloading = true;
   String TimerText ="-:--:--";
-  int timermins = int.parse(GlobalData.DurationofEachLevel=="0"||null?"15".toString():GlobalData.DurationofEachLevel)*int.parse(GlobalData.QuizLevels);
+  int timermins = int.parse(GlobalData.DurationofEachLevel=="0"||GlobalData.DurationofEachLevel==null?"15".toString():GlobalData.DurationofEachLevel)*int.parse(GlobalData.QuizLevels);
 
 
   List<pojo_anslog> anslist = new List();
@@ -57,6 +58,10 @@ class _ExamState extends State<Exam> {
     sub.onDone(() {
       print("done");
     });
+  }
+
+  void changenow(){
+    _list.shuffle();
   }
 
 
@@ -102,6 +107,10 @@ class _ExamState extends State<Exam> {
         _list.add(item.val2);
       }
       print(_list.length);
+      if(Changed==0)
+        {
+          changenow();
+        }
     }
 
 
@@ -458,7 +467,20 @@ class _ExamState extends State<Exam> {
                             answ=jsonEncode(Matches);
                             print(answ);
 
-                          }else {
+                          }else if(Quetions[i].answer_type=="True False")
+                        {
+
+                          answ=TrueorFalse;
+
+                        if(TrueorFalse=="true")
+                          {
+                            answ="false";
+                          }else
+                            {
+                              answ="true";
+                            }
+
+                        }else{
                           for (int i = 0; i < Options.length; i++) {
                             if (Options[i].trueanswer == true) {
                               answ += Options[i].value;
@@ -467,6 +489,8 @@ class _ExamState extends State<Exam> {
                         }
 
                         GiveAnswer(answ);
+                        TrueorFalse="";
+                        Changed=0;
                         i++;
                         if(i==Quetions.length)
                         {
@@ -609,6 +633,8 @@ Matches =Quetions[i].anwer_options;*/
     }).then((res){
       print(res.body);
     });
+
+    print("Your Answer : "+answer);
     
   }
 
@@ -678,7 +704,7 @@ Matches =Quetions[i].anwer_options;*/
                                                 Navigator.of(context).pop();
 
                                                 Navigator.of(context).pop();
-                                                Navigator.of(context).pushNamed('Quiz_List_student');
+                                                Navigator.of(context).pushNamed('studentdashboard');
                                                 setState(() {
 
                                                 });

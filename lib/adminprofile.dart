@@ -147,7 +147,7 @@ class _adminprofileState extends State<adminprofile> {
                                 ),
                               ],
                             ),
-                            CustomTextFieldBorder(controller: Name,),
+                            CustomTextFieldBorderNew(controller: Name,),
                           ],
                         ),
                       ),

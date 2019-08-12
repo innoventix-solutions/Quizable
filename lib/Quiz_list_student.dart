@@ -26,6 +26,7 @@ class _Quiz_List_studentState extends State<Quiz_List_student> {
       Quizz_List = (ParsedJson['quizdata'] as List).map((data)=>Pojo_quizzes.fromJson(data)).toList();
 
       print(Quizz_List.length);
+      print(jsonEncode(Quizz_List).toString());
       setState(() {
 
       });
@@ -237,12 +238,15 @@ class _Quiz_List_studentState extends State<Quiz_List_student> {
                         GlobalData.QuizLevels=Quizz_List[i].no_of_levels;
                         GlobalData.ExamQuiz=Quizz_List[i].quiz_title;
                         GlobalData.DurationofEachLevel=Quizz_List[i].dur_each_level;
-                        Navigator.of(context).pushNamed('exam');
+                        Navigator.of(context).pushNamed(Quizz_List[i].is_taken==true?'AnswerLog':'exam');
                       },
                       child: classactivitys(
                         color: GlobalData.pinkred,
                         heading: Quizz_List[i].quiz_title+" - "+Quizz_List[i].id,
                         paragraph: Quizz_List[i].quiz_subject,
+                        title: Quizz_List[i].quiz_title,
+                        id: Quizz_List[i].id,
+                        is_taken: Quizz_List[i].is_taken,
                       ),
                     );
                   }),
