@@ -16,12 +16,10 @@ class pojostydentlist {
   String accounttype;
   String signupdate;
 
-
   pojostydentlist(
       {this.id, this.username, this.email, this.fullname, this.userphoto,
         this.phone, this.parentemail, this.parentphone, this.password, this.birthdate,
         this.specification, this.gender, this.usertype, this.accounttype, this.signupdate});
-
 
   factory pojostydentlist.fromJson(Map<String, dynamic> parsedJson){
     return pojostydentlist(

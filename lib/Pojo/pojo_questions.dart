@@ -30,13 +30,13 @@ class Pojo_questions{
        matchs= (jsonDecode(parsedJson['anwer_options']) as List).map((data)=>Pojo_Matchs.fromJson((data))).toList();
       }
     if(parsedJson['answer_type'].toString()!="Match Type" && parsedJson['answer_type'].toString()!="True or False")
-    {
+      {
       answers= (jsonDecode(parsedJson['anwer_options']) as List).map((data)=>Pojo_Answers.fromJson((data))).toList();
-    }
+      }
     if(parsedJson['answer_type'].toString()=="True or False")
-    {
+      {
       Answer=parsedJson['anwer_options'];
-    }
+      }
 
     return Pojo_questions(
       id: parsedJson['ID'].toString(),
@@ -48,7 +48,8 @@ class Pojo_questions{
       level_no: parsedJson['level_no'].toString(),
       quiz_id: parsedJson['quiz_id'].toString(),
       TrueorFalse: Answer,
-      ques_no:parsedJson['ques_no'].toString()
+      ques_no:parsedJson['ques_no'].toString(),
+
     );
   }
 }
