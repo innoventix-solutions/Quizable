@@ -93,8 +93,7 @@ class _TeacherSelectClassState extends State<TeacherSelectClass> {
                                           shape: BoxShape.circle,
                                           image: new DecorationImage(
                                             fit: BoxFit.fill,
-                                            image: AssetImage(
-                                                'assets/images/bg.png'),
+                                            image: NetworkImage(GlobalData.Class_list[index].classicon),
                                           )),
                                     ),
                                   ],
