@@ -21,7 +21,13 @@ class _adminprofileState extends State<adminprofile> {
   String image64 = "";
   File _image;
 
-
+  Future getImage() async {
+    var file = await ImagePicker.pickImage(source: ImageSource.gallery);
+    _image = file;
+    List<int> imagebytes = await file.readAsBytesSync();
+    image64 = await base64.encode(imagebytes);
+    setState(() {});
+  }
 
   editprofile()async{
 
@@ -43,6 +49,8 @@ class _adminprofileState extends State<adminprofile> {
         SharedPreferences preferences =  await SharedPreferences.getInstance();
         GlobalData.Username = Name.text;
         preferences.setString("name",GlobalData.Username);
+        preferences.setString("userimg",GlobalData.user_photo);
+
       }else
       {
         ShowDialog();
@@ -120,14 +128,16 @@ class _adminprofileState extends State<adminprofile> {
               children: <Widget>[
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Container(
-                      height: 80,width: 80,
-                      decoration: new BoxDecoration(
-                          shape: BoxShape.circle,
-                          image: new DecorationImage(
-                            fit: BoxFit.fill,
-                            image: AssetImage('assets/images/bg.png'),
-                          ))),
+                  child: GestureDetector(onTap: (){getImage();},
+                    child: Container(
+                        height: 80,width: 80,
+                        decoration: new BoxDecoration(
+                            shape: BoxShape.circle,
+                            image: new DecorationImage(
+                              fit: BoxFit.fill,
+                              image:_image!=null?  FileImage(_image): NetworkImage(GlobalData.user_photo),
+                            ))),
+                  ),
                 ),
                 Text("Change Profile"),
                 Column(

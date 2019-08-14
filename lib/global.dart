@@ -69,6 +69,7 @@ class GlobalData{
   static String useranswer = "";
   static String trueans = "";
   static String CurrentStudentID="";
+  static String user_photo="";
 }
                                   //Custom drawer for quiz menu
 class drawerquiz extends StatelessWidget {
