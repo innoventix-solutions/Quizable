@@ -15,11 +15,11 @@ class adminprofile extends StatefulWidget {
 
 class _adminprofileState extends State<adminprofile> {
 
-  TextEditingController Name = new TextEditingController(text: GlobalData.Username);
+  TextEditingController Name = new TextEditingController(text: GlobalData.Fullname);
   TextEditingController Phone = new TextEditingController(text: GlobalData.Phone);
 
 
-
+  SharedPreferences shared;
   String image64 = "";
   File _image;
 
@@ -31,6 +31,24 @@ class _adminprofileState extends State<adminprofile> {
     setState(() {});
   }
 
+
+  GetShared() async {
+    shared = await SharedPreferences.getInstance();
+
+    shared.setString("name", Name.text.toString());
+    shared.setString("phone", Phone.text.toString());
+
+
+  }
+
+
+  getvalue() async {
+    shared = await SharedPreferences.getInstance();
+
+    Name.text=shared.getString("name");
+    Phone.text=shared.getString("phone");
+
+  }
 
 
 
@@ -55,10 +73,10 @@ class _adminprofileState extends State<adminprofile> {
 
 
         SharedPreferences preferences =  await SharedPreferences.getInstance();
-        GlobalData.Username = Name.text;
+        GlobalData.Fullname = Name.text;
         GlobalData.Phone = Phone.text;
         GlobalData.Userphoto= ParsedJson['userdata']['user_photo'];
-        preferences.setString("name",GlobalData.Username);
+        preferences.setString("name",GlobalData.Fullname);
         preferences.setString("phone", GlobalData.Phone);
         preferences.setString("userphoto", GlobalData.Userphoto);
       }else
@@ -76,7 +94,7 @@ class _adminprofileState extends State<adminprofile> {
   void initState() {
     // TODO: implement initState
     super.initState();
-
+getvalue();
     print(GlobalData.uid);
 
   }
@@ -192,7 +210,7 @@ class _adminprofileState extends State<adminprofile> {
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: <Widget>[
                                 Text(
-                                  "Username",
+                                  "Fullname",
                                   style: TextStyle(fontSize: 18),
                                   textAlign: TextAlign.start,
                                 ),
@@ -234,7 +252,7 @@ class _adminprofileState extends State<adminprofile> {
                         linearGradient:LinearGradient(colors: <Color>[GlobalData.purple,GlobalData.pink]) ,
                         text: Text("Save Changes",style: TextStyle(color: Colors.white,
                           fontWeight: FontWeight.bold,fontSize: 15,),textAlign: TextAlign.center,),
-                        ButtonClick: (){editprofile();},
+                        ButtonClick: (){editprofile();GetShared();},
                       ),
                     ),
 
