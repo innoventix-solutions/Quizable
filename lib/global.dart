@@ -70,9 +70,9 @@ class GlobalData{
   static String useranswer = "";
   static String trueans = "";
   static String CurrentStudentID="";
-  static String Userphoto="";      //13-8-19
-  static String Phone="";
-
+  static String Userphoto="";      //13-8-19 a
+  static String Phone="";   //14-8-19 a
+  static String Fullname="";  //14-8-19 a
 
 }
                                   //Custom drawer for quiz menu
