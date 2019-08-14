@@ -6,6 +6,7 @@ import 'classroomstudent.dart';
 import 'global.dart';
 import 'package:http/http.dart' as http;
 import 'package:newpro/Pojo/pojo_getclasses.dart';
+import 'package:newpro/Pojo/pojostydentlist.dart';  //14-8-19 a
 
 class login extends StatefulWidget {
   @override
@@ -73,7 +74,7 @@ class _loginState extends State<login> {
         prefs.setString("type", statuss['userdata']['user_type']);
         prefs.setString("name", statuss['userdata']['username']);
         prefs.setString("classname", statuss['userdata']['class_name']);
-        prefs.setString("userimg", GlobalData.user_photo);
+        prefs.setString("phone", statuss['userdata']['phone_no']);  //14-8-19 a
         GlobalData.Username=statuss['userdata']['username'];
         print(statuss['userdata']['user_type']);
         print(statuss['userdata']['ID']);
@@ -81,6 +82,7 @@ class _loginState extends State<login> {
         GlobalData.Username = statuss['userdata']['username'].toString();
         GlobalData.class_name = statuss['userdata']['class_name'].toString();
         GlobalData.userType = statuss['userdata']['user_type'].toString();
+        GlobalData.Phone = statuss['userdata']['phone_no'].toString();  //14-8-19 a
 
         if (statuss['userdata']['user_type'] == "teacher") {
           Navigator.of(context).pushReplacementNamed(GlobalData.Class_list.isEmpty?'techerjoinclass':'teacherSelectClass');

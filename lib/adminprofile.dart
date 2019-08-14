@@ -6,6 +6,7 @@ import 'global.dart';
 import 'dart:io';
 import 'package:image_picker/image_picker.dart';
 import 'package:http/http.dart' as http;
+import 'package:newpro/Pojo/pojostydentlist.dart';
 
 class adminprofile extends StatefulWidget {
   @override
@@ -15,6 +16,7 @@ class adminprofile extends StatefulWidget {
 class _adminprofileState extends State<adminprofile> {
 
   TextEditingController Name = new TextEditingController(text: GlobalData.Username);
+  TextEditingController Phone = new TextEditingController(text: GlobalData.Phone);
 
 
 
@@ -29,6 +31,9 @@ class _adminprofileState extends State<adminprofile> {
     setState(() {});
   }
 
+
+
+
   editprofile()async{
 
     await http.post("http://edusupportapp.com/api/update_profile.php",
@@ -36,6 +41,7 @@ class _adminprofileState extends State<adminprofile> {
           "user_id":GlobalData.uid,
           "image":image64,
           "Fullname":Name.text.toString(),
+          "phone_no":Phone.text.toString(),
 
 
         }).then((response) async {
@@ -44,16 +50,20 @@ class _adminprofileState extends State<adminprofile> {
 
       if (ParsedJson['status'] == 1) {
 
-        ShowDialog();
+        Navigator.of(context)
+            .pushNamed('dashboard');
+
 
         SharedPreferences preferences =  await SharedPreferences.getInstance();
         GlobalData.Username = Name.text;
+        GlobalData.Phone = Phone.text;
+        GlobalData.Userphoto= ParsedJson['userdata']['user_photo'];
         preferences.setString("name",GlobalData.Username);
-        preferences.setString("userimg",GlobalData.user_photo);
-
+        preferences.setString("phone", GlobalData.Phone);
+        preferences.setString("userphoto", GlobalData.Userphoto);
       }else
       {
-        ShowDialog();
+        Show_toast_Now(ParsedJson['msg'],Colors.green);
       }
     });
 
@@ -61,6 +71,18 @@ class _adminprofileState extends State<adminprofile> {
 
     });
   }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+    print(GlobalData.uid);
+
+  }
+
+
+
 
   void ShowDialog({String Msg}) {
     // flutter defined function
@@ -131,12 +153,31 @@ class _adminprofileState extends State<adminprofile> {
                   child: GestureDetector(onTap: (){getImage();},
                     child: Container(
                         height: 80,width: 80,
-                        decoration: new BoxDecoration(
-                            shape: BoxShape.circle,
+                        decoration:_image!=null?
+                        new BoxDecoration(
+
+                            borderRadius: BorderRadius.all(Radius.circular(100),),
+                            color: Colors.black,
                             image: new DecorationImage(
                               fit: BoxFit.fill,
-                              image:_image!=null?  FileImage(_image): NetworkImage(GlobalData.user_photo),
-                            ))),
+                              image: FileImage(_image),
+
+                            )):
+                        GlobalData.Userphoto!=null?
+                        BoxDecoration(
+                            borderRadius: BorderRadius.all(Radius.circular(100)),
+                            color: Colors.black,
+                            image: DecorationImage(image: AssetImage('assets/images/user.jpg'),fit: BoxFit.cover)
+
+
+                        )
+
+                        :BoxDecoration(
+                          image: DecorationImage(image: NetworkImage(GlobalData.Userphoto),fit: BoxFit.cover),
+                          borderRadius: BorderRadius.all(Radius.circular(100)),
+
+                        )
+                       ,),
                   ),
                 ),
                 Text("Change Profile"),
@@ -163,7 +204,7 @@ class _adminprofileState extends State<adminprofile> {
                       ),
                     ),
 
-                   /*Container(
+                   Container(
                       padding: EdgeInsets.only(left: 40, right: 40,top: 10),
                       child: Center(
                         child: Column(
@@ -178,36 +219,15 @@ class _adminprofileState extends State<adminprofile> {
                                 ),
                               ],
                             ),
-                            CustomTextField(),
+                            CustomTextFieldBorderNew(controller: Phone,keyboardtype: TextInputType.phone,),
 
-                            /*Padding(
-                              padding: const EdgeInsets.only(top: 20),
-                              child: Text("Contact:",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(top: 10),
-                              child: GestureDetector(
-                                child: Text('Via Email',style: TextStyle(
-                                    color:GlobalData.lightblue,fontSize: 15,fontWeight: FontWeight.bold,
-                                    decoration: TextDecoration.underline
-                                ),),onTap: (){},
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(top: 10),
-                              child: GestureDetector(
-                                child: Text('Via SMS',style: TextStyle(
-                                    color:GlobalData.lightblue,fontSize: 15,fontWeight: FontWeight.bold,
-                                    decoration: TextDecoration.underline
-                                ),),onTap: (){},
-                              ),
-                            ),
-                            */
+
+
 
                           ],
                         ),
                       ),
-                    ),*/
+                    ),
                     Padding(
                       padding: const EdgeInsets.only(top: 20,bottom: 20),
                       child: GradientButtonText(
@@ -217,6 +237,29 @@ class _adminprofileState extends State<adminprofile> {
                         ButtonClick: (){editprofile();},
                       ),
                     ),
+
+                   /* Padding(
+                      padding: const EdgeInsets.only(top: 20),
+                      child: Text("Contact:",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 10),
+                      child: GestureDetector(
+                        child: Text('Via Email',style: TextStyle(
+                            color:GlobalData.lightblue,fontSize: 15,fontWeight: FontWeight.bold,
+                            decoration: TextDecoration.underline
+                        ),),onTap: (){},
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 10),
+                      child: GestureDetector(
+                        child: Text('Via SMS',style: TextStyle(
+                            color:GlobalData.lightblue,fontSize: 15,fontWeight: FontWeight.bold,
+                            decoration: TextDecoration.underline
+                        ),),onTap: (){},
+                      ),
+                    ),*/
                   ],
                 )
               ],
