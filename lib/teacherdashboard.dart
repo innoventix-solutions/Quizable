@@ -53,7 +53,7 @@ class _teacherdashboardState extends State<teacherdashboard> {
                 Padding(
                   padding: const EdgeInsets.only(top: 15),
                   child: Container(
-                    child: CircleAvatar(backgroundImage: AssetImage('assets/images/pic.png',),
+                    child: CircleAvatar(backgroundImage: NetworkImage(GlobalData.Userphoto),
                       radius: 35.0,
                     ),
                   ),

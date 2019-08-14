@@ -8,6 +8,7 @@ import 'Pojo/pojo_getclasses.dart';
 import 'package:http/http.dart' as http;
 
 import 'Pojo/pojo_questions.dart';
+import 'package:newpro/Pojo/pojostydentlist.dart';
 
 
 class GlobalData{
@@ -69,6 +70,10 @@ class GlobalData{
   static String useranswer = "";
   static String trueans = "";
   static String CurrentStudentID="";
+  static String Userphoto="";      //13-8-19
+  static String Phone="";
+
+
 }
                                   //Custom drawer for quiz menu
 class drawerquiz extends StatelessWidget {
