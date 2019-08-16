@@ -183,6 +183,12 @@ getvalue();
                             )):
                         GlobalData.Userphoto!=null?
                         BoxDecoration(
+                          image: DecorationImage(image: NetworkImage(GlobalData.Userphoto),fit: BoxFit.cover),
+                          borderRadius: BorderRadius.all(Radius.circular(100)),
+
+                        )
+
+                        :BoxDecoration(
                             borderRadius: BorderRadius.all(Radius.circular(100)),
                             color: Colors.black,
                             image: DecorationImage(image: AssetImage('assets/images/user.jpg'),fit: BoxFit.cover)
@@ -190,11 +196,6 @@ getvalue();
 
                         )
 
-                        :BoxDecoration(
-                          image: DecorationImage(image: NetworkImage(GlobalData.Userphoto),fit: BoxFit.cover),
-                          borderRadius: BorderRadius.all(Radius.circular(100)),
-
-                        )
                        ,),
                   ),
                 ),
