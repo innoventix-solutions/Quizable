@@ -81,6 +81,8 @@ class _TeacherListState extends State<TeacherList> {
         body:
         Column(
           children: <Widget>[
+
+
             Row(mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
                 Container(height: 70,width: 70,margin: EdgeInsets.only(left: 20,top: 15,bottom: 10),
