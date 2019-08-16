@@ -72,7 +72,7 @@ print(GlobalData.activeclass.classname);
                                           shape: BoxShape.circle,
                                           image: new DecorationImage(
                                             fit: BoxFit.fill,
-                                            image:AssetImage('assets/images/bg.png'),
+                                            image:NetworkImage(GlobalData.Class_list[index].classicon),
                                           )
                                       ),),
                                   ],
