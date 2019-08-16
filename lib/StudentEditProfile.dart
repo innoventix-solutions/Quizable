@@ -6,6 +6,7 @@ import 'global.dart';
 import 'dart:io';
 import 'package:image_picker/image_picker.dart';
 import 'package:http/http.dart' as http;
+import 'package:newpro/Pojo/pojostydentlist.dart';
 
 class StudentEditProfile extends StatefulWidget {
   @override
@@ -14,13 +15,42 @@ class StudentEditProfile extends StatefulWidget {
 
 class _StudentEditProfileState extends State<StudentEditProfile> {
 
+  TextEditingController Name = new TextEditingController(text: GlobalData.Fullname);
+  TextEditingController Phone = new TextEditingController(text: GlobalData.Phone);
 
-  TextEditingController Name = new TextEditingController(text: GlobalData.Username);
 
-
-
+  SharedPreferences shared;
   String image64 = "";
   File _image;
+
+  Future getImage() async {
+    var file = await ImagePicker.pickImage(source: ImageSource.gallery);
+    _image = file;
+    List<int> imagebytes = await file.readAsBytesSync();
+    image64 = await base64.encode(imagebytes);
+    setState(() {});
+  }
+
+
+  GetShared() async {
+    shared = await SharedPreferences.getInstance();
+
+    shared.setString("name", Name.text.toString());
+    shared.setString("phone", Phone.text.toString());
+
+
+  }
+
+
+  getvalue() async {
+    shared = await SharedPreferences.getInstance();
+
+    Name.text=shared.getString("name");
+    Phone.text=shared.getString("phone");
+
+  }
+
+
 
   editprofile()async{
 
@@ -29,6 +59,7 @@ class _StudentEditProfileState extends State<StudentEditProfile> {
           "user_id":GlobalData.uid,
           "image":image64,
           "Fullname":Name.text.toString(),
+          "phone_no":Phone.text.toString(),
 
 
         }).then((response) async {
@@ -37,14 +68,20 @@ class _StudentEditProfileState extends State<StudentEditProfile> {
 
       if (ParsedJson['status'] == 1) {
 
-        ShowDialog();
+        Navigator.of(context)
+            .pushNamed('studentdashboard');
+
 
         SharedPreferences preferences =  await SharedPreferences.getInstance();
-        GlobalData.Username = Name.text;
-        preferences.setString("name",GlobalData.Username);
+        GlobalData.Fullname = Name.text;
+        GlobalData.Phone = Phone.text;
+        GlobalData.Userphoto= ParsedJson['userdata']['user_photo'];
+        preferences.setString("name",GlobalData.Fullname);
+        preferences.setString("phone", GlobalData.Phone);
+        preferences.setString("userphoto", GlobalData.Userphoto);
       }else
       {
-        ShowDialog();
+        Show_toast_Now(ParsedJson['msg'],Colors.green);
       }
     });
 
@@ -52,6 +89,18 @@ class _StudentEditProfileState extends State<StudentEditProfile> {
 
     });
   }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getvalue();
+    print(GlobalData.uid);
+
+  }
+
+
+
 
   void ShowDialog({String Msg}) {
     // flutter defined function
@@ -77,6 +126,7 @@ class _StudentEditProfileState extends State<StudentEditProfile> {
       },
     );
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -105,7 +155,7 @@ class _StudentEditProfileState extends State<StudentEditProfile> {
               onPressed: () {},
               icon: Icon(
                 Icons.account_circle,
-                color: Colors.white,
+                color: Colors.transparent,
                 size: 20,
               ),
             ),
@@ -118,14 +168,34 @@ class _StudentEditProfileState extends State<StudentEditProfile> {
               children: <Widget>[
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Container(
+                  child: GestureDetector(onTap: (){getImage();},
+                    child: Container(
                       height: 80,width: 80,
-                      decoration: new BoxDecoration(
-                          shape: BoxShape.circle,
+                      decoration:_image!=null?
+                      new BoxDecoration(
+
+                          borderRadius: BorderRadius.all(Radius.circular(100),),
+                        
                           image: new DecorationImage(
-                            fit: BoxFit.fill,
-                            image: AssetImage('assets/images/bg.png'),
-                          ))),
+                            fit: BoxFit.cover,
+                            image: FileImage(_image),
+
+                          ),border: Border.all(color: Colors.black,width: 5)):
+                      GlobalData.Userphoto!=null?
+                      BoxDecoration(
+                        image: DecorationImage(image: NetworkImage(GlobalData.Userphoto),fit: BoxFit.cover),
+                        borderRadius: BorderRadius.all(Radius.circular(100)),
+
+                      ):BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(100)),
+                          color: Colors.black,
+                          image: DecorationImage(image: AssetImage('assets/images/user.jpg'),fit: BoxFit.cover)
+
+
+                      )
+
+                      ,),
+                  ),
                 ),
                 Text("Change Profile"),
                 Column(
@@ -139,7 +209,7 @@ class _StudentEditProfileState extends State<StudentEditProfile> {
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: <Widget>[
                                 Text(
-                                  "Name",
+                                  "Fullname",
                                   style: TextStyle(fontSize: 18),
                                   textAlign: TextAlign.start,
                                 ),
@@ -151,29 +221,6 @@ class _StudentEditProfileState extends State<StudentEditProfile> {
                       ),
                     ),
 
-
-                   /* Container(
-                      padding: EdgeInsets.only(left: 40, right: 40,top: 10),
-                      child: Center(
-                        child: Column(
-                          children: <Widget>[
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: <Widget>[
-                                Text(
-                                  "Change Mobile Number",
-                                  style: TextStyle(fontSize: 18),
-                                  textAlign: TextAlign.start,
-                                ),
-                              ],
-                            ),
-                            CustomTextField(),
-
-                          ],
-                        ),
-                      ),
-                    ),
-
                     Container(
                       padding: EdgeInsets.only(left: 40, right: 40,top: 10),
                       child: Center(
@@ -183,47 +230,32 @@ class _StudentEditProfileState extends State<StudentEditProfile> {
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: <Widget>[
                                 Text(
-                                  "Parent's Email",
+                                  "Phone Number",
                                   style: TextStyle(fontSize: 18),
                                   textAlign: TextAlign.start,
                                 ),
                               ],
                             ),
-                            CustomTextField(),
+                            CustomTextFieldBorderNew(controller: Phone,keyboardtype: TextInputType.phone,),
+
+
+
 
                           ],
                         ),
                       ),
                     ),
-
-                    Container(
-                      padding: EdgeInsets.only(left: 40, right: 40,top: 10),
-                      child: Center(
-                        child: Column(
-                          children: <Widget>[
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: <Widget>[
-                                Text(
-                                  "Parent's Mobile Number",
-                                  style: TextStyle(fontSize: 18),
-                                  textAlign: TextAlign.start,
-                                ),
-                              ],
-                            ),
-                            CustomTextField(),
-
-                          ],
-                        ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 20,bottom: 20),
+                      child: GradientButtonText(
+                        linearGradient:LinearGradient(colors: <Color>[GlobalData.purple,GlobalData.pink]) ,
+                        text: Text("Save Changes",style: TextStyle(color: Colors.white,
+                          fontWeight: FontWeight.bold,fontSize: 15,),textAlign: TextAlign.center,),
+                        ButtonClick: (){editprofile();GetShared();},
                       ),
-                    ),*/
+                    ),
 
-
-
-
-
-
-                   /* Padding(
+                    /* Padding(
                       padding: const EdgeInsets.only(top: 20),
                       child: Text("Contact:",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
                     ),
@@ -244,19 +276,7 @@ class _StudentEditProfileState extends State<StudentEditProfile> {
                             decoration: TextDecoration.underline
                         ),),onTap: (){},
                       ),
-                    ),
-
-                    */
-                    Padding(
-                      padding: const EdgeInsets.only(top: 20,bottom: 20),
-                      child: GradientButtonText(
-                        linearGradient:LinearGradient(colors: <Color>[GlobalData.purple,GlobalData.pink]) ,
-                        text: Text("Save Changes",style: TextStyle(color: Colors.white,
-                          fontWeight: FontWeight.bold,fontSize: 15,),textAlign: TextAlign.center,),
-                        ButtonClick: (){editprofile();},
-                      ),
-                    ),
-
+                    ),*/
                   ],
                 )
               ],

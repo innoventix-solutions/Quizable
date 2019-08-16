@@ -53,7 +53,8 @@ class _teacherdashboardState extends State<teacherdashboard> {
                 Padding(
                   padding: const EdgeInsets.only(top: 15),
                   child: Container(
-                    child: CircleAvatar(backgroundImage: NetworkImage(GlobalData.Userphoto),
+                    child: CircleAvatar(backgroundImage:GlobalData.Userphoto!=null?
+                    NetworkImage(GlobalData.Userphoto):AssetImage('assets/images/pic.png',),
                       radius: 35.0,
                     ),
                   ),
@@ -238,7 +239,8 @@ class _teacherdashboardState extends State<teacherdashboard> {
                   children: <Widget>[
                     Padding(
                       padding: const EdgeInsets.only(left: 5),
-                      child: CircleAvatar(backgroundImage: AssetImage('assets/images/pic.png',),
+                      child: CircleAvatar(backgroundImage:GlobalData.Userphoto!=null?
+                      NetworkImage(GlobalData.Userphoto):AssetImage('assets/images/pic.png',),
                         radius: 35.0,),
                     ),
                     Padding(
@@ -254,7 +256,7 @@ class _teacherdashboardState extends State<teacherdashboard> {
 
                           Text(GlobalData.class_name==null?"No Class Selected":GlobalData.class_name,
                             style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,
-                                fontSize: 16),),
+                                fontSize: 14),),
                         ],),
                     )
                   ],),

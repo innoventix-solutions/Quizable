@@ -95,7 +95,8 @@ class _studentdashboardState extends State<studentdashboard> {
                   children: <Widget>[
                     Padding(
                       padding: const EdgeInsets.only(left: 5),
-                      child: CircleAvatar(backgroundImage: AssetImage('assets/images/pic.png',),
+                      child: CircleAvatar(backgroundImage:GlobalData.Userphoto!=null?
+                      NetworkImage(GlobalData.Userphoto):AssetImage('assets/images/pic.png',),
                         radius: 35.0,),
                     ),
                     Padding(
@@ -106,7 +107,7 @@ class _studentdashboardState extends State<studentdashboard> {
                           padding: const EdgeInsets.only(bottom: 15),
                           child: Text(GlobalData.Username,
                             style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,
-                                fontSize: 16),),
+                                fontSize: 14),),
 
                         ),
 
@@ -114,7 +115,7 @@ class _studentdashboardState extends State<studentdashboard> {
                           Container(
                             child: Text(GlobalData.activeclass!=null?GlobalData.activeclass.classname:"No Class Selected",
                               style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,
-                                  fontSize: 12),),
+                                  fontSize: 14),),
                           ),
 
                         ],),
@@ -250,7 +251,8 @@ class _studentdashboardState extends State<studentdashboard> {
                   Padding(
                     padding: const EdgeInsets.only(top: 15),
                     child: Container(
-                      child: CircleAvatar(backgroundImage: AssetImage('assets/images/pic.png',),
+                      child: CircleAvatar(backgroundImage:GlobalData.Userphoto!=null?
+                      NetworkImage(GlobalData.Userphoto):AssetImage('assets/images/pic.png',),
                         radius: 35.0,
                       ),
                     ),
