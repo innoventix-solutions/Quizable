@@ -73,6 +73,7 @@ class GlobalData{
   static String Userphoto="";      //13-8-19 a
   static String Phone="";   //14-8-19 a
   static String Fullname="";  //14-8-19 a
+  static List<pojostydentlist> Studentlist = new List();
 
 }
                                   //Custom drawer for quiz menu

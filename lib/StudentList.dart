@@ -99,7 +99,9 @@ class _StudentListState extends State<StudentList> {
                                           shape: BoxShape.circle,
                                           image: new DecorationImage(
                                             fit: BoxFit.fill,
-                                            image:AssetImage('assets/images/bg.png'),
+                                            image:GlobalData.Userphoto!=null?
+                                            NetworkImage(globlist[index].userphoto):
+                                            AssetImage('assets/images/pic.png',),
                                           )
                                       ),),
                                   ],
