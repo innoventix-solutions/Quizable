@@ -95,7 +95,8 @@ class drawerquiz extends StatelessWidget {
                 children: <Widget>[
                   Padding(
                     padding: const EdgeInsets.only(left: 5),
-                    child: CircleAvatar(backgroundImage: AssetImage('assets/images/pic.png',),
+                    child: CircleAvatar(backgroundImage:GlobalData.Userphoto!=null?
+                    NetworkImage(GlobalData.Userphoto):AssetImage('assets/images/pic.png',),
                       radius: 35.0,),
                   ),
                   Padding(

@@ -38,7 +38,6 @@ class _adminprofileState extends State<adminprofile> {
     shared.setString("name", Name.text.toString());
     shared.setString("phone", Phone.text.toString());
 
-
   }
 
 
@@ -47,7 +46,6 @@ class _adminprofileState extends State<adminprofile> {
 
     Name.text=shared.getString("name");
     Phone.text=shared.getString("phone");
-
   }
 
 
