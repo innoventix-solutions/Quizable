@@ -15,6 +15,8 @@ class adminprofile extends StatefulWidget {
 
 class _adminprofileState extends State<adminprofile> {
 
+  var photo="";
+
   TextEditingController Name = new TextEditingController(text: GlobalData.Fullname);
   TextEditingController Phone = new TextEditingController(text: GlobalData.Phone);
 
@@ -37,6 +39,8 @@ class _adminprofileState extends State<adminprofile> {
 
     shared.setString("name", Name.text.toString());
     shared.setString("phone", Phone.text.toString());
+    shared.setString("userphoto", GlobalData.Userphoto);
+
 
   }
 
@@ -46,6 +50,8 @@ class _adminprofileState extends State<adminprofile> {
 
     Name.text=shared.getString("name");
     Phone.text=shared.getString("phone");
+    photo = shared.get("userphoto");
+
   }
 
 
