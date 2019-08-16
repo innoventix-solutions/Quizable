@@ -88,7 +88,9 @@ class _TeacherListState extends State<TeacherList> {
                         shape: BoxShape.circle,
                         image: new DecorationImage(
                           fit: BoxFit.fill,
-                          image:AssetImage('assets/images/bg.png'),
+                          image:GlobalData.Userphoto!=null?
+                          NetworkImage(GlobalData.Userphoto):
+                          AssetImage('assets/images/pic.png',),
                         )
                     )
                 ),
@@ -146,7 +148,9 @@ class _TeacherListState extends State<TeacherList> {
                                       shape: BoxShape.circle,
                                       image: new DecorationImage(
                                         fit: BoxFit.fill,
-                                        image:AssetImage('assets/images/bg.png'),
+                                        image:GlobalData.Userphoto!=null?
+                                        NetworkImage(globlist[index].userphoto):
+                                        AssetImage('assets/images/pic.png',),
                                       )
                                   ),),
                               ],
