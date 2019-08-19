@@ -70,6 +70,7 @@ import 'TeacherInviteCode.dart';
 import 'TeacherList.dart';
 import 'GameRoom.dart';
 import 'AnswerLog.dart';
+import 'SetAssignmentQuestion.dart';
 
 void main() {
   runApp(MyApp());

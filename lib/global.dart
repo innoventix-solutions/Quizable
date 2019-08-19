@@ -574,6 +574,7 @@ class CustomTextField extends StatelessWidget {
   final TextStyle hintStyle;
   final bool Inputnumber ;
   final bool enabled;
+  final int maxline;
 
   CustomTextField(
       {this.controller,
@@ -581,7 +582,8 @@ class CustomTextField extends StatelessWidget {
         this.Inputnumber,
         this.Texth,
         this.enabled,
-        this.hintStyle});
+        this.hintStyle,
+      this.maxline});
 
   @override
   Widget build(BuildContext context) {
@@ -600,7 +602,7 @@ class CustomTextField extends StatelessWidget {
           ),
           child: Padding(
             padding: const EdgeInsets.all(5),
-            child: TextField(
+            child: TextField(maxLines: maxline,
               enabled: enabled==null?true:false,
               keyboardType: Inputnumber==true?TextInputType.numberWithOptions(decimal: false,signed:false):TextInputType.text,
               decoration:
