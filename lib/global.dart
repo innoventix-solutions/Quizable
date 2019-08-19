@@ -79,6 +79,7 @@ class GlobalData{
   static String AssignmentTitle="";
   static String NosofQuesassignment="";
   static String teacherinstruction="";
+  static String AssignmentID="";
 
 
 

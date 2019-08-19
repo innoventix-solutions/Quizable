@@ -476,13 +476,13 @@ GlobalData.teacherinstruction = instruction.text;
     }
     else{
       http.post("http://edusupportapp.com/api/create_assignment.php", body: {
-        "assignment_title":  Assignmenttitle.text.toString(),
-        "no_of_questions": noofque.text.toString(),
-        "teacher_instruction":instruction.text.toString(),
-        "class_id": Assignmentclass.text.toString(),
-        "techer_id": teacher.text.toString(),
-        "publish_date":publishdate.text.toString(),
-        "closing_date":closingdate.text.toString(),
+        "assignment_title":  GlobalData.AssignmentTitle,
+        "no_of_questions": GlobalData.NosofQuesassignment,
+        "teacher_instruction":GlobalData.teacherinstruction,
+        "class_id": GlobalData.Selected_class_IDS,
+        "techer_id": GlobalData.uid,
+        "publish_date":Starting_date.toString(),
+        "closing_date":Closing_date.toString(),
       }).then((response) {
         print(response.body.toString());
         var statuss = jsonDecode(response.body);
@@ -490,8 +490,8 @@ GlobalData.teacherinstruction = instruction.text;
         if(statuss['status']==1){
 
 
-         /* GlobalData.QuizID=statuss['quizdata']['ID'];
-          print(GlobalData.QuizID);*/
+         /* GlobalData.QuizID=statuss['quizdata']['ID'];*/
+          print(GlobalData.AssignmentID);
           print("gonadsf to qwesdf");
           //  ClearRegisterData();
           Navigator.of(context).pushNamed('SetAssignmentQuestion');
