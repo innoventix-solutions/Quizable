@@ -19,16 +19,13 @@ class _assignmentquestionbankState extends State<assignmentquestionbank> {
   DateTime date1;
   DateTime date2;
 
-  String selectedvalue = "Select Quiz Subject";
+
   String selectedvalue2 = "Select Class";
   TextEditingController teacher = new TextEditingController(text:GlobalData.Username );
-  TextEditingController Assignmenttitle = new TextEditingController(text:GlobalData.QuizTitle );
-  TextEditingController quizlevel = new TextEditingController(text: GlobalData.QuizLevels);
-  TextEditingController queslevel = new TextEditingController(text: GlobalData.NosofQuesPerLevel);
-  TextEditingController durlevel = new TextEditingController(text: GlobalData.DurationofEachLevel);
-  TextEditingController instruction = new TextEditingController();
-  TextEditingController quizsubject = new TextEditingController();
-  TextEditingController quizclass = new TextEditingController();
+  TextEditingController Assignmenttitle = new TextEditingController(text:GlobalData.AssignmentTitle );
+  TextEditingController noofque = new TextEditingController(text: GlobalData.NosofQuesassignment);
+  TextEditingController instruction = new TextEditingController(text:GlobalData.teacherinstruction);
+  TextEditingController Assignmentclass = new TextEditingController();
   TextEditingController publishdate= new TextEditingController();
   TextEditingController closingdate= new TextEditingController();
   @override
@@ -41,10 +38,10 @@ class _assignmentquestionbankState extends State<assignmentquestionbank> {
   }
 
   setalldetails(){
-   // GlobalData.QuizTitle  = quiztitle.text;
-    GlobalData.QuizLevels = quizlevel.text;
-    GlobalData.NosofQuesPerLevel = queslevel.text;
-    GlobalData.DurationofEachLevel =  durlevel.text;
+   GlobalData.AssignmentTitle  = Assignmenttitle.text;
+GlobalData.teacherinstruction = instruction.text;
+    GlobalData.NosofQuesassignment = noofque.text;
+
   }
 
 
@@ -59,14 +56,12 @@ class _assignmentquestionbankState extends State<assignmentquestionbank> {
         fontSize: 16.0);
   }
 
-  Createquiz() async {
-    http.post("http://edusupportapp.com/api/create_quiz.php", body: {
-    //  "quiz_title":  quiztitle.text.toString(),
-      "no_of_levels": quizlevel.text.toString(),
-      "que_each_level": queslevel.text.toString(),
-      "dur_each_level": durlevel.text.toString(),
-      "quiz_subject": quizsubject.text.toString(),
-      "class_id": quizclass.text.toString(),
+  CreateAssignment() async {
+    http.post("http://edusupportapp.com/api/create_assignment.php", body: {
+      "assignment_title":  Assignmenttitle.text.toString(),
+      "no_of_questions": noofque.text.toString(),
+      "teacher_instruction":instruction.text.toString(),
+      "class_id": Assignmentclass.text.toString(),
       "techer_id": teacher.text.toString(),
       "publish_date":publishdate.text.toString(),
       "closing_date":closingdate.text.toString(),
@@ -194,7 +189,7 @@ class _assignmentquestionbankState extends State<assignmentquestionbank> {
                           ),
                         ),
                       ),
-                      CustomTextField(Inputnumber: true,controller: queslevel,),
+                      CustomTextField(Inputnumber: true,controller: noofque,),
 
 
 
@@ -240,7 +235,7 @@ class _assignmentquestionbankState extends State<assignmentquestionbank> {
                                 ),onTap: (){
                                 Navigator.of(context)
                                     .pushNamed(
-                                    'selectclass');
+                                    'selectassignmentclass');
                               },
                               ),
                             ),
@@ -456,12 +451,12 @@ class _assignmentquestionbankState extends State<assignmentquestionbank> {
   SaveQuiz()async {
 
     print(
-        "quiz_title : "+ GlobalData.QuizTitle +
+        "assignment_title : "+ GlobalData.AssignmentTitle +
             "\ntecher_id : "+ GlobalData.uid +
-            "\nno_of_levels : "+ GlobalData.QuizLevels +
-            "\nque_each_level :"+ GlobalData.NosofQuesPerLevel +
-            "\ndur_each_level :"+ GlobalData.DurationofEachLevel +
-            "\nquiz_subject : "+ GlobalData.Selected_subject +
+
+            "\nno_of_questions :"+ GlobalData.NosofQuesassignment +
+
+            "\nteacher_instruction : "+ GlobalData.teacherinstruction +
             "\nclass_id : "+
             "\npublish_date : 2019-06-23 00:00:01"+
             "\nclosing_date : 2019-06-26 00:00:01"
@@ -469,10 +464,10 @@ class _assignmentquestionbankState extends State<assignmentquestionbank> {
     );
 
 
-    if (GlobalData.QuizTitle == null || GlobalData.QuizLevels == null ||
-        GlobalData.NosofQuesPerLevel == null ||
-        GlobalData.DurationofEachLevel == null ||
-        GlobalData.Selected_subject == null||
+    if (GlobalData.AssignmentTitle == null ||
+        GlobalData.NosofQuesassignment == null ||
+
+        GlobalData.teacherinstruction == null||
         GlobalData.Selected_class== null||
         Starting_date==null||
         Closing_date==null) {
@@ -480,16 +475,14 @@ class _assignmentquestionbankState extends State<assignmentquestionbank> {
       _showDialog();
     }
     else{
-      http.post("http://edusupportapp.com/api/create_quiz.php", body: {
-        "quiz_title": GlobalData.QuizTitle,
-        "techer_id": GlobalData.uid,
-        "no_of_levels": GlobalData.QuizLevels,
-        "que_each_level": GlobalData.NosofQuesPerLevel,
-        "dur_each_level": GlobalData.DurationofEachLevel,
-        "quiz_subject": GlobalData.Selected_subject,
-        "class_id": GlobalData.Selected_class_IDS,
-        "publish_date":Starting_date.toString(),
-        "closing_date":Closing_date.toString(),
+      http.post("http://edusupportapp.com/api/create_assignment.php", body: {
+        "assignment_title":  Assignmenttitle.text.toString(),
+        "no_of_questions": noofque.text.toString(),
+        "teacher_instruction":instruction.text.toString(),
+        "class_id": Assignmentclass.text.toString(),
+        "techer_id": teacher.text.toString(),
+        "publish_date":publishdate.text.toString(),
+        "closing_date":closingdate.text.toString(),
       }).then((response) {
         print(response.body.toString());
         var statuss = jsonDecode(response.body);
@@ -497,11 +490,11 @@ class _assignmentquestionbankState extends State<assignmentquestionbank> {
         if(statuss['status']==1){
 
 
-          GlobalData.QuizID=statuss['quizdata']['ID'];
-          print(GlobalData.QuizID);
+         /* GlobalData.QuizID=statuss['quizdata']['ID'];
+          print(GlobalData.QuizID);*/
           print("gonadsf to qwesdf");
           //  ClearRegisterData();
-          Navigator.of(context).pushNamed('questions');
+          Navigator.of(context).pushNamed('SetAssignmentQuestion');
 
 
         }else

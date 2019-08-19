@@ -71,6 +71,7 @@ import 'TeacherList.dart';
 import 'GameRoom.dart';
 import 'AnswerLog.dart';
 import 'SetAssignmentQuestion.dart';
+import 'Selectassignmentclass.dart';
 
 void main() {
   runApp(MyApp());
@@ -131,7 +132,7 @@ class MyApp extends StatelessWidget {
         'ManageAccount':(context)=>ManageAccount(),
         'EditProfile':(context)=>adminprofile(),
         'EditProfileStudent':(context)=>StudentEditProfile(),
-        'SetAssignment':(context)=>Assignment(),
+        'SetAssignment':(context)=>assignmentquestionbank(),
         'SetSpelling':(context)=>SpellingChallange(),
         'TeacherInviteCode':(context)=>TeacherInviteCode(),
         'StudentInviteCode':(context)=>StudentInviteCode(),
@@ -139,7 +140,9 @@ class MyApp extends StatelessWidget {
         'StudentList':(context)=>StudentList(),
         'TeacherList':(context)=>TeacherList(),
         'AnswerLog':(context)=>AnswerLog(),
-        'StudentListByQuiz':(context)=>StudentListByQuiz()
+        'StudentListByQuiz':(context)=>StudentListByQuiz(),
+        'selectassignmentclass':(context)=>Selectassignmentclass(),
+        'SetAssignmentQuestion':(context)=>SetAssignmentQuestion(),
 
       },
     );

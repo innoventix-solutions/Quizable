@@ -75,6 +75,13 @@ class GlobalData{
   static String Fullname="";  //14-8-19 a
   static List<pojostydentlist> Studentlist = new List();
 
+  /* assignmment data*/
+  static String AssignmentTitle="";
+  static String NosofQuesassignment="";
+  static String teacherinstruction="";
+
+
+
 }
                                   //Custom drawer for quiz menu
 class drawerquiz extends StatelessWidget {
