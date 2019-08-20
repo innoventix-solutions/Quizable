@@ -189,7 +189,7 @@ class _SelectassignmentclassState extends State<Selectassignmentclass> {
                                 }
                               }
 
-                              Navigator.of(context).pushNamed('SetAssignmentQuestion');
+                              Navigator.of(context).pushNamed('AssignmentQuestionBank');
 
                             },
                             linearGradient:LinearGradient(colors: <Color>[GlobalData.purple,GlobalData.pink]) ,

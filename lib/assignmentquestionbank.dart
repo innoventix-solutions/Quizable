@@ -492,9 +492,9 @@ GlobalData.teacherinstruction = instruction.text;
 
          /* GlobalData.QuizID=statuss['quizdata']['ID'];*/
           print(GlobalData.AssignmentID);
-          print("gonadsf to qwesdf");
+          print("set assignment");
           //  ClearRegisterData();
-          Navigator.of(context).pushNamed('SetAssignmentQuestion');
+          Navigator.of(context).pushNamed('Announcements');
 
 
         }else

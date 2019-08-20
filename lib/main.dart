@@ -70,8 +70,8 @@ import 'TeacherInviteCode.dart';
 import 'TeacherList.dart';
 import 'GameRoom.dart';
 import 'AnswerLog.dart';
-import 'SetAssignmentQuestion.dart';
-import 'Selectassignmentclass.dart';
+import 'SetAssignmentQuestion.dart';    //19-8-19
+import 'Selectassignmentclass.dart';    //19-8-19
 
 void main() {
   runApp(MyApp());
@@ -141,8 +141,9 @@ class MyApp extends StatelessWidget {
         'TeacherList':(context)=>TeacherList(),
         'AnswerLog':(context)=>AnswerLog(),
         'StudentListByQuiz':(context)=>StudentListByQuiz(),
-        'selectassignmentclass':(context)=>Selectassignmentclass(),
-        'SetAssignmentQuestion':(context)=>SetAssignmentQuestion(),
+        'selectassignmentclass':(context)=>Selectassignmentclass(),  //19-8-19
+        'SetAssignmentQuestion':(context)=>SetAssignmentQuestion(),  //19-8-19
+        'AssignmentQuestionBank':(context)=>assignmentquestionbank(),
 
       },
     );
