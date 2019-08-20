@@ -233,6 +233,7 @@ GlobalData.teacherinstruction = instruction.text;
 
                                   ],
                                 ),onTap: (){
+                                setalldetails();
                                 Navigator.of(context)
                                     .pushNamed(
                                     'selectassignmentclass');
