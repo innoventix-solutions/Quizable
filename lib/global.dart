@@ -1024,6 +1024,9 @@ ClearRegisterData(){
  GlobalData.DurationofEachLevel="";
  GlobalData.ExamQuiz="";
  GlobalData.QuizID="";
+ GlobalData.AssignmentTitle="";  //20-8-19
+  GlobalData.NosofQuesassignment="";   //20-8-19
+  GlobalData.teacherinstruction="";   //20-8-19
 }
 
 

@@ -495,7 +495,7 @@ GlobalData.teacherinstruction = instruction.text;
           print(GlobalData.AssignmentID);
           print("set assignment");
           //  ClearRegisterData();
-          Navigator.of(context).pushNamed('Announcements');
+          Navigator.of(context).pushNamed('SetAssignmentQuestion');
 
 
         }else
