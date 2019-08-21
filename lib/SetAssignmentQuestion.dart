@@ -421,7 +421,7 @@ class _SetAssignmentQuestionState extends State<SetAssignmentQuestion> {
         title: Center(
           child: Text(
             "Set Assignment Questions",
-            style: TextStyle(fontSize: 20),
+            style: TextStyle(fontSize: 18),
           ),
         ),
         flexibleSpace: Container(

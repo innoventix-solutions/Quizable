@@ -3,6 +3,7 @@ import 'package:share/share.dart';
 import 'Edit_Question.dart';
 import 'Questions_list_new.dart';
 import 'Quiz_list_student.dart';
+import 'RecentQuestion.dart';
 import 'StudentByQuiz.dart';
 import 'TeacherClassList.dart';
 import 'globalvar.dart';
@@ -144,6 +145,7 @@ class MyApp extends StatelessWidget {
         'selectassignmentclass':(context)=>Selectassignmentclass(),  //20-8-19
         'SetAssignmentQuestion':(context)=>SetAssignmentQuestion(),  //20-8-19
         'AssignmentQuestionBank':(context)=>assignmentquestionbank(),//20-8-19
+        'Recentque':(context)=>RecentQuestion()
 
       },
     );
