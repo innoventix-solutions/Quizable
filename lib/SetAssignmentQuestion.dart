@@ -9,11 +9,11 @@ class SetAssignmentQuestion extends StatefulWidget {
 
 class _SetAssignmentQuestionState extends State<SetAssignmentQuestion> {
   String SelectedType = 'Fill-in the gaps';
-  List<String> ListofTypes = ['Fill-in the gaps', 'Match Type', 'Single Answer', 'Multiple Answers','True False'];
+  List<String> ListofTypes = ['Fill-in the gaps','Multiple Answers','Short Essay'];
   List<option> Options = new List();
-  List<MatchClass> Matches = new List();
-  String TrueorFalse = "False";
-  List<String> Type = ["fillups","matchtype","single","multi","tf"];
+
+
+  List<String> Type = ["fillups","multi","essay"];
 
   TextEditingController QuestionName = new TextEditingController();
   TextEditingController Points = new TextEditingController();
@@ -228,118 +228,7 @@ class _SetAssignmentQuestionState extends State<SetAssignmentQuestion> {
         });
   }
 
-  void _confirmDialogMatches(BuildContext context)  {
-    bool Selected = false;
-    TextEditingController value1 = new TextEditingController();
-    TextEditingController value2 = new TextEditingController();
-    showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            backgroundColor:Colors.transparent,
-            elevation: 0,
-            content: SingleChildScrollView(
-              child: Column(mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Center(
-                    child: Container(
-                      child: new Card(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(15.0),
-                        ),
-                        child: Column(mainAxisAlignment: MainAxisAlignment.start,
-                          children: <Widget>[
-                            Container(
 
-                              child: Column(
-                                children: <Widget>[
-                                  Center(child: Padding(
-                                    padding: const EdgeInsets.only(top:15),
-
-                                    child: Text('Add Option',textAlign: TextAlign.center,
-                                      style: TextStyle(color: GlobalData.lightblue,fontSize: 25,fontWeight: FontWeight.bold),),
-                                  )),
-
-
-                                  new Divider(
-                                    color: GlobalData.gray,
-                                  ),
-                                  Container(
-                                    padding: EdgeInsets.all(30),
-                                    child: Column(
-                                      children: <Widget>[
-
-                                        Row(
-                                          children: <Widget>[
-                                            Expanded(child: TextField(controller: value1,decoration: InputDecoration(hintText: "Value 1"),))
-                                          ],
-
-                                        ),
-                                        Row(
-                                          children: <Widget>[
-                                            Expanded(child: TextField(controller: value2,decoration: InputDecoration(hintText: "Value 2"),))
-                                          ],
-
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-
-
-                                  Padding(
-                                    padding: const EdgeInsets.only(bottom: 30),
-                                    child: Row(mainAxisAlignment: MainAxisAlignment.center,
-                                      children: <Widget>[
-
-                                        Container(padding: EdgeInsets.all(5),
-                                          child: SizedBox(width: 100,
-                                            child: GradientButtonText(
-                                              ButtonClick: (){
-
-                                                Matches.add(MatchClass(val1: value1.text,val2:value2.text ));
-                                                Navigator.of(context).pop();
-                                                setState(() {
-
-                                                });
-
-                                              }
-                                              ,linearGradient:
-                                            LinearGradient(colors: <Color>[GlobalData.navy,GlobalData.navyblue]),
-                                              text: Text('Add',style: TextStyle(color: Colors.white,
-                                                fontWeight: FontWeight.bold,fontSize: 12,),textAlign: TextAlign.center,),
-                                            ),
-                                          ),
-                                        ),
-
-
-
-
-                                      ],
-                                    ),
-                                  )],
-
-                              ),
-
-                            ),
-
-
-
-                          ],
-
-
-                        ),
-                      ),
-                    ),
-                  ),
-
-                ],
-              ),
-            ),
-
-
-          );
-        });
-  }
 
   Widget MyQuestionType(String type) {
 
@@ -403,144 +292,7 @@ class _SetAssignmentQuestionState extends State<SetAssignmentQuestion> {
 
             ],
           ),);
-      case 'Match Type':
-        return Card(
-          child: Padding(
-            padding: const EdgeInsets.only(left: 20,right: 20),
-            child: Column(
-              children: <Widget>[
-                Row(
-                  children: <Widget>[
-                    Expanded(
-                      child: Container(padding: EdgeInsets.all(5),child: Text("Select Pairs of Matching Terms.",style: TextStyle(color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),)),
-                    ),
-                    Row(children: <Widget>[
-                      FlatButton.icon(onPressed: (){_confirmDialogMatches(context);}, icon: Icon( Icons.add_circle,color: GlobalData.lightblue,), label: Text("More",style: TextStyle(color: GlobalData.lightblue,fontSize: 15,fontWeight: FontWeight.bold)))
-                    ],)
-                  ],
-                ),
-                Row(
-                  children: <Widget>[
-                    Expanded(
-                      child: Container(
-                        height: Matches.isEmpty?50.0:Matches.length*50.0,
-                        child: Column(
-                          children: <Widget>[
-                            Expanded(
-                              child: ListView.builder(
-                                  itemCount: Matches.length,itemBuilder: (context,index){
-                                return Container(child: Row(
-                                  children: <Widget>[
-                                    Expanded(
-                                      child:Card(child: Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: Text(Matches[index].val1),
-                                      )) ,
-                                    ),
-                                    SizedBox(width: 20,)
-                                    ,
-                                    Expanded(
-                                      child:Card(child: Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: Text(Matches[index].val2),
-                                      )) ,
-                                    ),
 
-
-                                    GestureDetector(onTap: (){
-
-                                      Matches.removeLast();
-                                      setState(() {
-
-                                      });
-                                    },
-                                        child: Icon(Icons.cancel,color: Colors.redAccent,size: 20,)),
-
-
-
-                                  ],),);}),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-
-
-
-              ],
-            ),
-          ),);
-      case 'Single Answer':
-        return Card(
-          child: Column(
-            children: <Widget>[
-              Row(
-                children: <Widget>[
-                  Expanded(
-                    child: Container(padding: EdgeInsets.all(5),child: Text("List Options and Select One Answer ",style: TextStyle(color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),)),
-                  ),
-                  Row(children: <Widget>[
-                    FlatButton.icon(onPressed: (){_confirmDialog(context);}, icon: Icon( Icons.add_circle,color: GlobalData.lightblue,), label: Text("More",style: TextStyle(color: GlobalData.lightblue,fontSize: 15,fontWeight: FontWeight.bold)))
-                  ],)
-                ],
-              ),
-              Row(
-                children: <Widget>[
-                  Expanded(
-                    child: Container(
-                      height: Options.isEmpty?50.0:Options.length*50.0,
-
-                      child: Column(
-                        children: <Widget>[
-                          Expanded(
-                            child: ListView.builder(
-                                itemCount: Options.length,itemBuilder: (context,index){
-                              return Container(child: Row(
-                                children: <Widget>[
-                                  Checkbox(value: Options[index].trueanswer, onChanged: (value){
-
-
-                                    for(int i=0;i<Options.length;i++){
-                                      Options[i].trueanswer=false;
-                                    }
-
-
-                                    Options[index].trueanswer=value;setState(() {
-
-                                    });},),
-                                  Expanded(child: Text(Options[index].value,maxLines: 4,)),
-
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: GestureDetector(
-
-                                        onTap: (){
-
-                                          Options.removeLast();
-                                          setState(() {
-
-                                          });
-                                        }
-
-                                        ,child: Icon(Icons.cancel,color: Colors.redAccent,size: 20,)),
-                                  ),
-
-
-                                ],),);}),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-
-
-
-            ],
-          ),);
 
       case 'Fill-in the gaps':
         return Card(
@@ -603,14 +355,15 @@ class _SetAssignmentQuestionState extends State<SetAssignmentQuestion> {
 
             ],
           ),);
-      case 'True False':
+      case 'Short Essay':
         return Card(
           child: Column(
             children: <Widget>[
               Row(
                 children: <Widget>[
                   Expanded(
-                    child: Container(padding: EdgeInsets.all(5),child: Text("Select Answer",style: TextStyle(color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),)),
+                    child: Container(padding: EdgeInsets.all(5),child: Text("Teacher’s Instruction:",
+                      style: TextStyle(color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),)),
                   ),
 
                 ],
@@ -622,27 +375,9 @@ class _SetAssignmentQuestionState extends State<SetAssignmentQuestion> {
                       height: 110.0,
                       child: Column(
                         children: <Widget>[
-                          Container(child: Row(
-                            children: <Widget>[
-                              Radio(value: "False", groupValue: TrueorFalse, onChanged: (v){TrueorFalse=v;setState(() {
+                          Container(child: CustomTextField()
+                         ),
 
-                              });}),
-                              Text("True")
-
-
-
-                            ],),),
-                          Container(child: Row(
-                            children: <Widget>[
-                              Radio(value: "True", groupValue: TrueorFalse, onChanged: (v){TrueorFalse=v;setState(() {
-
-                              });}),
-
-                              Text("False")
-
-
-
-                            ],),)
 
                         ],
                       ),
@@ -666,23 +401,11 @@ class _SetAssignmentQuestionState extends State<SetAssignmentQuestion> {
     switch (type){
       case 'Multiple Answers':
         return jsonEncode(Options).toString();
-      case 'Match Type':
-        return jsonEncode(Matches).toString();
-      case 'Single Answer':
-        return jsonEncode(Options).toString();
+
       case 'Fill-in the gaps':
         return jsonEncode(Options).toString();
-      case 'True False':
-        Options.clear();
-        if(TrueorFalse==true){
-          Options.add(option(trueanswer: true,value: "True"));
-          Options.add(option(trueanswer: false,value: "False"));
-        }else
-        {
-          Options.add(option(trueanswer: false,value: "True"));
-          Options.add(option(trueanswer: true,value: "False"));
-        }
-        return jsonEncode(Options).toString();
+
+
       default:
         return "Sorry";
     }
@@ -697,7 +420,7 @@ class _SetAssignmentQuestionState extends State<SetAssignmentQuestion> {
         automaticallyImplyLeading: true,
         title: Center(
           child: Text(
-            "Set Quiz Questions",
+            "Set Assignment Questions",
             style: TextStyle(fontSize: 20),
           ),
         ),
@@ -736,13 +459,10 @@ class _SetAssignmentQuestionState extends State<SetAssignmentQuestion> {
                           Expanded(
                             child: Container(padding: EdgeInsets.all(5),color:GlobalData.green,
                                 child: Text(
-                                  "Question "+((GlobalData.QuestionNumber%int.parse(GlobalData.NosofQuesPerLevel))+1).toString()+" of "+GlobalData.NosofQuesPerLevel,
+                                  "Question "+((GlobalData.QuestionNumber%int.parse(GlobalData.NosofQuesassignment))+1).toString()+" of "+GlobalData.NosofQuesassignment,
                                   style: TextStyle(color: Colors.white,fontSize: 15,fontWeight: FontWeight.bold),)),
                           ),
-                          Container(
-                              padding: EdgeInsets.all(5),color:GlobalData.green,
-                              child:  Text("Level "+((GlobalData.QuestionNumber/int.parse(GlobalData.NosofQuesPerLevel)).floor()+1).toString()+" of "+GlobalData.QuizLevels,style: TextStyle(color: Colors.white,fontSize: 15,fontWeight: FontWeight.bold),)
-                          )
+
                         ],
                       ),
                       Row(
@@ -780,7 +500,7 @@ class _SetAssignmentQuestionState extends State<SetAssignmentQuestion> {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: <Widget>[
-                                Text("Points Awarded",style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold),),
+                                Text(SelectedType=="Short Essay"?"Points Obtainable":"Points Awarded",style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold),),
                                 TextField(controller: Points,decoration: InputDecoration(border: InputBorder.none),keyboardType: TextInputType.numberWithOptions(signed: false,decimal: false),)
                               ],
                             ),
@@ -911,19 +631,19 @@ class _SetAssignmentQuestionState extends State<SetAssignmentQuestion> {
       print( "question "+ QuestionName.text.toString()+
           "point_awarded "+ Points.text.toString()+
           "answer_type "+ SelectedType.toString()+
-          "quiz_id "+ GlobalData.QuizID+
+          "assignment_id "+ GlobalData.AssignmentID+
           "answer_options " + MyQuestionAnswer(SelectedType));
 
 
       http.post(
-          "http://edusupportapp.com/api/create_update_quiz_questions.php", body: {
+          "http://edusupportapp.com/api/create_update_assignment_questions.php", body: {
         "question": QuestionName.text.toString(),
         "point_awarded": Points.text.toString(),
         "answer_type": SelectedType.toString(),
-        "quiz_id": GlobalData.QuizID,
+        "assignment_id": GlobalData.AssignmentID,
         "answer_options": MyQuestionAnswer(SelectedType),
-        "level_no": ((GlobalData.QuestionNumber/int.parse(GlobalData.NosofQuesPerLevel)).floor()+1).toString(),
-        "ques_no": ((GlobalData.QuestionNumber%int.parse(GlobalData.NosofQuesPerLevel))+1).toString(),
+
+        "ques_no": ((GlobalData.QuestionNumber%int.parse(GlobalData.NosofQuesassignment))+1).toString(),
       }).then((response) {
         var statuss = jsonDecode(response.body);
 
@@ -932,7 +652,7 @@ class _SetAssignmentQuestionState extends State<SetAssignmentQuestion> {
         //    print(response.body.toString());
         if (statuss['status'] == 1) {
           Options.clear();
-          Matches.clear();
+
 
           SelectedType = "Fill-in the gaps";
           GlobalData.QuestionNumber++;
@@ -942,11 +662,11 @@ class _SetAssignmentQuestionState extends State<SetAssignmentQuestion> {
         } else{
 
         }
-        if(GlobalData.QuestionNumber>=(int.parse(GlobalData.NosofQuesPerLevel)*int.parse(GlobalData.QuizLevels)))
+        if(GlobalData.QuestionNumber>=(int.parse(GlobalData.NosofQuesassignment)))
         {
           QuizCompleted(context);
         }else {
-          Navigator.of(context).pushNamed('questions');
+          Navigator.of(context).pushNamed('SetAssignmentQuestion');
         }
       });
     }
