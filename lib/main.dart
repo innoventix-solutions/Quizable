@@ -141,9 +141,9 @@ class MyApp extends StatelessWidget {
         'TeacherList':(context)=>TeacherList(),
         'AnswerLog':(context)=>AnswerLog(),
         'StudentListByQuiz':(context)=>StudentListByQuiz(),
-        'selectassignmentclass':(context)=>Selectassignmentclass(),  //19-8-19
-        'SetAssignmentQuestion':(context)=>SetAssignmentQuestion(),  //19-8-19
-        'AssignmentQuestionBank':(context)=>assignmentquestionbank(),
+        'selectassignmentclass':(context)=>Selectassignmentclass(),  //20-8-19
+        'SetAssignmentQuestion':(context)=>SetAssignmentQuestion(),  //20-8-19
+        'AssignmentQuestionBank':(context)=>assignmentquestionbank(),//20-8-19
 
       },
     );
