@@ -43,8 +43,7 @@ class _myclassactivitiesState extends State<myclassactivities> {
 
 
 
-      drawer:
-     drawerquiz(),
+
 
       body: SingleChildScrollView(
         child: Column(
@@ -188,6 +187,7 @@ class _myclassactivitiesState extends State<myclassactivities> {
                                   fontWeight: FontWeight.bold,fontSize: 18,),
                                 textAlign: TextAlign.center,),
                               ButtonClick: (){
+                                Navigator.of(context).pushNamed('MyQuizExerciseLog');
                               },)
                         ),
                       ],

@@ -6,12 +6,12 @@ import 'global.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'setquizquestion.dart';
 
-class Quiz_List_student extends StatefulWidget {
+class MyQuizExerciseLog extends StatefulWidget {
   @override
-  _Quiz_List_studentState createState() => _Quiz_List_studentState();
+  _MyQuizExerciseLogState createState() => _MyQuizExerciseLogState();
 }
 
-class _Quiz_List_studentState extends State<Quiz_List_student> {
+class _MyQuizExerciseLogState extends State<MyQuizExerciseLog> {
   List<Pojo_quizzes> Quizz_List = new List();
 
   GetTest() async{
@@ -48,7 +48,7 @@ class _Quiz_List_studentState extends State<Quiz_List_student> {
 
           title: Center(
             child: Text(
-              "My Quiz Exercises",
+              "Quiz Exercises Log",
               style: TextStyle(fontSize: 20),
             ),
           ),
@@ -229,7 +229,7 @@ class _Quiz_List_studentState extends State<Quiz_List_student> {
         Column(
           children: <Widget>[
             Expanded(
-              child:Quizz_List.isEmpty ? Center(child: Text('No Quiz Exercises published yet')) :  //22-8-19 a
+              child:Quizz_List.isEmpty ? Center(child: Text('No Quiz Exercises Log')) :
               ListView.builder(
                   itemCount: Quizz_List.length,
                   itemBuilder: (c,i){
@@ -241,15 +241,15 @@ class _Quiz_List_studentState extends State<Quiz_List_student> {
                         GlobalData.DurationofEachLevel=Quizz_List[i].dur_each_level;
                         Navigator.of(context).pushNamed(Quizz_List[i].is_taken==true?'AnswerLog':'exam');
                       },
-                      child: Quizz_List[i].is_taken==false?       //22-8-19 a
-                    classactivitys(
+                      child: Quizz_List[i].is_taken==true?
+                      AllExerciseLog(
                         color: GlobalData.pinkred,
                         heading: Quizz_List[i].quiz_title+" - "+Quizz_List[i].id,
                         paragraph: Quizz_List[i].quiz_subject,
                         title: Quizz_List[i].quiz_title,
                         id: Quizz_List[i].id,
                         is_taken: Quizz_List[i].is_taken,
-                      ):SizedBox()
+                      ):SizedBox(),
                     );
                   }),
             ),
