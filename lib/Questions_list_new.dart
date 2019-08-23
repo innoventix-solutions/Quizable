@@ -218,9 +218,7 @@ class _Question_ListState extends State<Question_List> {
   }
 
   @override
-  dispose(){
-
-  }
+  dispose();
 
   Widget MYQue(){
     return SafeArea(
