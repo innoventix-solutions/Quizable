@@ -74,6 +74,7 @@ import 'AnswerLog.dart';
 import 'SetAssignmentQuestion.dart';    //19-8-19
 import 'Selectassignmentclass.dart';    //19-8-19
 import 'MyQuizExerciseLog.dart';        //22-8-19
+import 'PreviewQuiz.dart';
 
 void main() {
   runApp(MyApp());
@@ -149,7 +150,7 @@ class MyApp extends StatelessWidget {
         'Recentque':(context)=>RecentQuestion(),                     //21-8-19
         'MyClassActivities':(context)=>myclassactivities(),          //22-8-19
         'MyQuizExerciseLog':(context)=>MyQuizExerciseLog(),          //22-8-19
-
+        'previewQuiz':(context)=>PreviewQuiz(),
       },
     );
   }

@@ -1395,3 +1395,156 @@ class AllExerciseLog extends StatelessWidget {
       );
   }
 }
+
+/* Preview Quiz*/
+
+class PreviewQuiz extends StatelessWidget {
+
+  final String heading;
+  final String paragraph;
+  final Color color;
+  final String title;
+  final String id;
+  final bool is_taken;
+  final String levels;
+  final String duration;
+
+  PreviewQuiz(
+      {
+        this.heading,
+        this.paragraph,
+        this.color,
+        this.title,
+        this.id,
+        this.is_taken,
+        this.duration,
+        this.levels});
+
+  @override
+  Widget build(BuildContext context) {
+    return
+      Container(decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(40))),
+        child: Card(elevation: 5.0,shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(5.0),
+        ),
+          child: Column(mainAxisAlignment: MainAxisAlignment.start,
+            children: <Widget>[
+              Row(
+                children: <Widget>[
+                  Expanded(
+                    child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(5),),color: color),
+
+                      child: Padding(
+                        padding: const EdgeInsets.only(top: 5,bottom: 5),
+                        child: Column(
+                          children: <Widget>[
+                            Padding(
+                              padding: const EdgeInsets.only(top: 5,bottom: 5,left: 10),
+                              child: Row(
+                                children: <Widget>[
+                                  Expanded(
+                                    child: Text(heading,textAlign: TextAlign.left,
+                                      style: TextStyle(color: Colors.white,fontSize: 15,fontWeight: FontWeight.bold),),
+                                  ),
+                                ],
+                              ),
+                            ),
+
+                          ],
+
+                        ),
+                      ),
+
+                    ),
+                  ),
+                ],
+              ),
+              Container(
+                padding: EdgeInsets.only(left: 25,top: 20,right: 30,bottom: 30),
+                child: Column(
+                  children: <Widget>[
+                    Text(paragraph,style: TextStyle(fontWeight: FontWeight.bold,
+                        fontSize: 15,color: GlobalData.gray),textAlign: TextAlign.justify,),
+
+                  ],
+                ),
+              ),
+
+              GestureDetector(
+                onTap: (){
+
+
+
+
+                  GlobalData.QuizID=id;
+
+                  if(GlobalData.userType=="student") {
+                    print("UID"+GlobalData.uid);
+                    print("QID"+(id==null?" Null Value":id));
+//print("Title : "+title);
+//                    print("levels : "+levels);
+//print("Duration : "+duration);
+
+
+
+                    GlobalData.ExamQuiz=title;
+                    GlobalData.DurationofEachLevel=duration??"20";
+                    GlobalData.QuizLevels=levels??"1";
+                    GlobalData.CurrentStudentID=GlobalData.uid;
+
+
+                    Navigator.of(context).pushNamed(is_taken==true?'AnswerLog':'exam');
+
+
+                  }else
+                  {
+
+                    Navigator.of(context).pushNamed('StudentListByQuiz');
+                  }
+
+                },
+                child:
+                Row(
+                  children: <Widget>[
+                    Expanded(
+                      child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(5),),
+                          color: Colors.blue),
+
+                        child: Padding(
+                          padding: const EdgeInsets.only(top: 5,bottom: 5),
+                          child: Column(
+                            children: <Widget>[
+                              Padding(
+                                padding: const EdgeInsets.only(top: 5,bottom: 5,left: 10),
+                                child: Row(
+                                    children: <Widget>[
+                                      Expanded(
+                                        child: Text("Quiz Report",textAlign: TextAlign.center,
+                                          style: TextStyle(color: Colors.white,fontSize: 15,fontWeight: FontWeight.bold),),
+                                      ),
+
+                                    ]),
+                              ),
+
+                            ],
+
+                          ),
+                        ),
+
+                      ),
+                    ),
+                  ],
+                )
+                ,
+              ),
+
+
+
+
+            ],
+          ),
+
+        ),
+      );
+  }
+}

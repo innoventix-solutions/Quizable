@@ -122,10 +122,14 @@ setalldetails(){
         ),
         actions: <Widget>[
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context)
+                  .pushNamed(
+                  'previewQuiz');
+            },
             icon: Icon(
-              Icons.account_circle,
-              color: Colors.transparent,
+              Icons.remove_red_eye,
+              color: Colors.white,
               size: 20,
             ),
           ),
