@@ -183,7 +183,7 @@ class _SetAssignmentQuestionState extends State<SetAssignmentQuestion> {
                                             child: GradientButtonText(
                                               ButtonClick: (){
 
-                                                Navigator.of(context).pushReplacementNamed('manageclassactivities');
+                                                Navigator.of(context).pushReplacementNamed('dashboard');
                                                 ClearRegisterData();
                                                 setState(() {
 
@@ -642,7 +642,6 @@ class _SetAssignmentQuestionState extends State<SetAssignmentQuestion> {
         "answer_type": SelectedType.toString(),
         "assignment_id": GlobalData.AssignmentID,
         "answer_options": MyQuestionAnswer(SelectedType),
-
         "ques_no": ((GlobalData.QuestionNumber%int.parse(GlobalData.NosofQuesassignment))+1).toString(),
       }).then((response) {
         var statuss = jsonDecode(response.body);
