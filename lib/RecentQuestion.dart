@@ -79,7 +79,7 @@ class _RecentQuestionState extends State<RecentQuestion> {
 
         body:
         Column(
-          children: <Widget>[Quizz_List.isEmpty ? Center(child: Text('You have not published any class activity yet')) :
+          children: <Widget>[
             Expanded(
               child: Quizz_List.isEmpty ? Center(child: Text('You have not published any class activity yet')) :
               ListView.builder(
