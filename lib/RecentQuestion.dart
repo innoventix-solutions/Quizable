@@ -49,7 +49,7 @@ class _RecentQuestionState extends State<RecentQuestion> {
 
           title: Center(
             child: Text(
-              "Manage Class Activities",
+              "Recent Questions",
               style: TextStyle(fontSize: 20),
             ),
           ),

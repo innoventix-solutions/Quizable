@@ -103,7 +103,7 @@ GlobalData.teacherinstruction = instruction.text;
         automaticallyImplyLeading: true,
         title: Center(
           child: Text(
-            "Assignment Question Bank",
+            "Set Class Assignment",
             style: TextStyle(fontSize: 18),
           ),
         ),
@@ -120,8 +120,8 @@ GlobalData.teacherinstruction = instruction.text;
           IconButton(
             onPressed: () {},
             icon: Icon(
-              Icons.account_circle,
-              color: Colors.transparent,
+              Icons.remove_red_eye,
+              color: Colors.white,
               size: 20,
             ),
           ),
