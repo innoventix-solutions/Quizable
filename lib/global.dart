@@ -1398,25 +1398,26 @@ class AllExerciseLog extends StatelessWidget {
 
 /* Preview Quiz*/
 
-class PreviewQuiz extends StatelessWidget {
+class PreviewQuizs extends StatelessWidget {
 
   final String heading;
   final String paragraph;
   final Color color;
   final String title;
   final String id;
-  final bool is_taken;
+ // final bool is_taken;
   final String levels;
   final String duration;
 
-  PreviewQuiz(
+
+  PreviewQuizs(
       {
         this.heading,
         this.paragraph,
         this.color,
         this.title,
         this.id,
-        this.is_taken,
+      //  this.is_taken,
         this.duration,
         this.levels});
 
@@ -1446,7 +1447,55 @@ class PreviewQuiz extends StatelessWidget {
                                     child: Text(heading,textAlign: TextAlign.left,
                                       style: TextStyle(color: Colors.white,fontSize: 15,fontWeight: FontWeight.bold),),
                                   ),
-                                ],
+                                  Expanded(
+                                    child:  Row(mainAxisAlignment: MainAxisAlignment.end,
+                                      children: <Widget>[
+                                        GlobalData.userType=="student"?Text(""):PopupMenuButton(
+                                          child: Icon(Icons.more_vert),
+                                          itemBuilder: (_) => <PopupMenuItem<String>>[
+                                            new PopupMenuItem<String>(
+                                                child: Row(
+                                                  children: <Widget>[
+                                                    Padding(
+                                                      padding: const EdgeInsets.only(right: 4),
+                                                      child: Icon(
+                                                        Icons.edit,
+                                                        color: GlobalData.lightblue,size: 12,
+                                                      ),
+                                                    ),
+                                                    new Text('Edit',style: TextStyle(fontSize: 15),),
+                                                  ],
+                                                ), value: 'edit'),
+
+
+                                            new PopupMenuItem<String>(
+                                                child: Row(
+                                                  children: <Widget>[
+                                                    Padding(
+                                                      padding: const EdgeInsets.only(right: 4,top: 1),
+                                                      child: Icon(
+                                                        Icons.cancel,
+                                                        color: GlobalData.darkpink,size: 12,
+                                                      ),
+                                                    ),
+                                                    new Text('Delete',style: TextStyle(fontSize: 15),),
+                                                  ],
+                                                ), value: 'delete'),
+
+                                          ],
+                                          onSelected: ( value){
+                                            if(value=="edit")
+                                            {
+                                              GlobalData.EditQuiz=true;
+                                              GlobalData.QuizID=id;
+                                              GlobalData.ExamQuiz=title;
+                                              Navigator.of(context).pushNamed('Question_List');
+                                            }
+                                          },
+                                        ),
+                                      ],
+                                    ),
+                                  ), ],
                               ),
                             ),
 
@@ -1470,7 +1519,7 @@ class PreviewQuiz extends StatelessWidget {
                 ),
               ),
 
-              GestureDetector(
+              /*GestureDetector(
                 onTap: (){
 
 
@@ -1503,7 +1552,37 @@ class PreviewQuiz extends StatelessWidget {
                   }
 
                 },
-                child:
+                child: GlobalData.userType=="student"?Row(
+                  children: <Widget>[
+                    Expanded(
+                      child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(5),),
+                          color: (is_taken==true)?Colors.blue:Colors.green),
+
+                        child: Padding(
+                          padding: const EdgeInsets.only(top: 5,bottom: 5),
+                          child: Column(
+                            children: <Widget>[
+                              Padding(
+                                padding: const EdgeInsets.only(top: 5,bottom: 5,left: 10),
+                                child: Row(
+                                    children: <Widget>[
+                                      Expanded(
+                                        child: Text(is_taken==true?"Quiz Report":"Give Exam",textAlign: TextAlign.center,
+                                          style: TextStyle(color: Colors.white,fontSize: 15,fontWeight: FontWeight.bold),),
+                                      ),
+
+                                    ]),
+                              ),
+
+                            ],
+
+                          ),
+                        ),
+
+                      ),
+                    ),
+                  ],
+                ):
                 Row(
                   children: <Widget>[
                     Expanded(
@@ -1536,7 +1615,8 @@ class PreviewQuiz extends StatelessWidget {
                   ],
                 )
                 ,
-              ),
+              ),*/
+
 
 
 

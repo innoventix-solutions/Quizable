@@ -95,13 +95,13 @@ class _PreviewQuizState extends State<PreviewQuiz> {
                         Navigator.of(context).pushNamed(GlobalData.userType=="student"?'exam':'Question_List');
                       },
                       child:  Quizz_List[i].is_taken==false?
-                      classactivitys(
+                      PreviewQuizs(
                         color: GlobalData.pinkred,
                         heading: Quizz_List[i].quiz_title,
                         paragraph: Quizz_List[i].quiz_subject,
                         id:Quizz_List[i].id ,
                         title: Quizz_List[i].quiz_title,
-                        is_taken: Quizz_List[i].is_taken,
+                        //is_taken: Quizz_List[i].is_taken,
                         duration: Quizz_List[i].dur_each_level,
                         levels: Quizz_List[i].no_of_levels,
                       ): SizedBox()
@@ -113,3 +113,6 @@ class _PreviewQuizState extends State<PreviewQuiz> {
     );
   }
 }
+
+
+
