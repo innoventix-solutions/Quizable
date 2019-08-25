@@ -90,6 +90,8 @@ class _questionmenuState extends State<questionmenu> {
                       GlobalData.EditQuiz=false;
                       GlobalData.QuizID=Quizz_List[i].id;
                       GlobalData.ExamQuiz=Quizz_List[i].quiz_title;
+                      GlobalData.DurationofEachLevel=Quizz_List[i].dur_each_level;
+                      GlobalData.QuizLevels=Quizz_List[i].no_of_levels;
                       Navigator.of(context).pushNamed(GlobalData.userType=="student"?'exam':'Question_List');
                     },
                     child: classactivitys(
@@ -98,6 +100,9 @@ class _questionmenuState extends State<questionmenu> {
                       paragraph: Quizz_List[i].quiz_subject,
                       id:Quizz_List[i].id ,
                       title: Quizz_List[i].quiz_title,
+                      is_taken: Quizz_List[i].is_taken,
+                      duration: Quizz_List[i].dur_each_level,
+                      levels: Quizz_List[i].no_of_levels,
                     ),
                   );
                 }),

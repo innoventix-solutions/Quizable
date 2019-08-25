@@ -56,7 +56,7 @@ class _TeacherInviteCodeState extends State<TeacherInviteCode> {
 
 
             Padding(
-              padding: const EdgeInsets.only(top: 65),
+              padding: const EdgeInsets.only(top: 25),
               child: Text(
                 'Teacher Invite Code',
                 style: TextStyle(color: GlobalData.lightblue, fontSize: 18,fontWeight: FontWeight.bold),
@@ -89,7 +89,6 @@ class _TeacherInviteCodeState extends State<TeacherInviteCode> {
 
                   ),
 
-
                   Container(
                       child: Card(elevation: 5.0,
                         shape: RoundedRectangleBorder(
@@ -100,9 +99,9 @@ class _TeacherInviteCodeState extends State<TeacherInviteCode> {
                               padding: const EdgeInsets.only(
                                   top: 15, bottom: 15, left: 45, right: 45),
                               child: Text(
-                                "Student code",
+                                GlobalData.teacher_code,
                                 textAlign: TextAlign.center,
-                                style: TextStyle(fontSize: 18,color: GlobalData.gray,fontWeight: FontWeight.bold),
+                                style: TextStyle(fontSize: 25,color: GlobalData.gray,fontWeight: FontWeight.bold),
                               ),
                             )),
                       )),
@@ -118,7 +117,8 @@ class _TeacherInviteCodeState extends State<TeacherInviteCode> {
                         color: GlobalData.lightblue,
                       ),
                       child: IconButton(onPressed: (){
-                        Share.share(GlobalData.Username +" Invites you to join the "+ GlobalData.class_name+" Please use this code "+GlobalData.student_code  +" to Join the Class.");},
+                        Share.share(GlobalData.Username +" Invites you to join the "+ GlobalData.class_name+" Please use this code "+GlobalData.teacher_code  +" to Join the Class.");},
+
                         icon: Icon(
                           Icons.share,
                           color: GlobalData.white,
@@ -128,7 +128,6 @@ class _TeacherInviteCodeState extends State<TeacherInviteCode> {
                 ],
               ),
             ),
-
 
 
 

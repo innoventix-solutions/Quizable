@@ -53,7 +53,8 @@ class _teacherdashboardState extends State<teacherdashboard> {
                 Padding(
                   padding: const EdgeInsets.only(top: 15),
                   child: Container(
-                    child: CircleAvatar(backgroundImage: AssetImage('assets/images/pic.png',),
+                    child: CircleAvatar(backgroundImage:GlobalData.Userphoto!=null?
+                    NetworkImage(GlobalData.Userphoto):AssetImage('assets/images/pic.png',),
                       radius: 35.0,
                     ),
                   ),
@@ -134,6 +135,7 @@ class _teacherdashboardState extends State<teacherdashboard> {
                                 ),
                               ),
                             ),onTap: (){
+
                             Navigator.of(context)
                                 .pushNamed('TeacherList');
                           },
@@ -169,27 +171,30 @@ class _teacherdashboardState extends State<teacherdashboard> {
 
 
                           ),onTap: (){Navigator.of(context)
-                            .pushNamed('manageclassactivities');},
+                            .pushNamed('Recentque');},
                         ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 15,right: 15),
-                          child: Container(height: 100,width: 150,
+                        GestureDetector(onTap: (){Navigator.of(context)
+        .pushNamed('manageclassactivities');},
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 15,right: 15),
+                            child: Container(height: 100,width: 150,
 
 
-                            child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(10),),color:GlobalData.orange,),
+                              child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(10),),color:GlobalData.orange,),
 
 
-                              child:Center(
-                                child: Column(mainAxisAlignment: MainAxisAlignment.center,
-                                  children: <Widget>[
-                                    Icon(Icons.speaker_notes,size: 50,color: Colors.white,),
-                                    Text("Report",textAlign: TextAlign.center,style: TextStyle(color: Colors.white,fontSize: 13,fontWeight: FontWeight.bold),),
-                                  ],
+                                child:Center(
+                                  child: Column(mainAxisAlignment: MainAxisAlignment.center,
+                                    children: <Widget>[
+                                      Icon(Icons.speaker_notes,size: 50,color: Colors.white,),
+                                      Text("Report",textAlign: TextAlign.center,style: TextStyle(color: Colors.white,fontSize: 13,fontWeight: FontWeight.bold),),
+                                    ],
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
 
+                          ),
                         ),
                       ],
                     ),
@@ -234,7 +239,8 @@ class _teacherdashboardState extends State<teacherdashboard> {
                   children: <Widget>[
                     Padding(
                       padding: const EdgeInsets.only(left: 5),
-                      child: CircleAvatar(backgroundImage: AssetImage('assets/images/pic.png',),
+                      child: CircleAvatar(backgroundImage:GlobalData.Userphoto!=null?
+                      NetworkImage(GlobalData.Userphoto):AssetImage('assets/images/pic.png',),
                         radius: 35.0,),
                     ),
                     Padding(
@@ -245,12 +251,12 @@ class _teacherdashboardState extends State<teacherdashboard> {
                           padding: const EdgeInsets.only(bottom: 15),
                           child: Text(GlobalData.Username,
                             style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,
-                                fontSize: 20),),
+                                fontSize: 14),),
                         ),
 
                           Text(GlobalData.class_name==null?"No Class Selected":GlobalData.class_name,
                             style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,
-                                fontSize: 16),),
+                                fontSize: 14),),
                         ],),
                     )
                   ],),
@@ -318,6 +324,8 @@ class _teacherdashboardState extends State<teacherdashboard> {
             },
             ),
 
+
+            GlobalData.userType=="teacher" ? SizedBox() :
             GestureDetector(
               child: Padding(
                 padding: const EdgeInsets.only(left: 45,top:20),

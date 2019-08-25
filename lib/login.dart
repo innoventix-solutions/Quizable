@@ -6,6 +6,7 @@ import 'classroomstudent.dart';
 import 'global.dart';
 import 'package:http/http.dart' as http;
 import 'package:newpro/Pojo/pojo_getclasses.dart';
+import 'package:newpro/Pojo/pojostydentlist.dart';  //14-8-19 a
 
 class login extends StatefulWidget {
   @override
@@ -73,12 +74,21 @@ class _loginState extends State<login> {
         prefs.setString("type", statuss['userdata']['user_type']);
         prefs.setString("name", statuss['userdata']['username']);
         prefs.setString("classname", statuss['userdata']['class_name']);
+        prefs.setString("phone", statuss['userdata']['phone_no']);  //14-8-19 a
+        prefs.setString("Fullname", statuss['userdata']['fullname']);  //14-8-19 a
+        prefs.setString("UserPhoto", statuss['userdata']['user_photo']);  //16-8-19  a
         GlobalData.Username=statuss['userdata']['username'];
+        GlobalData.Phone=statuss['userdata']['phone_no'];  //14-8-19 a
+        GlobalData.Fullname=statuss['userdata']['fullname'];  //14-8-19 a
+        GlobalData.Userphoto=statuss['userdata']['user_photo'];   //16-8-19  a
         print(statuss['userdata']['user_type']);
         print(statuss['userdata']['ID']);
         GlobalData.uid = statuss['userdata']['ID'].toString();
         GlobalData.Username = statuss['userdata']['username'].toString();
         GlobalData.class_name = statuss['userdata']['class_name'].toString();
+        GlobalData.userType = statuss['userdata']['user_type'].toString();
+        GlobalData.Phone = statuss['userdata']['phone_no'].toString();  //14-8-19 a
+        GlobalData.Fullname = statuss['userdata']['fullname'].toString();  //14-8-19 a
 
         if (statuss['userdata']['user_type'] == "teacher") {
           Navigator.of(context).pushReplacementNamed(GlobalData.Class_list.isEmpty?'techerjoinclass':'teacherSelectClass');
@@ -106,120 +116,130 @@ class _loginState extends State<login> {
     return Scaffold(
       body:
          Container(
-          decoration: BoxDecoration(
+           width: MediaQuery.of(context).size.width,
+           height: MediaQuery.of(context).size.height,
+           decoration: BoxDecoration(
               image: DecorationImage(
                   image: AssetImage('assets/images/bg2.png'), fit: BoxFit.cover)),
-          child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Image.asset(
-                  'assets/images/wlogo.png',
-                  width: 80,
-                ),
-                Container(
-                  width: 300,
-                  padding: EdgeInsets.only(top: 20),
-                  child: Column(
-                    children: <Widget>[
-                      Theme(
-                        data: ThemeData(hintColor: GlobalData.white),
-                        child: TextField(
-                          style: TextStyle(color: Colors.white, fontSize: 18),
-                          controller: email,
-                          decoration: InputDecoration(
-                              contentPadding: EdgeInsets.only(left: 5),
-                              border: new OutlineInputBorder(
-                                  borderRadius: new BorderRadius.circular(50.0),
-                                  borderSide: BorderSide(color: Colors.white)),
-                              prefixIcon: Icon(
-                                Icons.email,
-                                color: Colors.white,
-                              ),
-                              hintText: 'Email:',
-                              hintStyle:
-                                  TextStyle(color: Colors.white, fontSize: 18)),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 20),
-                        child: Container(
-                          width: 300,
-                          child: Theme(
-                            data: ThemeData(hintColor: GlobalData.white),
-                            child: TextField(obscureText: true,
-                              style: TextStyle(color: Colors.white, fontSize: 18),
-                              controller: pass,
-                              decoration: InputDecoration(
-                                  contentPadding: EdgeInsets.only(left: 5),
-                                  border: new OutlineInputBorder(
-                                    borderRadius: new BorderRadius.circular(50.0),
-                                  ),
-                                  prefixIcon: Icon(
-                                    Icons.lock,
-                                    color: Colors.white,
-                                  ),
-                                  hintText: 'Password:',
-                                  hintStyle: TextStyle(
-                                      color: Colors.white, fontSize: 18)),
-                            ),
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 10),
-                        child: Container(
-                            width: 270,
-                            child: Text(
-                              'Forgot Password?',
-                              textAlign: TextAlign.right,
-                              style: TextStyle(color: Colors.white, fontSize: 15),
-                            )),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 45),
-                        child: RaisedButton(
-                            padding: EdgeInsets.only(
-                                left: 80, right: 80, top: 13, bottom: 13),
-                            color: GlobalData.blue,
-                            child: new Text(
-                              "Log in",
-                              style: TextStyle(color: Colors.white, fontSize: 18),
-                            ),
-                            onPressed: () {
+           child: SingleChildScrollView(
+             child: Center(
+               child: Padding(
+                 padding: const EdgeInsets.only(top:100),
+                 child: Column(
+
+                   mainAxisAlignment: MainAxisAlignment.center,
+                   children: <Widget>[
+
+                     Image.asset(
+                       'assets/images/wlogo.png',
+                       width: 80,
+                     ),
+                     Container(
+                       width: 300,
+                       padding: EdgeInsets.only(top: 20),
+                       child: Column(
+                         children: <Widget>[
+                           Theme(
+                             data: ThemeData(hintColor: GlobalData.white),
+                             child: TextField(
+                               style: TextStyle(color: Colors.white, fontSize: 18),
+                               controller: email,
+                               decoration: InputDecoration(
+                                   contentPadding: EdgeInsets.only(left: 5),
+                                   border: new OutlineInputBorder(
+                                       borderRadius: new BorderRadius.circular(50.0),
+                                       borderSide: BorderSide(color: Colors.white)),
+                                   prefixIcon: Icon(
+                                     Icons.email,
+                                     color: Colors.white,
+                                   ),
+                                   hintText: 'Email:',
+                                   hintStyle:
+                                       TextStyle(color: Colors.white, fontSize: 18)),
+                             ),
+                           ),
+                           Padding(
+                             padding: const EdgeInsets.only(top: 20),
+                             child: Container(
+                               width: 300,
+                               child: Theme(
+                                 data: ThemeData(hintColor: GlobalData.white),
+                                 child: TextField(obscureText: true,
+                                   style: TextStyle(color: Colors.white, fontSize: 18),
+                                   controller: pass,
+                                   decoration: InputDecoration(
+                                       contentPadding: EdgeInsets.only(left: 5),
+                                       border: new OutlineInputBorder(
+                                         borderRadius: new BorderRadius.circular(50.0),
+                                       ),
+                                       prefixIcon: Icon(
+                                         Icons.lock,
+                                         color: Colors.white,
+                                       ),
+                                       hintText: 'Password:',
+                                       hintStyle: TextStyle(
+                                           color: Colors.white, fontSize: 18)),
+                                 ),
+                               ),
+                             ),
+                           ),
+                           Padding(
+                             padding: const EdgeInsets.only(top: 10),
+                             child: Container(
+                                 width: 270,
+                                 child: Text(
+                                   'Forgot Password?',
+                                   textAlign: TextAlign.right,
+                                   style: TextStyle(color: Colors.white, fontSize: 15),
+                                 )),
+                           ),
+                           Padding(
+                             padding: const EdgeInsets.only(top: 45),
+                             child: RaisedButton(
+                                 padding: EdgeInsets.only(
+                                     left: 80, right: 80, top: 13, bottom: 13),
+                                 color: GlobalData.blue,
+                                 child: new Text(
+                                   "Log in",
+                                   style: TextStyle(color: Colors.white, fontSize: 18),
+                                 ),
+                                 onPressed: () {
 //                        print(email.text.toString());
 //                        print(pass.text.toString());
-                              login();
-                            },
-                            shape: new RoundedRectangleBorder(
-                                borderRadius: new BorderRadius.circular(30.0))),
-                      ),
-                      
-                      Padding(
-                        padding: const EdgeInsets.only(top: 10),
-                        child: Text("Don't have an account?",style: TextStyle(color: Colors.white,fontSize: 14),),
-                      ),
+                                   login();
+                                 },
+                                 shape: new RoundedRectangleBorder(
+                                     borderRadius: new BorderRadius.circular(30.0))),
+                           ),
 
-                      GestureDetector(
-                        child: Padding(
-                          padding: const EdgeInsets.only(top: 10),
-                          child: Text("Sign up",style: TextStyle(color: Colors.white,fontSize: 16,
-                              fontWeight:FontWeight.bold ),),
-                        ),onTap: (){
-                        Navigator.of(context)
-                            .pushNamed('returnsignup');
-                      },
-                      ),
+                           Padding(
+                             padding: const EdgeInsets.only(top: 10),
+                             child: Text("Don't have an account?",style: TextStyle(color: Colors.white,fontSize: 14),),
+                           ),
+
+                           GestureDetector(
+                             child: Padding(
+                               padding: const EdgeInsets.only(top: 10),
+                               child: Text("Sign up",style: TextStyle(color: Colors.white,fontSize: 16,
+                                   fontWeight:FontWeight.bold ),),
+                             ),onTap: (){
+                             Navigator.of(context)
+                                 .pushNamed('returnsignup');
+                           },
+                           ),
 
 
 
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
+                         ],
+                       ),
+                     ),
+
+                   ],
+                 ),
+               ),
+             ),
+           ),
+         ),
 
     );
   }

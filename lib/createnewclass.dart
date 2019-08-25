@@ -20,7 +20,7 @@ class _createnewclassState extends State<createnewclass> {
   File _image;
 
   Future getImage() async {
-    var file = await ImagePicker.pickImage(source: ImageSource.gallery);
+    var file = await ImagePicker.pickImage(source: ImageSource.gallery, maxHeight:  200 , maxWidth: 200);
     _image = file;
     List<int> imagebytes = await file.readAsBytesSync();
     image64 = await base64.encode(imagebytes);

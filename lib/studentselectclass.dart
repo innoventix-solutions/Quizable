@@ -72,7 +72,7 @@ print(GlobalData.activeclass.classname);
                                           shape: BoxShape.circle,
                                           image: new DecorationImage(
                                             fit: BoxFit.fill,
-                                            image:AssetImage('assets/images/bg.png'),
+                                            image:NetworkImage(GlobalData.Class_list[index].classicon),
                                           )
                                       ),),
                                   ],
@@ -140,6 +140,12 @@ print(GlobalData.activeclass.classname);
                   ),
                    ],
               ),
+            ),
+            GestureDetector(
+              onTap: (){Navigator.of(context)
+                  .pushNamed('GlobalQuiz');},
+              child: Container(padding: EdgeInsets.only(top: 5,bottom: 5),
+                  child: Text('Global Quiz',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18,color: GlobalData.lightblue),)),
             ),
 
           ],

@@ -1,5 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:newpro/global.dart';
+import 'dart:convert';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'global.dart';
+import 'dart:io';
+import 'package:image_picker/image_picker.dart';
+import 'package:http/http.dart' as http;
+import 'package:newpro/Pojo/pojostydentlist.dart';
 
 class StudentEditProfile extends StatefulWidget {
   @override
@@ -7,7 +14,119 @@ class StudentEditProfile extends StatefulWidget {
 }
 
 class _StudentEditProfileState extends State<StudentEditProfile> {
-  String selectedvalue = "Male";
+
+  TextEditingController Name = new TextEditingController(text: GlobalData.Fullname);
+  TextEditingController Phone = new TextEditingController(text: GlobalData.Phone);
+
+
+  SharedPreferences shared;
+  String image64 = "";
+  File _image;
+
+  Future getImage() async {
+    var file = await ImagePicker.pickImage(source: ImageSource.gallery);
+    _image = file;
+    List<int> imagebytes = await file.readAsBytesSync();
+    image64 = await base64.encode(imagebytes);
+    setState(() {});
+  }
+
+
+  GetShared() async {
+    shared = await SharedPreferences.getInstance();
+
+    shared.setString("name", Name.text.toString());
+    shared.setString("phone", Phone.text.toString());
+
+
+  }
+
+
+  getvalue() async {
+    shared = await SharedPreferences.getInstance();
+
+    Name.text=shared.getString("name");
+    Phone.text=shared.getString("phone");
+
+  }
+
+
+
+  editprofile()async{
+
+    await http.post("http://edusupportapp.com/api/update_profile.php",
+        body:{
+          "user_id":GlobalData.uid,
+          "image":image64,
+          "Fullname":Name.text.toString(),
+          "phone_no":Phone.text.toString(),
+
+
+        }).then((response) async {
+      print(response.body);
+      var ParsedJson = jsonDecode(response.body);
+
+      if (ParsedJson['status'] == 1) {
+
+        Navigator.of(context)
+            .pushNamed('studentdashboard');
+
+
+        SharedPreferences preferences =  await SharedPreferences.getInstance();
+        GlobalData.Fullname = Name.text;
+        GlobalData.Phone = Phone.text;
+        GlobalData.Userphoto= ParsedJson['userdata']['user_photo'];
+        preferences.setString("name",GlobalData.Fullname);
+        preferences.setString("phone", GlobalData.Phone);
+        preferences.setString("userphoto", GlobalData.Userphoto);
+      }else
+      {
+        Show_toast_Now(ParsedJson['msg'],Colors.green);
+      }
+    });
+
+    setState(() {
+
+    });
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getvalue();
+    print(GlobalData.uid);
+
+  }
+
+
+
+
+  void ShowDialog({String Msg}) {
+    // flutter defined function
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        // return object of type Dialog
+        return AlertDialog(
+          content: new Text(Msg==null?"Updated Successfully":Msg),
+        );
+      },
+    );
+  }
+  void ShowDialog1({String Msg}) {
+    // flutter defined function
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        // return object of type Dialog
+        return AlertDialog(
+          content: new Text(Msg==null?"Invalid user":Msg),
+        );
+      },
+    );
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +155,7 @@ class _StudentEditProfileState extends State<StudentEditProfile> {
               onPressed: () {},
               icon: Icon(
                 Icons.account_circle,
-                color: Colors.white,
+                color: Colors.transparent,
                 size: 20,
               ),
             ),
@@ -49,14 +168,34 @@ class _StudentEditProfileState extends State<StudentEditProfile> {
               children: <Widget>[
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Container(
+                  child: GestureDetector(onTap: (){getImage();},
+                    child: Container(
                       height: 80,width: 80,
-                      decoration: new BoxDecoration(
-                          shape: BoxShape.circle,
+                      decoration:_image!=null?
+                      new BoxDecoration(
+
+                          borderRadius: BorderRadius.all(Radius.circular(100),),
+                        
                           image: new DecorationImage(
-                            fit: BoxFit.fill,
-                            image: AssetImage('assets/images/bg.png'),
-                          ))),
+                            fit: BoxFit.cover,
+                            image: FileImage(_image),
+
+                          ),border: Border.all(color: Colors.black,width: 5)):
+                      GlobalData.Userphoto!=null?
+                      BoxDecoration(
+                        image: DecorationImage(image: NetworkImage(GlobalData.Userphoto),fit: BoxFit.cover),
+                        borderRadius: BorderRadius.all(Radius.circular(100)),
+
+                      ):BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(100)),
+                          color: Colors.black,
+                          image: DecorationImage(image: AssetImage('assets/images/user.jpg'),fit: BoxFit.cover)
+
+
+                      )
+
+                      ,),
+                  ),
                 ),
                 Text("Change Profile"),
                 Column(
@@ -70,33 +209,13 @@ class _StudentEditProfileState extends State<StudentEditProfile> {
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: <Widget>[
                                 Text(
-                                  "Name",
+                                  "Fullname",
                                   style: TextStyle(fontSize: 18),
                                   textAlign: TextAlign.start,
                                 ),
                               ],
                             ),
-                            CustomTextField(),
-                          ],
-                        ),
-                      ),
-                    ),
-                    Container(
-                      padding: EdgeInsets.only(left: 40, right: 40, top: 10),
-                      child: Center(
-                        child: Column(
-                          children: <Widget>[
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: <Widget>[
-                                Text(
-                                  "DOB",
-                                  style: TextStyle(fontSize: 18),
-                                  textAlign: TextAlign.start,
-                                ),
-                              ],
-                            ),
-                            CustomTextField(),
+                            CustomTextFieldBorderNew(controller: Name,),
                           ],
                         ),
                       ),
@@ -111,125 +230,14 @@ class _StudentEditProfileState extends State<StudentEditProfile> {
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: <Widget>[
                                 Text(
-                                  "Change Mobile Number",
+                                  "Phone Number",
                                   style: TextStyle(fontSize: 18),
                                   textAlign: TextAlign.start,
                                 ),
                               ],
                             ),
-                            CustomTextField(),
+                            CustomTextFieldBorderNew(controller: Phone,keyboardtype: TextInputType.phone,),
 
-                          ],
-                        ),
-                      ),
-                    ),
-
-                    Container(
-                      padding: EdgeInsets.only(left: 40, right: 40,top: 10),
-                      child: Center(
-                        child: Column(
-                          children: <Widget>[
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: <Widget>[
-                                Text(
-                                  "Parent's Email",
-                                  style: TextStyle(fontSize: 18),
-                                  textAlign: TextAlign.start,
-                                ),
-                              ],
-                            ),
-                            CustomTextField(),
-
-                          ],
-                        ),
-                      ),
-                    ),
-
-                    Container(
-                      padding: EdgeInsets.only(left: 40, right: 40,top: 10),
-                      child: Center(
-                        child: Column(
-                          children: <Widget>[
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: <Widget>[
-                                Text(
-                                  "Parent's Mobile Number",
-                                  style: TextStyle(fontSize: 18),
-                                  textAlign: TextAlign.start,
-                                ),
-                              ],
-                            ),
-                            CustomTextField(),
-
-                          ],
-                        ),
-                      ),
-                    ),
-
-
-                    Container(
-                      padding: EdgeInsets.only(left: 40, right: 40,top: 10),
-                      child: Center(
-                        child: Column(
-                          children: <Widget>[
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: <Widget>[
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: <Widget>[
-                                    Text(
-                                      "Gender",
-                                      style: TextStyle(fontSize: 18),
-                                      textAlign: TextAlign.start,
-                                    ),
-                                  ],
-                                ),
-                                Card(elevation: 5.0,
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(10.0),),
-
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: <Widget>[
-                                      Container(padding: EdgeInsets.only(left: 25,right: 30,top: 13,bottom: 13),
-                                        child: Column(
-                                          crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                          children: <Widget>[
-                                            Center(
-                                              child: DropdownButton(
-                                                value: selectedvalue,
-                                                isDense: true,
-
-                                                onChanged: (String newValue) {
-                                                  selectedvalue = newValue;
-
-                                                  setState(() {});
-                                                },
-                                                items: [
-                                                  "Male",
-                                                  "Female"
-                                                ].map((String value) {
-                                                  return DropdownMenuItem(
-                                                    value: value,
-                                                    child: Text(value),
-                                                  );
-                                                }).toList(),
-                                              ),
-
-//
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
 
 
 
@@ -237,10 +245,17 @@ class _StudentEditProfileState extends State<StudentEditProfile> {
                         ),
                       ),
                     ),
-
-
-
                     Padding(
+                      padding: const EdgeInsets.only(top: 20,bottom: 20),
+                      child: GradientButtonText(
+                        linearGradient:LinearGradient(colors: <Color>[GlobalData.purple,GlobalData.pink]) ,
+                        text: Text("Save Changes",style: TextStyle(color: Colors.white,
+                          fontWeight: FontWeight.bold,fontSize: 15,),textAlign: TextAlign.center,),
+                        ButtonClick: (){editprofile();GetShared();},
+                      ),
+                    ),
+
+                    /* Padding(
                       padding: const EdgeInsets.only(top: 20),
                       child: Text("Contact:",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
                     ),
@@ -261,14 +276,7 @@ class _StudentEditProfileState extends State<StudentEditProfile> {
                             decoration: TextDecoration.underline
                         ),),onTap: (){},
                       ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 20,bottom: 20),
-                      child: GradientButtonText(
-                        linearGradient:LinearGradient(colors: <Color>[GlobalData.purple,GlobalData.pink]) ,text: Text("Save Changes",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 15,),textAlign: TextAlign.center,),
-                      ),
-                    ),
-
+                    ),*/
                   ],
                 )
               ],

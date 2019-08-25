@@ -122,10 +122,14 @@ setalldetails(){
         ),
         actions: <Widget>[
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context)
+                  .pushNamed(
+                  'previewQuiz');
+            },
             icon: Icon(
-              Icons.account_circle,
-              color: Colors.transparent,
+              Icons.remove_red_eye,
+              color: Colors.white,
               size: 20,
             ),
           ),
@@ -479,11 +483,8 @@ setalldetails(){
                                   ),
                                   textAlign: TextAlign.center,
                                 ),ButtonClick: (){
-
                                   setalldetails();
                                   SaveQuiz();
-
-
                               },
                               ),
                             ),
@@ -557,14 +558,14 @@ setalldetails(){
 
     print(
       "quiz_title : "+ GlobalData.QuizTitle +
-      "techer_id : "+ GlobalData.uid +
-      "no_of_levels : "+ GlobalData.QuizLevels +
-      "que_each_level :"+ GlobalData.NosofQuesPerLevel +
-      "dur_each_level :"+ GlobalData.DurationofEachLevel +
-      "quiz_subject : "+ GlobalData.Selected_subject +
-      "class_id : "+
-      "publish_date : 2019-06-23 00:00:01"+
-      "closing_date : 2019-06-26 00:00:01"
+      "\ntecher_id : "+ GlobalData.uid +
+      "\nno_of_levels : "+ GlobalData.QuizLevels +
+      "\nque_each_level :"+ GlobalData.NosofQuesPerLevel +
+      "\ndur_each_level :"+ GlobalData.DurationofEachLevel +
+      "\nquiz_subject : "+ GlobalData.Selected_subject +
+      "\nclass_id : "+
+      "\npublish_date : 2019-06-23 00:00:01"+
+      "\nclosing_date : 2019-06-26 00:00:01"
 
     );
 

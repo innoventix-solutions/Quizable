@@ -95,7 +95,8 @@ class _studentdashboardState extends State<studentdashboard> {
                   children: <Widget>[
                     Padding(
                       padding: const EdgeInsets.only(left: 5),
-                      child: CircleAvatar(backgroundImage: AssetImage('assets/images/pic.png',),
+                      child: CircleAvatar(backgroundImage:GlobalData.Userphoto!=null?
+                      NetworkImage(GlobalData.Userphoto):AssetImage('assets/images/pic.png',),
                         radius: 35.0,),
                     ),
                     Padding(
@@ -106,7 +107,7 @@ class _studentdashboardState extends State<studentdashboard> {
                           padding: const EdgeInsets.only(bottom: 15),
                           child: Text(GlobalData.Username,
                             style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,
-                                fontSize: 20),),
+                                fontSize: 14),),
 
                         ),
 
@@ -114,7 +115,7 @@ class _studentdashboardState extends State<studentdashboard> {
                           Container(
                             child: Text(GlobalData.activeclass!=null?GlobalData.activeclass.classname:"No Class Selected",
                               style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,
-                                  fontSize: 12),),
+                                  fontSize: 14),),
                           ),
 
                         ],),
@@ -227,7 +228,7 @@ class _studentdashboardState extends State<studentdashboard> {
             },
 
 
-            
+
             ),
 
 
@@ -250,7 +251,8 @@ class _studentdashboardState extends State<studentdashboard> {
                   Padding(
                     padding: const EdgeInsets.only(top: 15),
                     child: Container(
-                      child: CircleAvatar(backgroundImage: AssetImage('assets/images/pic.png',),
+                      child: CircleAvatar(backgroundImage:GlobalData.Userphoto!=null?
+                      NetworkImage(GlobalData.Userphoto):AssetImage('assets/images/pic.png',),
                         radius: 35.0,
                       ),
                     ),
@@ -266,7 +268,8 @@ class _studentdashboardState extends State<studentdashboard> {
                     padding: const EdgeInsets.only(top: 10),
                     child: Text(GlobalData.activeclass!=null?GlobalData.activeclass.classname:"No Class Selected",style:
                     TextStyle(fontSize: 18,color:GlobalData.gray,fontWeight: FontWeight.bold),),
-                  ),Padding(
+                  ),
+                  /*Padding(
                     padding: const EdgeInsets.only(top: 10),
                     child: GestureDetector(onTap: (){
                       Navigator.of(context).pushReplacementNamed('studentselectclass');
@@ -274,9 +277,9 @@ class _studentdashboardState extends State<studentdashboard> {
                       child: Text('Switch Classroom',style:
                       TextStyle(fontSize: 15,color: GlobalData.pinkred,decoration: TextDecoration.underline),),
                     ),
-                  ),
+                  ),*/
 
-                  Padding(
+                 /* Padding(
                     padding: const EdgeInsets.only(top: 10,left: 35,right: 35,bottom: 5),
                     child: Row(
                       children: <Widget>[
@@ -293,9 +296,9 @@ class _studentdashboardState extends State<studentdashboard> {
                               },)),
                       ],
                     ),
-                  ),
+                  ),*/
                   Padding(
-                    padding: const EdgeInsets.only(left: 35,right: 35,bottom: 5),
+                    padding: const EdgeInsets.only(top:10,left: 35,right: 35,bottom: 5),
                     child: Row(
                       children: <Widget>[
                         Expanded(
@@ -306,7 +309,7 @@ class _studentdashboardState extends State<studentdashboard> {
                                     fontSize: 18),textAlign: TextAlign.center,),
                               ButtonClick: (){
 
-                                Navigator.of(context).pushNamed('Quiz_List_student');
+                                Navigator.of(context).pushNamed('MyClassActivities');
 
                               },)),
                       ],
@@ -318,6 +321,7 @@ class _studentdashboardState extends State<studentdashboard> {
                       children: <Widget>[
                         Expanded(
                             child: GradientButtonText(
+
                               linearGradient:LinearGradient(
                                   colors: <Color>[GlobalData.navy,GlobalData.navyblue]) ,
                               text: Text("View my Classroom",
@@ -325,6 +329,7 @@ class _studentdashboardState extends State<studentdashboard> {
                                   fontWeight: FontWeight.bold,fontSize: 18,),
                                 textAlign: TextAlign.center,),
                               ButtonClick: (){
+                                Navigator.of(context).pushNamed('studentselectclass');
                                 },)
                         ),
                       ],
@@ -343,6 +348,7 @@ class _studentdashboardState extends State<studentdashboard> {
                                   fontWeight: FontWeight.bold,fontSize: 18,),
                                 textAlign: TextAlign.center,),
                               ButtonClick: (){
+                                Navigator.of(context).pushNamed('Quiz_List_student');
                                },)
                         ),
                       ],
@@ -451,7 +457,7 @@ class _studentdashboardState extends State<studentdashboard> {
             ),
 
 
-            Container(
+           /* Container(
               width: MediaQuery.of(context).size.width,
 
               child: Column(
@@ -530,6 +536,13 @@ class _studentdashboardState extends State<studentdashboard> {
 
                 ],
               ),
+            ),*/
+
+            GestureDetector(
+              onTap: (){Navigator.of(context)
+                  .pushNamed('GlobalQuiz');},
+              child: Container(padding: EdgeInsets.only(top: 15,bottom: 15),
+                  child: Text('Global Quiz',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18,color: GlobalData.lightblue),)),
             ),
 
           ],

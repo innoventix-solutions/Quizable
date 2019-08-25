@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:share/share.dart';
 import 'Edit_Question.dart';
-import 'Questions_list.dart';
+import 'Questions_list_new.dart';
 import 'Quiz_list_student.dart';
+import 'RecentQuestion.dart';
+import 'StudentByQuiz.dart';
 import 'TeacherClassList.dart';
 import 'globalvar.dart';
 import 'manageclassactivitesGlobal.dart';
@@ -68,7 +70,11 @@ import 'StudentInviteCode.dart';
 import 'TeacherInviteCode.dart';
 import 'TeacherList.dart';
 import 'GameRoom.dart';
-
+import 'AnswerLog.dart';
+import 'SetAssignmentQuestion.dart';    //19-8-19
+import 'Selectassignmentclass.dart';    //19-8-19
+import 'MyQuizExerciseLog.dart';        //22-8-19
+import 'PreviewQuiz.dart';              //23-8-19
 
 void main() {
   runApp(MyApp());
@@ -129,14 +135,22 @@ class MyApp extends StatelessWidget {
         'ManageAccount':(context)=>ManageAccount(),
         'EditProfile':(context)=>adminprofile(),
         'EditProfileStudent':(context)=>StudentEditProfile(),
-        'SetAssignment':(context)=>Assignment(),
+        'SetAssignment':(context)=>assignmentquestionbank(),
         'SetSpelling':(context)=>SpellingChallange(),
         'TeacherInviteCode':(context)=>TeacherInviteCode(),
         'StudentInviteCode':(context)=>StudentInviteCode(),
         'GameRoom':(context)=>GameRoom(),
         'StudentList':(context)=>StudentList(),
         'TeacherList':(context)=>TeacherList(),
-
+        'AnswerLog':(context)=>AnswerLog(),
+        'StudentListByQuiz':(context)=>StudentListByQuiz(),
+        'selectassignmentclass':(context)=>Selectassignmentclass(),  //20-8-19
+        'SetAssignmentQuestion':(context)=>SetAssignmentQuestion(),  //20-8-19
+        'AssignmentQuestionBank':(context)=>assignmentquestionbank(),//20-8-19
+        'Recentque':(context)=>RecentQuestion(),                     //21-8-19
+        'MyClassActivities':(context)=>myclassactivities(),          //22-8-19
+        'MyQuizExerciseLog':(context)=>MyQuizExerciseLog(),          //22-8-19
+        'previewQuiz':(context)=>PreviewQuiz(),                      //23-8-19
       },
     );
   }

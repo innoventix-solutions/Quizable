@@ -9,6 +9,8 @@ import 'Pojo/pojo_matchs.dart';
 import 'Utils/CustomWidgets.dart';
 import 'global.dart';
 import 'package:newpro/Pojo/pojo_questions.dart';
+import 'package:newpro/Pojo/pojo_quizzes.dart';
+import 'package:newpro/Pojo/pojo_anslog.dart';
 
 class Exam extends StatefulWidget {
   @override
@@ -17,11 +19,12 @@ class Exam extends StatefulWidget {
 
 class _ExamState extends State<Exam> {
 
-
+  int Changed=0;
   CountDown cd ;
   int CurrentPage =0;
   PageController pageController = new PageController();
   List<Pojo_questions> Quetions = new List();
+  List<Pojo_quizzes> timer = new List();
   int i=0;
   List<Pojo_Matchs> matchs = new List();
   String ExamAnswer ="";
@@ -35,8 +38,10 @@ class _ExamState extends State<Exam> {
   List<String> _list = new List();
   bool isloading = true;
   String TimerText ="-:--:--";
+  int timermins = int.parse(GlobalData.DurationofEachLevel=="0"||GlobalData.DurationofEachLevel==null?"15".toString():GlobalData.DurationofEachLevel)*int.parse(GlobalData.QuizLevels);
 
-  int timermins = 1;
+
+  List<pojo_anslog> anslist = new List();
 
   Timmer(){
    cd = CountDown(Duration(minutes: timermins));
@@ -55,13 +60,16 @@ class _ExamState extends State<Exam> {
     });
   }
 
+  void changenow(){
+    _list.shuffle();
+  }
+
 
   @override
   dispose()
   {
     cd.isPaused=true;
      super.dispose();
-
   }
 
   GetQuestions() async{
@@ -99,6 +107,10 @@ class _ExamState extends State<Exam> {
         _list.add(item.val2);
       }
       print(_list.length);
+      if(Changed==0)
+        {
+          changenow();
+        }
     }
 
 
@@ -116,17 +128,17 @@ class _ExamState extends State<Exam> {
                         child: ListView.builder(
                           controller: controller,
                           itemCount: Matches.length,
-
                             itemBuilder: (c,i){
-                            return Container(
-                              color: Colors.green[300],
-                              child: ListTile(
-
-                                title: Text( Matches[i].val1),
-                                leading: Icon(Icons.add,color: Colors.transparent,),
+                            return Padding(
+                              padding: const EdgeInsets.all(2.0),
+                              child: Container(
+                                color: Colors.green[300],
+                                child: ListTile(
+                                  title: Text( Matches[i].val1),
+                                  leading: Icon(Icons.add,color: Colors.transparent,),
+                                ),
                               ),
                             );
-
                         }),
                       ),
                     ],
@@ -136,10 +148,10 @@ class _ExamState extends State<Exam> {
                       children: <Widget>[
                         Expanded(
                           child: ReorderableListView(
-
-
-                            children: _list.map((item) => Container( key: Key("${item}con"),
-                                color:Colors.amber,child: ListTile( key: Key("${item}"), title: Text("${item}"), trailing: Icon(Icons.menu),))).toList(),
+                            children: _list.map((item) =>Padding(key: Key("${item}+padding"),
+  padding: const EdgeInsets.all(2.0),
+  child: Container( key: Key("${item}con"),
+                                color:Colors.amber,child: ListTile( key: Key("${item}"), title: Text("${item}"), trailing: Icon(Icons.menu),)),)).toList(),
                             onReorder: (int start, int current) {
                               // dragging from top to bottom
                               if (start < current) {
@@ -171,8 +183,6 @@ class _ExamState extends State<Exam> {
                 ],
               ),
             );
-
-
       case "True False":
           return Card(
             child: Column(
@@ -273,6 +283,10 @@ class _ExamState extends State<Exam> {
           return Card(
             child: Column(
               children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(type=="Fill-in the gaps"?"Note : For multiple blanks question please consider answer which has proper sequence of the words separated by underscore '_' .":"",style: TextStyle(color: Colors.red),),
+                ),
                 Row(
                   children: <Widget>[
                     Expanded(
@@ -313,8 +327,6 @@ class _ExamState extends State<Exam> {
                   ],
                 ),
 
-
-
               ],
             ),);
     }
@@ -326,6 +338,7 @@ class _ExamState extends State<Exam> {
     // TODO: implement initState
     super.initState();
 
+    print(GlobalData.userType);
     Timmer();
     GetQuestions();
 
@@ -454,7 +467,20 @@ class _ExamState extends State<Exam> {
                             answ=jsonEncode(Matches);
                             print(answ);
 
-                          }else {
+                          }else if(Quetions[i].answer_type=="True False")
+                        {
+
+                          answ=TrueorFalse;
+
+                        if(TrueorFalse=="true")
+                          {
+                            answ="false";
+                          }else
+                            {
+                              answ="true";
+                            }
+
+                        }else{
                           for (int i = 0; i < Options.length; i++) {
                             if (Options[i].trueanswer == true) {
                               answ += Options[i].value;
@@ -463,6 +489,8 @@ class _ExamState extends State<Exam> {
                         }
 
                         GiveAnswer(answ);
+                        TrueorFalse="";
+                        Changed=0;
                         i++;
                         if(i==Quetions.length)
                         {
@@ -605,6 +633,8 @@ Matches =Quetions[i].anwer_options;*/
     }).then((res){
       print(res.body);
     });
+
+    print("Your Answer : "+answer);
     
   }
 
@@ -668,10 +698,13 @@ Matches =Quetions[i].anwer_options;*/
                                           child: SizedBox(width: 100,
                                             child: GradientButtonText(
                                               ButtonClick: (){
+
+
+
                                                 Navigator.of(context).pop();
 
                                                 Navigator.of(context).pop();
-                                                Navigator.of(context).pushNamed('Quiz_List_student');
+                                                Navigator.of(context).pushNamed('studentdashboard');
                                                 setState(() {
 
                                                 });
