@@ -1027,6 +1027,7 @@ ClearRegisterData(){
  GlobalData.AssignmentTitle="";  //20-8-19
   GlobalData.NosofQuesassignment="";   //20-8-19
   GlobalData.teacherinstruction="";   //20-8-19
+  GlobalData.AssignmentID="";         //26-8-19
 }
 
 
