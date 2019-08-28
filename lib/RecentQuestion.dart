@@ -101,7 +101,8 @@ class _RecentQuestionState extends State<RecentQuestion> {
                   }),
             ),
             Expanded(
-              child: ListView.builder(
+              child:Quizz_List.isEmpty ? Center(child: Text('You have not published any class activity yet')) :
+              ListView.builder(
                   itemCount: 1,
                   itemBuilder: (c,i){
                     return GestureDetector(
@@ -119,7 +120,8 @@ class _RecentQuestionState extends State<RecentQuestion> {
                   }),
             ),
             Expanded(
-              child: ListView.builder(
+              child:Quizz_List.isEmpty ? Center(child: Text('You have not published any class activity yet')) :
+              ListView.builder(
                   itemCount: 1,
                   itemBuilder: (c,i){
                     return GestureDetector(

@@ -1422,6 +1422,19 @@ class PreviewQuizs extends StatelessWidget {
         this.duration,
         this.levels});
 
+  Delete() async{
+
+    await http.post("http://edusupportapp.com/api/delete_quiz.php",
+        body: {
+          "quiz_id":GlobalData.QuizID,
+        }).then((res){
+      print(res.body);
+
+
+
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return
@@ -1492,6 +1505,10 @@ class PreviewQuizs extends StatelessWidget {
                                               GlobalData.ExamQuiz=title;
                                               Navigator.of(context).pushNamed('Question_List');
                                             }
+                                            if(value=="delete")
+                                              {
+                                                Delete();
+                                              }
                                           },
                                         ),
                                       ],
