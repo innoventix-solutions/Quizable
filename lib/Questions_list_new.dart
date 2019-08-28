@@ -217,6 +217,24 @@ class _Question_ListState extends State<Question_List> {
 
   }
 
+  /* 28-8 delete question*/
+
+  Delete() async{
+
+    await http.post("http://edusupportapp.com/api/delete_quiz_question.php",
+        body: {
+          "quiz_id":GlobalData.QuizID,
+          "question_id":GlobalData.question
+        }).then((res){
+      print(res.body);
+
+      setState(() {
+
+      });
+
+    });
+  }
+
   @override
   dispose();  //23-8-19
 
@@ -250,7 +268,15 @@ class _Question_ListState extends State<Question_List> {
                               Navigator.of(context).pushNamed('edit_question');
 
                             },child: Icon(Icons.edit,color: Colors.white,))
-                            ,SizedBox(width: 10,)
+                            ,SizedBox(width: 10,),
+
+                            GestureDetector(
+                                onTap: (){
+                                  Delete();
+
+                                },child: Icon(Icons.cancel,color: Colors.white,)),
+                            SizedBox(width: 10,),
+
                           ],
                         ),
                       ),
