@@ -1422,6 +1422,8 @@ class PreviewQuizs extends StatelessWidget {
         this.duration,
         this.levels});
 
+
+  // 28-8-19 a
   Delete() async{
 
     await http.post("http://edusupportapp.com/api/delete_quiz.php",
@@ -1505,8 +1507,8 @@ class PreviewQuizs extends StatelessWidget {
                                               GlobalData.ExamQuiz=title;
                                               Navigator.of(context).pushNamed('Question_List');
                                             }
-                                            if(value=="delete")
-                                              {
+                                            if(value=="delete")     //28-8-19 a
+                                               {
                                                 Delete();
                                               }
                                           },
