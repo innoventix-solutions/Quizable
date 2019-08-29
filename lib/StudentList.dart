@@ -42,6 +42,25 @@ class _StudentListState extends State<StudentList> {
     });
   }
 
+
+  /* 28-8 delete student*/
+
+  Delete() async{
+
+    await http.post("http://edusupportapp.com/api/delete_user_from_class.php",
+        body: {
+          "class_id":GlobalData.classid,
+          "user_id":GlobalData.uid
+        }).then((res){
+      print(res.body);
+
+        setState(() {
+
+        });
+
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -143,19 +162,19 @@ class _StudentListState extends State<StudentList> {
                                                 ),
                                                 new Text('Remove',style: TextStyle(fontSize: 15),),
                                               ],
-                                            ), ),
-
-
-
-
+                                            ),  value: 'delete'),
                                         ],
+                                        onSelected: ( value){
 
-                                      ),
+                                          if(value=="delete")
+                                          {
+                                            Delete();
+                                          }
+                                        },
+                                   ),
                                     ],
                                   ),
                                 ):SizedBox(),
-
-
 
                               ], ),
 
