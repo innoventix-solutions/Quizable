@@ -491,7 +491,7 @@ GlobalData.teacherinstruction = instruction.text;
         if(statuss['status']==1){
 
 
-         /* GlobalData.QuizID=statuss['quizdata']['ID'];*/
+          GlobalData.AssignmentID=statuss['Assignmentdata']['ID'];
           print(GlobalData.AssignmentID);
           print("set assignment");
           //  ClearRegisterData();

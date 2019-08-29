@@ -271,7 +271,7 @@ class _Question_ListState extends State<Question_List> {
                   ),
                   GestureDetector(
                       onTap: (){
-                        Navigator.of(context).pushNamed('Question_List');
+                        Navigator.of(context).pushNamed('previewQuiz');
                       },child: new Text("No")),
                 ],
               ),

@@ -1438,6 +1438,62 @@ class PreviewQuizs extends StatelessWidget {
     });
   }
 
+      //29-8-19 a
+  void showDialog1(BuildContext context) {
+    // flutter defined function
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        // return object of type Dialog
+        return AlertDialog(
+          title: new Text("Alert!!!"),
+          content: new Text("Are You Sure Want To Delete Quiz?"),
+          actions: <Widget>[
+            // usually buttons at the bottom of the dialog
+            new FlatButton(
+              child: Row(
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.only(
+                        right: 30
+                    ),
+                    child: GestureDetector(
+                        onTap: (){
+                          Delete();
+                          Show_toast("Delete Successfully", Colors.green);
+                          Navigator.of(context).pushNamed('dashboard');
+                        },child: new Text("YES")),
+
+                  ),
+                  GestureDetector(
+                      onTap: (){
+                        Navigator.of(context).pushNamed('previewQuiz');
+                      },child: new Text("No")),
+                ],
+              ),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  Show_toast(String msg, Color color) {
+    Fluttertoast.showToast(
+        msg: msg,
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.CENTER,
+        timeInSecForIos: 1,
+        backgroundColor: color,
+        textColor: Colors.white,
+        fontSize: 16.0);
+  }
+//29-8-19 a
+
+
   @override
   Widget build(BuildContext context) {
     return
@@ -1510,7 +1566,7 @@ class PreviewQuizs extends StatelessWidget {
                                             }
                                             if(value=="delete")     //28-8-19 a
                                                {
-                                                Delete();
+                                                showDialog1(context);
                                               }
                                           },
                                         ),
