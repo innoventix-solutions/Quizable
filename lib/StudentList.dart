@@ -54,9 +54,9 @@ class _StudentListState extends State<StudentList> {
         }).then((res){
       print(res.body);
 
-setState(() {
+        setState(() {
 
-});
+        });
 
     });
   }
@@ -175,8 +175,6 @@ setState(() {
                                     ],
                                   ),
                                 ):SizedBox(),
-
-
 
                               ], ),
 

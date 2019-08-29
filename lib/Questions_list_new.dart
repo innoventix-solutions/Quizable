@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -15,6 +16,11 @@ class Question_List extends StatefulWidget {
 }
 
 class _Question_ListState extends State<Question_List> {
+
+
+
+
+
 
 
   int CurrentPage =0;
@@ -224,7 +230,7 @@ class _Question_ListState extends State<Question_List> {
     await http.post("http://edusupportapp.com/api/delete_quiz_question.php",
         body: {
           "quiz_id":GlobalData.QuizID,
-          "question_id":GlobalData.question
+          "question_id":Quetions[i].id
         }).then((res){
       print(res.body);
 
@@ -234,6 +240,63 @@ class _Question_ListState extends State<Question_List> {
 
     });
   }
+
+
+
+  void _showDialog() {
+    // flutter defined function
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        // return object of type Dialog
+        return AlertDialog(
+          title: new Text("Alert!!!"),
+          content: new Text("Are You Sure Want To Delete Question?"),
+          actions: <Widget>[
+            // usually buttons at the bottom of the dialog
+            new FlatButton(
+              child: Row(
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.only(
+                      right: 30
+                    ),
+                    child: GestureDetector(
+                        onTap: (){
+                          Delete();
+                          Show_toast("Delete Successfully", Colors.green);
+                          Navigator.of(context).pushNamed('previewQuiz');
+                        },child: new Text("YES")),
+
+                  ),
+                  GestureDetector(
+                      onTap: (){
+                        Navigator.of(context).pushNamed('Question_List');
+                      },child: new Text("No")),
+                ],
+              ),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  Show_toast(String msg, Color color) {
+    Fluttertoast.showToast(
+        msg: msg,
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.CENTER,
+        timeInSecForIos: 1,
+        backgroundColor: color,
+        textColor: Colors.white,
+        fontSize: 16.0);
+  }
+
+
 
   @override
   dispose();  //23-8-19
@@ -272,7 +335,9 @@ class _Question_ListState extends State<Question_List> {
 
                             GestureDetector(
                                 onTap: (){
-                                  Delete();
+
+                                  _showDialog();
+
 
                                 },child: Icon(Icons.cancel,color: Colors.white,)),
                             SizedBox(width: 10,),
