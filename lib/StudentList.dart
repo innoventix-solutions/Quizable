@@ -45,7 +45,7 @@ class _StudentListState extends State<StudentList> {
 
 
   /* 28-8 delete student*/
-  List<pojostydentlist> Stu_List = new List();
+
   int i=0;
 
   Delete() async{
@@ -53,15 +53,12 @@ class _StudentListState extends State<StudentList> {
     await http.post("http://edusupportapp.com/api/delete_user_from_class.php",
         body: {
           "class_id":GlobalData.classid,
-          "user_id":Stu_List[i].id,
+          "user_id":globlist[i].id,
         }).then((res){
       print(res.body);
-      var ParsedJson = jsonDecode(res.body);
-      Stu_List = (ParsedJson['userdata'] as List).map((data)=>pojostydentlist.fromJson(data)).toList();
-
-      print(Stu_List.length);
-
-      setState(() {
+      //var ParsedJson = jsonDecode(res.body);
+      //Stu_List = (ParsedJson['userdata'] as List).map((data)=>pojostydentlist.fromJson(data)).toList();
+        setState(() {
 
         });
 
@@ -300,6 +297,5 @@ class _StudentListState extends State<StudentList> {
     // TODO: implement initState
     super.initState();
     getstudent();
-    Delete();
   }
 }
