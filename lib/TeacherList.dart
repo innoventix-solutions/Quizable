@@ -45,12 +45,12 @@ class _TeacherListState extends State<TeacherList> {
 
   int i=0;
 
-  Delete() async{
+  Delete(String id) async{
 
     await http.post("http://edusupportapp.com/api/delete_user_from_class.php",
         body: {
           "class_id":GlobalData.classid,
-          "user_id":globlist[i].id,
+          "user_id":id,
         }).then((res){
       print(res.body);
       //var ParsedJson = jsonDecode(res.body);
@@ -63,7 +63,7 @@ class _TeacherListState extends State<TeacherList> {
   }
 
 /* 30-8 delete student*/
-  void showDialog1(BuildContext context) {
+  void showDialog1(BuildContext context,String id ) {
     // flutter defined function
     showDialog(
       context: context,
@@ -83,7 +83,7 @@ class _TeacherListState extends State<TeacherList> {
                     ),
                     child: GestureDetector(
                         onTap: (){
-                          Delete();
+                          Delete(id);
                           Show_toast("Delete Successfully", Colors.green);
                           Navigator.of(context).pushNamed('dashboard');
                         },child: new Text("YES")),
@@ -253,6 +253,8 @@ class _TeacherListState extends State<TeacherList> {
                               padding: const EdgeInsets.only(right: 20),
                               child: Row(mainAxisAlignment: MainAxisAlignment.end,
                                 children: <Widget>[
+
+                globlist[index].id != GlobalData.uid ?
                                   PopupMenuButton(
                                     child: Icon(Icons.more_vert),
                                     itemBuilder: (_) => <PopupMenuItem<String>>[
@@ -278,10 +280,10 @@ class _TeacherListState extends State<TeacherList> {
 
                                       if(value=="delete")
                                       {
-                                        showDialog1(context);
+                                        showDialog1(context,globlist[index].id.toString());
                                       }
                                     },
-                                  ),
+                                  ) :Text(""),
                                 ],
                               ),
                             ):SizedBox(),
