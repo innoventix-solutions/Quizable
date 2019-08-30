@@ -4,6 +4,7 @@ import 'global.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'Pojo/pojostydentlist.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class StudentList extends StatefulWidget {
   @override
@@ -50,7 +51,7 @@ class _StudentListState extends State<StudentList> {
     await http.post("http://edusupportapp.com/api/delete_user_from_class.php",
         body: {
           "class_id":GlobalData.classid,
-          "user_id":GlobalData.uid
+          "user_id":GlobalData.uid,
         }).then((res){
       print(res.body);
 
@@ -60,6 +61,62 @@ class _StudentListState extends State<StudentList> {
 
     });
   }
+
+/* 30-8 delete student*/
+  void showDialog1(BuildContext context) {
+    // flutter defined function
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        // return object of type Dialog
+        return AlertDialog(
+          title: new Text("Alert!!!"),
+          content: new Text("Are You Sure Want To Delete Quiz?"),
+          actions: <Widget>[
+            // usually buttons at the bottom of the dialog
+            new FlatButton(
+              child: Row(
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.only(
+                        right: 30
+                    ),
+                    child: GestureDetector(
+                        onTap: (){
+                          Delete();
+                          Show_toast("Delete Successfully", Colors.green);
+                          Navigator.of(context).pushNamed('dashboard');
+                        },child: new Text("YES")),
+
+                  ),
+                  GestureDetector(
+                      onTap: (){
+                        Navigator.of(context).pushNamed('dashboard');
+                      },child: new Text("No")),
+                ],
+              ),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  Show_toast(String msg, Color color) {
+    Fluttertoast.showToast(
+        msg: msg,
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.CENTER,
+        timeInSecForIos: 1,
+        backgroundColor: color,
+        textColor: Colors.white,
+        fontSize: 16.0);
+  }
+/* 30-8 delete student*/
+
 
   @override
   Widget build(BuildContext context) {
@@ -119,6 +176,7 @@ class _StudentListState extends State<StudentList> {
                                           image: new DecorationImage(
                                             fit: BoxFit.fill,
                                             image:GlobalData.Userphoto!=null?
+
                                             NetworkImage(globlist[index].userphoto):
                                             AssetImage('assets/images/pic.png',),
                                           )
@@ -168,7 +226,7 @@ class _StudentListState extends State<StudentList> {
 
                                           if(value=="delete")
                                           {
-                                            Delete();
+                                            showDialog1(context);
                                           }
                                         },
                                    ),

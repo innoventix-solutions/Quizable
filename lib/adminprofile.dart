@@ -50,7 +50,7 @@ class _adminprofileState extends State<adminprofile> {
 
     Name.text=shared.getString("name");
     Phone.text=shared.getString("phone");
-    photo = shared.get("userphoto");
+    GlobalData.Userphoto = shared.getString("userphoto");
 
   }
 
@@ -100,6 +100,7 @@ class _adminprofileState extends State<adminprofile> {
     super.initState();
 getvalue();
     print(GlobalData.uid);
+    print(GlobalData.Fullname);
 
   }
 
