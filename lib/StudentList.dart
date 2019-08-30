@@ -45,17 +45,22 @@ class _StudentListState extends State<StudentList> {
 
 
   /* 28-8 delete student*/
-
+  List<pojostydentlist> Stu_List = new List();
+  int i=0;
   Delete() async{
 
     await http.post("http://edusupportapp.com/api/delete_user_from_class.php",
         body: {
           "class_id":GlobalData.classid,
-          "user_id":GlobalData.uid,
+          "user_id":Stu_List[i].id,
         }).then((res){
       print(res.body);
+      var ParsedJson = jsonDecode(res.body);
+      Stu_List = (ParsedJson['userdata'] as List).map((data)=>pojostydentlist.fromJson(data)).toList();
 
-        setState(() {
+      print(Stu_List.length);
+
+      setState(() {
 
         });
 
@@ -171,16 +176,20 @@ class _StudentListState extends State<StudentList> {
                                 Stack(
                                   children: <Widget>[
                                     Container(height: 70,width: 70,margin: EdgeInsets.only(left: 20,top: 15,bottom: 10),
-                                      decoration: new BoxDecoration(
-                                          shape: BoxShape.circle,
-                                          image: new DecorationImage(
-                                            fit: BoxFit.fill,
-                                            image:GlobalData.Userphoto!=null?
+                                      decoration:GlobalData.Userphoto!=null?
+                                      BoxDecoration(
+                                        image: DecorationImage(image: NetworkImage(GlobalData.Userphoto),fit: BoxFit.cover),
+                                        borderRadius: BorderRadius.all(Radius.circular(100)),
 
-                                            NetworkImage(globlist[index].userphoto):
-                                            AssetImage('assets/images/pic.png',),
-                                          )
-                                      ),),
+                                      )
+
+                                          :BoxDecoration(
+                                          borderRadius: BorderRadius.all(Radius.circular(100)),
+                                          color: Colors.black,
+                                          image: DecorationImage(image: AssetImage('assets/images/user.jpg'),fit: BoxFit.cover)
+
+
+                                      )),
                                   ],
                                 ),
 
@@ -290,5 +299,6 @@ class _StudentListState extends State<StudentList> {
     // TODO: implement initState
     super.initState();
     getstudent();
+    Delete();
   }
 }
