@@ -225,12 +225,12 @@ class _Question_ListState extends State<Question_List> {
 
   /* 28-8 delete question*/
 
-  Delete() async{
+  Delete(String id) async{
 
     await http.post("http://edusupportapp.com/api/delete_quiz_question.php",
         body: {
           "quiz_id":GlobalData.QuizID,
-          "question_id":Quetions[i].id
+          "question_id":id,
         }).then((res){
       print(res.body);
 
@@ -243,7 +243,7 @@ class _Question_ListState extends State<Question_List> {
 
 
 
-  void _showDialog() {
+  void _showDialog(BuildContext context,String id) {
     // flutter defined function
     showDialog(
       context: context,
@@ -263,7 +263,7 @@ class _Question_ListState extends State<Question_List> {
                     ),
                     child: GestureDetector(
                         onTap: (){
-                          Delete();
+                          Delete(id);
                           Show_toast("Delete Successfully", Colors.green);
                           Navigator.of(context).pushNamed('previewQuiz');
                         },child: new Text("YES")),
@@ -336,7 +336,7 @@ class _Question_ListState extends State<Question_List> {
                             GestureDetector(
                                 onTap: (){
 
-                                  _showDialog();
+                                  _showDialog(context,Quetions[i].id.toString());
 
 
                                 },child: Icon(Icons.cancel,color: Colors.white,)),

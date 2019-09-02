@@ -183,7 +183,7 @@ class _QuestionsState extends State<Questions> {
                                             child: GradientButtonText(
                                               ButtonClick: (){
 
-                                                Navigator.of(context).pushReplacementNamed('manageclassactivities');
+                                                Navigator.of(context).pushReplacementNamed('Recentque');
                                                 ClearRegisterData();
                                                 setState(() {
 
