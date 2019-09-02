@@ -1705,3 +1705,239 @@ class PreviewQuizs extends StatelessWidget {
       );
   }
 }
+
+
+/*2nd sept*/
+
+class studentreport extends StatelessWidget {
+
+  final String heading;
+  final String paragraph;
+  final Color color;
+  final String title;
+  final String id;
+  final bool is_taken;
+  final String levels;
+  final String duration;
+
+
+  studentreport(
+      {
+        this.heading,
+        this.paragraph,
+        this.color,
+        this.title,
+        this.id,
+        this.is_taken,
+        this.duration,
+        this.levels});
+
+  @override
+  Widget build(BuildContext context) {
+    return
+      Container(decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(40))),
+        child: Card(elevation: 5.0,shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(5.0),
+        ),
+          child: Column(mainAxisAlignment: MainAxisAlignment.start,
+            children: <Widget>[
+              Row(
+                children: <Widget>[
+                  Expanded(
+                    child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(5),),color: color),
+
+                      child: Padding(
+                        padding: const EdgeInsets.only(top: 5,bottom: 5),
+                        child: Column(
+                          children: <Widget>[
+                            Padding(
+                              padding: const EdgeInsets.only(top: 5,bottom: 5,left: 10),
+                              child: Row(
+                                children: <Widget>[
+                                  Expanded(
+                                    child: Text(heading,textAlign: TextAlign.left,
+                                      style: TextStyle(color: Colors.white,fontSize: 15,fontWeight: FontWeight.bold),),
+                                  ),
+                                 /* Expanded(
+                                    child:  Row(mainAxisAlignment: MainAxisAlignment.end,
+                                      children: <Widget>[
+                                        GlobalData.userType=="student"?Text(""):PopupMenuButton(
+                                          child: Icon(Icons.more_vert),
+                                          itemBuilder: (_) => <PopupMenuItem<String>>[
+                                            new PopupMenuItem<String>(
+                                                child: Row(
+                                                  children: <Widget>[
+                                                    Padding(
+                                                      padding: const EdgeInsets.only(right: 4),
+                                                      child: Icon(
+                                                        Icons.edit,
+                                                        color: GlobalData.lightblue,size: 12,
+                                                      ),
+                                                    ),
+                                                    new Text('Edit',style: TextStyle(fontSize: 15),),
+                                                  ],
+                                                ), value: 'edit'),
+
+
+                                            new PopupMenuItem<String>(
+                                                child: Row(
+                                                  children: <Widget>[
+                                                    Padding(
+                                                      padding: const EdgeInsets.only(right: 4,top: 1),
+                                                      child: Icon(
+                                                        Icons.cancel,
+                                                        color: GlobalData.darkpink,size: 12,
+                                                      ),
+                                                    ),
+                                                    new Text('Delete',style: TextStyle(fontSize: 15),),
+                                                  ],
+                                                ), value: 'delete'),
+
+                                          ],
+                                          onSelected: ( value){
+                                            if(value=="edit")
+                                            {
+                                              GlobalData.EditQuiz=true;
+                                              GlobalData.QuizID=id;
+                                              GlobalData.ExamQuiz=title;
+                                              Navigator.of(context).pushNamed('Question_List');
+                                            }
+                                          },
+                                        ),
+                                      ],
+                                    ),
+                                  ), */
+
+                                ],
+                              ),
+                            ),
+
+                          ],
+
+                        ),
+                      ),
+
+                    ),
+                  ),
+                ],
+              ),
+              Container(
+                padding: EdgeInsets.only(left: 25,top: 20,right: 30,bottom: 30),
+                child: Column(
+                  children: <Widget>[
+                    Text(paragraph,style: TextStyle(fontWeight: FontWeight.bold,
+                        fontSize: 15,color: GlobalData.gray),textAlign: TextAlign.justify,),
+
+                  ],
+                ),
+              ),
+
+              GestureDetector(
+                onTap: (){
+
+
+
+
+                  GlobalData.QuizID=id;
+
+                  if(GlobalData.userType=="student") {
+                    print("UID"+GlobalData.uid);
+                    print("QID"+(id==null?" Null Value":id));
+//print("Title : "+title);
+//                    print("levels : "+levels);
+//print("Duration : "+duration);
+
+
+
+                    GlobalData.ExamQuiz=title;
+                    GlobalData.DurationofEachLevel=duration??"20";
+                    GlobalData.QuizLevels=levels??"1";
+                    GlobalData.CurrentStudentID=GlobalData.uid;
+
+
+                    Navigator.of(context).pushNamed(is_taken==true?'AnswerLog':'exam');
+
+
+                  }else
+                  {
+
+                    Navigator.of(context).pushNamed('StudentListByQuiz');
+                  }
+
+                },
+                child: GlobalData.userType=="student"?Row(
+                  children: <Widget>[
+                    Expanded(
+                      child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(5),),
+                          color: (is_taken==true)?Colors.blue:Colors.green),
+
+                        child: Padding(
+                          padding: const EdgeInsets.only(top: 5,bottom: 5),
+                          child: Column(
+                            children: <Widget>[
+                              Padding(
+                                padding: const EdgeInsets.only(top: 5,bottom: 5,left: 10),
+                                child: Row(
+                                    children: <Widget>[
+                                      Expanded(
+                                        child: Text(is_taken==true?"Quiz Report":"Give Exam",textAlign: TextAlign.center,
+                                          style: TextStyle(color: Colors.white,fontSize: 15,fontWeight: FontWeight.bold),),
+                                      ),
+
+                                    ]),
+                              ),
+
+                            ],
+
+                          ),
+                        ),
+
+                      ),
+                    ),
+                  ],
+                ):
+                Row(
+                  children: <Widget>[
+                    Expanded(
+                      child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(5),),
+                          color: Colors.blue),
+
+                        child: Padding(
+                          padding: const EdgeInsets.only(top: 5,bottom: 5),
+                          child: Column(
+                            children: <Widget>[
+                              Padding(
+                                padding: const EdgeInsets.only(top: 5,bottom: 5,left: 10),
+                                child: Row(
+                                    children: <Widget>[
+                                      Expanded(
+                                        child: Text("Quiz Report",textAlign: TextAlign.center,
+                                          style: TextStyle(color: Colors.white,fontSize: 15,fontWeight: FontWeight.bold),),
+                                      ),
+
+                                    ]),
+                              ),
+
+                            ],
+
+                          ),
+                        ),
+
+                      ),
+                    ),
+                  ],
+                )
+                ,
+              ),
+
+
+
+
+
+            ],
+          ),
+
+        ),
+      );
+  }
+}
