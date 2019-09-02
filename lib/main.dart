@@ -140,7 +140,7 @@ class MyApp extends StatelessWidget {
         'TeacherInviteCode':(context)=>TeacherInviteCode(),
         'StudentInviteCode':(context)=>StudentInviteCode(),
         'GameRoom':(context)=>GameRoom(),
-        'StudentList':(context)=>StudentList(),
+        //'StudentList':(context)=>StudentList(),
         'TeacherList':(context)=>TeacherList(),
         'AnswerLog':(context)=>AnswerLog(),
         'StudentListByQuiz':(context)=>StudentListByQuiz(),
