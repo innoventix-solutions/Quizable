@@ -166,8 +166,10 @@ class drawerquiz extends StatelessWidget {
                 child: GestureDetector(
                   child: Text('Set Quiz Questions',style: TextStyle(
                       color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
-                  onTap: (){Navigator.of(context)
-                      .pushNamed('setquizquestions');},
+                  onTap: (){
+                    Navigator.of(context)
+                      .pushNamed('setquizquestions');
+                   },
                 ),
               )],),
           ),
