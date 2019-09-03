@@ -118,7 +118,9 @@ GlobalData.teacherinstruction = instruction.text;
         ),
         actions: <Widget>[
           IconButton(
-            onPressed: () {},
+            onPressed: () {Navigator.of(context)
+                .pushNamed(
+                'Previewassignment');},
             icon: Icon(
               Icons.remove_red_eye,
               color: Colors.white,

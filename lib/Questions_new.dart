@@ -906,7 +906,6 @@ Text("Enter answer in sequence with underscore '_' in between the words",style:
       _showDialog();
     }else{
 
-
       print( "question "+ QuestionName.text.toString()+
     "point_awarded "+ Points.text.toString()+
     "answer_type "+ SelectedType.toString()+

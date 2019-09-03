@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'Pojo/pojo_quizzes.dart';
 import 'global.dart';
 import 'package:http/http.dart' as http;
+import 'package:newpro/Pojo/pojo_getassignment.dart';
 
 
 
@@ -15,6 +16,27 @@ class RecentQuestion extends StatefulWidget {
 class _RecentQuestionState extends State<RecentQuestion> {
 
   List<Pojo_quizzes> Quizz_List = new List();
+  List<Pojo_getassignment>  assignment_list = new List();
+
+  GetAssignment() async{
+
+    await http.post("http://edusupportapp.com/api/get_assignments.php",
+        body: {
+          "UserId":GlobalData.uid
+        }).then((res){
+      print(res.body);
+
+      var ParsedJson = jsonDecode(res.body);
+      assignment_list = (ParsedJson['assignmentsdata'] as List).map((data)=>Pojo_getassignment.fromJson(data)).toList();
+
+      print(assignment_list.length);
+      setState(() {
+
+      });
+    });
+  }
+
+
 
   GetTest() async{
 
@@ -38,6 +60,7 @@ class _RecentQuestionState extends State<RecentQuestion> {
   void initState() {
     // TODO: implement initState
     super.initState();
+    GetAssignment();
     GetTest();
   }
 
@@ -81,7 +104,7 @@ class _RecentQuestionState extends State<RecentQuestion> {
         Column(
           children: <Widget>[
             Expanded(
-              child: Quizz_List.isEmpty ? Center(child: Text('You have not published any class activity yet')) :
+              child: assignment_list.isEmpty ? Center(child: Text('You have not published any class activity yet')) :
               ListView.builder(
                   itemCount: 1,
                   itemBuilder: (c,i){
@@ -91,10 +114,10 @@ class _RecentQuestionState extends State<RecentQuestion> {
                       },
                       child: recentquestions(
                         color: GlobalData.pinkred,
-                        heading: Quizz_List[i].quiz_title,
-                        paragraph: Quizz_List[i].quiz_subject,
-                        id:Quizz_List[i].id ,
-                        title: Quizz_List[i].quiz_title,
+                        heading: assignment_list[i].assignment_title,
+                        paragraph: assignment_list[i].teacher_instruction,
+                        id:assignment_list[i].id ,
+                        title: assignment_list[i].assignment_title,
 
                       ),
                     );

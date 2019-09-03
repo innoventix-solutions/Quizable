@@ -167,7 +167,8 @@ class drawerquiz extends StatelessWidget {
                   child: Text('Set Quiz Questions',style: TextStyle(
                       color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
                   onTap: (){Navigator.of(context)
-                      .pushNamed('setquizquestions');},
+                      .pushNamed('setquizquestions');
+                  },
                 ),
               )],),
           ),
