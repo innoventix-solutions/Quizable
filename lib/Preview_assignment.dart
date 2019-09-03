@@ -90,15 +90,15 @@ class _PreviewAssignmentState extends State<PreviewAssignment> {
                   itemBuilder: (c,i){
                     return GestureDetector(
                         onTap: (){
-                          GlobalData.EditQuiz=false;
-                          GlobalData.QuizID=assignment_list[i].id;
-                          GlobalData.ExamQuiz=assignment_list[i].assignment_title;
+                        // GlobalData.EditQuiz=false;
+                         // GlobalData.AssignmentID=assignment_list[i].id;
+                         // GlobalData.ExamQuiz=assignment_list[i].assignment_title;
                           //GlobalData.DurationofEachLevel=assignment_list[i].dur_each_level;
                          // GlobalData.QuizLevels=assignment_list[i].no_of_levels;
-                          Navigator.of(context).pushNamed(GlobalData.userType=="student"?'exam':'Question_List');
+                          //Navigator.of(context).pushNamed(GlobalData.userType=="student"?'exam':'Question_List');
                         },
-                        child:  assignment_list[i].is_taken==false?
-                        PreviewQuizs(
+                        child:  //assignment_list[i].is_taken==false?
+                        PreviewAssignments(
                           color: GlobalData.pinkred,
                           heading: assignment_list[i].assignment_title,
                           paragraph: assignment_list[i].teacher_instruction,
@@ -107,7 +107,7 @@ class _PreviewAssignmentState extends State<PreviewAssignment> {
                           //is_taken: Quizz_List[i].is_taken,
                           //duration: assignment_list[i].dur_each_level,
                          // levels: Quizz_List[i].no_of_levels,
-                        ): SizedBox()
+                        ),//: SizedBox()
                     );
                   }),
             ),
