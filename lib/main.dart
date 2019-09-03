@@ -75,6 +75,7 @@ import 'SetAssignmentQuestion.dart';    //19-8-19
 import 'Selectassignmentclass.dart';    //19-8-19
 import 'MyQuizExerciseLog.dart';        //22-8-19
 import 'PreviewQuiz.dart';              //23-8-19
+import 'Preview_assignment.dart';
 
 void main() {
   runApp(MyApp());
@@ -135,9 +136,14 @@ class MyApp extends StatelessWidget {
         'ManageAccount':(context)=>ManageAccount(),
         'EditProfile':(context)=>adminprofile(),
         'EditProfileStudent':(context)=>StudentEditProfile(),
-        'SetAssignment':(context)=>assignmentquestionbank(),
+        'SetAssignment':(contexontext)=>assignmentquestionbank(),
+        'GameRoom':(context)=>GameRoom(),
+        'StudentList':(context)=>assignmentquestionbank(),
         'SetSpelling':(context)=>SpellingChallange(),
         'TeacherInviteCode':(context)=>TeacherInviteCode(),
+
+        'StudentInviteCode':(ct)=>StudentList(),
+
         'StudentInviteCode':(context)=>StudentInviteCode(),
         'GameRoom':(context)=>GameRoom(),
         'StudentList':(context)=>StudentList(),
@@ -151,6 +157,7 @@ class MyApp extends StatelessWidget {
         'MyClassActivities':(context)=>myclassactivities(),          //22-8-19
         'MyQuizExerciseLog':(context)=>MyQuizExerciseLog(),          //22-8-19
         'previewQuiz':(context)=>PreviewQuiz(),                      //23-8-19
+        'Previewassignment' : (context)=>PreviewAssignment(),
       },
     );
   }

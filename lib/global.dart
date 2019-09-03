@@ -166,10 +166,9 @@ class drawerquiz extends StatelessWidget {
                 child: GestureDetector(
                   child: Text('Set Quiz Questions',style: TextStyle(
                       color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
-                  onTap: (){
-                    Navigator.of(context)
+                  onTap: (){Navigator.of(context)
                       .pushNamed('setquizquestions');
-                   },
+                  },
                 ),
               )],),
           ),
@@ -1930,6 +1929,220 @@ class studentreport extends StatelessWidget {
                   ],
                 )
                 ,
+              ),
+
+
+
+
+
+            ],
+          ),
+
+        ),
+      );
+  }
+}
+
+
+
+
+/*3-9-19*/
+
+class PreviewAssignments extends StatelessWidget {
+
+  final String heading;
+  final String paragraph;
+  final Color color;
+  final String title;
+  final String id;
+  // final bool is_taken;
+  // final String levels;
+  // final String duration;
+
+
+  PreviewAssignments(
+      {
+        this.heading,
+        this.paragraph,
+        this.color,
+        this.title,
+        this.id,
+        //  this.is_taken,
+        // this.duration,
+        //this.levels
+      });
+
+
+  // 3-9-19 a
+  Deleteassignment() async{
+
+    await http.post("http://edusupportapp.com/api/delete_assignment.php",
+        body: {
+          "assignment_id":GlobalData.AssignmentID,
+        }).then((res){
+      print(res.body);
+
+
+
+    });
+  }
+
+  //3-9-19 a
+  void showDialog1(BuildContext context) {
+    // flutter defined function
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        // return object of type Dialog
+        return AlertDialog(
+          title: new Text("Alert!!!"),
+          content: new Text("Are You Sure Want To Delete Assignment?"),
+          actions: <Widget>[
+            // usually buttons at the bottom of the dialog
+            new FlatButton(
+              child: Row(
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.only(
+                        right: 30
+                    ),
+                    child: GestureDetector(
+                        onTap: (){
+                          Deleteassignment();
+                          Show_toast("Delete Successfully", Colors.green);
+                          Navigator.of(context).pushNamed('dashboard');
+                        },child: new Text("YES")),
+
+                  ),
+                  GestureDetector(
+                      onTap: (){
+                        Navigator.of(context).pushNamed('Previewassignment');
+                      },child: new Text("No")),
+                ],
+              ),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  Show_toast(String msg, Color color) {
+    Fluttertoast.showToast(
+        msg: msg,
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.CENTER,
+        timeInSecForIos: 1,
+        backgroundColor: color,
+        textColor: Colors.white,
+        fontSize: 16.0);
+  }
+//29-8-19 a
+
+
+  @override
+  Widget build(BuildContext context) {
+    return
+      Container(decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(40))),
+        child: Card(elevation: 5.0,shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(5.0),
+        ),
+          child: Column(mainAxisAlignment: MainAxisAlignment.start,
+            children: <Widget>[
+              Row(
+                children: <Widget>[
+                  Expanded(
+                    child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(5),),color: color),
+
+                      child: Padding(
+                        padding: const EdgeInsets.only(top: 5,bottom: 5),
+                        child: Column(
+                          children: <Widget>[
+                            Padding(
+                              padding: const EdgeInsets.only(top: 5,bottom: 5,left: 10),
+                              child: Row(
+                                children: <Widget>[
+                                  Expanded(
+                                    child: Text(heading,textAlign: TextAlign.left,
+                                      style: TextStyle(color: Colors.white,fontSize: 15,fontWeight: FontWeight.bold),),
+                                  ),
+                                  Expanded(
+                                    child:  Row(mainAxisAlignment: MainAxisAlignment.end,
+                                      children: <Widget>[
+                                        GlobalData.userType=="student"?Text(""):PopupMenuButton(
+                                          child: Icon(Icons.more_vert),
+                                          itemBuilder: (_) => <PopupMenuItem<String>>[
+                                            new PopupMenuItem<String>(
+                                                child: Row(
+                                                  children: <Widget>[
+                                                    Padding(
+                                                      padding: const EdgeInsets.only(right: 4),
+                                                      child: Icon(
+                                                        Icons.edit,
+                                                        color: GlobalData.lightblue,size: 12,
+                                                      ),
+                                                    ),
+                                                    new Text('Edit',style: TextStyle(fontSize: 15),),
+                                                  ],
+                                                ), value: 'edit'),
+
+
+                                            new PopupMenuItem<String>(
+                                                child: Row(
+                                                  children: <Widget>[
+                                                    Padding(
+                                                      padding: const EdgeInsets.only(right: 4,top: 1),
+                                                      child: Icon(
+                                                        Icons.cancel,
+                                                        color: GlobalData.darkpink,size: 12,
+                                                      ),
+                                                    ),
+                                                    new Text('Delete',style: TextStyle(fontSize: 15),),
+                                                  ],
+                                                ), value: 'delete'),
+
+                                          ],
+                                          onSelected: ( value){
+                                            if(value=="edit")
+                                            {
+                                              GlobalData.EditQuiz=true;
+                                              GlobalData.QuizID=id;
+                                              GlobalData.ExamQuiz=title;
+                                              //Navigator.of(context).pushNamed('Question_List');
+                                            }
+                                            if(value=="delete")     //28-8-19 a
+                                                {
+                                              showDialog1(context);
+                                            }
+                                          },
+                                        ),
+                                      ],
+                                    ),
+                                  ), ],
+                              ),
+                            ),
+
+                          ],
+
+                        ),
+                      ),
+
+                    ),
+                  ),
+                ],
+              ),
+              Container(
+                padding: EdgeInsets.only(left: 25,top: 20,right: 30,bottom: 30),
+                child: Column(
+                  children: <Widget>[
+                    Text(paragraph,style: TextStyle(fontWeight: FontWeight.bold,
+                        fontSize: 15,color: GlobalData.gray),textAlign: TextAlign.justify,),
+
+                  ],
+                ),
               ),
 
 
