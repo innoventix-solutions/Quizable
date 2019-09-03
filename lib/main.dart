@@ -136,7 +136,7 @@ class MyApp extends StatelessWidget {
         'ManageAccount':(context)=>ManageAccount(),
         'EditProfile':(context)=>adminprofile(),
         'EditProfileStudent':(context)=>StudentEditProfile(),
-        'SetAssignment':(contexontext)=>StudentInviteCode(),
+        'SetAssignment':(contexontext)=>assignmentquestionbank(),
         'GameRoom':(context)=>GameRoom(),
         'StudentList':(context)=>assignmentquestionbank(),
         'SetSpelling':(context)=>SpellingChallange(),
