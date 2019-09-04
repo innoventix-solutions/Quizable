@@ -77,7 +77,7 @@ import 'MyQuizExerciseLog.dart';        //22-8-19
 import 'PreviewQuiz.dart';              //23-8-19
 import 'Preview_assignment.dart';
 import 'AssignmentQuestionList.dart';
-
+import 'EditAssignmentQuestion.dart';
 void main() {
   runApp(MyApp());
 }
@@ -160,6 +160,7 @@ class MyApp extends StatelessWidget {
         'previewQuiz':(context)=>PreviewQuiz(),                      //23-8-19
         'Previewassignment' : (context)=>PreviewAssignment(),
         'AssignmentQuestionList': (context)=>AssignmentQuestionList(),
+        'EditAssignmentQuestions': (context)=>EditAssignmentQuestions(),
       },
     );
   }

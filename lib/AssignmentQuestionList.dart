@@ -264,7 +264,7 @@ class _AssignmentQuestionListState extends State<AssignmentQuestionList> {
                                     onTap:(){
 
                                       GlobalData.Current_Que_To_Edit = Quetions[i];
-                                      Navigator.of(context).pushNamed('edit_question');
+                                      Navigator.of(context).pushNamed('EditAssignmentQuestions');
 
                                     },child: Icon(Icons.edit,color: Colors.white,))
                                 ,SizedBox(width: 10,),
@@ -340,7 +340,7 @@ class _AssignmentQuestionListState extends State<AssignmentQuestionList> {
 
 
 
-  getExamResult()async{
+  /*getExamResult()async{
     http.post("http://edusupportapp.com/api/get_user_quiz_result.php",body:{
       "quiz_id":GlobalData.QuizID,
       "user_id":GlobalData.uid
@@ -351,7 +351,7 @@ class _AssignmentQuestionListState extends State<AssignmentQuestionList> {
 
       ExamCompleted(context,parsedJson['useranswedata']['point_awarded'].toString());
     });
-  }
+  }*/
 
 
   @override
@@ -376,7 +376,7 @@ class _AssignmentQuestionListState extends State<AssignmentQuestionList> {
     /*print(Quetions[i].anwer_options.length.toString()+"  asdznaisdfmmb k");
 Matches =Quetions[i].anwer_options;*/
     return Scaffold(
-        appBar: AppBar(title: Text("Questions List"),centerTitle: true,),
+        appBar: AppBar(title: Text("Assignment Question"),centerTitle: true,),
         body: isloading==true?Center(child: Text("Loading...")):MYQue()
 
 
@@ -391,7 +391,7 @@ Matches =Quetions[i].anwer_options;*/
 
 
 
-  GiveAnswer(String answer)async{
+  /*GiveAnswer(String answer)async{
 
     http.post("http://edusupportapp.com/api/quiz_answer.php",body: {
       "user_id":GlobalData.uid,
@@ -402,10 +402,10 @@ Matches =Quetions[i].anwer_options;*/
       print(res.body);
     });
 
-  }
+  }*/
 
 
-  void ExamCompleted(BuildContext context,String Score)  {
+ /* void ExamCompleted(BuildContext context,String Score)  {
     bool Selected = false;
     TextEditingController optioncontroller = new TextEditingController();
     showDialog(
@@ -509,7 +509,7 @@ Matches =Quetions[i].anwer_options;*/
 
           );
         });
-  }
+  }*/
 
 
 
