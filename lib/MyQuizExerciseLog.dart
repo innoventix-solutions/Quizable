@@ -242,7 +242,7 @@ class _MyQuizExerciseLogState extends State<MyQuizExerciseLog> {
                         Navigator.of(context).pushNamed(Quizz_List[i].is_taken==true?'AnswerLog':'exam');
                       },
                       child: Quizz_List[i].is_taken==true?
-                      AllExerciseLog(
+                      QuizExerciseLog(
                         color: GlobalData.pinkred,
                         heading: Quizz_List[i].quiz_title+" - "+Quizz_List[i].id,
                         paragraph: Quizz_List[i].quiz_subject,

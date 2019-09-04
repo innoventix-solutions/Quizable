@@ -1246,9 +1246,9 @@ class recentquestions extends StatelessWidget {
   }
 }
 
-/* Exercise log */   // 22-8-19
+/* Quiz Exercise log */   // 22-8-19
 
-class AllExerciseLog extends StatelessWidget {
+class QuizExerciseLog extends StatelessWidget {
 
   final String heading;
   final String paragraph;
@@ -1259,7 +1259,7 @@ class AllExerciseLog extends StatelessWidget {
   final String levels;
   final String duration;
 
-  AllExerciseLog(
+  QuizExerciseLog(
       {
         this.heading,
         this.paragraph,
