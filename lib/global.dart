@@ -1433,10 +1433,7 @@ class PreviewQuizs extends StatelessWidget {
           "quiz_id":GlobalData.QuizID,
         }).then((res){
       print(res.body);
-
-
-
-    });
+        });
   }
 
       //29-8-19 a

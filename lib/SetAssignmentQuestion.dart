@@ -163,7 +163,7 @@ class _SetAssignmentQuestionState extends State<SetAssignmentQuestion> {
                                   Center(child: Padding(
                                     padding: const EdgeInsets.only(top:15),
 
-                                    child: Text('Quiz Submitted',textAlign: TextAlign.center,
+                                    child: Text('Assignment Submitted',textAlign: TextAlign.center,
                                       style: TextStyle(color: GlobalData.lightblue,fontSize: 25,fontWeight: FontWeight.bold),),
                                   )),
 

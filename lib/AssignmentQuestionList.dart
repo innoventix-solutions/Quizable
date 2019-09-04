@@ -59,11 +59,6 @@ class _AssignmentQuestionListState extends State<AssignmentQuestionList> {
 
     });
   }
-
-
-
-
-
   Widget AnswerNow(String type,List<Pojo_Matchs> Data,List<Pojo_Answers> Answers,int index)
   {
 
@@ -71,9 +66,6 @@ class _AssignmentQuestionListState extends State<AssignmentQuestionList> {
 
 
     print(GlobalData.LoadData.toString());
-
-
-
 
     switch (type)
     {
