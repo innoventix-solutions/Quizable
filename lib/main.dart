@@ -81,8 +81,11 @@ import 'EditAssignmentQuestion.dart';   //04-9-19
 import 'AssignmentQuestionList.dart';   //05-9-19
 import 'AssignmentListStudents.dart';   //05-9-19
 import 'AssignmentExam.dart';
+
+
+
 void main() {
-  runApp(MyApp());
+  runApp(splash());
 }
 
 class MyApp extends StatelessWidget {
@@ -90,7 +93,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(fontFamily: 'yu'),
-      home:splash(),
+      home:MyApp(),
       debugShowCheckedModeBanner: false,
       routes: {
        // 'signup_teacher': (context) => sec(),
