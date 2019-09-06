@@ -81,11 +81,10 @@ import 'EditAssignmentQuestion.dart';   //04-9-19
 import 'AssignmentQuestionList.dart';   //05-9-19
 import 'AssignmentListStudents.dart';   //05-9-19
 import 'AssignmentExam.dart';
-
-
-
+import 'ReportDashboard.dart';
+import 'AssignmentReport.dart';
 void main() {
-  runApp(splash());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -93,7 +92,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(fontFamily: 'yu'),
-      home:MyApp(),
+      home:splash(),
       debugShowCheckedModeBanner: false,
       routes: {
        // 'signup_teacher': (context) => sec(),
@@ -169,6 +168,8 @@ class MyApp extends StatelessWidget {
         'EditAssignmentQuestions': (context)=>EditAssignmentQuestions(),//04-9-19
         'AssignmentListStudents': (context)=>AssignmentListStudents(),  //05-9-19
         'assignmentexam': (context)=>AssignmentExam(),
+        'ReportDashboard': (context)=>ReportDashboard(),
+        'AssignmentReport': (context)=>AssignmentReport()
       },
     );
   }

@@ -103,6 +103,22 @@ class _RecentQuestionState extends State<RecentQuestion> {
         body:
         Column(
           children: <Widget>[
+
+            Card(elevation: 5.0,color: Colors.red,
+              child: Padding(
+                padding: const EdgeInsets.only(top: 5,bottom: 5),
+                child: Container(
+                  child: Column(mainAxisAlignment: MainAxisAlignment.start,
+                    children: <Widget>[
+                      Row(mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Text('Class Assignments',style: TextStyle(fontSize: 18,
+                              fontWeight:  FontWeight.bold,color: GlobalData.gray),),
+                        ],)
+                    ],),
+                ),
+              ),
+            ),
             Expanded(
               child: assignment_list.isEmpty ? Center(child: Text('You have not published any class activity yet')) :
               ListView.builder(
@@ -123,6 +139,24 @@ class _RecentQuestionState extends State<RecentQuestion> {
                     );
                   }),
             ),
+
+
+
+            Card(elevation: 5.0,color: Colors.green,
+              child: Padding(
+                padding: const EdgeInsets.only(top: 5,bottom: 5),
+                child: Container(
+                  child: Column(mainAxisAlignment: MainAxisAlignment.start,
+                    children: <Widget>[
+                      Row(mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Text('Quiz Exercise',style: TextStyle(fontSize: 18,
+                              fontWeight:  FontWeight.bold,color: GlobalData.gray),),
+                        ],)
+                    ],),
+                ),
+              ),
+            ),
             Expanded(
               child:Quizz_List.isEmpty ? Center(child: Text('You have not published any class activity yet')) :
               ListView.builder(
@@ -141,6 +175,24 @@ class _RecentQuestionState extends State<RecentQuestion> {
                       ),
                     );
                   }),
+            ),
+
+
+
+            Card(elevation: 5.0,color: Colors.orange,
+              child: Padding(
+                padding: const EdgeInsets.only(top: 5,bottom: 5),
+                child: Container(
+                  child: Column(mainAxisAlignment: MainAxisAlignment.start,
+                    children: <Widget>[
+                      Row(mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Text('Spelling Challenge',style: TextStyle(fontSize: 18,
+                              fontWeight:  FontWeight.bold,color: GlobalData.gray),),
+                        ],)
+                    ],),
+                ),
+              ),
             ),
             Expanded(
               child:Quizz_List.isEmpty ? Center(child: Text('You have not published any class activity yet')) :

@@ -170,11 +170,15 @@ class _teacherdashboardState extends State<teacherdashboard> {
                             ),
 
 
-                          ),onTap: (){Navigator.of(context)
-                            .pushNamed('Recentque');},
+                          ),onTap: (){
+                            Navigator.of(context)
+                            .pushNamed('Recentque');
+                            },
                         ),
-                        GestureDetector(onTap: (){Navigator.of(context)
-        .pushNamed('manageclassactivities');},
+                        GestureDetector(onTap: (){
+                          Navigator.of(context)
+        .pushNamed('ReportDashboard');
+                          },
                           child: Padding(
                             padding: const EdgeInsets.only(left: 15,right: 15),
                             child: Container(height: 100,width: 150,
