@@ -80,6 +80,7 @@ class GlobalData{
   static String AssignmentTitle="";
   static String NosofQuesassignment="";
   static String teacherinstruction="";
+  static String teacherobjective="";
   static String AssignmentID="";
 
 
@@ -1030,6 +1031,7 @@ ClearRegisterData(){
   GlobalData.NosofQuesassignment="";   //20-8-19
   GlobalData.teacherinstruction="";   //20-8-19
   GlobalData.AssignmentID="";         //26-8-19
+  GlobalData.teacherobjective="";     //5-9-19
 }
 
 
@@ -1063,6 +1065,12 @@ LogoutFunction(context)async {
   GlobalData.ExamQuiz="";
   GlobalData.QuizID="";
 
+  //5-9-19
+  GlobalData.AssignmentTitle="";
+  GlobalData.teacherobjective="";
+  GlobalData.teacherinstruction="";
+  GlobalData.AssignmentID="";
+  GlobalData.NosofQuesassignment="";
 
   // Navigator.of(context).dispose();
   // await Navigator.of(context).dispose();
@@ -2106,7 +2114,7 @@ class PreviewAssignments extends StatelessWidget {
                                             if(value=="edit")
                                             {
                                               GlobalData.EditQuiz=true;
-                                              GlobalData.QuizID=id;
+                                              GlobalData.AssignmentID=id;
                                               GlobalData.ExamQuiz=title;
                                               Navigator.of(context).pushNamed('AssignmentQuestionList');
                                             }

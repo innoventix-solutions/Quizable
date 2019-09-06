@@ -25,6 +25,7 @@ class _assignmentquestionbankState extends State<assignmentquestionbank> {
   TextEditingController Assignmenttitle = new TextEditingController(text:GlobalData.AssignmentTitle );
   TextEditingController noofque = new TextEditingController(text: GlobalData.NosofQuesassignment);
   TextEditingController instruction = new TextEditingController(text:GlobalData.teacherinstruction);
+  TextEditingController objective = new TextEditingController(text:GlobalData.teacherobjective);
   TextEditingController Assignmentclass = new TextEditingController();
   TextEditingController publishdate= new TextEditingController();
   TextEditingController closingdate= new TextEditingController();
@@ -38,8 +39,9 @@ class _assignmentquestionbankState extends State<assignmentquestionbank> {
   }
 
   setalldetails(){
-   GlobalData.AssignmentTitle  = Assignmenttitle.text;
-GlobalData.teacherinstruction = instruction.text;
+    GlobalData.AssignmentTitle  = Assignmenttitle.text;
+    GlobalData.teacherinstruction = instruction.text;
+    GlobalData.teacherobjective = objective.text;
     GlobalData.NosofQuesassignment = noofque.text;
 
   }
@@ -61,6 +63,7 @@ GlobalData.teacherinstruction = instruction.text;
       "assignment_title":  Assignmenttitle.text.toString(),
       "no_of_questions": noofque.text.toString(),
       "teacher_instruction":instruction.text.toString(),
+      "teacher_objective":objective.text.toString(),
       "class_id": Assignmentclass.text.toString(),
       "techer_id": teacher.text.toString(),
       "publish_date":publishdate.text.toString(),
@@ -264,7 +267,40 @@ GlobalData.teacherinstruction = instruction.text;
                           ),
                         ),
                       ),
-                      CustomTextField(controller: instruction,maxline: 4,),
+                      Card(
+                        child: Column(
+                          children: <Widget>[
+                            Padding(
+                              padding: const EdgeInsets.all(10.0),
+                              child: Row(
+                                children: <Widget>[
+                                  Text("Instructions",textAlign: TextAlign.left,style: TextStyle(color: Colors.black,fontSize: 14,
+                                      fontWeight: FontWeight.bold),),
+                                ],
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 5,left: 10,right: 10,bottom: 10),
+                              child: CustomTextField(controller: instruction,maxline: 1,),
+                            ),
+
+                            Padding(
+                              padding: const EdgeInsets.all(10.0),
+                              child: Row(
+                                children: <Widget>[
+                                  Text("Objective",textAlign: TextAlign.left,style: TextStyle(color: Colors.black,fontSize: 14,
+                                      fontWeight: FontWeight.bold),),
+                                ],
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 5,left: 10,right: 10,bottom: 10),
+                              child: CustomTextField(controller: objective,maxline: 1,),
+                            ),
+                          ],
+                        ),
+                      ),
+
 
 
                       /* Select starting date and time */
@@ -455,22 +491,21 @@ GlobalData.teacherinstruction = instruction.text;
 
     print(
         "assignment_title : "+ GlobalData.AssignmentTitle +
-            "\ntecher_id : "+ GlobalData.uid +
-
-            "\nno_of_questions :"+ GlobalData.NosofQuesassignment +
-
-            "\nteacher_instruction : "+ GlobalData.teacherinstruction +
-            "\nclass_id : "+
-            "\npublish_date : 2019-06-23 00:00:01"+
-            "\nclosing_date : 2019-06-26 00:00:01"
+            "\n techer_id : "+ GlobalData.uid +
+            "\n no_of_questions :"+ GlobalData.NosofQuesassignment +
+            "\n teacher_instruction : "+ GlobalData.teacherinstruction +
+            "\n teacher_objective : "+ GlobalData.teacherobjective +
+            "\n class_id : "+
+            "\n publish_date : 2019-06-23 00:00:01"+
+            "\n closing_date : 2019-06-26 00:00:01"
 
     );
 
 
     if (GlobalData.AssignmentTitle == null ||
         GlobalData.NosofQuesassignment == null ||
-
         GlobalData.teacherinstruction == null||
+        GlobalData.teacherobjective == null||
         GlobalData.Selected_class== null||
         Starting_date==null||
         Closing_date==null) {
@@ -482,6 +517,7 @@ GlobalData.teacherinstruction = instruction.text;
         "assignment_title":  GlobalData.AssignmentTitle,
         "no_of_questions": GlobalData.NosofQuesassignment,
         "teacher_instruction":GlobalData.teacherinstruction,
+        "teacher_objective":GlobalData.teacherobjective,
         "class_id": GlobalData.Selected_class_IDS,
         "techer_id": GlobalData.uid,
         "publish_date":Starting_date.toString(),

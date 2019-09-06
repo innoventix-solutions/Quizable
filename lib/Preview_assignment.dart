@@ -77,8 +77,8 @@ class _PreviewAssignmentState extends State<PreviewAssignment> {
           ],
         ),
 
-        drawer:
-        drawerquiz(),
+        /*drawer:
+        drawerquiz(),*/
 
         body:
         Column(
@@ -95,7 +95,7 @@ class _PreviewAssignmentState extends State<PreviewAssignment> {
                          GlobalData.ExamQuiz=assignment_list[i].assignment_title;
                           //GlobalData.DurationofEachLevel=assignment_list[i].dur_each_level;
                          // GlobalData.QuizLevels=assignment_list[i].no_of_levels;
-                          Navigator.of(context).pushNamed(GlobalData.userType=="student"?'exam':'AssignmentQuestionList');
+                          Navigator.of(context).pushNamed('AssignmentQuestionList');
                         },
                         child:  //assignment_list[i].is_taken==false?
                         PreviewAssignments(
@@ -104,7 +104,7 @@ class _PreviewAssignmentState extends State<PreviewAssignment> {
                           paragraph: assignment_list[i].teacher_instruction,
                           id:assignment_list[i].id ,
                           title: assignment_list[i].assignment_title,
-                          //is_taken: Quizz_List[i].is_taken,
+                          //is_taken: assignment_list[i].is_taken,
                           //duration: assignment_list[i].dur_each_level,
                          // levels: Quizz_List[i].no_of_levels,
                         ),//: SizedBox()

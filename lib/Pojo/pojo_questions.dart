@@ -33,13 +33,17 @@ class Pojo_questions{
       {
        matchs= (jsonDecode(parsedJson['anwer_options']) as List).map((data)=>Pojo_Matchs.fromJson((data))).toList();
       }
-    if(parsedJson['answer_type'].toString()!="Match Type" && parsedJson['answer_type'].toString()!="True or False")
+    if(parsedJson['answer_type'].toString()!="Match Type" && parsedJson['answer_type'].toString()!="True or False" && parsedJson['answer_type'].toString()!="Short Essay")
       {
       answers= (jsonDecode(parsedJson['anwer_options']) as List).map((data)=>Pojo_Answers.fromJson((data))).toList();
       }
     if(parsedJson['answer_type'].toString()=="True or False")
       {
       Answer=parsedJson['anwer_options'];
+      }
+    if(parsedJson['answer_type'].toString()=="Short Essay")    //5-9-19
+      {
+        Answer=parsedJson['anwer_options'];
       }
 
     return Pojo_questions(
