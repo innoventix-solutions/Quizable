@@ -81,6 +81,8 @@ import 'EditAssignmentQuestion.dart';   //04-9-19
 import 'AssignmentQuestionList.dart';   //05-9-19
 import 'AssignmentListStudents.dart';   //05-9-19
 import 'AssignmentExam.dart';
+import 'ReportDashboard.dart';
+import 'AssignmentReport.dart';
 void main() {
   runApp(MyApp());
 }
@@ -166,6 +168,8 @@ class MyApp extends StatelessWidget {
         'EditAssignmentQuestions': (context)=>EditAssignmentQuestions(),//04-9-19
         'AssignmentListStudents': (context)=>AssignmentListStudents(),  //05-9-19
         'assignmentexam': (context)=>AssignmentExam(),
+        'ReportDashboard': (context)=>ReportDashboard(),
+        'AssignmentReport': (context)=>AssignmentReport()
       },
     );
   }

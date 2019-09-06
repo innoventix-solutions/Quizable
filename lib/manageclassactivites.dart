@@ -49,7 +49,7 @@ class _questionmenuState extends State<questionmenu> {
 
         title: Center(
           child: Text(
-            "Report",
+            "Quiz Report",
             style: TextStyle(fontSize: 20),
           ),
         ),
@@ -74,8 +74,8 @@ class _questionmenuState extends State<questionmenu> {
         ],
       ),
 
-      drawer:
-      drawerquiz(),
+      /*drawer:
+      drawerquiz(),*/
 
       body:
           Column(
@@ -89,7 +89,7 @@ class _questionmenuState extends State<questionmenu> {
                     onTap: (){
                       Navigator.of(context).pushNamed('StudentListByQuiz');
                     },
-                    child: studentreport(
+                    child: StudentQuizReport(
                       color: GlobalData.pinkred,
                       heading: Quizz_List[i].quiz_title,
                       paragraph: Quizz_List[i].quiz_subject,

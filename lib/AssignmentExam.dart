@@ -362,7 +362,7 @@ class _AssignmentExamState extends State<AssignmentExam> {
                         i++;
                         if(i==Quetions.length)
                         {
-                          getExamResult();
+                          ExamCompleted(context);
 
                           i--;
 
@@ -388,7 +388,7 @@ class _AssignmentExamState extends State<AssignmentExam> {
   }
 
 
-
+/*
   getExamResult()async{
     http.post("http://edusupportapp.com/api/get_user_assignments_result.php",body:{
       "assignment_id":GlobalData.AssignmentID,
@@ -400,7 +400,7 @@ class _AssignmentExamState extends State<AssignmentExam> {
 
       ExamCompleted(context,parsedJson['useranswedata']['point_awarded'].toString());
     });
-  }
+  }*/
 
 
   @override
@@ -507,7 +507,7 @@ Matches =Quetions[i].anwer_options;*/
   }
 
 
-  void ExamCompleted(BuildContext context,String Score)  {
+  void ExamCompleted(BuildContext context)  {
     bool Selected = false;
     TextEditingController optioncontroller = new TextEditingController();
     showDialog(
@@ -549,7 +549,7 @@ Matches =Quetions[i].anwer_options;*/
                                   Center(child: Padding(
                                     padding: const EdgeInsets.only(top:15),
 
-                                    child: Text('Score : '+Score,textAlign: TextAlign.center,
+                                    child: Text("Your Answers are in preview",textAlign: TextAlign.center,
                                       style: TextStyle(color: GlobalData.lightblue,fontSize: 20,fontWeight: FontWeight.bold),),
                                   )),
 
