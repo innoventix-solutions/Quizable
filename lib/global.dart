@@ -2246,7 +2246,7 @@ class StudentAssignmentReport extends StatelessWidget {
 
                   GlobalData.AssignmentID=id;
 
-                    Navigator.of(context).pushNamed('');
+                    Navigator.of(context).pushNamed('assignmentexam');
 
                 },
                 child: GlobalData.userType=="student"?Row(
@@ -2264,7 +2264,7 @@ class StudentAssignmentReport extends StatelessWidget {
                                 child: Row(
                                     children: <Widget>[
                                       Expanded(
-                                        child: Text(is_taken==true?"Quiz Report":"Give Exam",textAlign: TextAlign.center,
+                                        child: Text(is_taken==true?"Assignment Report":"Give Exam",textAlign: TextAlign.center,
                                           style: TextStyle(color: Colors.white,fontSize: 15,fontWeight: FontWeight.bold),),
                                       ),
 

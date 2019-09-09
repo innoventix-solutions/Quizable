@@ -243,7 +243,7 @@ class _AssignmentListStudentsState extends State<AssignmentListStudents> {
                           Navigator.of(context).pushNamed(assignment_list[i].is_taken==true?'AnswerLog':'assignmentexam');
                         },
                         child: //assignment_list[i].is_taken==false?       //22-8-19 a
-                        classactivitys(
+                        StudentAssignmentReport(
                           color: GlobalData.pinkred,
                           heading: assignment_list[i].assignment_title+" - "+assignment_list[i].id,
                           paragraph: assignment_list[i].teacher_instruction,
