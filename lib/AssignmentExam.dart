@@ -362,7 +362,7 @@ class _AssignmentExamState extends State<AssignmentExam> {
                         i++;
                         if(i==Quetions.length)
                         {
-                          ExamCompleted(context);
+                          getExamResult();
 
                           i--;
 
@@ -388,19 +388,19 @@ class _AssignmentExamState extends State<AssignmentExam> {
   }
 
 
-/*
+
   getExamResult()async{
-    http.post("http://edusupportapp.com/api/get_user_assignments_result.php",body:{
+    http.post("http://edusupportapp.com/api/get_user_assignment_result.php",body:{
       "assignment_id":GlobalData.AssignmentID,
       "user_id":GlobalData.uid
     }).then((res){
       print(res.body);
       var parsedJson = jsonDecode(res.body);
-      print(parsedJson['useranswedata']['point_awarded']);
+      print(parsedJson['quiz_result']['point_awarded']);
 
-      ExamCompleted(context,parsedJson['useranswedata']['point_awarded'].toString());
+      ExamCompleted(context,parsedJson['quiz_result']['point_awarded'].toString());
     });
-  }*/
+  }
 
 
   @override
@@ -507,7 +507,7 @@ Matches =Quetions[i].anwer_options;*/
   }
 
 
-  void ExamCompleted(BuildContext context)  {
+  void ExamCompleted(BuildContext context, String Score)  {
     bool Selected = false;
     TextEditingController optioncontroller = new TextEditingController();
     showDialog(
@@ -534,7 +534,7 @@ Matches =Quetions[i].anwer_options;*/
                                   Center(child: Padding(
                                     padding: const EdgeInsets.all(10),
 
-                                    child: Text('Assignment Completed',textAlign: TextAlign.center,
+                                    child: Text('Score:'+Score,textAlign: TextAlign.center,
                                       style: TextStyle(color: GlobalData.lightblue,fontSize: 25,fontWeight: FontWeight.bold),),
                                   )),
                                   new Divider(
