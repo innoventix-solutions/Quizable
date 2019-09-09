@@ -83,6 +83,8 @@ import 'AssignmentListStudents.dart';   //05-9-19
 import 'AssignmentExam.dart';
 import 'ReportDashboard.dart';
 import 'AssignmentReport.dart';
+import 'setspellingque.dart';
+import 'setspellque.dart';
 void main() {
   runApp(MyApp());
 }
@@ -92,7 +94,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(fontFamily: 'yu'),
-      home:splash(),
+      home:setspellque(),
       debugShowCheckedModeBanner: false,
       routes: {
        // 'signup_teacher': (context) => sec(),
@@ -145,7 +147,7 @@ class MyApp extends StatelessWidget {
         'SetAssignment':(contexontext)=>assignmentquestionbank(),
         'GameRoom':(context)=>GameRoom(),
         'StudentList':(context)=>assignmentquestionbank(),
-        'SetSpelling':(context)=>SpellingChallange(),
+        'SetSpelling':(context)=>setspellingque(),
         'TeacherInviteCode':(context)=>TeacherInviteCode(),
 
         'StudentInviteCode':(ct)=>StudentList(),
@@ -169,7 +171,8 @@ class MyApp extends StatelessWidget {
         'AssignmentListStudents': (context)=>AssignmentListStudents(),  //05-9-19
         'assignmentexam': (context)=>AssignmentExam(),
         'ReportDashboard': (context)=>ReportDashboard(),
-        'AssignmentReport': (context)=>AssignmentReport()
+        'AssignmentReport': (context)=>AssignmentReport(),
+        'setspellque':(context)=>setspellque(),
       },
     );
   }
