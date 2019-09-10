@@ -80,6 +80,12 @@ class _setspellqueState extends State<setspellque> {
           ),
         ],
       ),
+
+
+      drawer:
+      drawerquiz(),
+
+
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
@@ -298,8 +304,37 @@ class _setspellqueState extends State<setspellque> {
 
 
 
-                ],
+                   ],
 
+              ),
+              Padding(
+                padding: const EdgeInsets.only(bottom: 5, right: 5),
+                child: GestureDetector(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: <Widget>[
+                      Text(
+                        'Add Questions ',
+                        style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            color: GlobalData.lightblue),
+                      ),
+                      Icon(
+                        Icons.add_circle,
+                        color: GlobalData.lightblue,
+                        size: 22,
+                      )
+                    ],
+                  ),
+                  onTap: () {
+                    //setalldetails();SaveQuiz();
+//                          Navigator.of(context)
+//                              .pushNamed(
+//                              'questions');
+                  },
+                ),
               ),
             ],),
           ),
