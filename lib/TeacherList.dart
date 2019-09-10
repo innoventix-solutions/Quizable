@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:newpro/global.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-
+import 'package:fluttertoast/fluttertoast.dart';
 import 'Pojo/pojostydentlist.dart';
 
 class TeacherList extends StatefulWidget {
@@ -43,6 +43,79 @@ class _TeacherListState extends State<TeacherList> {
   }
 
 
+  int i=0;
+
+  Delete(String id) async{
+
+    await http.post("http://edusupportapp.com/api/delete_user_from_class.php",
+        body: {
+          "class_id":GlobalData.classid,
+          "user_id":id,
+        }).then((res){
+      print(res.body);
+      //var ParsedJson = jsonDecode(res.body);
+      //Stu_List = (ParsedJson['userdata'] as List).map((data)=>pojostydentlist.fromJson(data)).toList();
+      setState(() {
+
+      });
+
+    });
+  }
+
+/* 30-8 delete student*/
+  void showDialog1(BuildContext context,String id ) {
+    // flutter defined function
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        // return object of type Dialog
+        return AlertDialog(
+          title: new Text("Alert!!!"),
+          content: new Text("Are You Sure Want To Delete Quiz?"),
+          actions: <Widget>[
+            // usually buttons at the bottom of the dialog
+            new FlatButton(
+              child: Row(
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.only(
+                        right: 30
+                    ),
+                    child: GestureDetector(
+                        onTap: (){
+                          Delete(id);
+                          Show_toast("Delete Successfully", Colors.green);
+                          Navigator.of(context).pushNamed('dashboard');
+                        },child: new Text("YES")),
+
+                  ),
+                  GestureDetector(
+                      onTap: (){
+                        Navigator.of(context).pushNamed('dashboard');
+                      },child: new Text("No")),
+                ],
+              ),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  Show_toast(String msg, Color color) {
+    Fluttertoast.showToast(
+        msg: msg,
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.CENTER,
+        timeInSecForIos: 1,
+        backgroundColor: color,
+        textColor: Colors.white,
+        fontSize: 16.0);
+  }
+/* 30-8 delete student*/
 
 
   @override
@@ -175,10 +248,13 @@ class _TeacherListState extends State<TeacherList> {
                             ),
 
 
-                           GlobalData.userType.toLowerCase()=="admin_teacher"? Padding(
+                           GlobalData.userType.toLowerCase()=="admin_teacher"?
+                           Padding(
                               padding: const EdgeInsets.only(right: 20),
                               child: Row(mainAxisAlignment: MainAxisAlignment.end,
                                 children: <Widget>[
+
+                globlist[index].id != GlobalData.uid ?
                                   PopupMenuButton(
                                     child: Icon(Icons.more_vert),
                                     itemBuilder: (_) => <PopupMenuItem<String>>[
@@ -194,14 +270,20 @@ class _TeacherListState extends State<TeacherList> {
                                             ),
                                             new Text('Remove',style: TextStyle(fontSize: 15),),
                                           ],
-                                        ), ),
+                                        ),value: 'delete' ),
 
 
 
 
                                     ],
+                                    onSelected: ( value){
 
-                                  ),
+                                      if(value=="delete")
+                                      {
+                                        showDialog1(context,globlist[index].id.toString());
+                                      }
+                                    },
+                                  ) :Text(""),
                                 ],
                               ),
                             ):SizedBox(),

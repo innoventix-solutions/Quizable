@@ -11,8 +11,7 @@ class _SetAssignmentQuestionState extends State<SetAssignmentQuestion> {
   String SelectedType = 'Fill-in the gaps';
   List<String> ListofTypes = ['Fill-in the gaps','Multiple Answers','Short Essay'];
   List<option> Options = new List();
-
-
+  String Shortessay="Students Answer";  //5-9-19
   List<String> Type = ["fillups","multi","essay"];
 
   TextEditingController QuestionName = new TextEditingController();
@@ -161,9 +160,9 @@ class _SetAssignmentQuestionState extends State<SetAssignmentQuestion> {
                               child: Column(
                                 children: <Widget>[
                                   Center(child: Padding(
-                                    padding: const EdgeInsets.only(top:15),
+                                    padding: const EdgeInsets.all(10.0),
 
-                                    child: Text('Quiz Submitted',textAlign: TextAlign.center,
+                                    child: Text('Assignment Submitted',textAlign: TextAlign.center,
                                       style: TextStyle(color: GlobalData.lightblue,fontSize: 25,fontWeight: FontWeight.bold),),
                                   )),
 
@@ -362,13 +361,16 @@ class _SetAssignmentQuestionState extends State<SetAssignmentQuestion> {
               Row(
                 children: <Widget>[
                   Expanded(
-                    child: Container(padding: EdgeInsets.all(5),child: Text("Teacher’s Instruction:",
+                    child: Container(padding: EdgeInsets.all(5),child: Text(/*"Teacher’s Instruction:"*/
+                      Shortessay,
                       style: TextStyle(color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),)),
                   ),
 
                 ],
               ),
-              Row(
+
+              // 5-9-19
+              /*Row(
                 children: <Widget>[
                   Expanded(
                     child: Container(
@@ -384,7 +386,7 @@ class _SetAssignmentQuestionState extends State<SetAssignmentQuestion> {
                     ),
                   ),
                 ],
-              ),
+              ),*/
 
 
 
@@ -405,6 +407,8 @@ class _SetAssignmentQuestionState extends State<SetAssignmentQuestion> {
       case 'Fill-in the gaps':
         return jsonEncode(Options).toString();
 
+      case 'Short Essay':
+        return Shortessay.toString();
 
       default:
         return "Sorry";

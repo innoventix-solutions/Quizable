@@ -1,23 +1,24 @@
 import 'dart:convert';
+import 'package:newpro/Pojo/pojo_answer.dart';
+import 'package:newpro/Pojo/pojo_matchs.dart';
 import 'package:flutter/material.dart';
 import 'global.dart';
 import 'package:http/http.dart' as http;
-class Questions extends StatefulWidget {
+class EditAssignmentQuestions extends StatefulWidget {
   @override
-  _QuestionsState createState() => _QuestionsState();
+  _EditAssignmentQuestionsState createState() => _EditAssignmentQuestionsState();
 }
 
-class _QuestionsState extends State<Questions> {
-  String SelectedType = 'Fill-in the gaps';
-  List<String> ListofTypes = ['Fill-in the gaps', 'Match Type', 'Single Answer', 'Multiple Answers','True False'];
-  List<option> Options = new List();
-  List<MatchClass> Matches = new List();
-  String TrueorFalse = "False";
-  List<String> Type = ["fillups","matchtype","single","multi","tf"];
+class _EditAssignmentQuestionsState extends State<EditAssignmentQuestions> {
+  String SelectedType = GlobalData.Current_Que_To_Edit.answer_type;
+  List<String> ListofTypes = ['Fill-in the gaps','Multiple Answers','Short Essay'];
+  List<Pojo_Answers> Options = GlobalData.Current_Que_To_Edit.Options;
+  //List<Pojo_Matchs> Matches = GlobalData.Current_Que_To_Edit.anwer_options;
 
-  TextEditingController QuestionName = new TextEditingController();
-  TextEditingController Points = new TextEditingController();
-
+  //String TrueorFalse=GlobalData.Current_Que_To_Edit.Options[0].trueanswer.toString();
+  List<String> Type = ["fillups","multi","essay"];
+  TextEditingController QuestionName = new TextEditingController(text: GlobalData.Current_Que_To_Edit.question);
+  TextEditingController Points = new TextEditingController(text: GlobalData.Current_Que_To_Edit.point_awarded);
 
   void _confirmDialog(BuildContext context)  {
     bool Selected = false;
@@ -35,8 +36,8 @@ class _QuestionsState extends State<Questions> {
                     child: Container(
                       child: new Card(
                         shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(15.0),
-                      ),
+                          borderRadius: BorderRadius.circular(15.0),
+                        ),
                         child: Column(mainAxisAlignment: MainAxisAlignment.start,
                           children: <Widget>[
                             Container(
@@ -79,14 +80,14 @@ class _QuestionsState extends State<Questions> {
                                             child: GradientButtonText(
                                               ButtonClick: (){
 
-                                                Options.add(option(trueanswer: Selected,value:optioncontroller.text ));
+                                                Options.add(Pojo_Answers(trueanswer: Selected,value:optioncontroller.text ));
                                                 Navigator.of(context).pop();
                                                 setState(() {
 
                                                 });
 
                                               }
-                                            ,linearGradient:
+                                              ,linearGradient:
                                             LinearGradient(colors: <Color>[GlobalData.navy,GlobalData.navyblue]),
                                               text: Text('Add',style: TextStyle(color: Colors.white,
                                                 fontWeight: FontWeight.bold,fontSize: 12,),textAlign: TextAlign.center,),
@@ -124,19 +125,7 @@ class _QuestionsState extends State<Questions> {
         });
   }
 
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-
-    print("Questiaosdnf asd");
-
-  }
-
-
-
   void QuizCompleted(BuildContext context)  {
-
     bool Selected = false;
     TextEditingController optioncontroller = new TextEditingController();
     showDialog(
@@ -163,7 +152,7 @@ class _QuestionsState extends State<Questions> {
                                   Center(child: Padding(
                                     padding: const EdgeInsets.only(top:15),
 
-                                    child: Text('Quiz Submitted',textAlign: TextAlign.center,
+                                    child: Text('Asiignment Submitted',textAlign: TextAlign.center,
                                       style: TextStyle(color: GlobalData.lightblue,fontSize: 25,fontWeight: FontWeight.bold),),
                                   )),
 
@@ -183,8 +172,7 @@ class _QuestionsState extends State<Questions> {
                                             child: GradientButtonText(
                                               ButtonClick: (){
 
-                                                Navigator.of(context).pushReplacementNamed('Recentque');
-                                                ClearRegisterData();
+                                                Navigator.of(context).pushNamed('Recentque');
                                                 setState(() {
 
                                                 });
@@ -228,7 +216,7 @@ class _QuestionsState extends State<Questions> {
         });
   }
 
-  void _confirmDialogMatches(BuildContext context)  {
+ /* void _confirmDialogMatches(BuildContext context)  {
     bool Selected = false;
     TextEditingController value1 = new TextEditingController();
     TextEditingController value2 = new TextEditingController();
@@ -296,7 +284,7 @@ class _QuestionsState extends State<Questions> {
                                             child: GradientButtonText(
                                               ButtonClick: (){
 
-                                                Matches.add(MatchClass(val1: value1.text,val2:value2.text ));
+                                                Matches.add(Pojo_Matchs(val1: value1.text,val2:value2.text ));
                                                 Navigator.of(context).pop();
                                                 setState(() {
 
@@ -339,7 +327,7 @@ class _QuestionsState extends State<Questions> {
 
           );
         });
-  }
+  }*/
 
   Widget MyQuestionType(String type) {
 
@@ -376,157 +364,19 @@ class _QuestionsState extends State<Questions> {
                                     });},),
                                   Expanded(child: Container(child: Text(Options[index].value)))
 
-                               , Padding(
-                                 padding: const EdgeInsets.all(8.0),
-                                 child: GestureDetector(
-
-                                     onTap: (){
-                                       Options.removeLast();
-                                       setState(() {
-
-                                       });
-
-                                     },
-                                     child: Icon(Icons.cancel,color: Colors.redAccent,size: 20,)),
-                               ),
-
-                                ],),);}),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  ],
-              ),
-
-
-
-            ],
-          ),);
-      case 'Match Type':
-        return Card(
-          child: Padding(
-            padding: const EdgeInsets.only(left: 20,right: 20),
-            child: Column(
-              children: <Widget>[
-                Row(
-                  children: <Widget>[
-                    Expanded(
-                      child: Container(padding: EdgeInsets.all(5),child: Text("Select Pairs of Matching Terms.",style: TextStyle(color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),)),
-                    ),
-                    Row(children: <Widget>[
-                      FlatButton.icon(onPressed: (){_confirmDialogMatches(context);}, icon: Icon( Icons.add_circle,color: GlobalData.lightblue,), label: Text("More",style: TextStyle(color: GlobalData.lightblue,fontSize: 15,fontWeight: FontWeight.bold)))
-                    ],)
-                  ],
-                ),
-                Row(
-                  children: <Widget>[
-                    Expanded(
-                      child: Container(
-                        height: Matches.isEmpty?50.0:Matches.length*50.0,
-                        child: Column(
-                          children: <Widget>[
-                            Expanded(
-                              child: ListView.builder(
-                                  itemCount: Matches.length,itemBuilder: (context,index){
-                                return Container(child: Row(
-                                  children: <Widget>[
-                                    Expanded(
-                                      child:Card(child: Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: Text(Matches[index].val1),
-                                      )) ,
-                                    ),
-                                    SizedBox(width: 20,)
-                                    ,
-                                    Expanded(
-                                      child:Card(child: Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: Text(Matches[index].val2),
-                                      )) ,
-                                    ),
-
-
-                                    GestureDetector(onTap: (){
-
-                                      Matches.removeLast();
-                                      setState(() {
-
-                                      });
-                                    },
-                                        child: Icon(Icons.cancel,color: Colors.redAccent,size: 20,)),
-
-
-
-                                  ],),);}),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-
-
-
-              ],
-            ),
-          ),);
-      case 'Single Answer':
-        return Card(
-          child: Column(
-            children: <Widget>[
-              Row(
-                children: <Widget>[
-                  Expanded(
-                    child: Container(padding: EdgeInsets.all(5),child: Text("List Options and Select One Answer ",style: TextStyle(color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),)),
-                  ),
-                  Row(children: <Widget>[
-                    FlatButton.icon(onPressed: (){_confirmDialog(context);}, icon: Icon( Icons.add_circle,color: GlobalData.lightblue,), label: Text("More",style: TextStyle(color: GlobalData.lightblue,fontSize: 15,fontWeight: FontWeight.bold)))
-                  ],)
-                ],
-              ),
-              Row(
-                children: <Widget>[
-                  Expanded(
-                    child: Container(
-                      height: Options.isEmpty?50.0:Options.length*50.0,
-
-                      child: Column(
-                        children: <Widget>[
-                          Expanded(
-                            child: ListView.builder(
-                                itemCount: Options.length,itemBuilder: (context,index){
-                              return Container(child: Row(
-                                children: <Widget>[
-                                  Checkbox(value: Options[index].trueanswer, onChanged: (value){
-
-
-                                    for(int i=0;i<Options.length;i++){
-                                      Options[i].trueanswer=false;
-                                    }
-
-
-                                    Options[index].trueanswer=value;setState(() {
-
-                                    });},),
-                                  Expanded(child: Text(Options[index].value,maxLines: 4,)),
-
-                                  Padding(
+                                  , Padding(
                                     padding: const EdgeInsets.all(8.0),
                                     child: GestureDetector(
 
-                                      onTap: (){
+                                        onTap: (){
+                                          Options.removeLast();
+                                          setState(() {
 
-                                        Options.removeLast();
-                                        setState(() {
+                                          });
 
-                                        });
-                                      }
-
-                                        ,child: Icon(Icons.cancel,color: Colors.redAccent,size: 20,)),
+                                        },
+                                        child: Icon(Icons.cancel,color: Colors.redAccent,size: 20,)),
                                   ),
-
 
                                 ],),);}),
                           ),
@@ -541,8 +391,7 @@ class _QuestionsState extends State<Questions> {
 
             ],
           ),);
-
-      case 'Fill-in the gaps':
+            case 'Fill-in the gaps':
         return Card(
           child: Column(
             children: <Widget>[
@@ -574,20 +423,20 @@ class _QuestionsState extends State<Questions> {
                                     });},),
                                   Expanded(child: Text(Options[index].value))
 
-,Padding(
-  padding: const EdgeInsets.all(8.0),
-  child:   GestureDetector(
-      onTap: (){
+                                  ,Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child:   GestureDetector(
+                                        onTap: (){
 
-        Options.removeLast();
-        setState(() {
+                                          Options.removeLast();
+                                          setState(() {
 
-        });
+                                          });
 
-      },
+                                        },
 
-      child: Icon(Icons.cancel,color: Colors.redAccent,size: 20,)),
-),
+                                        child: Icon(Icons.cancel,color: Colors.redAccent,size: 20,)),
+                                  ),
 
                                 ],),);}),
                           ),
@@ -598,19 +447,19 @@ class _QuestionsState extends State<Questions> {
                 ],
               ),
 
-Text("Enter answer in sequence with underscore '_' in between the words",style:
-  TextStyle(color: Colors.red),)
+
 
             ],
           ),);
-      case 'True False':
+      case 'Short Essay':
         return Card(
           child: Column(
             children: <Widget>[
               Row(
                 children: <Widget>[
                   Expanded(
-                    child: Container(padding: EdgeInsets.all(5),child: Text("Select Answer",style: TextStyle(color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),)),
+                    child: Container(padding: EdgeInsets.all(5),child: Text("Teacher’s Instruction:",
+                      style: TextStyle(color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),)),
                   ),
 
                 ],
@@ -622,27 +471,9 @@ Text("Enter answer in sequence with underscore '_' in between the words",style:
                       height: 110.0,
                       child: Column(
                         children: <Widget>[
-                          Container(child: Row(
-                            children: <Widget>[
-                              Radio(value: "False", groupValue: TrueorFalse, onChanged: (v){TrueorFalse=v;setState(() {
+                          Container(child: CustomTextField()
+                          ),
 
-                              });}),
-                              Text("True")
-
-
-
-                            ],),),
-                          Container(child: Row(
-                            children: <Widget>[
-                              Radio(value: "True", groupValue: TrueorFalse, onChanged: (v){TrueorFalse=v;setState(() {
-
-                              });}),
-
-                              Text("False")
-
-
-
-                            ],),)
 
                         ],
                       ),
@@ -666,23 +497,10 @@ Text("Enter answer in sequence with underscore '_' in between the words",style:
     switch (type){
       case 'Multiple Answers':
         return jsonEncode(Options).toString();
-      case 'Match Type':
-        return jsonEncode(Matches).toString();
-      case 'Single Answer':
-        return jsonEncode(Options).toString();
+
       case 'Fill-in the gaps':
         return jsonEncode(Options).toString();
-      case 'True False':
-        Options.clear();
-        if(TrueorFalse==true){
-          Options.add(option(trueanswer: true,value: "True"));
-          Options.add(option(trueanswer: false,value: "False"));
-        }else
-          {
-            Options.add(option(trueanswer: false,value: "True"));
-            Options.add(option(trueanswer: true,value: "False"));
-          }
-        return jsonEncode(Options).toString();
+
       default:
         return "Sorry";
     }
@@ -692,12 +510,14 @@ Text("Enter answer in sequence with underscore '_' in between the words",style:
   @override
   Widget build(BuildContext context) {
 
+
+
     return Scaffold(
-     appBar: AppBar(
+      appBar: AppBar(
         automaticallyImplyLeading: true,
         title: Center(
           child: Text(
-            "Set Quiz Questions",
+            "Set Assignment Questions",
             style: TextStyle(fontSize: 20),
           ),
         ),
@@ -729,61 +549,56 @@ Text("Enter answer in sequence with underscore '_' in between the words",style:
               children: <Widget>[
 
                 Card(
-              child: Column(
-                children: <Widget>[
-                  Row(
+                  child: Column(
                     children: <Widget>[
-                      Expanded(
-                        child: Container(padding: EdgeInsets.all(5),color:GlobalData.green,
-                            child: Text(
-                              "Question "+((GlobalData.QuestionNumber%int.parse(GlobalData.NosofQuesPerLevel))+1).toString()+" of "+GlobalData.NosofQuesPerLevel,style: TextStyle(color: Colors.white,fontSize: 15,fontWeight: FontWeight.bold),)),
-                      ),
-                      Container(
-                          padding: EdgeInsets.all(5),color:GlobalData.green,
-                        child:  Text("Level "+((GlobalData.QuestionNumber/int.parse(GlobalData.NosofQuesPerLevel)).floor()+1).toString()+" of "+GlobalData.QuizLevels,style: TextStyle(color: Colors.white,fontSize: 15,fontWeight: FontWeight.bold),)
-                      )
-                    ],
-                  ),
-                  Row(
-                    children: <Widget>[
-                      Expanded(
-                        child: Column(
-                            children: <Widget>[
-                              Padding(
-                                padding: const EdgeInsets.only(left: 20,right: 20),
-                                child: TextField(
-                                  controller: QuestionName,
-                                maxLines: 4,
-                                  keyboardType: TextInputType.text,
-                                  decoration: InputDecoration(border: InputBorder.none,hintText: "Type question here"),
-                                  style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold),
-                                ),
-                              ),
-                              Text(SelectedType=="Fill-in the gaps"?"Put '_' in place where gap needs to be displayed":"",style:
-                              TextStyle(color: Colors.red),),
-                            ],
+                      Row(
+                        children: <Widget>[
+                          Expanded(
+                            child: Container(padding: EdgeInsets.all(5),color:GlobalData.green,
+                                child: Text(
+                                  "Question "+GlobalData.Current_Que_To_Edit.ques_no,style: TextStyle(color: Colors.white,fontSize: 15,fontWeight: FontWeight.bold),)),
                           ),
+
+                        ],
+                      ),
+                      Row(
+                        children: <Widget>[
+                          Expanded(
+                            child: Column(
+                              children: <Widget>[
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 20,right: 20,top: 10,bottom: 10),
+                                  child: TextField(
+                                    controller: QuestionName,
+                                    maxLines: 3,
+                                    keyboardType: TextInputType.text,
+                                    decoration: InputDecoration(border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(10))),hintText: "Type question here"),
+                                    style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
                       ),
                     ],
-                  ),
-                ],
-              ),),
+                  ),),
                 Row(
                   children: <Widget>[
                     Expanded(
                       flex: 2,
                       child: Card(
 
-                        child:Padding(
-                          padding: const EdgeInsets.all(20),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              Text("Points Awarded",style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold),),
-                              TextField(controller: Points,decoration: InputDecoration(border: InputBorder.none),keyboardType: TextInputType.numberWithOptions(signed: false,decimal: false),)
-                            ],
-                          ),
-                        ) ),
+                          child:Padding(
+                            padding: const EdgeInsets.all(20),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                Text("Points Awarded",style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold),),
+                                TextField(controller: Points,decoration: InputDecoration(border: InputBorder.none),keyboardType: TextInputType.numberWithOptions(signed: false,decimal: false),)
+                              ],
+                            ),
+                          ) ),
                     ),
                     Expanded(
                       flex: 3,
@@ -796,7 +611,7 @@ Text("Enter answer in sequence with underscore '_' in between the words",style:
                               children: <Widget>[
                                 Text("Answer Type",style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold),),
                                 new DropdownButton(
-                                 value:SelectedType ,
+                                  value:SelectedType ,
 
                                   items: ListofTypes.map((String value) {
                                     return new DropdownMenuItem<String>(
@@ -805,9 +620,9 @@ Text("Enter answer in sequence with underscore '_' in between the words",style:
                                     );
                                   }).toList(),
                                   onChanged: (value) {
-      SelectedType=value;setState(() {
+                                    SelectedType=value;setState(() {
 
-                                  });},
+                                    });},
 
                                 )
                               ],
@@ -816,23 +631,9 @@ Text("Enter answer in sequence with underscore '_' in between the words",style:
                     ),
                   ],
                 ),
-                /// Mera wala Card
-    MyQuestionType(SelectedType),
-
-                ///
+                MyQuestionType(SelectedType),
                 Row(mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    Padding(
-                      padding: const EdgeInsets.only(top: 25,bottom: 40),
-                      child: SizedBox(width: 100,
-                        child: GradientButtonText(
-                          linearGradient:LinearGradient(colors: <Color>[GlobalData.navy,GlobalData.navyblue]) ,
-                          text: Text("Back",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 18,),
-                            textAlign: TextAlign.center,),
-                        ),
-                      ),
-                    ),
-
                     Padding(
                       padding: const EdgeInsets.only(left:20,top: 25,bottom: 40),
                       child: SizedBox(width: 100,
@@ -841,33 +642,13 @@ Text("Enter answer in sequence with underscore '_' in between the words",style:
                             SaveQuizQuestion();
                           },
                           linearGradient:LinearGradient(colors: <Color>[GlobalData.purple,GlobalData.pink]) ,
-                          text: Text("Save",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 18,),
+                          text: Text("Update",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 18,),
                             textAlign: TextAlign.center,),
                         ),
                       ),
                     ),
-
-
-
-
                   ],
-
                 ),
-               /* Padding(
-                  padding: const EdgeInsets.only(bottom: 25,right: 5),
-                  child: GestureDetector(
-                    child: Row(mainAxisAlignment: MainAxisAlignment.end,
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: <Widget>[
-                        Text('Add Questions ',style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold,color: GlobalData.lightblue),
-                        ),Icon(Icons.add_circle,color: GlobalData.lightblue,)
-                      ],),onTap: (){
-
-                  },
-                  ),
-                ),*/
-
-
               ],
             ),
           ),
@@ -906,50 +687,42 @@ Text("Enter answer in sequence with underscore '_' in between the words",style:
       _showDialog();
     }else{
 
+
       print( "question "+ QuestionName.text.toString()+
-    "point_awarded "+ Points.text.toString()+
-    "answer_type "+ SelectedType.toString()+
-    "quiz_id "+ GlobalData.QuizID+
-    "answer_options " + MyQuestionAnswer(SelectedType));
+          "point_awarded "+ Points.text.toString()+
+          "answer_type "+ SelectedType.toString()+
+          "quiz_id "+ GlobalData.QuizID+
+          "answer_options " + MyQuestionAnswer(SelectedType));
 
 
-    http.post(
-        "http://edusupportapp.com/api/create_update_quiz_questions.php", body: {
-      "question": QuestionName.text.toString(),
-      "point_awarded": Points.text.toString(),
-      "answer_type": SelectedType.toString(),
-      "quiz_id": GlobalData.QuizID,
-      "answer_options": MyQuestionAnswer(SelectedType),
-      "level_no": ((GlobalData.QuestionNumber/int.parse(GlobalData.NosofQuesPerLevel)).floor()+1).toString(),
-      "ques_no": ((GlobalData.QuestionNumber%int.parse(GlobalData.NosofQuesPerLevel))+1).toString(),
-    }).then((response) {
-      var statuss = jsonDecode(response.body);
+      http.post(
 
 
-      print(response.body.toString());
-      //    print(response.body.toString());
-      if (statuss['status'] == 1) {
-        Options.clear();
-        Matches.clear();
+        /*  question
+        point_awarded
+        answer_type
+        quiz_id
+        answer_options ( must be in array or json)
+    level_no (require)
+    ques_no (require)
+    question_id (require)
+*/
 
-        SelectedType = "Fill-in the gaps";
-        GlobalData.QuestionNumber++;
-        setState(() {
 
-        });
-      } else{
+          "http://edusupportapp.com/api/create_update_assignment_questions.php", body: {
+        "question": QuestionName.text.toString(),
+        "point_awarded": Points.text.toString(),
+        "answer_type": SelectedType.toString(),
+        "assignment_id": GlobalData.AssignmentID,
+        "answer_options": MyQuestionAnswer(SelectedType),
+       // "level_no": GlobalData.Current_Que_To_Edit.level_no.toString(),
+        "ques_no": GlobalData.Current_Que_To_Edit.ques_no.toString(),
+        "question_id":GlobalData.Current_Que_To_Edit.id.toString(),
+      }).then((response) {
+        var statuss = jsonDecode(response.body);
+        Navigator.of(context).pushReplacementNamed('AssignmentQuestionList');
 
-      }
-      if(GlobalData.QuestionNumber>=(int.parse(GlobalData.NosofQuesPerLevel)*int.parse(GlobalData.QuizLevels)))
-      {
-        QuizCompleted(context);
-      }else {
-        Navigator.of(context).pushNamed('questions');
-      }
-    });
-  }
+      });
+    }
   }
 }
-
-
-

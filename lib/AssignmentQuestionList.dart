@@ -10,12 +10,12 @@ import 'Pojo/pojo_matchs.dart';
 import 'global.dart';
 import 'package:newpro/Pojo/pojo_questions.dart';
 
-class Question_List extends StatefulWidget {
+class AssignmentQuestionList extends StatefulWidget {
   @override
-  _Question_ListState createState() => _Question_ListState();
+  _AssignmentQuestionListState createState() => _AssignmentQuestionListState();
 }
 
-class _Question_ListState extends State<Question_List> {
+class _AssignmentQuestionListState extends State<AssignmentQuestionList> {
 
 
 
@@ -27,15 +27,15 @@ class _Question_ListState extends State<Question_List> {
   PageController pageController = new PageController();
   List<Pojo_questions> Quetions = new List();
   int i=0;
-  List<Pojo_Matchs> matchs = new List();
+  //List<Pojo_Matchs> matchs = new List();
   String ExamAnswer ="";
   ScrollController controller = new ScrollController();
   List<Pojo_Answers> Options = List();
-  List<MatchClass> Matchs = List();
-  List<Pojo_Matchs> Matches = List();
+  //List<MatchClass> Matchs = List();
+  //List<Pojo_Matchs> Matches = List();
   int Selected =0;
   List<int> Selecteditem=new List();
-  String TrueorFalse = "";
+ // String TrueorFalse = "";
   List<String> _list = new List();
   bool isloading = true;
 
@@ -45,12 +45,12 @@ class _Question_ListState extends State<Question_List> {
 
     });
     print(GlobalData.QuizID);
-    await http.post("http://edusupportapp.com/api/get_quiz_questions.php",body: {
-      "QuizId":GlobalData.QuizID
+    await http.post("http://edusupportapp.com/api/get_assignment_questions.php",body: {
+      "assignment_id":GlobalData.AssignmentID
     }).then((res){
       print(res.body);
       var ParsedJson = jsonDecode(res.body);
-      Quetions = (ParsedJson['quizquestionsdata'] as List).map((data)=>Pojo_questions.fromJson(data)).toList();
+      Quetions = (ParsedJson['assignmentquestionsdata'] as List).map((data)=>Pojo_questions.fromJson(data)).toList();
       setState(() {
       });
     });
@@ -59,11 +59,6 @@ class _Question_ListState extends State<Question_List> {
 
     });
   }
-
-
-
-
-
   Widget AnswerNow(String type,List<Pojo_Matchs> Data,List<Pojo_Answers> Answers,int index)
   {
 
@@ -72,67 +67,9 @@ class _Question_ListState extends State<Question_List> {
 
     print(GlobalData.LoadData.toString());
 
-    if(_list.length==0) {
-      for (var item in Matches) {
-        _list.add(item.val2);
-      }
-      print(_list.length);
-    }
-
-
     switch (type)
     {
-      case "Match Type":
-
-        return Data.isEmpty? Text(""): Container(
-          height: Data.isEmpty?50.0:Data.length*60.0,
-          child: Row(
-            children: <Widget>[
-              Expanded(child: Container(
-                color:Colors.green[300],
-                child: Column(
-                  children: <Widget>[
-                    Expanded(
-                      child: ListView.builder(
-                          shrinkWrap: true,
-                        key:Key("MatchType"+index.toString()),
-                          controller: controller,
-                          itemCount: Data.length,
-                          itemBuilder: (c,i){
-                            return Column(
-                              children: <Widget>[
-
-                                Row(
-                                  children: <Widget>[
-                                    Expanded(child: Card(
-
-                                      child: Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: Container(
-                                          height: 35,
-                                          child: Row(children: <Widget>[
-                                            Expanded(child: Text( Data[i].val1),),
-                            Expanded(child: Text( Data[i].val2),)
-                                          ],),
-                                        ),
-                                      ),
-                                    )),
-                                  ],
-                                )
-                              ],
-                            );
-
-                          }),
-                    ),
-                  ],
-                ),
-              ),),
-
-
-            ],
-          ),
-        );
-      case "True False":
+      case "Fiil in the blanks":
 
         return Card(
           child: Column(
@@ -140,28 +77,25 @@ class _Question_ListState extends State<Question_List> {
               Row(
                 children: <Widget>[
                   Expanded(
-                    child: Container(padding: EdgeInsets.all(5),child: Text("Select Answer",style: TextStyle(color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),)),
-                  ),
-
-                ],
-              ),
-              Row(
-                children: <Widget>[
-                  Expanded(
                     child: Container(
-                      height: 110.0,
+                      height: Answers.isEmpty?50.0:Answers.length*50.0,
+
                       child: Column(
                         children: <Widget>[
-                          Container(child: Row(
-                            children: <Widget>[
-                              Radio(value: "true", groupValue: Answers[0].trueanswer.toString(), ),
-                              Text(Answers[0].value.toUpperCase())
-                            ],),),
-                          Container(child: Row(
-                            children: <Widget>[
-                              Radio(value: "true", groupValue: Answers[1].trueanswer.toString(), ),
-                              Text(Answers[1].value.toUpperCase())
-                            ],),)
+                          Expanded(
+                            child: Answers.isEmpty?Text(""): ListView.builder(
+                                shrinkWrap: true,
+                                key:Key(type+index.toString()),
+                                itemCount: Answers.length,
+                                itemBuilder: (context,index){
+                                  return Container(
+
+                                    child: Row(
+                                      children: <Widget>[
+                                        Checkbox(value: Answers[index].trueanswer, ),
+                                        Text(Answers[index].value,maxLines: 4,)
+                                      ],),);}),
+                          ),
                         ],
                       ),
                     ),
@@ -173,6 +107,7 @@ class _Question_ListState extends State<Question_List> {
 
             ],
           ),);
+
       default:
         return Card(
           child: Column(
@@ -191,13 +126,13 @@ class _Question_ListState extends State<Question_List> {
                                 key:Key(type+index.toString()),
                                 itemCount: Answers.length,
                                 itemBuilder: (context,index){
-                              return Container(
-                               
-                                child: Row(
-                                children: <Widget>[
-                                  Checkbox(value: Answers[index].trueanswer, ),
-                                  Text(Answers[index].value,maxLines: 4,)
-],),);}),
+                                  return Container(
+
+                                    child: Row(
+                                      children: <Widget>[
+                                        Checkbox(value: Answers[index].trueanswer, ),
+                                        Text(Answers[index].value,maxLines: 4,)
+                                      ],),);}),
                           ),
                         ],
                       ),
@@ -210,6 +145,7 @@ class _Question_ListState extends State<Question_List> {
 
             ],
           ),);
+
     }
   }
 
@@ -225,7 +161,7 @@ class _Question_ListState extends State<Question_List> {
 
   /* 28-8 delete question*/
 
-  Delete(String id) async{
+ /* Delete(String id) async{
 
     await http.post("http://edusupportapp.com/api/delete_quiz_question.php",
         body: {
@@ -239,11 +175,11 @@ class _Question_ListState extends State<Question_List> {
       });
 
     });
-  }
+  }*/
 
 
 
-  void _showDialog(BuildContext context,String id) {
+  /*void _showDialog(BuildContext context,String id) {
     // flutter defined function
     showDialog(
       context: context,
@@ -259,7 +195,7 @@ class _Question_ListState extends State<Question_List> {
                 children: <Widget>[
                   Padding(
                     padding: const EdgeInsets.only(
-                      right: 30
+                        right: 30
                     ),
                     child: GestureDetector(
                         onTap: (){
@@ -294,7 +230,7 @@ class _Question_ListState extends State<Question_List> {
         backgroundColor: color,
         textColor: Colors.white,
         fontSize: 16.0);
-  }
+  }*/
 
 
 
@@ -304,107 +240,107 @@ class _Question_ListState extends State<Question_List> {
   Widget MYQue(){
     return SafeArea(
       child: ListView.builder(
-        itemCount: Quetions.length,
-        itemBuilder: (c,i){
-        return Padding(
+          itemCount: Quetions.length,
+          itemBuilder: (c,i){
+            return Padding(
 
-          key: Key(i.toString()),
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            children: <Widget>[
-              Container(
-                child: Card(
-                  child: Column(
-                    children: <Widget>[
-                      Container(
-                        color: Colors.blue,
-                        child: Row(
-                          children: <Widget>[
-                            Expanded(child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Text("Level ${Quetions[i].level_no.toString()}",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
-                            )),
-                           GlobalData.EditQuiz==false?Text(""): GestureDetector(
-                            onTap:(){
+              key: Key(i.toString()),
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                children: <Widget>[
+                  Container(
+                    child: Card(
+                      child: Column(
+                        children: <Widget>[
+                          Container(
+                            color: Colors.blue,
+                            child: Row(
+                              children: <Widget>[
+                                Expanded(child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Text("Question ${Quetions[i].ques_no.toString()}",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
+                                )),
+                                GlobalData.EditQuiz==false?Text(""): GestureDetector(
+                                    onTap:(){
 
-                              GlobalData.Current_Que_To_Edit = Quetions[i];
-                              Navigator.of(context).pushNamed('edit_question');
+                                      GlobalData.Current_Que_To_Edit = Quetions[i];
+                                      Navigator.of(context).pushNamed('EditAssignmentQuestions');
 
-                            },child: Icon(Icons.edit,color: Colors.white,))
-                            ,SizedBox(width: 10,),
+                                    },child: Icon(Icons.edit,color: Colors.white,))
+                                ,SizedBox(width: 10,),
 
-                            GestureDetector(
-                                onTap: (){
+                                GestureDetector(
+                                    onTap: (){
 
-                                  _showDialog(context,Quetions[i].id.toString());
+                                      //_showDialog(context,Quetions[i].id.toString());
 
 
-                                },child: Icon(Icons.cancel,color: Colors.white,)),
-                            SizedBox(width: 10,),
+                                    },child: Icon(Icons.cancel,color: Colors.white,)),
+                                SizedBox(width: 10,),
 
-                          ],
-                        ),
-                      ),
-                      Container(
-                        color: Colors.brown,
-                        child: Row(
-                          children: <Widget>[
-                            Expanded(child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Text("Question ${i+1} of ${Quetions.length}",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
-                            )),
-                          ],
-                        ),
-                      ),
-                      Container(
-
-                        child: Row(
-                          children: <Widget>[
-                            Expanded(child: Padding(
-                              padding: const EdgeInsets.all(20.0),
-                              child: Container(child: Text(Quetions[i].question,style: TextStyle(fontWeight: FontWeight.bold),)),
-                            )),
-                          ],
-                        ),
-                      ),
-                      AnswerNow(Quetions[i].answer_type,Quetions[i].anwer_options,Quetions[i].Options,i),
-                      Container(
-
-                        child: Row(
-                          children: <Widget>[
-                            Expanded(child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Container(child: Text(Quetions[i].answer_type,style: TextStyle(color: Colors.blue,fontWeight: FontWeight.bold),)),
-                            )),
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Card(color: Colors.blue,child: Padding(
-                                padding: const EdgeInsets.fromLTRB(10,4, 10, 4),
-                                child: Text(Quetions[i].point_awarded+" Pts",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
-                              )),
+                              ],
                             ),
-                          ],
-                        ),
+                          ),
+                          Container(
+                            color: Colors.brown,
+                            child: Row(
+                              children: <Widget>[
+                                Expanded(child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Text("Question ${i+1} of ${Quetions.length}",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
+                                )),
+                              ],
+                            ),
+                          ),
+                          Container(
+
+                            child: Row(
+                              children: <Widget>[
+                                Expanded(child: Padding(
+                                  padding: const EdgeInsets.all(20.0),
+                                  child: Container(child: Text(Quetions[i].question,style: TextStyle(fontWeight: FontWeight.bold),)),
+                                )),
+                              ],
+                            ),
+                          ),
+                          AnswerNow(Quetions[i].answer_type,Quetions[i].anwer_options,Quetions[i].Options,i),
+                          Container(
+
+                            child: Row(
+                              children: <Widget>[
+                                Expanded(child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Container(child: Text(Quetions[i].answer_type,style: TextStyle(color: Colors.blue,fontWeight: FontWeight.bold),)),
+                                )),
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Card(color: Colors.blue,child: Padding(
+                                    padding: const EdgeInsets.fromLTRB(10,4, 10, 4),
+                                    child: Text(Quetions[i].point_awarded+" Pts",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
+                                  )),
+                                ),
+                              ],
+                            ),
+                          ),
+
+                        ],
                       ),
-
-                    ],
+                    ),
                   ),
-                ),
+
+
+
+                ],
               ),
-
-
-
-            ],
-          ),
-        );
-  }
+            );
+          }
       ),
     );
   }
 
 
 
-  getExamResult()async{
+  /*getExamResult()async{
     http.post("http://edusupportapp.com/api/get_user_quiz_result.php",body:{
       "quiz_id":GlobalData.QuizID,
       "user_id":GlobalData.uid
@@ -415,7 +351,7 @@ class _Question_ListState extends State<Question_List> {
 
       ExamCompleted(context,parsedJson['useranswedata']['point_awarded'].toString());
     });
-  }
+  }*/
 
 
   @override
@@ -440,7 +376,7 @@ class _Question_ListState extends State<Question_List> {
     /*print(Quetions[i].anwer_options.length.toString()+"  asdznaisdfmmb k");
 Matches =Quetions[i].anwer_options;*/
     return Scaffold(
-        appBar: AppBar(title: Text("Questions List"),centerTitle: true,),
+        appBar: AppBar(title: Text("Assignment Question"),centerTitle: true,),
         body: isloading==true?Center(child: Text("Loading...")):MYQue()
 
 
@@ -455,7 +391,7 @@ Matches =Quetions[i].anwer_options;*/
 
 
 
-  GiveAnswer(String answer)async{
+  /*GiveAnswer(String answer)async{
 
     http.post("http://edusupportapp.com/api/quiz_answer.php",body: {
       "user_id":GlobalData.uid,
@@ -466,10 +402,10 @@ Matches =Quetions[i].anwer_options;*/
       print(res.body);
     });
 
-  }
+  }*/
 
 
-  void ExamCompleted(BuildContext context,String Score)  {
+ /* void ExamCompleted(BuildContext context,String Score)  {
     bool Selected = false;
     TextEditingController optioncontroller = new TextEditingController();
     showDialog(
@@ -573,7 +509,7 @@ Matches =Quetions[i].anwer_options;*/
 
           );
         });
-  }
+  }*/
 
 
 

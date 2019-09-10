@@ -49,7 +49,7 @@ class _questionmenuState extends State<questionmenu> {
 
         title: Center(
           child: Text(
-            "Manage Class Activities",
+            "Quiz Report",
             style: TextStyle(fontSize: 20),
           ),
         ),
@@ -74,8 +74,8 @@ class _questionmenuState extends State<questionmenu> {
         ],
       ),
 
-      drawer:
-      drawerquiz(),
+      /*drawer:
+      drawerquiz(),*/
 
       body:
           Column(
@@ -87,14 +87,9 @@ class _questionmenuState extends State<questionmenu> {
                     itemBuilder: (c,i){
                     return GestureDetector(
                     onTap: (){
-                      GlobalData.EditQuiz=false;
-                      GlobalData.QuizID=Quizz_List[i].id;
-                      GlobalData.ExamQuiz=Quizz_List[i].quiz_title;
-                      GlobalData.DurationofEachLevel=Quizz_List[i].dur_each_level;
-                      GlobalData.QuizLevels=Quizz_List[i].no_of_levels;
-                      Navigator.of(context).pushNamed(GlobalData.userType=="student"?'exam':'Question_List');
+                      Navigator.of(context).pushNamed('StudentListByQuiz');
                     },
-                    child: classactivitys(
+                    child: StudentQuizReport(
                       color: GlobalData.pinkred,
                       heading: Quizz_List[i].quiz_title,
                       paragraph: Quizz_List[i].quiz_subject,

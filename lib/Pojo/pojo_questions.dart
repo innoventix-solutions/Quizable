@@ -14,9 +14,13 @@ class Pojo_questions{
   String ques_no;
   List<Pojo_Answers> Options;
 
+  String assignment_id;   //3-9-19
+
+
 
   Pojo_questions({this.id, this.question, this.point_awarded, this.answer_type,
-      this.anwer_options, this.level_no, this.quiz_id,this.TrueorFalse,this.Options,this.ques_no});
+      this.anwer_options, this.level_no, this.quiz_id,this.TrueorFalse,this.Options,this.ques_no,
+      this.assignment_id});
 
   factory Pojo_questions.fromJson(Map<String, dynamic> parsedJson){
     List<Pojo_Matchs> matchs = new List();
@@ -29,13 +33,17 @@ class Pojo_questions{
       {
        matchs= (jsonDecode(parsedJson['anwer_options']) as List).map((data)=>Pojo_Matchs.fromJson((data))).toList();
       }
-    if(parsedJson['answer_type'].toString()!="Match Type" && parsedJson['answer_type'].toString()!="True or False")
+    if(parsedJson['answer_type'].toString()!="Match Type" && parsedJson['answer_type'].toString()!="True or False" && parsedJson['answer_type'].toString()!="Short Essay")
       {
       answers= (jsonDecode(parsedJson['anwer_options']) as List).map((data)=>Pojo_Answers.fromJson((data))).toList();
       }
     if(parsedJson['answer_type'].toString()=="True or False")
       {
       Answer=parsedJson['anwer_options'];
+      }
+    if(parsedJson['answer_type'].toString()=="Short Essay")    //5-9-19
+      {
+        Answer=parsedJson['anwer_options'];
       }
 
     return Pojo_questions(
@@ -49,6 +57,8 @@ class Pojo_questions{
       quiz_id: parsedJson['quiz_id'].toString(),
       TrueorFalse: Answer,
       ques_no:parsedJson['ques_no'].toString(),
+
+      assignment_id:parsedJson['assignment_id'].toString(),   //3-9-19
 
     );
   }

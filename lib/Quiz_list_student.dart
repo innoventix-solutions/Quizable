@@ -73,7 +73,7 @@ class _Quiz_List_studentState extends State<Quiz_List_student> {
           ],
         ),
 
-        drawer: Drawer(
+        /*drawer: Drawer(
           // Add a ListView to the drawer. This ensures the user can scroll
           // through the options in the Drawer if there isn't enough vertical
           // space to fit everything.
@@ -223,7 +223,7 @@ class _Quiz_List_studentState extends State<Quiz_List_student> {
 
             ],
           ),
-        ),
+        ),*/
 
         body:
         Column(
