@@ -85,6 +85,8 @@ import 'ReportDashboard.dart';
 import 'AssignmentReport.dart';
 import 'setspellingque.dart';
 import 'setspellque.dart';
+import 'trialsubscription.dart';
+
 void main() {
   runApp(MyApp());
 }
@@ -173,6 +175,7 @@ class MyApp extends StatelessWidget {
         'ReportDashboard': (context)=>ReportDashboard(),
         'AssignmentReport': (context)=>AssignmentReport(),
         'setspellque':(context)=>setspellque(),
+        'trialsub':(context)=>trialsubscription(),
       },
     );
   }

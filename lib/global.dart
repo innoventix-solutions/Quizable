@@ -1458,8 +1458,8 @@ class PreviewQuizs extends StatelessWidget {
       builder: (BuildContext context) {
         // return object of type Dialog
         return AlertDialog(
-          title: new Text("Alert!!!"),
-          content: new Text("Are You Sure Want To Delete Quiz?"),
+          title: new Text("Delete"),
+          content: new Text("Are You Sure Want To Delete selected Quiz?"),
           actions: <Widget>[
             // usually buttons at the bottom of the dialog
             new FlatButton(
@@ -1474,13 +1474,13 @@ class PreviewQuizs extends StatelessWidget {
                           Delete();
                           Show_toast("Delete Successfully", Colors.green);
                           Navigator.of(context).pushNamed('dashboard');
-                        },child: new Text("YES")),
+                        },child: new Text("Ok")),
 
                   ),
                   GestureDetector(
                       onTap: (){
                         Navigator.of(context).pushNamed('previewQuiz');
-                      },child: new Text("No")),
+                      },child: new Text("Cancel")),
                 ],
               ),
               onPressed: () {
@@ -2006,8 +2006,8 @@ class PreviewAssignments extends StatelessWidget {
       builder: (BuildContext context) {
         // return object of type Dialog
         return AlertDialog(
-          title: new Text("Alert!!!"),
-          content: new Text("Are You Sure Want To Delete Assignment?"),
+          title: new Text("Delete"),
+          content: new Text("Are You Sure Want To Delete selected Assignment?"),
           actions: <Widget>[
             // usually buttons at the bottom of the dialog
             new FlatButton(
@@ -2022,13 +2022,13 @@ class PreviewAssignments extends StatelessWidget {
                           Deleteassignment();
                           Show_toast("Delete Successfully", Colors.green);
                           Navigator.of(context).pushNamed('dashboard');
-                        },child: new Text("YES")),
+                        },child: new Text("Ok")),
 
                   ),
                   GestureDetector(
                       onTap: (){
                         Navigator.of(context).pushNamed('Previewassignment');
-                      },child: new Text("No")),
+                      },child: new Text("Cancel")),
                 ],
               ),
               onPressed: () {
