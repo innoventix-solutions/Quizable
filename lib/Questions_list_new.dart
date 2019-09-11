@@ -250,8 +250,8 @@ class _Question_ListState extends State<Question_List> {
       builder: (BuildContext context) {
         // return object of type Dialog
         return AlertDialog(
-          title: new Text("Alert!!!"),
-          content: new Text("Are You Sure Want To Delete Question?"),
+          title: new Text("Delete"),
+          content: new Text("Are you sure want to delete the selected Questions?"),
           actions: <Widget>[
             // usually buttons at the bottom of the dialog
             new FlatButton(
@@ -266,13 +266,13 @@ class _Question_ListState extends State<Question_List> {
                           Delete(id);
                           Show_toast("Delete Successfully", Colors.green);
                           Navigator.of(context).pushNamed('previewQuiz');
-                        },child: new Text("YES")),
+                        },child: new Text("Ok")),
 
                   ),
                   GestureDetector(
                       onTap: (){
                         Navigator.of(context).pushNamed('previewQuiz');
-                      },child: new Text("No")),
+                      },child: new Text("Cancel")),
                 ],
               ),
               onPressed: () {

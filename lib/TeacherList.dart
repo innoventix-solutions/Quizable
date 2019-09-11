@@ -70,8 +70,8 @@ class _TeacherListState extends State<TeacherList> {
       builder: (BuildContext context) {
         // return object of type Dialog
         return AlertDialog(
-          title: new Text("Alert!!!"),
-          content: new Text("Are You Sure Want To Delete Quiz?"),
+          title: new Text("Delete"),
+          content: new Text("Are You Sure Want To Delete the selected Teacher?"),
           actions: <Widget>[
             // usually buttons at the bottom of the dialog
             new FlatButton(
@@ -86,13 +86,13 @@ class _TeacherListState extends State<TeacherList> {
                           Delete(id);
                           Show_toast("Delete Successfully", Colors.green);
                           Navigator.of(context).pushNamed('dashboard');
-                        },child: new Text("YES")),
+                        },child: new Text("Ok")),
 
                   ),
                   GestureDetector(
                       onTap: (){
                         Navigator.of(context).pushNamed('dashboard');
-                      },child: new Text("No")),
+                      },child: new Text("Cancel")),
                 ],
               ),
               onPressed: () {
