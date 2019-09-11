@@ -396,9 +396,9 @@ class _AssignmentExamState extends State<AssignmentExam> {
     }).then((res){
       print(res.body);
       var parsedJson = jsonDecode(res.body);
-      print(parsedJson['quiz_result']['point_awarded']);
+      print(parsedJson['point_awarded']);
 
-      ExamCompleted(context,parsedJson['quiz_result']['point_awarded'].toString());
+      ExamCompleted(context,parsedJson['point_awarded'].toString());
     });
   }
 
@@ -534,7 +534,7 @@ Matches =Quetions[i].anwer_options;*/
                                   Center(child: Padding(
                                     padding: const EdgeInsets.all(10),
 
-                                    child: Text('Score:'+Score,textAlign: TextAlign.center,
+                                    child: Text("Assignment is in preview",textAlign: TextAlign.center,
                                       style: TextStyle(color: GlobalData.lightblue,fontSize: 25,fontWeight: FontWeight.bold),),
                                   )),
                                   new Divider(
@@ -549,7 +549,7 @@ Matches =Quetions[i].anwer_options;*/
                                   Center(child: Padding(
                                     padding: const EdgeInsets.only(top:15),
 
-                                    child: Text("Your Answers are in preview",textAlign: TextAlign.center,
+                                    child: Text('Score:'+Score,textAlign: TextAlign.center,
                                       style: TextStyle(color: GlobalData.lightblue,fontSize: 20,fontWeight: FontWeight.bold),),
                                   )),
 
