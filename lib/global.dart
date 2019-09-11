@@ -83,7 +83,13 @@ class GlobalData{
   static String teacherobjective="";
   static String AssignmentID="";
 
+/* spelling data*/
 
+static String teacherguide = "";
+static String spelltitle ="";
+static String spellLevels = "";
+static String spellNosofQuesPerLevel = "";
+static String spellDurationofEachLevel ="";
 
 }
                                   //Custom drawer for quiz menu
@@ -2295,7 +2301,7 @@ class StudentAssignmentReport extends StatelessWidget {
                                 child: Row(
                                     children: <Widget>[
                                       Expanded(
-                                        child: Text("Quiz Report",textAlign: TextAlign.center,
+                                        child: Text("Assignment Report",textAlign: TextAlign.center,
                                           style: TextStyle(color: Colors.white,fontSize: 15,fontWeight: FontWeight.bold),),
                                       ),
 
