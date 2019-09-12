@@ -9,6 +9,48 @@ class teacherdashboard extends StatefulWidget {
 }
 
 class _teacherdashboardState extends State<teacherdashboard> {
+
+  void showDialog1(BuildContext context) {
+    // flutter defined function
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        // return object of type Dialog
+        return AlertDialog(
+          title: new Text("Log Out"),
+          content: new Text("Are You Sure Want To Log Out?"),
+          actions: <Widget>[
+            // usually buttons at the bottom of the dialog
+            new FlatButton(
+              child: Row(
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.only(
+                        right: 30
+                    ),
+                    child: GestureDetector(
+                        onTap: () async {
+                          LogoutFunction(context);
+                          // Navigator.of(context).pushNamed('dashboard');
+                        },child: new Text("Ok")),
+
+                  ),
+                  GestureDetector(
+                      onTap: (){
+                        Navigator.of(context).pushNamed('teacherdashboard');
+                      },child: new Text("Cancel")),
+                ],
+              ),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
@@ -386,8 +428,8 @@ class _teacherdashboardState extends State<teacherdashboard> {
                         color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
                   )],),
               ),
-              onTap: ()async{
-                LogoutFunction(context);
+              onTap: (){
+                showDialog1(context);
               },
             ),
 
