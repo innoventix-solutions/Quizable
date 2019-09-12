@@ -150,7 +150,7 @@ class _StudentListState extends State<StudentList> {
           children: <Widget>[
 
             Padding(
-              padding: const EdgeInsets.only(left: 20,top: 20),
+              padding: const EdgeInsets.only(left: 20,top: 20,bottom: 10),
               child: Row(mainAxisAlignment: MainAxisAlignment.start,
                 children: <Widget>[
                   Text("Students",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
@@ -160,7 +160,64 @@ class _StudentListState extends State<StudentList> {
 
 
             Expanded(
-              child: new ListView.builder
+              child:  globlist.isEmpty ? Center
+                (child:
+              ListView.builder( itemCount: 2,
+
+                  itemBuilder: (BuildContext ctxt, int index) {
+                    return  GestureDetector(
+                      onTap: (){
+                      },
+                      child: Column(
+                        children: <Widget>[
+                          Container(
+                            color: Colors.grey,
+                            child: Row(
+                              children: <Widget>[
+                                Stack(
+                                  children: <Widget>[
+                                    Container(height: 70,width: 70,margin: EdgeInsets.only(left: 20,top: 15,bottom: 10),
+                                      decoration: new BoxDecoration(
+                                          shape: BoxShape.circle,
+                                          image: new DecorationImage(
+                                            fit: BoxFit.fill,
+                                            image:AssetImage('assets/images/bg.png'),
+                                          )
+                                      ),),
+                                  ],
+                                ),
+
+
+
+
+
+                                Expanded(
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(left:30),
+                                    child: Column(mainAxisAlignment: MainAxisAlignment.start,crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: <Widget>[
+                                        //Text(GlobalData.Class_list[index].classname,style: TextStyle(fontSize: 15),textAlign: TextAlign.left,),
+                                        Padding(
+                                          padding: const EdgeInsets.only(top:5),
+                                          child: Text('Name of Student Here',style: TextStyle(fontSize: 12),),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+
+
+                              ], ),
+                          ),
+                          new Divider(
+                            color: Colors.black,
+                          ),
+                        ],
+                      ),
+                    );
+                  })
+              ) :
+              new ListView.builder
                 (
                   itemCount: globlist.length,
                   itemBuilder: (BuildContext ctxt, int index) {

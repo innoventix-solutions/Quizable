@@ -77,10 +77,15 @@ class _loginState extends State<login> {
         prefs.setString("phone", statuss['userdata']['phone_no']);  //14-8-19 a
         prefs.setString("Fullname", statuss['userdata']['fullname']);  //14-8-19 a
         prefs.setString("UserPhoto", statuss['userdata']['user_photo']);  //16-8-19  a
+        prefs.setString("email", statuss['userdata']['email']);  //16-8-19  a
+        prefs.setString("disc", statuss['userdata']['specification']);  //16-8-19  a
         GlobalData.Username=statuss['userdata']['username'];
         GlobalData.Phone=statuss['userdata']['phone_no'];  //14-8-19 a
         GlobalData.Fullname=statuss['userdata']['fullname'];  //14-8-19 a
         GlobalData.Userphoto=statuss['userdata']['user_photo'];   //16-8-19  a
+        GlobalData.email=statuss['userdata']['email'];
+        GlobalData.disc=statuss['userdata']['specification'];
+
         print(statuss['userdata']['user_type']);
         print(statuss['userdata']['ID']);
         GlobalData.uid = statuss['userdata']['ID'].toString();
@@ -89,6 +94,10 @@ class _loginState extends State<login> {
         GlobalData.userType = statuss['userdata']['user_type'].toString();
         GlobalData.Phone = statuss['userdata']['phone_no'].toString();  //14-8-19 a
         GlobalData.Fullname = statuss['userdata']['fullname'].toString();  //14-8-19 a
+
+        GlobalData.email=statuss['userdata']['email'].toString();
+        GlobalData.disc=statuss['userdata']['specification'].toString();
+
 
         if (statuss['userdata']['user_type'] == "teacher") {
           Navigator.of(context).pushReplacementNamed(GlobalData.Class_list.isEmpty?'techerjoinclass':'teacherSelectClass');
