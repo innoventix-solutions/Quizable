@@ -28,6 +28,7 @@ class _setquizquestionState extends State<setquizquestion> {
   TextEditingController durlevel = new TextEditingController(text: GlobalData.DurationofEachLevel);
   TextEditingController quizsubject = new TextEditingController();
   TextEditingController quizclass = new TextEditingController();
+  TextEditingController age = new TextEditingController();
   TextEditingController publishdate= new TextEditingController();
   TextEditingController closingdate= new TextEditingController();
   @override
@@ -370,7 +371,27 @@ setalldetails(){
                       ),
 
 
-                                    /* Select starting date and time */
+                      Padding(
+                        padding: const EdgeInsets.only(top: 14),
+                        child: Align(
+                          alignment: Alignment.bottomLeft,
+                          child: Text(
+                            'Target Quiz Participants.',
+                            style: TextStyle(
+                              color: GlobalData.lightblue,
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                            ),
+                            textAlign: TextAlign.left,
+                          ),
+                        ),
+                      ),
+                      CustomTextField(Inputnumber: true,controller: age,Texth: "Age Category/Range | Year",hintStyle: TextStyle(fontSize: 16),),
+
+
+
+
+                      /* Select starting date and time */
 
 
                       Padding(

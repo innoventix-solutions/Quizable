@@ -247,7 +247,7 @@ class _StudentListState extends State<StudentList> {
 
 
                                       )),
-                                  ],
+                             ],
                                 ),
 
 
