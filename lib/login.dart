@@ -79,13 +79,16 @@ class _loginState extends State<login> {
         prefs.setString("UserPhoto", statuss['userdata']['user_photo']);  //16-8-19  a
         prefs.setString("email", statuss['userdata']['email']);  //16-8-19  a
         prefs.setString("disc", statuss['userdata']['specification']);  //16-8-19  a
+        prefs.setString("Parentsphone", statuss['userdata']['parents_phone_no']);  //16-9-19 a
+        prefs.setString("parentsemail", statuss['userdata']['parents_email']);   //16-9-19 a
         GlobalData.Username=statuss['userdata']['username'];
         GlobalData.Phone=statuss['userdata']['phone_no'];  //14-8-19 a
         GlobalData.Fullname=statuss['userdata']['fullname'];  //14-8-19 a
         GlobalData.Userphoto=statuss['userdata']['user_photo'];   //16-8-19  a
         GlobalData.email=statuss['userdata']['email'];
         GlobalData.disc=statuss['userdata']['specification'];
-
+        GlobalData.parentsphone=statuss['userdata']['parents_phone_no'];  //16-9-19 a
+        GlobalData.parentsemail=statuss['userdata']['parents_email'];   //16-9-19 a
         print(statuss['userdata']['user_type']);
         print(statuss['userdata']['ID']);
         GlobalData.uid = statuss['userdata']['ID'].toString();
@@ -97,6 +100,9 @@ class _loginState extends State<login> {
 
         GlobalData.email=statuss['userdata']['email'].toString();
         GlobalData.disc=statuss['userdata']['specification'].toString();
+
+        GlobalData.parentsphone=statuss['userdata']['parents_phone_no'].toString();  //16-9-19 a
+        GlobalData.parentsemail=statuss['userdata']['parents_email'].toString();   //16-9-19 a
 
 
         if (statuss['userdata']['user_type'] == "teacher") {

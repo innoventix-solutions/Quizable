@@ -77,8 +77,9 @@ class GlobalData{
   static String Queidofquiz = "";
   static String email ="";
   static String disc = "";
-  static pojostydentlist user;
-
+  static pojostydentlist user;   //16-9-19 a
+  static String parentsphone=""; //16-9-19 a
+  static String parentsemail=""; //16-9-19 a
   /* assignmment data*/
   static String AssignmentTitle="";
   static String NosofQuesassignment="";

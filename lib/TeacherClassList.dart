@@ -60,64 +60,73 @@ class _TeacherClassListState extends State<TeacherClassList> {
                   itemCount: GlobalData.Class_list.length,
 
                   itemBuilder: (BuildContext ctxt, int index) {
-                    return  Column(
-                      children: <Widget>[
-                        Container(
+                    return  GestureDetector(onTap: (){
+                      GlobalData.classid = GlobalData.Class_list[index].id;
 
-                          child: Column(
-                            children: <Widget>[
-                              Row(
-                                children: <Widget>[
-                                  Stack(
-                                    children: <Widget>[
-                                      Container(height: 70,width: 70,margin: EdgeInsets.only(left: 20,top: 15,bottom: 10),
-                                        decoration: new BoxDecoration(
-                                            shape: BoxShape.circle,
-                                            image: new DecorationImage(
-                                              fit: BoxFit.fill,
-                                              image:AssetImage('assets/images/bg.png'),
-                                            )
-                                        ),),
-                                    ],
-                                  ),
+                      GlobalData.activeclass = GlobalData.Class_list[index];
 
+                      print(GlobalData.Class_list[index].classname);
+                      print(GlobalData.activeclass.classname);
+                      Navigator.of(context)
+                          .pushNamed('StudentList');
 
+                    },
+                      child: Column(
+                        children: <Widget>[
+                          Container(
 
-
-
-                                  Expanded(
-                                    child: Padding(
-                                      padding: const EdgeInsets.only(left:30),
-                                      child: Column(mainAxisAlignment: MainAxisAlignment.start,crossAxisAlignment: CrossAxisAlignment.start,
-                                        children: <Widget>[
-                                          Text(GlobalData.Class_list[index].classname,style: TextStyle(fontSize: 15),textAlign: TextAlign.left,),
+                            child: Column(
+                              children: <Widget>[
+                                Row(
+                                  children: <Widget>[
+                                    Stack(
+                                      children: <Widget>[
+                                        Container(height: 70,width: 70,margin: EdgeInsets.only(left: 20,top: 15,bottom: 10),
+                                         child:  CircleAvatar(backgroundImage:GlobalData.class_icon!=null?
+                                            NetworkImage(GlobalData.Class_list[index].classicon):AssetImage('assets/images/pic.png',),
+                                              radius: 35.0,
+                                            ),),
+                                      ],
+                                    ),
 
 
-                                        ],
+
+
+
+                                    Expanded(
+                                      child: Padding(
+                                        padding: const EdgeInsets.only(left:30),
+                                        child: Column(mainAxisAlignment: MainAxisAlignment.start,crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: <Widget>[
+                                            Text(GlobalData.Class_list[index].classname,style: TextStyle(fontSize: 15),textAlign: TextAlign.left,),
+
+
+                                          ],
+                                        ),
                                       ),
                                     ),
-                                  ),
 
 
-                                ], ),
-                              GlobalData.Class_list[index].userid==GlobalData.uid?
-                              Row(
-                                children: <Widget>[
-                                  Expanded(child: FlatButton(onPressed: (){
-                                    Share.share(GlobalData.Username +" Invites you to join the "+ GlobalData.Class_list[index].classname+" Please use this code "+GlobalData.Class_list[index].teacherinvitecode  +" to Join the Class.");
-                                  }, child: Text("Invite Teachers"))),
-                                  Expanded(child: FlatButton(onPressed: (){
-                                    Share.share(GlobalData.Username +" Invites you to join the "+ GlobalData.Class_list[index].classname+" Please use this code "+GlobalData.Class_list[index].studentinvitecode  +" to Join the Class.");
-                                  }, child: Text("Invite Students")))
-                                ],
-                              ):Text("")
-                            ],
+                                  ], ),
+                                GlobalData.Class_list[index].userid==GlobalData.uid?
+                                Row(
+                                  children: <Widget>[
+                                    Expanded(child: FlatButton(onPressed: (){
+                                      Share.share(GlobalData.Username +" Invites you to join the "+ GlobalData.Class_list[index].classname+" Please use this code "+GlobalData.Class_list[index].teacherinvitecode  +" to Join the Class.");
+                                    }, child: Text("Invite Teachers"))),
+                                    Expanded(child: FlatButton(onPressed: (){
+                                      Share.share(GlobalData.Username +" Invites you to join the "+ GlobalData.Class_list[index].classname+" Please use this code "+GlobalData.Class_list[index].studentinvitecode  +" to Join the Class.");
+                                    }, child: Text("Invite Students")))
+                                  ],
+                                ):Text("")
+                              ],
+                            ),
                           ),
-                        ),
-                        new Divider(
-                          color: Colors.black,
-                        ),
-                      ],
+                          new Divider(
+                            color: Colors.black,
+                          ),
+                        ],
+                      ),
                     );
                   }
               ),
