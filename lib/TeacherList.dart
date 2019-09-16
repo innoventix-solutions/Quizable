@@ -12,7 +12,7 @@ class TeacherList extends StatefulWidget {
 
 class _TeacherListState extends State<TeacherList> {
 
-  List<pojostydentlist> globlist = new List();
+  //List<pojostydentlist> globlist = new List();
 
   var gets = "A";
 
@@ -30,11 +30,11 @@ class _TeacherListState extends State<TeacherList> {
 
       var pass = jsonDecode(response.body);
 
-      globlist = (pass['user_data'] as List)
+      GlobalData.Studentlist = (pass['user_data'] as List)
           .map((data) => pojostydentlist.fromJson(data))
           .toList();
 
-      print(globlist.length);
+      print(GlobalData.Studentlist.length);
 
       setState(() {
 
@@ -181,11 +181,12 @@ class _TeacherListState extends State<TeacherList> {
                   children: <Widget>[
                     Padding(
                       padding: const EdgeInsets.only(left:10,bottom: 3),
-                      child: Text("Class Admin",textAlign: TextAlign.left,),
+                      child: Text("Class Admin",textAlign: TextAlign.left,style: TextStyle(fontWeight: FontWeight.bold,
+                      fontSize: 16),),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(left: 10,bottom: 3),
-                      child: Text(GlobalData.Username,style: TextStyle(fontWeight: FontWeight.bold),),
+                      child: Text(GlobalData.Username,style: TextStyle(fontWeight: FontWeight.bold,fontSize:15,color: GlobalData.lightblue ),),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(left: 10),
@@ -208,7 +209,7 @@ class _TeacherListState extends State<TeacherList> {
             ),
 
 
-        Expanded( child:  globlist.isEmpty ?
+        Expanded( child:  GlobalData.Studentlist.isEmpty ?
         Center(child:
         ListView.builder( itemCount: 2,
 
@@ -267,7 +268,7 @@ class _TeacherListState extends State<TeacherList> {
         ) :
            new ListView.builder
             (
-              itemCount: globlist.length,
+              itemCount: GlobalData.Studentlist.length,
               itemBuilder: (BuildContext ctxt, int index) {
                 return
                   Container(
@@ -280,8 +281,11 @@ class _TeacherListState extends State<TeacherList> {
                               children: <Widget>[
                                 GestureDetector(onTap: (){
 
-
-
+                                  GlobalData.uid = GlobalData.Studentlist[index].id;
+                                  GlobalData.Username=GlobalData.Studentlist[index].username;
+                                  GlobalData.disc=GlobalData.Studentlist[index].specification;
+                                  GlobalData.email=GlobalData.Studentlist[index].email;
+                                  GlobalData.user = GlobalData.Studentlist[index];
 
                                   Navigator.of(context)
                                       .pushNamed('userdetail');
@@ -292,7 +296,7 @@ class _TeacherListState extends State<TeacherList> {
                                         image: new DecorationImage(
                                           fit: BoxFit.fill,
                                           image:GlobalData.Userphoto!=null?
-                                          NetworkImage(globlist[index].userphoto):
+                                          NetworkImage(GlobalData.Studentlist[index].userphoto):
                                           AssetImage('assets/images/pic.png',),
                                         )
                                     ),),
@@ -308,7 +312,11 @@ class _TeacherListState extends State<TeacherList> {
                                 padding: const EdgeInsets.only(left:30),
                                 child: Column(mainAxisAlignment: MainAxisAlignment.start,crossAxisAlignment: CrossAxisAlignment.start,
                                   children: <Widget>[
-                                    Text(globlist[index].username),
+                                    Text(GlobalData.Studentlist[index].username,style: TextStyle(color: GlobalData.lightblue,fontSize: 15,fontWeight: FontWeight.bold),),
+                                    Padding(
+                                      padding: const EdgeInsets.only(top: 5),
+                                      child: Text("Specialization: "+GlobalData.Studentlist[index].specification),
+                                    ),
 
 
                                   ],
@@ -317,13 +325,15 @@ class _TeacherListState extends State<TeacherList> {
                             ),
 
 
+
+
                            GlobalData.userType.toLowerCase()=="admin_teacher"?
                            Padding(
                               padding: const EdgeInsets.only(right: 20),
                               child: Row(mainAxisAlignment: MainAxisAlignment.end,
                                 children: <Widget>[
 
-                globlist[index].id != GlobalData.uid ?
+                GlobalData.Studentlist[index].id != GlobalData.uid ?
                                   PopupMenuButton(
                                     child: Icon(Icons.more_vert),
                                     itemBuilder: (_) => <PopupMenuItem<String>>[
@@ -349,7 +359,7 @@ class _TeacherListState extends State<TeacherList> {
 
                                       if(value=="delete")
                                       {
-                                        showDialog1(context,globlist[index].id.toString());
+                                        showDialog1(context,GlobalData.Studentlist[index].id.toString());
                                       }
                                     },
                                   ) :Text(""),
