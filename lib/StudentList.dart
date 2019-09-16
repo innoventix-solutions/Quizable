@@ -13,7 +13,7 @@ class StudentList extends StatefulWidget {
 
 class _StudentListState extends State<StudentList> {
 
-  List<pojostydentlist> globlist = new List();
+  //List<pojostydentlist> globlist = new List();
 
   var gets = "A";
 
@@ -31,11 +31,11 @@ class _StudentListState extends State<StudentList> {
 
       var pass = jsonDecode(response.body);
 
-      globlist = (pass['user_data'] as List)
+      GlobalData.Studentlist = (pass['user_data'] as List)
           .map((data) => pojostydentlist.fromJson(data))
           .toList();
 
-      print(globlist.length);
+      print(GlobalData.Studentlist.length);
 
       setState(() {
 
@@ -162,7 +162,7 @@ class _StudentListState extends State<StudentList> {
 
 
             Expanded(
-              child:  globlist.isEmpty ? Center
+              child:  GlobalData.Studentlist.isEmpty ? Center
                 (child:
               ListView.builder( itemCount: 2,
 
@@ -221,7 +221,7 @@ class _StudentListState extends State<StudentList> {
               ) :
               new ListView.builder
                 (
-                  itemCount: globlist.length,
+                  itemCount: GlobalData.Studentlist.length,
                   itemBuilder: (BuildContext ctxt, int index) {
                     return
                       Container(
@@ -233,21 +233,18 @@ class _StudentListState extends State<StudentList> {
                                 Stack(
                                   children: <Widget>[
                                     Container(height: 70,width: 70,margin: EdgeInsets.only(left: 20,top: 15,bottom: 10),
-                                      decoration:GlobalData.Userphoto!=null?
-                                      BoxDecoration(
-                                        image: DecorationImage(image: NetworkImage(GlobalData.Userphoto),fit: BoxFit.cover),
-                                        borderRadius: BorderRadius.all(Radius.circular(100)),
-
-                                      )
-
-                                          :BoxDecoration(
-                                          borderRadius: BorderRadius.all(Radius.circular(100)),
-                                          color: Colors.black,
-                                          image: DecorationImage(image: AssetImage('assets/images/user.jpg'),fit: BoxFit.cover)
+                                      decoration: new BoxDecoration(
+                                          shape: BoxShape.circle,
+                                          image: new DecorationImage(
+                                            fit: BoxFit.fill,
+                                            image:GlobalData.Userphoto!=null?
+                                            NetworkImage(GlobalData.Studentlist[index].userphoto):
+                                            AssetImage('assets/images/pic.png',),
+                                          )
+                                      ),),
 
 
-                                      )),
-                             ],
+                                  ],
                                 ),
 
 
@@ -258,7 +255,7 @@ class _StudentListState extends State<StudentList> {
                                     padding: const EdgeInsets.only(left:30),
                                     child: Column(mainAxisAlignment: MainAxisAlignment.start,crossAxisAlignment: CrossAxisAlignment.start,
                                       children: <Widget>[
-                                        Text(globlist[index].username),
+                                        Text(GlobalData.Studentlist[index].username),
 
 
                                       ],
@@ -293,7 +290,7 @@ class _StudentListState extends State<StudentList> {
 
                                           if(value=="delete")
                                           {
-                                            showDialog1(context,globlist[index].id.toString());
+                                            showDialog1(context,GlobalData.Studentlist[index].id.toString());
                                           }
                                         },
                                    ),
