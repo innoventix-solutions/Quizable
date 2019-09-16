@@ -83,7 +83,7 @@ class _quizclassState extends State<quizclass> {
               onPressed: (){},
               icon: Icon(
                 Icons.account_circle,
-                color: Colors.white,
+                color: Colors.transparent,
                 size: 20,
               ),
             ),

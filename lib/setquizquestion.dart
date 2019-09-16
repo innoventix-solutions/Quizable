@@ -136,7 +136,7 @@ setalldetails(){
         ],
       ),
 
-      
+
       body: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
