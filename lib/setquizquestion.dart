@@ -128,7 +128,7 @@ setalldetails(){
                   'previewQuiz');
             },
             icon: Icon(
-              Icons.remove_red_eye,
+              Icons.line_weight,
               color: Colors.white,
               size: 20,
             ),

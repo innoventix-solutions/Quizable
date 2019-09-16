@@ -106,7 +106,9 @@ class drawerquiz extends StatelessWidget {
         // Important: Remove any padding from the ListView.
         padding: EdgeInsets.zero,
         children: <Widget>[
-          Container(child: Padding(
+
+
+        /*  Container(child: Padding(
             padding: const EdgeInsets.only(bottom: 40,top: 25),
             child: DrawerHeader(child: Container(
               child: Row(
@@ -135,7 +137,7 @@ class drawerquiz extends StatelessWidget {
                 ],),
             ),),
           ),decoration: bg12,),
-
+*/
 
 
           Padding(

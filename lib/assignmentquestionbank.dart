@@ -125,15 +125,15 @@ class _assignmentquestionbankState extends State<assignmentquestionbank> {
                 .pushNamed(
                 'Previewassignment');},
             icon: Icon(
-              Icons.remove_red_eye,
+              Icons.line_weight,
               color: Colors.white,
               size: 20,
             ),
           ),
         ],
       ),
-      drawer:
-      drawerquiz(),
+      /*drawer:
+      drawerquiz(),*/
       body: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
