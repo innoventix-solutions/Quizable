@@ -240,7 +240,8 @@ class _StudentListState extends State<StudentList> {
                                             image:GlobalData.Userphoto!=null?
                                             NetworkImage(GlobalData.Studentlist[index].userphoto):
                                             AssetImage('assets/images/pic.png',),
-                                          )
+                                          ),
+                                        
                                       ),),
 
 
