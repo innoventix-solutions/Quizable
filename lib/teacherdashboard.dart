@@ -28,17 +28,18 @@ class _teacherdashboardState extends State<teacherdashboard> {
                     padding: const EdgeInsets.only(
                         right: 30
                     ),
-                    child: GestureDetector(
-                        onTap: () async {
-                          LogoutFunction(context);
-                          // Navigator.of(context).pushNamed('dashboard');
-                        },child: new Text("Ok")),
+                    child:  GestureDetector(
+                        onTap: (){
+                          Navigator.of(context).pushNamed('teacherdashboard');
+                        },child: new Text("Cancel")),
+
 
                   ),
                   GestureDetector(
-                      onTap: (){
-                        Navigator.of(context).pushNamed('teacherdashboard');
-                      },child: new Text("Cancel")),
+                      onTap: () async {
+                        LogoutFunction(context);
+                        // Navigator.of(context).pushNamed('dashboard');
+                      },child: new Text("Ok")),
                 ],
               ),
               onPressed: () {
@@ -153,7 +154,7 @@ class _teacherdashboardState extends State<teacherdashboard> {
                               ),
                             ),onTap: (){
                             Navigator.of(context)
-                                .pushNamed('StudentList');
+                                .pushNamed('myclassroom');
                           },
                           ),
 

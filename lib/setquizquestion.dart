@@ -135,8 +135,7 @@ setalldetails(){
           ),
         ],
       ),
-      drawer:
-      drawerquiz(),
+
       body: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,

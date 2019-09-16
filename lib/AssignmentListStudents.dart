@@ -230,7 +230,7 @@ class _AssignmentListStudentsState extends State<AssignmentListStudents> {
         Column(
           children: <Widget>[
             Expanded(
-              child:assignment_list.isEmpty ? Center(child: Text('No Assignment Exercises published yet')) :  //22-8-19 a
+              child:assignment_list.isEmpty ? Center(child: Text('No Assignment Exercises published yet')) :
               ListView.builder(
                   itemCount: assignment_list.length,
                   itemBuilder: (c,i){
@@ -242,7 +242,7 @@ class _AssignmentListStudentsState extends State<AssignmentListStudents> {
                           //GlobalData.DurationofEachLevel=assignment_list[i].dur_each_level;
                           Navigator.of(context).pushNamed(assignment_list[i].is_taken==true?'AnswerLog':'assignmentexam');
                         },
-                        child: //assignment_list[i].is_taken==false?       //22-8-19 a
+                        child: assignment_list[i].is_taken==false?
                         StudentAssignmentReport(
                           color: GlobalData.pinkred,
                           heading: assignment_list[i].assignment_title+" - "+assignment_list[i].id,
@@ -250,7 +250,7 @@ class _AssignmentListStudentsState extends State<AssignmentListStudents> {
                           title: assignment_list[i].assignment_title,
                           id: assignment_list[i].id,
                           is_taken: assignment_list[i].is_taken,
-                        ),//:SizedBox()
+                        ):SizedBox()
                     );
                   }),
             ),

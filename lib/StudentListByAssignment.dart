@@ -5,15 +5,16 @@ import 'global.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'Pojo/pojostydentlist.dart';
+import 'Pojo/pojo_StudentAssignmentResult.dart';
 
-class StudentListByQuiz extends StatefulWidget {
+class StudentListByAssignment extends StatefulWidget {
   @override
-  _StudentListByQuizState createState() => _StudentListByQuizState();
+  _StudentListByAssignmentState createState() => _StudentListByAssignmentState();
 }
 
-class _StudentListByQuizState extends State<StudentListByQuiz> {
+class _StudentListByAssignmentState extends State<StudentListByAssignment> {
 
-  List<Pojo_StudentListResult> globlist = new List();
+  List<Pojo_StudentAssignmentResult> globlist = new List();
 
 
 
@@ -22,9 +23,9 @@ class _StudentListByQuizState extends State<StudentListByQuiz> {
 
     print("ascasd ");
 
-    await http.post("http://edusupportapp.com/api/get_students_by_teacher_quiz.php"
+    await http.post("http://edusupportapp.com/api/get_students_by_teacher_assignment.php"
         ,body: {
-          "quiz_id": GlobalData.QuizID,
+          "assignment_id": GlobalData.AssignmentID,
         }).
     then((response){
 
@@ -33,7 +34,7 @@ class _StudentListByQuizState extends State<StudentListByQuiz> {
       var pass = jsonDecode(response.body);
 
       globlist = (pass['student_data'] as List)
-          .map((data) => Pojo_StudentListResult.fromJson(data))
+          .map((data) => Pojo_StudentAssignmentResult.fromJson(data))
           .toList();
 
       print(globlist.length);
@@ -82,8 +83,8 @@ class _StudentListByQuizState extends State<StudentListByQuiz> {
             ),
 
 
-            Expanded(
-              child: new ListView.builder
+            Expanded(child: globlist.isEmpty ? Center(child: Text('No Students  ')) :
+            new ListView.builder
                 (
                   itemCount: globlist.length,
                   itemBuilder: (BuildContext ctxt, int index) {
@@ -91,7 +92,7 @@ class _StudentListByQuizState extends State<StudentListByQuiz> {
                       GestureDetector(
                         onTap: (){
                           GlobalData.CurrentStudentID = globlist[index].id;
-                          Navigator.of(context).pushNamed('AnswerLog');
+                          Navigator.of(context).pushNamed('AssignmentAnswerLog');
                         },
                         child: Container(
 
@@ -111,7 +112,7 @@ class _StudentListByQuizState extends State<StudentListByQuiz> {
                                         ),),
                                     ],
                                   ),
-                                //  Text("fghjkl"+globlist[index].userphoto),
+                                  //  Text("fghjkl"+globlist[index].userphoto),
 
 
 
@@ -122,7 +123,7 @@ class _StudentListByQuizState extends State<StudentListByQuiz> {
                                       child: Column(mainAxisAlignment: MainAxisAlignment.start,crossAxisAlignment: CrossAxisAlignment.start,
                                         children: <Widget>[
                                           Text(globlist[index].username),
-                                          Text(globlist[index].point_awarded+" / "+globlist[index].TotalQuizpoints),
+                                          Text(globlist[index].point_awarded+" / "+globlist[index].TotalAssignmentpoints),
 
 
                                         ],

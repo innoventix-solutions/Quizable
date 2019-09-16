@@ -64,7 +64,7 @@ class _trialsubscriptionState extends State<trialsubscription> {
                                       onPressed: (){
                                         GlobalData.userType="admin_teacher";
                                         Navigator.of(context)
-                                            .pushNamed('accouttypeselect');
+                                            .pushNamedAndRemoveUntil('login', (Route<dynamic> route) => false);
                                       },child: Text('Login',textAlign: TextAlign.center,style: TextStyle(color: Colors.white,),),),
 
                                   ],

@@ -86,16 +86,18 @@ class _StudentListState extends State<StudentList> {
                     ),
                     child: GestureDetector(
                         onTap: (){
-                          Delete(id);
-                          Show_toast("Delete Successfully", Colors.green);
                           Navigator.of(context).pushNamed('dashboard');
-                        },child: new Text("Ok")),
+                        },child: new Text("Cancel")),
 
                   ),
+
                   GestureDetector(
                       onTap: (){
+                        Delete(id);
+                        Show_toast("Delete Successfully", Colors.green);
                         Navigator.of(context).pushNamed('dashboard');
-                      },child: new Text("Cancel")),
+                      },child: new Text("Ok")),
+
                 ],
               ),
               onPressed: () {
@@ -265,7 +267,8 @@ class _StudentListState extends State<StudentList> {
                                 ),
 
 
-                               GlobalData.userType.toLowerCase()=="admin_teacher" ?Padding(
+                               //GlobalData.userType.toLowerCase()=="admin_teacher" ?    // 15-9-19 a
+                               Padding(
                                   padding: const EdgeInsets.only(right: 20),
                                   child: Row(mainAxisAlignment: MainAxisAlignment.end,
                                     children: <Widget>[
@@ -296,7 +299,7 @@ class _StudentListState extends State<StudentList> {
                                    ),
                                     ],
                                   ),
-                                ):SizedBox(),
+                                ),//:SizedBox(),     // 15-9-19 a
 
                               ], ),
 

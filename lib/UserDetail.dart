@@ -84,67 +84,119 @@ class _userdetailState extends State<userdetail> {
           ),
         ),
         actions: <Widget>[
+          IconButton(
+            onPressed: () {},
+            icon: Icon(
+              Icons.account_circle,
+              color: Colors.transparent,
+              size: 20,
+            ),
+          ),
 
         ],
       ),
-      body: Column(children: <Widget>[
+      body: Column(
+        children: <Widget>[
+          Container( width: MediaQuery.of(context).size.width,
 
-        Padding(
-          padding: const EdgeInsets.only(top: 15),
-          child: Container(
-            child: CircleAvatar(backgroundImage:GlobalData.Userphoto!=null?
-            NetworkImage(GlobalData.Userphoto):AssetImage('assets/images/pic.png',),
-              radius: 35.0,
-            ),
+            child: Column(children: <Widget>[
+
+              Padding(
+                padding: const EdgeInsets.only(top: 15),
+                child: Container(
+                  child: CircleAvatar(backgroundImage:GlobalData.Userphoto!=null?
+                  NetworkImage(GlobalData.Userphoto):AssetImage('assets/images/pic.png',),
+                    radius: 35.0,
+                  ),
+                ),
+              ),
+
+              Column(
+                children: <Widget>[
+                  Container(
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 40, right: 40,top: 10),
+                      child: Center(
+                        child: Column(
+                          children: <Widget>[
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: <Widget>[
+                                Text(
+                                  "Teacher's Name",
+                                  style: TextStyle(fontSize: 18,
+                                    color: GlobalData.lightblue,
+                                  fontWeight: FontWeight.bold),
+                                  textAlign: TextAlign.start,
+                                ),
+                              ],
+                            ),
+                            CustomTextField(controller:teacher,enabled: false,),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+
+                  Container(
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 40, right: 40,top: 10),
+                      child: Center(
+                        child: Column(
+                          children: <Widget>[
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: <Widget>[
+                                Text(
+                                  "Teacher's Discipline",
+                                  style: TextStyle(fontSize: 18,
+                                      color: GlobalData.lightblue,
+                                      fontWeight: FontWeight.bold),
+                                  textAlign: TextAlign.start,
+                                ),
+                              ],
+                            ),
+                            CustomTextField(controller:disc,enabled: false,),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+
+                  Container(
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 40, right: 40,top: 10),
+                      child: Center(
+                        child: Column(
+                          children: <Widget>[
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: <Widget>[
+                                Text(
+                                  "Teacher's Email",
+                                  style: TextStyle(fontSize: 18,
+                                      color: GlobalData.lightblue,
+                                      fontWeight: FontWeight.bold),
+                                  textAlign: TextAlign.start,
+                                ),
+                              ],
+                            ),
+                            CustomTextField(controller:email,enabled: false,),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+
+
+
+
+            ],),
           ),
-        ),
-
-
-        Align(
-          alignment: Alignment.bottomLeft,
-          child: Text(
-            'Teachers Name',
-            style: TextStyle(
-              color: GlobalData.lightblue,
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
-            ),
-            textAlign: TextAlign.left,
-          ),
-        ),
-        CustomTextField(controller:teacher,enabled: false,),
-
-        Align(
-          alignment: Alignment.bottomLeft,
-          child: Text(
-            'Teachers Discipline',
-            style: TextStyle(
-              color: GlobalData.lightblue,
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
-            ),
-            textAlign: TextAlign.left,
-          ),
-        ),
-        CustomTextField(controller:disc,enabled: false,),
-
-
-        Align(
-          alignment: Alignment.bottomLeft,
-          child: Text(
-            'Teachers Email',
-            style: TextStyle(
-              color: GlobalData.lightblue,
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
-            ),
-            textAlign: TextAlign.left,
-          ),
-        ),
-        CustomTextField(controller:email,enabled: false,),
-
-
-      ],),
+        ],
+      ),
     );
   }
 }

@@ -81,18 +81,22 @@ class _TeacherListState extends State<TeacherList> {
                     padding: const EdgeInsets.only(
                         right: 30
                     ),
-                    child: GestureDetector(
+                    child:   GestureDetector(
                         onTap: (){
-                          Delete(id);
-                          Show_toast("Delete Successfully", Colors.green);
                           Navigator.of(context).pushNamed('dashboard');
-                        },child: new Text("Ok")),
+                        },child: new Text("Cancel")),
 
                   ),
+
                   GestureDetector(
                       onTap: (){
+                        Delete(id);
+                        Show_toast("Delete Successfully", Colors.green);
                         Navigator.of(context).pushNamed('dashboard');
-                      },child: new Text("Cancel")),
+                      },child: new Text("Ok")),
+
+
+
                 ],
               ),
               onPressed: () {
@@ -204,8 +208,8 @@ class _TeacherListState extends State<TeacherList> {
             ),
 
 
-        Expanded( child:  globlist.isEmpty ? Center
-          (child:
+        Expanded( child:  globlist.isEmpty ?
+        Center(child:
         ListView.builder( itemCount: 2,
 
             itemBuilder: (BuildContext ctxt, int index) {
@@ -243,7 +247,7 @@ class _TeacherListState extends State<TeacherList> {
                                   //Text(GlobalData.Class_list[index].classname,style: TextStyle(fontSize: 15),textAlign: TextAlign.left,),
                                   Padding(
                                     padding: const EdgeInsets.only(top:5),
-                                    child: Text('Name of Student Here',style: TextStyle(fontSize: 12),),
+                                    child: Text('Name of Teacher Here',style: TextStyle(fontSize: 12),),
                                   ),
                                 ],
                               ),
@@ -275,6 +279,9 @@ class _TeacherListState extends State<TeacherList> {
                             Stack(
                               children: <Widget>[
                                 GestureDetector(onTap: (){
+
+
+
 
                                   Navigator.of(context)
                                       .pushNamed('userdetail');

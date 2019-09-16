@@ -1,34 +1,33 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'Pojo/pojo_quizzes.dart';
-import 'Pojo/pojo_getassignment.dart';
-import 'global.dart';
 import 'package:http/http.dart' as http;
+import 'global.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'setquizquestion.dart';
+import 'Pojo/pojo_getassignment.dart';
 
-
-
-class AssignmentReport extends StatefulWidget {
+class MyAssignmentExerciseLog extends StatefulWidget {
   @override
-  _AssignmentReportState createState() => _AssignmentReportState();
+  _MyAssignmentExerciseLogState createState() => _MyAssignmentExerciseLogState();
 }
 
-class _AssignmentReportState extends State<AssignmentReport> {
-
+class _MyAssignmentExerciseLogState extends State<MyAssignmentExerciseLog> {
   List<Pojo_getassignment> assignment_list = new List();
 
   GetTest() async{
 
-    await http.post("http://edusupportapp.com/api/get_assignments.php",
+    await http.post("http://edusupportapp.com/api/get_user_assignments_by_join_class.php",
         body: {
           "UserId":GlobalData.uid
         }).then((res){
       print(res.body);
 
       var ParsedJson = jsonDecode(res.body);
-      assignment_list = (ParsedJson['assignmentsdata'] as List).map((data)=>Pojo_getassignment.fromJson(data)).toList();
+      assignment_list = (ParsedJson['assignmentdata'] as List).map((data)=>Pojo_getassignment.fromJson(data)).toList();
 
       print(assignment_list.length);
+      print(jsonEncode(assignment_list).toString());
       setState(() {
 
       });
@@ -50,7 +49,7 @@ class _AssignmentReportState extends State<AssignmentReport> {
 
           title: Center(
             child: Text(
-              "Assignment Report",
+              "Assignment Exercises Log",
               style: TextStyle(fontSize: 20),
             ),
           ),
@@ -75,36 +74,40 @@ class _AssignmentReportState extends State<AssignmentReport> {
           ],
         ),
 
-        /*drawer:
-      drawerquiz(),*/
+       
 
         body:
         Column(
           children: <Widget>[
             Expanded(
-              child: assignment_list.isEmpty ? Center(child: Text('You have not published any class activity yet')) :
+              child:assignment_list.isEmpty ? Center(child: Text('No Assignment Exercises Log')) :
               ListView.builder(
                   itemCount: assignment_list.length,
                   itemBuilder: (c,i){
-                    return GestureDetector(
+                    return  GestureDetector(
                       onTap: (){
-                        Navigator.of(context).pushNamed('StudentListByAssignment');
+                        GlobalData.AssignmentID=assignment_list[i].id;
+                        //GlobalData.QuizLevels=assignment_list[i].no_of_levels;
+                        GlobalData.ExamQuiz=assignment_list[i].assignment_title;
+                        //GlobalData.DurationofEachLevel=assignment_list[i].dur_each_level;
+                        Navigator.of(context).pushNamed(assignment_list[i].is_taken==true?'AssignmentAnswerLog':'assignmentexam');
                       },
-                      child: StudentAssignmentReport(
+                      child: assignment_list[i].is_taken==true?
+                      AssignmentExerciseLog(
                         color: GlobalData.pinkred,
-                        heading: assignment_list[i].assignment_title,
+                        heading: assignment_list[i].assignment_title+" - "+assignment_list[i].id,
                         paragraph: assignment_list[i].teacher_instruction,
-                        id:assignment_list[i].id ,
                         title: assignment_list[i].assignment_title,
+                        id: assignment_list[i].id,
                         is_taken: assignment_list[i].is_taken,
-                       // duration: assignment_list[i].dur_each_level,
-                        //levels: assignment_list[i].no_of_levels,
-                      ),
+                      ):SizedBox(),
                     );
                   }),
             ),
           ],
         )
+
+
     );
   }
 }

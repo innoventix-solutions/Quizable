@@ -110,7 +110,7 @@ class _createnewclassState extends State<createnewclass> {
                       width: 95,
                       margin: EdgeInsets.only(top: 70, bottom: 14),
                       decoration: new BoxDecoration(
-                          shape: BoxShape.circle,
+                          shape: BoxShape.circle,border: Border.all(color: Colors.black,width: 5),
                           image: new DecorationImage(
                             fit: BoxFit.fill,
                             image:_image!=null?  FileImage(_image): AssetImage('assets/images/user.jpg'),

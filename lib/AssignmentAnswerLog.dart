@@ -6,21 +6,21 @@ import 'Pojo/pojo_matchs.dart';
 import 'global.dart';
 
 
-class AnswerLog extends StatefulWidget {
+class AssignmentAnswerLog extends StatefulWidget {
   @override
-  _AnswerLogState createState() => _AnswerLogState();
+  _AssignmentAnswerLogState createState() => _AssignmentAnswerLogState();
 }
 
-class _AnswerLogState extends State<AnswerLog> {
+class _AssignmentAnswerLogState extends State<AssignmentAnswerLog> {
 
   List<pojo_anslog> anslist = new List();
 
   anslog() async{
-    http.post("http://edusupportapp.com/api/get_user_quiz_question_answer.php",
-    body: {
-      "user_id" : GlobalData.CurrentStudentID,
-      "quiz_id" : GlobalData.QuizID
-    }
+    http.post("http://edusupportapp.com/api/get_user_assignment_question_answer.php",
+        body: {
+          "user_id" : GlobalData.CurrentStudentID,
+          "assignment_id" : GlobalData.AssignmentID
+        }
 
     ).then((response){
 
@@ -56,48 +56,48 @@ class _AnswerLogState extends State<AnswerLog> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(
-          automaticallyImplyLeading: true,
-          title: Center(
-            child: Text(
-              "Quiz Report",
-              style: TextStyle(fontSize: 20),
-            ),
-          ),
-          flexibleSpace: Container(
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomRight,
-                colors: [GlobalData.darkblue, GlobalData.darkpurple],
+          appBar: AppBar(
+            automaticallyImplyLeading: true,
+            title: Center(
+              child: Text(
+                "Assignment Answer Log",
+                style: TextStyle(fontSize: 20),
               ),
             ),
-          ),
-          actions: <Widget>[
-            IconButton(
-              onPressed: () {},
-              icon: Icon(
-                Icons.account_circle,
-                color: Colors.transparent,
-                size: 20,
+            flexibleSpace: Container(
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomRight,
+                  colors: [GlobalData.darkblue, GlobalData.darkpurple],
+                ),
               ),
             ),
-          ],
-        ),
-        body:
+            actions: <Widget>[
+              IconButton(
+                onPressed: () {},
+                icon: Icon(
+                  Icons.account_circle,
+                  color: Colors.transparent,
+                  size: 20,
+                ),
+              ),
+            ],
+          ),
+          body:
           ListView.builder(itemBuilder: (c,i){
             return MyResultBlock(correct_ans: anslist[i].trueans,
-            level:  anslist[i].level_no,
-            que:  anslist[i].question,
-            que_no:  anslist[i].que_no,
-            user_ans:  anslist[i].useranswer,
-            result: anslist[i].is_true,
-            anwer_options: anslist[i].anwer_options,
-            afg:anslist[i].json,
-            User_anwer_options: anslist[i].user_anwer_options,
+              //level:  anslist[i].level_no,
+              que:  anslist[i].question,
+              que_no:  anslist[i].que_no,
+              user_ans:  anslist[i].useranswer,
+              result: anslist[i].is_true,
+              anwer_options: anslist[i].anwer_options,
+              afg:anslist[i].json,
+              User_anwer_options: anslist[i].user_anwer_options,
             );
           },
-          itemCount: anslist.length,)
+            itemCount: anslist.length,)
 
       ),
     );
@@ -113,7 +113,7 @@ class _AnswerLogState extends State<AnswerLog> {
 
 
 class MyResultBlock extends StatelessWidget {
-  final String level;
+ // final String level;
   final String que_no;
   final String que;
   final String correct_ans;
@@ -123,8 +123,8 @@ class MyResultBlock extends StatelessWidget {
   List<Pojo_Matchs> User_anwer_options;
   List<Pojo_Matchs> anwer_options;
 
-  MyResultBlock({this.level, this.que_no, this.que, this.correct_ans,
-      this.user_ans,this.result,this.anwer_options,this.afg,this.User_anwer_options});
+  MyResultBlock({this.que_no, this.que, this.correct_ans,
+    this.user_ans,this.result,this.anwer_options,this.afg,this.User_anwer_options});
 
   @override
   Widget build(BuildContext context) {
@@ -135,17 +135,7 @@ class MyResultBlock extends StatelessWidget {
         child: Card(
           child: Column(
             children: <Widget>[
-              Container(
-                color: Colors.blue,
-                child: Row(
-                  children: <Widget>[
-                    Expanded(child: Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: Text("Level "+level,style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
-                    )),
-                  ],
-                ),
-              ),
+           
               Container(
 
                 child: Row(
@@ -199,10 +189,10 @@ class MyResultBlock extends StatelessWidget {
                     child: Row( crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
 
-                        Expanded(child: Padding(
-                          padding: const EdgeInsets.all(10.0),
-                          child: Container(child: Text("Your Answer: " +(anwer_options.isEmpty?user_ans:""),style: TextStyle(color: Colors.blue,fontWeight: FontWeight.bold),)),
-                        )),
+                           Expanded(child: Padding(
+                             padding: const EdgeInsets.all(10.0),
+                             child: Container(child: Text("Your Answer: " +(anwer_options.isEmpty?user_ans:""),style: TextStyle(color: Colors.blue,fontWeight: FontWeight.bold),)),
+                           )),
 
 
                       ],

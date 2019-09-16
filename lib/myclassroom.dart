@@ -36,7 +36,7 @@ class _myclassroomState extends State<myclassroom> {
             onPressed: (){},
             icon: Icon(
               Icons.account_circle,
-              color: Colors.white,
+              color: Colors.transparent,
               size: 20,
             ),
           ),
@@ -53,16 +53,14 @@ class _myclassroomState extends State<myclassroom> {
                   itemBuilder: (BuildContext ctxt, int index) {
                     return  GestureDetector(
                       onTap: (){
+                        GlobalData.classid = GlobalData.Class_list[index].id;
 
-                        if(GlobalData.Class_list[index].selected==false){
-                          GlobalData.Class_list[index].selected=true;
-                        }else{
-                          GlobalData.Class_list[index].selected=false;
-                        }
-                        setState(() {
+                        GlobalData.activeclass = GlobalData.Class_list[index];
 
-                        });
-
+                        print(GlobalData.Class_list[index].classname);
+                        print(GlobalData.activeclass.classname);
+                        Navigator.of(context)
+                            .pushNamed('StudentList');
 
                       },
                       child: Column(
@@ -78,7 +76,7 @@ class _myclassroomState extends State<myclassroom> {
                                           shape: BoxShape.circle,
                                           image: new DecorationImage(
                                             fit: BoxFit.fill,
-                                            image:AssetImage('assets/images/bg.png'),
+                                            image:NetworkImage(GlobalData.Class_list[index].classicon),
                                           )
                                       ),),
                                   ],
@@ -115,36 +113,7 @@ class _myclassroomState extends State<myclassroom> {
                   }
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.only(left: 60,right: 60),
-              child: Column(
-                children: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.only(bottom:10,top: 10),
-                    child: Row(
-                      children: <Widget>[
-                        Expanded(
-                          child: GradientButtonText(
-                            linearGradient:LinearGradient(colors: <Color>[GlobalData.purple,GlobalData.pink]) ,text: Text("Create a Class",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 18,),textAlign: TextAlign.center,),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 10),
-                    child: Row(
-                      children: <Widget>[
-                        Expanded(
-                          child: GradientButtonText(
-                            linearGradient:LinearGradient(colors: <Color>[GlobalData.navy,GlobalData.navyblue]) ,text: Text("Join a Class",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 18,),textAlign: TextAlign.center,),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ) ],
-              ),
-            ),
+
 
           ],
         ),

@@ -87,6 +87,9 @@ import 'setspellingque.dart';
 import 'setspellque.dart';
 import 'trialsubscription.dart';
 import 'UserDetail.dart';
+import 'StudentListByAssignment.dart';
+import 'AssignmentAnswerLog.dart';
+import 'MyAssignmentExerciseLog.dart';
 
 void main() {
   runApp(MyApp());
@@ -178,6 +181,9 @@ class MyApp extends StatelessWidget {
       //  'setspellque':(context)=>setspellque(),
         'trialsub':(context)=>trialsubscription(),
         'userdetail':(context)=>userdetail(),
+        'StudentListByAssignment':(context)=>StudentListByAssignment(),
+        'AssignmentAnswerLog':(context)=>AssignmentAnswerLog(),
+        'MyAssignmentExerciseLog':(context)=>MyAssignmentExerciseLog(),
 
       },
     );
