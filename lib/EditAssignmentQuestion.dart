@@ -16,9 +16,12 @@ class _EditAssignmentQuestionsState extends State<EditAssignmentQuestions> {
   //List<Pojo_Matchs> Matches = GlobalData.Current_Que_To_Edit.anwer_options;
 
   //String TrueorFalse=GlobalData.Current_Que_To_Edit.Options[0].trueanswer.toString();
+
+  String Shortessay="Students Answer";
   List<String> Type = ["fillups","multi","essay"];
   TextEditingController QuestionName = new TextEditingController(text: GlobalData.Current_Que_To_Edit.question);
   TextEditingController Points = new TextEditingController(text: GlobalData.Current_Que_To_Edit.point_awarded);
+  TextEditingController EssayInstructions = new TextEditingController(text:GlobalData.Current_Que_To_Edit.essay_instructions);
 
   void _confirmDialog(BuildContext context)  {
     bool Selected = false;
@@ -458,13 +461,14 @@ class _EditAssignmentQuestionsState extends State<EditAssignmentQuestions> {
               Row(
                 children: <Widget>[
                   Expanded(
-                    child: Container(padding: EdgeInsets.all(5),child: Text("Teacher’s Instruction:",
+                    child: Container(padding: EdgeInsets.all(5),child: Text(/*"Teacher’s Instruction:"*/
+                      Shortessay,
                       style: TextStyle(color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),)),
                   ),
 
                 ],
               ),
-              Row(
+             /* Row(
                 children: <Widget>[
                   Expanded(
                     child: Container(
@@ -480,7 +484,7 @@ class _EditAssignmentQuestionsState extends State<EditAssignmentQuestions> {
                     ),
                   ),
                 ],
-              ),
+              ),*/
 
 
 
@@ -500,6 +504,9 @@ class _EditAssignmentQuestionsState extends State<EditAssignmentQuestions> {
 
       case 'Fill-in the gaps':
         return jsonEncode(Options).toString();
+
+      case 'Short Essay':
+        return Shortessay.toString();
 
       default:
         return "Sorry";
@@ -594,7 +601,7 @@ class _EditAssignmentQuestionsState extends State<EditAssignmentQuestions> {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: <Widget>[
-                                Text("Points Awarded",style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold),),
+                                Text(SelectedType=="Short Essay"?"Points Obtainable":"Points Awarded",style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold),),
                                 TextField(controller: Points,decoration: InputDecoration(border: InputBorder.none),keyboardType: TextInputType.numberWithOptions(signed: false,decimal: false),)
                               ],
                             ),
@@ -632,6 +639,41 @@ class _EditAssignmentQuestionsState extends State<EditAssignmentQuestions> {
                   ],
                 ),
                 MyQuestionType(SelectedType),
+
+                Column(
+                  children: <Widget>[SelectedType=="Short Essay"?
+                  Card(
+                    child: Column(
+                      children: <Widget>[
+                        Row(
+                          children: <Widget>[
+                            Expanded(
+                              child: Column(
+                                children: <Widget>[
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 20,right: 20),
+                                    child: TextField(
+                                      controller: EssayInstructions,
+                                      maxLines: 4,
+                                      keyboardType: TextInputType.text,
+                                      decoration: InputDecoration(border: InputBorder.none,hintText: "Type Instructions here"),
+                                      style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold),
+                                    ),
+                                  ),
+                                  Text(SelectedType=="Short Essay"?"Teachers Instructions":"",style:
+                                  TextStyle(color: Colors.red),),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ):SizedBox(),
+                  ],
+                ),
+
+
                 Row(mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     Padding(
@@ -683,7 +725,8 @@ class _EditAssignmentQuestionsState extends State<EditAssignmentQuestions> {
 
   SaveQuizQuestion()async {
     if (QuestionName.text.toString() == "" || Points.text.toString() == "" ||
-        SelectedType.toString() == "" || MyQuestionAnswer(SelectedType) == "") {
+        SelectedType.toString() == "" || MyQuestionAnswer(SelectedType) == ""||
+        EssayInstructions.text.toString()=="") {
       _showDialog();
     }else{
 
@@ -692,7 +735,8 @@ class _EditAssignmentQuestionsState extends State<EditAssignmentQuestions> {
           "point_awarded "+ Points.text.toString()+
           "answer_type "+ SelectedType.toString()+
           "quiz_id "+ GlobalData.QuizID+
-          "answer_options " + MyQuestionAnswer(SelectedType));
+          "answer_options " + MyQuestionAnswer(SelectedType)+
+          "essay_instructions " + EssayInstructions.text.toString());
 
 
       http.post(
@@ -718,6 +762,7 @@ class _EditAssignmentQuestionsState extends State<EditAssignmentQuestions> {
        // "level_no": GlobalData.Current_Que_To_Edit.level_no.toString(),
         "ques_no": GlobalData.Current_Que_To_Edit.ques_no.toString(),
         "question_id":GlobalData.Current_Que_To_Edit.id.toString(),
+        "essay_instructions":EssayInstructions.text.toString(),
       }).then((response) {
         var statuss = jsonDecode(response.body);
         Navigator.of(context).pushReplacementNamed('AssignmentQuestionList');

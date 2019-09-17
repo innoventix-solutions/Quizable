@@ -15,12 +15,13 @@ class Pojo_questions{
   List<Pojo_Answers> Options;
 
   String assignment_id;   //3-9-19
+  String essay_instructions;  //17-9-19  a
 
 
 
   Pojo_questions({this.id, this.question, this.point_awarded, this.answer_type,
       this.anwer_options, this.level_no, this.quiz_id,this.TrueorFalse,this.Options,this.ques_no,
-      this.assignment_id});
+      this.assignment_id,this.essay_instructions});
 
   factory Pojo_questions.fromJson(Map<String, dynamic> parsedJson){
     List<Pojo_Matchs> matchs = new List();
@@ -59,6 +60,7 @@ class Pojo_questions{
       ques_no:parsedJson['ques_no'].toString(),
 
       assignment_id:parsedJson['assignment_id'].toString(),   //3-9-19
+      essay_instructions:parsedJson['essay_instructions'].toString(),  //17-9-19
 
     );
   }

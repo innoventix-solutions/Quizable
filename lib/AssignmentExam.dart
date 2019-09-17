@@ -46,6 +46,16 @@ class _AssignmentExamState extends State<AssignmentExam> {
 
   List<pojo_anslog> anslist = new List();
 
+
+  bool _isVisible = true;
+
+  void showToast() {
+    setState(() {
+      _isVisible = !_isVisible;
+    });
+  }
+
+
   /*Timmer(){
     cd = CountDown(Duration(minutes: timermins));
     var sub = cd.stream.listen(null);
@@ -243,16 +253,32 @@ class _AssignmentExamState extends State<AssignmentExam> {
         child: Column(
           children: <Widget>[
 
-            /*Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Row(
-                children: <Widget>[
-                  Text("Timer : ",style: TextStyle(color: Colors.blue),),
-                  Text(TimerText,style: TextStyle(fontWeight: FontWeight.bold),)
-                ],
-              ),
-            ),*/
 
+
+        Padding(
+        padding: EdgeInsets.all(15.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            RaisedButton(
+              child: Text('Show/Hide'),
+              onPressed: showToast,
+            ),
+
+            Visibility (
+              visible: _isVisible,
+              child: Card(
+                child: new ListTile(
+                  title: Center(
+                    child: new Text(GlobalData.teacherinstruction),
+                  ),
+                ),
+              ),
+            ),
+
+          ],
+        ),
+      ),
 
 
 
@@ -262,17 +288,7 @@ class _AssignmentExamState extends State<AssignmentExam> {
               child: Card(
                 child: Column(
                   children: <Widget>[
-                   /* Container(
-                      color: Colors.blue,
-                      child: Row(
-                        children: <Widget>[
-                          Expanded(child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text("Level ${Quetions[i].level_no.toString()}",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
-                          )),
-                        ],
-                      ),
-                    ),*/
+
                     Container(
                       color: Colors.brown,
                       child: Row(

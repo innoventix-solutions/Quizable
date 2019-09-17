@@ -306,6 +306,22 @@ class _AssignmentQuestionListState extends State<AssignmentQuestionList> {
                             ),
                           ),
                           AnswerNow(Quetions[i].answer_type,Quetions[i].anwer_options,Quetions[i].Options,i),
+
+                          Container(
+
+                            child: Row(
+                              children: <Widget>[
+                             Expanded(
+                               child: Padding(
+                                    padding: const EdgeInsets.all(20.0),
+                                    child: Container(child: Text(Quetions[i].essay_instructions,style: TextStyle(fontWeight: FontWeight.bold),)),
+                                  ),
+                             ),
+                              ],
+                            ),
+                          ),
+
+
                           Container(
 
                             child: Row(

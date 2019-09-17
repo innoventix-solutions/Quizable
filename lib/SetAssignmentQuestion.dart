@@ -661,7 +661,8 @@ class _SetAssignmentQuestionState extends State<SetAssignmentQuestion> {
 
   SaveQuizQuestion()async {
     if (QuestionName.text.toString() == "" || Points.text.toString() == "" ||
-        SelectedType.toString() == "" || MyQuestionAnswer(SelectedType) == "") {
+        SelectedType.toString() == "" || MyQuestionAnswer(SelectedType) == ""
+    || EssayInstructions.text.toString()=="") {
       _showDialog();
     }else{
 
@@ -670,7 +671,8 @@ class _SetAssignmentQuestionState extends State<SetAssignmentQuestion> {
           "point_awarded "+ Points.text.toString()+
           "answer_type "+ SelectedType.toString()+
           "assignment_id "+ GlobalData.AssignmentID+
-          "answer_options " + MyQuestionAnswer(SelectedType));
+          "answer_options " + MyQuestionAnswer(SelectedType)+
+          "essay_instructions "+ EssayInstructions.text.toString());
 
 
       http.post(
@@ -681,6 +683,7 @@ class _SetAssignmentQuestionState extends State<SetAssignmentQuestion> {
         "assignment_id": GlobalData.AssignmentID,
         "answer_options": MyQuestionAnswer(SelectedType),
         "ques_no": ((GlobalData.QuestionNumber%int.parse(GlobalData.NosofQuesassignment))+1).toString(),
+        "essay_instructions": EssayInstructions.text.toString()
       }).then((response) {
         var statuss = jsonDecode(response.body);
 
