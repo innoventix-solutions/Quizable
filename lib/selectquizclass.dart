@@ -119,14 +119,18 @@ class _quizclassState extends State<quizclass> {
                               children: <Widget>[
                                 Stack(
                                   children: <Widget>[
-                                    Container(height: 70,width: 70,margin: EdgeInsets.only(left: 20,top: 15,bottom: 10),
+                                    Container(
+                                      height: 70,
+                                      width: 70,
+                                      margin: EdgeInsets.only(
+                                          left: 20, top: 15, bottom: 10),
                                       decoration: new BoxDecoration(
                                           shape: BoxShape.circle,
                                           image: new DecorationImage(
                                             fit: BoxFit.fill,
-                                            image:AssetImage('assets/images/bg.png'),
-                                          )
-                                      ),),
+                                            image: NetworkImage(GlobalData.Class_list[index].classicon),
+                                          )),
+                                    ),
                                   ],
                                 ),
 

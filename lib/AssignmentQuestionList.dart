@@ -159,13 +159,13 @@ class _AssignmentQuestionListState extends State<AssignmentQuestionList> {
 
   }
 
-  /* 28-8 delete question*/
+  /* 17-09-19  a  delete question*/
 
- /* Delete(String id) async{
+  Delete(String id) async{
 
-    await http.post("http://edusupportapp.com/api/delete_quiz_question.php",
+    await http.post("http://edusupportapp.com/api/delete_assignment_question.php",
         body: {
-          "quiz_id":GlobalData.QuizID,
+          "assignment_id":GlobalData.AssignmentID,
           "question_id":id,
         }).then((res){
       print(res.body);
@@ -175,11 +175,11 @@ class _AssignmentQuestionListState extends State<AssignmentQuestionList> {
       });
 
     });
-  }*/
+  }
 
 
 
-  /*void _showDialog(BuildContext context,String id) {
+  void _showDialog(BuildContext context,String id) {
     // flutter defined function
     showDialog(
       context: context,
@@ -199,16 +199,18 @@ class _AssignmentQuestionListState extends State<AssignmentQuestionList> {
                     ),
                     child: GestureDetector(
                         onTap: (){
-                          Delete(id);
-                          Show_toast("Delete Successfully", Colors.green);
-                          Navigator.of(context).pushNamed('previewQuiz');
-                        },child: new Text("Ok")),
+                          Navigator.of(context).pushNamed('Previewassignment');
+                        },child: new Text("Cancel")),
 
                   ),
                   GestureDetector(
                       onTap: (){
-                        Navigator.of(context).pushNamed('previewQuiz');
-                      },child: new Text("Cancel")),
+                        Delete(id);
+                        Show_toast("Delete Successfully", Colors.green);
+                        Navigator.of(context).pushNamed('Previewassignment');
+                      },child: new Text("Ok")),
+
+
                 ],
               ),
               onPressed: () {
@@ -230,7 +232,7 @@ class _AssignmentQuestionListState extends State<AssignmentQuestionList> {
         backgroundColor: color,
         textColor: Colors.white,
         fontSize: 16.0);
-  }*/
+  }
 
 
 
@@ -272,7 +274,7 @@ class _AssignmentQuestionListState extends State<AssignmentQuestionList> {
                                 GestureDetector(
                                     onTap: (){
 
-                                      //_showDialog(context,Quetions[i].id.toString());
+                                      _showDialog(context,Quetions[i].id.toString());
 
 
                                     },child: Icon(Icons.cancel,color: Colors.white,)),

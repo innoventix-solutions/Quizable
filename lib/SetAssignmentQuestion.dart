@@ -16,6 +16,7 @@ class _SetAssignmentQuestionState extends State<SetAssignmentQuestion> {
 
   TextEditingController QuestionName = new TextEditingController();
   TextEditingController Points = new TextEditingController();
+  TextEditingController EssayInstructions = new TextEditingController();
 
 
   void _confirmDialog(BuildContext context)  {
@@ -543,6 +544,39 @@ class _SetAssignmentQuestionState extends State<SetAssignmentQuestion> {
                 ),
                 /// Mera wala Card
                 MyQuestionType(SelectedType),
+
+                Column(
+                  children: <Widget>[SelectedType=="Short Essay"?
+                    Card(
+                      child: Column(
+                        children: <Widget>[
+                          Row(
+                            children: <Widget>[
+                              Expanded(
+                                child: Column(
+                                  children: <Widget>[
+                                    Padding(
+                                      padding: const EdgeInsets.only(left: 20,right: 20),
+                                      child: TextField(
+                                        controller: EssayInstructions,
+                                        maxLines: 4,
+                                        keyboardType: TextInputType.text,
+                                        decoration: InputDecoration(border: InputBorder.none,hintText: "Type Instructions here"),
+                                        style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold),
+                                      ),
+                                    ),
+                                    Text(SelectedType=="Short Essay"?"Teachers Instructions":"",style:
+                                    TextStyle(color: Colors.red),),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ):SizedBox(),
+                  ],
+                ),
 
                 ///
                 Row(mainAxisAlignment: MainAxisAlignment.center,
