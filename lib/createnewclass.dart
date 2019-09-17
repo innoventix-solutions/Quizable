@@ -105,16 +105,41 @@ class _createnewclassState extends State<createnewclass> {
               children: <Widget>[
                 GestureDetector(
               onTap: (){getImage();},
-                  child: Container(
-                      height: 95,
-                      width: 95,
-                      margin: EdgeInsets.only(top: 70, bottom: 14),
-                      decoration: new BoxDecoration(
-                          shape: BoxShape.circle,border: Border.all(color: Colors.black,width: 5),
-                          image: new DecorationImage(
-                            fit: BoxFit.fill,
-                            image:_image!=null?  FileImage(_image): AssetImage('assets/images/user.jpg'),
-                          ))),
+                  child: Stack(
+                      children: <Widget>[
+                        Container(
+                        height: 95,
+                        width: 95,
+                        margin: EdgeInsets.only(top: 70, bottom: 14),
+                        decoration: new BoxDecoration(
+                            shape: BoxShape.circle,
+                            image: new DecorationImage(
+                              fit: BoxFit.fill,
+                              image:_image!=null?  FileImage(_image): AssetImage('assets/images/user.jpg'),
+                            ))),
+                        Positioned(
+                          right: 5,bottom: 8,
+                          child: Card(color: Colors.black,elevation: 5.0,
+                            shape: RoundedRectangleBorder(side: BorderSide(color: Colors.white),
+                              borderRadius: BorderRadius.circular(0.0),
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.all(4.0),
+                              child: Container(
+
+
+
+
+                                child:Icon(
+                                  Icons.crop_square,
+                                  color: Colors.black,
+                                  size: 12.0,
+
+                                ),),
+                            ),
+                          ),
+                        ),],
+                  ),
                 ),
                 Text(
                   'Upload Classroom Icon',
