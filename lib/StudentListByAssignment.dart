@@ -83,7 +83,7 @@ class _StudentListByAssignmentState extends State<StudentListByAssignment> {
             ),
 
 
-            Expanded(child: globlist.isEmpty ? Center(child: Text('No Students  ')) :
+            Expanded(child: globlist.isEmpty ? Center(child: Text('No Students')) :
             new ListView.builder
                 (
                   itemCount: globlist.length,

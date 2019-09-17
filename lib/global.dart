@@ -86,6 +86,7 @@ class GlobalData{
   static String teacherinstruction="";
   static String teacherobjective="";
   static String AssignmentID="";
+  static String Essayinstructions="";
 
 /* spelling data*/
 

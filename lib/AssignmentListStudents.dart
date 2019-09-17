@@ -239,6 +239,8 @@ class _AssignmentListStudentsState extends State<AssignmentListStudents> {
                           GlobalData.AssignmentID=assignment_list[i].id;
                           //GlobalData.QuizLevels=assignment_list[i].no_of_levels;
                           GlobalData.ExamQuiz=assignment_list[i].assignment_title;
+                          GlobalData.teacherinstruction=assignment_list[i].teacher_instruction;
+                          GlobalData.teacherobjective=assignment_list[i].teacher_objective;
                           //GlobalData.DurationofEachLevel=assignment_list[i].dur_each_level;
                           Navigator.of(context).pushNamed(assignment_list[i].is_taken==true?'AnswerLog':'assignmentexam');
                         },

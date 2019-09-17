@@ -93,6 +93,8 @@ class _PreviewAssignmentState extends State<PreviewAssignment> {
                         GlobalData.EditQuiz=false;
                          GlobalData.AssignmentID=assignment_list[i].id;
                          GlobalData.ExamQuiz=assignment_list[i].assignment_title;
+                         GlobalData.teacherinstruction=assignment_list[i].teacher_instruction;
+                         GlobalData.teacherobjective=assignment_list[i].teacher_objective;
                           //GlobalData.DurationofEachLevel=assignment_list[i].dur_each_level;
                          // GlobalData.QuizLevels=assignment_list[i].no_of_levels;
                           Navigator.of(context).pushNamed('AssignmentQuestionList');
