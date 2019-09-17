@@ -9,7 +9,7 @@ import 'TeacherClassList.dart';
 import 'globalvar.dart';
 import 'manageclassactivitesGlobal.dart';
 import 'sec.dart';
-import 'card.dart';
+
 import 'teacheroption.dart';
 import 'accounttype.dart';
 import 'drawer.dart';
@@ -37,9 +37,8 @@ import 'setquizquestion.dart';
 import 'manageclassactivites.dart';
 import 'assignmentquestionbank.dart';
 import 'json.dart';
-import 'cal.dart';
+
 import 'quizquestion.dart';
-import 'cal3.dart';
 import 'selectquizsubject.dart';
 import 'selectquizclass.dart';
 import 'studentdashboard.dart';

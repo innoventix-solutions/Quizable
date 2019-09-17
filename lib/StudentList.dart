@@ -186,7 +186,10 @@ class _StudentListState extends State<StudentList> {
                                             image:AssetImage('assets/images/bg.png'),
                                           )
                                       ),),
-                                  ],
+
+
+
+                                    ],
                                 ),
 
 
@@ -245,6 +248,28 @@ class _StudentListState extends State<StudentList> {
                                       ),),
 
 
+                                    Positioned(
+                                      right: 8,bottom: 8,
+                                      child: Column(
+                                        children: <Widget>[
+                                          GlobalData.parentsemail != null && GlobalData.parentsphone != null ?
+                                          Card(color: Colors.green,elevation: 5.0,
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius: BorderRadius.circular(40.0),
+                                            ),
+                                            child: Padding(
+                                              padding: const EdgeInsets.all(4.0),
+                                              child: Container(
+
+
+
+
+                                                  child: Text('P',style: TextStyle(color: Colors.white,fontSize: 5),)),
+                                            ),
+                                          ):Text(""),
+                                        ],
+                                      ),
+                                    ),
                                   ],
                                 ),
 
