@@ -512,7 +512,7 @@ setalldetails(){
                           ),
                         ],
                       ),
-                      Padding(
+                      /*Padding(
                         padding: const EdgeInsets.only(bottom: 25, right: 5),
                         child: GestureDetector(
                           child: Row(
@@ -539,7 +539,7 @@ setalldetails(){
 //                              'questions');
                               },
                         ),
-                      ),
+                      ),*/
                     ],
                   )),
             ),

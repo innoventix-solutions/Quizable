@@ -39,16 +39,51 @@ child: Scaffold(
   body: SingleChildScrollView(
     child: Center(
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          Container(height: 70,width: 70,margin: EdgeInsets.only(top: 70,bottom: 14),
-              decoration: new BoxDecoration(
-                  shape: BoxShape.circle,
-                  image: new DecorationImage(
-                    fit: BoxFit.fill,
-                    image:AssetImage('assets/images/user.jpg'),
-                  )
-              )
+          Stack(
+
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.only(top: 20,bottom: 10),
+                child: Container(
+                  child: CircleAvatar(backgroundImage:GlobalData.Userphoto!=null?
+                  NetworkImage(GlobalData.Userphoto):AssetImage('assets/images/pic.png',),
+                    radius: 35.0,
+                  ),
+                ),
+              ),
+              
+              Positioned(
+                right: 0,bottom: 0,
+                child: GestureDetector(onTap: (){
+
+                  Navigator.of(context)
+                      .pushNamed('EditProfile');
+
+                },
+                  child: Card(color: Colors.black,elevation: 5.0,
+                    shape: RoundedRectangleBorder(side: BorderSide(color: Colors.white),
+                      borderRadius: BorderRadius.circular(0.0),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(4.0),
+                      child: Container(
+
+
+
+
+                        child:Icon(
+                          Icons.crop_square,
+                          color: Colors.black,
+                          size: 12.0,
+
+                        ),),
+                    ),
+                  ),
+                ),
+              ),
+            ],
           ),
         Text('Welcome '+GlobalData.Username,style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
           Padding(
