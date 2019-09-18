@@ -740,7 +740,8 @@ Text("Enter answer in sequence with underscore '_' in between the words",style:
                       ),
                       Container(
                           padding: EdgeInsets.all(5),color:GlobalData.green,
-                        child:  Text("Level "+((GlobalData.QuestionNumber/int.parse(GlobalData.NosofQuesPerLevel)).floor()+1).toString()+" of "+GlobalData.QuizLevels,style: TextStyle(color: Colors.white,fontSize: 15,fontWeight: FontWeight.bold),)
+                        child:  Text("Level "+((GlobalData.QuestionNumber/int.parse(GlobalData.NosofQuesPerLevel)).floor()+1).toString()//+" of "+GlobalData.QuizLevels,
+                          ,style: TextStyle(color: Colors.white,fontSize: 15,fontWeight: FontWeight.bold),)
                       )
                     ],
                   ),
@@ -940,9 +941,9 @@ Text("Enter answer in sequence with underscore '_' in between the words",style:
       } else{
 
       }
-      if(GlobalData.QuestionNumber>=(int.parse(GlobalData.NosofQuesPerLevel)*int.parse(GlobalData.QuizLevels)))
+      if(GlobalData.QuestionNumber>=(int.parse(GlobalData.NosofQuesPerLevel)))
       {
-        QuizCompleted(context);
+        Navigator.of(context).pushNamed('level');
       }else {
         Navigator.of(context).pushNamed('questions');
       }

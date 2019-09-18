@@ -183,6 +183,7 @@ class MyApp extends StatelessWidget {
         'StudentListByAssignment':(context)=>StudentListByAssignment(),
         'AssignmentAnswerLog':(context)=>AssignmentAnswerLog(),
         'MyAssignmentExerciseLog':(context)=>MyAssignmentExerciseLog(),
+        'level':(context)=>level1(),
 
       },
     );
