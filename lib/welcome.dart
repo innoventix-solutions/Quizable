@@ -53,6 +53,7 @@ child: Scaffold(
                   ),
                 ),
               ),
+              
               Positioned(
                 right: 0,bottom: 0,
                 child: GestureDetector(onTap: (){
