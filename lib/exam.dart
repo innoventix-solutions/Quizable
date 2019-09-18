@@ -65,6 +65,10 @@ class _ExamState extends State<Exam> {
   }
 
 
+  TextEditingController ans1 = new TextEditingController();
+  TextEditingController ans2 = new TextEditingController();
+
+
   @override
   dispose()
   {
@@ -287,8 +291,14 @@ class _ExamState extends State<Exam> {
                   padding: const EdgeInsets.all(8.0),
                   child: Text(type=="Fill-in the gaps"?"Note : For multiple blanks question please consider answer which has proper sequence of the words separated by underscore '_' .":"",style: TextStyle(color: Colors.red),),
                 ),
-                Row(
+
+
+
+                /*Row(
                   children: <Widget>[
+
+
+
                     Expanded(
                       child: Container(
                         height: Options.isEmpty?50.0:Options.length*50.0,
@@ -324,9 +334,23 @@ class _ExamState extends State<Exam> {
                         ),
                       ),
                     ),
-                  ],
-                ),
 
+
+
+                  ],
+                ), */
+                TextField(controller: ans1,
+                decoration: InputDecoration(
+                border: InputBorder.none,
+  hintText: 'Enter an Answer1',
+  ),
+  ),
+                TextField(controller: ans2,
+                  decoration: InputDecoration(
+                    border: InputBorder.none,
+                    hintText: 'Enter an Answer2',
+                  ),
+                ),
               ],
             ),);
     }
