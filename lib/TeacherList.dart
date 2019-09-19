@@ -169,7 +169,7 @@ class _TeacherListState extends State<TeacherList> {
                           fit: BoxFit.fill,
                           image:GlobalData.Userphoto!=null?
                           NetworkImage(GlobalData.Userphoto):
-                          AssetImage('assets/images/pic.png',),
+                          AssetImage('assets/images/users.png',),
                         )
                     )
                 ),
@@ -193,6 +193,57 @@ class _TeacherListState extends State<TeacherList> {
                       child: Text("Created: "+GlobalData.createdclassdate,style: TextStyle(fontSize: 12),),
                     ),
                   ],
+                ),
+
+                Expanded(
+                  child:  Row(mainAxisAlignment: MainAxisAlignment.end,
+                    children: <Widget>[
+                      GlobalData.userType=="teacher"?Text(""):PopupMenuButton(
+                        child: Icon(Icons.more_vert),
+                        itemBuilder: (_) => <PopupMenuItem<String>>[
+                          new PopupMenuItem<String>(
+                              child: Row(
+                                children: <Widget>[
+                                  Padding(
+                                    padding: const EdgeInsets.only(right: 4),
+                                    child: Icon(
+                                      Icons.edit,
+                                      color: GlobalData.lightblue,size: 12,
+                                    ),
+                                  ),
+                                  new Text('Edit Profile',style: TextStyle(fontSize: 15),),
+                                ],
+                              ), value: 'edit'),
+
+
+                          new PopupMenuItem<String>(
+                              child: Row(
+                                children: <Widget>[
+                                  Padding(
+                                    padding: const EdgeInsets.only(right: 4,top: 1),
+                                    child: Icon(
+                                      Icons.cancel,
+                                      color: GlobalData.darkpink,size: 12,
+                                    ),
+                                  ),
+                                  new Text('Close Class',style: TextStyle(fontSize: 15),),
+                                ],
+                              ), value: 'delete'),
+
+                        ],
+                        onSelected: ( value){
+                          if(value=="edit")
+                          {
+                            Navigator.of(context).pushNamed('EditProfile');
+                          }
+                          if(value=="delete")     //28-8-19 a
+                              {
+                                  //delete function
+                          }
+                        },
+                      ),
+                    ],
+                  ),
                 ),
 
 
@@ -297,7 +348,7 @@ class _TeacherListState extends State<TeacherList> {
                                           fit: BoxFit.fill,
                                           image:GlobalData.Userphoto!=null?
                                           NetworkImage(GlobalData.Studentlist[index].userphoto):
-                                          AssetImage('assets/images/pic.png',),
+                                          AssetImage('assets/images/users.png',),
                                         )
                                     ),),
                                 ),
