@@ -75,12 +75,21 @@ class _secState extends State<sec> {
       print("result from Server : "+statuss['status'].toString());
 
       if (statuss['status'].toString() == "1") { Show_toast("Registered Successfully", Colors.green);
-        Navigator.of(context)
-            .pushNamedAndRemoveUntil('login', (Route<dynamic> route) => false);
+
+      GlobalData.userType=="teacher" ? Navigator.of(context)
+          .pushNamedAndRemoveUntil('login', (Route<dynamic> route) => false) :
+      Navigator.of(context)
+          .pushNamedAndRemoveUntil('trialsub', (Route<dynamic> route) => false);
+
+
+
+
       } else {
         Show_toast(statuss['msg'], Colors.red);
       }
     });
+
+
   }
 
 
