@@ -100,7 +100,7 @@ class _teacherdashboardState extends State<teacherdashboard> {
                       children: <Widget>[
                   Container(
                       child: CircleAvatar(backgroundImage:GlobalData.Userphoto!=null?
-                      NetworkImage(GlobalData.Userphoto):AssetImage('assets/images/pic.png',),
+                      NetworkImage(GlobalData.Userphoto):AssetImage('assets/images/users.png',),
                         radius: 35.0,
                       ),
                     ),
@@ -321,7 +321,7 @@ class _teacherdashboardState extends State<teacherdashboard> {
                     Padding(
                       padding: const EdgeInsets.only(left: 5),
                       child: CircleAvatar(backgroundImage:GlobalData.Userphoto!=null?
-                      NetworkImage(GlobalData.Userphoto):AssetImage('assets/images/pic.png',),
+                      NetworkImage(GlobalData.Userphoto):AssetImage('assets/images/users.png',),
                         radius: 35.0,),
                     ),
                     Padding(
