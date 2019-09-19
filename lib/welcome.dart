@@ -48,12 +48,12 @@ child: Scaffold(
                 padding: const EdgeInsets.only(top: 20,bottom: 10),
                 child: Container(
                   child: CircleAvatar(backgroundImage:GlobalData.Userphoto!=null?
-                  NetworkImage(GlobalData.Userphoto):AssetImage('assets/images/pic.png',),
+                  NetworkImage(GlobalData.Userphoto):AssetImage('assets/images/users.png',),
                     radius: 35.0,
                   ),
                 ),
               ),
-              
+
               Positioned(
                 right: 0,bottom: 0,
                 child: GestureDetector(onTap: (){
