@@ -130,14 +130,7 @@ class _loginState extends State<login> {
             }
 
           }
-
-
-
         }
-
-
-
-
 
       } else {
             Show_toast("Invalid Username or Password", Colors.red);
