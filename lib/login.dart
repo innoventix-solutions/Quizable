@@ -18,12 +18,25 @@ class _loginState extends State<login> {
 
 
   SharedPreferences prefs;
+  bool isClassSelected =false;
+  String selectedClass ="";
 
   TextEditingController email = new TextEditingController();
   TextEditingController pass = new TextEditingController();
 
   GetShared() async {
     prefs = await SharedPreferences.getInstance();
+    print(await prefs.getString('selectedClass')??"");
+    selectedClass =await prefs.getString('selectedClass')??"";
+
+    if(selectedClass!="")
+      {
+        isClassSelected=true;
+      }else
+        {
+         print("Selected Class "+selectedClass);
+        }
+
   }
 
 
@@ -106,18 +119,59 @@ class _loginState extends State<login> {
 
 
         if (statuss['userdata']['user_type'] == "teacher") {
-          Navigator.of(context).pushReplacementNamed(GlobalData.Class_list.isEmpty?'techerjoinclass':'teacherSelectClass');
+
+          if(GlobalData.Class_list.isNotEmpty ) {
+
+            if(GlobalData.Class_list.length==1) {
+              GetmyCurrentClass("teacherdashboard");
+            }else
+              {
+                Navigator.of(context).pushReplacementNamed(
+
+                    'teacherSelectClass'
+                );
+              }
+            }
+          else {
+            Navigator.of(context).pushReplacementNamed(
+
+                    'techerjoinclass'
+                    );
+          }
+
         } else if (statuss['userdata']['user_type'] == "admin_teacher") {
+          if(GlobalData.Class_list.isNotEmpty ) {
 
+            if(GlobalData.Class_list.length==1) {
+              GetmyCurrentClass("teacherdashboard");
+            }else
+            {
+              Navigator.of(context).pushReplacementNamed(
 
-          Navigator.of(context).pushReplacementNamed(GlobalData.Class_list.isEmpty?'welcome':'teacherSelectClass');
+                  'teacherSelectClass'
+              );
+            }
+          }
+          else {
+          Navigator.of(context).pushReplacementNamed(
+              'welcome');
+        }
         } else {
           if(GlobalData.Class_list.length == 0) {
             Navigator.of(context).pushReplacementNamed('studentjoin');
           }
           else
           {
-            Navigator.of(context).pushReplacementNamed('studentselectclass');
+            if(GlobalData.Class_list.length==1) {
+              GetmyCurrentClass("studentdashboard");
+            }else
+            {
+              Navigator.of(context).pushReplacementNamed(
+
+                  'studentselectclass'
+              );
+            }
+
           }
         }
       } else {
@@ -258,4 +312,38 @@ class _loginState extends State<login> {
 
     );
   }
+
+
+
+  GetmyCurrentClass(String NamedPath)
+  {
+    int index=0;
+
+    prefs.setString("selectedClass", GlobalData.Class_list[index].id);
+          GlobalData.classid = GlobalData.Class_list[index].id;
+          GlobalData.createdclassdate =
+              GlobalData.Class_list[index].createddate;
+          GlobalData.student_code =
+              GlobalData.Class_list[index].studentinvitecode;
+          GlobalData.teacher_code =
+              GlobalData.Class_list[index].teacherinvitecode;
+
+          GlobalData.class_name =
+              GlobalData.Class_list[index].classname;
+
+          GlobalData.activeclass = GlobalData.Class_list[index];
+          GlobalData.class_name =
+              GlobalData.Class_list[index].classname;
+
+
+          print(GlobalData.Class_list[index].classname);
+          print(GlobalData.activeclass.classname);
+          Navigator.of(context)
+              .pushReplacementNamed(NamedPath);
+
+
+
+  }
+
+
 }
