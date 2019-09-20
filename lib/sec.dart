@@ -1,10 +1,12 @@
 import 'dart:convert';
-
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'utilities.dart';
 import 'global.dart';
 import 'package:http/http.dart' as http;
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:image_picker/image_picker.dart';
+
 
 class sec extends StatefulWidget {
 
@@ -14,6 +16,18 @@ class sec extends StatefulWidget {
 }
 
 class _secState extends State<sec> {
+
+  String image64 = "";
+  File _image;
+
+  Future getImage() async {
+    var file = await ImagePicker.pickImage(source: ImageSource.gallery, maxHeight:  200 , maxWidth: 200);
+    _image = file;
+    List<int> imagebytes = await file.readAsBytesSync();
+    image64 = await base64.encode(imagebytes);
+    setState(() {});
+  }
+
 
 
 
@@ -62,6 +76,7 @@ class _secState extends State<sec> {
      "parents_phone_no": "sadf".toString(),
     //  "user_type":"student".toString(),
     "accout_type":GlobalData.accounttype,
+      "image":image64,
 
 
 
@@ -147,14 +162,46 @@ class _secState extends State<sec> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: <Widget>[
-                      Center(
-                        child: Padding(
-                          padding: const EdgeInsets.all(30),
-                          child: Container(
-                            width: 70,
-                            height: 70,
-                            child: Image.asset('assets/images/logo.png'),
-                          ),
+                      Text(
+                        'Sign Up',
+                        style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold,color: GlobalData.gray),
+                      ),
+                      GestureDetector(
+                        onTap: (){getImage();},
+                        child: Stack(
+                          children: <Widget>[
+                            Container(
+                                height: 95,
+                                width: 95,
+                                margin: EdgeInsets.only(top: 10, bottom: 14),
+                                decoration: new BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    image: new DecorationImage(
+                                      fit: BoxFit.fill,
+                                      image:_image!=null?  FileImage(_image): AssetImage('assets/images/users.png'),
+                                    ))),
+                            Positioned(
+                              right: 5,bottom: 15,
+                              child: Card(color: Colors.black,elevation: 5.0,
+                                shape: RoundedRectangleBorder(side: BorderSide(color: Colors.white),
+                                  borderRadius: BorderRadius.circular(0.0),
+                                ),
+                                child: Padding(
+                                  padding: const EdgeInsets.all(4.0),
+                                  child: Container(
+
+
+
+
+                                    child:Icon(
+                                      Icons.crop_square,
+                                      color: Colors.black,
+                                      size: 12.0,
+
+                                    ),),
+                                ),
+                              ),
+                            ),],
                         ),
                       ),
 
@@ -342,12 +389,12 @@ class _secState extends State<sec> {
                           padding: EdgeInsets.only(top: 5),
                           child: Text(
                             'By creating an account , you agree to our',
-                            style: TextStyle(color: GlobalData.black, fontSize: 15),
+                            style: TextStyle(color: GlobalData.gray, fontSize: 15),
                           )),
                       new Container(
                           child: Text(
                         'Terms & Conditions and Privacy Policy.',
-                        style: TextStyle(color: GlobalData.black, fontSize: 15),
+                        style: TextStyle(color: GlobalData.gray, fontSize: 15),
                       )),
                       Padding(padding: EdgeInsets.only(top: 10)),
                       Container(
@@ -356,7 +403,7 @@ class _secState extends State<sec> {
                         children: <Widget>[
                           Text(
                             'Already have account?',
-                            style: TextStyle(color: GlobalData.black, fontSize: 15),
+                            style: TextStyle(color: GlobalData.gray, fontSize: 15),
                             textAlign: TextAlign.center,
                           ),
                           Text(" "),

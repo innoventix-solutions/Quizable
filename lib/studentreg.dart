@@ -6,6 +6,9 @@ import 'package:newpro/utilities.dart';
 import 'global.dart';
 import 'package:http/http.dart' as http;
 import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
+import 'dart:io';
+import 'package:image_picker/image_picker.dart';
+
 
 
 
@@ -15,6 +18,20 @@ class studentreg extends StatefulWidget {
 }
 
 class _studentregState extends State<studentreg> {
+
+  String image64 = "";
+  File _image;
+
+  Future getImage() async {
+    var file = await ImagePicker.pickImage(source: ImageSource.gallery, maxHeight:  200 , maxWidth: 200);
+    _image = file;
+    List<int> imagebytes = await file.readAsBytesSync();
+    image64 = await base64.encode(imagebytes);
+    setState(() {});
+  }
+
+
+
   TextEditingController acc = new TextEditingController();
   TextEditingController username = new TextEditingController();
   TextEditingController email = new TextEditingController();
@@ -53,6 +70,7 @@ class _studentregState extends State<studentreg> {
       "parents_email": par_email.text.toString(),
       "parents_phone_no": par_phone.text.toString(),
       "accout_type":GlobalData.accounttype,
+      "image":image64,
     }).then((response) {
       print(response.body.toString());
 
@@ -161,14 +179,46 @@ class _studentregState extends State<studentreg> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: <Widget>[
-                      Center(
-                        child: Padding(
-                          padding: const EdgeInsets.all(10),
-                          child: Container(
-                            width: 70,
-                            height: 70,
-                            child: Image.asset('assets/images/logo.png'),
-                          ),
+                      Text(
+                        'Sign Up',
+                        style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold,color: GlobalData.gray),
+                      ),
+                      GestureDetector(
+                        onTap: (){getImage();},
+                        child: Stack(
+                          children: <Widget>[
+                            Container(
+                                height: 95,
+                                width: 95,
+                                margin: EdgeInsets.only(top: 10, bottom: 14),
+                                decoration: new BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    image: new DecorationImage(
+                                      fit: BoxFit.fill,
+                                      image:_image!=null?  FileImage(_image): AssetImage('assets/images/users.png'),
+                                    ))),
+                            Positioned(
+                              right: 5,bottom: 15,
+                              child: Card(color: Colors.black,elevation: 5.0,
+                                shape: RoundedRectangleBorder(side: BorderSide(color: Colors.white),
+                                  borderRadius: BorderRadius.circular(0.0),
+                                ),
+                                child: Padding(
+                                  padding: const EdgeInsets.all(4.0),
+                                  child: Container(
+
+
+
+
+                                    child:Icon(
+                                      Icons.crop_square,
+                                      color: Colors.black,
+                                      size: 12.0,
+
+                                    ),),
+                                ),
+                              ),
+                            ),],
                         ),
                       ),
                       CustomTextFieldBorder(
@@ -372,12 +422,12 @@ class _studentregState extends State<studentreg> {
                           padding: EdgeInsets.only(top: 5),
                           child: Text(
                             'By creating an account , you agree to our',
-                            style: TextStyle(color: GlobalData.black, fontSize: 15),
+                            style: TextStyle(color: GlobalData.gray, fontSize: 15),
                           )),
                       new Container(
                           child: Text(
                             'Terms & Conditions and Privacy Policy.',
-                            style: TextStyle(color: GlobalData.black, fontSize: 15),
+                            style: TextStyle(color: GlobalData.gray, fontSize: 15),
                           )),
                       Padding(padding: EdgeInsets.only(top: 10)),
                       Container(
@@ -386,7 +436,7 @@ class _studentregState extends State<studentreg> {
                             children: <Widget>[
                               Text(
                                 'Already have account?',
-                                style: TextStyle(color: GlobalData.black, fontSize: 15),
+                                style: TextStyle(color: GlobalData.gray, fontSize: 15),
                                 textAlign: TextAlign.center,
                               ),
                               Text(" "),
