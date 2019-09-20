@@ -44,7 +44,7 @@ class _ExamState extends State<Exam> {
   List<pojo_anslog> anslist = new List();
 
   Timmer(){
-   cd = CountDown(Duration(minutes: timermins));
+    cd = CountDown(Duration(minutes: timermins));
     var sub = cd.stream.listen(null);
     // start your countdown by registering a listener
     sub.onData((Duration d) {
@@ -69,7 +69,7 @@ class _ExamState extends State<Exam> {
   dispose()
   {
     cd.isPaused=true;
-     super.dispose();
+    super.dispose();
   }
 
   GetQuestions() async{
@@ -78,7 +78,7 @@ class _ExamState extends State<Exam> {
 
     });
     print(GlobalData.QuizID);
-   await http.post("http://edusupportapp.com/api/get_quiz_questions.php",body: {
+    await http.post("http://edusupportapp.com/api/get_quiz_questions.php",body: {
       "QuizId":GlobalData.QuizID
     }).then((res){
       print(res.body);
@@ -96,7 +96,7 @@ class _ExamState extends State<Exam> {
   Widget AnswerNow(String type,List<Pojo_Matchs> Data,List<Pojo_Answers> Answers)
   {
 
- //   Show_toast_Now("Current Type :"+type, Colors.red);
+    //   Show_toast_Now("Current Type :"+type, Colors.red);
     print("Current Type :"+type);
     Matches=Data;
     Options = Answers;
@@ -108,134 +108,134 @@ class _ExamState extends State<Exam> {
       }
       print(_list.length);
       if(Changed==0)
-        {
-          changenow();
-        }
+      {
+        changenow();
+      }
     }
 
 
     switch (type)
     {
 
-          case "Match Type":
-            return Container(
-              height: Matches.isEmpty?50.0:Matches.length*60.0,
-              child: Row(
+      case "Match Type":
+        return Container(
+          height: Matches.isEmpty?50.0:Matches.length*60.0,
+          child: Row(
+            children: <Widget>[
+              Expanded(child: Column(
                 children: <Widget>[
-                  Expanded(child: Column(
-                    children: <Widget>[
-                      Expanded(
-                        child: ListView.builder(
-                          controller: controller,
-                          itemCount: Matches.length,
-                            itemBuilder: (c,i){
-                            return Padding(
-                              padding: const EdgeInsets.all(2.0),
-                              child: Container(
-                                color: Colors.green[300],
-                                child: ListTile(
-                                  title: Text( Matches[i].val1),
-                                  leading: Icon(Icons.add,color: Colors.transparent,),
-                                ),
-                              ),
-                            );
-                        }),
-                      ),
-                    ],
-                  ),),
                   Expanded(
-                    child: Column(
-                      children: <Widget>[
-                        Expanded(
-                          child: ReorderableListView(
-                            children: _list.map((item) =>Padding(key: Key("${item}+padding"),
-  padding: const EdgeInsets.all(2.0),
-  child: Container( key: Key("${item}con"),
-                                color:Colors.amber,child: ListTile( key: Key("${item}"), title: Text("${item}"), trailing: Icon(Icons.menu),)),)).toList(),
-                            onReorder: (int start, int current) {
-                              // dragging from top to bottom
-                              if (start < current) {
-                                int end = current - 1;
-                                String startItem = _list[start];
-                                int i = 0;
-                                int local = start;
-                                do {
-                                  _list[local] = _list[++local];
-                                  i++;
-                                } while (i < end - start);
-                                _list[end] = startItem;
-                              }
-                              // dragging from bottom to top
-                              else if (start > current) {
-                                String startItem = _list[start];
-                                for (int i = start; i > current; i--) {
-                                  _list[i] = _list[i - 1];
-                                }
-                                _list[current] = startItem;
-                              }
-                              setState(() {});
-                            },
-                          ),
-                        ),
-                      ],
+                    child: ListView.builder(
+                        controller: controller,
+                        itemCount: Matches.length,
+                        itemBuilder: (c,i){
+                          return Padding(
+                            padding: const EdgeInsets.all(2.0),
+                            child: Container(
+                              color: Colors.green[300],
+                              child: ListTile(
+                                title: Text( Matches[i].val1),
+                                leading: Icon(Icons.add,color: Colors.transparent,),
+                              ),
+                            ),
+                          );
+                        }),
+                  ),
+                ],
+              ),),
+              Expanded(
+                child: Column(
+                  children: <Widget>[
+                    Expanded(
+                      child: ReorderableListView(
+                        children: _list.map((item) =>Padding(key: Key("${item}+padding"),
+                          padding: const EdgeInsets.all(2.0),
+                          child: Container( key: Key("${item}con"),
+                              color:Colors.amber,child: ListTile( key: Key("${item}"), title: Text("${item}"), trailing: Icon(Icons.menu),)),)).toList(),
+                        onReorder: (int start, int current) {
+                          // dragging from top to bottom
+                          if (start < current) {
+                            int end = current - 1;
+                            String startItem = _list[start];
+                            int i = 0;
+                            int local = start;
+                            do {
+                              _list[local] = _list[++local];
+                              i++;
+                            } while (i < end - start);
+                            _list[end] = startItem;
+                          }
+                          // dragging from bottom to top
+                          else if (start > current) {
+                            String startItem = _list[start];
+                            for (int i = start; i > current; i--) {
+                              _list[i] = _list[i - 1];
+                            }
+                            _list[current] = startItem;
+                          }
+                          setState(() {});
+                        },
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        );
+      case "True False":
+        return Card(
+          child: Column(
+            children: <Widget>[
+              Row(
+                children: <Widget>[
+                  Expanded(
+                    child: Container(padding: EdgeInsets.all(5),child: Text("Select Answer",style: TextStyle(color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),)),
+                  ),
+
+                ],
+              ),
+              Row(
+                children: <Widget>[
+                  Expanded(
+                    child: Container(
+                      height: 110.0,
+                      child: Column(
+                        children: <Widget>[
+                          Container(child: Row(
+                            children: <Widget>[
+                              Radio(value: "false", groupValue: TrueorFalse, onChanged: (v){TrueorFalse=v;setState(() {
+
+                              });}),
+                              Text("True")
+
+
+
+                            ],),),
+                          Container(child: Row(
+                            children: <Widget>[
+                              Radio(value: "true", groupValue: TrueorFalse, onChanged: (v){TrueorFalse=v;
+                              setState(() {
+
+                              });}),
+
+                              Text("False")
+
+
+
+                            ],),)
+
+                        ],
+                      ),
                     ),
                   ),
                 ],
               ),
-            );
-      case "True False":
-          return Card(
-            child: Column(
-              children: <Widget>[
-                Row(
-                  children: <Widget>[
-                    Expanded(
-                      child: Container(padding: EdgeInsets.all(5),child: Text("Select Answer",style: TextStyle(color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),)),
-                    ),
-
-                  ],
-                ),
-                Row(
-                  children: <Widget>[
-                    Expanded(
-                      child: Container(
-                        height: 110.0,
-                        child: Column(
-                          children: <Widget>[
-                            Container(child: Row(
-                              children: <Widget>[
-                                Radio(value: "false", groupValue: TrueorFalse, onChanged: (v){TrueorFalse=v;setState(() {
-
-                                });}),
-                                Text("True")
 
 
 
-                              ],),),
-                            Container(child: Row(
-                              children: <Widget>[
-                                Radio(value: "true", groupValue: TrueorFalse, onChanged: (v){TrueorFalse=v;
-                                setState(() {
-
-                                });}),
-
-                                Text("False")
-
-
-
-                              ],),)
-
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-
-
-
-              ],
-            ),);
+            ],
+          ),);
 
       case "Multiple Answers":
         return Card(
@@ -280,60 +280,60 @@ class _ExamState extends State<Exam> {
 
       default:
 
-          return Card(
-            child: Column(
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(type=="Fill-in the gaps"?"Note : For multiple blanks question please consider answer which has proper sequence of the words separated by underscore '_' .":"",style: TextStyle(color: Colors.red),),
-                ),
-                Row(
-                  children: <Widget>[
-                    Expanded(
-                      child: Container(
-                        height: Options.isEmpty?50.0:Options.length*50.0,
+        return Card(
+          child: Column(
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(type=="Fill-in the gaps"?"Note : For multiple blanks question please consider answer which has proper sequence of the words separated by underscore '_' .":"",style: TextStyle(color: Colors.red),),
+              ),
+              Row(
+                children: <Widget>[
+                  Expanded(
+                    child: Container(
+                      height: Options.isEmpty?50.0:Options.length*50.0,
 
-                        child: Column(
-                          children: <Widget>[
-                            Expanded(
-                              child: ListView.builder(
-                                  itemCount: Options.length,itemBuilder: (context,index){
-                                return Container(child: Row(
-                                  children: <Widget>[
-                                    Checkbox(value: Options[index].trueanswer, onChanged: (value){
+                      child: Column(
+                        children: <Widget>[
+                          Expanded(
+                            child: ListView.builder(
+                                itemCount: Options.length,itemBuilder: (context,index){
+                              return Container(child: Row(
+                                children: <Widget>[
+                                  Checkbox(value: Options[index].trueanswer, onChanged: (value){
 
 
-                                      if(type!="Multiple Answer") {
-                                        for (int i = 0; i <
-                                            Options.length; i++) {
-                                          Options[i].trueanswer = false;
-                                        }
+                                    if(type!="Multiple Answer") {
+                                      for (int i = 0; i <
+                                          Options.length; i++) {
+                                        Options[i].trueanswer = false;
                                       }
+                                    }
 
 
-                                      Options[index].trueanswer=value;setState(() {
+                                    Options[index].trueanswer=value;setState(() {
 
-                                      });},),
-                                    Text(Options[index].value,maxLines: 4,)
+                                    });},),
+                                  Text(Options[index].value,maxLines: 4,)
 
 
 
-                                  ],),);}),
-                            ),
-                          ],
-                        ),
+                                ],),);}),
+                          ),
+                        ],
                       ),
                     ),
-                  ],
-                ),
+                  ),
+                ],
+              ),
 
-              ],
-            ),);
+            ],
+          ),);
     }
   }
 
 
-@override
+  @override
   void initState() {
     // TODO: implement initState
     super.initState();
@@ -456,29 +456,29 @@ class _ExamState extends State<Exam> {
                         String answ="";
 
                         if(Quetions[i].answer_type=="Match Type")
+                        {
+
+                          for(int i=0;i<Matches.length;i++)
                           {
-
-                            for(int i=0;i<Matches.length;i++)
-                              {
-                                Matches[i].val2=_list[i];
-                              }
+                            Matches[i].val2=_list[i];
+                          }
 
 
-                            answ=jsonEncode(Matches);
-                            print(answ);
+                          answ=jsonEncode(Matches);
+                          print(answ);
 
-                          }else if(Quetions[i].answer_type=="True False")
+                        }else if(Quetions[i].answer_type=="True False")
                         {
 
                           answ=TrueorFalse;
 
-                        if(TrueorFalse=="true")
+                          if(TrueorFalse=="true")
                           {
                             answ="false";
                           }else
-                            {
-                              answ="true";
-                            }
+                          {
+                            answ="true";
+                          }
 
                         }else{
                           for (int i = 0; i < Options.length; i++) {
@@ -557,8 +557,8 @@ class _ExamState extends State<Exam> {
     /*print(Quetions[i].anwer_options.length.toString()+"  asdznaisdfmmb k");
 Matches =Quetions[i].anwer_options;*/
     return Scaffold(
-      appBar: AppBar(title: Text("My Quiz Exercises"),centerTitle: true,),
-      body: isloading==true?Center(child: Text("Loading...")):MYQue()
+        appBar: AppBar(title: Text("My Quiz Exercises"),centerTitle: true,),
+        body: isloading==true?Center(child: Text("Loading...")):MYQue()
 
 
 
@@ -618,13 +618,13 @@ Matches =Quetions[i].anwer_options;*/
 
     );
   }
-  
-  
-  
-  
-  
+
+
+
+
+
   GiveAnswer(String answer)async{
-    
+
     http.post("http://edusupportapp.com/api/quiz_answer.php",body: {
       "user_id":GlobalData.uid,
       "question_id":Quetions[i].id,
@@ -635,7 +635,7 @@ Matches =Quetions[i].anwer_options;*/
     });
 
     print("Your Answer : "+answer);
-    
+
   }
 
 
@@ -747,8 +747,8 @@ Matches =Quetions[i].anwer_options;*/
           );
         });
   }
-  
-  
-  
-  
+
+
+
+
 }

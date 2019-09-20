@@ -47,6 +47,10 @@ class _loginState extends State<login> {
   }
 
   login() async {
+
+
+
+
     http.post("http://edusupportapp.com/api/login.php", body: {
         "username_email": email.text.toString(),
         "password": pass.text.toString()
@@ -105,6 +109,8 @@ class _loginState extends State<login> {
         GlobalData.parentsemail=statuss['userdata']['parents_email'].toString();   //16-9-19 a
 
 
+
+
         if (statuss['userdata']['user_type'] == "teacher") {
           Navigator.of(context).pushReplacementNamed(GlobalData.Class_list.isEmpty?'techerjoinclass':'teacherSelectClass');
         } else if (statuss['userdata']['user_type'] == "admin_teacher") {
@@ -117,9 +123,15 @@ class _loginState extends State<login> {
         }
         else
           {
-            Navigator.of(context).pushReplacementNamed('studentselectclass');
+            if(GlobalData.Class_list.length != 0) {
+
+
+              Navigator.of(context).pushReplacementNamed('studentdashboard');
+            }
+
           }
         }
+
       } else {
             Show_toast("Invalid Username or Password", Colors.red);
       }

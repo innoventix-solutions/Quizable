@@ -70,6 +70,8 @@ setalldetails(){
       "techer_id": teacher.text.toString(),
       "publish_date":publishdate.text.toString(),
       "closing_date":closingdate.text.toString(),
+      "age":age.text.toString(),
+
     }).then((response) {
       var status = jsonDecode(response.body);
 
