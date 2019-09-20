@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'global.dart';
 import'package:newpro/Pojo/pojo_getclasses.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class studentselectclass extends StatefulWidget {
   @override
@@ -8,6 +9,9 @@ class studentselectclass extends StatefulWidget {
 }
 
 class _studentselectclassState extends State<studentselectclass> {
+
+  SharedPreferences preferences;
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -51,9 +55,11 @@ class _studentselectclassState extends State<studentselectclass> {
 
                   itemBuilder: (BuildContext ctxt, int index) {
                     return  GestureDetector(
-                      onTap: (){
+                      onTap: ()async {
+                       preferences = await SharedPreferences.getInstance();
+                        preferences.setString("selectedClass", GlobalData.Class_list[index].id);
     GlobalData.activeclass = GlobalData.Class_list[index];
-                print(GlobalData.Class_list[index].classname);
+    print(GlobalData.Class_list[index].classname);
 print(GlobalData.activeclass.classname);
     Navigator.of(context).pushReplacementNamed('studentdashboard');
 

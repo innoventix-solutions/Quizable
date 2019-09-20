@@ -11,6 +11,9 @@ class splash extends StatefulWidget {
 
 class _splashState extends State<splash> {
   SharedPreferences prefs ;
+  bool isClassSelected =false;
+  String selectedClass ="";
+
   GetUserdetails()async{
     prefs = await SharedPreferences.getInstance();
     print(prefs.get("Id"));
@@ -31,17 +34,40 @@ class _splashState extends State<splash> {
 
       if(prefs.get("type")=="teacher")
       {
-
         print(GlobalData.Class_list.isEmpty);
+        print("i am Teacher");
+        if(isClassSelected) {
 
-        Navigator.of(context).pushReplacementNamed(GlobalData.Class_list.isEmpty?'techerjoinclass':'teacherSelectClass');
+          GetmyCurrentClass("teacherdashboard");
+        }
+        else {
+          Navigator.of(context).pushReplacementNamed(
+              GlobalData.Class_list.isEmpty
+                  ? 'techerjoinclass'
+                  : 'teacherSelectClass');
+        }
       }
       else  if(prefs.get("type")=="admin_teacher")
-      {
-        Navigator.of(context).pushReplacementNamed(GlobalData.Class_list.isEmpty?'welcome':'teacherSelectClass');
+      { if(isClassSelected) {
+
+        GetmyCurrentClass("teacherdashboard");
+      }
+      else {
+        Navigator.of(context).pushReplacementNamed(
+            GlobalData.Class_list.isEmpty ? 'welcome' : 'teacherSelectClass');
+      }
       }
       else{
-        Navigator.of(context).pushReplacementNamed(GlobalData.Class_list.isEmpty?'studentjoinclass':'studentselectclass');
+        if(isClassSelected) {
+
+          GetmyCurrentClass("studentdashboard");
+        }
+        else {
+          Navigator.of(context).pushReplacementNamed(
+              GlobalData.Class_list.isEmpty
+                  ? 'studentjoinclass'
+                  : 'studentselectclass');
+        }
       }
     }
     else
@@ -49,6 +75,23 @@ class _splashState extends State<splash> {
       print("Apple");
       Navigator.of(context).pushReplacementNamed('loging_selection');
     }
+  }
+
+  GetShared() async {
+    print("asdfs adfb asdifu bas asd b");
+    prefs = await SharedPreferences.getInstance();
+    print("Selected Class "+(prefs.getString('selectedClass')??""));
+    selectedClass =await prefs.getString('selectedClass')??"";
+
+    if(selectedClass!="")
+    {
+      isClassSelected=true;
+    }else
+    {
+      print("Selected Class "+selectedClass);
+    }
+    startTimeout();
+
   }
 
   static const timeout = const Duration(seconds: 3);
@@ -65,7 +108,8 @@ class _splashState extends State<splash> {
 
   @override
   void initState() {
-    startTimeout();
+    GetShared();
+
     // TODO: implement initState
     super.initState();
   }
@@ -89,4 +133,40 @@ class _splashState extends State<splash> {
    ], ),),),
     );
   }
+
+  GetmyCurrentClass(String NamedPath)
+  {
+
+
+    for(int index=0;index<GlobalData.Class_list.length;index++)
+    {
+      if(
+      GlobalData.Class_list[index].id==selectedClass
+      ){
+        GlobalData.classid = GlobalData.Class_list[index].id;
+        GlobalData.createdclassdate =
+            GlobalData.Class_list[index].createddate;
+        GlobalData.student_code =
+            GlobalData.Class_list[index].studentinvitecode;
+        GlobalData.teacher_code =
+            GlobalData.Class_list[index].teacherinvitecode;
+
+        GlobalData.class_name =
+            GlobalData.Class_list[index].classname;
+
+        GlobalData.activeclass = GlobalData.Class_list[index];
+        GlobalData.class_name =
+            GlobalData.Class_list[index].classname;
+
+
+        print(GlobalData.Class_list[index].classname);
+        print(GlobalData.activeclass.classname);
+        Navigator.of(context)
+            .pushReplacementNamed(NamedPath);
+      }
+    }
+
+
+  }
+
 }
