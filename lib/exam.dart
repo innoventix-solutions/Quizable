@@ -65,6 +65,10 @@ class _ExamState extends State<Exam> {
   }
 
 
+  TextEditingController ans1 = new TextEditingController();
+  TextEditingController ans2 = new TextEditingController();
+
+
   @override
   dispose()
   {
@@ -287,46 +291,66 @@ class _ExamState extends State<Exam> {
                 padding: const EdgeInsets.all(8.0),
                 child: Text(type=="Fill-in the gaps"?"Note : For multiple blanks question please consider answer which has proper sequence of the words separated by underscore '_' .":"",style: TextStyle(color: Colors.red),),
               ),
-              Row(
-                children: <Widget>[
-                  Expanded(
-                    child: Container(
-                      height: Options.isEmpty?50.0:Options.length*50.0,
-
-                      child: Column(
-                        children: <Widget>[
-                          Expanded(
-                            child: ListView.builder(
-                                itemCount: Options.length,itemBuilder: (context,index){
-                              return Container(child: Row(
-                                children: <Widget>[
-                                  Checkbox(value: Options[index].trueanswer, onChanged: (value){
 
 
-                                    if(type!="Multiple Answer") {
-                                      for (int i = 0; i <
-                                          Options.length; i++) {
-                                        Options[i].trueanswer = false;
+
+              /*Row(
+                  children: <Widget>[
+
+
+
+                    Expanded(
+                      child: Container(
+                        height: Options.isEmpty?50.0:Options.length*50.0,
+
+                        child: Column(
+                          children: <Widget>[
+                            Expanded(
+                              child: ListView.builder(
+                                  itemCount: Options.length,itemBuilder: (context,index){
+                                return Container(child: Row(
+                                  children: <Widget>[
+                                    Checkbox(value: Options[index].trueanswer, onChanged: (value){
+
+
+                                      if(type!="Multiple Answer") {
+                                        for (int i = 0; i <
+                                            Options.length; i++) {
+                                          Options[i].trueanswer = false;
+                                        }
                                       }
-                                    }
 
 
-                                    Options[index].trueanswer=value;setState(() {
+                                      Options[index].trueanswer=value;setState(() {
 
-                                    });},),
-                                  Text(Options[index].value,maxLines: 4,)
+                                      });},),
+                                    Text(Options[index].value,maxLines: 4,)
 
 
 
-                                ],),);}),
-                          ),
-                        ],
+                                  ],),);}),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
-                  ),
-                ],
-              ),
 
+
+
+                  ],
+                ), */
+              TextField(controller: ans1,
+                decoration: InputDecoration(
+                  border: InputBorder.none,
+                  hintText: 'Enter an Answer1',
+                ),
+              ),
+              TextField(controller: ans2,
+                decoration: InputDecoration(
+                  border: InputBorder.none,
+                  hintText: 'Enter an Answer2',
+                ),
+              ),
             ],
           ),);
     }

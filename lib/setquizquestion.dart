@@ -28,7 +28,7 @@ class _setquizquestionState extends State<setquizquestion> {
   TextEditingController durlevel = new TextEditingController(text: GlobalData.DurationofEachLevel);
   TextEditingController quizsubject = new TextEditingController();
   TextEditingController quizclass = new TextEditingController();
-  TextEditingController age = new TextEditingController();
+  TextEditingController age = new TextEditingController(text: GlobalData.age);
   TextEditingController publishdate= new TextEditingController();
   TextEditingController closingdate= new TextEditingController();
   @override
@@ -45,6 +45,7 @@ setalldetails(){
   GlobalData.QuizLevels = quizlevel.text;
   GlobalData.NosofQuesPerLevel = queslevel.text;
   GlobalData.DurationofEachLevel =  durlevel.text;
+  GlobalData.age = age.text;
 }
 
 
@@ -588,7 +589,8 @@ setalldetails(){
       "\nquiz_subject : "+ GlobalData.Selected_subject +
       "\nclass_id : "+
       "\npublish_date : 2019-06-23 00:00:01"+
-      "\nclosing_date : 2019-06-26 00:00:01"
+      "\nclosing_date : 2019-06-26 00:00:01" +
+        "\n age:" + GlobalData.age
 
     );
 
@@ -599,7 +601,8 @@ setalldetails(){
         GlobalData.Selected_subject == null||
         GlobalData.Selected_class== null||
         Starting_date==null||
-        Closing_date==null) {
+        Closing_date==null ||
+    GlobalData.age == null) {
 
       _showDialog();
     }
@@ -614,6 +617,7 @@ setalldetails(){
         "class_id": GlobalData.Selected_class_IDS,
         "publish_date":Starting_date.toString(),
         "closing_date":Closing_date.toString(),
+        "age":GlobalData.age,
       }).then((response) {
         print(response.body.toString());
         var statuss = jsonDecode(response.body);

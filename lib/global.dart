@@ -1041,6 +1041,7 @@ ClearRegisterData(){
  GlobalData.DurationofEachLevel="";
  GlobalData.ExamQuiz="";
  GlobalData.QuizID="";
+ GlobalData.age="";
  GlobalData.AssignmentTitle="";  //20-8-19
   GlobalData.NosofQuesassignment="";   //20-8-19
   GlobalData.teacherinstruction="";   //20-8-19
@@ -1078,6 +1079,7 @@ LogoutFunction(context)async {
   GlobalData.DurationofEachLevel="";
   GlobalData.ExamQuiz="";
   GlobalData.QuizID="";
+  GlobalData.age="";
 
   //5-9-19
   GlobalData.AssignmentTitle="";
