@@ -96,17 +96,17 @@ class _studentregState extends State<studentreg> {
     if(emailValid == false){
 
       _showDialog1();
-    }else if(phone.text.length>11 || phone.text.length<10)
+    }else if(phone.text.length>11 || phone.text.length<=10)
     {
       print(phone.text.toString());
       print(phone.text.length.toString());
       _showDialog(Msg: "Number is not Valid");
     }
-    else if(par_phone.text.length>11 || par_phone.text.length<10)
+   /* else if(par_phone.text.length>11 || par_phone.text.length<10)
     {
 
       _showDialog(Msg: "Parent Number is not Valid");
-    }
+    }*/
     else
     if (password.text.toString() == cpass.text.toString()) {
       Signup();
@@ -166,6 +166,15 @@ class _studentregState extends State<studentreg> {
 
   String gendersel = "Male";
 
+  getgender(){
+
+    GlobalData.gendersel == "Male" ?AssetImage('assets/images/boy.png') :
+    AssetImage('assets/images/girl.png');
+
+
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -211,8 +220,8 @@ class _studentregState extends State<studentreg> {
 
 
                                     child:Icon(
-                                      Icons.crop_square,
-                                      color: Colors.black,
+                                      Icons.file_upload,
+                                      color: Colors.white,
                                       size: 12.0,
 
                                     ),),
@@ -412,6 +421,7 @@ class _studentregState extends State<studentreg> {
                               print(gendersel.toString());
 
                               check();
+                              //getgender();
                             },
                             "Get Started",
                             LinearGradient(colors: <Color>[GlobalData.purple, GlobalData.pink]),

@@ -196,7 +196,7 @@ getvalue();
                         :BoxDecoration(
                             borderRadius: BorderRadius.all(Radius.circular(100)),
                             color: Colors.black,
-                            image: DecorationImage(image: AssetImage('assets/images/user.jpg'),fit: BoxFit.cover)
+                            image: DecorationImage(image: AssetImage('assets/images/man.jpg'),fit: BoxFit.cover)
 
 
                         )

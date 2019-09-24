@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:newpro/global.dart' as prefix0;
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -336,6 +337,7 @@ class _loginState extends State<login> {
           GlobalData.class_name =
               GlobalData.Class_list[index].classname;
 
+          GlobalData.total_join = GlobalData.Class_list[index].total_join;
 
           print(GlobalData.Class_list[index].classname);
           print(GlobalData.activeclass.classname);

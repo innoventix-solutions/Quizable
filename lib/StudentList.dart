@@ -183,7 +183,7 @@ class _StudentListState extends State<StudentList> {
                                           shape: BoxShape.circle,
                                           image: new DecorationImage(
                                             fit: BoxFit.fill,
-                                            image:AssetImage('assets/images/bg.png'),
+                                            image:AssetImage('assets/images/man.png'),
                                           )
                                       ),),
 
@@ -242,7 +242,7 @@ class _StudentListState extends State<StudentList> {
                                             fit: BoxFit.fill,
                                             image:GlobalData.Userphoto!=null?
                                             NetworkImage(GlobalData.Studentlist[index].userphoto):
-                                            AssetImage('assets/images/pic.png',),
+                                            AssetImage('assets/images/man.png',),
                                           ),
                                         
                                       ),),

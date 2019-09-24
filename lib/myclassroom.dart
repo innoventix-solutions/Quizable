@@ -76,7 +76,9 @@ class _myclassroomState extends State<myclassroom> {
                                           shape: BoxShape.circle,
                                           image: new DecorationImage(
                                             fit: BoxFit.fill,
-                                            image:NetworkImage(GlobalData.Class_list[index].classicon),
+                                            image:GlobalData.Userphoto!=null?
+                                            NetworkImage(GlobalData.Class_list[index].classicon):
+                                            AssetImage('assets/images/education.png',),
                                           )
                                       ),),
                                   ],
@@ -94,7 +96,7 @@ class _myclassroomState extends State<myclassroom> {
                                         Text(GlobalData.Class_list[index].classname,style: TextStyle(fontSize: 15),textAlign: TextAlign.left,),
                                         Padding(
                                           padding: const EdgeInsets.only(top:5),
-                                          child: Text('12 Students',style: TextStyle(fontSize: 12),),
+                                          child: Text(GlobalData.Class_list[index].total_join==null?"0 Student":GlobalData.Class_list[index].total_join,style: TextStyle(fontSize: 12),),
                                         ),
                                       ],
                                     ),

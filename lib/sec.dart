@@ -114,7 +114,7 @@ class _secState extends State<sec> {
     bool emailValid = RegExp(r"^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[a-zA-Z]+").hasMatch(email.text.toString());
     if(emailValid == false){
       _showDialog1();
-    }else if(phone.text.length>11 || phone.text.length<10)
+    }else if(phone.text.length>11 || phone.text.length<=10)
       {
         _showDialog(Msg: "Number is not Valid");
       }
@@ -157,6 +157,15 @@ class _secState extends State<sec> {
  String gendersel = "Male";
 
 
+
+
+getgender(){
+
+GlobalData.gendersel == "Male" ?AssetImage('assets/images/man.png') :
+AssetImage('assets/images/women.png');
+
+
+}
 
   @override
   Widget build(BuildContext context) {
@@ -203,8 +212,8 @@ class _secState extends State<sec> {
 
 
                                     child:Icon(
-                                      Icons.crop_square,
-                                      color: Colors.black,
+                                      Icons.file_upload,
+                                      color: Colors.white,
                                       size: 12.0,
 
                                     ),),
@@ -383,7 +392,7 @@ class _secState extends State<sec> {
                               print(gendersel.toString());
 
                               check();
-
+                             // getgender();
 
                               },
                             "Get Started",

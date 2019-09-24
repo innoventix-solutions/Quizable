@@ -7,6 +7,49 @@ class welcome extends StatefulWidget {
 }
 
 class _welcomeState extends State<welcome> {
+
+  void showDialog1(BuildContext context) {
+    // flutter defined function
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        // return object of type Dialog
+        return AlertDialog(
+          title: new Text("Log Out"),
+          content: new Text("Are You Sure Want To Log Out?"),
+          actions: <Widget>[
+            // usually buttons at the bottom of the dialog
+            new FlatButton(
+              child: Row(
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.only(
+                        right: 30
+                    ),
+                    child:  GestureDetector(
+                        onTap: (){
+                          Navigator.of(context).pushNamed('welcome');
+                        },child: new Text("Cancel")),
+
+
+                  ),
+                  GestureDetector(
+                      onTap: () async {
+                        LogoutFunction(context);
+                        // Navigator.of(context).pushNamed('dashboard');
+                      },child: new Text("Ok")),
+                ],
+              ),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -28,10 +71,14 @@ child: Scaffold(
       IconButton(onPressed: (){
         LogoutFunction(context);
       },
-        icon: Icon(
-          Icons.exit_to_app,
-          color: Colors.white,
-          size: 22,
+        icon: GestureDetector(onTap: (){
+          showDialog1(context);
+        },
+          child: Icon(
+            Icons.exit_to_app,
+            color: Colors.white,
+            size: 22,
+          ),
         ),
       ),
     ],backgroundColor: Color(0Xff1F0BE6),
@@ -74,8 +121,8 @@ child: Scaffold(
 
 
                         child:Icon(
-                          Icons.crop_square,
-                          color: Colors.black,
+                          Icons.file_upload,
+                          color: Colors.white,
                           size: 12.0,
 
                         ),),

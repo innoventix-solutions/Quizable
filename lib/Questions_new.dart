@@ -570,10 +570,10 @@ class _QuestionsState extends State<Questions> {
                                 itemCount: Options.length,itemBuilder: (context,index){
                               return Container(child: Row(
                                 children: <Widget>[
-                                  Checkbox(value: Options[index].trueanswer, onChanged: (value){
+                                 /* Checkbox(value: Options[index].trueanswer, onChanged: (value){
                                     Options[index].trueanswer=value;setState(() {
 
-                                    });},),
+                                    });},),*/
                                   Expanded(child: Text(Options[index].value))
 
 ,Padding(

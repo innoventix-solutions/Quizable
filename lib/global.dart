@@ -81,6 +81,9 @@ class GlobalData{
   static String parentsphone=""; //16-9-19 a
   static String parentsemail=""; //16-9-19 a
   static String age="";
+  static String accout_type="";
+  static String username="";
+  static String total_join="";
 /* assignmment data*/
   static String AssignmentTitle="";
   static String NosofQuesassignment="";
@@ -88,6 +91,8 @@ class GlobalData{
   static String teacherobjective="";
   static String AssignmentID="";
   static String Essayinstructions="";
+
+  static var gendersel="";
 
 /* spelling data*/
 
