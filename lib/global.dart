@@ -1041,6 +1041,7 @@ ClearRegisterData(){
  GlobalData.DurationofEachLevel="";
  GlobalData.ExamQuiz="";
  GlobalData.QuizID="";
+ GlobalData.QuestionNumber=0;
  GlobalData.age="";
  GlobalData.AssignmentTitle="";  //20-8-19
   GlobalData.NosofQuesassignment="";   //20-8-19
