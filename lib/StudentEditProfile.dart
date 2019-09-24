@@ -169,32 +169,65 @@ class _StudentEditProfileState extends State<StudentEditProfile> {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: GestureDetector(onTap: (){getImage();},
-                    child: Container(
-                      height: 80,width: 80,
-                      decoration:_image!=null?
-                      new BoxDecoration(
+                    child: Stack(
+                       children: <Widget>[
+                         Container(
+                           height: 80,width: 80,
+                           decoration:_image!=null?
+                           new BoxDecoration(
 
-                          borderRadius: BorderRadius.all(Radius.circular(100),),
-                        
-                          image: new DecorationImage(
-                            fit: BoxFit.cover,
-                            image: FileImage(_image),
+                               borderRadius: BorderRadius.all(Radius.circular(100),),
 
-                          ),border: Border.all(color: Colors.black,width: 5)):
-                      GlobalData.Userphoto!=null?
-                      BoxDecoration(
-                        image: DecorationImage(image: NetworkImage(GlobalData.Userphoto),fit: BoxFit.cover),
-                        borderRadius: BorderRadius.all(Radius.circular(100)),
+                               image: new DecorationImage(
+                                 fit: BoxFit.cover,
+                                 image: FileImage(_image),
 
-                      ):BoxDecoration(
-                          borderRadius: BorderRadius.all(Radius.circular(100)),
-                          color: Colors.black,
-                          image: DecorationImage(image: AssetImage('assets/images/user.jpg'),fit: BoxFit.cover)
+                               ),border: Border.all(color: Colors.black,width: 5)):
+                           GlobalData.Userphoto!=null?
+                           BoxDecoration(
+                             image: DecorationImage(image: NetworkImage(GlobalData.Userphoto),fit: BoxFit.cover),
+                             borderRadius: BorderRadius.all(Radius.circular(100)),
+
+                           ):BoxDecoration(
+                               borderRadius: BorderRadius.all(Radius.circular(100)),
+                               color: Colors.black,
+                               image: DecorationImage(image: AssetImage('assets/images/man.jpg'),fit: BoxFit.cover)
 
 
-                      )
+                           )
 
-                      ,),
+                           ,),
+                         Positioned(
+                           right: 0,bottom: 0,
+                           child: GestureDetector(onTap: (){
+
+                             Navigator.of(context)
+                                 .pushNamed('EditProfile');
+
+                           },
+                             child: Card(color: Colors.black,elevation: 5.0,
+                               shape: RoundedRectangleBorder(side: BorderSide(color: Colors.white),
+                                 borderRadius: BorderRadius.circular(0.0),
+                               ),
+                               child: Padding(
+                                 padding: const EdgeInsets.all(4.0),
+                                 child: Container(
+
+
+
+
+                                   child:Icon(
+                                     Icons.file_upload,
+                                     color: Colors.white,
+                                     size: 12.0,
+
+                                   ),),
+                               ),
+                             ),
+                           ),
+                         ),
+                       ],
+                    ),
                   ),
                 ),
                 Text("Change Profile"),

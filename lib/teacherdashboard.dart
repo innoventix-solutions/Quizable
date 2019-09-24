@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:newpro/global.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:share/share.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class teacherdashboard extends StatefulWidget {
   @override
@@ -100,7 +101,7 @@ class _teacherdashboardState extends State<teacherdashboard> {
                       children: <Widget>[
                   Container(
                       child: CircleAvatar(backgroundImage:GlobalData.Userphoto!=null?
-                      NetworkImage(GlobalData.Userphoto):AssetImage('assets/images/users.png',),
+                      NetworkImage(GlobalData.Userphoto):AssetImage('assets/images/man.png',),
                         radius: 35.0,
                       ),
                     ),
@@ -124,8 +125,8 @@ class _teacherdashboardState extends State<teacherdashboard> {
 
 
                                     child:Icon(
-                                      Icons.crop_square,
-                                      color: Colors.black,
+                                      Icons.file_upload,
+                                      color: Colors.white,
                                       size: 12.0,
 
                                     ),),
@@ -205,8 +206,16 @@ class _teacherdashboardState extends State<teacherdashboard> {
                                 child:Center(
                                   child: Column(mainAxisAlignment: MainAxisAlignment.center,
                                     children: <Widget>[
-                                      Icon(Icons.crop_square,size: 60,color: Colors.white,),
-                                      Text("Teacher's Board",textAlign: TextAlign.center,style: TextStyle(color: Colors.white,fontSize: 13,fontWeight: FontWeight.bold),),
+                                      new Image.asset(
+                                        'assets/images/teacher.png',
+                                        width: 50.0,
+                                        height: 50.0,
+
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.only(top: 5),
+                                        child: Text("Teacher's Board",textAlign: TextAlign.center,style: TextStyle(color: Colors.white,fontSize: 13,fontWeight: FontWeight.bold),),
+                                      ),
                                     ],
                                   ),
                                 ),
@@ -321,7 +330,7 @@ class _teacherdashboardState extends State<teacherdashboard> {
                     Padding(
                       padding: const EdgeInsets.only(left: 5),
                       child: CircleAvatar(backgroundImage:GlobalData.Userphoto!=null?
-                      NetworkImage(GlobalData.Userphoto):AssetImage('assets/images/users.png',),
+                      NetworkImage(GlobalData.Userphoto):AssetImage('assets/images/education.png',),
                         radius: 35.0,),
                     ),
                     Padding(

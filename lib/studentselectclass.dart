@@ -78,7 +78,9 @@ print(GlobalData.activeclass.classname);
                                           shape: BoxShape.circle,
                                           image: new DecorationImage(
                                             fit: BoxFit.fill,
-                                            image:NetworkImage(GlobalData.Class_list[index].classicon),
+                                            image:GlobalData.Userphoto!=null?
+                                            NetworkImage(GlobalData.Class_list[index].classicon):
+                                            AssetImage('assets/images/education.png',),
                                           )
                                       ),),
                                   ],

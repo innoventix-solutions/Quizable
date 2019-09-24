@@ -161,7 +161,7 @@ class _studentdashboardState extends State<studentdashboard> {
                     Padding(
                       padding: const EdgeInsets.only(left: 5),
                       child: CircleAvatar(backgroundImage:GlobalData.Userphoto!=null?
-                      NetworkImage(GlobalData.Userphoto):AssetImage('assets/images/pic.png',),
+                      NetworkImage(GlobalData.Userphoto):AssetImage('assets/images/man.png',),
                         radius: 35.0,),
                     ),
                     Padding(
@@ -315,11 +315,44 @@ class _studentdashboardState extends State<studentdashboard> {
                 children: <Widget>[
                   Padding(
                     padding: const EdgeInsets.only(top: 15),
-                    child: Container(
-                      child: CircleAvatar(backgroundImage:GlobalData.Userphoto!=null?
-                      NetworkImage(GlobalData.Userphoto):AssetImage('assets/images/pic.png',),
-                        radius: 35.0,
+                    child: Stack(children: <Widget>[
+                      Container(
+                        child: CircleAvatar(backgroundImage:GlobalData.Userphoto!=null?
+                        NetworkImage(GlobalData.Userphoto):AssetImage('assets/images/man.png',),
+                          radius: 35.0,
+                        ),
                       ),
+                      Positioned(
+                        right: 0,bottom: 0,
+                        child: GestureDetector(onTap: (){
+
+                          Navigator.of(context)
+                              .pushNamed('EditProfile');
+
+                        },
+                          child: Card(color: Colors.black,elevation: 5.0,
+                            shape: RoundedRectangleBorder(side: BorderSide(color: Colors.white),
+                              borderRadius: BorderRadius.circular(0.0),
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.all(4.0),
+                              child: Container(
+
+
+
+
+                                child:Icon(
+                                  Icons.file_upload,
+                                  color: Colors.white,
+                                  size: 12.0,
+
+                                ),),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+
                     ),
                   ),
                   Padding(
