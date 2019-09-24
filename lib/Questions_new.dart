@@ -740,6 +740,7 @@ Text("Enter answer in sequence with underscore '_' in between the words",style:
                             child: Text(
                               "Question "+((GlobalData.QuestionNumber%int.parse(GlobalData.NosofQuesPerLevel))+1).toString()+" of "+GlobalData.NosofQuesPerLevel,style: TextStyle(color: Colors.white,fontSize: 15,fontWeight: FontWeight.bold),)),
                       ),
+                      
                       Container(
                           padding: EdgeInsets.all(5),color:GlobalData.green,
                         child:  Text("Level "+((GlobalData.QuestionNumber/int.parse(GlobalData.NosofQuesPerLevel)).floor()+1).toString()//+" of "+GlobalData.QuizLevels,
