@@ -31,7 +31,6 @@ class _RecentQuestionState extends State<RecentQuestion> {
 
       print(assignment_list.length);
       setState(() {
-
       });
     });
   }
@@ -39,19 +38,15 @@ class _RecentQuestionState extends State<RecentQuestion> {
 
 
   GetTest() async{
-
     await http.post("http://edusupportapp.com/api/get_quizzes.php",
         body: {
           "UserId":GlobalData.uid
         }).then((res){
       print(res.body);
-
       var ParsedJson = jsonDecode(res.body);
       Quizz_List = (ParsedJson['quizdata'] as List).map((data)=>Pojo_quizzes.fromJson(data)).toList();
-
       print(Quizz_List.length);
       setState(() {
-
       });
     });
   }
@@ -134,7 +129,6 @@ class _RecentQuestionState extends State<RecentQuestion> {
                         paragraph: assignment_list[i].teacher_instruction,
                         id:assignment_list[i].id ,
                         title: assignment_list[i].assignment_title,
-
                       ),
                     );
                   }),

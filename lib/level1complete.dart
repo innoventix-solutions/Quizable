@@ -97,7 +97,7 @@ class _level1State extends State<level1> {
                                     Navigator.of(context).pushReplacementNamed('questions');
                                   },
                                     linearGradient:LinearGradient(colors: <Color>[GlobalData.purple,GlobalData.pink]) ,
-                                    text: Text("Create Another Level",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 18,),
+                                    text: Text("Next Level",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 18,),
                                       textAlign: TextAlign.center,),
                                   ),
                                 ),

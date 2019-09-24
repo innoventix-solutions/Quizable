@@ -916,7 +916,6 @@ Text("Enter answer in sequence with underscore '_' in between the words",style:
     "quiz_id "+ GlobalData.QuizID+
     "answer_options " + MyQuestionAnswer(SelectedType));
 
-
     http.post(
         "http://edusupportapp.com/api/create_update_quiz_questions.php", body: {
       "question": QuestionName.text.toString(),
