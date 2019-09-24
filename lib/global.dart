@@ -1248,16 +1248,25 @@ class recentquestions extends StatelessWidget {
                   ),
                 ],
               ),
+
               Container(
                 padding: EdgeInsets.only(left: 25,top: 20,right: 30,bottom: 30),
-                child: Column(
+                child: Row(
                   children: <Widget>[
-                    Text(paragraph,style: TextStyle(fontWeight: FontWeight.bold,
-                        fontSize: 15,color: GlobalData.gray),textAlign: TextAlign.justify,),
+                    Expanded(
+                      child: Text(paragraph,style: TextStyle(fontWeight: FontWeight.bold,
+                          fontSize: 15,color: GlobalData.gray),textAlign: TextAlign.justify,),
+                    ),
 
+
+                    Expanded(
+                      child: Text(title + " Questions",style: TextStyle(fontWeight: FontWeight.bold,
+                          fontSize: 15,color: GlobalData.gray),textAlign: TextAlign.justify,),
+                    ),
                   ],
                 ),
               ),
+
 
 
 

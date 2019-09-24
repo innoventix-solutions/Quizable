@@ -10,6 +10,79 @@ class level1 extends StatefulWidget {
 
 class _level1State extends State<level1> {
 
+  void showDialog1(BuildContext context) {
+    // flutter defined function
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        // return object of type Dialog
+        return AlertDialog(
+          title: Center(
+            child: new Text("Confirmation",style: TextStyle(color: GlobalData.gray,fontSize: 24,
+            fontWeight: FontWeight.bold),textAlign: TextAlign.center,),
+          ),
+          content: new Text("You have completed all the \nquestions levels for this Quiz \nexercise.\nDo you want to preview \nquestions before publishiing?",textAlign: TextAlign.center,style: TextStyle(color: GlobalData.gray,height: 1.5,fontSize: 16,fontWeight: FontWeight.bold),),
+          actions: <Widget>[
+            // usually buttons at the bottom of the dialog
+
+
+
+        Padding(
+          padding: const EdgeInsets.only(left: 30,right: 20),
+          child: RaisedButton(color: Colors.blue,shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(15.0)),
+          onPressed: (){
+            Navigator.of(context).pushNamed('Question_List');
+          },child: Text('Preview',textAlign: TextAlign.center,style: TextStyle(color: Colors.white,fontSize: 16),),),
+        ),
+        Padding(
+        padding: const EdgeInsets.only(left: 20,right: 30),
+        child: RaisedButton(color:Colors.red,shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(15.0)),
+        onPressed: (){
+          Navigator.of(context).pushReplacementNamed('Recentque');
+          ClearRegisterData();
+          setState(() {
+
+          });
+        },child: Text('Publish',textAlign: TextAlign.center,style: TextStyle(color: Colors.white,fontSize:16 ),),),
+        ),
+
+
+
+
+            /*FlatButton(
+              child: Row(
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.only(
+                        right: 30
+                    ),
+                    child:  GestureDetector(
+                        onTap: (){
+                          Navigator.of(context).pushNamed('Question_List');
+                        },child: RaisedButton(color: GlobalData.blue,child: new Text("Preview"))),
+
+
+                  ),
+                  GestureDetector(
+                      onTap: () async {
+                        Navigator.of(context).pushReplacementNamed('Recentque');
+                        ClearRegisterData();
+                        setState(() {
+
+                        });
+                      },child: new Text("Publish")),
+                ],
+              ),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),*/
+          ],
+        );
+      },
+    );
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -74,15 +147,11 @@ class _level1State extends State<level1> {
                                   child: Padding(
                                     padding: const EdgeInsets.only(top: 25,bottom: 40),
                                     child: GradientButtonText(ButtonClick: (){
-                                      Navigator.of(context).pushReplacementNamed('Recentque');
-                                      ClearRegisterData();
-                                      setState(() {
-
-                                      });
+                                      showDialog1(context);
 
                                     },
                                       linearGradient:LinearGradient(colors: <Color>[GlobalData.purple,GlobalData.pink]) ,
-                                      text: Text("Publish",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 18,),
+                                      text: Text("Finish",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 18,),
                                         textAlign: TextAlign.center,),
                                     ),
                                   ),

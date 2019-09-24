@@ -99,6 +99,11 @@ class _RecentQuestionState extends State<RecentQuestion> {
         Column(
           children: <Widget>[
 
+            assignment_list.isEmpty && Quizz_List.isEmpty ? Center(child: Padding(
+              padding: const EdgeInsets.all(15.0),
+              child: Text("You don't have not published any class \nactivity yet. Use the Slider button to\n start setting Class activites.",style: TextStyle(fontSize: 18,height: 1.2),textAlign: TextAlign.center,),
+            )) :
+
             Card(elevation: 5.0,color: Colors.red,
               child: Padding(
                 padding: const EdgeInsets.only(top: 5,bottom: 5),
@@ -115,7 +120,7 @@ class _RecentQuestionState extends State<RecentQuestion> {
               ),
             ),
             Expanded(
-              child: assignment_list.isEmpty ? Center(child: Text('You have not published any class activity yet')) :
+              child: assignment_list.isEmpty ? Center(child: Text('')) :
               ListView.builder(
                   itemCount: 1,
                   itemBuilder: (c,i){
@@ -126,9 +131,9 @@ class _RecentQuestionState extends State<RecentQuestion> {
                       child: recentquestions(
                         color: GlobalData.pinkred,
                         heading: assignment_list[i].assignment_title,
-                        paragraph: assignment_list[i].teacher_instruction,
+                        paragraph: assignment_list[i].publish_date,
                         id:assignment_list[i].id ,
-                        title: assignment_list[i].assignment_title,
+                        title: assignment_list[i].total_que,
                       ),
                     );
                   }),
@@ -136,23 +141,27 @@ class _RecentQuestionState extends State<RecentQuestion> {
 
 
 
-            Card(elevation: 5.0,color: Colors.green,
-              child: Padding(
-                padding: const EdgeInsets.only(top: 5,bottom: 5),
-                child: Container(
-                  child: Column(mainAxisAlignment: MainAxisAlignment.start,
-                    children: <Widget>[
-                      Row(mainAxisAlignment: MainAxisAlignment.center,
+            Column(
+              children: <Widget>[Quizz_List.isEmpty ? Center(child: Text('')) :
+                Card(elevation: 5.0,color: Colors.green,
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 5,bottom: 5),
+                    child: Container(
+                      child: Column(mainAxisAlignment: MainAxisAlignment.start,
                         children: <Widget>[
-                          Text('Quiz Exercise',style: TextStyle(fontSize: 18,
-                              fontWeight:  FontWeight.bold,color: GlobalData.gray),),
-                        ],)
-                    ],),
+                          Row(mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              Text('Quiz Exercise',style: TextStyle(fontSize: 18,
+                                  fontWeight:  FontWeight.bold,color: GlobalData.gray),),
+                            ],)
+                        ],),
+                    ),
+                  ),
                 ),
-              ),
+              ],
             ),
             Expanded(
-              child:Quizz_List.isEmpty ? Center(child: Text('You have not published any class activity yet')) :
+              child:Quizz_List.isEmpty ? Center(child: Text('')) :
               ListView.builder(
                   itemCount: 1,
                   itemBuilder: (c,i){
@@ -162,9 +171,9 @@ class _RecentQuestionState extends State<RecentQuestion> {
                       child: recentquestions(
                         color: GlobalData.pinkred,
                         heading: Quizz_List[i].quiz_title,
-                        paragraph: Quizz_List[i].quiz_subject,
+                        paragraph: Quizz_List[i].publish_date,
                         id:Quizz_List[i].id ,
-                        title: Quizz_List[i].quiz_title,
+                        title: (int.parse(Quizz_List[i].que_each_level.toString())*int.parse(Quizz_List[i].no_of_levels.toString())).toString(),
 
                       ),
                     );
@@ -173,23 +182,27 @@ class _RecentQuestionState extends State<RecentQuestion> {
 
 
 
-            Card(elevation: 5.0,color: Colors.orange,
-              child: Padding(
-                padding: const EdgeInsets.only(top: 5,bottom: 5),
-                child: Container(
-                  child: Column(mainAxisAlignment: MainAxisAlignment.start,
-                    children: <Widget>[
-                      Row(mainAxisAlignment: MainAxisAlignment.center,
+            Column(
+              children: <Widget>[Quizz_List.isEmpty ? Center(child: Text('')) :
+                Card(elevation: 5.0,color: Colors.orange,
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 5,bottom: 5),
+                    child: Container(
+                      child: Column(mainAxisAlignment: MainAxisAlignment.start,
                         children: <Widget>[
-                          Text('Spelling Challenge',style: TextStyle(fontSize: 18,
-                              fontWeight:  FontWeight.bold,color: GlobalData.gray),),
-                        ],)
-                    ],),
+                          Row(mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              Text('Spelling Challenge',style: TextStyle(fontSize: 18,
+                                  fontWeight:  FontWeight.bold,color: GlobalData.gray),),
+                            ],)
+                        ],),
+                    ),
+                  ),
                 ),
-              ),
+              ],
             ),
             Expanded(
-              child:Quizz_List.isEmpty ? Center(child: Text('You have not published any class activity yet')) :
+              child:Quizz_List.isEmpty ? Center(child: Text('')) :
               ListView.builder(
                   itemCount: 1,
                   itemBuilder: (c,i){
@@ -199,9 +212,9 @@ class _RecentQuestionState extends State<RecentQuestion> {
                       child: recentquestions(
                         color: GlobalData.pinkred,
                         heading: Quizz_List[i].quiz_title,
-                        paragraph: Quizz_List[i].quiz_subject,
+                        paragraph: Quizz_List[i].publish_date,
                         id:Quizz_List[i].id ,
-                        title: Quizz_List[i].quiz_title,
+                        title: (int.parse(Quizz_List[i].que_each_level.toString())*int.parse(Quizz_List[i].no_of_levels.toString())).toString(),
 
                       ),
                     );
