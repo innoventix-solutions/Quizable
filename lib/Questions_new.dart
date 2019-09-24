@@ -133,8 +133,6 @@ class _QuestionsState extends State<Questions> {
 
   }
 
-
-
   void QuizCompleted(BuildContext context)  {
 
     bool Selected = false;
