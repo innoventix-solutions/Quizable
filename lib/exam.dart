@@ -374,170 +374,172 @@ class _ExamState extends State<Exam> {
 
 
     return SafeArea(
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-          children: <Widget>[
+      child: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            children: <Widget>[
 
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Row(
-                children: <Widget>[
-                  Text("Timer : ",style: TextStyle(color: Colors.blue),),
-                  Text(TimerText,style: TextStyle(fontWeight: FontWeight.bold),)
-                ],
-              ),
-            ),
-
-
-
-
-
-            Container(
-
-              child: Card(
-                child: Column(
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
                   children: <Widget>[
-                    Container(
-                      color: Colors.blue,
-                      child: Row(
-                        children: <Widget>[
-                          Expanded(child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text("Level ${Quetions[i].level_no.toString()}",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
-                          )),
-                        ],
-                      ),
-                    ),
-                    Container(
-                      color: Colors.brown,
-                      child: Row(
-                        children: <Widget>[
-                          Expanded(child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text("Question ${i+1} of ${Quetions.length}",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
-                          )),
-                        ],
-                      ),
-                    ),
-                    Container(
-
-                      child: Row(
-                        children: <Widget>[
-                          Expanded(child: Padding(
-                            padding: const EdgeInsets.all(20.0),
-                            child: Container(child: Text(Quetions[i].question,style: TextStyle(fontWeight: FontWeight.bold),)),
-                          )),
-                        ],
-                      ),
-                    ),
-                    AnswerNow(Quetions[i].answer_type,Quetions[i].anwer_options,Quetions[i].Options),
-                    Container(
-
-                      child: Row(
-                        children: <Widget>[
-                          Expanded(child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Container(child: Text(Quetions[i].answer_type,style: TextStyle(color: Colors.blue,fontWeight: FontWeight.bold),)),
-                          )),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Card(color: Colors.blue,child: Padding(
-                              padding: const EdgeInsets.fromLTRB(10,4, 10, 4),
-                              child: Text(Quetions[i].point_awarded+" Pts",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
-                            )),
-                          ),
-                        ],
-                      ),
-                    ),
-
+                    Text("Timer : ",style: TextStyle(color: Colors.blue),),
+                    Text(TimerText,style: TextStyle(fontWeight: FontWeight.bold),)
                   ],
                 ),
               ),
-            ),
 
-            Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: Row(
-                children: <Widget>[
-                  SizedBox(width: 15,),
-                  Expanded(
-                    child: GradientButtonText(
-                      ButtonClick: (){
-                        if(CurrentPage-2<Quetions.length)
-                          pageController.jumpToPage(CurrentPage++);
-                      },
-                      linearGradient:LinearGradient(colors: <Color>[GlobalData.navy,GlobalData.navyblue]) ,
-                      text: Text("Skip",textAlign: TextAlign.center,style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
-                    ),
+
+
+
+
+              Container(
+
+                child: Card(
+                  child: Column(
+                    children: <Widget>[
+                      Container(
+                        color: Colors.blue,
+                        child: Row(
+                          children: <Widget>[
+                            Expanded(child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text("Level ${Quetions[i].level_no.toString()}",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
+                            )),
+                          ],
+                        ),
+                      ),
+                      Container(
+                        color: Colors.brown,
+                        child: Row(
+                          children: <Widget>[
+                            Expanded(child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text("Question ${i+1} of ${Quetions.length}",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
+                            )),
+                          ],
+                        ),
+                      ),
+                      Container(
+
+                        child: Row(
+                          children: <Widget>[
+                            Expanded(child: Padding(
+                              padding: const EdgeInsets.all(20.0),
+                              child: Container(child: Text(Quetions[i].question,style: TextStyle(fontWeight: FontWeight.bold),)),
+                            )),
+                          ],
+                        ),
+                      ),
+                      AnswerNow(Quetions[i].answer_type,Quetions[i].anwer_options,Quetions[i].Options),
+                      Container(
+
+                        child: Row(
+                          children: <Widget>[
+                            Expanded(child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Container(child: Text(Quetions[i].answer_type,style: TextStyle(color: Colors.blue,fontWeight: FontWeight.bold),)),
+                            )),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Card(color: Colors.blue,child: Padding(
+                                padding: const EdgeInsets.fromLTRB(10,4, 10, 4),
+                                child: Text(Quetions[i].point_awarded+" Pts",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
+                              )),
+                            ),
+                          ],
+                        ),
+                      ),
+
+                    ],
                   ),
-                  SizedBox(width: 15,),
-                  Expanded(
-                    child: GradientButtonText(
-                      ButtonClick: (){
+                ),
+              ),
+
+              Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Row(
+                  children: <Widget>[
+                    SizedBox(width: 15,),
+                    Expanded(
+                      child: GradientButtonText(
+                        ButtonClick: (){
+                          if(CurrentPage-2<Quetions.length)
+                            pageController.jumpToPage(CurrentPage++);
+                        },
+                        linearGradient:LinearGradient(colors: <Color>[GlobalData.navy,GlobalData.navyblue]) ,
+                        text: Text("Skip",textAlign: TextAlign.center,style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
+                      ),
+                    ),
+                    SizedBox(width: 15,),
+                    Expanded(
+                      child: GradientButtonText(
+                        ButtonClick: (){
 
 
-                        String answ="";
+                          String answ="";
 
-                        if(Quetions[i].answer_type=="Match Type")
-                        {
-
-                          for(int i=0;i<Matches.length;i++)
+                          if(Quetions[i].answer_type=="Match Type")
                           {
-                            Matches[i].val2=_list[i];
-                          }
+
+                            for(int i=0;i<Matches.length;i++)
+                            {
+                              Matches[i].val2=_list[i];
+                            }
 
 
-                          answ=jsonEncode(Matches);
-                          print(answ);
+                            answ=jsonEncode(Matches);
+                            print(answ);
 
-                        }else if(Quetions[i].answer_type=="True False")
-                        {
-
-                          answ=TrueorFalse;
-
-                          if(TrueorFalse=="true")
+                          }else if(Quetions[i].answer_type=="True False")
                           {
-                            answ="false";
-                          }else
-                          {
-                            answ="true";
-                          }
 
-                        }else{
-                          for (int i = 0; i < Options.length; i++) {
-                            if (Options[i].trueanswer == true) {
-                              answ += Options[i].value;
+                            answ=TrueorFalse;
+
+                            if(TrueorFalse=="true")
+                            {
+                              answ="false";
+                            }else
+                            {
+                              answ="true";
+                            }
+
+                          }else{
+                            for (int i = 0; i < Options.length; i++) {
+                              if (Options[i].trueanswer == true) {
+                                answ += Options[i].value;
+                              }
                             }
                           }
-                        }
 
-                        GiveAnswer(answ);
-                        TrueorFalse="";
-                        Changed=0;
-                        i++;
-                        if(i==Quetions.length)
-                        {
-                          getExamResult();
+                          GiveAnswer(answ);
+                          TrueorFalse="";
+                          Changed=0;
+                          i++;
+                          if(i==Quetions.length)
+                          {
+                            getExamResult();
 
-                          i--;
+                            i--;
 
-                        }else {
-                          setState(() {
+                          }else {
+                            setState(() {
 
-                          });
-                        }
-                      },
-                      linearGradient:LinearGradient(colors: <Color>[GlobalData.navyblue,GlobalData.pink]) ,
-                      text: Text((i+1)==Quetions.length?"Submit":"Next",textAlign: TextAlign.center,style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
+                            });
+                          }
+                        },
+                        linearGradient:LinearGradient(colors: <Color>[GlobalData.navyblue,GlobalData.pink]) ,
+                        text: Text((i+1)==Quetions.length?"Submit":"Next",textAlign: TextAlign.center,style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
+                      ),
                     ),
-                  ),
-                  SizedBox(width: 15,),
-                ],
-              ),
-            )
+                    SizedBox(width: 15,),
+                  ],
+                ),
+              )
 
-          ],
+            ],
+          ),
         ),
       ),
     );
