@@ -116,7 +116,7 @@ class _secState extends State<sec> {
       _showDialog1();
     }else if(phone.text.length>11 || phone.text.length<=10)
       {
-        _showDialog(Msg: "Number is not Valid");
+        _showDialog(Msg: "Phone Number is not Valid");
       }
       else
     if (password.text.toString() == cpass.text.toString()) {

@@ -115,14 +115,13 @@ class _createnewclassState extends State<createnewclass> {
                             shape: BoxShape.circle,
                             image: new DecorationImage(
                               fit: BoxFit.fill,
-                              image:_image!=null?  FileImage(_image): AssetImage('assets/images/educations.png'),
+                              image:_image!=null?  FileImage(_image): AssetImage('assets/images/classicon.png'),
                             ))),
                         Positioned(
-                          right: 0,bottom: 0,
+                          right: 0,bottom: 05,
                           child: GestureDetector(onTap: (){
 
-                            Navigator.of(context)
-                                .pushNamed('EditProfile');
+                            getImage();
 
                           },
                             child: Card(color: Colors.black,elevation: 5.0,

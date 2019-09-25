@@ -82,8 +82,8 @@ class _TeacherClassListState extends State<TeacherClassList> {
                                     Stack(
                                       children: <Widget>[
                                         Container(height: 70,width: 70,margin: EdgeInsets.only(left: 20,top: 15,bottom: 10),
-                                         child:  CircleAvatar(backgroundImage:GlobalData.class_icon!=null?
-                                            NetworkImage(GlobalData.Class_list[index].classicon):AssetImage('assets/images/educations.png',),
+                                         child:  CircleAvatar(backgroundImage:GlobalData.class_icon!=""?
+                                            NetworkImage(GlobalData.Class_list[index].classicon):AssetImage('assets/images/classicon.png',),
                                               radius: 35.0,
                                             ),),
                                       ],
