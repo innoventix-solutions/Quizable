@@ -18,6 +18,8 @@ class userdetail extends StatefulWidget {
 
 class _userdetailState extends State<userdetail> {
 
+  GlobalData globalData = new GlobalData();
+
   TextEditingController email = new TextEditingController(text: GlobalData.email);
   TextEditingController disc = new TextEditingController(text: GlobalData.disc);
   TextEditingController teacher = new TextEditingController(text:GlobalData.Username );
@@ -104,8 +106,8 @@ class _userdetailState extends State<userdetail> {
               Padding(
                 padding: const EdgeInsets.only(top: 15),
                 child: Container(
-                  child: CircleAvatar(backgroundImage:GlobalData.Userphoto!=null?
-                  NetworkImage(GlobalData.Userphoto):AssetImage('assets/images/pic.png',),
+                  child: CircleAvatar(backgroundImage:GlobalData.Userphoto!=""?
+                  NetworkImage(GlobalData.Userphoto):globalData.getgender(),
                     radius: 35.0,
                   ),
                 ),
