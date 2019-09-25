@@ -11,6 +11,8 @@ class teacherdashboard extends StatefulWidget {
 
 class _teacherdashboardState extends State<teacherdashboard> {
 
+  GlobalData globalData = new GlobalData();
+
   void showDialog1(BuildContext context) {
     // flutter defined function
     showDialog(
@@ -100,8 +102,9 @@ class _teacherdashboardState extends State<teacherdashboard> {
 
                       children: <Widget>[
                   Container(
-                      child: CircleAvatar(backgroundImage:GlobalData.Userphoto!=null?
-                      NetworkImage(GlobalData.Userphoto):AssetImage('assets/images/man.png',),
+                      child:CircleAvatar(
+                        backgroundImage:GlobalData.Userphoto!=""?
+                        NetworkImage(GlobalData.Userphoto):globalData.getgender(),
                         radius: 35.0,
                       ),
                     ),

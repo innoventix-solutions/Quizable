@@ -157,15 +157,9 @@ class _secState extends State<sec> {
  String gendersel = "Male";
 
 
+  GlobalData globalData = new GlobalData();
 
 
-getgender(){
-
-GlobalData.gendersel == "Male" ?AssetImage('assets/images/man.png') :
-AssetImage('assets/images/women.png');
-
-
-}
 
   @override
   Widget build(BuildContext context) {
@@ -392,7 +386,7 @@ AssetImage('assets/images/women.png');
                               print(gendersel.toString());
 
                               check();
-                             // getgender();
+                              globalData.getgender();
 
                               },
                             "Get Started",

@@ -19,6 +19,9 @@ class studentreg extends StatefulWidget {
 
 class _studentregState extends State<studentreg> {
 
+  GlobalData globalData = new GlobalData();
+
+
   String image64 = "";
   File _image;
 
@@ -166,13 +169,7 @@ class _studentregState extends State<studentreg> {
 
   String gendersel = "Male";
 
-  getgender(){
 
-    GlobalData.gendersel == "Male" ?AssetImage('assets/images/boy.png') :
-    AssetImage('assets/images/girl.png');
-
-
-  }
 
 
   @override
@@ -421,7 +418,7 @@ class _studentregState extends State<studentreg> {
                               print(gendersel.toString());
 
                               check();
-                              //getgender();
+                              globalData.getgender();
                             },
                             "Get Started",
                             LinearGradient(colors: <Color>[GlobalData.purple, GlobalData.pink]),

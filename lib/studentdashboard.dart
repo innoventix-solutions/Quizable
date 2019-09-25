@@ -17,6 +17,9 @@ class studentdashboard extends StatefulWidget {
 
 class _studentdashboardState extends State<studentdashboard> {
 
+
+  GlobalData globalData = new GlobalData();
+
   //final List<int> numbers = [1, 2, 3, 5, 8, 13, 21, 34, 55];
   List<Pojo_quizzes> Quizz_List = new List();
   List<Pojo_getassignment> assignment_list = new List();
@@ -99,6 +102,8 @@ class _studentdashboardState extends State<studentdashboard> {
       },
     );
   }
+
+
 
   @override
   void initState() {
@@ -317,8 +322,9 @@ class _studentdashboardState extends State<studentdashboard> {
                     padding: const EdgeInsets.only(top: 15),
                     child: Stack(children: <Widget>[
                       Container(
-                        child: CircleAvatar(backgroundImage:GlobalData.Userphoto!=null?
-                        NetworkImage(GlobalData.Userphoto):AssetImage('assets/images/man.png',),
+                        child: CircleAvatar(
+                          backgroundImage:GlobalData.Userphoto!=""?
+                        NetworkImage(GlobalData.Userphoto):globalData.getgender(),
                           radius: 35.0,
                         ),
                       ),

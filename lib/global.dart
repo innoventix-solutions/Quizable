@@ -94,6 +94,20 @@ class GlobalData{
 
   static var gendersel="";
 
+ AssetImage getgender(){
+
+
+   return GlobalData.gendersel.toLowerCase() == "male" ?
+   GlobalData.userType.toLowerCase()=="student"?
+   AssetImage('assets/images/boy.png') :
+   AssetImage('assets/images/man.png'):
+   GlobalData.userType.toLowerCase()=="student"?
+   AssetImage('assets/images/girl.png') :
+    AssetImage('assets/images/women.png');
+
+
+  }
+
 /* spelling data*/
 
 static String teacherguide = "";
