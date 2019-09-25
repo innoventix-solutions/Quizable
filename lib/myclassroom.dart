@@ -58,9 +58,9 @@ class _myclassroomState extends State<myclassroom> {
 
                         GlobalData.activeclass = GlobalData.Class_list[index];
 
-                        GlobalData.parentsphone=GlobalData.Studentlist[index].parentphone;
-                        GlobalData.parentsemail=GlobalData.Studentlist[index].parentemail;
-                        GlobalData.uid= GlobalData.Studentlist[index].id;
+                       // GlobalData.parentsphone=GlobalData.Studentlist[index].parentphone;
+                       // GlobalData.parentsemail=GlobalData.Studentlist[index].parentemail;
+                        //GlobalData.uid= GlobalData.Studentlist[index].id;
 
                         print(GlobalData.Class_list[index].classname);
                         print(GlobalData.activeclass.classname);
