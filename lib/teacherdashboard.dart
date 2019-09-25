@@ -333,7 +333,7 @@ class _teacherdashboardState extends State<teacherdashboard> {
                   children: <Widget>[
                     Padding(
                       padding: const EdgeInsets.only(left: 5),
-                      child: CircleAvatar(backgroundImage:GlobalData.Userphoto!=null?
+                      child: CircleAvatar(backgroundImage:GlobalData.Userphoto!=""?
                       NetworkImage(GlobalData.Userphoto):AssetImage('assets/images/educations.png',),
                         radius: 35.0,),
                     ),
