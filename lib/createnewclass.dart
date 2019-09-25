@@ -115,7 +115,7 @@ class _createnewclassState extends State<createnewclass> {
                             shape: BoxShape.circle,
                             image: new DecorationImage(
                               fit: BoxFit.fill,
-                              image:_image!=null?  FileImage(_image): AssetImage('assets/images/education.png'),
+                              image:_image!=null?  FileImage(_image): AssetImage('assets/images/educations.png'),
                             ))),
                         Positioned(
                           right: 0,bottom: 0,

@@ -69,7 +69,7 @@ child: Scaffold(
 
     actions: <Widget>[
       IconButton(onPressed: (){
-        LogoutFunction(context);
+        showDialog1(context);
       },
         icon: GestureDetector(onTap: (){
           showDialog1(context);

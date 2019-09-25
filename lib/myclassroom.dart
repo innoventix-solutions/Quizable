@@ -78,7 +78,7 @@ class _myclassroomState extends State<myclassroom> {
                                             fit: BoxFit.fill,
                                             image:GlobalData.Userphoto!=null?
                                             NetworkImage(GlobalData.Class_list[index].classicon):
-                                            AssetImage('assets/images/education.png',),
+                                            AssetImage('assets/images/educations.png',),
                                           )
                                       ),),
                                   ],

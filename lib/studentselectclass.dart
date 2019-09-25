@@ -80,7 +80,7 @@ print(GlobalData.activeclass.classname);
                                             fit: BoxFit.fill,
                                             image:GlobalData.Userphoto!=null?
                                             NetworkImage(GlobalData.Class_list[index].classicon):
-                                            AssetImage('assets/images/education.png',),
+                                            AssetImage('assets/images/educations.png',),
                                           )
                                       ),),
                                   ],

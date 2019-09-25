@@ -12,6 +12,49 @@ class studentjoin extends StatefulWidget {
 
 class _studentjoinState extends State<studentjoin> {
 
+
+  void showDialog1(BuildContext context) {
+    // flutter defined function
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        // return object of type Dialog
+        return AlertDialog(
+          title: new Text("Log Out"),
+          content: new Text("Are You Sure Want To Log Out?"),
+          actions: <Widget>[
+            // usually buttons at the bottom of the dialog
+            new FlatButton(
+              child: Row(
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.only(
+                        right: 30
+                    ),
+                    child:  GestureDetector(
+                        onTap: (){
+                          Navigator.of(context).pushNamed('studentjoinclass');
+                        },child: new Text("Cancel")),
+
+
+                  ),
+                  GestureDetector(
+                      onTap: () async {
+                        LogoutFunction(context);
+                        // Navigator.of(context).pushNamed('dashboard');
+                      },child: new Text("Ok")),
+                ],
+              ),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   joinclass() async{
     http.post("http://edusupportapp.com/api/join_class.php",
         body: {
@@ -59,7 +102,7 @@ class _studentjoinState extends State<studentjoin> {
 
             actions: <Widget>[
               IconButton(onPressed: (){
-                LogoutFunction(context);
+                showDialog1(context);
               },
                 icon: Icon(
                   Icons.exit_to_app,
