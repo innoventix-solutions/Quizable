@@ -94,7 +94,7 @@ child: Scaffold(
               Padding(
                 padding: const EdgeInsets.only(top: 20,bottom: 10),
                 child: Container(
-                  child: CircleAvatar(backgroundImage:GlobalData.Userphoto!=null?
+                  child: CircleAvatar(backgroundImage:GlobalData.Userphoto!=""?
                   NetworkImage(GlobalData.Userphoto):AssetImage('assets/images/users.png',),
                     radius: 35.0,
                   ),
