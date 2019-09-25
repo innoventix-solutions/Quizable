@@ -165,8 +165,8 @@ class _studentdashboardState extends State<studentdashboard> {
                   children: <Widget>[
                     Padding(
                       padding: const EdgeInsets.only(left: 5),
-                      child: CircleAvatar(backgroundImage:GlobalData.Userphoto!=null?
-                      NetworkImage(GlobalData.Userphoto):AssetImage('assets/images/man.png',),
+                      child: CircleAvatar(backgroundImage:GlobalData.Userphoto!=""?
+                      NetworkImage(GlobalData.Userphoto):globalData.getgender(),
                         radius: 35.0,),
                     ),
                     Padding(

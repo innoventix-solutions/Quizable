@@ -13,6 +13,8 @@ class StudentList extends StatefulWidget {
 
 class _StudentListState extends State<StudentList> {
 
+  GlobalData globalData = new GlobalData();
+
   //List<pojostydentlist> globlist = new List();
 
   var gets = "A";
@@ -162,7 +164,8 @@ class _StudentListState extends State<StudentList> {
 
 
             Expanded(
-              child:  GlobalData.Studentlist.isEmpty ? Center
+              child:  GlobalData.Studentlist.isEmpty ?
+              Center
                 (child:
               ListView.builder( itemCount: 2,
 
@@ -222,6 +225,8 @@ class _StudentListState extends State<StudentList> {
                     );
                   })
               ) :
+
+
               new ListView.builder
                 (
                   itemCount: GlobalData.Studentlist.length,
@@ -240,9 +245,9 @@ class _StudentListState extends State<StudentList> {
                                           shape: BoxShape.circle,
                                           image: new DecorationImage(
                                             fit: BoxFit.fill,
-                                            image:GlobalData.Userphoto!=null?
+                                            image:GlobalData.Userphoto!=""?
                                             NetworkImage(GlobalData.Studentlist[index].userphoto):
-                                            AssetImage('assets/images/man.png',),
+                                            globalData.getgender(),
                                           ),
                                         
                                       ),),
@@ -252,7 +257,7 @@ class _StudentListState extends State<StudentList> {
                                       right: 8,bottom: 8,
                                       child: Column(
                                         children: <Widget>[
-                                          GlobalData.parentsemail != null && GlobalData.parentsphone != null ?
+                                          GlobalData.parentsemail!="" && GlobalData.parentsphone!="" ?
                                           Card(color: Colors.green,elevation: 5.0,
                                             shape: RoundedRectangleBorder(
                                               borderRadius: BorderRadius.circular(40.0),
@@ -264,7 +269,7 @@ class _StudentListState extends State<StudentList> {
 
 
 
-                                                  child: Text('P',style: TextStyle(color: Colors.white,fontSize: 5),)),
+                                                  child: Text('P',style: TextStyle(color: Colors.white,fontSize: 7),)),
                                             ),
                                           ):Text(""),
                                         ],
