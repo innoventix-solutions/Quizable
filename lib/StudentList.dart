@@ -147,6 +147,16 @@ class _StudentListState extends State<StudentList> {
               ),
             ),
           ),
+          actions: <Widget>[
+            IconButton(
+              onPressed: () {},
+              icon: Icon(
+                Icons.account_circle,
+                color: Colors.transparent,
+                size: 20,
+              ),
+            ),
+          ],
 
         ),
         body:
