@@ -103,7 +103,7 @@ class _studentregState extends State<studentreg> {
     {
       print(phone.text.toString());
       print(phone.text.length.toString());
-      _showDialog(Msg: "Number is not Valid");
+      _showDialog(Msg: "Phone Number is not Valid");
     }
    /* else if(par_phone.text.length>11 || par_phone.text.length<10)
     {

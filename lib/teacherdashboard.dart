@@ -149,7 +149,7 @@ class _teacherdashboardState extends State<teacherdashboard> {
                   child: Text('Distance Learning Institute',style:
                   TextStyle(fontSize: 15,color: Colors.white),),
                 ),*/
-                Text(GlobalData.class_name==null?"No Class Selected":GlobalData.class_name,
+                Text(GlobalData.class_name==""?"No Class Selected":GlobalData.class_name,
                   style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,
                       fontSize: 16),),   ],
             ),
@@ -333,8 +333,8 @@ class _teacherdashboardState extends State<teacherdashboard> {
                   children: <Widget>[
                     Padding(
                       padding: const EdgeInsets.only(left: 5),
-                      child: CircleAvatar(backgroundImage:GlobalData.Userphoto!=null?
-                      NetworkImage(GlobalData.Userphoto):AssetImage('assets/images/educations.png',),
+                      child: CircleAvatar(backgroundImage:GlobalData.Userphoto!=""?
+                      NetworkImage(GlobalData.Userphoto):globalData.getgender(),
                         radius: 35.0,),
                     ),
                     Padding(
@@ -348,7 +348,7 @@ class _teacherdashboardState extends State<teacherdashboard> {
                                 fontSize: 14),),
                         ),
 
-                          Text(GlobalData.class_name==null?"No Class Selected":GlobalData.class_name,
+                          Text(GlobalData.class_name==""?"No Class Selected":GlobalData.class_name,
                             style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,
                                 fontSize: 14),),
                         ],),

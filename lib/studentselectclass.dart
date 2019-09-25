@@ -10,6 +10,8 @@ class studentselectclass extends StatefulWidget {
 
 class _studentselectclassState extends State<studentselectclass> {
 
+  GlobalData globalData = new GlobalData();
+
   SharedPreferences preferences;
 
   @override
@@ -78,9 +80,9 @@ print(GlobalData.activeclass.classname);
                                           shape: BoxShape.circle,
                                           image: new DecorationImage(
                                             fit: BoxFit.fill,
-                                            image:GlobalData.Userphoto!=null?
+                                            image:GlobalData.Userphoto!=""?
                                             NetworkImage(GlobalData.Class_list[index].classicon):
-                                            AssetImage('assets/images/educations.png',),
+                                            globalData.getgender()
                                           )
                                       ),),
                                   ],

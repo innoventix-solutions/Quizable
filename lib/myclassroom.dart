@@ -76,7 +76,7 @@ class _myclassroomState extends State<myclassroom> {
                                           shape: BoxShape.circle,
                                           image: new DecorationImage(
                                             fit: BoxFit.fill,
-                                            image:GlobalData.class_icon!=""?
+                                            image:GlobalData.class_icon!=null?
                                             NetworkImage(GlobalData.Class_list[index].classicon):
                                             AssetImage('assets/images/classicon.png',),
                                           )

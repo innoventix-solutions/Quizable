@@ -12,6 +12,9 @@ class TeacherList extends StatefulWidget {
 
 class _TeacherListState extends State<TeacherList> {
 
+
+  GlobalData globalData = new GlobalData();
+
   //List<pojostydentlist> globlist = new List();
 
   var gets = "A";
@@ -167,9 +170,9 @@ class _TeacherListState extends State<TeacherList> {
                         shape: BoxShape.circle,
                         image: new DecorationImage(
                           fit: BoxFit.fill,
-                          image:GlobalData.Userphoto!=null?
+                          image:GlobalData.Userphoto!=""?
                           NetworkImage(GlobalData.Userphoto):
-                          AssetImage('assets/images/man.png',),
+                          globalData.getgender(),
                         )
                     )
                 ),
@@ -346,9 +349,9 @@ class _TeacherListState extends State<TeacherList> {
                                         shape: BoxShape.circle,
                                         image: new DecorationImage(
                                           fit: BoxFit.fill,
-                                          image:GlobalData.Userphoto!=null?
+                                          image:GlobalData.Userphoto!=""?
                                           NetworkImage(GlobalData.Studentlist[index].userphoto):
-                                          AssetImage('assets/images/man.png',),
+                                          globalData.getgender(),
                                         )
                                     ),),
                                 ),
