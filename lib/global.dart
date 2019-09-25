@@ -1100,6 +1100,8 @@ LogoutFunction(context)async {
   GlobalData.ExamQuiz="";
   GlobalData.QuizID="";
   GlobalData.age="";
+  GlobalData.parentsphone="";
+  GlobalData.parentsemail="";
 
   //5-9-19
   GlobalData.AssignmentTitle="";

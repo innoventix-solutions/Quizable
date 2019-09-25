@@ -267,7 +267,7 @@ class _StudentListState extends State<StudentList> {
                                       right: 8,bottom: 8,
                                       child: Column(
                                         children: <Widget>[
-                                          GlobalData.parentsemail!="" && GlobalData.parentsphone!="" ?
+                                          GlobalData.parentsemail!="" || GlobalData.parentsphone!="" ?
                                           Card(color: Colors.green,elevation: 5.0,
                                             shape: RoundedRectangleBorder(
                                               borderRadius: BorderRadius.circular(40.0),
