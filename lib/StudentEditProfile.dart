@@ -15,6 +15,8 @@ class StudentEditProfile extends StatefulWidget {
 
 class _StudentEditProfileState extends State<StudentEditProfile> {
 
+  GlobalData globalData = new GlobalData();
+
   TextEditingController Name = new TextEditingController(text: GlobalData.Fullname);
   TextEditingController Phone = new TextEditingController(text: GlobalData.Phone);
 
@@ -37,7 +39,7 @@ class _StudentEditProfileState extends State<StudentEditProfile> {
 
     shared.setString("name", Name.text.toString());
     shared.setString("phone", Phone.text.toString());
-
+    //shared.setString("userphoto", GlobalData.Userphoto);
 
   }
 
@@ -47,6 +49,7 @@ class _StudentEditProfileState extends State<StudentEditProfile> {
 
     Name.text=shared.getString("name");
     Phone.text=shared.getString("phone");
+    //GlobalData.Userphoto = shared.getString("userphoto");
 
   }
 
@@ -171,38 +174,20 @@ class _StudentEditProfileState extends State<StudentEditProfile> {
                   child: GestureDetector(onTap: (){getImage();},
                     child: Stack(
                        children: <Widget>[
-                         Container(
-                           height: 80,width: 80,
-                           decoration:_image!=null?
-                           new BoxDecoration(
+                        Container(
+                        height: 80,width: 80,
+                        child: FadeInImage.assetNetwork(
+                          placeholder: globalData.getgender().assetName,
+                          image: GlobalData.Userphoto,fit: BoxFit.cover,
+                        )
 
-                               borderRadius: BorderRadius.all(Radius.circular(100),),
-
-                               image: new DecorationImage(
-                                 fit: BoxFit.cover,
-                                 image: FileImage(_image),
-
-                               ),border: Border.all(color: Colors.black,width: 5)):
-                           GlobalData.Userphoto!=null?
-                           BoxDecoration(
-                             image: DecorationImage(image: NetworkImage(GlobalData.Userphoto),fit: BoxFit.cover),
-                             borderRadius: BorderRadius.all(Radius.circular(100)),
-
-                           ):BoxDecoration(
-                               borderRadius: BorderRadius.all(Radius.circular(100)),
-                               color: Colors.black,
-                               image: DecorationImage(image: AssetImage('assets/images/man.jpg'),fit: BoxFit.cover)
-
-
-                           )
-
-                           ,),
+                    ),
                          Positioned(
                            right: 0,bottom: 0,
                            child: GestureDetector(onTap: (){
 
                              Navigator.of(context)
-                                 .pushNamed('EditProfile');
+                                 .pushNamed('EditProfileStudent');
 
                            },
                              child: Card(color: Colors.black,elevation: 5.0,

@@ -76,16 +76,15 @@ class _myclassroomState extends State<myclassroom> {
                               children: <Widget>[
                                 Stack(
                                   children: <Widget>[
+
+
+
                                     Container(height: 70,width: 70,margin: EdgeInsets.only(left: 20,top: 15,bottom: 10),
-                                      decoration: new BoxDecoration(
-                                          shape: BoxShape.circle,
-                                          image: new DecorationImage(
-                                            fit: BoxFit.fill,
-                                            image:GlobalData.class_icon!=null?
-                                            NetworkImage(GlobalData.Class_list[index].classicon):
-                                            AssetImage('assets/images/classicon.png',),
-                                          )
-                                      ),),
+                                      child: FadeInImage.assetNetwork(
+                                        placeholder: 'assets/images/classicon.png',
+                                        image: GlobalData.Class_list[index].classicon,fit: BoxFit.cover,
+                                      ),
+                                    ),
                                   ],
                                 ),
 
