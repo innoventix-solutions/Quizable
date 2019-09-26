@@ -20,9 +20,9 @@ class _userdetailState extends State<userdetail> {
 
   GlobalData globalData = new GlobalData();
 
-  TextEditingController email = new TextEditingController(text: GlobalData.email);
-  TextEditingController disc = new TextEditingController(text: GlobalData.disc);
-  TextEditingController teacher = new TextEditingController(text:GlobalData.Username );
+  TextEditingController email = new TextEditingController(text: GlobalData.currentteacher.email);
+  TextEditingController disc = new TextEditingController(text: GlobalData.currentteacher.specification);
+  TextEditingController teacher = new TextEditingController(text:GlobalData.currentteacher.username );
   SharedPreferences shared;
   String image64 = "";
   File _image;
@@ -106,8 +106,8 @@ class _userdetailState extends State<userdetail> {
               Padding(
                 padding: const EdgeInsets.only(top: 15),
                 child: Container(
-                  child: CircleAvatar(backgroundImage:GlobalData.Userphoto!=""?
-                  NetworkImage(GlobalData.Userphoto):globalData.getgender(),
+                  child: CircleAvatar(backgroundImage:GlobalData.currentteacher.userphoto!=""?
+                  NetworkImage(GlobalData.currentteacher.userphoto):globalData.getUserGender(GlobalData.currentteacher.gender),
                     radius: 35.0,
                   ),
                 ),
@@ -133,7 +133,8 @@ class _userdetailState extends State<userdetail> {
                                 ),
                               ],
                             ),
-                            CustomTextField(controller:teacher,enabled: false,),
+                            CustomTextField(controller:teacher,
+                              enabled: false,),
                           ],
                         ),
                       ),

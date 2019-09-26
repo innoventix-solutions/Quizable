@@ -91,7 +91,7 @@ class GlobalData{
   static String teacherobjective="";
   static String AssignmentID="";
   static String Essayinstructions="";
-
+static pojostydentlist currentteacher;
   static var gendersel="";
 
  AssetImage getgender(){
@@ -107,6 +107,21 @@ class GlobalData{
 
 
   }
+
+
+  AssetImage getUserGender(String teaimg){
+
+
+    return teaimg.toLowerCase() == "male" ?
+
+    AssetImage('assets/images/man.png'):
+
+    AssetImage('assets/images/women.png');
+
+
+  }
+
+
 
 /* spelling data*/
 
@@ -164,7 +179,7 @@ class drawerquiz extends StatelessWidget {
 
 
           Padding(
-            padding: const EdgeInsets.only(left: 35,top:30),
+            padding: const EdgeInsets.only(left: 35,top:50),
             child: Row(children: <Widget>[Icon(Icons.home,color: GlobalData.lightblue,),
               Padding(
                 padding: const EdgeInsets.only(left: 10),
