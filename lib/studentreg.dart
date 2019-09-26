@@ -116,6 +116,9 @@ class _studentregState extends State<studentreg> {
     } else {
       _showDialog();
     }
+     if(selectedDate == null){
+      dob();
+    }
   }
 
   void _showDialog({String Msg}) {
@@ -143,6 +146,20 @@ class _studentregState extends State<studentreg> {
       },
     );
   }
+
+  void dob() {
+    // flutter defined function
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        // return object of type Dialog
+        return AlertDialog(
+          content: new Text("Please Select DOB"),
+        );
+      },
+    );
+  }
+
 
   /*Future<Null> _selectDate(BuildContext context) async {
     final DateTime picked = await showDatePicker(

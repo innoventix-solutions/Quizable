@@ -185,7 +185,7 @@ class _StudentEditProfileState extends State<StudentEditProfile> {
                          Positioned(
                            right: 0,bottom: 0,
                            child: GestureDetector(onTap: (){
-                             FileImage(_image);
+                             getImage();
 
                            },
                              child: Card(color: Colors.black,elevation: 5.0,
@@ -199,11 +199,15 @@ class _StudentEditProfileState extends State<StudentEditProfile> {
 
 
 
-                                   child:Icon(
-                                     Icons.file_upload,
-                                     color: Colors.white,
-                                     size: 12.0,
+                                   child:GestureDetector(onTap: (){
+                                     getImage();
+                                   },
+                                     child: Icon(
+                                       Icons.file_upload,
+                                       color: Colors.white,
+                                       size: 12.0,
 
+                                     ),
                                    ),),
                                ),
                              ),
