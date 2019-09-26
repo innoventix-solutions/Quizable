@@ -189,8 +189,7 @@ getvalue();
                         right: 0,bottom: 0,
                         child: GestureDetector(onTap: (){
 
-                          Navigator.of(context)
-                              .pushNamed('EditProfile');
+                          FileImage(_image);
 
                         },
                           child: Card(color: Colors.black,elevation: 5.0,
