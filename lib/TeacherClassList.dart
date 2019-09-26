@@ -83,9 +83,11 @@ class _TeacherClassListState extends State<TeacherClassList> {
                                       children: <Widget>[
 
                                         Container(height: 70,width: 70,margin: EdgeInsets.only(left: 20,top: 15,bottom: 10),
-                                          child: FadeInImage.assetNetwork(
-                                            placeholder: 'assets/images/classicon.png',
-                                            image: GlobalData.Class_list[index].classicon,fit: BoxFit.cover,
+                                          child: ClipOval(
+                                            child: FadeInImage.assetNetwork(
+                                              placeholder: 'assets/images/classicon.png',
+                                              image: GlobalData.Class_list[index].classicon,fit: BoxFit.cover,
+                                            ),
                                           ),
                                         ),
                                       ],

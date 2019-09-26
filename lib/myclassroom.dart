@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:newpro/global.dart';
 import'package:newpro/Pojo/pojo_getclasses.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 
 class myclassroom extends StatefulWidget {
@@ -9,6 +11,30 @@ class myclassroom extends StatefulWidget {
 }
 
 class _myclassroomState extends State<myclassroom> {
+
+
+  getstudentcount()
+  async {
+
+    await http.post("http://edusupportapp.com/api/get_teacher_classes.php"
+        ,body: {
+          "UserId": GlobalData.uid,
+        }).
+    then((response){
+
+      print(response.body);
+
+      var pass = jsonDecode(response.body);
+
+      GlobalData.Class_list = (pass['join_classdata'] as List).map((data) => Classes.fromJson(data)).toList();
+
+      print(GlobalData.Class_list.length);
+
+      setState(() {
+
+      });
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -80,9 +106,11 @@ class _myclassroomState extends State<myclassroom> {
 
 
                                     Container(height: 70,width: 70,margin: EdgeInsets.only(left: 20,top: 15,bottom: 10),
-                                      child: FadeInImage.assetNetwork(
-                                        placeholder: 'assets/images/classicon.png',
-                                        image: GlobalData.Class_list[index].classicon,fit: BoxFit.cover,
+                                      child: ClipOval(
+                                        child: FadeInImage.assetNetwork(
+                                          placeholder: 'assets/images/classicon.png',
+                                          image: GlobalData.Class_list[index].classicon,fit: BoxFit.cover,
+                                        ),
                                       ),
                                     ),
                                   ],
@@ -100,7 +128,8 @@ class _myclassroomState extends State<myclassroom> {
                                         Text(GlobalData.Class_list[index].classname,style: TextStyle(fontSize: 15),textAlign: TextAlign.left,),
                                         Padding(
                                           padding: const EdgeInsets.only(top:5),
-                                          child: Text(GlobalData.Class_list[index].total_join==null?"0 Student":GlobalData.Class_list[index].total_join,style: TextStyle(fontSize: 12),),
+                                          child: Text(GlobalData.Class_list[index].total_join==null?"0 Student":GlobalData.Class_list[index].total_join.toString()
+                                            +" Students",style: TextStyle(fontSize: 14),),
                                         ),
                                       ],
                                     ),
@@ -128,5 +157,11 @@ class _myclassroomState extends State<myclassroom> {
       ),
 
     );
+  }
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getstudentcount();
   }
 }

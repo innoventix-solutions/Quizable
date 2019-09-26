@@ -179,12 +179,35 @@ getvalue();
                     child: Stack(children: <Widget>[
                       Container(
                         height: 80,width: 80,
-                          child: FadeInImage.assetNetwork(
-                            placeholder: globalData.getgender().assetName,
-                            image: GlobalData.Userphoto,fit: BoxFit.cover,
+                          decoration:_image!=null?
+                          new BoxDecoration(
+
+                              borderRadius: BorderRadius.all(Radius.circular(100),),
+                              color: Colors.black,
+                              image: new DecorationImage(
+                                fit: BoxFit.fill,
+                                image: FileImage(_image),
+
+                              )):
+                          GlobalData.Userphoto!=""?
+                          BoxDecoration(
+                            image: DecorationImage(image: NetworkImage(GlobalData.Userphoto),fit: BoxFit.cover),
+                            borderRadius: BorderRadius.all(Radius.circular(100)),
+
                           )
 
-                        ),
+                              :BoxDecoration(
+                              borderRadius: BorderRadius.all(Radius.circular(100)),
+                              color: Colors.black,
+                              image: DecorationImage(image:
+                              globalData.getgender(),fit: BoxFit.cover)
+
+
+                          )
+
+
+
+                      ),
                       Positioned(
                         right: 0,bottom: 0,
                         child: GestureDetector(onTap: (){
