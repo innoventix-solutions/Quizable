@@ -91,7 +91,7 @@ class GlobalData{
   static String teacherobjective="";
   static String AssignmentID="";
   static String Essayinstructions="";
-
+static pojostydentlist currentteacher;
   static var gendersel="";
 
  AssetImage getgender(){
@@ -107,6 +107,21 @@ class GlobalData{
 
 
   }
+
+
+  AssetImage getUserGender(String teaimg){
+
+
+    return teaimg.toLowerCase() == "male" ?
+
+    AssetImage('assets/images/man.png'):
+
+    AssetImage('assets/images/women.png');
+
+
+  }
+
+
 
 /* spelling data*/
 

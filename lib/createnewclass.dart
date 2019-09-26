@@ -35,13 +35,18 @@ class _createnewclassState extends State<createnewclass> {
     "ClassName": classname.text.toString(),
       "UserId":GlobalData.uid,
       "class_icon":image64
-    }).then((response){
+    }).then((response) async {
       print(response.body);
 
       var Res = jsonDecode(response.body);
 
+
+
       if(Res['status']==1)
         {
+
+          await GetMyClasses();
+
          GlobalData.class_name= Res['classdata']['class_name'];
          GlobalData.class_icon= Res['classdata']['class_icon'];
          GlobalData.student_code= Res['classdata']['student_invite_code'];
