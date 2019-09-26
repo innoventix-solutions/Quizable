@@ -33,7 +33,7 @@ class _techerjoinclassState extends State<techerjoinclass> {
                     ),
                     child:  GestureDetector(
                         onTap: (){
-                          Navigator.of(context).pushNamed('welcome');
+                          Navigator.of(context).pushNamed('techerjoinclass');
                         },child: new Text("Cancel")),
 
 

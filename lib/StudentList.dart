@@ -19,9 +19,10 @@ class _StudentListState extends State<StudentList> {
 
   var gets = "A";
 
-  getstudent()
+  getstudent
+      ()
   async {
-
+GlobalData.Studentlist.clear();
     await http.post("http://edusupportapp.com/api/get_user_list_by_class.php"
         ,body: {
           "Class_id": GlobalData.classid,
