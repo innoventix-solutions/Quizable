@@ -98,9 +98,15 @@ class _myclassroomState extends State<myclassroom> {
                                     child: Column(mainAxisAlignment: MainAxisAlignment.start,crossAxisAlignment: CrossAxisAlignment.start,
                                       children: <Widget>[
                                         Text(GlobalData.Class_list[index].classname,style: TextStyle(fontSize: 15),textAlign: TextAlign.left,),
+
+                                       //total join student
                                         Padding(
                                           padding: const EdgeInsets.only(top:5),
-                                          child: Text(GlobalData.Class_list[index].total_join==null?"0 Student":GlobalData.Class_list[index].total_join,style: TextStyle(fontSize: 12),),
+                                          child: Text(GlobalData.Class_list[index].total_join==null
+                                              ?
+                                          "0 Student"
+                                              :
+                                          GlobalData.Class_list[index].total_join,style: TextStyle(fontSize: 12),),
                                         ),
                                       ],
                                     ),
