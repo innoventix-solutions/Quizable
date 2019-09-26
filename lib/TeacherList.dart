@@ -341,6 +341,7 @@ class _TeacherListState extends State<TeacherList> {
                                   GlobalData.email=GlobalData.Studentlist[index].email;
                                   GlobalData.user = GlobalData.Studentlist[index];
                                   GlobalData.gendersel=GlobalData.Studentlist[index].gender;
+                                  GlobalData.Userphoto=GlobalData.Studentlist[index].userphoto;
 
                                   Navigator.of(context)
                                       .pushNamed('userdetail');

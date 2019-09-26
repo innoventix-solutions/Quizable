@@ -15,6 +15,8 @@ class adminprofile extends StatefulWidget {
 
 class _adminprofileState extends State<adminprofile> {
 
+  GlobalData globalData = new GlobalData();
+
   var photo="";
 
   TextEditingController Name = new TextEditingController(text: GlobalData.Fullname);
@@ -39,7 +41,7 @@ class _adminprofileState extends State<adminprofile> {
 
     shared.setString("name", Name.text.toString());
     shared.setString("phone", Phone.text.toString());
-    shared.setString("userphoto", GlobalData.Userphoto);
+    //shared.setString("userphoto", GlobalData.Userphoto);
 
 
   }
@@ -50,7 +52,7 @@ class _adminprofileState extends State<adminprofile> {
 
     Name.text=shared.getString("name");
     Phone.text=shared.getString("phone");
-    GlobalData.Userphoto = shared.getString("userphoto");
+   //GlobalData.Userphoto = shared.getString("userphoto");
 
   }
 
@@ -174,34 +176,48 @@ getvalue();
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: GestureDetector(onTap: (){getImage();},
-                    child: Container(
+                    child: Stack(children: <Widget>[
+                      Container(
                         height: 80,width: 80,
-                        decoration:_image!=null?
-                        new BoxDecoration(
+                          child: FadeInImage.assetNetwork(
+                            placeholder: globalData.getgender().assetName,
+                            image: GlobalData.Userphoto,fit: BoxFit.cover,
+                          )
 
-                            borderRadius: BorderRadius.all(Radius.circular(100),),
-                            color: Colors.black,
-                            image: new DecorationImage(
-                              fit: BoxFit.fill,
-                              image: FileImage(_image),
+                        ),
+                      Positioned(
+                        right: 0,bottom: 0,
+                        child: GestureDetector(onTap: (){
 
-                            )):
-                        GlobalData.Userphoto!=null?
-                        BoxDecoration(
-                          image: DecorationImage(image: NetworkImage(GlobalData.Userphoto),fit: BoxFit.cover),
-                          borderRadius: BorderRadius.all(Radius.circular(100)),
+                          Navigator.of(context)
+                              .pushNamed('EditProfile');
 
-                        )
-
-                        :BoxDecoration(
-                            borderRadius: BorderRadius.all(Radius.circular(100)),
-                            color: Colors.black,
-                            image: DecorationImage(image: AssetImage('assets/images/man.jpg'),fit: BoxFit.cover)
+                        },
+                          child: Card(color: Colors.black,elevation: 5.0,
+                            shape: RoundedRectangleBorder(side: BorderSide(color: Colors.white),
+                              borderRadius: BorderRadius.circular(0.0),
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.all(4.0),
+                              child: Container(
 
 
-                        )
 
-                       ,),
+
+                                child:Icon(
+                                  Icons.file_upload,
+                                  color: Colors.white,
+                                  size: 12.0,
+
+                                ),),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+
+                    ),
+
                   ),
                 ),
                 Text("Change Profile"),
