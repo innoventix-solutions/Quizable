@@ -136,7 +136,7 @@ class _adminprofileState extends State<adminprofile> {
         GlobalData.Userphoto= ParsedJson['userdata']['user_photo'];
         preferences.setString("name",GlobalData.Fullname);
         preferences.setString("phone", GlobalData.Phone);
-        preferences.setString("userphoto", GlobalData.Userphoto);
+        preferences.setString("UserPhoto", GlobalData.Userphoto);
       }else
       {
         Show_toast_Now(ParsedJson['msg'],Colors.green);

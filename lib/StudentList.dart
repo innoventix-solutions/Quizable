@@ -177,8 +177,8 @@ GlobalData.Studentlist.clear();
             Expanded(
               child:  GlobalData.Studentlist.isEmpty ?
               Center
-                (child:
-              ListView.builder( itemCount: 1,
+                (child:Text("No Student's joined yet",style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold),)
+              /*ListView.builder( itemCount: 1,
 
                   itemBuilder: (BuildContext ctxt, int index) {
                     return  GestureDetector(
@@ -234,7 +234,7 @@ GlobalData.Studentlist.clear();
                         ],
                       ),
                     );
-                  })
+                  })*/
               ) :
 
 

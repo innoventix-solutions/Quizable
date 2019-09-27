@@ -267,8 +267,8 @@ class _TeacherListState extends State<TeacherList> {
 
 
         Expanded( child:  GlobalData.Studentlist.isEmpty ?
-        Center(child:
-        ListView.builder( itemCount: 1,
+        Center(child:Text("No Teacher's joined yet",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),)
+        /*ListView.builder( itemCount: 1,
 
             itemBuilder: (BuildContext ctxt, int index) {
               return  GestureDetector(
@@ -321,7 +321,7 @@ class _TeacherListState extends State<TeacherList> {
                   ],
                 ),
               );
-            })
+            })*/
         )
             :
 
