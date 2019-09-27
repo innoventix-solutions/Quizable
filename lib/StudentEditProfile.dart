@@ -4,6 +4,7 @@ import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'global.dart';
 import 'dart:io';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:http/http.dart' as http;
 import 'package:newpro/Pojo/pojostydentlist.dart';
@@ -14,6 +15,56 @@ class StudentEditProfile extends StatefulWidget {
 }
 
 class _StudentEditProfileState extends State<StudentEditProfile> {
+
+
+  Show_toast(String msg, Color color) {
+    Fluttertoast.showToast(
+        msg: msg,
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.CENTER,
+        timeInSecForIos: 1,
+        backgroundColor: color,
+        textColor: Colors.white,
+        fontSize: 16.0);
+  }
+
+  void _showDialog({String Msg}) {
+    // flutter defined function
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        // return object of type Dialog
+        return AlertDialog(
+          content: new Text(Msg==null?"Password not matched":Msg),
+        );
+      },
+    );
+  }
+
+  void _showDialog1() {
+    // flutter defined function
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        // return object of type Dialog
+        return AlertDialog(
+          content: new Text("Email is incorrect"),
+        );
+      },
+    );
+  }
+
+
+  check() {
+    if(Phone.text.length>11 || Phone.text.length<=10)
+    {
+      _showDialog(Msg: "Phone Number is not Valid");
+    }
+    else
+    {
+      editprofile();
+    }
+  }
 
   GlobalData globalData = new GlobalData();
 
@@ -293,7 +344,7 @@ class _StudentEditProfileState extends State<StudentEditProfile> {
                         linearGradient:LinearGradient(colors: <Color>[GlobalData.purple,GlobalData.pink]) ,
                         text: Text("Save Changes",style: TextStyle(color: Colors.white,
                           fontWeight: FontWeight.bold,fontSize: 15,),textAlign: TextAlign.center,),
-                        ButtonClick: (){editprofile();GetShared();},
+                        ButtonClick: (){check();GetShared();},
                       ),
                     ),
 

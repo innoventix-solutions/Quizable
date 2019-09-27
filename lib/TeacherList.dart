@@ -268,7 +268,7 @@ class _TeacherListState extends State<TeacherList> {
 
         Expanded( child:  GlobalData.Studentlist.isEmpty ?
         Center(child:
-        ListView.builder( itemCount: 2,
+        ListView.builder( itemCount: 1,
 
             itemBuilder: (BuildContext ctxt, int index) {
               return  GestureDetector(
