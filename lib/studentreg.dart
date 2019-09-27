@@ -110,8 +110,7 @@ class _studentregState extends State<studentreg> {
 
       _showDialog(Msg: "Parent Phone Number is not Valid");
     }
-    else
-    if(Starting_date == null){
+    else if(Starting_date == null){
       dob();
     }else
     if (password.text.toString() == cpass.text.toString()) {
