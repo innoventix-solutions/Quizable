@@ -252,12 +252,15 @@ class _StudentListState extends State<StudentList> {
                                   children: <Widget>[
                                     Container(height: 70,width: 70,margin: EdgeInsets.only(left: 20,top: 15,bottom: 10),
                                       decoration: new BoxDecoration(
+                                        color: Colors.red,
                                           shape: BoxShape.circle,
                                           image: new DecorationImage(
-                                            fit: BoxFit.fill,
-                                            image:GlobalData.Userphoto!=""?
+                                            fit: BoxFit.cover,
+//                                              image:GlobalData.Studentlist[index].userphoto!=""? NetworkImage("https://images.pexels.com/photos/1313267/pexels-photo-1313267.jpeg"):
+//                                              AssetImage('assets/images/man.png')
+                                            image:GlobalData.Studentlist[index].userphoto!=""?
                                             NetworkImage(GlobalData.Studentlist[index].userphoto):
-                                            globalData.getgender(),
+                                            globalData.getUserGender(GlobalData.Studentlist[index].gender),
                                           ),
                                         
                                       ),),
