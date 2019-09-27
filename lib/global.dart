@@ -1473,6 +1473,7 @@ class QuizExerciseLog extends StatelessWidget {
 
 class PreviewQuizs extends StatelessWidget {
 
+  final bool isActive;
   final String heading;
   final String paragraph;
   final Color color;
@@ -1492,7 +1493,8 @@ class PreviewQuizs extends StatelessWidget {
         this.id,
       //  this.is_taken,
         this.duration,
-        this.levels});
+        this.levels,
+      this.isActive});
 
 
   // 28-8-19 a
@@ -1570,6 +1572,7 @@ class PreviewQuizs extends StatelessWidget {
           borderRadius: BorderRadius.circular(5.0),
         ),
           child: Column(mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Row(
                 children: <Widget>[
@@ -1656,9 +1659,12 @@ class PreviewQuizs extends StatelessWidget {
               Container(
                 padding: EdgeInsets.only(left: 25,top: 20,right: 30,bottom: 30),
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Text(paragraph,style: TextStyle(fontWeight: FontWeight.bold,
                         fontSize: 15,color: GlobalData.gray),textAlign: TextAlign.justify,),
+
+                    Icon(Icons.remove_red_eye,color: isActive?Colors.green:Colors.red,)
 
                   ],
                 ),
@@ -2557,4 +2563,32 @@ class AssignmentExerciseLog extends StatelessWidget {
         ),
       );
   }
+}
+
+
+
+
+void CustomShowDialog(context,{String title,String msg,String buttonText,VoidCallback onPressed}) {
+  // flutter defined function
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      // return object of type Dialog
+      return AlertDialog(
+        title: new Text(title),
+        content: new Text(msg),
+        actions: <Widget>[
+          // usually buttons at the bottom of the dialog
+          new FlatButton(
+            child: new Text(buttonText??"Ok",style: TextStyle(color: Colors.black),),
+            onPressed: () {
+              onPressed==null?
+              Navigator.of(context).pop():
+              onPressed();
+            },
+          ),
+        ],
+      );
+    },
+  );
 }

@@ -104,6 +104,7 @@ class _PreviewQuizState extends State<PreviewQuiz> {
                         //is_taken: Quizz_List[i].is_taken,
                         duration: Quizz_List[i].dur_each_level,
                         levels: Quizz_List[i].no_of_levels,
+                        isActive: Quizz_List[i].status.toLowerCase()=="hold"?true:false,
                       ): SizedBox()
                     );
                   }),

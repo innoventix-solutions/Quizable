@@ -119,17 +119,13 @@ class _quizclassState extends State<quizclass> {
                               children: <Widget>[
                                 Stack(
                                   children: <Widget>[
-                                    Container(
-                                      height: 70,
-                                      width: 70,
-                                      margin: EdgeInsets.only(
-                                          left: 20, top: 15, bottom: 10),
-                                      decoration: new BoxDecoration(
-                                          shape: BoxShape.circle,
-                                          image: new DecorationImage(
-                                            fit: BoxFit.fill,
-                                            image: NetworkImage(GlobalData.Class_list[index].classicon),
-                                          )),
+                                    Container(height: 70,width: 70,margin: EdgeInsets.only(left: 20,top: 15,bottom: 10),
+                                      child: ClipOval(
+                                        child: FadeInImage.assetNetwork(
+                                          placeholder: 'assets/images/classicon.png',
+                                          image: GlobalData.Class_list[index].classicon,fit: BoxFit.cover,
+                                        ),
+                                      ),
                                     ),
                                   ],
                                 ),
@@ -146,7 +142,9 @@ class _quizclassState extends State<quizclass> {
                                         Text(Class_list[index].classname,style: TextStyle(fontSize: 15),textAlign: TextAlign.left,),
                                         Padding(
                                           padding: const EdgeInsets.only(top:5),
-                                          child: Text('12 Students',style: TextStyle(fontSize: 12),),
+                                          child:
+                                          Text(GlobalData.Class_list[index].total_join==null?"0 Student":GlobalData.Class_list[index].total_join.toString()
+                                              +" Students",style: TextStyle(fontSize: 14),),
                                         ),
                                       ],
                                     ),
