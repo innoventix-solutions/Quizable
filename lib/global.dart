@@ -1663,8 +1663,17 @@ class PreviewQuizs extends StatelessWidget {
                   children: <Widget>[
                     Text(paragraph,style: TextStyle(fontWeight: FontWeight.bold,
                         fontSize: 15,color: GlobalData.gray),textAlign: TextAlign.justify,),
+                    
+                    Padding(
+                      padding: const EdgeInsets.only(top: 10),
+                      child: Card(color: isActive?Colors.green:Colors.red,child: Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: Text(isActive?"Published":"Unpublished",style:
+                        TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
+                      ),),
+                    ),
 
-                    Icon(Icons.remove_red_eye,color: isActive?Colors.green:Colors.red,)
+                    /*Icon(Icons.remove_red_eye,color: isActive?Colors.green:Colors.red,)*/
 
                   ],
                 ),

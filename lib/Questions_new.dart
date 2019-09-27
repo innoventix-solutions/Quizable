@@ -575,7 +575,10 @@ class _QuestionsState extends State<Questions> {
                                     Options[index].trueanswer=value;setState(() {
 
                                     });},),*/
-                                  Expanded(child: Text(Options[index].value))
+                                  Expanded(child: Padding(
+                                    padding: const EdgeInsets.only(left: 10),
+                                    child: Text(Options[index].value),
+                                  ))
 
 ,Padding(
   padding: const EdgeInsets.all(8.0),

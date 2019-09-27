@@ -557,11 +557,14 @@ Widget MyQuestionType(String type) {
                               itemCount: Options.length,itemBuilder: (context,index){
                             return Container(child: Row(
                               children: <Widget>[
-                                Checkbox(value: Options[index].trueanswer, onChanged: (value){
+                                /*Checkbox(value: Options[index].trueanswer, onChanged: (value){
                                   Options[index].trueanswer=value;setState(() {
 
-                                  });},),
-                                Expanded(child: Text(Options[index].value))
+                                  });},),*/
+                                Expanded(child: Padding(
+                                  padding: const EdgeInsets.only(left: 10),
+                                  child: Text(Options[index].value),
+                                ))
 
                                 ,Padding(
                                   padding: const EdgeInsets.all(8.0),
