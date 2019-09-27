@@ -83,7 +83,7 @@ class _TeacherListState extends State<TeacherList> {
                 children: <Widget>[
                   Padding(
                     padding: const EdgeInsets.only(
-                        right: 30
+                        right: 50
                     ),
                     child:   GestureDetector(
                         onTap: (){
@@ -267,7 +267,7 @@ class _TeacherListState extends State<TeacherList> {
 
 
         Expanded( child:  GlobalData.Studentlist.isEmpty ?
-        Center(child:Text("No Teacher's joined yet",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),)
+        Center(child:Text("No Teacher's joined yet",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20,color: Colors.red),)
         /*ListView.builder( itemCount: 1,
 
             itemBuilder: (BuildContext ctxt, int index) {

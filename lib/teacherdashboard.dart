@@ -29,7 +29,7 @@ class _teacherdashboardState extends State<teacherdashboard> {
                 children: <Widget>[
                   Padding(
                     padding: const EdgeInsets.only(
-                        right: 30
+                        right: 50
                     ),
                     child:  GestureDetector(
                         onTap: (){
@@ -308,7 +308,7 @@ class _teacherdashboardState extends State<teacherdashboard> {
                     fontSize: 22,
                     fontWeight: FontWeight.bold)),
                 onTap: () {
-                  Navigator.of(context).pushReplacementNamed('teacherSelectClass');
+                  Navigator.of(context).pushNamed('teacherSelectClass');
                   // do what you need to do when "Click here" gets clicked
                 }
             ),

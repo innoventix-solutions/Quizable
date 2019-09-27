@@ -85,7 +85,7 @@ GlobalData.Studentlist.clear();
                 children: <Widget>[
                   Padding(
                     padding: const EdgeInsets.only(
-                        right: 30
+                        right: 50
                     ),
                     child: GestureDetector(
                         onTap: (){
@@ -177,7 +177,7 @@ GlobalData.Studentlist.clear();
             Expanded(
               child:  GlobalData.Studentlist.isEmpty ?
               Center
-                (child:Text("No Student's joined yet",style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold),)
+                (child:Text("No Student's joined yet",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: Colors.red),)
               /*ListView.builder( itemCount: 1,
 
                   itemBuilder: (BuildContext ctxt, int index) {
