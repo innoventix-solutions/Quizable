@@ -25,7 +25,7 @@ class _welcomeState extends State<welcome> {
                 children: <Widget>[
                   Padding(
                     padding: const EdgeInsets.only(
-                        right: 30
+                        right: 50
                     ),
                     child:  GestureDetector(
                         onTap: (){

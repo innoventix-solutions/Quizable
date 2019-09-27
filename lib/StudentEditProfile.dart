@@ -122,8 +122,7 @@ class _StudentEditProfileState extends State<StudentEditProfile> {
 
       if (ParsedJson['status'] == 1) {
 
-        Navigator.of(context)
-            .pushNamed('studentdashboard');
+        Navigator.of(context).pop();
 
 
         SharedPreferences preferences =  await SharedPreferences.getInstance();

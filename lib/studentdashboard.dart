@@ -77,7 +77,7 @@ class _studentdashboardState extends State<studentdashboard> {
                 children: <Widget>[
                   Padding(
                     padding: const EdgeInsets.only(
-                        right: 30
+                        right: 50
                     ),
                     child:  GestureDetector(
                         onTap: (){

@@ -126,8 +126,7 @@ class _adminprofileState extends State<adminprofile> {
 
       if (ParsedJson['status'] == 1) {
 
-        Navigator.of(context)
-            .pushNamed('dashboard');
+        Navigator.of(context).pop();
 
 
         SharedPreferences preferences =  await SharedPreferences.getInstance();
