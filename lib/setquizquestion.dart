@@ -421,6 +421,7 @@ setalldetails(){
                           child: Padding(
                             padding: const EdgeInsets.only(left: 20),
                             child: DateTimePickerFormField(
+                              firstDate: DateTime.now(),
                               inputType:  inputType,
                               format: formats[inputType],
                               editable: false,
@@ -458,6 +459,7 @@ setalldetails(){
                           child: Padding(
                             padding: const EdgeInsets.only(left: 20),
                             child: DateTimePickerFormField(
+                              firstDate: DateTime.now(),
                               inputType:  inputType,
                               format: formats[inputType],
                               editable: false,
