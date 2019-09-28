@@ -256,6 +256,7 @@ setalldetails(){
                         ),
                       ),
 
+                      
 
                       Padding(
                         padding: const EdgeInsets.only(top: 0),
