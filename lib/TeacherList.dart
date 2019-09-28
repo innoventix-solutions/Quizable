@@ -65,6 +65,11 @@ class _TeacherListState extends State<TeacherList> {
     });
   }
 
+
+
+ 
+
+
 /* 30-8 delete student*/
   void showDialog1(BuildContext context,String id ) {
     // flutter defined function
@@ -242,6 +247,7 @@ class _TeacherListState extends State<TeacherList> {
                           if(value=="delete")     //28-8-19 a
                               {
                                   //delete function
+
                           }
                         },
                       ),
