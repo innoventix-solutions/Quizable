@@ -15,6 +15,7 @@ class _TeacherListState extends State<TeacherList> {
 
   GlobalData globalData = new GlobalData();
 
+
   //List<pojostydentlist> globlist = new List();
 
   var gets = "A";
@@ -87,7 +88,7 @@ class _TeacherListState extends State<TeacherList> {
                 children: <Widget>[
                   Padding(
                     padding: const EdgeInsets.only(
-                        right: 30
+                        right: 50
                     ),
                     child:   GestureDetector(
                         onTap: (){
@@ -206,7 +207,9 @@ class _TeacherListState extends State<TeacherList> {
                 Expanded(
                   child:  Row(mainAxisAlignment: MainAxisAlignment.end,
                     children: <Widget>[
-                      GlobalData.userType=="teacher"?Text(""):PopupMenuButton(
+                      GlobalData.userType=="teacher"?
+                      Text(""):
+                      PopupMenuButton(
                         child: Icon(Icons.more_vert),
                         itemBuilder: (_) => <PopupMenuItem<String>>[
                           new PopupMenuItem<String>(
@@ -270,8 +273,8 @@ class _TeacherListState extends State<TeacherList> {
 
 
         Expanded( child:  GlobalData.Studentlist.isEmpty ?
-        Center(child:
-        ListView.builder( itemCount: 2,
+        Center(child:Text("No Teacher's joined yet",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20,color: Colors.red),)
+        /*ListView.builder( itemCount: 1,
 
             itemBuilder: (BuildContext ctxt, int index) {
               return  GestureDetector(
@@ -324,8 +327,10 @@ class _TeacherListState extends State<TeacherList> {
                   ],
                 ),
               );
-            })
-        ) :
+            })*/
+        )
+            :
+
            new ListView.builder
             (
               itemCount: GlobalData.Studentlist.length,
@@ -341,14 +346,17 @@ class _TeacherListState extends State<TeacherList> {
                               children: <Widget>[
                                 GestureDetector(onTap: (){
 
-                                  GlobalData.uid = GlobalData.Studentlist[index].id;
+                                  GlobalData.currentteacher = GlobalData.Studentlist[index];
+
+                                  /*GlobalData.uid = GlobalData.Studentlist[index].id;
                                   GlobalData.Username=GlobalData.Studentlist[index].username;
                                   GlobalData.disc=GlobalData.Studentlist[index].specification;
                                   GlobalData.email=GlobalData.Studentlist[index].email;
                                   GlobalData.user = GlobalData.Studentlist[index];
-                                  GlobalData.gendersel=GlobalData.Studentlist[index].gender;
+                                 // GlobalData.gendersel=GlobalData.Studentlist[index].gender;
+                                  //GlobalData.Userphoto=GlobalData.Studentlist[index].userphoto;
 
-                                  Navigator.of(context)
+                                 */ Navigator.of(context)
                                       .pushNamed('userdetail');
                                 },
                                   child: Container(height: 70,width: 70,margin: EdgeInsets.only(left: 20,top: 15,bottom: 10),
@@ -356,9 +364,9 @@ class _TeacherListState extends State<TeacherList> {
                                         shape: BoxShape.circle,
                                         image: new DecorationImage(
                                           fit: BoxFit.fill,
-                                          image:GlobalData.Userphoto!=""?
+                                          image:GlobalData.Studentlist[index].userphoto!=""?
                                           NetworkImage(GlobalData.Studentlist[index].userphoto):
-                                          globalData.getgender(),
+                                          globalData.getUserGender(GlobalData.Studentlist[index].gender),
                                         )
                                     ),),
                                 ),
@@ -393,8 +401,7 @@ class _TeacherListState extends State<TeacherList> {
                               padding: const EdgeInsets.only(right: 20),
                               child: Row(mainAxisAlignment: MainAxisAlignment.end,
                                 children: <Widget>[
-
-                GlobalData.Studentlist[index].id != GlobalData.uid ?
+                                  GlobalData.Studentlist[index].id != GlobalData.uid ?
                                   PopupMenuButton(
                                     child: Icon(Icons.more_vert),
                                     itemBuilder: (_) => <PopupMenuItem<String>>[
@@ -481,5 +488,6 @@ class _TeacherListState extends State<TeacherList> {
     // TODO: implement initState
     super.initState();
     getstudent();
+    print("My Photo"+GlobalData.Userphoto);
   }
 }

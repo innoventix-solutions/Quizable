@@ -74,8 +74,8 @@ class _PreviewQuizState extends State<PreviewQuiz> {
           ],
         ),
 
-        drawer:
-        drawerquiz(),
+        /*drawer:
+        drawerquiz(),*/
 
         body:
         Column(
@@ -98,12 +98,13 @@ class _PreviewQuizState extends State<PreviewQuiz> {
                       PreviewQuizs(
                         color: GlobalData.pinkred,
                         heading: Quizz_List[i].quiz_title,
-                        paragraph: Quizz_List[i].quiz_subject,
+                        paragraph: Quizz_List[i].publish_date,
                         id:Quizz_List[i].id ,
                         title: Quizz_List[i].quiz_title,
                         //is_taken: Quizz_List[i].is_taken,
                         duration: Quizz_List[i].dur_each_level,
                         levels: Quizz_List[i].no_of_levels,
+                        isActive: Quizz_List[i].status.toLowerCase()=="hold"?true:false,
                       ): SizedBox()
                     );
                   }),

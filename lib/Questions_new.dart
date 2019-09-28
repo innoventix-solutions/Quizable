@@ -14,6 +14,9 @@ class _QuestionsState extends State<Questions> {
   List<MatchClass> Matches = new List();
   String TrueorFalse = "False";
   List<String> Type = ["fillups","matchtype","single","multi","tf"];
+  int numbersOfOptionsSelectd=0;
+
+
 
   TextEditingController QuestionName = new TextEditingController();
   TextEditingController Points = new TextEditingController();
@@ -128,9 +131,7 @@ class _QuestionsState extends State<Questions> {
   void initState() {
     // TODO: implement initState
     super.initState();
-
     print("Questiaosdnf asd");
-
   }
 
   void QuizCompleted(BuildContext context)  {
@@ -574,7 +575,10 @@ class _QuestionsState extends State<Questions> {
                                     Options[index].trueanswer=value;setState(() {
 
                                     });},),*/
-                                  Expanded(child: Text(Options[index].value))
+                                  Expanded(child: Padding(
+                                    padding: const EdgeInsets.only(left: 10),
+                                    child: Text(Options[index].value),
+                                  ))
 
 ,Padding(
   padding: const EdgeInsets.all(8.0),
@@ -626,7 +630,7 @@ Text("Enter answer in sequence with underscore '_' in between the words",style:
                         children: <Widget>[
                           Container(child: Row(
                             children: <Widget>[
-                              Radio(value: "False", groupValue: TrueorFalse, onChanged: (v){TrueorFalse=v;setState(() {
+                              Radio(value: "True", groupValue: TrueorFalse, onChanged: (v){TrueorFalse=v;setState(() {
 
                               });}),
                               Text("True")
@@ -636,7 +640,7 @@ Text("Enter answer in sequence with underscore '_' in between the words",style:
                             ],),),
                           Container(child: Row(
                             children: <Widget>[
-                              Radio(value: "True", groupValue: TrueorFalse, onChanged: (v){TrueorFalse=v;setState(() {
+                              Radio(value: "False", groupValue: TrueorFalse, onChanged: (v){TrueorFalse=v;setState(() {
 
                               });}),
 
@@ -667,6 +671,8 @@ Text("Enter answer in sequence with underscore '_' in between the words",style:
 
     switch (type){
       case 'Multiple Answers':
+
+
         return jsonEncode(Options).toString();
       case 'Match Type':
         return jsonEncode(Matches).toString();
@@ -676,7 +682,7 @@ Text("Enter answer in sequence with underscore '_' in between the words",style:
         return jsonEncode(Options).toString();
       case 'True False':
         Options.clear();
-        if(TrueorFalse==true){
+        if(TrueorFalse=="True"){
           Options.add(option(trueanswer: true,value: "True"));
           Options.add(option(trueanswer: false,value: "False"));
         }else
@@ -842,7 +848,30 @@ Text("Enter answer in sequence with underscore '_' in between the words",style:
                       child: SizedBox(width: 100,
                         child: GradientButtonText(
                           ButtonClick: (){
-                            SaveQuizQuestion();
+                            if( MyQuestionAnswer(SelectedType)=="[]") {
+
+                              CustomShowDialog(context,title: "No Options",msg:
+                              "Please Add Some Options");
+
+                            }else if(
+                            SelectedType=="Single Answer" && getSelectedOptions()==0
+                            ){
+                              CustomShowDialog(context,title:
+
+                              "No Option is Selected",msg:
+                              "Please Select an Options");
+                            }else if(
+                            SelectedType=="Multiple Answers" && getSelectedOptions()<2
+                            ){
+                              CustomShowDialog(context,title:
+                              getSelectedOptions()==0?
+                                  "No Option is Selected":
+                              "Only One Option is Selected",msg:
+                              "Please Select Two or More Options");
+                            }else
+                              {
+                                SaveQuizQuestion();
+                              }
                           },
                           linearGradient:LinearGradient(colors: <Color>[GlobalData.purple,GlobalData.pink]) ,
                           text: Text("Save",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 18,),
@@ -888,8 +917,8 @@ Text("Enter answer in sequence with underscore '_' in between the words",style:
       builder: (BuildContext context) {
         // return object of type Dialog
         return AlertDialog(
-          title: new Text("Some Values Missing"),
-          content: new Text("Please Fill All the Values"),
+          title: new Text("No Options Added"),
+          content: new Text("Please Add Some Options"),
           actions: <Widget>[
             // usually buttons at the bottom of the dialog
             new FlatButton(
@@ -907,7 +936,9 @@ Text("Enter answer in sequence with underscore '_' in between the words",style:
   SaveQuizQuestion()async {
     if (QuestionName.text.toString() == "" || Points.text.toString() == "" ||
         SelectedType.toString() == "" || MyQuestionAnswer(SelectedType) == "") {
-      _showDialog();
+      //_showDialog();
+      CustomShowDialog(context,msg: "Some Values are Missing",title:
+      "Value Missing");
     }else{
 
       print( "question "+ QuestionName.text.toString()+
@@ -915,6 +946,10 @@ Text("Enter answer in sequence with underscore '_' in between the words",style:
     "answer_type "+ SelectedType.toString()+
     "quiz_id "+ GlobalData.QuizID+
     "answer_options " + MyQuestionAnswer(SelectedType));
+
+print("\n\nanswer_options " + MyQuestionAnswer(SelectedType)+"Actual Value"+TrueorFalse);
+
+
 
     http.post(
         "http://edusupportapp.com/api/create_update_quiz_questions.php", body: {
@@ -943,7 +978,7 @@ Text("Enter answer in sequence with underscore '_' in between the words",style:
       } else{
 
       }
-      if(GlobalData.QuestionNumber>=(int.parse(GlobalData.NosofQuesPerLevel)))
+      if(GlobalData.QuestionNumber%(int.parse(GlobalData.NosofQuesPerLevel))==0&&(GlobalData.QuestionNumber!=0))
       {
         Navigator.of(context).pushNamed('level');
       }else {
@@ -952,6 +987,23 @@ Text("Enter answer in sequence with underscore '_' in between the words",style:
     });
   }
   }
+
+
+int  getSelectedOptions()
+  {
+    int mySelectedOptions=0;
+
+    for(int i=0;i<Options.length;i++) {
+      if(Options[i].trueanswer == true)
+        {
+          mySelectedOptions++;
+        }
+    }
+
+    return mySelectedOptions;
+
+  }
+
 }
 
 

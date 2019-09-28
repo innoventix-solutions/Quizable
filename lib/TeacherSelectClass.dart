@@ -10,6 +10,8 @@ class TeacherSelectClass extends StatefulWidget {
 
 class _TeacherSelectClassState extends State<TeacherSelectClass> {
 
+  GlobalData globalData = new GlobalData();
+
   SharedPreferences preferences;
 
   @override
@@ -94,17 +96,14 @@ class _TeacherSelectClassState extends State<TeacherSelectClass> {
                               children: <Widget>[
                                 Stack(
                                   children: <Widget>[
-                                    Container(
-                                      height: 70,
-                                      width: 70,
-                                      margin: EdgeInsets.only(
-                                          left: 20, top: 15, bottom: 10),
-                                      decoration: new BoxDecoration(
-                                          shape: BoxShape.circle,
-                                          image: new DecorationImage(
-                                            fit: BoxFit.fill,
-                                            image: NetworkImage(GlobalData.Class_list[index].classicon),
-                                          )),
+
+                                    Container(height: 70,width: 70,margin: EdgeInsets.only(left: 20,top: 15,bottom: 10),
+                                      child: ClipOval(
+                                        child: FadeInImage.assetNetwork(
+                                          placeholder: 'assets/images/classicon.png',
+                                          image: GlobalData.Class_list[index].classicon,fit: BoxFit.cover,
+                                        ),
+                                      ),
                                     ),
                                   ],
                                 ),

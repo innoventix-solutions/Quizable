@@ -7,6 +7,7 @@ class welcome extends StatefulWidget {
 }
 
 class _welcomeState extends State<welcome> {
+  GlobalData globalData = new GlobalData();
 
   void showDialog1(BuildContext context) {
     // flutter defined function
@@ -24,7 +25,7 @@ class _welcomeState extends State<welcome> {
                 children: <Widget>[
                   Padding(
                     padding: const EdgeInsets.only(
-                        right: 30
+                        right: 50
                     ),
                     child:  GestureDetector(
                         onTap: (){
@@ -94,8 +95,8 @@ child: Scaffold(
               Padding(
                 padding: const EdgeInsets.only(top: 20,bottom: 10),
                 child: Container(
-                  child: CircleAvatar(backgroundImage:GlobalData.Userphoto!=null?
-                  NetworkImage(GlobalData.Userphoto):AssetImage('assets/images/users.png',),
+                  child: CircleAvatar(backgroundImage:GlobalData.Userphoto!=""?
+                  NetworkImage(GlobalData.Userphoto):globalData.getgender(),
                     radius: 35.0,
                   ),
                 ),

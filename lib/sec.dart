@@ -118,12 +118,17 @@ class _secState extends State<sec> {
       {
         _showDialog(Msg: "Phone Number is not Valid");
       }
-      else
-    if (password.text.toString() == cpass.text.toString()) {
+
+    else if(password.text.length<6){
+      _showDialog(Msg: "Password must contain atleast 6 digit");
+    }
+      else if (password.text.toString() == cpass.text.toString()) {
       Signup();
     } else {
       _showDialog();
     }
+
+
   }
 
   void _showDialog({String Msg}) {

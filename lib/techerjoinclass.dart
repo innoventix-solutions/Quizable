@@ -29,11 +29,11 @@ class _techerjoinclassState extends State<techerjoinclass> {
                 children: <Widget>[
                   Padding(
                     padding: const EdgeInsets.only(
-                        right: 30
+                        right: 50
                     ),
                     child:  GestureDetector(
                         onTap: (){
-                          Navigator.of(context).pushNamed('welcome');
+                          Navigator.of(context).pushNamed('techerjoinclass');
                         },child: new Text("Cancel")),
 
 

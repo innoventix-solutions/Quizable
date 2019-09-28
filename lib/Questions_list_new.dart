@@ -173,6 +173,47 @@ class _Question_ListState extends State<Question_List> {
 
             ],
           ),);
+
+      case "Fill-in the gaps":
+        return Card(
+          child: Column(
+            children: <Widget>[
+              Row(
+                children: <Widget>[
+                  Expanded(
+                    child: Container(
+                      height: Answers.isEmpty?50.0:Answers.length*50.0,
+
+                      child: Column(
+                        children: <Widget>[
+                          Expanded(
+                            child: Answers.isEmpty?Text(""): ListView.builder(
+                                shrinkWrap: true,
+                                key:Key(type+index.toString()),
+                                itemCount: Answers.length,
+                                itemBuilder: (context,index){
+                                  return Container(
+
+                                    child: Row(
+                                      children: <Widget>[
+                                        /*Checkbox(value: Answers[index].trueanswer, ),*/
+                                        Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: Text(Answers[index].value,maxLines: 4,),
+                                        )
+                                      ],),);}),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+
+
+
+            ],
+          ),);
       default:
         return Card(
           child: Column(

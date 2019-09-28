@@ -209,14 +209,15 @@ class _RecentQuestionState extends State<RecentQuestion> {
                     return GestureDetector(
                       onTap: (){
                        },
-                      child: recentquestions(
-                        color: GlobalData.pinkred,
-                        heading: Quizz_List[i].quiz_title,
-                        paragraph: Quizz_List[i].publish_date,
-                        id:Quizz_List[i].id ,
-                        title: (int.parse(Quizz_List[i].que_each_level.toString())*int.parse(Quizz_List[i].no_of_levels.toString())).toString(),
+                      child:
+                     /* recentquestions(
+                      color: GlobalData.pinkred,
+                      heading: Quizz_List[i].quiz_title,
+                      paragraph: Quizz_List[i].publish_date,
+                      id:Quizz_List[i].id ,
+                      title: (int.parse(Quizz_List[i].que_each_level.toString())*int.parse(Quizz_List[i].no_of_levels.toString())).toString(),
 
-                      ),
+                    ),*/SizedBox()
                     );
                   }),
             ),

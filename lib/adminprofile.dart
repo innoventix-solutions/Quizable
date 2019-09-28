@@ -4,6 +4,8 @@ import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'global.dart';
 import 'dart:io';
+import 'utilities.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:http/http.dart' as http;
 import 'package:newpro/Pojo/pojostydentlist.dart';
@@ -14,6 +16,58 @@ class adminprofile extends StatefulWidget {
 }
 
 class _adminprofileState extends State<adminprofile> {
+
+
+  Show_toast(String msg, Color color) {
+    Fluttertoast.showToast(
+        msg: msg,
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.CENTER,
+        timeInSecForIos: 1,
+        backgroundColor: color,
+        textColor: Colors.white,
+        fontSize: 16.0);
+  }
+
+  void _showDialog({String Msg}) {
+    // flutter defined function
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        // return object of type Dialog
+        return AlertDialog(
+          content: new Text(Msg==null?"Password not matched":Msg),
+        );
+      },
+    );
+  }
+
+  void _showDialog1() {
+    // flutter defined function
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        // return object of type Dialog
+        return AlertDialog(
+          content: new Text("Email is incorrect"),
+        );
+      },
+    );
+  }
+
+
+  check() {
+    if(Phone.text.length>11 || Phone.text.length<=10)
+    {
+      _showDialog(Msg: "Phone Number is not Valid");
+    }
+    else
+     {
+      editprofile();
+    }
+  }
+
+  GlobalData globalData = new GlobalData();
 
   var photo="";
 
@@ -39,7 +93,7 @@ class _adminprofileState extends State<adminprofile> {
 
     shared.setString("name", Name.text.toString());
     shared.setString("phone", Phone.text.toString());
-    shared.setString("userphoto", GlobalData.Userphoto);
+    //shared.setString("userphoto", GlobalData.Userphoto);
 
 
   }
@@ -50,7 +104,7 @@ class _adminprofileState extends State<adminprofile> {
 
     Name.text=shared.getString("name");
     Phone.text=shared.getString("phone");
-    GlobalData.Userphoto = shared.getString("userphoto");
+   //GlobalData.Userphoto = shared.getString("userphoto");
 
   }
 
@@ -72,8 +126,7 @@ class _adminprofileState extends State<adminprofile> {
 
       if (ParsedJson['status'] == 1) {
 
-        Navigator.of(context)
-            .pushNamed('dashboard');
+        Navigator.of(context).pop();
 
 
         SharedPreferences preferences =  await SharedPreferences.getInstance();
@@ -82,7 +135,7 @@ class _adminprofileState extends State<adminprofile> {
         GlobalData.Userphoto= ParsedJson['userdata']['user_photo'];
         preferences.setString("name",GlobalData.Fullname);
         preferences.setString("phone", GlobalData.Phone);
-        preferences.setString("userphoto", GlobalData.Userphoto);
+        preferences.setString("UserPhoto", GlobalData.Userphoto);
       }else
       {
         Show_toast_Now(ParsedJson['msg'],Colors.green);
@@ -174,34 +227,74 @@ getvalue();
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: GestureDetector(onTap: (){getImage();},
-                    child: Container(
+                    child: Stack(children: <Widget>[
+                      Container(
                         height: 80,width: 80,
-                        decoration:_image!=null?
-                        new BoxDecoration(
+                          decoration:_image!=null?
+                          new BoxDecoration(
 
-                            borderRadius: BorderRadius.all(Radius.circular(100),),
-                            color: Colors.black,
-                            image: new DecorationImage(
-                              fit: BoxFit.fill,
-                              image: FileImage(_image),
+                              borderRadius: BorderRadius.all(Radius.circular(100),),
+                              color: Colors.black,
+                              image: new DecorationImage(
+                                fit: BoxFit.fill,
+                                image: FileImage(_image),
 
-                            )):
-                        GlobalData.Userphoto!=null?
-                        BoxDecoration(
-                          image: DecorationImage(image: NetworkImage(GlobalData.Userphoto),fit: BoxFit.cover),
-                          borderRadius: BorderRadius.all(Radius.circular(100)),
-
-                        )
-
-                        :BoxDecoration(
+                              )):
+                          GlobalData.Userphoto!=""?
+                          BoxDecoration(
+                            image: DecorationImage(image: NetworkImage(GlobalData.Userphoto),fit: BoxFit.cover),
                             borderRadius: BorderRadius.all(Radius.circular(100)),
-                            color: Colors.black,
-                            image: DecorationImage(image: AssetImage('assets/images/man.jpg'),fit: BoxFit.cover)
+
+                          )
+
+                              :BoxDecoration(
+                              borderRadius: BorderRadius.all(Radius.circular(100)),
+                              color: Colors.black,
+                              image: DecorationImage(image:
+                              globalData.getgender(),fit: BoxFit.cover)
 
 
-                        )
+                          )
 
-                       ,),
+
+
+                      ),
+                      Positioned(
+                        right: 0,bottom: 0,
+                        child: GestureDetector(onTap: (){
+
+                          getImage();
+
+                        },
+                          child: Card(color: Colors.black,elevation: 5.0,
+                            shape: RoundedRectangleBorder(side: BorderSide(color: Colors.white),
+                              borderRadius: BorderRadius.circular(0.0),
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.all(4.0),
+                              child: Container(
+
+
+
+
+                                child:GestureDetector(onTap: (){
+                                  getImage();
+                                },
+                                  child: Icon(
+                                    Icons.file_upload,
+                                    color: Colors.white,
+                                    size: 12.0,
+
+                                  ),
+                                ),),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+
+                    ),
+
                   ),
                 ),
                 Text("Change Profile"),
@@ -258,7 +351,7 @@ getvalue();
                         linearGradient:LinearGradient(colors: <Color>[GlobalData.purple,GlobalData.pink]) ,
                         text: Text("Save Changes",style: TextStyle(color: Colors.white,
                           fontWeight: FontWeight.bold,fontSize: 15,),textAlign: TextAlign.center,),
-                        ButtonClick: (){editprofile();GetShared();},
+                        ButtonClick: (){check();GetShared();},
                       ),
                     ),
 

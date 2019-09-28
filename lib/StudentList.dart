@@ -19,9 +19,10 @@ class _StudentListState extends State<StudentList> {
 
   var gets = "A";
 
-  getstudent()
+  getstudent
+      ()
   async {
-
+GlobalData.Studentlist.clear();
     await http.post("http://edusupportapp.com/api/get_user_list_by_class.php"
         ,body: {
           "Class_id": GlobalData.classid,
@@ -84,7 +85,7 @@ class _StudentListState extends State<StudentList> {
                 children: <Widget>[
                   Padding(
                     padding: const EdgeInsets.only(
-                        right: 30
+                        right: 50
                     ),
                     child: GestureDetector(
                         onTap: (){
@@ -176,8 +177,8 @@ class _StudentListState extends State<StudentList> {
             Expanded(
               child:  GlobalData.Studentlist.isEmpty ?
               Center
-                (child:
-              ListView.builder( itemCount: 2,
+                (child:Text("No Student's joined yet",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: Colors.red),)
+              /*ListView.builder( itemCount: 1,
 
                   itemBuilder: (BuildContext ctxt, int index) {
                     return  GestureDetector(
@@ -233,7 +234,7 @@ class _StudentListState extends State<StudentList> {
                         ],
                       ),
                     );
-                  })
+                  })*/
               ) :
 
 
@@ -252,12 +253,15 @@ class _StudentListState extends State<StudentList> {
                                   children: <Widget>[
                                     Container(height: 70,width: 70,margin: EdgeInsets.only(left: 20,top: 15,bottom: 10),
                                       decoration: new BoxDecoration(
+                                        color: Colors.red,
                                           shape: BoxShape.circle,
                                           image: new DecorationImage(
-                                            fit: BoxFit.fill,
-                                            image:GlobalData.Userphoto!=""?
+                                            fit: BoxFit.cover,
+//                                              image:GlobalData.Studentlist[index].userphoto!=""? NetworkImage("https://images.pexels.com/photos/1313267/pexels-photo-1313267.jpeg"):
+//                                              AssetImage('assets/images/man.png')
+                                            image:GlobalData.Studentlist[index].userphoto!=""?
                                             NetworkImage(GlobalData.Studentlist[index].userphoto):
-                                            globalData.getgender(),
+                                            globalData.getUserGender(GlobalData.Studentlist[index].gender),
                                           ),
                                         
                                       ),),

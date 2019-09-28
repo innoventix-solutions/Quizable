@@ -105,17 +105,20 @@ class _studentregState extends State<studentreg> {
       print(phone.text.length.toString());
       _showDialog(Msg: "Phone Number is not Valid");
     }
-   /* else if(par_phone.text.length>11 || par_phone.text.length<10)
+   else if(par_phone.text.length>11 || par_phone.text.length<=10)
     {
 
-      _showDialog(Msg: "Parent Number is not Valid");
-    }*/
-    else
+      _showDialog(Msg: "Parent Phone Number is not Valid");
+    }
+    else if(Starting_date == null){
+      dob();
+    }else
     if (password.text.toString() == cpass.text.toString()) {
       Signup();
     } else {
       _showDialog();
     }
+
   }
 
   void _showDialog({String Msg}) {
@@ -143,6 +146,20 @@ class _studentregState extends State<studentreg> {
       },
     );
   }
+
+  void dob() {
+    // flutter defined function
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        // return object of type Dialog
+        return AlertDialog(
+          content: new Text("Please Select DOB"),
+        );
+      },
+    );
+  }
+
 
   /*Future<Null> _selectDate(BuildContext context) async {
     final DateTime picked = await showDatePicker(

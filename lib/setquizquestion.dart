@@ -272,7 +272,7 @@ setalldetails(){
                           ),
                         ),
                       ),
-                      CustomTextField(Inputnumber: true,controller: durlevel,Texth: "10 Minutes",hintStyle: TextStyle(fontSize: 20),),
+                      CustomTextField(Inputnumber: true,controller: durlevel,Texth: "Specify time in minutes",hintStyle: TextStyle(fontSize: 20),),
 
 
                       Padding(

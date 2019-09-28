@@ -19,7 +19,7 @@ class Classes{
   factory Classes.fromJson(Map<String,dynamic> parsedJson){
 
     return Classes(
-      id: parsedJson['ID'],
+      id: parsedJson['ID'].toString(),
       userid: parsedJson['user_id'],
       classname: parsedJson['class_name'],
       classicon: parsedJson['class_icon'],
@@ -28,7 +28,7 @@ class Classes{
       createddate: parsedJson['create_date'],
         accout_type:parsedJson['accout_type'],
         username:parsedJson['username'],
-        total_join:parsedJson['total_join'],
+        total_join:parsedJson['total_join'].toString(),
       selected: false
     );
   }

@@ -4,6 +4,7 @@ import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'global.dart';
 import 'dart:io';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:http/http.dart' as http;
 import 'package:newpro/Pojo/pojostydentlist.dart';
@@ -14,6 +15,58 @@ class StudentEditProfile extends StatefulWidget {
 }
 
 class _StudentEditProfileState extends State<StudentEditProfile> {
+
+
+  Show_toast(String msg, Color color) {
+    Fluttertoast.showToast(
+        msg: msg,
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.CENTER,
+        timeInSecForIos: 1,
+        backgroundColor: color,
+        textColor: Colors.white,
+        fontSize: 16.0);
+  }
+
+  void _showDialog({String Msg}) {
+    // flutter defined function
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        // return object of type Dialog
+        return AlertDialog(
+          content: new Text(Msg==null?"Password not matched":Msg),
+        );
+      },
+    );
+  }
+
+  void _showDialog1() {
+    // flutter defined function
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        // return object of type Dialog
+        return AlertDialog(
+          content: new Text("Email is incorrect"),
+        );
+      },
+    );
+  }
+
+
+  check() {
+    if(Phone.text.length>11 || Phone.text.length<=10)
+    {
+      _showDialog(Msg: "Phone Number is not Valid");
+    }
+    else
+    {
+      editprofile();
+    }
+  }
+
+  GlobalData globalData = new GlobalData();
 
   TextEditingController Name = new TextEditingController(text: GlobalData.Fullname);
   TextEditingController Phone = new TextEditingController(text: GlobalData.Phone);
@@ -37,7 +90,7 @@ class _StudentEditProfileState extends State<StudentEditProfile> {
 
     shared.setString("name", Name.text.toString());
     shared.setString("phone", Phone.text.toString());
-
+    //shared.setString("userphoto", GlobalData.Userphoto);
 
   }
 
@@ -47,6 +100,7 @@ class _StudentEditProfileState extends State<StudentEditProfile> {
 
     Name.text=shared.getString("name");
     Phone.text=shared.getString("phone");
+    //GlobalData.Userphoto = shared.getString("userphoto");
 
   }
 
@@ -68,8 +122,7 @@ class _StudentEditProfileState extends State<StudentEditProfile> {
 
       if (ParsedJson['status'] == 1) {
 
-        Navigator.of(context)
-            .pushNamed('studentdashboard');
+        Navigator.of(context).pop();
 
 
         SharedPreferences preferences =  await SharedPreferences.getInstance();
@@ -78,7 +131,7 @@ class _StudentEditProfileState extends State<StudentEditProfile> {
         GlobalData.Userphoto= ParsedJson['userdata']['user_photo'];
         preferences.setString("name",GlobalData.Fullname);
         preferences.setString("phone", GlobalData.Phone);
-        preferences.setString("userphoto", GlobalData.Userphoto);
+        preferences.setString("UserPhoto", GlobalData.Userphoto);
       }else
       {
         Show_toast_Now(ParsedJson['msg'],Colors.green);
@@ -171,38 +224,40 @@ class _StudentEditProfileState extends State<StudentEditProfile> {
                   child: GestureDetector(onTap: (){getImage();},
                     child: Stack(
                        children: <Widget>[
-                         Container(
-                           height: 80,width: 80,
-                           decoration:_image!=null?
-                           new BoxDecoration(
+                        Container(
+                        height: 80,width: 80,
+                            decoration:_image!=null?
+                            new BoxDecoration(
 
-                               borderRadius: BorderRadius.all(Radius.circular(100),),
+                                borderRadius: BorderRadius.all(Radius.circular(100),),
+                                color: Colors.black,
+                                image: new DecorationImage(
+                                  fit: BoxFit.fill,
+                                  image: FileImage(_image),
 
-                               image: new DecorationImage(
-                                 fit: BoxFit.cover,
-                                 image: FileImage(_image),
+                                )):
+                            GlobalData.Userphoto!=""?
+                            BoxDecoration(
+                              image: DecorationImage(image: NetworkImage(GlobalData.Userphoto),fit: BoxFit.cover),
+                              borderRadius: BorderRadius.all(Radius.circular(100)),
 
-                               ),border: Border.all(color: Colors.black,width: 5)):
-                           GlobalData.Userphoto!=null?
-                           BoxDecoration(
-                             image: DecorationImage(image: NetworkImage(GlobalData.Userphoto),fit: BoxFit.cover),
-                             borderRadius: BorderRadius.all(Radius.circular(100)),
+                            )
 
-                           ):BoxDecoration(
-                               borderRadius: BorderRadius.all(Radius.circular(100)),
-                               color: Colors.black,
-                               image: DecorationImage(image: AssetImage('assets/images/man.jpg'),fit: BoxFit.cover)
+                                :BoxDecoration(
+                                borderRadius: BorderRadius.all(Radius.circular(100)),
+                                color: Colors.black,
+                                image: DecorationImage(image:
+                                globalData.getgender(),fit: BoxFit.cover)
 
 
-                           )
+                            )
 
-                           ,),
+
+                        ),
                          Positioned(
                            right: 0,bottom: 0,
                            child: GestureDetector(onTap: (){
-
-                             Navigator.of(context)
-                                 .pushNamed('EditProfile');
+                             getImage();
 
                            },
                              child: Card(color: Colors.black,elevation: 5.0,
@@ -216,11 +271,15 @@ class _StudentEditProfileState extends State<StudentEditProfile> {
 
 
 
-                                   child:Icon(
-                                     Icons.file_upload,
-                                     color: Colors.white,
-                                     size: 12.0,
+                                   child:GestureDetector(onTap: (){
+                                     getImage();
+                                   },
+                                     child: Icon(
+                                       Icons.file_upload,
+                                       color: Colors.white,
+                                       size: 12.0,
 
+                                     ),
                                    ),),
                                ),
                              ),
@@ -284,7 +343,7 @@ class _StudentEditProfileState extends State<StudentEditProfile> {
                         linearGradient:LinearGradient(colors: <Color>[GlobalData.purple,GlobalData.pink]) ,
                         text: Text("Save Changes",style: TextStyle(color: Colors.white,
                           fontWeight: FontWeight.bold,fontSize: 15,),textAlign: TextAlign.center,),
-                        ButtonClick: (){editprofile();GetShared();},
+                        ButtonClick: (){check();GetShared();},
                       ),
                     ),
 
