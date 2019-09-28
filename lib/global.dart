@@ -1525,20 +1525,20 @@ class PreviewQuizs extends StatelessWidget {
                 children: <Widget>[
                   Padding(
                     padding: const EdgeInsets.only(
-                        right: 30
+                        right: 50
                     ),
                     child: GestureDetector(
                         onTap: (){
-                          Delete();
-                          Show_toast("Delete Successfully", Colors.green);
-                          Navigator.of(context).pushNamed('dashboard');
-                        },child: new Text("Ok")),
+                          Navigator.of(context).pushNamed('previewQuiz');
+                        },child: new Text("Cancel")),
 
                   ),
                   GestureDetector(
                       onTap: (){
-                        Navigator.of(context).pushNamed('previewQuiz');
-                      },child: new Text("Cancel")),
+                        Delete();
+                        Show_toast("Delete Successfully", Colors.green);
+                        Navigator.of(context).pushNamed('dashboard');
+                      },child: new Text("Ok")),
                 ],
               ),
               onPressed: () {
