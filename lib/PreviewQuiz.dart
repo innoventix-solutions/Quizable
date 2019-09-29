@@ -109,6 +109,43 @@ class _PreviewQuizState extends State<PreviewQuiz> {
                     );
                   }),
             ),
+
+                 Padding(
+                        padding: const EdgeInsets.only(bottom: 25, right: 15),
+                        child: GestureDetector(
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: <Widget>[
+
+                                 Row(children: <Widget>[
+
+                                   Icon(
+                                   Icons.add_circle,
+                                   color: GlobalData.lightblue,
+                                   size: 20,
+                                 ),
+
+                                   Text(
+                                     'Add New Quiz Topic',
+                                     style: TextStyle(
+                                         fontSize: 18,
+                                         fontWeight: FontWeight.bold,
+                                         color: GlobalData.lightblue),
+                                   ),],
+
+                                 ),
+
+
+
+
+                            ],
+                          ),
+                          onTap: () {
+                         Navigator.of(context).pushNamed('setquizquestions ');
+                              },
+                        ),
+                      ),
           ],
         )
     );

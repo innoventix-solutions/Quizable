@@ -17,6 +17,7 @@ class _RecentQuestionState extends State<RecentQuestion> {
 
   List<Pojo_quizzes> Quizz_List = new List();
   List<Pojo_getassignment>  assignment_list = new List();
+  String spellinglist="0";
 
   GetAssignment() async{
 
@@ -98,24 +99,44 @@ class _RecentQuestionState extends State<RecentQuestion> {
         body:
         Column(
           children: <Widget>[
-
-            assignment_list.isEmpty && Quizz_List.isEmpty ? Center(child: Padding(
+            assignment_list.isEmpty && Quizz_List.isEmpty && spellinglist=="0" ? Center(child: Padding(
               padding: const EdgeInsets.all(15.0),
               child: Text("You don't have not published any class \nactivity yet. Use the Slider button to\n start setting Class activites.",style: TextStyle(fontSize: 18,height: 1.2),textAlign: TextAlign.center,),
             )) :
 
-            Card(elevation: 5.0,color: Colors.red,
-              child: Padding(
-                padding: const EdgeInsets.only(top: 5,bottom: 5),
-                child: Container(
-                  child: Column(mainAxisAlignment: MainAxisAlignment.start,
-                    children: <Widget>[
-                      Row(mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          Text('Class Assignments',style: TextStyle(fontSize: 18,
-                              fontWeight:  FontWeight.bold,color: GlobalData.gray),),
-                        ],)
-                    ],),
+            Padding(
+              padding: const EdgeInsets.only(top: 15),
+              child:
+              assignment_list.isEmpty?
+              Text("No Assignment created for this class yet",style: TextStyle(
+                fontWeight: FontWeight.bold,color: Colors.red,fontSize: 16
+              ),):
+
+              /*Quizz_List.isEmpty?
+              Text("No Quiz created for this class yet",style: TextStyle(
+                  fontWeight: FontWeight.bold,color: Colors.red,fontSize: 16
+              ),):
+
+              spellinglist=="0"?
+              Text("No Spelling Challenge created for this class yet",style: TextStyle(
+                  fontWeight: FontWeight.bold,color: Colors.red,fontSize: 16
+              ),):*/
+
+
+
+              Card(elevation: 5.0,color: Colors.red,
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 5,bottom: 5),
+                  child: Container(
+                    child: Column(mainAxisAlignment: MainAxisAlignment.start,
+                      children: <Widget>[
+                        Row(mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            Text('Class Assignments',style: TextStyle(fontSize: 18,
+                                fontWeight:  FontWeight.bold,color: GlobalData.gray),),
+                          ],)
+                      ],),
+                  ),
                 ),
               ),
             ),
@@ -138,7 +159,6 @@ class _RecentQuestionState extends State<RecentQuestion> {
                     );
                   }),
             ),
-
 
 
             Column(
@@ -183,7 +203,7 @@ class _RecentQuestionState extends State<RecentQuestion> {
 
 
             Column(
-              children: <Widget>[Quizz_List.isEmpty ? Center(child: Text('')) :
+              children: <Widget>[spellinglist=="0" ? Center(child: Text('')) :
                 Card(elevation: 5.0,color: Colors.orange,
                   child: Padding(
                     padding: const EdgeInsets.only(top: 5,bottom: 5),
@@ -202,7 +222,7 @@ class _RecentQuestionState extends State<RecentQuestion> {
               ],
             ),
             Expanded(
-              child:Quizz_List.isEmpty ? Center(child: Text('')) :
+              child:spellinglist.isEmpty ? Center(child: Text('')) :
               ListView.builder(
                   itemCount: 1,
                   itemBuilder: (c,i){

@@ -1594,7 +1594,40 @@ class PreviewQuizs extends StatelessWidget {
                                   Expanded(
                                     child:  Row(mainAxisAlignment: MainAxisAlignment.end,
                                       children: <Widget>[
-                                        GlobalData.userType=="student"?Text(""):PopupMenuButton(
+                                        GlobalData.userType=="student"?Text(""):
+                                        isActive?
+                                        PopupMenuButton(
+                                          child: Icon(Icons.more_vert),
+                                          itemBuilder: (_) => <PopupMenuItem<String>>[
+
+
+
+                                            new PopupMenuItem<String>(
+                                                child: Row(
+                                                  children: <Widget>[
+                                                    Padding(
+                                                      padding: const EdgeInsets.only(right: 4,top: 1),
+                                                      child: Icon(
+                                                        Icons.cancel,
+                                                        color: GlobalData.darkpink,size: 12,
+                                                      ),
+                                                    ),
+                                                    new Text('Delete',style: TextStyle(fontSize: 15),),
+                                                  ],
+                                                ), value: 'delete'),
+
+                                          ],
+                                          onSelected: ( value){
+
+                                            if(value=="delete")     //28-8-19 a
+                                                {
+                                              showDialog1(context);
+                                            }
+                                          },
+                                        )
+                                            :
+
+                                        PopupMenuButton(
                                           child: Icon(Icons.more_vert),
                                           itemBuilder: (_) => <PopupMenuItem<String>>[
                                             new PopupMenuItem<String>(
