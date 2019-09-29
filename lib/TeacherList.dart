@@ -130,7 +130,7 @@ class _TeacherListState extends State<TeacherList> {
   }
 /* 30-8 delete student*/
 
-
+  bool isSwitched = true;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -231,15 +231,21 @@ class _TeacherListState extends State<TeacherList> {
                               child: Row(
                                 children: <Widget>[
                                   Padding(
-                                    padding: const EdgeInsets.only(right: 4,top: 1),
-                                    child: Icon(
-                                      Icons.cancel,
-                                      color: GlobalData.darkpink,size: 12,
-                                    ),
+                                    padding: const EdgeInsets.only(right:0,top: 1),
+                                    child: Text("Active/Decative Class"),
                                   ),
-                                  new Text('Close Class',style: TextStyle(fontSize: 15),),
+    Switch(
+    value: isSwitched,
+    onChanged: (value) {
+    setState(() {
+    isSwitched = value;
+    });
+    },
+    activeTrackColor: Colors.lightGreenAccent,
+    activeColor: Colors.green,
+    ),
                                 ],
-                              ), value: 'delete'),
+                              ), ),
 
                         ],
                         onSelected: ( value){
