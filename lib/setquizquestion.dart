@@ -104,8 +104,15 @@ setalldetails(){
   DateTime Starting_date;
   DateTime Closing_date;
 
+  RangeValues _values = RangeValues(0.3,0.7);
+
+
+
+
   @override
   Widget build(BuildContext context) {
+
+
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: true,
@@ -391,6 +398,8 @@ setalldetails(){
                         ),
                       ),
                       CustomTextField(Inputnumber: true,controller: age,Texth: "Age Category/Range | Year",hintStyle: TextStyle(fontSize: 16),),
+
+      //age range starts
 
 
 
