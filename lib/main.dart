@@ -7,6 +7,7 @@ import 'RecentQuestion.dart';
 import 'StudentByQuiz.dart';
 import 'TeacherClassList.dart';
 import 'globalvar.dart';
+import 'levelsList.dart';
 import 'manageclassactivitesGlobal.dart';
 import 'sec.dart';
 
@@ -184,6 +185,7 @@ class MyApp extends StatelessWidget {
         'AssignmentAnswerLog':(context)=>AssignmentAnswerLog(),
         'MyAssignmentExerciseLog':(context)=>MyAssignmentExerciseLog(),
         'level':(context)=>level1(),
+        'levelsList':(context)=>LevelsLists(),
 
       },
     );

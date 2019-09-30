@@ -1,12 +1,39 @@
-import 'package:flutter/material.dart';
-import 'global.dart';
+import 'dart:convert';
 
+import 'package:flutter/material.dart';
+import 'Pojo/pojo_quizzes.dart';
+import 'global.dart';
+import 'package:http/http.dart' as http;
 class level1 extends StatefulWidget {
   @override
   _level1State createState() => _level1State();
 }
 
 class _level1State extends State<level1> {
+
+  List<Pojo_quizzes> Quizz_List = new List();
+
+  GetTest() async{
+
+    await http.post("http://edusupportapp.com/api/get_user_quizzes_by_join_class.php",
+        body: {
+          "UserId":GlobalData.uid
+        }).then((res){
+      print(res.body);
+
+      var ParsedJson = jsonDecode(res.body);
+      Quizz_List = (ParsedJson['quizdata'] as List).map((data)=>Pojo_quizzes.fromJson(data)).toList();
+
+      print(Quizz_List.length);
+      print(jsonEncode(Quizz_List).toString());
+      setState(() {
+
+      });
+    });
+  }
+
+
+
 
   bool QuizComplete()
   {
@@ -57,7 +84,22 @@ class _level1State extends State<level1> {
                 shape: new RoundedRectangleBorder(
                     borderRadius: new BorderRadius.circular(15.0)),
                 onPressed: () {
-                  Navigator.of(context).pushNamed('Question_List');
+
+
+                  if(Quizz_List.isNotEmpty) {
+                    GlobalData.EditQuiz = false;
+                    GlobalData.QuizID = Quizz_List[0].id;
+                    GlobalData.ExamQuiz = Quizz_List[0].quiz_title;
+                    GlobalData.DurationofEachLevel =
+                        Quizz_List[0].dur_each_level;
+                    GlobalData.QuizLevels = Quizz_List[0].no_of_levels;
+                    //  Navigator.of(context).pushNamed(GlobalData.userType=="student"?'exam':'Question_List');
+                    Navigator.of(context).pushNamed('levelsList');
+                  }else{
+                    Show_toast_Now("Please Try after few Seconds", Colors.red);
+                  }
+
+
                 },
                 child: Text(
                   'Preview',
@@ -117,6 +159,13 @@ class _level1State extends State<level1> {
         );
       },
     );
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    GetTest();
   }
 
   @override

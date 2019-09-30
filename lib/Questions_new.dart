@@ -851,6 +851,7 @@ Text("Enter answer in sequence with underscore '_' in between the words",style:
       no = ('_'
           .allMatches(QuestionName.text.toString())
           .length);
+      print("NUmbers of Dash :"+no.toString());
     }
 
 
@@ -876,7 +877,11 @@ Text("Enter answer in sequence with underscore '_' in between the words",style:
                               "Please Select Two or More Options");
                             }else if(SelectedType=="Fill-in the gaps" && no>Options.length)
                             {
-                              CustomShowDialog(context,title: "Number of Answers are Less then Blanks(_) in Question." );
+
+                              print("less number ");
+
+                             CustomShowDialog(context,title: "Less Answers",
+                             msg:"Number of answers are less then blanks(_) in the question." );
                             }else
                               {
                                 SaveQuizQuestion();

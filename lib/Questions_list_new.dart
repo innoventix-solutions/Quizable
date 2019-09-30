@@ -26,6 +26,7 @@ class _Question_ListState extends State<Question_List> {
   int CurrentPage =0;
   PageController pageController = new PageController();
   List<Pojo_questions> Quetions = new List();
+  List<Pojo_questions> OriginalList = new List();
   int i=0;
   List<Pojo_Matchs> matchs = new List();
   String ExamAnswer ="";
@@ -50,7 +51,17 @@ class _Question_ListState extends State<Question_List> {
     }).then((res){
       print(res.body);
       var ParsedJson = jsonDecode(res.body);
-      Quetions = (ParsedJson['quizquestionsdata'] as List).map((data)=>Pojo_questions.fromJson(data)).toList();
+      OriginalList = (ParsedJson['quizquestionsdata'] as List).map((data)=>Pojo_questions.fromJson(data)).toList();
+
+      for(var item in OriginalList){
+        if(item.level_no==GlobalData.CurrentLevel.toString())
+          {
+            Quetions.add(item);
+            print("Match Found");
+          }else{
+          print("Not Found");
+        }
+      }
       setState(() {
       });
     });
