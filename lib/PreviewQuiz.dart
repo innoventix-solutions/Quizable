@@ -111,7 +111,7 @@ class _PreviewQuizState extends State<PreviewQuiz> {
             ),
 
                  Padding(
-                        padding: const EdgeInsets.only(bottom: 25, right: 15),
+                        padding: const EdgeInsets.only(bottom: 25, right: 15,top: 15),
                         child: GestureDetector(
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,

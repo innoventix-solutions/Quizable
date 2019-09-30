@@ -598,7 +598,7 @@ setalldetails(){
       "\nno_of_levels : "+ GlobalData.QuizLevels +
       "\nque_each_level :"+ GlobalData.NosofQuesPerLevel +
       "\ndur_each_level :"+ GlobalData.DurationofEachLevel +
-      "\nquiz_subject : "+ GlobalData.Selected_subject +
+      "\nquiz_subject : "+ GlobalData.Selected_subject.toString() +
       "\nclass_id : "+
       "\npublish_date : 2019-06-23 00:00:01"+
       "\nclosing_date : 2019-06-26 00:00:01" +
