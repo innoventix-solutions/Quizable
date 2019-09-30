@@ -93,6 +93,11 @@ class GlobalData{
   static String Essayinstructions="";
 static pojostydentlist currentteacher;
   static var gendersel="";
+ static double min;
+  static double max;
+  static double lowerValue;
+  static double upperValue;
+  static bool showValueIndicator;
 
  AssetImage getgender(){
 
