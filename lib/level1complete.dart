@@ -15,7 +15,7 @@ class _level1State extends State<level1> {
 
   GetTest() async{
 
-    await http.post("http://edusupportapp.com/api/get_user_quizzes_by_join_class.php",
+    await http.post("http://edusupportapp.com/api/get_quizzes.php",
         body: {
           "UserId":GlobalData.uid
         }).then((res){
