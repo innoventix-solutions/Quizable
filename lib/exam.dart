@@ -36,6 +36,7 @@ class _ExamState extends State<Exam> {
   List<int> Selecteditem=new List();
   String TrueorFalse = "";
   List<String> _list = new List();
+  List<String> fillupsData = new List();
   bool isloading = true;
   String TimerText ="-:--:--";
   int timermins = int.parse(GlobalData.DurationofEachLevel=="0"||GlobalData.DurationofEachLevel==null?"15".toString():GlobalData.DurationofEachLevel)*int.parse(GlobalData.QuizLevels);
@@ -97,7 +98,7 @@ class _ExamState extends State<Exam> {
     });
   }
 
-  Widget AnswerNow(String type,List<Pojo_Matchs> Data,List<Pojo_Answers> Answers)
+  Widget AnswerNow(String type,List<Pojo_Matchs> Data,List<Pojo_Answers> Answers,String que)
   {
 
     //   Show_toast_Now("Current Type :"+type, Colors.red);
@@ -282,8 +283,37 @@ class _ExamState extends State<Exam> {
             ],
           ),);
 
-      default:
+      case "Fill-in the gaps":
 
+        int no = ('_'
+            .allMatches(que.toString())
+            .length);
+
+        return Container(
+          height: (no*50.0)+100,
+          child: Card(
+            child: Column(
+              children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text("Note : For multiple blanks question please consider answer which has proper sequence of the words separated by underscore '_' .",style: TextStyle(color: Colors.red),),
+                ),
+               Expanded(child: ListView.builder(
+               itemCount: no,itemBuilder: (c,i){
+
+                 return Padding(
+                   padding: const EdgeInsets.only(left:8.0,right: 8.0),
+                   child: TextField(
+                     decoration: InputDecoration(hintText: "Answer $i"),
+                     onChanged: (val){fillupsData[i]=val;},
+                   ),
+                 );
+               }),)
+              ],
+            ),),
+        );
+
+      default:
         return Card(
           child: Column(
             children: <Widget>[
@@ -294,7 +324,7 @@ class _ExamState extends State<Exam> {
 
 
 
-              /*Row(
+              Row(
                   children: <Widget>[
 
 
@@ -311,18 +341,13 @@ class _ExamState extends State<Exam> {
                                 return Container(child: Row(
                                   children: <Widget>[
                                     Checkbox(value: Options[index].trueanswer, onChanged: (value){
-
-
                                       if(type!="Multiple Answer") {
                                         for (int i = 0; i <
                                             Options.length; i++) {
                                           Options[i].trueanswer = false;
                                         }
                                       }
-
-
                                       Options[index].trueanswer=value;setState(() {
-
                                       });},),
                                     Text(Options[index].value,maxLines: 4,)
 
@@ -338,19 +363,8 @@ class _ExamState extends State<Exam> {
 
 
                   ],
-                ), */
-              TextField(controller: ans1,
-                decoration: InputDecoration(
-                  border: InputBorder.none,
-                  hintText: 'Enter an Answer1',
                 ),
-              ),
-              TextField(controller: ans2,
-                decoration: InputDecoration(
-                  border: InputBorder.none,
-                  hintText: 'Enter an Answer2',
-                ),
-              ),
+
             ],
           ),);
     }
@@ -432,7 +446,7 @@ class _ExamState extends State<Exam> {
                           ],
                         ),
                       ),
-                      AnswerNow(Quetions[i].answer_type,Quetions[i].anwer_options,Quetions[i].Options),
+                      AnswerNow(Quetions[i].answer_type,Quetions[i].anwer_options,Quetions[i].Options,Quetions[i].question),
                       Container(
 
                         child: Row(
@@ -505,6 +519,12 @@ class _ExamState extends State<Exam> {
                               answ="true";
                             }
 
+                          }else if(Quetions[i].answer_type=="Fill-in the gaps")
+                          {
+
+                            answ=fillupsData.toString();
+
+
                           }else{
                             for (int i = 0; i < Options.length; i++) {
                               if (Options[i].trueanswer == true) {
@@ -513,7 +533,7 @@ class _ExamState extends State<Exam> {
                             }
                           }
 
-                          GiveAnswer(answ);
+                          GiveAnswer(answ,(i+1).toString());
                           TrueorFalse="";
                           Changed=0;
                           i++;
@@ -646,20 +666,18 @@ Matches =Quetions[i].anwer_options;*/
   }
 
 
-
-
-
-  GiveAnswer(String answer)async{
-
+  GiveAnswer(String answer,String qno)async{
     http.post("http://edusupportapp.com/api/quiz_answer.php",body: {
       "user_id":GlobalData.uid,
       "question_id":Quetions[i].id,
       "quiz_id":Quetions[i].quiz_id,
+      "level":Quetions[i].level_no.toString(),
+      "q_no":qno,
       "answer":answer
     }).then((res){
       print(res.body);
+      fillupsData.clear();
     });
-
     print("Your Answer : "+answer);
 
   }

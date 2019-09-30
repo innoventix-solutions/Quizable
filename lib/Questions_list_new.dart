@@ -493,13 +493,7 @@ class _Question_ListState extends State<Question_List> {
 Matches =Quetions[i].anwer_options;*/
     return Scaffold(
         appBar: AppBar(title: Text("Questions List"),centerTitle: true,),
-        body: isloading==true?Center(child: Text("Loading...")):MYQue()
-
-
-
-
-
-
+        body: isloading==true?Center(child: Text("Loading...")):Quetions.isNotEmpty?MYQue():Center(child: Text("No Questions"),)
     );
   }
 

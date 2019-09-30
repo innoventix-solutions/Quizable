@@ -45,7 +45,6 @@ class _Quiz_List_studentState extends State<Quiz_List_student> {
     return Scaffold(
         appBar: AppBar(
           automaticallyImplyLeading: true,
-
           title: Center(
             child: Text(
               "My Quiz Exercises",
@@ -72,7 +71,6 @@ class _Quiz_List_studentState extends State<Quiz_List_student> {
             ),
           ],
         ),
-
         /*drawer: Drawer(
           // Add a ListView to the drawer. This ensures the user can scroll
           // through the options in the Drawer if there isn't enough vertical
@@ -238,17 +236,19 @@ class _Quiz_List_studentState extends State<Quiz_List_student> {
                         GlobalData.QuizID=Quizz_List[i].id;
                         GlobalData.QuizLevels=Quizz_List[i].no_of_levels;
                         GlobalData.ExamQuiz=Quizz_List[i].quiz_title;
-                        GlobalData.DurationofEachLevel=Quizz_List[i].dur_each_level;
-                        Navigator.of(context).pushNamed(Quizz_List[i].is_taken==true?'AnswerLog':'exam');
+                        GlobalData.DurationofEachLevel=Quizz_List[i].dur_each_level; //studentLevelList
+                       // Navigator.of(context).pushNamed(Quizz_List[i].is_taken==true?'AnswerLog':'exam');
+                        Navigator.of(context).pushNamed('studentLevelList');
                       },
-                      child: Quizz_List[i].is_taken==false?       //22-8-19 a
+                      child: Quizz_List[i].is_taken==true?       //22-8-19 a
                     classactivitys(
                         color: GlobalData.pinkred,
                         heading: Quizz_List[i].quiz_title+" - "+Quizz_List[i].id,
                         paragraph: Quizz_List[i].quiz_subject,
                         title: Quizz_List[i].quiz_title,
                         id: Quizz_List[i].id,
-                        is_taken: Quizz_List[i].is_taken,
+                       //  is_taken: Quizz_List[i].is_taken,
+                      is_taken: false,
                       ):SizedBox()
                     );
                   }),
