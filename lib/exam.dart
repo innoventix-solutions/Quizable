@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:countdown/countdown.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:share/share.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'Pojo/pojo_answer.dart';
@@ -23,6 +24,7 @@ class _ExamState extends State<Exam> {
   CountDown cd ;
   int CurrentPage =0;
   PageController pageController = new PageController();
+  List<Pojo_questions> OriginalQuetionsList = new List();
   List<Pojo_questions> Quetions = new List();
   List<Pojo_quizzes> timer = new List();
   int i=0;
@@ -39,13 +41,14 @@ class _ExamState extends State<Exam> {
   List<String> fillupsData = new List();
   bool isloading = true;
   String TimerText ="-:--:--";
-  int timermins = int.parse(GlobalData.DurationofEachLevel=="0"||GlobalData.DurationofEachLevel==null?"15".toString():GlobalData.DurationofEachLevel)*int.parse(GlobalData.QuizLevels);
+  int timermins = int.parse(GlobalData.DurationofEachLevel=="0"||GlobalData.DurationofEachLevel==null?"15".toString():GlobalData.DurationofEachLevel);
 
 
   List<pojo_anslog> anslist = new List();
 
   Timmer(){
     cd = CountDown(Duration(minutes: timermins));
+
     var sub = cd.stream.listen(null);
     // start your countdown by registering a listener
     sub.onData((Duration d) {
@@ -88,7 +91,16 @@ class _ExamState extends State<Exam> {
     }).then((res){
       print(res.body);
       var ParsedJson = jsonDecode(res.body);
-      Quetions = (ParsedJson['quizquestionsdata'] as List).map((data)=>Pojo_questions.fromJson(data)).toList();
+      OriginalQuetionsList = (ParsedJson['quizquestionsdata'] as List).map((data)=>Pojo_questions.fromJson(data)).toList();
+
+      for(var item in OriginalQuetionsList){
+
+        if(item.level_no==GlobalData.CurrentLevel.toString()) {
+          Quetions.add(item);
+        }
+
+      }
+
       setState(() {
       });
     });
@@ -399,7 +411,18 @@ class _ExamState extends State<Exam> {
                 child: Row(
                   children: <Widget>[
                     Text("Timer : ",style: TextStyle(color: Colors.blue),),
-                    Text(TimerText,style: TextStyle(fontWeight: FontWeight.bold),)
+                    Text(TimerText,style: TextStyle(fontWeight: FontWeight.bold),),
+                    Spacer(),
+                    RaisedButton(
+                      color: Colors.red,
+                      onPressed: (){
+
+                        print(getLevelTime());
+
+                      },
+                      child: Text("Exit",style: TextStyle(color: Colors.white),),
+                    )
+
                   ],
                 ),
               ),
@@ -570,7 +593,8 @@ class _ExamState extends State<Exam> {
   getExamResult()async{
     http.post("http://edusupportapp.com/api/get_user_quiz_result.php",body:{
       "quiz_id":GlobalData.QuizID,
-      "user_id":GlobalData.uid
+      "user_id":GlobalData.uid,
+      "level":GlobalData.CurrentLevel.toString()
     }).then((res){
       print(res.body);
       var parsedJson = jsonDecode(res.body);
@@ -684,6 +708,10 @@ Matches =Quetions[i].anwer_options;*/
 
 
   void ExamCompleted(BuildContext context,String Score)  {
+
+
+
+
     bool Selected = false;
     TextEditingController optioncontroller = new TextEditingController();
     showDialog(
@@ -791,6 +819,29 @@ Matches =Quetions[i].anwer_options;*/
           );
         });
   }
+
+
+ String getLevelTime(){
+
+  // Show_toast_Now(TimerText.substring(2,4),Colors.green);
+    int second = int.parse(TimerText.substring(5,7));
+    int min = int.parse(TimerText.substring(2,4));
+    int ConsumedTime = (int.parse(GlobalData.DurationofEachLevel)*60)-((min*60)+second);
+
+
+
+   int usedSecond= ConsumedTime%60;
+   int usedMin = (ConsumedTime/60).floor();
+   int hour = usedMin==0?0:(usedMin/60).floor();
+
+    Show_toast_Now("$hour : $usedMin : $usedSecond",Colors.green);
+
+
+
+
+    return "$hour : $usedMin : $usedSecond";
+
+ }
 
 
 
