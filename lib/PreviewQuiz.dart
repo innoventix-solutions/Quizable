@@ -92,7 +92,9 @@ class _PreviewQuizState extends State<PreviewQuiz> {
                         GlobalData.ExamQuiz=Quizz_List[i].quiz_title;
                         GlobalData.DurationofEachLevel=Quizz_List[i].dur_each_level;
                         GlobalData.QuizLevels=Quizz_List[i].no_of_levels;
-                        Navigator.of(context).pushNamed(GlobalData.userType=="student"?'exam':'Question_List');
+
+                      //  Navigator.of(context).pushNamed(GlobalData.userType=="student"?'exam':'Question_List');
+                        Navigator.of(context).pushNamed(GlobalData.userType=="student"?'exam':'levelsList');
                       },
                       child:  Quizz_List[i].is_taken==false?
                       PreviewQuizs(

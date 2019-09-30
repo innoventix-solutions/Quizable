@@ -93,11 +93,7 @@ class GlobalData{
   static String Essayinstructions="";
 static pojostydentlist currentteacher;
   static var gendersel="";
- static double min;
-  static double max;
-  static double lowerValue;
-  static double upperValue;
-  static bool showValueIndicator;
+  static int CurrentLevel=0;
 
  AssetImage getgender(){
 
@@ -136,6 +132,48 @@ static String spellLevels = "";
 static String spellNosofQuesPerLevel = "";
 static String spellDurationofEachLevel ="";
 
+}
+            /*Logout dialog 30-9-19*/
+void showDialog1(BuildContext context) {
+  // flutter defined function
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      // return object of type Dialog
+      return AlertDialog(
+        title: new Text("Log Out"),
+        content: new Text("Are You Sure Want To Log Out?"),
+        actions: <Widget>[
+          // usually buttons at the bottom of the dialog
+          new FlatButton(
+            child: Row(
+              children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.only(
+                      right: 50
+                  ),
+                  child:  GestureDetector(
+                      onTap: (){
+                        Navigator.of(context).pushNamed('teacherdashboard');
+                      },child: new Text("Cancel")),
+
+
+                ),
+                GestureDetector(
+                    onTap: () async {
+                      LogoutFunction(context);
+                      // Navigator.of(context).pushNamed('dashboard');
+                    },child: new Text("Ok")),
+              ],
+            ),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          ),
+        ],
+      );
+    },
+  );
 }
                                   //Custom drawer for quiz menu
 class drawerquiz extends StatelessWidget {
@@ -253,7 +291,7 @@ class drawerquiz extends StatelessWidget {
                       color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
                 ),],),
             ),onTap: ()async{
-            LogoutFunction(context);
+            showDialog1(context);
           },
           ),
 
@@ -855,7 +893,7 @@ class classactivitys extends StatelessWidget {
                     GlobalData.CurrentStudentID=GlobalData.uid;
 
 
-                    Navigator.of(context).pushNamed(is_taken==true?'AnswerLog':'exam');
+                    Navigator.of(context).pushNamed(is_taken==true?'AnswerLog':'studentLevelList');
 
 
                   }else
@@ -1301,7 +1339,7 @@ class recentquestions extends StatelessWidget {
 
 
                     Expanded(
-                      child: Text(title + " Questions",style: TextStyle(fontWeight: FontWeight.bold,
+                      child: Text(title,style: TextStyle(fontWeight: FontWeight.bold,
                           fontSize: 15,color: GlobalData.gray),textAlign: TextAlign.justify,),
                     ),
                   ],
@@ -1671,7 +1709,7 @@ class PreviewQuizs extends StatelessWidget {
                                               GlobalData.EditQuiz=true;
                                               GlobalData.QuizID=id;
                                               GlobalData.ExamQuiz=title;
-                                              Navigator.of(context).pushNamed('Question_List');
+                                              Navigator.of(context).pushNamed('levelsList');
                                             }
                                             if(value=="delete")     //28-8-19 a
                                                {
@@ -2638,4 +2676,88 @@ void CustomShowDialog(context,{String title,String msg,String buttonText,VoidCal
       );
     },
   );
+}
+
+
+/*30-9-19 dummy text*/
+class dummytext extends StatelessWidget {
+
+  final String heading;
+  final String paragraph;
+  final Color color;
+  final String title;
+
+
+  dummytext({
+    this.heading,
+    this.paragraph,
+    this.color,
+    this.title,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return
+      Container(decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(40))),
+        child: Card(elevation: 5.0,shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(5.0),
+        ),
+          child: Column(mainAxisAlignment: MainAxisAlignment.start,
+            children: <Widget>[
+              Row(
+                children: <Widget>[
+                  Expanded(
+                    child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(5),),color: color),
+
+                      child: Padding(
+                        padding: const EdgeInsets.only(top: 5,bottom: 5),
+                        child: Column(
+                          children: <Widget>[
+                            Padding(
+                              padding: const EdgeInsets.only(top: 5,bottom: 5,left: 10),
+                              child: Row(
+                                children: <Widget>[
+                                  Expanded(
+                                    child: Text(heading,textAlign: TextAlign.center,
+                                      style: TextStyle(color: Colors.white,fontSize: 15,fontWeight: FontWeight.bold),),
+                                  ),
+                                ],
+                              ),
+                            ),
+
+                          ],
+
+                        ),
+                      ),
+
+                    ),
+                  ),
+                ],
+              ),
+
+              Container(
+                padding: EdgeInsets.only(left: 25,top: 20,right: 30,bottom: 30),
+                child: Column(
+                  children: <Widget>[
+                   Text(paragraph,style: TextStyle(fontWeight: FontWeight.bold,
+                          fontSize: 15,color: GlobalData.gray),textAlign: TextAlign.justify,),
+
+
+
+
+                  ],
+                ),
+              ),
+
+
+
+
+
+
+            ],
+          ),
+
+        ),
+      );
+  }
 }

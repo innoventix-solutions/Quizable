@@ -671,8 +671,6 @@ Text("Enter answer in sequence with underscore '_' in between the words",style:
 
     switch (type){
       case 'Multiple Answers':
-
-
         return jsonEncode(Options).toString();
       case 'Match Type':
         return jsonEncode(Matches).toString();
@@ -848,6 +846,15 @@ Text("Enter answer in sequence with underscore '_' in between the words",style:
                       child: SizedBox(width: 100,
                         child: GradientButtonText(
                           ButtonClick: (){
+                            int no=0;
+    if(SelectedType=="Fill-in the gaps") {
+      no = ('_'
+          .allMatches(QuestionName.text.toString())
+          .length);
+      print("NUmbers of Dash :"+no.toString());
+    }
+
+
                             if( MyQuestionAnswer(SelectedType)=="[]") {
 
                               CustomShowDialog(context,title: "No Options",msg:
@@ -868,6 +875,13 @@ Text("Enter answer in sequence with underscore '_' in between the words",style:
                                   "No Option is Selected":
                               "Only One Option is Selected",msg:
                               "Please Select Two or More Options");
+                            }else if(SelectedType=="Fill-in the gaps" && no>Options.length)
+                            {
+
+                              print("less number ");
+
+                             CustomShowDialog(context,title: "Less Answers",
+                             msg:"Number of answers are less then blanks(_) in the question." );
                             }else
                               {
                                 SaveQuizQuestion();
