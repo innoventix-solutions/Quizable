@@ -893,7 +893,7 @@ class classactivitys extends StatelessWidget {
                     GlobalData.CurrentStudentID=GlobalData.uid;
 
 
-                    Navigator.of(context).pushNamed(is_taken==true?'AnswerLog':'exam');
+                    Navigator.of(context).pushNamed(is_taken==true?'AnswerLog':'studentLevelList');
 
 
                   }else
@@ -1709,7 +1709,7 @@ class PreviewQuizs extends StatelessWidget {
                                               GlobalData.EditQuiz=true;
                                               GlobalData.QuizID=id;
                                               GlobalData.ExamQuiz=title;
-                                              Navigator.of(context).pushNamed('Question_List');
+                                              Navigator.of(context).pushNamed('levelsList');
                                             }
                                             if(value=="delete")     //28-8-19 a
                                                {
