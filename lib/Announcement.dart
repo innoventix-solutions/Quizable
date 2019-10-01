@@ -20,11 +20,12 @@ class _AnnouncementState extends State<Announcement> {
         body: {
 
         }).then((res){
-      print(res.body);
+      print("Announcements " + res.body);
 
       var ParsedJson = jsonDecode(res.body);
-      announcements = (ParsedJson['announcementdata'] as List).map((data)=>GetAnnouncement().fromJson(data)).toList();
-
+      announcements = (ParsedJson['announcementdata'] as List).
+      map((data)=>GetAnnouncements.fromJson(data)).toList();
+      print(announcements.length);
 
       setState(() {
 
@@ -59,32 +60,25 @@ class _AnnouncementState extends State<Announcement> {
           ),
         ],
       ),
-      body: SingleChildScrollView(
-        child: Center(
-          child: Column(crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: <Widget>[announcements.isEmpty?
-            Center(
-                child: Padding(
-                  padding: const EdgeInsets.all(15.0),
-                  child: Text(
-                    "No Announcements published yet.",
-                    style: TextStyle(fontSize: 18, height: 1.2),
-                    textAlign: TextAlign.center,
-                  ),
-                ))
-                :
+      body:
+        Center(
+          child: Column(
+            children: <Widget>[
               Expanded(
-                child: ListView.builder(
-                    itemCount: 1,
+                child: announcements.isEmpty ?
+                Center(child: Text('No Announcements published yet')) :
+
+          ListView.builder(
+                    itemCount: announcements.length,
                     itemBuilder: (c, i) {
                       return GestureDetector(
                         onTap: () {},
-                        child: recentquestions(
+                        child: dummytext(
                           color: GlobalData.pinkred,
                           heading: announcements[i].announcementtitle,
                           paragraph: announcements[i].subject,
                           id: announcements[i].id,
+                          title: announcements[i].createddate.toString(),
 
                         ),
                       );
@@ -93,7 +87,15 @@ class _AnnouncementState extends State<Announcement> {
             ],
           ),
         ),
-      ),
+
     );
   }
+
+  @override
+  void initState() {
+    GetAnnouncement();
+    // TODO: implement initState
+    super.initState();
+  }
+
 }
