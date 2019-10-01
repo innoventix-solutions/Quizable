@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-
+import 'package:http/http.dart'as http;
 import 'global.dart';
+import 'package:newpro/Pojo/pojo_GetAnnouncement.dart';
+import 'dart:convert';
 
 class Announcement extends StatefulWidget {
   @override
@@ -8,6 +10,29 @@ class Announcement extends StatefulWidget {
 }
 
 class _AnnouncementState extends State<Announcement> {
+
+  List<GetAnnouncements> announcements = new List();
+
+
+  GetAnnouncement() async{
+
+    await http.post("http://edusupportapp.com/api/get_announcement.php",
+        body: {
+
+        }).then((res){
+      print(res.body);
+
+      var ParsedJson = jsonDecode(res.body);
+      announcements = (ParsedJson['announcementdata'] as List).map((data)=>GetAnnouncement().fromJson(data)).toList();
+
+
+      setState(() {
+
+      });
+    });
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,7 +42,7 @@ class _AnnouncementState extends State<Announcement> {
 
         title: Center(
           child: Text(
-            "Announcment",
+            "Announcement",
             style: TextStyle(fontSize: 22),
           ),
         ),
@@ -38,37 +63,32 @@ class _AnnouncementState extends State<Announcement> {
         child: Center(
           child: Column(crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.start,
-            children: <Widget>[
-
-              Text('',style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
-              Padding(
-                padding: const EdgeInsets.only(top: 45,right: 45,left: 45),
-                child: Center(
-                  child: Card(
-                    child: Padding(
-                      padding: const EdgeInsets.all(20),
-                      child: Column(mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          Text('Announcment EduSupport',style: TextStyle(fontSize: 25,
-                              fontWeight: FontWeight.bold),),
-                          //SizedBox(height: 20,),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 20,left: 20,right: 20,bottom: 10),
-                            child: Row(
-                              children: <Widget>[
-                                Expanded(
-                                    child: Text("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s"
-                                        "when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, ")),
-
-                              ],
-                            ),
-                          ),//SizedBox(height: 10),
-                        ],
-                      ),
-                    ),
-
+            children: <Widget>[announcements.isEmpty?
+            Center(
+                child: Padding(
+                  padding: const EdgeInsets.all(15.0),
+                  child: Text(
+                    "No Announcements published yet.",
+                    style: TextStyle(fontSize: 18, height: 1.2),
+                    textAlign: TextAlign.center,
                   ),
-                ),
+                ))
+                :
+              Expanded(
+                child: ListView.builder(
+                    itemCount: 1,
+                    itemBuilder: (c, i) {
+                      return GestureDetector(
+                        onTap: () {},
+                        child: recentquestions(
+                          color: GlobalData.pinkred,
+                          heading: announcements[i].announcementtitle,
+                          paragraph: announcements[i].subject,
+                          id: announcements[i].id,
+
+                        ),
+                      );
+                    }),
               ),
             ],
           ),

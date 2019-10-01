@@ -249,7 +249,7 @@ class _Quiz_List_studentState extends State<Quiz_List_student> {
 
                       ),
 
-                      SizedBox(width: 20,),
+
 
                       Expanded(
                         child: SizedBox(width: 100,
@@ -305,16 +305,6 @@ class _Quiz_List_studentState extends State<Quiz_List_student> {
                   ),
                 ),
 
-                Padding(
-                  padding: const EdgeInsets.only(top: 5,left: 20),
-                  child: Row(
-                    children: <Widget>[
-                      Text(Quizz_List.isNotEmpty?Quizz_List[0].classes:"",style: TextStyle(
-                          fontSize: 18,fontWeight: FontWeight.bold,color:GlobalData.white
-                      ),),
-                    ],
-                  ),
-                ),
 
                 Padding(
                   padding: const EdgeInsets.only(top:15,left: 20,right: 20,bottom: 15),
