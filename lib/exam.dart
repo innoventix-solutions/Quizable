@@ -38,6 +38,9 @@ class _ExamState extends State<Exam> {
   List<int> Selecteditem=new List();
   String TrueorFalse = "";
   List<String> _list = new List();
+  List<String> _Originallist = new List();
+  List<String> MatchingAnswers = new List();
+
   List<String> fillupsData = new List();
   bool isloading = true;
   String TimerText ="-:--:--";
@@ -52,7 +55,7 @@ class _ExamState extends State<Exam> {
     var sub = cd.stream.listen(null);
     // start your countdown by registering a listener
     sub.onData((Duration d) {
-      print(d);
+   //   print(d);
       TimerText=d.toString().substring(0,7);
       setState(() {
 
@@ -122,6 +125,8 @@ class _ExamState extends State<Exam> {
     if(_list.length==0) {
       for (var item in Matches) {
         _list.add(item.val2);
+        _Originallist.add(item.val2);
+        MatchingAnswers.add(" - ");
       }
       print(_list.length);
       if(Changed==0)
@@ -135,7 +140,7 @@ class _ExamState extends State<Exam> {
     {
 
       case "Match Type":
-        return Container(
+        /*return Container(
           height: Matches.isEmpty?50.0:Matches.length*60.0,
           child: Row(
             children: <Widget>[
@@ -165,6 +170,7 @@ class _ExamState extends State<Exam> {
                   children: <Widget>[
                     Expanded(
                       child: ReorderableListView(
+
                         children: _list.map((item) =>Padding(key: Key("${item}+padding"),
                           padding: const EdgeInsets.all(2.0),
                           child: Container( key: Key("${item}con"),
@@ -197,6 +203,194 @@ class _ExamState extends State<Exam> {
                   ],
                 ),
               ),
+            ],
+          ),
+        );*/
+
+      return Container(
+          height: Matches.isEmpty?50.0:Matches.length*60.0,
+          child: Row(
+            children: <Widget>[
+              Expanded(child: Column(
+                children: <Widget>[
+                  Expanded(
+                    child: ListView.builder(
+                        controller: controller,
+                        itemCount: Matches.length,
+                        itemBuilder: (c,i){
+                          return Padding(
+                            padding: const EdgeInsets.all(2.0),
+                            child: Container(
+                              color: Colors.green[300],
+                              child: ListTile(
+                                title: Text( Matches[i].val1),
+                          //      leading: Icon(Icons.add,color: Colors.transparent,),
+                              ),
+                            ),
+                          );
+                        }),
+                  ),
+                ],
+              ),),
+              Expanded(child: Column(
+                children: <Widget>[
+                  Expanded(
+                    child: ListView.builder(
+                        controller: controller,
+                        itemCount: MatchingAnswers.length,
+                        itemBuilder: (c,i){
+                          return MatchingAnswers[i]==" - " ?DragTarget(
+                            builder: (context, List<String> candidateData, rejectedData){
+                              return Padding(
+                                padding: const EdgeInsets.all(2.0),
+                                child: Container(
+                                  color: Colors.grey[300],
+                                  child: ListTile(
+                                    title: Text( MatchingAnswers[i]),
+                                    leading: Icon(Icons.add,color: Colors.transparent,),
+                                  ),
+                                ),
+                              );
+                            },
+
+                           onAccept: (data){
+                              print(data);
+                              MatchingAnswers[i]=_list[int.parse(data)];
+                              _list[int.parse(data)]=" - ";
+
+                              print(_list[int.parse(data)]);
+                              print(MatchingAnswers[i]);
+                              setState(() {
+
+                              });
+                           },
+
+                          ):Padding(
+                              padding: const EdgeInsets.all(2.0),
+                              child:Container(
+                            color: Colors.amber,
+                            child: ListTile(
+                              title: Row(
+
+                                children: <Widget>[
+                                  GestureDetector(
+                                  onTap: (){
+
+                                    int no = _Originallist.indexOf(MatchingAnswers[i]);
+                                    print("My Index is $no");
+                                    _list[no]=MatchingAnswers[i];
+                                    MatchingAnswers[i]=" - ";
+
+                             //  _list[_Originallist.indexOf(MatchingAnswers[i])]=MatchingAnswers[i];
+                             //  MatchingAnswers[i]="-";
+                               setState(() {
+
+                               });
+                                  }
+                                  ,child: Icon(Icons.cancel,size: 15,)),
+                                  SizedBox(width: 5,),
+                                  Expanded(child: Text( MatchingAnswers[i])),
+                                ],
+                              ),
+
+                            ),
+                          ));
+                        }),
+                  ),
+                ],
+              ),),
+              Expanded(child: Column(
+                children: <Widget>[
+                  Expanded(
+                    child: ListView.builder(
+                        controller: controller,
+                        itemCount: _list.length,
+                        itemBuilder: (c,i){
+                          return _list[i]==" - "?Padding(
+                            padding: const EdgeInsets.all(2.0),
+                            child: Container(
+                              color: Colors.grey,
+                              child: ListTile(
+                                title: Text( _list[i]),
+                                leading: Icon(Icons.add,color: Colors.transparent,),
+                              ),
+                            ),
+                          ): Draggable(
+                          child: Padding(
+                            padding: const EdgeInsets.all(2.0),
+                            child: Container(
+                              color: Colors.amber,
+                              child: ListTile(
+                                title: Text( _list[i]),
+                              //  leading: Icon(Icons.add,color: Colors.transparent,),
+                              ),
+                            ),
+                          ), feedback: Padding(
+                            padding: const EdgeInsets.all(2.0),
+                            child: Container(
+                              width: 100,
+                              color: Colors.amber,
+                              child:Container(
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Material(color: Colors.transparent,child: Text("")),
+                                ),
+
+                              ),
+                            ),
+                          ),childWhenDragging: Padding(
+                            padding: const EdgeInsets.all(2.0),
+                            child: Container(
+                              color: Colors.amber,
+                              child: ListTile(
+                                title: Text( ""),
+                                leading: Icon(Icons.add,color: Colors.transparent,),
+                              ),
+                            ),
+                          ),
+                          data: i.toString(),);
+                        }),
+                  ),
+                ],
+              ),),
+            /*  Expanded(
+                child: Column(
+                  children: <Widget>[
+                    Expanded(
+                      child: ReorderableListView(
+
+                        children: _list.map((item) =>Padding(key: Key("${item}+padding"),
+                          padding: const EdgeInsets.all(2.0),
+                          child: Container( key: Key("${item}con"),
+                              color:Colors.amber,child: ListTile( key: Key("${item}"), title: Text("${item}"), trailing: Icon(Icons.menu),)),)).toList(),
+                        onReorder: (int start, int current) {
+                          // dragging from top to bottom
+                          if (start < current) {
+                            int end = current - 1;
+                            String startItem = _list[start];
+                            int i = 0;
+                            int local = start;
+                            do {
+                              _list[local] = _list[++local];
+                              i++;
+                            } while (i < end - start);
+                            _list[end] = startItem;
+                          }
+                          // dragging from bottom to top
+                          else if (start > current) {
+                            String startItem = _list[start];
+                            for (int i = start; i > current; i--) {
+                              _list[i] = _list[i - 1];
+                            }
+                            _list[current] = startItem;
+                          }
+                          setState(() {});
+                        },
+                      ),
+                    ),
+                  ],
+                ),
+              ),*/
             ],
           ),
         );
@@ -389,7 +583,7 @@ class _ExamState extends State<Exam> {
     super.initState();
 
     print(GlobalData.userType);
-    Timmer();
+  //  Timmer();
     GetQuestions();
 
   }
@@ -513,21 +707,40 @@ class _ExamState extends State<Exam> {
                     Expanded(
                       child: GradientButtonText(
                         ButtonClick: (){
-
+                          bool remaning = false;
 
                           String answ="";
 
                           if(Quetions[i].answer_type=="Match Type")
                           {
 
-                            for(int i=0;i<Matches.length;i++)
+                            for(int i=0;i<MatchingAnswers.length;i++)
                             {
-                              Matches[i].val2=_list[i];
+                             if(MatchingAnswers[i]==" - ")
+                               {
+                                 remaning = true;
+                               }
                             }
 
+                            if(remaning==true){
+                              Show_toast_Now("Please Complete the Matching.", Colors.red);
+                            }else
+                              {
+                                for(int i=0;i<MatchingAnswers.length;i++)
+                                {
+                                  Matches[i].val2=MatchingAnswers[i];
+                                }
+                                answ=jsonEncode(Matches);
+                                print(answ);
+                              }
 
-                            answ=jsonEncode(Matches);
-                            print(answ);
+
+
+
+
+
+
+
 
                           }else if(Quetions[i].answer_type=="True False")
                           {
@@ -556,20 +769,22 @@ class _ExamState extends State<Exam> {
                             }
                           }
 
-                          GiveAnswer(answ,(i+1).toString());
-                          TrueorFalse="";
-                          Changed=0;
-                          i++;
-                          if(i==Quetions.length)
-                          {
-                            getExamResult();
 
-                            i--;
 
-                          }else {
-                            setState(() {
+                          if(remaning==false) {
+                            GiveAnswer(answ, (i + 1).toString());
+                            TrueorFalse = "";
+                            Changed = 0;
+                            i++;
+                            if (i == Quetions.length) {
+                              getExamResult();
 
-                            });
+                              i--;
+                            } else {
+                              setState(() {
+
+                              });
+                            }
                           }
                         },
                         linearGradient:LinearGradient(colors: <Color>[GlobalData.navyblue,GlobalData.pink]) ,
