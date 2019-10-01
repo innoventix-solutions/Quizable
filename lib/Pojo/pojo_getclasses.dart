@@ -10,10 +10,11 @@ class Classes{
   String accout_type;
   String username;
   String total_join;
+  String status;
 
 
   Classes({this.id,this.userid,this.classname,this.classicon,this.studentinvitecode,
-  this.teacherinvitecode,this.createddate,this.selected,this.accout_type,this.username,this.total_join});
+  this.teacherinvitecode,this.createddate,this.selected,this.accout_type,this.username,this.total_join,this.status});
 
 
   factory Classes.fromJson(Map<String,dynamic> parsedJson){
@@ -29,6 +30,7 @@ class Classes{
         accout_type:parsedJson['accout_type'],
         username:parsedJson['username'],
         total_join:parsedJson['total_join'].toString(),
+      status: parsedJson['status'].toString(),
       selected: false
     );
   }
@@ -45,6 +47,7 @@ class Classes{
         'accout_type':accout_type,
         'username':username,
         'total_join':total_join,
+        'status':status,
         'selected':true
       };
 

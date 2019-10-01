@@ -4,6 +4,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'Pojo/pojostydentlist.dart';
+import 'package:newpro/Pojo/pojo_getclasses.dart';
 
 class TeacherList extends StatefulWidget {
   @override
@@ -67,6 +68,22 @@ class _TeacherListState extends State<TeacherList> {
   }
 
 
+  ActiveDeactiveClass(String action) async{
+
+    await http.post("http://edusupportapp.com/api/active_deactive_class.php",
+        body: {
+          "class_id":GlobalData.classid,
+          "action":action,
+        }).then((res){
+      print(res.body);
+      //var ParsedJson = jsonDecode(res.body);
+      //Stu_List = (ParsedJson['userdata'] as List).map((data)=>pojostydentlist.fromJson(data)).toList();
+      setState(() {
+
+      });
+
+    });
+  }
 
  
 
@@ -237,7 +254,16 @@ class _TeacherListState extends State<TeacherList> {
     Switch(
     value: isSwitched,
     onChanged: (value) {
+      if(value == true ){
+
+      ActiveDeactiveClass("active");
+      }
+      else
+        {
+          ActiveDeactiveClass("deactive");
+        }
     setState(() {
+
     isSwitched = value;
     });
     },

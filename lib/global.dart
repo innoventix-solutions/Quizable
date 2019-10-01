@@ -94,6 +94,7 @@ class GlobalData{
 static pojostydentlist currentteacher;
   static var gendersel="";
   static int CurrentLevel=0;
+  static String status="";
 
  AssetImage getgender(){
 
