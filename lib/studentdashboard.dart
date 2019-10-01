@@ -468,7 +468,7 @@ class _studentdashboardState extends State<studentdashboard> {
 
 
             CarouselSlider(autoPlay: true,height: 220.0,
-              aspectRatio: 21/9,
+              //aspectRatio: 21/9,
               viewportFraction: 0.9,
               initialPage: 0,
               autoPlayInterval: Duration(seconds: 3),

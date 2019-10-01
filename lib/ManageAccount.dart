@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:newpro/global.dart';
 
@@ -51,16 +52,25 @@ class _ManageAccountState extends State<ManageAccount> {
 
                   child: Column(children: <Widget>[
                     Text(
-                      'Subscription',
+                      'Subscription Required',
                       textAlign: TextAlign.center,
-                      style: TextStyle(color: Colors.white,fontSize:22,fontFamily: "yu"),
+                      style: TextStyle(color: Colors.white,fontSize:26,fontFamily: "yu", decoration: TextDecoration.underline),
                     ),
-                    Padding(padding: EdgeInsets.all(5)),
+                    Padding(padding: EdgeInsets.only(top: 10,bottom: 20)),
                     Column(
                       children: <Widget>[
                         Container(
 
-                          child: RaisedButton(padding:EdgeInsets.only(left:90,right: 90,top:15,bottom: 15),
+                          child:Column(
+                            children: <Widget>[
+                              Padding(
+                                padding: const EdgeInsets.all(10.0),
+                                child: Text("Please Subscribe To Attempt Next Level.",textAlign: TextAlign.center,style:
+                                  TextStyle(fontSize: 20,color: Colors.white),),
+                              ),
+                            Text("Rate : N500 /Annum.",style: TextStyle(color: Colors.white,
+                            fontSize: 18),)],
+                          ) /*RaisedButton(padding:EdgeInsets.only(top:15,bottom: 15),
                             color: Colors.blue,
                             shape: new RoundedRectangleBorder(
                                 borderRadius: new BorderRadius.circular(30.0)),
@@ -68,13 +78,13 @@ class _ManageAccountState extends State<ManageAccount> {
 
                             },
                             child: Text(
-                              '3 Months - @99',
+                              'Annual subscription  -\n  @N500 /Annum.',
                               textAlign: TextAlign.center,
                               style: TextStyle(color:Colors.white,fontSize: 18,fontFamily:"yu"),
                             ),
-                          ),
+                          ),*/
                         ),
-                        Padding(padding: EdgeInsets.all(9)),
+                      /*  Padding(padding: EdgeInsets.all(9)),
                         Container(
 
                           child: RaisedButton(padding:EdgeInsets.only(left:90,right: 90,top:15,bottom: 15),
@@ -89,8 +99,8 @@ class _ManageAccountState extends State<ManageAccount> {
                               textAlign: TextAlign.center,
                               style: TextStyle(color:Colors.white,fontSize: 18,fontFamily:"yu"),
                             ),
-                          ),
-                        ),
+                          ),*/
+                        /*),*/
 
                         Padding(
                           padding: const EdgeInsets.all(18.0),
@@ -102,9 +112,10 @@ class _ManageAccountState extends State<ManageAccount> {
                                   borderRadius: new BorderRadius.circular(30.0)),
                               onPressed: () {
 
+                                Navigator.of(context).pop();
                               },
                               child: Text(
-                                '12 Month - @279',
+                                'OK',
                                 textAlign: TextAlign.center,
                                 style: TextStyle(color:Colors.white,fontSize: 18,fontFamily:"yu"),
                               ),
