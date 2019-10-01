@@ -2687,6 +2687,7 @@ class dummytext extends StatelessWidget {
   final String paragraph;
   final Color color;
   final String title;
+  final String id;
 
 
   dummytext({
@@ -2694,6 +2695,7 @@ class dummytext extends StatelessWidget {
     this.paragraph,
     this.color,
     this.title,
+    this.id
   });
 
   @override
