@@ -144,7 +144,7 @@ class _PreviewQuizState extends State<PreviewQuiz> {
                             ],
                           ),
                           onTap: () {
-                         Navigator.of(context).pushNamed('setquizquestions ');
+                         Navigator.of(context).pushNamed('setquizquestions');
                               },
                         ),
                       ),

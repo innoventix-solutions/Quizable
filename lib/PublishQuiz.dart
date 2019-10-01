@@ -2,6 +2,10 @@ import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'package:flutter/material.dart';
 import 'global.dart';
 import 'package:intl/intl.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+import 'package:fluttertoast/fluttertoast.dart';
+
 
 class publishquiz extends StatefulWidget {
   @override
@@ -9,6 +13,28 @@ class publishquiz extends StatefulWidget {
 }
 
 class _publishquizState extends State<publishquiz> {
+
+  TextEditingController publishdate= new TextEditingController();
+  TextEditingController closingdate= new TextEditingController();
+
+  var now = DateTime.now();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
+
+  Show_toast(String msg, Color color) {
+    Fluttertoast.showToast(
+        msg: msg,
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.CENTER,
+        timeInSecForIos: 1,
+        backgroundColor: color,
+        textColor: Colors.white,
+        fontSize: 16.0);
+  }
 
 
   final formats = {
@@ -22,7 +48,21 @@ class _publishquizState extends State<publishquiz> {
   DateTime Starting_date;
   DateTime Closing_date;
 
-  RangeValues _values = RangeValues(0.3,0.7);
+  Publishquiz() async {
+    http.post("http://edusupportapp.com/api/publish_quiz.php", body: {
+      "quiz_id":GlobalData.QuizID,
+      "publish_date":publishdate.text.toString(),
+      "closing_date":closingdate.text.toString(),
+
+
+    }).then((response) {
+     print(response.body);
+
+     setState(() {
+
+     });
+    });
+  }
 
 
 
@@ -76,7 +116,7 @@ class _publishquizState extends State<publishquiz> {
                         child: Column(
                           children: <Widget>[
 
-                            Text("Your Quiz,"+GlobalData.QuizTitle + " will be set for students " +
+                            Text("Your Quiz, "+ GlobalData.QuizTitle + " will be set for students " +
                                 GlobalData.age + " years in " +GlobalData.Selected_class + " Classes.",
                               style: TextStyle(fontWeight: FontWeight.bold,
                                   fontSize: 15,color: GlobalData.gray),textAlign: TextAlign.justify,),
@@ -139,6 +179,7 @@ class _publishquizState extends State<publishquiz> {
                   child: Container(width: 150,
                     child: GradientButtonText(
                       ButtonClick: () {
+                        PublishQuiz();
 
                       },
                       linearGradient: LinearGradient(
@@ -219,6 +260,7 @@ class _publishquizState extends State<publishquiz> {
                   child: Container(width: 150,
                     child: GradientButtonText(
                       ButtonClick: () {
+                        ScheduleQuiz();
 
                       },
                       linearGradient: LinearGradient(
@@ -246,4 +288,81 @@ class _publishquizState extends State<publishquiz> {
       ),
     );
   }
+
+  PublishQuiz()async {
+
+
+    print(
+        "publish_date :"+ DateTime.now().toString()+
+            "\nclosing_date : 2019-06-26 00:00:01"
+    );
+
+    if (Closing_date==null  ) {
+      CustomShowDialog(context,title:
+
+      "Date is Missing",msg:
+      "Please Select Closing Date");
+    }else{
+
+      http.post(
+          "http://edusupportapp.com/api/publish_quiz.php", body: {
+        "quiz_id":GlobalData.QuizID,
+        "publish_date":DateTime.now().toString(),
+        "closing_date":Closing_date.toString(),
+
+      }).then((response) {
+        var status = jsonDecode(response.body);
+        if(status['status']==1){
+          Navigator.of(context).pushReplacementNamed('Recentque');
+          ClearRegisterData();
+          setState(() {});
+        }
+        else{
+
+        }
+
+
+      });
+    }
+  }
+
+
+  ScheduleQuiz()async {
+
+
+    print(
+        "publish_date :"+ Starting_date.toString()+
+            "\nclossing_date :"+Closing_date.toString()
+    );
+
+    if (Starting_date==null||Closing_date==null) {
+      CustomShowDialog(context,title:
+
+      "Date is Missing",msg:
+      "Please Select Starting and Closing Date");
+    }else{
+
+      http.post(
+          "http://edusupportapp.com/api/publish_quiz.php", body: {
+        "quiz_id":GlobalData.QuizID,
+        "publish_date":Starting_date.toString(),
+        "closing_date":Closing_date.toString(),
+
+      }).then((response) {
+        var status = jsonDecode(response.body);
+        if(status['status']==1){
+          Navigator.of(context).pushReplacementNamed('Recentque');
+          ClearRegisterData();
+          setState(() {});
+        }
+        else{
+
+        }
+
+
+      });
+    }
+  }
+
+
 }

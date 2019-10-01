@@ -91,7 +91,7 @@ import 'UserDetail.dart';
 import 'StudentListByAssignment.dart';
 import 'AssignmentAnswerLog.dart';
 import 'MyAssignmentExerciseLog.dart';
-
+import 'PublishQuiz.dart';
 void main() {
   runApp(MyApp());
 }
@@ -187,7 +187,8 @@ class MyApp extends StatelessWidget {
         'MyAssignmentExerciseLog':(context)=>MyAssignmentExerciseLog(),
         'level':(context)=>level1(),
         'levelsList':(context)=>LevelsLists(),
-        'studentLevelList':(context)=>StudentLevelList()
+        'studentLevelList':(context)=>StudentLevelList(),
+        'publishquiz':(context)=>publishquiz()
 
       },
     );

@@ -115,9 +115,8 @@ class _level1State extends State<level1> {
                 shape: new RoundedRectangleBorder(
                     borderRadius: new BorderRadius.circular(15.0)),
                 onPressed: () {
-                  Navigator.of(context).pushReplacementNamed('Recentque');
-                  ClearRegisterData();
-                  setState(() {});
+                  Navigator.of(context).pushNamed('publishquiz');
+
                 },
                 child: Text(
                   'Publish',

@@ -226,6 +226,129 @@ class _Quiz_List_studentState extends State<Quiz_List_student> {
         body:
         Column(
           children: <Widget>[
+            Container(
+            width: MediaQuery.of(context).size.width,
+
+            decoration: BoxDecoration(color: Colors.pinkAccent),
+
+            child: Column(
+
+              children: <Widget>[
+
+                Padding(
+                  padding: const EdgeInsets.only(top:15,left: 20,right:20,bottom: 5),
+                  child: Row(
+                    children: <Widget>[
+                      Expanded(
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text(Quizz_List.isNotEmpty?Quizz_List[0].publish_date:"",textAlign: TextAlign.center,
+                              style: TextStyle(color: Colors.white,fontSize: 16,
+                              fontWeight: FontWeight.bold),),
+                            ),
+
+                      ),
+
+                      SizedBox(width: 20,),
+
+                      Expanded(
+                        child: SizedBox(width: 100,
+                          child: GestureDetector(onTap: (){
+
+                            if(Quizz_List.isEmpty){
+                              CustomShowDialog(context,title: "Unavailable",msg:
+                              "No Quiz Exercise published yet");
+                            }
+                            else{
+                              GlobalData.QuizID.toString();
+                              GlobalData.QuizLevels.toString();
+                              GlobalData.ExamQuiz.toString();
+                              GlobalData.DurationofEachLevel.toString(); //studentLevelList
+                              // Navigator.of(context).pushNamed(Quizz_List[i].is_taken==true?'AnswerLog':'exam');
+                              Navigator.of(context).pushNamed('studentLevelList');
+                            }
+
+                          },
+                            child: Card(color:Colors.blue,
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Text("New",textAlign: TextAlign.center,
+                                  style: TextStyle(color: Colors.white,fontSize: 16,
+                                      fontWeight: FontWeight.bold),),
+                              ),),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+
+                Padding(
+                  padding: const EdgeInsets.only(top: 10,left: 20),
+                  child: Row(
+                    children: <Widget>[
+                      Text(Quizz_List.isNotEmpty?Quizz_List[0].quiz_title:"No Quiz Available",style: TextStyle(
+                          fontSize: 18,fontWeight: FontWeight.bold,color:GlobalData.white
+                      ),),
+                    ],
+                  ),
+                ),
+
+                Padding(
+                  padding: const EdgeInsets.only(top: 15,left: 20),
+                  child: Row(
+                    children: <Widget>[
+                      Text(Quizz_List.isNotEmpty?Quizz_List[0].no_of_levels + " Levels":"",style: TextStyle(
+                          fontSize: 15,fontWeight: FontWeight.bold,color:GlobalData.white
+                      ),),
+                    ],
+                  ),
+                ),
+
+                Padding(
+                  padding: const EdgeInsets.only(top: 5,left: 20),
+                  child: Row(
+                    children: <Widget>[
+                      Text(Quizz_List.isNotEmpty?Quizz_List[0].classes:"",style: TextStyle(
+                          fontSize: 18,fontWeight: FontWeight.bold,color:GlobalData.white
+                      ),),
+                    ],
+                  ),
+                ),
+
+                Padding(
+                  padding: const EdgeInsets.only(top:15,left: 20,right: 20,bottom: 15),
+                  child: Row(
+                    children: <Widget>[
+                      SizedBox(width: 100,
+                        child: GradientButtonText(
+                          linearGradient:LinearGradient(begin:Alignment.topCenter,
+                              end: Alignment.bottomCenter,
+                              colors: <Color>[Colors.orange,Colors.deepOrange]) ,
+                          text: Text("Closing",
+                            style: TextStyle(color: Colors.white,
+                              fontWeight: FontWeight.bold,fontSize: 16,),
+                            textAlign: TextAlign.center,),
+                          ButtonClick: (){
+                          },),
+                      ),
+
+                      Padding(
+                        padding: const EdgeInsets.only(left: 5),
+                        child: Text(Quizz_List.isNotEmpty?Quizz_List[0].closing_date.substring(0,19):"",style:TextStyle(
+                            fontSize: 15,color: GlobalData.white
+                        ) ,),
+                      )
+                    ],
+                  ),
+                ),
+
+
+              ],
+            ),
+
+          ),
+
             Expanded(
               child:Quizz_List.isEmpty ? Center(child: Text('No Quiz Exercises published yet')) :  //22-8-19 a
               ListView.builder(
