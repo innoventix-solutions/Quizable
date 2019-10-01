@@ -69,15 +69,20 @@ class _TeacherListState extends State<TeacherList> {
 
 
   ActiveDeactiveClass(String action) async{
+    print("class id : "+GlobalData.activeclass.id);
+
 
     await http.post("http://edusupportapp.com/api/active_deactive_class.php",
         body: {
-          "class_id":GlobalData.classid,
+          "Class_id":GlobalData.activeclass.id,
           "action":action,
         }).then((res){
       print(res.body);
       //var ParsedJson = jsonDecode(res.body);
       //Stu_List = (ParsedJson['userdata'] as List).map((data)=>pojostydentlist.fromJson(data)).toList();
+
+      GlobalData.activeclass.status=action;
+      Navigator.of(context).pop();
       setState(() {
 
       });
@@ -222,6 +227,7 @@ class _TeacherListState extends State<TeacherList> {
                   ],
                 ),
 
+
                 Expanded(
                   child:  Row(mainAxisAlignment: MainAxisAlignment.end,
                     children: <Widget>[
@@ -245,6 +251,8 @@ class _TeacherListState extends State<TeacherList> {
                               ), value: 'edit'),
 
 
+
+
                           new PopupMenuItem<String>(
                               child: Row(
                                 children: <Widget>[
@@ -253,7 +261,7 @@ class _TeacherListState extends State<TeacherList> {
                                     child: Text("Active/Decative Class"),
                                   ),
     Switch(
-    value: isSwitched,
+    value: (GlobalData.activeclass.status=="active"),
     onChanged: (value) {
       if(value == true ){
 
@@ -451,13 +459,8 @@ class _TeacherListState extends State<TeacherList> {
                                             new Text('Remove',style: TextStyle(fontSize: 15),),
                                           ],
                                         ),value: 'delete' ),
-
-
-
-
                                     ],
                                     onSelected: ( value){
-
                                       if(value=="delete")
                                       {
                                         showDialog1(context,GlobalData.Studentlist[index].id.toString());
@@ -467,23 +470,15 @@ class _TeacherListState extends State<TeacherList> {
                                 ],
                               ),
                             ):SizedBox(),
-
-
-
                           ], ),
-
                       ],
                     ),
                   );
-
-
               }
           ),
         ),
 
-
             GlobalData.userType=="teacher" ? Text("") :
-
           Padding(
               padding: const EdgeInsets.only(top:20,bottom: 25, right: 20),
               child: GestureDetector(
