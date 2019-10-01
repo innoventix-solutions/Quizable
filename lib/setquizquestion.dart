@@ -29,7 +29,7 @@ class _setquizquestionState extends State<setquizquestion> {
   TextEditingController durlevel = new TextEditingController(text: GlobalData.DurationofEachLevel);
   TextEditingController quizsubject = new TextEditingController();
   TextEditingController quizclass = new TextEditingController();
-  TextEditingController age = new TextEditingController(text: GlobalData.age);
+  TextEditingController age = new TextEditingController(text: 10.toString());
   TextEditingController publishdate= new TextEditingController();
   TextEditingController closingdate= new TextEditingController();
   @override
@@ -46,7 +46,7 @@ setalldetails(){
   GlobalData.QuizLevels = quizlevel.text;
   GlobalData.NosofQuesPerLevel = queslevel.text;
   GlobalData.DurationofEachLevel =  durlevel.text;
-  GlobalData.age = age.text;
+  GlobalData.age = 10.toString();
 }
 
 
@@ -72,7 +72,9 @@ setalldetails(){
       "techer_id": teacher.text.toString(),
       "publish_date":publishdate.text.toString(),
       "closing_date":closingdate.text.toString(),
-      "age":age.text.toString(),
+      "age":10.toString(),
+      "startage":endwithlower.toString(),
+      "endage":endwithupper.toString(),
 
     }).then((response) {
       var status = jsonDecode(response.body);
@@ -107,8 +109,13 @@ setalldetails(){
 
 
 
+  double _lowerValue = 20;
+  double _upperValue = 80;
+  double _lowerValueFormatter = 10.0;
+  double _upperValueFormatter = 10.0;
 
-
+  var endwithlower;
+  var endwithupper;
 
   @override
   Widget build(BuildContext context) {
@@ -201,7 +208,7 @@ setalldetails(){
                                 children: <Widget>[
                                   Expanded(
                                     child: Container(
-                                      
+
                                       child: Container(
                                         child: Center(
                                           child: Column(
@@ -266,7 +273,7 @@ setalldetails(){
                         ),
                       ),
 
-                      
+
 
                       Padding(
                         padding: const EdgeInsets.only(top: 0),
@@ -405,6 +412,44 @@ setalldetails(){
       //age range starts
 
 
+
+Padding(
+  padding: const EdgeInsets.only(top: 10),
+  child:   RangeSlider(
+    min: 0,
+    max: 100,
+    lowerValue: _lowerValue,
+    upperValue: _upperValue,
+    divisions: 100,
+    allowThumbOverlap: true,
+
+    valueIndicatorMaxDecimals: 0,
+    showValueIndicator: true,
+    onChanged: (double newLowerValue, double newUpperValue) {
+      setState(() {
+        _lowerValue = newLowerValue;
+        _upperValue = newUpperValue;
+      });
+    },
+
+    onChangeStart:
+        (double startLowerValue, double startUpperValue) {
+
+          endwithlower = startLowerValue;
+          endwithupper = startUpperValue;
+      print(
+
+
+          'endwithlower: $startLowerValue endwithupper $startUpperValue');
+    },
+    onChangeEnd: (double newLowerValue, double newUpperValue) {
+      print(
+          'Ended with endwithlower: $newLowerValue and endwithupper $newUpperValue');
+    },
+
+  ),
+),
+
       //
       // Simple example
       //
@@ -529,6 +574,8 @@ setalldetails(){
                                 ),ButtonClick: (){
                                   setalldetails();
                                   SaveQuiz();
+
+
                               },
                               ),
                             ),
