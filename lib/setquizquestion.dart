@@ -8,6 +8,7 @@ import 'utilities.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
+import 'package:flutter_range_slider/flutter_range_slider.dart';
 
 class setquizquestion extends StatefulWidget {
   @override
@@ -104,13 +105,15 @@ setalldetails(){
   DateTime Starting_date;
   DateTime Closing_date;
 
-  RangeValues _values = RangeValues(0.3,0.7);
+
 
 
 
 
   @override
   Widget build(BuildContext context) {
+
+
 
 
     return Scaffold(
@@ -401,6 +404,11 @@ setalldetails(){
 
       //age range starts
 
+
+      //
+      // Simple example
+      //
+                      // ..add(
 
 
 

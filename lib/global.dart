@@ -2741,19 +2741,9 @@ class dummytext extends StatelessWidget {
                   children: <Widget>[
                    Text(paragraph,style: TextStyle(fontWeight: FontWeight.bold,
                           fontSize: 15,color: GlobalData.gray),textAlign: TextAlign.justify,),
-
-
-
-
                   ],
                 ),
               ),
-
-
-
-
-
-
             ],
           ),
 
