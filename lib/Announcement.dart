@@ -79,7 +79,6 @@ class _AnnouncementState extends State<Announcement> {
                           paragraph: announcements[i].subject,
                           id: announcements[i].id,
                           title: announcements[i].createddate.toString(),
-
                         ),
                       );
                     }),
