@@ -700,7 +700,7 @@ Text("Enter answer in sequence with underscore '_' in between the words",style:
 
     return Scaffold(
      appBar: AppBar(
-        automaticallyImplyLeading: true,
+        automaticallyImplyLeading: false,
         title: Center(
           child: Text(
             "Set Quiz Questions",
@@ -833,9 +833,11 @@ Text("Enter answer in sequence with underscore '_' in between the words",style:
                     Padding(
                       padding: const EdgeInsets.only(top: 25,bottom: 40),
                       child: SizedBox(width: 100,
-                        child: GradientButtonText(
+                        child: GradientButtonText(ButtonClick: (){
+                          Navigator.of(context).pop();
+                        },
                           linearGradient:LinearGradient(colors: <Color>[GlobalData.navy,GlobalData.navyblue]) ,
-                          text: Text("Back",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 18,),
+                          text: Text("Quit",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 18,),
                             textAlign: TextAlign.center,),
                         ),
                       ),
@@ -996,7 +998,7 @@ print("\n\nanswer_options " + MyQuestionAnswer(SelectedType)+"Actual Value"+True
       {
         Navigator.of(context).pushNamed('level');
       }else {
-        Navigator.of(context).pushNamed('questions');
+        Navigator.of(context).pushReplacementNamed('questions');
       }
     });
   }

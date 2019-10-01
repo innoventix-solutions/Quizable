@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:newpro/studentLevelList.dart';
+import 'package:newpro/testpurpose/testing.dart';
 import 'package:share/share.dart';
 import 'Edit_Question.dart';
 import 'Questions_list_new.dart';
@@ -105,6 +106,7 @@ class MyApp extends StatelessWidget {
       home:splash(),
       debugShowCheckedModeBanner: false,
       routes: {
+        'testing':(context)=>Testing(),
        // 'signup_teacher': (context) => sec(),
         'login': (context) => login(),
         'teacher': (context) => infoofedusupport(),
