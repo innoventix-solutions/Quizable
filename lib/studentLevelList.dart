@@ -16,6 +16,7 @@ class _StudentLevelListState extends State<StudentLevelList> {
 
   bool nextopen=true;
   bool locked=false;
+  List<bool> isLocked =List();
 
 
   GetLevels() async{
@@ -28,6 +29,12 @@ class _StudentLevelListState extends State<StudentLevelList> {
       var ParsedJson = jsonDecode(res.body);
       Levels_List = (ParsedJson['data'] as List).map((data)=>pojo_levels.fromJson(data)).toList();
       print("Levels : "+Levels_List.length.toString());
+
+      for(int i=0;i<Levels_List.length;i++)
+        {
+          isLocked.add(true);
+        }
+
       print(jsonEncode(Levels_List).toString());
       setState(() {
 
@@ -66,44 +73,51 @@ class _StudentLevelListState extends State<StudentLevelList> {
                       Expanded(child: GridView.builder(gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
                           itemCount: Levels_List.length,
                           itemBuilder: (c,i){
-                          locked=true;
-                        int Stars=null;
+                        print("Length ${Levels_List.length}");
 
-                        if(Levels_List[i].userpointAwarded==null)
+                          int Stars=null;
+
+                          if(Levels_List[i].userpointAwarded==-1 &&
+                          i==0
+                          ){
+                            print("Lock Open");
+                            isLocked[i]=false;
+                          }else if(i>0 && Levels_List[i-1].userpointAwarded>-1 &&Levels_List[i].userpointAwarded==-1){
+                            isLocked[i]=false;
+                          } else if(Levels_List[i].userpointAwarded==-1)
                         {
+                          print("stars null");
                               Stars = null;
                         }else if(Levels_List[i].percentage>70)
                           {
+                            print("stars 3");
                             Stars=3;
                           }else if(Levels_List[i].percentage>40)
                         {
+                          print("stars 2");
                           Stars=2;
                         }else if(Levels_List[i].percentage>-1)
                         {
+                          print("stars 1");
+
                           Stars=1;
                         }
 
-                        if(Levels_List[i].userpointAwarded==null && i==0)
-                          {
-                            locked=false;
-                          }
-                        else if(i>0 && Levels_List[i-1].userpointAwarded!=null)
-                          {
-                            locked=false;
-                          }
 
-                            return LevelCards(lable:Levels_List[i].level.toString(),stars: Stars,lock: locked,
+
+                            return LevelCards(lable:Levels_List[i].level.toString(),stars: Stars,lock: isLocked[i],
                             onPressed: (){
 
+                              print(locked.toString());
 
-                              if(Levels_List[i].userpointAwarded==null ) {
+                              if(Levels_List[i].userpointAwarded==-1 && !isLocked[i]) {
                                 print("asdfasdf : "+GlobalData.isGlobal.toString());
                                 GlobalData.CurrentLevel = (i + 1);
                                 Navigator.of(context).pushNamed(GlobalData.isGlobal==true && i>0?'ManageAccount':'exam');
                                 GlobalData.isGlobal=false;
                               }else
                               {
-                                Show_toast_Now("Level already attempted", Colors.red);
+                                Show_toast_Now(isLocked[i]?"Quiz Locked":"Level already attempted", Colors.red);
                               }
                             },);
                           })),

@@ -894,7 +894,7 @@ class classactivitys extends StatelessWidget {
 
 
                     GlobalData.ExamQuiz=title;
-                    GlobalData.DurationofEachLevel=duration??"20";
+                    GlobalData.DurationofEachLevel=GlobalData.DurationofEachLevel;
                     GlobalData.QuizLevels=levels??"1";
                     GlobalData.CurrentStudentID=GlobalData.uid;
 
