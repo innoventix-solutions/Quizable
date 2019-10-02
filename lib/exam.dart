@@ -612,6 +612,7 @@ class _ExamState extends State<Exam> {
                       onPressed: (){
 
                         print(getLevelTime());
+                        Navigator.of(context).pushReplacementNamed('studentLevelList');
 
                       },
                       child: Text("Exit",style: TextStyle(color: Colors.white),),
@@ -1027,7 +1028,7 @@ Matches =Quetions[i].anwer_options;*/
                                                 Navigator.of(context).pop();
 
                                                 Navigator.of(context).pop();
-                                                Navigator.of(context).pushNamed('studentdashboard');
+                                                Navigator.of(context).pushNamed('studentLevelList');
                                                 setState(() {
 
                                                 });
