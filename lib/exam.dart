@@ -1005,10 +1005,11 @@ Matches =Quetions[i].anwer_options;*/
                                     padding: const EdgeInsets.only(top:15),
 
                                     child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.center,
                                       children: <Widget>[
                                         Icon(Icons.timer),
                                         SizedBox(width: 10,),
-                                        Text('Time : '+getLevelTime(),textAlign: TextAlign.center,
+                                        Text(getLevelTime(),textAlign: TextAlign.center,
                                           style: TextStyle(color: GlobalData.lightblue,fontSize: 20,fontWeight: FontWeight.bold),),
                                       ],
                                     ),
