@@ -804,8 +804,25 @@ class _ExamState extends State<Exam> {
   }
 
 
+  submittime()async{
+    await http.post("http://edusupportapp.com/api/insert_quiz_attend_time.php",body: {
+      "user_id":GlobalData.uid,
+      "quiz_id":Quetions[i].quiz_id,
+      "level":Quetions[i].level_no.toString(),
+      "taken_time":getLevelTime(),
+    }).then((res){
+      print(res.body);
+    });
+
+  }
+
+
 
   getExamResult()async{
+
+    submittime();
+
+
     http.post("http://edusupportapp.com/api/get_user_quiz_result.php",body:{
       "quiz_id":GlobalData.QuizID,
       "user_id":GlobalData.uid,
@@ -907,20 +924,15 @@ Matches =Quetions[i].anwer_options;*/
 
 
 
+
+
+
   GiveAnswer(String answer,String qno)async{
 
 
 
 
-   await http.post("http://edusupportapp.com/api/insert_quiz_attend_time.php",body: {
-      "user_id":GlobalData.uid,
-      "quiz_id":Quetions[i].quiz_id,
-      "level":Quetions[i].level_no.toString(),
-      "taken_time":getLevelTime(),
-    }).then((res){
-      print(res.body);
-    });
-    print("Your Answer : "+answer);
+
 
 
   await  http.post("http://edusupportapp.com/api/quiz_answer.php",body: {
@@ -988,6 +1000,13 @@ Matches =Quetions[i].anwer_options;*/
                                     child: Text('Score : '+Score,textAlign: TextAlign.center,
                                       style: TextStyle(color: GlobalData.lightblue,fontSize: 20,fontWeight: FontWeight.bold),),
                                   )),
+                                  Center(child: Padding(
+                                    padding: const EdgeInsets.only(top:15),
+
+                                    child: Text('Time : '+getLevelTime(),textAlign: TextAlign.center,
+                                      style: TextStyle(color: GlobalData.lightblue,fontSize: 20,fontWeight: FontWeight.bold),),
+                                  )),
+
 
 
 
