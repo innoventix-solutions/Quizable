@@ -82,11 +82,18 @@ class _QuestionsState extends State<Questions> {
                                             child: GradientButtonText(
                                               ButtonClick: (){
 
-                                                Options.add(option(trueanswer: Selected,value:optioncontroller.text ));
-                                                Navigator.of(context).pop();
-                                                setState(() {
+                                                if(optioncontroller.text !=null && optioncontroller.text !="") {
+                                                  Options.add(option(
+                                                      trueanswer: Selected,
+                                                      value: optioncontroller
+                                                          .text));
+                                                  Navigator.of(context).pop();
+                                                  setState(() {
 
-                                                });
+                                                  });
+                                                }else{
+                                                  Show_toast_Now("Option can't be blank",Colors.red);
+                                                }
 
                                               }
                                             ,linearGradient:

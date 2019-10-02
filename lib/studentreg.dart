@@ -110,6 +110,9 @@ class _studentregState extends State<studentreg> {
 
       _showDialog(Msg: "Parent Phone Number is not Valid");
     }
+    else if(password.text.length<6){
+      _showDialog(Msg: "Password must contain atleast 6 digit");
+    }
     else if(Starting_date == null){
       dob();
     }else
