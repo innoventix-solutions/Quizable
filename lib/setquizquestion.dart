@@ -407,7 +407,7 @@ setalldetails(){
                           ),
                         ),
                       ),
-                      CustomTextField(Inputnumber: true,controller: age,Texth: "Age Category/Range | Year",hintStyle: TextStyle(fontSize: 16),),
+                      /*CustomTextField(Inputnumber: true,controller: age,Texth: "Age Category/Range | Year",hintStyle: TextStyle(fontSize: 16),),*/
 
       //age range starts
 

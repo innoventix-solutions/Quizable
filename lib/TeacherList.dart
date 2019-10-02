@@ -258,7 +258,7 @@ class _TeacherListState extends State<TeacherList> {
                                 children: <Widget>[
                                   Padding(
                                     padding: const EdgeInsets.only(right:0,top: 1),
-                                    child: Text("Active/Decative Class"),
+                                    child: Text("Active/Deactive Class"),
                                   ),
     Switch(
     value: (GlobalData.activeclass.status=="active"),
