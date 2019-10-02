@@ -348,8 +348,7 @@ class _Quiz_List_studentState extends State<Quiz_List_student> {
                     return  GestureDetector(
                       onTap: (){
 
-                      GlobalData.isGlobal=false;
-
+                        GlobalData.isGlobal=false;
                         GlobalData.QuizID=Quizz_List[i].id;
                         GlobalData.QuizLevels=Quizz_List[i].no_of_levels;
                         GlobalData.ExamQuiz=Quizz_List[i].quiz_title;
@@ -357,16 +356,16 @@ class _Quiz_List_studentState extends State<Quiz_List_student> {
                        // Navigator.of(context).pushNamed(Quizz_List[i].is_taken==true?'AnswerLog':'exam');
                         Navigator.of(context).pushNamed('studentLevelList');
                       },
-                      child: Quizz_List[i].is_taken==true?       //22-8-19 a
+                      child: /*Quizz_List[i].is_taken==false?   */    //22-8-19 a
                     classactivitys(
                         color: GlobalData.pinkred,
                         heading: Quizz_List[i].quiz_title+" - "+Quizz_List[i].id,
                         paragraph: Quizz_List[i].quiz_subject,
                         title: Quizz_List[i].quiz_title,
                         id: Quizz_List[i].id,
-                       //  is_taken: Quizz_List[i].is_taken,
-                      is_taken: false,
-                      ):SizedBox()
+                        is_taken: Quizz_List[i].is_taken,
+                      //is_taken: false,
+                      )/*:SizedBox()*/
                     );
                   }),
             ),
