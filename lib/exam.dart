@@ -605,7 +605,7 @@ class _ExamState extends State<Exam> {
                 child: Row(
                   children: <Widget>[
                     Text("Timer : ",style: TextStyle(color: Colors.blue),),
-                    Text(TimerText,style: TextStyle(fontWeight: FontWeight.bold),),
+                    Text(TimerText,style: TextStyle(fontWeight: FontWeight.bold,fontSize: 25),),
                     Spacer(),
                     RaisedButton(
                       color: Colors.red,

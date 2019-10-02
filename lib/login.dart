@@ -343,6 +343,8 @@ class _loginState extends State<login> {
     int index=0;
 
     prefs.setString("selectedClass", GlobalData.Class_list[index].id);
+
+
           GlobalData.classid = GlobalData.Class_list[index].id;
           GlobalData.createdclassdate =
               GlobalData.Class_list[index].createddate;

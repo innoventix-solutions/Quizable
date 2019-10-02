@@ -14,7 +14,9 @@ class _StudentLevelListState extends State<StudentLevelList> {
 
   List<pojo_levels> Levels_List = new List();
 
+  bool nextopen=true;
   bool locked=false;
+
 
   GetLevels() async{
     await http.post("http://edusupportapp.com/api/get_user_quiz_result_by_level.php",
@@ -64,10 +66,13 @@ class _StudentLevelListState extends State<StudentLevelList> {
                       Expanded(child: GridView.builder(gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
                           itemCount: Levels_List.length,
                           itemBuilder: (c,i){
-
+                          locked=true;
                         int Stars=null;
 
-                        if(Levels_List[i].percentage>70)
+                        if(Levels_List[i].userpointAwarded==null)
+                        {
+                              Stars = null;
+                        }else if(Levels_List[i].percentage>70)
                           {
                             Stars=3;
                           }else if(Levels_List[i].percentage>40)
@@ -78,18 +83,27 @@ class _StudentLevelListState extends State<StudentLevelList> {
                           Stars=1;
                         }
 
-                        if(Stars==null)
+                        if(Levels_List[i].userpointAwarded==null && i==0)
                           {
-                            locked=true;
+                            locked=false;
+                          }
+                        else if(i>0 && Levels_List[i-1].userpointAwarded!=null)
+                          {
+                            locked=false;
                           }
 
                             return LevelCards(lable:Levels_List[i].level.toString(),stars: Stars,lock: locked,
                             onPressed: (){
 
-                              if(Stars==null) {
+
+                              if(Levels_List[i].userpointAwarded==null ) {
+
+                                print("asdfasdf : "+GlobalData.isGlobal.toString());
                                 GlobalData.CurrentLevel = (i + 1);
-                                Navigator.of(context).pushNamed('exam');
-                              }else{
+                                Navigator.of(context).pushNamed(GlobalData.isGlobal==true && i>0?'ManageAccount':'exam');
+                                GlobalData.isGlobal=false;
+                              }else
+                              {
                                 Show_toast_Now("Level already attempted", Colors.red);
                               }
                             },);
