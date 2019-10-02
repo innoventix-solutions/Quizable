@@ -24,7 +24,7 @@ class _parentstudentState extends State<parentstudent> {
       body:   Column(
         children: <Widget>[
           Expanded(
-            child: ListView.builder( itemCount: 2,
+            child: ListView.builder( itemCount: 1,
 
                         itemBuilder: (BuildContext ctxt, int index) {
                           return  GestureDetector(
@@ -64,7 +64,7 @@ class _parentstudentState extends State<parentstudent> {
                                               //Text(GlobalData.Class_list[index].classname,style: TextStyle(fontSize: 15),textAlign: TextAlign.left,),
                                               Padding(
                                                 padding: const EdgeInsets.only(top:5),
-                                                child: Text('Name of Student Here',style: TextStyle(fontSize: 12),),
+                                                child: Text('Messie',style: TextStyle(fontSize: 12),),
                                               ),
                                             ],
                                           ),
