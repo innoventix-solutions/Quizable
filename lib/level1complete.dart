@@ -94,12 +94,10 @@ class _level1State extends State<level1> {
                         Quizz_List[0].dur_each_level;
                     GlobalData.QuizLevels = Quizz_List[0].no_of_levels;
                     //  Navigator.of(context).pushNamed(GlobalData.userType=="student"?'exam':'Question_List');
-                    Navigator.of(context).pushNamed('levelsList');
+                    Navigator.of(context).pushReplacementNamed('levelsList');
                   }else{
                     Show_toast_Now("Please Try after few Seconds", Colors.red);
                   }
-
-
                 },
                 child: Text(
                   'Preview',
@@ -115,7 +113,7 @@ class _level1State extends State<level1> {
                 shape: new RoundedRectangleBorder(
                     borderRadius: new BorderRadius.circular(15.0)),
                 onPressed: () {
-                  Navigator.of(context).pushNamed('publishquiz');
+                  Navigator.of(context).pushReplacementNamed('publishquiz');
 
                 },
                 child: Text(

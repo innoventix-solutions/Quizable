@@ -583,7 +583,7 @@ class _ExamState extends State<Exam> {
     super.initState();
 
     print(GlobalData.userType);
-  //  Timmer();
+    Timmer();
     GetQuestions();
 
   }
@@ -905,8 +905,25 @@ Matches =Quetions[i].anwer_options;*/
   }
 
 
+
+
   GiveAnswer(String answer,String qno)async{
-    http.post("http://edusupportapp.com/api/quiz_answer.php",body: {
+
+
+
+
+   await http.post("http://edusupportapp.com/api/insert_quiz_attend_time.php",body: {
+      "user_id":GlobalData.uid,
+      "quiz_id":Quetions[i].quiz_id,
+      "level":Quetions[i].level_no.toString(),
+      "taken_time":getLevelTime(),
+    }).then((res){
+      print(res.body);
+    });
+    print("Your Answer : "+answer);
+
+
+  await  http.post("http://edusupportapp.com/api/quiz_answer.php",body: {
       "user_id":GlobalData.uid,
       "question_id":Quetions[i].id,
       "quiz_id":Quetions[i].quiz_id,
@@ -1048,13 +1065,24 @@ Matches =Quetions[i].anwer_options;*/
    int usedSecond= ConsumedTime%60;
    int usedMin = (ConsumedTime/60).floor();
    int hour = usedMin==0?0:(usedMin/60).floor();
+   String ActualTime = RoundTime(hour.toString())+":"+RoundTime(usedMin.toString())+":"+RoundTime(usedSecond.toString());
 
-    Show_toast_Now("$hour : $usedMin : $usedSecond",Colors.green);
+    Show_toast_Now(RoundTime(hour.toString())+":"+RoundTime(usedMin.toString())+":"+RoundTime(usedSecond.toString()),Colors.green);
 
 
 
 
-    return "$hour : $usedMin : $usedSecond";
+    return ActualTime;
+
+ }
+
+
+ String RoundTime(String time){
+
+    if(time.length==1)
+      {
+        time ="0"+time;
+      }
 
  }
 

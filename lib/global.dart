@@ -10,6 +10,8 @@ import 'package:http/http.dart' as http;
 import 'Pojo/pojo_questions.dart';
 import 'package:newpro/Pojo/pojostydentlist.dart';
 
+import 'Pojo/pojo_quizzes.dart';
+
 
 class GlobalData{
 
@@ -1529,6 +1531,11 @@ class PreviewQuizs extends StatelessWidget {
  // final bool is_taken;
   final String levels;
   final String duration;
+  final bool incomplete;
+  final int  continueTo;
+  final String publishedDate;
+  final String classes;
+  final Pojo_quizzes Quiz;
 
 
   PreviewQuizs(
@@ -1541,7 +1548,7 @@ class PreviewQuizs extends StatelessWidget {
       //  this.is_taken,
         this.duration,
         this.levels,
-      this.isActive});
+      this.isActive,this.incomplete,this.continueTo,this.publishedDate,this.classes,this.Quiz});
 
 
   // 28-8-19 a
@@ -1646,9 +1653,6 @@ class PreviewQuizs extends StatelessWidget {
                                         PopupMenuButton(
                                           child: Icon(Icons.more_vert),
                                           itemBuilder: (_) => <PopupMenuItem<String>>[
-
-
-
                                             new PopupMenuItem<String>(
                                                 child: Row(
                                                   children: <Widget>[
@@ -1741,17 +1745,38 @@ class PreviewQuizs extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    Text(paragraph,style: TextStyle(fontWeight: FontWeight.bold,
+                    Text("Classes : "+Quiz.classes,style: TextStyle(fontWeight: FontWeight.bold,
                         fontSize: 15,color: GlobalData.gray),textAlign: TextAlign.justify,),
-                    
                     Padding(
                       padding: const EdgeInsets.only(top: 10),
-                      child: Card(color: isActive?Colors.green:Colors.red,child: Padding(
+                      child: Card(child: Padding(
                         padding: const EdgeInsets.all(10.0),
-                        child: Text(isActive?"Published":"Unpublished",style:
-                        TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+    SizedBox(height: 10,),
+                            Text("Created On:"+Quiz.created_date,style:
+                            TextStyle(color: Colors.green,fontWeight: FontWeight.bold),),
+                            SizedBox(height: 10,),
+                            Text(isActive?"Published on : $publishedDate":"Scheduled : $publishedDate",style:
+                            TextStyle(color: isActive?Colors.green:Colors.red,fontWeight: FontWeight.bold),),
+    SizedBox(height: 10,),
+                            Text("Created On:"+Quiz.closing_date,style:
+                            TextStyle(color: Colors.grey,fontWeight: FontWeight.bold),),
+    SizedBox(height: 10,)
+                          ],
+                        ),
                       ),),
                     ),
+                    incomplete?
+                    Padding(
+                      padding: const EdgeInsets.only(top: 10),
+                      child: Card(color: Colors.red,child: Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: Text("Incomplete",style:
+                        TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
+                      ),),
+                    ):Text(""),
 
                     /*Icon(Icons.remove_red_eye,color: isActive?Colors.green:Colors.red,)*/
 
@@ -2007,7 +2032,7 @@ class StudentQuizReport extends StatelessWidget {
                     print("UID"+GlobalData.uid);
                     print("QID"+(id==null?" Null Value":id));
 //print("Title : "+title);
-//                    print("levels : "+levels);
+//print("levels : "+levels);
 //print("Duration : "+duration);
 
 
