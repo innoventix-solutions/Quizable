@@ -502,6 +502,18 @@ class _studentdashboardState extends State<studentdashboard> {
                                         fontWeight: FontWeight.bold,fontSize: 15,),
                                       textAlign: TextAlign.center,),
                                     ButtonClick: (){
+                                      if(Quizz_List.isEmpty){
+                                        CustomShowDialog(context,title: "Unavailable",msg:
+                                        "No Quiz Exercise published yet");
+                                      }
+                                      else{
+                                        GlobalData.QuizID.toString();
+                                        GlobalData.QuizLevels.toString();
+                                        GlobalData.ExamQuiz.toString();
+                                        GlobalData.DurationofEachLevel.toString(); //studentLevelList
+                                        // Navigator.of(context).pushNamed(Quizz_List[i].is_taken==true?'AnswerLog':'exam');
+                                        Navigator.of(context).pushNamed('studentLevelList');
+                                      }
                                     },),
                                 ),
                               ],
