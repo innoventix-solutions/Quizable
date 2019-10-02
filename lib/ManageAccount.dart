@@ -17,7 +17,7 @@ class _ManageAccountState extends State<ManageAccount> {
 
       title: Center(
         child: Text(
-          "SubScription",
+          "Subscription",
           style: TextStyle(fontSize: 22),
         ),
       ),

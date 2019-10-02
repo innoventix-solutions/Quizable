@@ -397,7 +397,7 @@ setalldetails(){
                         child: Align(
                           alignment: Alignment.bottomLeft,
                           child: Text(
-                            'Target Quiz Participants.',
+                            'Target Quiz Participants.(Age Range)',
                             style: TextStyle(
                               color: GlobalData.lightblue,
                               fontSize: 18,

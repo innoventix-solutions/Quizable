@@ -140,12 +140,7 @@ class _quizclassState extends State<quizclass> {
                                     child: Column(mainAxisAlignment: MainAxisAlignment.start,crossAxisAlignment: CrossAxisAlignment.start,
                                       children: <Widget>[
                                         Text(Class_list[index].classname,style: TextStyle(fontSize: 15),textAlign: TextAlign.left,),
-                                        Padding(
-                                          padding: const EdgeInsets.only(top:5),
-                                          child:
-                                          Text(GlobalData.Class_list[index].total_join==null?"0 Student":GlobalData.Class_list[index].total_join.toString()
-                                              +" Students",style: TextStyle(fontSize: 14),),
-                                        ),
+
                                       ],
                                     ),
                                   ),
