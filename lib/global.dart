@@ -91,10 +91,13 @@ class GlobalData{
   static String teacherobjective="";
   static String AssignmentID="";
   static String Essayinstructions="";
-static pojostydentlist currentteacher;
+  static pojostydentlist currentteacher;
   static var gendersel="";
   static int CurrentLevel=0;
-  static String status="";
+  static bool isGlobal=false;
+
+
+
 
  AssetImage getgender(){
 

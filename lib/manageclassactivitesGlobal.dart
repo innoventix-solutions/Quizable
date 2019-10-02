@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:newpro/global.dart' as prefix0;
 import 'Pojo/pojo_quizzes.dart';
 import 'global.dart';
 import 'package:http/http.dart' as http;
@@ -82,14 +83,17 @@ class _questionmenuGlobalState extends State<questionmenuGlobal> {
                 child: ListView.builder(
                     itemCount: Quizz_List.length,
                     itemBuilder: (c,i){
+                      GlobalData.isGlobal=true;
                   return  GestureDetector(
                     onTap: (){
+
+
                       GlobalData.EditQuiz=false;
                       GlobalData.QuizID=Quizz_List[i].id;
                       GlobalData.ExamQuiz=Quizz_List[i].quiz_title;
                       GlobalData.DurationofEachLevel=Quizz_List[i].dur_each_level;
                       GlobalData.QuizLevels=Quizz_List[i].no_of_levels;
-                      Navigator.of(context).pushNamed(GlobalData.userType=="student"?'exam':'Question_List');
+                      Navigator.of(context).pushNamed(GlobalData.userType=="student"?'studentLevelList':'Question_List');
                     },
                     child: classactivitys(
                       color: GlobalData.pinkred,
