@@ -27,7 +27,7 @@ class _StudentLevelListState extends State<StudentLevelList> {
       print(res.body);
       var ParsedJson = jsonDecode(res.body);
       Levels_List = (ParsedJson['data'] as List).map((data)=>pojo_levels.fromJson(data)).toList();
-      print(Levels_List.length);
+      print("Levels : "+Levels_List.length.toString());
       print(jsonEncode(Levels_List).toString());
       setState(() {
 
@@ -97,7 +97,6 @@ class _StudentLevelListState extends State<StudentLevelList> {
 
 
                               if(Levels_List[i].userpointAwarded==null ) {
-
                                 print("asdfasdf : "+GlobalData.isGlobal.toString());
                                 GlobalData.CurrentLevel = (i + 1);
                                 Navigator.of(context).pushNamed(GlobalData.isGlobal==true && i>0?'ManageAccount':'exam');

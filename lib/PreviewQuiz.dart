@@ -49,7 +49,7 @@ class _PreviewQuizState extends State<PreviewQuiz> {
 
           title: Center(
             child: Text(
-              "Quiz Exercise Log",
+              "Preview Quiz Question ",
               style: TextStyle(fontSize: 20),
             ),
           ),
@@ -85,6 +85,13 @@ class _PreviewQuizState extends State<PreviewQuiz> {
               ListView.builder(
                   itemCount: Quizz_List.length,
                   itemBuilder: (c,i){
+
+
+                  int totalQuestions=  int.parse(Quizz_List[i].no_of_levels) * int.parse(Quizz_List[i].que_each_level);
+
+
+
+
                     return GestureDetector(
                       onTap: (){
                         GlobalData.EditQuiz=false;
@@ -92,14 +99,30 @@ class _PreviewQuizState extends State<PreviewQuiz> {
                         GlobalData.ExamQuiz=Quizz_List[i].quiz_title;
                         GlobalData.DurationofEachLevel=Quizz_List[i].dur_each_level;
                         GlobalData.QuizLevels=Quizz_List[i].no_of_levels;
+                        GlobalData.QuizTitle=Quizz_List[i].quiz_title;
+                        GlobalData.NosofQuesPerLevel = Quizz_List[i].que_each_level;
 
-                      //  Navigator.of(context).pushNamed(GlobalData.userType=="student"?'exam':'Question_List');
-                        Navigator.of(context).pushNamed(GlobalData.userType=="student"?'exam':'levelsList');
+
+                        print((Quizz_List[i].total_fill_question<int.parse(Quizz_List[i].no_of_levels) * int.parse(Quizz_List[i].que_each_level)));
+
+                        if((Quizz_List[i].total_fill_question<int.parse(Quizz_List[i].no_of_levels) * int.parse(Quizz_List[i].que_each_level))){
+                          //Navigator.of(context).pushNamed(GlobalData.userType=="student"?'exam':'Question_List');
+
+                          GlobalData.QuestionNumber=Quizz_List[i].total_fill_question;
+
+                          Navigator.of(context).pushNamed('questions');
+                        }else {
+                            //Navigator.of(context).pushNamed(GlobalData.userType=="student"?'exam':'Question_List');
+
+                          print("asdfasdf");
+                            Navigator.of(context).pushNamed(GlobalData.userType=="student"?'exam':'levelsList');
+                          }
+
                       },
                       child:  Quizz_List[i].is_taken==false?
                       PreviewQuizs(
                         color: GlobalData.pinkred,
-                        heading: Quizz_List[i].quiz_title,
+                        heading: Quizz_List[i].quiz_title+"  "+Quizz_List[i].total_fill_question.toString()+""+(int.parse(Quizz_List[i].no_of_levels) * int.parse(Quizz_List[i].que_each_level)).toString(),
                         paragraph: Quizz_List[i].publish_date,
                         id:Quizz_List[i].id ,
                         title: Quizz_List[i].quiz_title,
@@ -107,6 +130,12 @@ class _PreviewQuizState extends State<PreviewQuiz> {
                         duration: Quizz_List[i].dur_each_level,
                         levels: Quizz_List[i].no_of_levels,
                         isActive: Quizz_List[i].status.toLowerCase()=="publish"?true:false,
+                        incomplete: (Quizz_List[i].total_fill_question<int.parse(Quizz_List[i].no_of_levels) * int.parse(Quizz_List[i].que_each_level)),
+                        continueTo:Quizz_List[i].total_fill_question,
+                        publishedDate: Quizz_List[i].publish_date,
+                        Quiz: Quizz_List[i],
+
+
                       ): SizedBox()
                     );
                   }),
