@@ -112,6 +112,10 @@ class _loginandsignupState extends State<loginandsignup> {
                       child: GestureDetector(
                           child: Text("Parent Login Here", style: TextStyle(decoration: TextDecoration.underline, color: Colors.white,fontSize: 18)),
                           onTap: () {
+
+                            Navigator.of(context)
+                                .pushNamed('parentlogin');
+
                             // do what you need to do when "Click here" gets clicked
                           }
                       ),

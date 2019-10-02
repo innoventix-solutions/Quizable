@@ -3,6 +3,8 @@ import 'package:newpro/studentLevelList.dart';
 import 'package:newpro/testpurpose/testing.dart';
 import 'package:share/share.dart';
 import 'Edit_Question.dart';
+import 'ParentLogin.dart';
+import 'ParentsStudent.dart';
 import 'Questions_list_new.dart';
 import 'Quiz_list_student.dart';
 import 'RecentQuestion.dart';
@@ -192,7 +194,9 @@ class MyApp extends StatelessWidget {
         'level':(context)=>level1(),
         'levelsList':(context)=>LevelsLists(),
         'studentLevelList':(context)=>StudentLevelList(),
-        'publishquiz':(context)=>publishquiz()
+        'publishquiz':(context)=>publishquiz(),
+        'parentlogin':(context)=>parentlogin(),
+        'parentstudent':(context)=>parentstudent()
 
       },
     );
