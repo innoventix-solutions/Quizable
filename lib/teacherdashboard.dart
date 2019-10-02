@@ -62,8 +62,8 @@ class _teacherdashboardState extends State<teacherdashboard> {
         automaticallyImplyLeading: true,
         
         title: Center(
-          child: Text(
-            "Teacher Dashboard",
+          child: Text(GlobalData.userType=="teacher"?
+            "Teacher Dashboard":"Admin Dashboard",
             style: TextStyle(fontSize: 20),
           ),
         ),
