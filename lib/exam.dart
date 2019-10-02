@@ -1004,8 +1004,15 @@ Matches =Quetions[i].anwer_options;*/
                                   Center(child: Padding(
                                     padding: const EdgeInsets.only(top:15),
 
-                                    child: Text('Time : '+getLevelTime(),textAlign: TextAlign.center,
-                                      style: TextStyle(color: GlobalData.lightblue,fontSize: 20,fontWeight: FontWeight.bold),),
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: <Widget>[
+                                        Icon(Icons.timer),
+                                        SizedBox(width: 10,),
+                                        Text(getLevelTime(),textAlign: TextAlign.center,
+                                          style: TextStyle(color: GlobalData.lightblue,fontSize: 20,fontWeight: FontWeight.bold),),
+                                      ],
+                                    ),
                                   )),
 
 
@@ -1085,9 +1092,10 @@ Matches =Quetions[i].anwer_options;*/
    int usedSecond= ConsumedTime%60;
    int usedMin = (ConsumedTime/60).floor();
    int hour = usedMin==0?0:(usedMin/60).floor();
+
    String ActualTime = RoundTime(hour.toString())+":"+RoundTime(usedMin.toString())+":"+RoundTime(usedSecond.toString());
 
-    Show_toast_Now(RoundTime(hour.toString())+":"+RoundTime(usedMin.toString())+":"+RoundTime(usedSecond.toString()),Colors.green);
+  //  Show_toast_Now(RoundTime(hour.toString())+":"+RoundTime(usedMin.toString())+":"+RoundTime(usedSecond.toString()),Colors.green);
 
 
 
@@ -1103,6 +1111,8 @@ Matches =Quetions[i].anwer_options;*/
       {
         time ="0"+time;
       }
+
+    return time;
 
  }
 
