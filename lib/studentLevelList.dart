@@ -60,7 +60,7 @@ class _StudentLevelListState extends State<StudentLevelList> {
               padding: const EdgeInsets.all(12.0),
               child: Card(
                 child: Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.all(3.0),
                   child: Column(
                     children: <Widget>[
                       Expanded(child: GridView.builder(gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
