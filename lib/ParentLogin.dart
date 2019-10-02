@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 import 'dart:convert';
 
 import 'global.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class parentlogin extends StatefulWidget {
   @override
@@ -13,6 +16,20 @@ class _parentloginState extends State<parentlogin> {
 
   TextEditingController email = new TextEditingController();
   TextEditingController pass = new TextEditingController();
+
+  Parentlogin() async {
+    http.post("http://edusupportapp.com/api/login.php", body: {
+      "username_email":email.text.toString(),
+      "type":"parents_login"
+
+    }).then((response) {
+      print(response.body);
+
+      setState(() {
+
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -110,7 +127,7 @@ class _parentloginState extends State<parentlogin> {
 //                        print(email.text.toString());
 //                        print(pass.text.toString());
                                 //login();
-
+                                Parentlogin();
                                 Navigator.of(context)
                                     .pushNamed('parentstudent');
 
@@ -148,5 +165,10 @@ class _parentloginState extends State<parentlogin> {
         ),
       ),
     );
+  }@override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    Parentlogin();
   }
 }

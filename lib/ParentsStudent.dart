@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+import 'package:fluttertoast/fluttertoast.dart';
+
 
 import 'global.dart';
 
@@ -8,6 +13,11 @@ class parentstudent extends StatefulWidget {
 }
 
 class _parentstudentState extends State<parentstudent> {
+
+
+
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -96,5 +106,10 @@ class _parentstudentState extends State<parentstudent> {
           ), ],
       ),
     );
+  }@override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
   }
 }
