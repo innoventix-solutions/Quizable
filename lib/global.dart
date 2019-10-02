@@ -1761,7 +1761,7 @@ class PreviewQuizs extends StatelessWidget {
                             Text(isActive?"Published on : $publishedDate":"Scheduled : $publishedDate",style:
                             TextStyle(color: isActive?Colors.green:Colors.red,fontWeight: FontWeight.bold),),
     SizedBox(height: 10,),
-                            Text("Created On:"+Quiz.closing_date,style:
+                            Text("Closing On:"+Quiz.closing_date,style:
                             TextStyle(color: Colors.grey,fontWeight: FontWeight.bold),),
     SizedBox(height: 10,)
                           ],
