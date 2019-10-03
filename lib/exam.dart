@@ -19,6 +19,7 @@ class Exam extends StatefulWidget {
 
 class _ExamState extends State<Exam> {
 
+  bool isattempted =false;
   int Changed=0;
   CountDown cd ;
   int CurrentPage =0;
@@ -39,11 +40,11 @@ class _ExamState extends State<Exam> {
   List<String> _list = new List();
   List<String> _Originallist = new List();
   List<String> MatchingAnswers = new List();
-
   List<String> fillupsData = new List();
   bool isloading = true;
   String TimerText ="-:--:--";
   int timermins = int.parse(GlobalData.DurationofEachLevel);
+  List<TextEditingController> Textcontroller = List();
 
 
 
@@ -508,15 +509,23 @@ class _ExamState extends State<Exam> {
                Expanded(child: ListView.builder(
                itemCount: no,itemBuilder: (c,i){
 
-                 if(fillupsData.length<no) {
+
+
+
+
+                 if(fillupsData.length<no ) {
                    fillupsData.add("");
+                    Textcontroller.add((TextEditingController()));
+                    Textcontroller[i].text="";
                  }
 
 
                  return Padding(
                    padding: const EdgeInsets.only(left:8.0,right: 8.0),
                    child: TextField(
-                     decoration: InputDecoration(hintText: "Answer $i"),
+                     controller: Textcontroller[i],
+
+                     decoration: InputDecoration(hintText: "Answer ${i+1}"),
 
                      onChanged: (val){
                        print(val);
@@ -809,6 +818,8 @@ class _ExamState extends State<Exam> {
 
                           if(remaning==false) {
                             GiveAnswer(answ, (i + 1).toString());
+                            Show_toast_Now("Data removing",Colors.red);
+
                             TrueorFalse = "";
                             Changed = 0;
                             i++;
@@ -964,12 +975,7 @@ Matches =Quetions[i].anwer_options;*/
 
 
   GiveAnswer(String answer,String qno)async{
-
-
-
-
     print("Your Answer : "+answer);
-
     if(cd!=null) {
       cd.isPaused = true;
     }
@@ -985,8 +991,24 @@ Matches =Quetions[i].anwer_options;*/
       "answer":answer
     }).then((res){
       print(res.body);
-      fillupsData.clear();
     });
+
+
+    for(int i=0;i<fillupsData.length;i++) {
+      fillupsData[i]="";
+      Textcontroller[i].text="";
+    }
+
+    fillupsData.clear();
+    _list.clear();
+    _Originallist.clear();
+    MatchingAnswers.clear();
+
+    Show_toast_Now(fillupsData.length.toString(), Colors.green);
+
+    Show_toast_Now(Textcontroller.length.toString(), Colors.red);
+
+
 
   }
 

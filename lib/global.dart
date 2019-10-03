@@ -876,7 +876,7 @@ class classactivitys extends StatelessWidget {
                 ),
               ),
 
-              GestureDetector(
+             /* GestureDetector(
                 onTap: (){
 
 
@@ -894,7 +894,7 @@ class classactivitys extends StatelessWidget {
 
 
                     GlobalData.ExamQuiz=title;
-                    GlobalData.DurationofEachLevel=GlobalData.DurationofEachLevel;
+                    GlobalData.DurationofEachLevel=duration;
                     GlobalData.QuizLevels=levels??"1";
                     GlobalData.CurrentStudentID=GlobalData.uid;
 
@@ -972,7 +972,7 @@ class classactivitys extends StatelessWidget {
                   ],
                 )
                 ,
-              ),
+              ),*/
 
 
 
