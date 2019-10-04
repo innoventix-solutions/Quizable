@@ -201,7 +201,7 @@ class MyResultBlock extends StatelessWidget {
 
                         Expanded(child: Padding(
                           padding: const EdgeInsets.all(10.0),
-                          child: Container(child: Text("Your Answer: " +(anwer_options.isEmpty?user_ans:""),style: TextStyle(color: Colors.blue,fontWeight: FontWeight.bold),)),
+                          child: Container(child: Text("Your Answer: " +(User_anwer_options.isEmpty?user_ans:""),style: TextStyle(color: Colors.blue,fontWeight: FontWeight.bold),)),
                         )),
 
 
