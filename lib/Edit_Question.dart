@@ -80,14 +80,21 @@ void _confirmDialog(BuildContext context)  {
                                         child: SizedBox(width: 100,
                                           child: GradientButtonText(
                                             ButtonClick: (){
+                                              if(optioncontroller.text !=null && optioncontroller.text !="")
+                                                {
 
-                                              Options.add(Pojo_Answers(trueanswer: Selected,value:optioncontroller.text ));
+                                                Options.add(Pojo_Answers(trueanswer:SelectedType=="Fill-in the gaps"?true: Selected,
+                                                  value:optioncontroller.text));
                                               Navigator.of(context).pop();
                                               setState(() {
 
                                               });
 
-                                            }
+                                            }else {
+                                                Show_toast_Now("Option can't be blank",Colors.red);
+                                              }
+
+        }
                                             ,linearGradient:
                                           LinearGradient(colors: <Color>[GlobalData.navy,GlobalData.navyblue]),
                                             text: Text('Add',style: TextStyle(color: Colors.white,
@@ -173,7 +180,7 @@ void QuizCompleted(BuildContext context)  {
                                           child: GradientButtonText(
                                             ButtonClick: (){
 
-                                              Navigator.of(context).pushNamed('manageclassactivities');
+                                              Navigator.of(context).pushReplacementNamed('Recentque');
                                               setState(() {
 
                                               });
@@ -817,7 +824,46 @@ Widget build(BuildContext context) {
                     child: SizedBox(width: 100,
                       child: GradientButtonText(
                         ButtonClick: (){
-                          SaveQuizQuestion();
+                          int no=0;
+                          if(SelectedType=="Fill-in the gaps") {
+                            no = ('_'
+                                .allMatches(QuestionName.text.toString())
+                                .length);
+                            print("NUmbers of Dash :"+no.toString());
+                          }
+
+
+                          if( MyQuestionAnswer(SelectedType)=="[]") {
+
+                            CustomShowDialog(context,title: "No Options",msg:
+                            "Please Add Some Options");
+
+                          }else if(
+                          SelectedType=="Single Answer" && getSelectedOptions()==0
+                          ){
+                            CustomShowDialog(context,title:
+
+                            "No Option is Selected",msg:
+                            "Please Select an Options");
+                          }else if(
+                          SelectedType=="Multiple Answers" && getSelectedOptions()<2
+                          ){
+                            CustomShowDialog(context,title:
+                            getSelectedOptions()==0?
+                            "No Option is Selected":
+                            "Only One Option is Selected",msg:
+                            "Please Select Two or More Options");
+                          }else if(SelectedType=="Fill-in the gaps" && no>Options.length)
+                          {
+
+                            print("less number ");
+
+                            CustomShowDialog(context,title: "Less Answers",
+                                msg:"Number of answers are less then blanks(_) in the question." );
+                          }else
+                          {
+                            SaveQuizQuestion();
+                          }
                         },
                         linearGradient:LinearGradient(colors: <Color>[GlobalData.purple,GlobalData.pink]) ,
                         text: Text("Update",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 18,),
@@ -843,8 +889,8 @@ void _showDialog() {
     builder: (BuildContext context) {
       // return object of type Dialog
       return AlertDialog(
-        title: new Text("Some Values Missing"),
-        content: new Text("Please Fill All the Values"),
+        title: new Text("No Options Added"),
+        content: new Text("Please Add Some Options"),
         actions: <Widget>[
           // usually buttons at the bottom of the dialog
           new FlatButton(
@@ -862,7 +908,9 @@ void _showDialog() {
 SaveQuizQuestion()async {
   if (QuestionName.text.toString() == "" || Points.text.toString() == "" ||
       SelectedType.toString() == "" || MyQuestionAnswer(SelectedType) == "") {
-    _showDialog();
+    //_showDialog();
+    CustomShowDialog(context,msg: "Some Values are Missing",title:
+    "Value Missing");
   }else{
 
 
@@ -903,4 +951,18 @@ SaveQuizQuestion()async {
     });
   }
 }
+  int  getSelectedOptions()
+  {
+    int mySelectedOptions=0;
+
+    for(int i=0;i<Options.length;i++) {
+      if(Options[i].trueanswer == true)
+      {
+        mySelectedOptions++;
+      }
+    }
+
+    return mySelectedOptions;
+
+  }
 }
