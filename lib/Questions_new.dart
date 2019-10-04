@@ -83,8 +83,10 @@ class _QuestionsState extends State<Questions> {
                                               ButtonClick: (){
 
                                                 if(optioncontroller.text !=null && optioncontroller.text !="") {
+
+
                                                   Options.add(option(
-                                                      trueanswer: Selected,
+                                                      trueanswer: SelectedType=="Fill-in the gaps"?true:Selected,
                                                       value: optioncontroller
                                                           .text));
                                                   Navigator.of(context).pop();

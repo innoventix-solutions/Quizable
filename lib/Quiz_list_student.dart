@@ -364,6 +364,7 @@ class _Quiz_List_studentState extends State<Quiz_List_student> {
                         title: Quizz_List[i].quiz_title,
                         id: Quizz_List[i].id,
                         is_taken: Quizz_List[i].is_taken,
+                      duration: Quizz_List[i].dur_each_level,
                       //is_taken: false,
                       )/*:SizedBox()*/
                     );

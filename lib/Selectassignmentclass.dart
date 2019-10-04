@@ -83,7 +83,7 @@ class _SelectassignmentclassState extends State<Selectassignmentclass> {
               onPressed: (){},
               icon: Icon(
                 Icons.account_circle,
-                color: Colors.white,
+                color: Colors.transparent,
                 size: 20,
               ),
             ),
@@ -144,10 +144,7 @@ class _SelectassignmentclassState extends State<Selectassignmentclass> {
                                     child: Column(mainAxisAlignment: MainAxisAlignment.start,crossAxisAlignment: CrossAxisAlignment.start,
                                       children: <Widget>[
                                         Text(Class_list[index].classname,style: TextStyle(fontSize: 15),textAlign: TextAlign.left,),
-                                        Padding(
-                                          padding: const EdgeInsets.only(top:5),
-                                          child: Text('12 Students',style: TextStyle(fontSize: 12),),
-                                        ),
+
                                       ],
                                     ),
                                   ),

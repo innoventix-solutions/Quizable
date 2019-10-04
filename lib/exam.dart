@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:share/share.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import 'Pojo/pojo_answer.dart';
 import 'Pojo/pojo_matchs.dart';
 import 'Utils/CustomWidgets.dart';
@@ -20,6 +19,7 @@ class Exam extends StatefulWidget {
 
 class _ExamState extends State<Exam> {
 
+  bool isattempted =false;
   int Changed=0;
   CountDown cd ;
   int CurrentPage =0;
@@ -40,18 +40,18 @@ class _ExamState extends State<Exam> {
   List<String> _list = new List();
   List<String> _Originallist = new List();
   List<String> MatchingAnswers = new List();
-
   List<String> fillupsData = new List();
   bool isloading = true;
   String TimerText ="-:--:--";
-  int timermins = int.parse(GlobalData.DurationofEachLevel=="0"||GlobalData.DurationofEachLevel==null?"15".toString():GlobalData.DurationofEachLevel);
+  int timermins = int.parse(GlobalData.DurationofEachLevel);
+  List<TextEditingController> Textcontroller = List();
+
 
 
   List<pojo_anslog> anslist = new List();
 
   Timmer(){
     cd = CountDown(Duration(minutes: timermins));
-
     var sub = cd.stream.listen(null);
     // start your countdown by registering a listener
     sub.onData((Duration d) {
@@ -495,6 +495,8 @@ class _ExamState extends State<Exam> {
             .allMatches(que.toString())
             .length);
 
+
+
         return Container(
           height: (no*50.0)+100,
           child: Card(
@@ -507,11 +509,27 @@ class _ExamState extends State<Exam> {
                Expanded(child: ListView.builder(
                itemCount: no,itemBuilder: (c,i){
 
+
+
+
+
+                 if(fillupsData.length<no ) {
+                   fillupsData.add("");
+                    Textcontroller.add((TextEditingController()));
+                    Textcontroller[i].text="";
+                 }
+
+
                  return Padding(
                    padding: const EdgeInsets.only(left:8.0,right: 8.0),
                    child: TextField(
-                     decoration: InputDecoration(hintText: "Answer $i"),
-                     onChanged: (val){fillupsData[i]=val;},
+                     controller: Textcontroller[i],
+
+                     decoration: InputDecoration(hintText: "Answer ${i+1}"),
+
+                     onChanged: (val){
+                       print(val);
+                      fillupsData[i]=val; print("Data : "+fillupsData[i].toString());},
                    ),
                  );
                }),)
@@ -750,22 +768,48 @@ class _ExamState extends State<Exam> {
 
                             if(TrueorFalse=="true")
                             {
-                              answ="false";
+                              answ="False";
                             }else
                             {
-                              answ="true";
+                              answ="True";
                             }
 
                           }else if(Quetions[i].answer_type=="Fill-in the gaps")
                           {
 
-                            answ=fillupsData.toString();
+                         //   answ=fillupsData.toString();
+
+
+                            for (int i = 0; i < fillupsData.length; i++) {
+
+                                answ += fillupsData[i];
+                                if(i<fillupsData.length-1 && fillupsData.length>1  )
+                                {
+                                  answ +=",";
+                                }
+
+                            }
 
 
                           }else{
+                            int Correct = 0;
+
+                            for (int i = 0; i < Options.length; i++) {
+                            if (Options[i].trueanswer == true) {
+                              Correct++;
+                            }
+                            }
+
+
                             for (int i = 0; i < Options.length; i++) {
                               if (Options[i].trueanswer == true) {
+
                                 answ += Options[i].value;
+
+                                if(i<Options.length-1 && Correct>1)
+                                  {
+                                    answ +=",";
+                                  }
                               }
                             }
                           }
@@ -774,6 +818,8 @@ class _ExamState extends State<Exam> {
 
                           if(remaning==false) {
                             GiveAnswer(answ, (i + 1).toString());
+                            Show_toast_Now("Data removing",Colors.red);
+
                             TrueorFalse = "";
                             Changed = 0;
                             i++;
@@ -821,7 +867,7 @@ class _ExamState extends State<Exam> {
 
   getExamResult()async{
 
-    submittime();
+  //  submittime();
 
 
     http.post("http://edusupportapp.com/api/get_user_quiz_result.php",body:{
@@ -929,10 +975,10 @@ Matches =Quetions[i].anwer_options;*/
 
 
   GiveAnswer(String answer,String qno)async{
-
-
-
-
+    print("Your Answer : "+answer);
+    if(cd!=null) {
+      cd.isPaused = true;
+    }
 
 
 
@@ -945,18 +991,29 @@ Matches =Quetions[i].anwer_options;*/
       "answer":answer
     }).then((res){
       print(res.body);
-      fillupsData.clear();
     });
-    print("Your Answer : "+answer);
+
+
+    for(int i=0;i<fillupsData.length;i++) {
+      fillupsData[i]="";
+      Textcontroller[i].text="";
+    }
+
+    fillupsData.clear();
+    _list.clear();
+    _Originallist.clear();
+    MatchingAnswers.clear();
+
+    Show_toast_Now(fillupsData.length.toString(), Colors.green);
+
+    Show_toast_Now(Textcontroller.length.toString(), Colors.red);
+
+
 
   }
 
 
   void ExamCompleted(BuildContext context,String Score)  {
-
-
-
-
     bool Selected = false;
     TextEditingController optioncontroller = new TextEditingController();
     showDialog(
@@ -1086,9 +1143,6 @@ Matches =Quetions[i].anwer_options;*/
     int second = int.parse(TimerText.substring(5,7));
     int min = int.parse(TimerText.substring(2,4));
     int ConsumedTime = (int.parse(GlobalData.DurationofEachLevel)*60)-((min*60)+second);
-
-
-
    int usedSecond= ConsumedTime%60;
    int usedMin = (ConsumedTime/60).floor();
    int hour = usedMin==0?0:(usedMin/60).floor();

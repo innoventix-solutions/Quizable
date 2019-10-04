@@ -78,13 +78,20 @@ class _SetAssignmentQuestionState extends State<SetAssignmentQuestion> {
                                           child: SizedBox(width: 100,
                                             child: GradientButtonText(
                                               ButtonClick: (){
+                                                if(optioncontroller.text !=null && optioncontroller.text !="") {
 
-                                                Options.add(option(trueanswer: Selected,value:optioncontroller.text ));
-                                                Navigator.of(context).pop();
-                                                setState(() {
 
-                                                });
+                                                  Options.add(option(
+                                                      trueanswer: SelectedType=="Fill-in the gaps"?true:Selected,
+                                                      value: optioncontroller
+                                                          .text));
+                                                  Navigator.of(context).pop();
+                                                  setState(() {
 
+                                                  });
+                                                }else{
+                                                  Show_toast_Now("Option can't be blank",Colors.red);
+                                                }
                                               }
                                               ,linearGradient:
                                             LinearGradient(colors: <Color>[GlobalData.navy,GlobalData.navyblue]),
@@ -183,7 +190,7 @@ class _SetAssignmentQuestionState extends State<SetAssignmentQuestion> {
                                             child: GradientButtonText(
                                               ButtonClick: (){
 
-                                                Navigator.of(context).pushReplacementNamed('dashboard');
+                                                Navigator.of(context).pushReplacementNamed('Recentque');
                                                 ClearRegisterData();
                                                 setState(() {
 
@@ -320,11 +327,14 @@ class _SetAssignmentQuestionState extends State<SetAssignmentQuestion> {
                                 itemCount: Options.length,itemBuilder: (context,index){
                               return Container(child: Row(
                                 children: <Widget>[
-                                  Checkbox(value: Options[index].trueanswer, onChanged: (value){
+                                  /*Checkbox(value: Options[index].trueanswer, onChanged: (value){
                                     Options[index].trueanswer=value;setState(() {
 
-                                    });},),
-                                  Expanded(child: Text(Options[index].value))
+                                    });},),*/
+                                  Expanded(child: Padding(
+                                    padding: const EdgeInsets.only(left: 10),
+                                    child: Text(Options[index].value),
+                                  ))
 
                                   ,Padding(
                                     padding: const EdgeInsets.all(8.0),
@@ -584,7 +594,9 @@ class _SetAssignmentQuestionState extends State<SetAssignmentQuestion> {
                     Padding(
                       padding: const EdgeInsets.only(top: 25,bottom: 40),
                       child: SizedBox(width: 100,
-                        child: GradientButtonText(
+                        child: GradientButtonText(ButtonClick: (){
+                          Navigator.of(context).pop();
+                        },
                           linearGradient:LinearGradient(colors: <Color>[GlobalData.navy,GlobalData.navyblue]) ,
                           text: Text("Back",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 18,),
                             textAlign: TextAlign.center,),
@@ -597,7 +609,46 @@ class _SetAssignmentQuestionState extends State<SetAssignmentQuestion> {
                       child: SizedBox(width: 100,
                         child: GradientButtonText(
                           ButtonClick: (){
-                            SaveQuizQuestion();
+                            int no=0;
+                            if(SelectedType=="Fill-in the gaps") {
+                              no = ('_'
+                                  .allMatches(QuestionName.text.toString())
+                                  .length);
+                              print("NUmbers of Dash :"+no.toString());
+                            }
+
+
+                            if( MyQuestionAnswer(SelectedType)=="[]") {
+
+                              CustomShowDialog(context,title: "No Options",msg:
+                              "Please Add Some Options");
+
+                            }else if(
+                            SelectedType=="Single Answer" && getSelectedOptions()==0
+                            ){
+                              CustomShowDialog(context,title:
+
+                              "No Option is Selected",msg:
+                              "Please Select an Options");
+                            }else if(
+                            SelectedType=="Multiple Answers" && getSelectedOptions()<2
+                            ){
+                              CustomShowDialog(context,title:
+                              getSelectedOptions()==0?
+                              "No Option is Selected":
+                              "Only One Option is Selected",msg:
+                              "Please Select Two or More Options");
+                            }else if(SelectedType=="Fill-in the gaps" && no>Options.length)
+                            {
+
+                              print("less number ");
+
+                              CustomShowDialog(context,title: "Less Answers",
+                                  msg:"Number of answers are less then blanks(_) in the question." );
+                            }else
+                            {
+                              SaveAssignmentQuestion();
+                            }
                           },
                           linearGradient:LinearGradient(colors: <Color>[GlobalData.purple,GlobalData.pink]) ,
                           text: Text("Save",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 18,),
@@ -643,8 +694,8 @@ class _SetAssignmentQuestionState extends State<SetAssignmentQuestion> {
       builder: (BuildContext context) {
         // return object of type Dialog
         return AlertDialog(
-          title: new Text("Some Values Missing"),
-          content: new Text("Please Fill All the Values"),
+          title: new Text("No Options Added"),
+          content: new Text("Please Add Some Options"),
           actions: <Widget>[
             // usually buttons at the bottom of the dialog
             new FlatButton(
@@ -659,11 +710,13 @@ class _SetAssignmentQuestionState extends State<SetAssignmentQuestion> {
     );
   }
 
-  SaveQuizQuestion()async {
+  SaveAssignmentQuestion()async {
     if (QuestionName.text.toString() == "" || Points.text.toString() == "" ||
         SelectedType.toString() == "" || MyQuestionAnswer(SelectedType) == ""
-    || EssayInstructions.text.toString()=="") {
-      _showDialog();
+   ) {
+     // _showDialog();
+      CustomShowDialog(context,msg: "Some Values are Missing",title:
+      "Value Missing");
     }else{
 
 
@@ -711,6 +764,24 @@ class _SetAssignmentQuestionState extends State<SetAssignmentQuestion> {
       });
     }
   }
+
+  int  getSelectedOptions()
+  {
+    int mySelectedOptions=0;
+
+    for(int i=0;i<Options.length;i++) {
+      if(Options[i].trueanswer == true)
+      {
+        mySelectedOptions++;
+      }
+    }
+
+    return mySelectedOptions;
+
+  }
+
+
+
 }
 
 

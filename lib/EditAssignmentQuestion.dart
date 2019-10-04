@@ -83,11 +83,18 @@ class _EditAssignmentQuestionsState extends State<EditAssignmentQuestions> {
                                             child: GradientButtonText(
                                               ButtonClick: (){
 
-                                                Options.add(Pojo_Answers(trueanswer: Selected,value:optioncontroller.text ));
-                                                Navigator.of(context).pop();
-                                                setState(() {
+                                                if(optioncontroller.text !=null && optioncontroller.text !="")
+                                                {
+                                                  Options.add(Pojo_Answers(trueanswer:SelectedType=="Fill-in the gaps"?true: Selected,value:optioncontroller.text ));
+                                                  Navigator.of(context).pop();
+                                                  setState(() {
 
-                                                });
+                                                  });
+                                                }
+                                                else{
+                                                  Show_toast_Now("Option can't be blank",Colors.red);
+                                                }
+
 
                                               }
                                               ,linearGradient:
@@ -155,7 +162,7 @@ class _EditAssignmentQuestionsState extends State<EditAssignmentQuestions> {
                                   Center(child: Padding(
                                     padding: const EdgeInsets.only(top:15),
 
-                                    child: Text('Asiignment Submitted',textAlign: TextAlign.center,
+                                    child: Text('Assignment Submitted',textAlign: TextAlign.center,
                                       style: TextStyle(color: GlobalData.lightblue,fontSize: 25,fontWeight: FontWeight.bold),),
                                   )),
 
@@ -420,10 +427,10 @@ class _EditAssignmentQuestionsState extends State<EditAssignmentQuestions> {
                                 itemCount: Options.length,itemBuilder: (context,index){
                               return Container(child: Row(
                                 children: <Widget>[
-                                  Checkbox(value: Options[index].trueanswer, onChanged: (value){
+                                  /*Checkbox(value: Options[index].trueanswer, onChanged: (value){
                                     Options[index].trueanswer=value;setState(() {
 
-                                    });},),
+                                    });},),*/
                                   Expanded(child: Text(Options[index].value))
 
                                   ,Padding(
@@ -449,6 +456,8 @@ class _EditAssignmentQuestionsState extends State<EditAssignmentQuestions> {
                   ),
                 ],
               ),
+              Text("Enter answer in sequence with underscore '_' in between the words",style:
+              TextStyle(color: Colors.red),)
 
 
 
@@ -681,7 +690,39 @@ class _EditAssignmentQuestionsState extends State<EditAssignmentQuestions> {
                       child: SizedBox(width: 100,
                         child: GradientButtonText(
                           ButtonClick: (){
-                            SaveQuizQuestion();
+                            int no=0;
+                            if(SelectedType=="Fill-in the gaps") {
+                              no = ('_'
+                                  .allMatches(QuestionName.text.toString())
+                                  .length);
+                              print("NUmbers of Dash :"+no.toString());
+                            }
+
+
+                            if( MyQuestionAnswer(SelectedType)=="[]") {
+
+                              CustomShowDialog(context,title: "No Options",msg:
+                              "Please Add Some Options");
+
+                            }else if(
+                            SelectedType=="Multiple Answers" && getSelectedOptions()<2
+                            ){
+                              CustomShowDialog(context,title:
+                              getSelectedOptions()==0?
+                              "No Option is Selected":
+                              "Only One Option is Selected",msg:
+                              "Please Select Two or More Options");
+                            }else if(SelectedType=="Fill-in the gaps" && no>Options.length)
+                            {
+
+                              print("less number ");
+
+                              CustomShowDialog(context,title: "Less Answers",
+                                  msg:"Number of answers are less then blanks(_) in the question." );
+                            }else
+                            {
+                              SaveAssignmentQuestion();
+                            }
                           },
                           linearGradient:LinearGradient(colors: <Color>[GlobalData.purple,GlobalData.pink]) ,
                           text: Text("Update",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 18,),
@@ -723,11 +764,12 @@ class _EditAssignmentQuestionsState extends State<EditAssignmentQuestions> {
     );
   }
 
-  SaveQuizQuestion()async {
+  SaveAssignmentQuestion()async {
     if (QuestionName.text.toString() == "" || Points.text.toString() == "" ||
-        SelectedType.toString() == "" || MyQuestionAnswer(SelectedType) == ""||
-        EssayInstructions.text.toString()=="") {
-      _showDialog();
+        SelectedType.toString() == "" || MyQuestionAnswer(SelectedType) == "") {
+     // _showDialog();
+      CustomShowDialog(context,msg: "Some Values are Missing",title:
+      "Value Missing");
     }else{
 
 
@@ -770,4 +812,19 @@ class _EditAssignmentQuestionsState extends State<EditAssignmentQuestions> {
       });
     }
   }
+  int  getSelectedOptions()
+  {
+    int mySelectedOptions=0;
+
+    for(int i=0;i<Options.length;i++) {
+      if(Options[i].trueanswer == true)
+      {
+        mySelectedOptions++;
+      }
+    }
+
+    return mySelectedOptions;
+
+  }
+
 }
