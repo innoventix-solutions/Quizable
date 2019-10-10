@@ -21,9 +21,16 @@ class _LevelsListsState extends State<LevelsLists> {
          child: GestureDetector(
            onTap: (){
 
-             GlobalData.CurrentLevel=(index+1);
+             if(GlobalData.userType=="student"){
+               GlobalData.CurrentLevel=(index+1);
+               Navigator.of(context).pushNamed('AnswerLog');
+             }
+             else{
+               GlobalData.CurrentLevel=(index+1);
 
-             Navigator.of(context).pushNamed('Question_List');
+               Navigator.of(context).pushNamed('Question_List');
+             }
+
            },
            child: Card(child: Padding(
              padding: const EdgeInsets.all(20.0),

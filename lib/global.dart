@@ -1827,7 +1827,7 @@ class getscoreborder extends StatelessWidget {
         ),
 
         child: Padding(
-          padding: const EdgeInsets.all(15.0),
+          padding: const EdgeInsets.all(20.0),
           child:
           Text(per.toString() + "%", textAlign: TextAlign.center,
             style: TextStyle(fontWeight: FontWeight.bold),),

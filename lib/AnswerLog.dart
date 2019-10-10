@@ -14,6 +14,7 @@ class AnswerLog extends StatefulWidget {
 class _AnswerLogState extends State<AnswerLog> {
 
   List<pojo_anslog> anslist = new List();
+  List<pojo_anslog> newlist = new List();
 
   anslog() async{
     http.post("http://edusupportapp.com/api/get_user_quiz_question_answer.php",
@@ -28,10 +29,20 @@ class _AnswerLogState extends State<AnswerLog> {
 
       var pass = jsonDecode(response.body);
 
-      anslist = (pass['data'] as List)
+      newlist = (pass['data'] as List)
           .map((data) => pojo_anslog.fromJson(data))
           .toList();
 
+
+      for(var item in newlist){
+        if(item.level_no==GlobalData.CurrentLevel.toString())
+        {
+          anslist.add(item);
+          print("Match Found");
+        }else{
+          print("Not Found");
+        }
+      }
       print(anslist.length);
 
       setState(() {

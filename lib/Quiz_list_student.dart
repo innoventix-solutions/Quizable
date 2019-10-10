@@ -261,10 +261,11 @@ class _Quiz_List_studentState extends State<Quiz_List_student> {
                               "No Quiz Exercise published yet");
                             }
                             else{
-                              GlobalData.QuizID.toString();
-                              GlobalData.QuizLevels.toString();
-                              GlobalData.ExamQuiz.toString();
-                              GlobalData.DurationofEachLevel.toString(); //studentLevelList
+                              GlobalData.isGlobal=false;
+                              GlobalData.QuizID=Quizz_List[0].id;
+                              GlobalData.QuizLevels=Quizz_List[0].no_of_levels;
+                              GlobalData.ExamQuiz=Quizz_List[0].quiz_title;
+                              GlobalData.DurationofEachLevel=Quizz_List[0].dur_each_level;//studentLevelList
                               // Navigator.of(context).pushNamed(Quizz_List[i].is_taken==true?'AnswerLog':'exam');
                               Navigator.of(context).pushNamed('studentLevelList');
                             }
