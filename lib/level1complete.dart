@@ -87,7 +87,7 @@ class _level1State extends State<level1> {
 
 
                   if(Quizz_List.isNotEmpty) {
-                    GlobalData.EditQuiz = false;
+                    GlobalData.EditQuiz = true;
                     GlobalData.QuizID = Quizz_List[0].id;
                     GlobalData.ExamQuiz = Quizz_List[0].quiz_title;
                     GlobalData.DurationofEachLevel =

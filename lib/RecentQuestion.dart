@@ -91,7 +91,7 @@ class _RecentQuestionState extends State<RecentQuestion> {
                     child: Padding(
                     padding: const EdgeInsets.all(15.0),
                     child: Text(
-                      "You don't have not published any class \nactivity yet. Use the Slider button to\n start setting Class activites.",
+                      "You have not published any class \nactivity yet.",
                       style: TextStyle(fontSize: 18, height: 1.2),
                       textAlign: TextAlign.center,
                     ),

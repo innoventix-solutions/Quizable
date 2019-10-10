@@ -29,9 +29,9 @@ class _setquizquestionState extends State<setquizquestion> {
   TextEditingController durlevel = new TextEditingController(text: GlobalData.DurationofEachLevel);
   TextEditingController quizsubject = new TextEditingController();
   TextEditingController quizclass = new TextEditingController();
-  TextEditingController age = new TextEditingController(text: 10.toString());
-  TextEditingController publishdate= new TextEditingController();
-  TextEditingController closingdate= new TextEditingController();
+ // TextEditingController age = new TextEditingController(text: 10.toString());
+  //TextEditingController publishdate= new TextEditingController();
+  //TextEditingController closingdate= new TextEditingController();
   @override
   void initState() {
     // TODO: implement initState
@@ -46,7 +46,7 @@ setalldetails(){
   GlobalData.QuizLevels = quizlevel.text;
   GlobalData.NosofQuesPerLevel = queslevel.text;
   GlobalData.DurationofEachLevel =  durlevel.text;
-  GlobalData.age = 10.toString();
+  //GlobalData.age = 10.toString();
 }
 
 
@@ -70,11 +70,11 @@ setalldetails(){
       "quiz_subject": quizsubject.text.toString(),
       "class_id": quizclass.text.toString(),
       "techer_id": teacher.text.toString(),
-      "publish_date":publishdate.text.toString(),
-      "closing_date":closingdate.text.toString(),
-      "age":10.toString(),
-      "startage":endwithlower.toString(),
-      "endage":endwithupper.toString(),
+      //"publish_date":publishdate.text.toString(),
+      //"closing_date":closingdate.text.toString(),
+      //"age":10.toString(),
+     // "startage":endwithlower.toString(),
+     // "endage":endwithupper.toString(),
 
     }).then((response) {
       var status = jsonDecode(response.body);
@@ -392,7 +392,7 @@ setalldetails(){
                       ),
 
 
-                      Padding(
+                     /* Padding(
                         padding: const EdgeInsets.only(top: 14),
                         child: Align(
                           alignment: Alignment.bottomLeft,
@@ -406,14 +406,14 @@ setalldetails(){
                             textAlign: TextAlign.left,
                           ),
                         ),
-                      ),
+                      ),*/
                      /* CustomTextField(Inputnumber: true,controller: age,Texth: "Age Category/Range | Year",hintStyle: TextStyle(fontSize: 16),),
 */
       //age range starts
 
 
 
-Padding(
+      /*Padding(
   padding: const EdgeInsets.only(top: 10),
   child:   frs.RangeSlider(
     min: 0,
@@ -448,7 +448,7 @@ Padding(
     },
 
   ),
-),
+),*/
 
       //
       // Simple example
@@ -460,7 +460,7 @@ Padding(
                       /* Select starting date and time */
 
 
-                      Padding(
+                      /*Padding(
                         padding: const EdgeInsets.only(top: 20),
                         child: Align(
                           alignment: Alignment.bottomLeft,
@@ -532,7 +532,7 @@ Padding(
                             ),
                           ),
                         ),
-                      ),
+                      ),*/
 
 
                       Row(
@@ -654,10 +654,10 @@ Padding(
       "\nque_each_level :"+ GlobalData.NosofQuesPerLevel +
       "\ndur_each_level :"+ GlobalData.DurationofEachLevel +
       "\nquiz_subject : "+ GlobalData.Selected_subject.toString() +
-      "\nclass_id : "+
-      "\npublish_date : 2019-06-23 00:00:01"+
-      "\nclosing_date : 2019-06-26 00:00:01" +
-        "\n age:" + GlobalData.age
+      "\nclass_id : "
+    //  "\npublish_date : 2019-06-23 00:00:01"+
+    //  "\nclosing_date : 2019-06-26 00:00:01"
+       // "\n age:" + GlobalData.age
 
     );
 
@@ -666,10 +666,11 @@ Padding(
         GlobalData.NosofQuesPerLevel == null ||
         GlobalData.DurationofEachLevel == null ||
         GlobalData.Selected_subject == null||
-        GlobalData.Selected_class== null||
-        Starting_date==null||
-        Closing_date==null ||
-    GlobalData.age == null) {
+        GlobalData.Selected_class== null
+        //|| Starting_date==null||
+        //Closing_date==null
+    //||GlobalData.age == null
+        ) {
 
       _showDialog();
     }
@@ -682,9 +683,9 @@ Padding(
         "dur_each_level": GlobalData.DurationofEachLevel,
         "quiz_subject": GlobalData.Selected_subject,
         "class_id": GlobalData.Selected_class_IDS,
-        "publish_date":Starting_date.toString(),
-        "closing_date":Closing_date.toString(),
-        "age":GlobalData.age,
+       // "publish_date":Starting_date.toString(),
+       // "closing_date":Closing_date.toString(),
+        //"age":GlobalData.age,
       }).then((response) {
         print(response.body.toString());
         var statuss = jsonDecode(response.body);

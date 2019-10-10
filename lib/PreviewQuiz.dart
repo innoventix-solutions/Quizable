@@ -49,7 +49,7 @@ class _PreviewQuizState extends State<PreviewQuiz> {
 
           title: Center(
             child: Text(
-              "Preview Quiz Question ",
+              "Quiz Exercise Log",
               style: TextStyle(fontSize: 20),
             ),
           ),
