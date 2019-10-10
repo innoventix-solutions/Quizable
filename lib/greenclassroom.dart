@@ -104,7 +104,8 @@ class _greenclassroomState extends State<greenclassroom> {
                                     ],
                                   ),
                                 ),
-                              ), Padding(
+                              ),
+                              Padding(
                                 padding: const EdgeInsets.only(right:16),
                                 child: PopupMenuButton(
                                   child: Icon(Icons.more_vert),
