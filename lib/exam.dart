@@ -1139,36 +1139,36 @@ Matches =Quetions[i].anwer_options;*/
 
  String getLevelTime(){
 
-  // Show_toast_Now(TimerText.substring(2,4),Colors.green);
+    // Show_toast_Now(TimerText.substring(2,4),Colors.green);
     int second = int.parse(TimerText.substring(5,7));
     int min = int.parse(TimerText.substring(2,4));
     int ConsumedTime = (int.parse(GlobalData.DurationofEachLevel)*60)-((min*60)+second);
-   int usedSecond= ConsumedTime%60;
-   int usedMin = (ConsumedTime/60).floor();
-   int hour = usedMin==0?0:(usedMin/60).floor();
+    int usedSecond= ConsumedTime%60;
+    int usedMin = (ConsumedTime/60).floor();
+    int hour = usedMin==0?0:(usedMin/60).floor();
 
-   String ActualTime = RoundTime(hour.toString())+":"+RoundTime(usedMin.toString())+":"+RoundTime(usedSecond.toString());
+    String ActualTime = RoundTime(hour.toString())+":"+RoundTime(usedMin.toString())+":"+RoundTime(usedSecond.toString());
 
-  //  Show_toast_Now(RoundTime(hour.toString())+":"+RoundTime(usedMin.toString())+":"+RoundTime(usedSecond.toString()),Colors.green);
+    //  Show_toast_Now(RoundTime(hour.toString())+":"+RoundTime(usedMin.toString())+":"+RoundTime(usedSecond.toString()),Colors.green);
 
 
 
 
     return ActualTime;
 
- }
+  }
 
 
- String RoundTime(String time){
+  String RoundTime(String time){
 
     if(time.length==1)
-      {
-        time ="0"+time;
-      }
+    {
+      time ="0"+time;
+    }
 
     return time;
 
- }
+  }
 
 
 

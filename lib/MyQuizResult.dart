@@ -6,12 +6,12 @@ import 'global.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'setquizquestion.dart';
 
-class MyQuizExerciseLog extends StatefulWidget {
+class MyQuizResult extends StatefulWidget {
   @override
-  _MyQuizExerciseLogState createState() => _MyQuizExerciseLogState();
+  _MyQuizResultState createState() => _MyQuizResultState();
 }
 
-class _MyQuizExerciseLogState extends State<MyQuizExerciseLog> {
+class _MyQuizResultState extends State<MyQuizResult> {
   List<Pojo_quizzes> Quizz_List = new List();
 
 
@@ -53,7 +53,7 @@ class _MyQuizExerciseLogState extends State<MyQuizExerciseLog> {
 
           title: Center(
             child: Text(
-              "Quiz Exercises Log",
+              "My Quiz Result",
               style: TextStyle(fontSize: 20),
             ),
           ),
@@ -89,29 +89,29 @@ class _MyQuizExerciseLogState extends State<MyQuizExerciseLog> {
                   itemCount: Quizz_List.length,
                   itemBuilder: (c,i){
                     return  GestureDetector(
-                      onTap: (){
+                      /*onTap: (){
                         GlobalData.QuizID=Quizz_List[i].id;
                         GlobalData.QuizLevels=Quizz_List[i].no_of_levels;
                         GlobalData.ExamQuiz=Quizz_List[i].quiz_title;
                         GlobalData.DurationofEachLevel=Quizz_List[i].dur_each_level;
                         Navigator.of(context).pushNamed(Quizz_List[i].is_taken==true?'AnswerLog':'exam');
-                      },
+                      },*/
                       child: Quizz_List[i].is_taken==true?
-                      QuizExerciseLog(
-                        color: GlobalData.pinkred,
-                        heading: Quizz_List[i].quiz_title+" - "+Quizz_List[i].id,
-                        paragraph: Quizz_List[i].quiz_subject,
-                        title: Quizz_List[i].quiz_title,
-                        id: Quizz_List[i].id,
-                        is_taken: Quizz_List[i].is_taken,
-                        percent: Quizz_List[i].percentage.toString(),
+                      QuizResult(
+                          color: GlobalData.pinkred,
+                          heading: Quizz_List[i].quiz_title+" - "+Quizz_List[i].id,
+                          paragraph: Quizz_List[i].quiz_subject,
+                          title: Quizz_List[i].quiz_title,
+                          id: Quizz_List[i].id,
+                          is_taken: Quizz_List[i].is_taken,
+                          percent: Quizz_List[i].percentage.toString(),
                           progresslabel:Quizz_List[i].progresslabel
                       ):SizedBox(),
                     );
                   }
-                  ),
+              ),
             ),
-           ],
+          ],
         )
 
 
