@@ -1377,7 +1377,7 @@ class QuizExerciseLog extends StatelessWidget {
   final bool is_taken;
   final String levels;
   final String duration;
-  final String percent;
+  //final String percent;
   final String progresslabel;
 
   QuizExerciseLog(
@@ -1390,7 +1390,7 @@ class QuizExerciseLog extends StatelessWidget {
       this.is_taken,
       this.duration,
       this.levels,
-      this.percent,
+      //this.percent,
       this.progresslabel});
 
   @override
@@ -1494,7 +1494,7 @@ class QuizExerciseLog extends StatelessWidget {
                         ),
                         Spacer(),
 
-                        getscoreborder(per: double.parse(percent),),
+                        //getscoreborder(per: double.parse(percent),),
                      ],
                     ),
 
@@ -1681,7 +1681,42 @@ class QuizResult extends StatelessWidget {
                                     child: Text(heading,textAlign: TextAlign.left,
                                       style: TextStyle(color: Colors.white,fontSize: 15,fontWeight: FontWeight.bold),),
                                   ),
-                                ],
+                                  Padding(
+                                    padding: const EdgeInsets.only(right:4),
+                                    child: PopupMenuButton(
+                                      child: Icon(Icons.more_vert),
+                                      itemBuilder: (_) => <PopupMenuItem<String>>[
+                                        new PopupMenuItem<String>(
+                                            child: Row(
+                                              children: <Widget>[
+                                                Padding(
+                                                  padding: const EdgeInsets.only(right: 4),
+                                                  child: Icon(
+                                                    Icons.remove_red_eye,
+                                                    color: GlobalData.pinkred,size: 14,
+                                                  ),
+                                                ),
+                                                new Text('View',style: TextStyle(fontSize: 15),),
+                                              ],
+                                            ),),
+
+                                        PopupMenuItem<String>(
+                                          child: Row(
+                                            children: <Widget>[
+                                              Padding(
+                                                padding: const EdgeInsets.only(right: 4),
+                                                child: Icon(
+                                                  Icons.share,
+                                                  color: GlobalData.pinkred,size: 14,
+                                                ),
+                                              ),
+                                              new Text('Share',style: TextStyle(fontSize: 15),),
+                                            ],
+                                          ),),
+                                      ],
+
+                                    )
+                                  ),],
                               ),
                             ),
 

@@ -35,43 +35,112 @@ class _AboutEdusupportState extends State<AboutEdusupport> {
         ],
       ),
       body: SingleChildScrollView(
-        child: Center(
-          child: Column(crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: <Widget>[
+        child: Column(crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: <Widget>[
+  Padding(
+    padding: const EdgeInsets.all(12.0),
+    child: Text("EduSupport Virtual Classroom "
+        "App is a digital classroom that helps "
+        "the teacher manage communication with "
+        "students anywhere and anytime."
+        "It is an online Educational tool "
+        "used by teachers,students and parents "
+        "globally for viewing and setting "
+        "homework,quiz and spelling bee.\n \n"
+        "EduSupport Virtual Classroom App is suitable for all learning situations, such as conventional schools, distant learning, religious and vocational institutes etc. Once your organization has signed up and classes created, you can invite students to join a class and use the App to access all your classes, manage homework, quiz and spelling bee on the go.",style: TextStyle(
+      fontSize: 14
+    ),),
 
-              Text('',style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
-              Padding(
-                padding: const EdgeInsets.only(top: 45,right: 45,left: 45),
-                child: Center(
-                  child: Card(
-                    child: Padding(
-                      padding: const EdgeInsets.all(20),
-                      child: Column(mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          Text('EduSupport',style: TextStyle(fontSize: 25,
-                              fontWeight: FontWeight.bold),),
-                          //SizedBox(height: 20,),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 20,left: 20,right: 20,bottom: 10),
-                            child: Row(
-                              children: <Widget>[
-                                Expanded(
-                                    child: Text("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s"
-                                        "when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, ")),
-
-                              ],
-                            ),
-                          ),//SizedBox(height: 10),
-                          ],
-                      ),
-                    ),
-
-                  ),
+  ),
+            Card(elevation: 5,
+              child: Container(
+                color: Colors.blueGrey,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text("Benefits for teachers:",textAlign: TextAlign.center,style:
+                  TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
+                ),
+                constraints: BoxConstraints(
+                    maxHeight: 200.0,
+                    maxWidth: 200.0,
+                    minWidth: 100.0,
+                    minHeight: 10.0
                 ),
               ),
-            ],
-          ),
+            ),
+
+            Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: Text("- Signed up as institution admin or class teacher.\n"
+                  "- Manage students and classroom activities.\n"
+                  "- Set task in 5 question types apt for typical educational institutes."),
+            ),
+            Card(elevation: 5,
+              child: Container(
+                color: Colors.blueGrey,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text("Benefits for students:",textAlign: TextAlign.center,style:
+                  TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
+                ),
+                constraints: BoxConstraints(
+                    maxHeight: 200.0,
+                    maxWidth: 200.0,
+                    minWidth: 100.0,
+                    minHeight: 10.0
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: Text("-Keep track of homework \n"
+                  "- Take spelling tests and quizzes, and view results \n"
+                  "- Submit your work online via the app"),
+            ),
+            Card(elevation: 5,
+              child: Container(
+                color: Colors.blueGrey,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text("Benefits for parents:",textAlign: TextAlign.center,style:
+                  TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
+                ),
+                constraints: BoxConstraints(
+                    maxHeight: 200.0,
+                    maxWidth: 200.0,
+                    minWidth: 100.0,
+                    minHeight: 10.0
+                ),
+              ),
+            ),
+           Padding(
+             padding: const EdgeInsets.all(12.0),
+             child: Text("- Keep track of your children’s school activities. \n"
+                 "- View quiz and spelling test results. \n"
+                 "- User-friendly feedback between parents and the teacher."),
+           ),
+            Card(elevation: 5,
+              child: Container(
+                color: Colors.blueGrey,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text("Global Users",textAlign: TextAlign.center,style:
+                  TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
+                ),
+                constraints: BoxConstraints(
+                    maxHeight: 200.0,
+                    maxWidth: 200.0,
+                    minWidth: 100.0,
+                    minHeight: 10.0
+                ),
+              ),
+            ),
+Padding(
+  padding: const EdgeInsets.all(12.0),
+  child:   Text("EduSupport Virtual Classroom App is designed to motivate and inspire students to commit to learning activities. Users also have easy access to educational game apps."),
+)
+          ],
         ),
       ),
     );
