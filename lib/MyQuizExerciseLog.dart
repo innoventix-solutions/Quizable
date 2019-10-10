@@ -94,6 +94,7 @@ class _MyQuizExerciseLogState extends State<MyQuizExerciseLog> {
                         GlobalData.QuizLevels=Quizz_List[i].no_of_levels;
                         GlobalData.ExamQuiz=Quizz_List[i].quiz_title;
                         GlobalData.DurationofEachLevel=Quizz_List[i].dur_each_level;
+                        GlobalData.CurrentStudentID=GlobalData.uid;
                         Navigator.of(context).pushNamed('levelsList');
                       },
                       child: Quizz_List[i].is_taken==true?

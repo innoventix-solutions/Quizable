@@ -1504,7 +1504,7 @@ class QuizExerciseLog extends StatelessWidget {
                 ),
               ),
 
-              GestureDetector(
+              /*GestureDetector(
                 onTap: (){
 
 
@@ -1570,7 +1570,7 @@ class QuizExerciseLog extends StatelessWidget {
                   ],
                 )
                 ,
-              ),
+              ),*/
 
 
 
