@@ -1377,6 +1377,8 @@ class QuizExerciseLog extends StatelessWidget {
   final bool is_taken;
   final String levels;
   final String duration;
+  final String percent;
+  final String progresslabel;
 
   QuizExerciseLog(
       {
@@ -1387,10 +1389,57 @@ class QuizExerciseLog extends StatelessWidget {
         this.id,
       this.is_taken,
       this.duration,
-      this.levels});
+      this.levels,
+      this.percent,
+      this.progresslabel});
 
   @override
   Widget build(BuildContext context) {
+
+
+
+
+
+
+
+    String TimerText ="-:--:--";
+
+    String RoundTime(String time){
+
+      if(time.length==1)
+      {
+        time ="0"+time;
+      }
+
+      return time;
+
+    }
+    String getLevelTime(){
+
+      // Show_toast_Now(TimerText.substring(2,4),Colors.green);
+      int second = int.parse(TimerText.substring(5,7));
+      int min = int.parse(TimerText.substring(2,4));
+      int ConsumedTime = (int.parse(GlobalData.DurationofEachLevel)*60)-((min*60)+second);
+      int usedSecond= ConsumedTime%60;
+      int usedMin = (ConsumedTime/60).floor();
+      int hour = usedMin==0?0:(usedMin/60).floor();
+
+      String ActualTime = RoundTime(hour.toString())+":"+RoundTime(usedMin.toString())+":"+RoundTime(usedSecond.toString());
+
+      //  Show_toast_Now(RoundTime(hour.toString())+":"+RoundTime(usedMin.toString())+":"+RoundTime(usedSecond.toString()),Colors.green);
+
+
+
+
+      return ActualTime;
+
+    }
+
+
+
+
+
+
     return
       Container(decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(40))),
         child: Card(elevation: 5.0,shape: RoundedRectangleBorder(
@@ -1432,10 +1481,24 @@ class QuizExerciseLog extends StatelessWidget {
                 padding: EdgeInsets.only(left: 25,top: 20,right: 30,bottom: 30),
                 child: Column(
                   children: <Widget>[
-                    Text(paragraph,style: TextStyle(fontWeight: FontWeight.bold,
-                        fontSize: 15,color: GlobalData.gray),textAlign: TextAlign.justify,),
+                    Row(
+                      children: <Widget>[
+                        Expanded(
+                          child: Column(
+                            children: <Widget>[
+                              Text(paragraph,style: TextStyle(fontWeight: FontWeight.bold,
+                                  fontSize: 15,color: GlobalData.gray),textAlign: TextAlign.justify,),
 
-                  ],
+                              getscore(grade:progresslabel)],
+                          ),
+                        ),
+                        Spacer(),
+
+                        getscoreborder(per: double.parse(percent),),
+                     ],
+                    ),
+
+                   ],
                 ),
               ),
 
@@ -1492,10 +1555,10 @@ class QuizExerciseLog extends StatelessWidget {
                                           style: TextStyle(color: Colors.white,fontSize: 15,fontWeight: FontWeight.bold),),
                                       ),
 
-                                    ]),
+                                 ]),
                               ),
 
-                            ],
+                              ],
 
                           ),
                         ),
@@ -1517,6 +1580,266 @@ class QuizExerciseLog extends StatelessWidget {
       );
   }
 }
+
+
+
+
+class QuizResult extends StatelessWidget {
+
+  final String heading;
+  final String paragraph;
+  final Color color;
+  final String title;
+  final String id;
+  final bool is_taken;
+  final String levels;
+  final String duration;
+  final String percent;
+  final String progresslabel;
+
+  QuizResult(
+      {
+        this.heading,
+        this.paragraph,
+        this.color,
+        this.title,
+        this.id,
+        this.is_taken,
+        this.duration,
+        this.levels,
+        this.percent,
+        this.progresslabel});
+
+  @override
+  Widget build(BuildContext context) {
+
+
+
+
+
+
+
+    String TimerText ="-:--:--";
+
+    String RoundTime(String time){
+
+      if(time.length==1)
+      {
+        time ="0"+time;
+      }
+
+      return time;
+
+    }
+    String getLevelTime(){
+
+      // Show_toast_Now(TimerText.substring(2,4),Colors.green);
+      int second = int.parse(TimerText.substring(5,7));
+      int min = int.parse(TimerText.substring(2,4));
+      int ConsumedTime = (int.parse(GlobalData.DurationofEachLevel)*60)-((min*60)+second);
+      int usedSecond= ConsumedTime%60;
+      int usedMin = (ConsumedTime/60).floor();
+      int hour = usedMin==0?0:(usedMin/60).floor();
+
+      String ActualTime = RoundTime(hour.toString())+":"+RoundTime(usedMin.toString())+":"+RoundTime(usedSecond.toString());
+
+      //  Show_toast_Now(RoundTime(hour.toString())+":"+RoundTime(usedMin.toString())+":"+RoundTime(usedSecond.toString()),Colors.green);
+
+
+
+
+      return ActualTime;
+
+    }
+
+
+
+
+
+
+    return
+      Container(decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(40))),
+        child: Card(elevation: 5.0,shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(5.0),
+        ),
+          child: Column(mainAxisAlignment: MainAxisAlignment.start,
+            children: <Widget>[
+              Row(
+                children: <Widget>[
+                  Expanded(
+                    child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(5),),color: color),
+
+                      child: Padding(
+                        padding: const EdgeInsets.only(top: 5,bottom: 5),
+                        child: Column(
+                          children: <Widget>[
+                            Padding(
+                              padding: const EdgeInsets.only(top: 5,bottom: 5,left: 10),
+                              child: Row(
+                                children: <Widget>[
+                                  Expanded(
+                                    child: Text(heading,textAlign: TextAlign.left,
+                                      style: TextStyle(color: Colors.white,fontSize: 15,fontWeight: FontWeight.bold),),
+                                  ),
+                                ],
+                              ),
+                            ),
+
+                          ],
+
+                        ),
+                      ),
+
+                    ),
+                  ),
+                ],
+              ),
+              Container(
+                padding: EdgeInsets.only(left: 25,top: 20,right: 30,bottom: 30),
+                child: Column(
+                  children: <Widget>[
+                    Row(
+                      children: <Widget>[
+                        Expanded(
+                          child: Column(
+                            children: <Widget>[
+                              Text(paragraph,style: TextStyle(fontWeight: FontWeight.bold,
+                                  fontSize: 15,color: GlobalData.gray),textAlign: TextAlign.justify,),
+
+                              getscore(grade:progresslabel)],
+                          ),
+                        ),
+                        Spacer(),
+
+                        getscoreborder(per: double.parse(percent),),
+                      ],
+                    ),
+
+                  ],
+                ),
+              ),
+
+
+
+
+
+
+            ],
+          ),
+
+        ),
+      );
+  }
+}
+
+
+class getscore extends StatelessWidget {
+
+  String grade;
+  Color color;
+
+  getscore({this.grade});
+
+  @override
+  Widget build(BuildContext context) {
+
+    if(grade=="Fair"){
+      color=Colors.amber;
+    }
+    else if(grade=="Fail"){
+      color=Colors.red;
+    }
+      else if(grade=="Pass")
+      {
+        color=Colors.green;
+      }
+    else if(grade=="Excellent"){
+      color=Colors.purple;
+
+    }
+
+    return Padding(
+      padding: const EdgeInsets.only(top: 30),
+      child: Card(elevation: 5,
+        child: Container(
+          color: color,
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text(grade,textAlign: TextAlign.center,style:
+            TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
+          ),
+          constraints: BoxConstraints(
+              maxHeight: 100.0,
+              maxWidth: 100.0,
+              minWidth: 70.0,
+              minHeight: 10.0
+          ),
+        ),
+      ),
+
+
+    );
+  }
+}
+
+
+
+class getscoreborder extends StatelessWidget {
+
+  double per;
+  Color color;
+
+  getscoreborder({this.per});
+
+  @override
+  Widget build(BuildContext context) {
+
+    if(per>= 25 && per<50){
+      color=Colors.amber;
+    }
+    else if(per<25){
+      color=Colors.red;
+    }
+    else if(per >= 50 && per<75)
+    {
+      color=Colors.green;
+    }
+    else if(per>= 75){
+      color=Colors.purple;
+
+    }
+
+    return Padding(
+      padding: const EdgeInsets.only(top: 30),
+      child: Container(
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          border: new Border.all(
+            color:color,
+            width: 5,
+
+
+          ),
+          color: Colors.white,
+
+
+
+        ),
+
+        child: Padding(
+          padding: const EdgeInsets.all(15.0),
+          child:
+          Text(per.toString() + "%", textAlign: TextAlign.center,
+            style: TextStyle(fontWeight: FontWeight.bold),),
+        ),
+      ),
+
+
+    );
+  }
+}
+
+
 
 /* Preview Quiz*/
 

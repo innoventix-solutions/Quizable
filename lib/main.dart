@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:newpro/MyQuizResult.dart';
 import 'package:newpro/studentLevelList.dart';
 import 'package:newpro/testpurpose/testing.dart';
 import 'package:share/share.dart';
@@ -94,7 +95,7 @@ import 'UserDetail.dart';
 import 'StudentListByAssignment.dart';
 import 'AssignmentAnswerLog.dart';
 import 'MyAssignmentExerciseLog.dart';
-
+import 'MyQuizResult.dart';
 import 'PublishQuiz.dart';
 
 void main() {
@@ -196,7 +197,8 @@ class MyApp extends StatelessWidget {
         'studentLevelList':(context)=>StudentLevelList(),
         'publishquiz':(context)=>publishquiz(),
         'parentlogin':(context)=>parentlogin(),
-        'parentstudent':(context)=>parentstudent()
+        'parentstudent':(context)=>parentstudent(),
+        'myquizresult':(context)=>MyQuizResult()
 
       },
     );
