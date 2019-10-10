@@ -9,6 +9,8 @@ import 'package:http/http.dart' as http;
 
 import 'Pojo/pojo_questions.dart';
 import 'package:newpro/Pojo/pojostydentlist.dart';
+import 'package:share/share.dart';
+import 'package:share/share.dart';
 
 import 'Pojo/pojo_quizzes.dart';
 
@@ -1705,12 +1707,24 @@ class QuizResult extends StatelessWidget {
                                             children: <Widget>[
                                               Padding(
                                                 padding: const EdgeInsets.only(right: 4),
-                                                child: Icon(
-                                                  Icons.share,
-                                                  color: GlobalData.pinkred,size: 14,
+                                                child: GestureDetector(onTap: (){
+                                                  Share.share("Title Of Quiz Is: " + heading + "\n" "Student Name: " + GlobalData.Username+" \n"+"Grade Of Student is: " + percent +" "
+                                                      +"\n" + "Result: " + progresslabel);
+
+  },
+                                                  child: Icon(
+                                                    Icons.share,
+                                                    color: GlobalData.pinkred,size: 14,
+                                                  ),
                                                 ),
                                               ),
-                                              new Text('Share',style: TextStyle(fontSize: 15),),
+                                              GestureDetector(onTap: (){
+    Share.share("RESULT OF STUDENT \n \n"+"Title Of Quiz Is: " + heading + "\n" "Student Name: " + GlobalData.Username+" \n"+"Grade Of Student is: " + percent +" "
+    +"\n" + "Status: " + progresslabel);
+
+    }
+                                              ,
+                                                  child: new Text('Share',style: TextStyle(fontSize: 15),)),
                                             ],
                                           ),),
                                       ],
