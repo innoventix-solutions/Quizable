@@ -63,7 +63,7 @@ class _ExamState extends State<Exam> {
     });
     // when it finish the onDone cb is called
     sub.onDone(() {
-      print("done");
+      stop();
     });
   }
 
@@ -604,6 +604,7 @@ class _ExamState extends State<Exam> {
     Timmer();
     GetQuestions();
 
+
   }
 
 
@@ -1137,6 +1138,7 @@ Matches =Quetions[i].anwer_options;*/
   }
 
 
+
  String getLevelTime(){
 
     // Show_toast_Now(TimerText.substring(2,4),Colors.green);
@@ -1156,6 +1158,28 @@ Matches =Quetions[i].anwer_options;*/
 
     return ActualTime;
 
+  }
+
+
+  stop(){
+
+    showDialog<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('FINISH TIME'),
+          content: const Text('This item is no longer available'),
+          actions: <Widget>[
+            FlatButton(
+              child: Text('Ok'),
+              onPressed: () {
+                Navigator.of(context).pushNamed('studentdashboard');
+              },
+            ),
+          ],
+        );
+      },
+    );
   }
 
 
