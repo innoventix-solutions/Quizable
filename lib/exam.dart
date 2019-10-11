@@ -819,7 +819,7 @@ class _ExamState extends State<Exam> {
 
                           if(remaning==false) {
                             GiveAnswer(answ, (i + 1).toString());
-                            Show_toast_Now("Data removing",Colors.red);
+                            //Show_toast_Now("Data removing",Colors.red);
 
                             TrueorFalse = "";
                             Changed = 0;
