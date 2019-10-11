@@ -1014,9 +1014,9 @@ Matches =Quetions[i].anwer_options;*/
     _Originallist.clear();
     MatchingAnswers.clear();
 
-    Show_toast_Now(fillupsData.length.toString(), Colors.green);
+    //Show_toast_Now(fillupsData.length.toString(), Colors.green);
 
-    Show_toast_Now(Textcontroller.length.toString(), Colors.red);
+   // Show_toast_Now(Textcontroller.length.toString(), Colors.red);
 
 
 
@@ -1102,7 +1102,7 @@ Matches =Quetions[i].anwer_options;*/
                                                 Navigator.of(context).pop();
 
                                                 Navigator.of(context).pop();
-                                                Navigator.of(context).pushNamed('studentLevelList');
+                                                Navigator.of(context).pushNamed('studentdashboard');
                                                 setState(() {
 
                                                 });
