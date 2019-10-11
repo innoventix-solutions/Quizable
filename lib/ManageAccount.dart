@@ -92,7 +92,7 @@ class _ManageAccountState extends State<ManageAccount> {
                                 child: Text("Please Subscribe To Attempt Next Level.",textAlign: TextAlign.center,style:
                                   TextStyle(fontSize: 20,color: Colors.white),),
                               ),
-                            Text("Rate : N"+price +" /Annum.",style: TextStyle(color: Colors.white,
+                            Text("Rate : N"+(int.parse(price)/100).toString() +" /Annum.",style: TextStyle(color: Colors.white,
                             fontSize: 18),)],
                           ) /*RaisedButton(padding:EdgeInsets.only(top:15,bottom: 15),
                             color: Colors.blue,
