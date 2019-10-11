@@ -104,6 +104,7 @@ class _questionmenuGlobalState extends State<questionmenuGlobal> {
                       is_taken: Quizz_List[i].is_taken,
                       duration: Quizz_List[i].dur_each_level,
                       levels: Quizz_List[i].no_of_levels,
+                      closingdate: Quizz_List[i].closing_date,
                     ),
                   );
                 }),
