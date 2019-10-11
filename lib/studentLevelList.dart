@@ -103,21 +103,16 @@ class _StudentLevelListState extends State<StudentLevelList> {
                           Stars=1;
                         }
 
-
-
                             return LevelCards(lable:Levels_List[i].level.toString(),stars: Stars,lock: isLocked[i],
                             onPressed: (){
-
                               print(locked.toString());
-
                               if(Levels_List[i].userpointAwarded==-1 && !isLocked[i]) {
                                 print("asdfasdf : "+GlobalData.isGlobal.toString());
                                 GlobalData.CurrentLevel = (i + 1);
-                                Navigator.of(context).pushNamed(GlobalData.isGlobal==true && i>0?'ManageAccount':'exam');
+                                Navigator.of(context).pushNamed(GlobalData.isGlobal==true && i>0 && GlobalData.MyMembership==false?'ManageAccount':'exam');
                                 GlobalData.isGlobal=false;
                               }else
                               {
-
                                 Show_toast_Now(isLocked[i]?"Quiz Locked":"Level already attempted", Colors.red);
                               }
                             },);

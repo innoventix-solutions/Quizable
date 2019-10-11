@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'Pojo/pojo_getclasses.dart';
 import 'global.dart';
+import 'package:http/http.dart' as http;
 class splash extends StatefulWidget {
   @override
   _splashState createState() => _splashState();
@@ -13,6 +14,21 @@ class _splashState extends State<splash> {
   SharedPreferences prefs ;
   bool isClassSelected =false;
   String selectedClass ="";
+
+
+  getMembershipdetails()async{
+    http.post(
+        "http://edusupportapp.com/api/getmembership.php",
+        body: {
+          "uid": GlobalData.uid,
+        }).then((response) async {
+      var ParsedJson = jsonDecode(response.body);
+     GlobalData.MyMembership = Membership(
+         id: ParsedJson['id'],
+         enddate: ParsedJson['enddate'],
+         isActive: ParsedJson['isActive']);
+    });
+  }
 
   GetUserdetails()async{
     prefs = await SharedPreferences.getInstance();

@@ -204,8 +204,13 @@ class _createnewclassState extends State<createnewclass> {
                     textAlign: TextAlign.center,
                   ),
                   ButtonClick: () {
-                    createclass();
 
+                    if(GlobalData.Class_list.length>=1 && (GlobalData.MyMembership==null ||GlobalData.MyMembership.isActive==false) )
+                      {
+                        Navigator.of(context).pushNamed('ManageAccount');
+                      }else {
+                      createclass();
+                    }
 
                  //print(classname.text.toString());
                   },

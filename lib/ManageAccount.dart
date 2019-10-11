@@ -15,6 +15,7 @@ class ManageAccount extends StatefulWidget {
 
 class _ManageAccountState extends State<ManageAccount> {
 
+
   var publicKey = 'pk_test_f6536a3fc6b3326aaa00afc70898e075b4fd1c00';
   String price;
 
@@ -24,8 +25,7 @@ class _ManageAccountState extends State<ManageAccount> {
     PaystackPlugin.initialize(publicKey: publicKey);
     super.initState();
     if(GlobalData.userType=="admin_teacher")
-      {
-        price="500000";
+      {price="500000";
       }else{
       price="50000";
     }
@@ -68,7 +68,44 @@ class _ManageAccountState extends State<ManageAccount> {
               ),
             ),
           ),
-          Center(
+           GlobalData.MyMembership.isActive?Center(
+            child: Column(mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Container(
+
+
+                  child: Column(children: <Widget>[
+                    Text(
+                      'Already Subscribed',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(color: Colors.white,fontSize:26,fontFamily: "yu", decoration: TextDecoration.underline),
+                    ),
+                    Padding(padding: EdgeInsets.only(top: 10,bottom: 20)),
+                    Column(
+                      children: <Widget>[
+                        Container(
+
+                            child:Column(
+                              children: <Widget>[
+                                Padding(
+                                  padding: const EdgeInsets.all(10.0),
+                                  child: Text("Membership Ends on ${GlobalData.MyMembership.enddate}",textAlign: TextAlign.center,style:
+                                  TextStyle(fontSize: 20,color: Colors.white),),
+                                ),
+                             ]
+                            )
+
+                        ),
+
+
+
+                      ],
+                    ),
+                  ]),
+                ),
+              ],
+            ),
+          ):Center(
             child: Column(mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 Container(
@@ -172,6 +209,20 @@ class _ManageAccountState extends State<ManageAccount> {
                                     charge: charge,
                                   );
                                   print(response.reference);
+
+                                  if(response!=null) {
+                                    http.post(
+                                        "http://edusupportapp.com/api/membership.php",
+                                        body: {
+                                          "uid": GlobalData.uid,
+                                          "months": 12.toString(),
+                                          "refrence":response.reference
+                                        }).then((response) async {
+                                      var statuss = jsonDecode(response.body);
+                                      print(response.body.toString());
+                                    });
+                                  }
+
 
                               },
                               child: Text(

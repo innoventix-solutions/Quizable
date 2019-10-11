@@ -139,6 +139,18 @@ static String spelltitle ="";
 static String spellLevels = "";
 static String spellNosofQuesPerLevel = "";
 static String spellDurationofEachLevel ="";
+static Membership MyMembership = Membership(isActive: false,enddate: "-",id: "adsf");
+}
+
+
+
+class Membership{
+
+  String id;
+  String enddate;
+  bool isActive;
+
+  Membership({this.id, this.enddate, this.isActive});
 
 }
             /*Logout dialog 30-9-19*/
