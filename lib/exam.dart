@@ -51,6 +51,8 @@ class _ExamState extends State<Exam> {
   List<pojo_anslog> anslist = new List();
 
   Timmer(){
+
+
     cd = CountDown(Duration(minutes: timermins));
     var sub = cd.stream.listen(null);
     // start your countdown by registering a listener
@@ -64,8 +66,14 @@ class _ExamState extends State<Exam> {
     // when it finish the onDone cb is called
     sub.onDone(() {
       stop();
+      cd.isPaused=true;
+
     });
+
   }
+
+
+
 
   void changenow(){
     _list.shuffle();
@@ -79,6 +87,7 @@ class _ExamState extends State<Exam> {
   @override
   dispose()
   {
+
     cd.isPaused=true;
     super.dispose();
   }
@@ -1158,7 +1167,11 @@ Matches =Quetions[i].anwer_options;*/
 
     return ActualTime;
 
+
   }
+
+
+
 
 
   stop(){
