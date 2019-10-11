@@ -96,7 +96,7 @@ class _questionmenuGlobalState extends State<questionmenuGlobal> {
                       Navigator.of(context).pushNamed(GlobalData.userType=="student"?'studentLevelList':'Question_List');
                     },
                     child: classactivitys(
-                      color: GlobalData.pinkred,
+                      color: GlobalData.green,
                       heading: Quizz_List[i].quiz_title,
                       paragraph: Quizz_List[i].quiz_subject,
                       id:Quizz_List[i].id ,
