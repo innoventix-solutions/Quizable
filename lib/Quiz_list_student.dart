@@ -364,8 +364,9 @@ class _Quiz_List_studentState extends State<Quiz_List_student> {
                         paragraph: Quizz_List[i].quiz_subject,
                         title: Quizz_List[i].quiz_title,
                         id: Quizz_List[i].id,
-                        is_taken: Quizz_List[i].is_taken,
+                        is_taken: Quizz_List[i].is_taken.toString()=="true"?true:false,
                       duration: Quizz_List[i].dur_each_level,
+                      closingdate: Quizz_List[i].closing_date,
                       //is_taken: false,
                       )/*:SizedBox()*/
                     );

@@ -767,6 +767,7 @@ class classactivitys extends StatelessWidget {
   final bool is_taken;
   final String levels;
   final String duration;
+  final String closingdate;
 
 
   classactivitys(
@@ -778,7 +779,8 @@ class classactivitys extends StatelessWidget {
       this.id,
       this.is_taken,
       this.duration,
-      this.levels});
+      this.levels,
+      this.closingdate});
 
   @override
   Widget build(BuildContext context) {
@@ -869,14 +871,43 @@ class classactivitys extends StatelessWidget {
               ),
               Container(
                 padding: EdgeInsets.only(left: 25,top: 20,right: 30,bottom: 30),
-                child: Column(
+                child: Row(
                   children: <Widget>[
-                    Text(paragraph,style: TextStyle(fontWeight: FontWeight.bold,
-                        fontSize: 15,color: GlobalData.gray),textAlign: TextAlign.justify,),
+                    Expanded(
+                      child: Text(paragraph,style: TextStyle(fontWeight: FontWeight.bold,
+                          fontSize: 15,color: GlobalData.gray),textAlign: TextAlign.justify,),
+                    ),
+
+                    SizedBox(width: 50,),
+                    Expanded(
+                      child: Card(color: is_taken?Colors.green:Colors.red,
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(is_taken?"Taken":"Missed",style: TextStyle(fontWeight: FontWeight.bold,
+                              fontSize: 15,color: GlobalData.white),textAlign: TextAlign.center,),
+                        ),
+                      ),
+                    ),
 
                   ],
                 ),
               ),
+
+             Padding(
+               padding: const EdgeInsets.all(8.0),
+               child: Row(children: <Widget>[
+                 Card(color: Colors.red,
+                   child: Padding(
+                     padding: const EdgeInsets.all(8.0),
+                     child: Text("Closing Date",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 15,
+                     color: GlobalData.white),textAlign: TextAlign.center,),
+                   ),
+                 ),
+                 Text(closingdate,style: TextStyle(fontWeight: FontWeight.bold,fontSize: 14,
+                     color: GlobalData.gray),textAlign: TextAlign.center,),
+
+               ],),
+             )
 
              /* GestureDetector(
                 onTap: (){
@@ -1924,7 +1955,7 @@ class PreviewQuizs extends StatelessWidget {
 
 
   // 28-8-19 a
-  Delete() async{
+  Delete(String id) async{
 
     await http.post("http://edusupportapp.com/api/delete_quiz.php",
         body: {
@@ -1961,7 +1992,7 @@ class PreviewQuizs extends StatelessWidget {
                   ),
                   GestureDetector(
                       onTap: (){
-                        Delete();
+                        Delete(id);
                         Show_toast("Delete Successfully", Colors.green);
                         Navigator.of(context).pushNamed('dashboard');
                       },child: new Text("Ok")),
