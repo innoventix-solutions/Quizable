@@ -50,6 +50,8 @@ class _ExamState extends State<Exam> {
 
   List<pojo_anslog> anslist = new List();
 
+  bool stoptimer =false;
+
   Timmer(){
 
 
@@ -58,15 +60,26 @@ class _ExamState extends State<Exam> {
     // start your countdown by registering a listener
     sub.onData((Duration d) {
    //   print(d);
-      TimerText=d.toString().substring(0,7);
+      if(stoptimer==false){
+        TimerText=d.toString().substring(0,7);
+
+        setState(() {
+
+        });
+      }
+
+
+      /*TimerText=d.toString().substring(0,7);
+
       setState(() {
 
-      });
+      });*/
     });
     // when it finish the onDone cb is called
     sub.onDone(() {
       stop();
       cd.isPaused=true;
+
 
     });
 
@@ -1164,7 +1177,7 @@ Matches =Quetions[i].anwer_options;*/
 
 
 
-
+    stoptimer=true;
     return ActualTime;
 
 
