@@ -1,6 +1,11 @@
+import 'dart:convert';
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_paystack/flutter_paystack.dart';
 import 'package:newpro/global.dart';
+import 'package:http/http.dart' as http;
 
 
 class ManageAccount extends StatefulWidget {
@@ -9,6 +14,25 @@ class ManageAccount extends StatefulWidget {
 }
 
 class _ManageAccountState extends State<ManageAccount> {
+
+  var publicKey = 'pk_test_f6536a3fc6b3326aaa00afc70898e075b4fd1c00';
+  String price;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    PaystackPlugin.initialize(publicKey: publicKey);
+    super.initState();
+    if(GlobalData.userType=="admin_teacher")
+      {
+        price="500000";
+      }else{
+      price="50000";
+    }
+
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(appBar: AppBar(automaticallyImplyLeading: true,
@@ -68,7 +92,7 @@ class _ManageAccountState extends State<ManageAccount> {
                                 child: Text("Please Subscribe To Attempt Next Level.",textAlign: TextAlign.center,style:
                                   TextStyle(fontSize: 20,color: Colors.white),),
                               ),
-                            Text("Rate : N500 /Annum.",style: TextStyle(color: Colors.white,
+                            Text("Rate : N"+price +" /Annum.",style: TextStyle(color: Colors.white,
                             fontSize: 18),)],
                           ) /*RaisedButton(padding:EdgeInsets.only(top:15,bottom: 15),
                             color: Colors.blue,
@@ -110,12 +134,48 @@ class _ManageAccountState extends State<ManageAccount> {
                               color: Colors.blue,
                               shape: new RoundedRectangleBorder(
                                   borderRadius: new BorderRadius.circular(30.0)),
-                              onPressed: () {
+                              onPressed: () async {
 
-                                Navigator.of(context).pop();
+
+                                  print(GlobalData.email);
+                                  String AccessCode;
+                                  String ref = DateTime.now().year.toString() +
+                                      DateTime.now().month.toString() +
+                                      DateTime.now().day.toString() +
+                                      DateTime.now().hour.toString() +
+                                      DateTime.now().minute.toString() +
+                                      DateTime.now().second.toString();
+                                  print(ref);
+
+                                  await http.post("https://api.paystack.co/transaction/initialize",
+                                      headers: {
+                                        HttpHeaders.authorizationHeader:
+                                        "Bearer sk_test_ed1fa4cef818023148a44bf20c91e085787301e7"
+                                      },
+                                      body: {
+                                        "amount": price,
+                                        "email": GlobalData.email,
+                                        "reference": ref
+                                      }).then((res) {
+                                    print(res.body);
+                                    var ParsedJson = jsonDecode(res.body);
+                                    AccessCode = ParsedJson['data']['access_code'];
+                                    print(AccessCode);
+                                  });
+                                  Charge charge = Charge()
+                                    ..amount = int.parse(price)
+                                  // ..reference = "ajsdfnjasdfas"
+                                    ..accessCode = AccessCode
+                                    ..email = GlobalData.email;
+                                  CheckoutResponse response = await PaystackPlugin.checkout(
+                                    context,
+                                    charge: charge,
+                                  );
+                                  print(response.reference);
+
                               },
                               child: Text(
-                                'OK',
+                                'Pay',
                                 textAlign: TextAlign.center,
                                 style: TextStyle(color:Colors.white,fontSize: 18,fontFamily:"yu"),
                               ),

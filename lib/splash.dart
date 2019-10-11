@@ -30,6 +30,7 @@ class _splashState extends State<splash> {
       GlobalData.userType=prefs.get("type");
       GlobalData.total_join = prefs.get("joincount");
       GlobalData.Userphoto = prefs.get("UserPhoto");
+      GlobalData.email = prefs.get("email");
       print( GlobalData.uid+"  "+GlobalData.Username);
 
       await GetMyClasses();
