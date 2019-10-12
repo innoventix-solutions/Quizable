@@ -1218,6 +1218,7 @@ LogoutFunction(context)async {
   GlobalData.teacherinstruction="";
   GlobalData.AssignmentID="";
   GlobalData.NosofQuesassignment="";
+  GlobalData.MyMembership=null;
 
   // Navigator.of(context).dispose();
   // await Navigator.of(context).dispose();
@@ -3197,3 +3198,4 @@ class dummytext extends StatelessWidget {
       );
   }
 }
+

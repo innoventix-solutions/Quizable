@@ -125,6 +125,8 @@ class _loginState extends State<login> {
         GlobalData.parentsphone=statuss['userdata']['parents_phone_no'].toString();  //16-9-19 a
         GlobalData.parentsemail=statuss['userdata']['parents_email'].toString();   //16-9-19 a
 
+        await getMembershipdetails();
+
 
         if (statuss['userdata']['user_type'] == "teacher") {
 
@@ -371,5 +373,46 @@ class _loginState extends State<login> {
 
   }
 
+  getMembershipdetails()async{
+
+
+
+    await http.post(
+        "http://edusupportapp.com/api/get_user_membership.php",
+        body: {
+          "uid": GlobalData.uid,
+        }).then((response) async {
+
+      print(response.body.toString());
+
+      var ParsedJson = jsonDecode(response.body);
+
+
+      if(ParsedJson['membershipdata']==false)
+      {
+
+
+        GlobalData.MyMembership = Membership(
+            id: 0.toString(),
+            enddate: "---",
+            isActive: false);
+        setState(() {
+
+        });
+
+      }else {
+
+        GlobalData.MyMembership = Membership(
+            id: ParsedJson['membershipdata']['ID'],
+            enddate: ParsedJson['membershipdata']['date'],
+            isActive: ParsedJson['membershipdata']['is_active']);
+        setState(() {
+
+        });
+      }
+    });
+
+  }
 
 }
+

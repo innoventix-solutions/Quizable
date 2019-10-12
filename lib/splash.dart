@@ -17,20 +17,44 @@ class _splashState extends State<splash> {
 
 
   getMembershipdetails()async{
-    http.post(
-        "http://edusupportapp.com/api/getmembership.php",
+
+
+
+    await http.post(
+        "http://edusupportapp.com/api/get_user_membership.php",
         body: {
           "uid": GlobalData.uid,
         }).then((response) async {
+
+          print(response.body.toString());
+
       var ParsedJson = jsonDecode(response.body);
-     GlobalData.MyMembership = Membership(
+
+
+      if(ParsedJson['membershipdata']==false)
+        {
+
+
+          GlobalData.MyMembership = Membership(
+              id: 0.toString(),
+              enddate: "---",
+              isActive: false);
+          setState(() {
+
+          });
+
+        }else {
+
+          GlobalData.MyMembership = Membership(
          id: ParsedJson['membershipdata']['ID'],
          enddate: ParsedJson['membershipdata']['date'],
          isActive: ParsedJson['membershipdata']['is_active']);
      setState(() {
 
      });
+      }
     });
+
   }
 
   GetUserdetails()async{
@@ -38,6 +62,7 @@ class _splashState extends State<splash> {
     print(prefs.get("Id"));
     if(prefs.get("Id")!=null)
     {
+
     /*  print(await prefs.getString("Data"));
       var JionedClassJson = await jsonDecode(await prefs.getString("Data"));
       GlobalData.Class_list = await (JionedClassJson as List).map((data) =>Classes.fromJson(data)).toList();
@@ -51,6 +76,9 @@ class _splashState extends State<splash> {
       GlobalData.Userphoto = prefs.get("UserPhoto");
       GlobalData.email = prefs.get("email");
       print( GlobalData.uid+"  "+GlobalData.Username);
+
+      getMembershipdetails();
+
 
       await GetMyClasses();
 

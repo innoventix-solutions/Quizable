@@ -109,7 +109,9 @@ class _StudentLevelListState extends State<StudentLevelList> {
                               if(Levels_List[i].userpointAwarded==-1 && !isLocked[i]) {
                                 print("asdfasdf : "+GlobalData.isGlobal.toString());
                                 GlobalData.CurrentLevel = (i + 1);
-                                Navigator.of(context).pushNamed(GlobalData.isGlobal==true && i>0 && GlobalData.MyMembership==false?'ManageAccount':'exam');
+                                Navigator.of(context).pushNamed(
+                                    GlobalData.isGlobal==true && i>0 && GlobalData.MyMembership.isActive==false?
+                                    'ManageAccount':'exam');
                                 GlobalData.isGlobal=false;
                               }else
                               {

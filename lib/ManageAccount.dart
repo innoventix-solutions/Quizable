@@ -221,14 +221,28 @@ class _ManageAccountState extends State<ManageAccount> {
                                       var ParsedJson = jsonDecode(response.body);
                                       print(response.body.toString());
 
-    GlobalData.MyMembership = Membership(
-    id: ParsedJson['membershipdata']['ID'],
-    enddate: ParsedJson['membershipdata']['date'],
-    isActive: ParsedJson['membershipdata']['is_active']);
+                                      if(ParsedJson['membershipdata']==false)
+                                      {
 
-    setState(() {
 
-    });
+                                        GlobalData.MyMembership = Membership(
+                                            id: 0.toString(),
+                                            enddate: "---",
+                                            isActive: false);
+                                        setState(() {
+
+                                        });
+
+                                      }else {
+
+                                        GlobalData.MyMembership = Membership(
+                                            id: ParsedJson['membershipdata']['ID'],
+                                            enddate: ParsedJson['membershipdata']['date'],
+                                            isActive: ParsedJson['membershipdata']['is_active']);
+                                        setState(() {
+
+                                        });
+                                      }
 
                                     });
                                   }
