@@ -24,9 +24,12 @@ class _splashState extends State<splash> {
         }).then((response) async {
       var ParsedJson = jsonDecode(response.body);
      GlobalData.MyMembership = Membership(
-         id: ParsedJson['id'],
-         enddate: ParsedJson['enddate'],
-         isActive: ParsedJson['isActive']);
+         id: ParsedJson['membershipdata']['ID'],
+         enddate: ParsedJson['membershipdata']['date'],
+         isActive: ParsedJson['membershipdata']['is_active']);
+     setState(() {
+
+     });
     });
   }
 

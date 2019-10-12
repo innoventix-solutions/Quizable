@@ -218,8 +218,18 @@ class _ManageAccountState extends State<ManageAccount> {
                                           "months": 12.toString(),
                                           "refrence":response.reference
                                         }).then((response) async {
-                                      var statuss = jsonDecode(response.body);
+                                      var ParsedJson = jsonDecode(response.body);
                                       print(response.body.toString());
+
+    GlobalData.MyMembership = Membership(
+    id: ParsedJson['membershipdata']['ID'],
+    enddate: ParsedJson['membershipdata']['date'],
+    isActive: ParsedJson['membershipdata']['is_active']);
+
+    setState(() {
+
+    });
+
                                     });
                                   }
 
