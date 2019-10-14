@@ -1909,21 +1909,21 @@ class QuizResult extends StatelessWidget {
                                       child: Icon(Icons.more_vert),
                                       itemBuilder: (_) => <PopupMenuItem<String>>[
                                         new PopupMenuItem<String>(
-                                            child: Row(
-                                              children: <Widget>[
-                                                Padding(
-                                                  padding: const EdgeInsets.only(right: 4),
-                                                  child: GestureDetector(onTap: (){
-                                                    Navigator.of(context).pushNamed('MyQuizExerciseLog');
-                                                  },
+                                            child: GestureDetector(onTap: (){
+                                              Navigator.of(context).pushNamed('levelsList');
+                                            },
+                                              child: Row(
+                                                children: <Widget>[
+                                                  Padding(
+                                                    padding: const EdgeInsets.only(right: 4),
                                                     child: Icon(
                                                       Icons.remove_red_eye,
                                                       color: GlobalData.pinkred,size: 14,
                                                     ),
                                                   ),
-                                                ),
-                                                new Text('View',style: TextStyle(fontSize: 15),),
-                                              ],
+                                                  new Text('View',style: TextStyle(fontSize: 15),),
+                                                ],
+                                              ),
                                             ),),
 
                                         PopupMenuItem<String>(

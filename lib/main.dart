@@ -110,6 +110,7 @@ import 'spellingBeeResult.dart';
 import 'GlobalExercisesDashboard.dart';
 import 'GlobalSpellingBee.dart';
 import 'tabForQuizAndSpelling.dart';
+import 'GlobalQuizExerciseLog.dart';
 
 void main() {
   runApp(MyApp());
@@ -214,7 +215,8 @@ class MyApp extends StatelessWidget {
         'myquizresult':(context)=>MyQuizResult(),
         'GlobalDashboard':(context)=>GlobalDashboard(),
         'GlobalSpelling':(context)=>GlobalSpelling(),
-        'GlobalResults':(context)=>tabform()
+        'GlobalResults':(context)=>tabform(),
+        'GlobalQuizLog':(context)=>GlobalQuizExerciseLog()
 
       },
     );
