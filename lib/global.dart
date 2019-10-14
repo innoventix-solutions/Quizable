@@ -1913,16 +1913,16 @@ class QuizResult extends StatelessWidget {
                                               children: <Widget>[
                                                 Padding(
                                                   padding: const EdgeInsets.only(right: 4),
-                                                  child: Icon(
-                                                    Icons.remove_red_eye,
-                                                    color: GlobalData.pinkred,size: 14,
+                                                  child: GestureDetector(onTap: (){
+                                                    Navigator.of(context).pushNamed('MyQuizExerciseLog');
+                                                  },
+                                                    child: Icon(
+                                                      Icons.remove_red_eye,
+                                                      color: GlobalData.pinkred,size: 14,
+                                                    ),
                                                   ),
                                                 ),
-                                                GestureDetector(onTap: (){
-                                                  Navigator.of(context).pushNamed(
-                                                      'MyQuizExerciseLog');
-                                                },
-                                                    child: new Text('View',style: TextStyle(fontSize: 15),)),
+                                                new Text('View',style: TextStyle(fontSize: 15),),
                                               ],
                                             ),),
 

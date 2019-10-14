@@ -9,7 +9,7 @@ class _spellingresultState extends State<spellingresult> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(child: Text("Speeling Bee Result")),
+      body: Center(child: Text("No Global Speeling Bee Published Yet")),
     );
   }
 }
