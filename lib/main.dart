@@ -1,20 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:newpro/MyQuizResult.dart';
+import 'package:newpro/previewAssignment.dart';
+import 'package:newpro/quizListStudent.dart';
 import 'package:newpro/studentLevelList.dart';
+import 'package:newpro/studentRegister.dart';
+import 'package:newpro/studentSelectcCass.dart';
 import 'package:newpro/testpurpose/testing.dart';
 import 'package:share/share.dart';
-import 'Edit_Question.dart';
+
 import 'ParentLogin.dart';
 import 'ParentsStudent.dart';
+import 'Questions.dart';
 import 'Questions_list_new.dart';
-import 'Quiz_list_student.dart';
+
 import 'RecentQuestion.dart';
+import 'Register.dart';
 import 'StudentByQuiz.dart';
 import 'TeacherClassList.dart';
-import 'globalvar.dart';
+import 'adminDashboard.dart';
+
+import 'editQuestion.dart';
+
 import 'levelsList.dart';
 import 'manageclassactivitesGlobal.dart';
-import 'sec.dart';
+
 
 import 'teacheroption.dart';
 import 'accounttype.dart';
@@ -32,7 +41,7 @@ import 'teacherdashboard.dart';
 import 'screen101.dart';
 import 'techerjoinclass.dart';
 import 'infoofedusupport.dart';
-import 'studentreg.dart';
+
 import 'studentjoinclass.dart';
 import 'greenclassroom.dart';
 import 'TeacherList.dart';
@@ -54,13 +63,13 @@ import 'alllevelcomplete.dart';
 import 'myclassroom.dart';
 import 'manageclassactivites.dart';
 //import 'Questions.dart';
-import 'Questions_new.dart';
+
 import 'myquizexercise.dart';
 import 'exam.dart';
 import 'functionclass.dart';
-import 'admindashboard.dart';
+
 import 'adminprofile.dart';
-import 'studentselectclass.dart';
+
 import 'TeacherSelectClass.dart';
 import 'AdminClassShare.dart';
 import 'Announcement.dart';
@@ -80,7 +89,7 @@ import 'SetAssignmentQuestion.dart';    //19-8-19
 import 'Selectassignmentclass.dart';    //19-8-19
 import 'MyQuizExerciseLog.dart';        //22-8-19
 import 'PreviewQuiz.dart';              //23-8-19
-import 'Preview_assignment.dart';       //03-9-19
+      //03-9-19
 import 'AssignmentQuestionList.dart';   //04-9-19
 import 'EditAssignmentQuestion.dart';   //04-9-19
 import 'AssignmentQuestionList.dart';   //05-9-19
@@ -97,6 +106,7 @@ import 'AssignmentAnswerLog.dart';
 import 'MyAssignmentExerciseLog.dart';
 import 'MyQuizResult.dart';
 import 'PublishQuiz.dart';
+import 'spellingBeeResult.dart';
 
 void main() {
   runApp(MyApp());
