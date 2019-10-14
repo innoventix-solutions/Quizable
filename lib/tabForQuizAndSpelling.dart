@@ -1,3 +1,5 @@
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'GlobalQuizResults.dart';
@@ -9,13 +11,16 @@ import 'spellingBeeResult.dart';
 class tabform extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp(debugShowCheckedModeBanner: false,
       home: DefaultTabController(
         length: 2,
         child: Scaffold(
           appBar: AppBar(automaticallyImplyLeading: true,
             backgroundColor:Colors.green,
-            bottom: TabBar(indicatorColor:Colors.black,labelColor: Colors.white,labelStyle: TextStyle(fontWeight: FontWeight.bold,
+            bottom: TabBar(indicator: ShapeDecoration.fromBoxDecoration(BoxDecoration(
+              color: Colors.blue
+            )),
+              indicatorColor:Colors.black,labelColor: Colors.white,labelStyle: TextStyle(fontWeight: FontWeight.bold,
             color: Colors.white,fontSize: 16),
               tabs: [
 
@@ -36,3 +41,4 @@ class tabform extends StatelessWidget {
     );
   }
 }
+
