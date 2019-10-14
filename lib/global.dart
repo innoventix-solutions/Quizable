@@ -1918,7 +1918,11 @@ class QuizResult extends StatelessWidget {
                                                     color: GlobalData.pinkred,size: 14,
                                                   ),
                                                 ),
-                                                new Text('View',style: TextStyle(fontSize: 15),),
+                                                GestureDetector(onTap: (){
+                                                  Navigator.of(context).pushNamed(
+                                                      'MyQuizExerciseLog');
+                                                },
+                                                    child: new Text('View',style: TextStyle(fontSize: 15),)),
                                               ],
                                             ),),
 
