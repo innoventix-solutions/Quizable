@@ -13,7 +13,7 @@ class tabform extends StatelessWidget {
         length: 2,
         child: Scaffold(
           appBar: AppBar(backgroundColor:Colors.green,
-            bottom: TabBar(labelColor: Colors.blue,
+            bottom: TabBar(
               tabs: [
                 Tab(text: "Quiz Results",),
                 Tab(text: "spelling Bee results",)
