@@ -12,10 +12,15 @@ class tabform extends StatelessWidget {
       home: DefaultTabController(
         length: 2,
         child: Scaffold(
+
+          appBar: AppBar(backgroundColor:Colors.green,
+            bottom: TabBar(
+
           appBar: AppBar( automaticallyImplyLeading: true,
             backgroundColor:Colors.green,
             bottom: TabBar(indicatorColor:Colors.black,labelColor: Colors.white,labelStyle: TextStyle(fontWeight: FontWeight.bold,
             color: Colors.white,fontSize: 16),
+
               tabs: [
                 Tab(text: "Quiz Results",),
                 Tab(text: "Spelling Bee Results",)
