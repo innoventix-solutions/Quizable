@@ -13,7 +13,7 @@ import 'StudentByQuiz.dart';
 import 'TeacherClassList.dart';
 import 'globalvar.dart';
 import 'levelsList.dart';
-import 'manageclassactivitesGlobal.dart';
+import 'GlobalQuizExercise.dart';
 import 'sec.dart';
 
 import 'teacheroption.dart';
@@ -97,6 +97,8 @@ import 'AssignmentAnswerLog.dart';
 import 'MyAssignmentExerciseLog.dart';
 import 'MyQuizResult.dart';
 import 'PublishQuiz.dart';
+import 'GlobalExercisesDashboard.dart';
+import 'GlobalSpellingBee.dart';
 
 void main() {
   runApp(MyApp());
@@ -198,7 +200,9 @@ class MyApp extends StatelessWidget {
         'publishquiz':(context)=>publishquiz(),
         'parentlogin':(context)=>parentlogin(),
         'parentstudent':(context)=>parentstudent(),
-        'myquizresult':(context)=>MyQuizResult()
+        'myquizresult':(context)=>MyQuizResult(),
+        'GlobalDashboard':(context)=>GlobalDashboard(),
+        'GlobalSpelling':(context)=>GlobalSpelling()
 
       },
     );

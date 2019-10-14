@@ -216,7 +216,7 @@ class _studentdashboardState extends State<studentdashboard> {
             GestureDetector(
               child: Padding(
                 padding: const EdgeInsets.only(left: 45,top:20),
-                child: Row(children: <Widget>[Icon(Icons.assignment,color: GlobalData.lightblue,),
+                child: Row(children: <Widget>[Icon(Icons.info,color: GlobalData.lightblue,),
                   Padding(
                     padding: const EdgeInsets.only(left: 20),
                     child: Text('About eduSupport',style: TextStyle(
@@ -871,7 +871,7 @@ class _studentdashboardState extends State<studentdashboard> {
 
             GestureDetector(
               onTap: (){Navigator.of(context)
-                  .pushNamed('GlobalQuiz');},
+                  .pushNamed('GlobalDashboard');},
               child: Container(padding: EdgeInsets.only(top: 15,bottom: 15),
                   child: Text('Global Quiz',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18,color: GlobalData.lightblue),)),
             ),
