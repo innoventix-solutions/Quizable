@@ -17,6 +17,7 @@ class tabform extends StatelessWidget {
             bottom: TabBar(indicatorColor:Colors.black,labelColor: Colors.white,labelStyle: TextStyle(fontWeight: FontWeight.bold,
             color: Colors.white,fontSize: 16),
               tabs: [
+                
                 Tab(text: "Quiz Results",),
                 Tab(text: "Spelling Bee Results",)
               ],
