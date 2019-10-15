@@ -107,6 +107,31 @@ class _studentdashboardState extends State<studentdashboard> {
 
 
 
+  void globalalert() {
+    // flutter defined function
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        // return object of type Dialog
+        return AlertDialog(
+          title: new Text("Information",style: TextStyle(color: Colors.red),),
+          content: new Text("This is a paid feature an annual fee of N500 to access all Global exercises.\nCan attend one level of global"
+              " excercise.",textAlign: TextAlign.left,),
+          actions: <Widget>[
+            // usually buttons at the bottom of the dialog
+            new FlatButton(
+              child: new Text("Close"),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+
   @override
   void initState() {
     // TODO: implement initState
@@ -871,7 +896,8 @@ class _studentdashboardState extends State<studentdashboard> {
 
             GestureDetector(
               onTap: (){Navigator.of(context)
-                  .pushNamed('GlobalDashboard');},
+                  .pushNamed('GlobalDashboard');
+              globalalert();},
               child: Container(padding: EdgeInsets.only(top: 15,bottom: 15),
                   child: Text('Global Quiz',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18,color: GlobalData.lightblue),)),
             ),
