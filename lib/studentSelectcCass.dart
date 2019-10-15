@@ -50,68 +50,73 @@ class _studentselectclassState extends State<studentselectclass> {
         body:Column(
           children: <Widget>[
             Expanded(
-              child: new
+              child: Center(
+                child: GlobalData.Class_list.isEmpty?
+                Text("No Class joined yet",style: TextStyle(
+                    fontSize: 20,fontWeight: FontWeight.bold,color: Colors.red)):
+                new
 
-              ListView.builder(
-                  itemCount: GlobalData.Class_list.length,
+                ListView.builder(
+                    itemCount: GlobalData.Class_list.length,
 
-                  itemBuilder: (BuildContext ctxt, int index) {
-                    return  GestureDetector(
-                      onTap: ()async {
-                       preferences = await SharedPreferences.getInstance();
-                        preferences.setString("selectedClass", GlobalData.Class_list[index].id);
+                    itemBuilder: (BuildContext ctxt, int index) {
+                      return  GestureDetector(
+                        onTap: ()async {
+                         preferences = await SharedPreferences.getInstance();
+                          preferences.setString("selectedClass", GlobalData.Class_list[index].id);
     GlobalData.activeclass = GlobalData.Class_list[index];
     print(GlobalData.Class_list[index].classname);
 print(GlobalData.activeclass.classname);
     Navigator.of(context).pushReplacementNamed('studentdashboard');
 
 
-                      },
-                      child: Column(
-                        children: <Widget>[
-                          Container(
+                        },
+                        child: Column(
+                          children: <Widget>[
+                            Container(
 
-                            child: Row(
-                              children: <Widget>[
-                                Stack(
-                                  children: <Widget>[
-                                    Container(height: 70,width: 70,margin: EdgeInsets.only(left: 20,top: 15,bottom: 10),
-                                      child: ClipOval(
-                                        child: FadeInImage.assetNetwork(
-                                          placeholder: 'assets/images/classicon.png',
-                                          image: GlobalData.Class_list[index].classicon,fit: BoxFit.cover,
+                              child: Row(
+                                children: <Widget>[
+                                  Stack(
+                                    children: <Widget>[
+                                      Container(height: 70,width: 70,margin: EdgeInsets.only(left: 20,top: 15,bottom: 10),
+                                        child: ClipOval(
+                                          child: FadeInImage.assetNetwork(
+                                            placeholder: 'assets/images/classicon.png',
+                                            image: GlobalData.Class_list[index].classicon,fit: BoxFit.cover,
+                                          ),
                                         ),
                                       ),
-                                    ),
-                                  ],
-                                ),
+                                    ],
+                                  ),
 
 
 
 
 
-                                Expanded(
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(left:30),
-                                    child: Column(mainAxisAlignment: MainAxisAlignment.start,crossAxisAlignment: CrossAxisAlignment.start,
-                                      children: <Widget>[
-                                        Text(GlobalData.Class_list[index].classname,style: TextStyle(fontSize: 15),textAlign: TextAlign.left,),
+                                  Expanded(
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(left:30),
+                                      child: Column(mainAxisAlignment: MainAxisAlignment.start,crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: <Widget>[
+                                          Text(GlobalData.Class_list[index].classname,style: TextStyle(fontSize: 15),textAlign: TextAlign.left,),
 
-                                      ],
+                                        ],
+                                      ),
                                     ),
                                   ),
-                                ),
 
 
-                              ], ),
-                          ),
-                          new Divider(
-                            color: Colors.black,
-                          ),
-                        ],
-                      ),
-                    );
-                  }
+                                ], ),
+                            ),
+                            new Divider(
+                              color: Colors.black,
+                            ),
+                          ],
+                        ),
+                      );
+                    }
+                ),
               ),
             ),
             Padding(

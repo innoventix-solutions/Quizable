@@ -177,7 +177,7 @@ class _GlobalDashboardState extends State<GlobalDashboard> {
                   )],),
               ),onTap: (){
               Navigator.of(context)
-                  .pushNamed('studentdashboard');
+                  .pushNamed('GlobalDashboard');
             },
             ),
 
@@ -206,8 +206,7 @@ class _GlobalDashboardState extends State<GlobalDashboard> {
                         color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
                   )],),
               ),onTap: (){
-              Navigator.of(context)
-                  .pushNamed('AboutEduSupport');
+              Navigator.of(context).pushNamed('studentselectclass');
             },
             ),
 
@@ -281,8 +280,8 @@ class _GlobalDashboardState extends State<GlobalDashboard> {
                         color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
                   ),],),
               ),onTap: (){
-              Share.share(GlobalData.Username +" is Sharing App - "+ "https://play.google.com/store/apps/details?id=com.innoventixsolutions.edusupport&hl=en");
-
+              Navigator.of(context)
+                  .pushNamed('ManageAccount');
             },
             ),
 
