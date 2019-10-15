@@ -215,7 +215,7 @@ class MyApp extends StatelessWidget {
         'myquizresult':(context)=>MyQuizResult(),
         'GlobalDashboard':(context)=>GlobalDashboard(),
         'GlobalSpelling':(context)=>GlobalSpelling(),
-        'GlobalResults':(context)=>tabform(),
+        'GlobalResults':(context)=>tabforms(),
         'GlobalQuizLog':(context)=>GlobalQuizExerciseLog()
 
       },

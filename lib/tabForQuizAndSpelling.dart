@@ -6,39 +6,44 @@ import 'GlobalQuizResults.dart';
 import 'spellingBeeResult.dart';
 
 
+class tabforms extends StatefulWidget {
+  @override
+  _tabformsState createState() => _tabformsState();
+}
 
-
-class tabform extends StatelessWidget {
+class _tabformsState extends State<tabforms> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(debugShowCheckedModeBanner: false,
-      home: DefaultTabController(
-        length: 2,
-        child: Scaffold(
-          appBar: AppBar(automaticallyImplyLeading: true,
-            backgroundColor:Colors.green,
-            bottom: TabBar(indicator: ShapeDecoration.fromBoxDecoration(BoxDecoration(
+    return DefaultTabController(
+      length: 2,
+      child: Scaffold(
+        appBar: AppBar(automaticallyImplyLeading: true,
+          backgroundColor:Colors.green,
+          bottom: TabBar(indicator: ShapeDecoration.fromBoxDecoration(BoxDecoration(
               color: Colors.blue
-            )),
-              indicatorColor:Colors.black,labelColor: Colors.white,labelStyle: TextStyle(fontWeight: FontWeight.bold,
-            color: Colors.white,fontSize: 16),
-              tabs: [
+          )),
+            indicatorColor:Colors.black,labelColor: Colors.white,labelStyle: TextStyle(fontWeight: FontWeight.bold,
+                color: Colors.white,fontSize: 16),
+            tabs: [
 
-                Tab(text: "Quiz Results",),
-                Tab(text: "Spelling Bee Results",)
-              ],
-            ),
-            title: Text('My Global Exercises Results',textAlign: TextAlign.start,),
-          ),
-          body: TabBarView(
-            children: [
-              GlobalQuizResult(),
-              spellingresult(),
+              Tab(text: "Quiz Results",),
+              Tab(text: "Spelling Bee Results",)
             ],
           ),
+          title: Text('My Global Exercises Results',textAlign: TextAlign.start,),
+        ),
+        body: TabBarView(
+          children: [
+            GlobalQuizResult(),
+            spellingresult(),
+          ],
         ),
       ),
     );
   }
 }
+
+
+
+
 
