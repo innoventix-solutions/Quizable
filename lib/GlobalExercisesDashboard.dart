@@ -129,7 +129,7 @@ class _GlobalDashboardState extends State<GlobalDashboard> {
           padding: EdgeInsets.zero,
           children: <Widget>[
             Container(child: Padding(
-              padding: const EdgeInsets.only(bottom: 40,top: 25),
+              padding: const EdgeInsets.only(bottom: 10,top: 25),
               child: DrawerHeader(child: Container(
                 child: Row(
                   children: <Widget>[
@@ -287,7 +287,7 @@ class _GlobalDashboardState extends State<GlobalDashboard> {
 
             GestureDetector(
               child: Padding(
-                padding: const EdgeInsets.only(left: 45,top:20),
+                padding: const EdgeInsets.only(left: 45,top:20,bottom: 28),
                 child: Row(children: <Widget>[Icon(Icons.power_settings_new,color: GlobalData.lightblue,),
                   Padding(
                     padding: const EdgeInsets.only(left: 20),

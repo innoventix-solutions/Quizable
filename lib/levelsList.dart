@@ -23,7 +23,10 @@ class _LevelsListsState extends State<LevelsLists> {
 
              if(GlobalData.userType=="student"){
                GlobalData.CurrentLevel=(index+1);
-               Navigator.of(context).pushNamed('AnswerLog');
+               Navigator.of(context).pushNamed(
+                   GlobalData.isGlobal==true && index>0 && GlobalData.MyMembership.isActive==false?
+                   'ManageAccount':'AnswerLog');
+              // Navigator.of(context).pushNamed('AnswerLog');
              }
              else{
                GlobalData.CurrentLevel=(index+1);
