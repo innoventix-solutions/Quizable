@@ -22,7 +22,7 @@ import 'adminDashboard.dart';
 import 'editQuestion.dart';
 
 import 'levelsList.dart';
-import 'manageclassactivitesGlobal.dart';
+import 'GlobalQuizExercise.dart';
 
 
 import 'teacheroption.dart';

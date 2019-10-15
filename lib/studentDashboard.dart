@@ -116,7 +116,7 @@ class _studentdashboardState extends State<studentdashboard> {
         return AlertDialog(
           title: new Text("Information",style: TextStyle(color: Colors.red),),
           content: new Text("This is a paid feature an annual fee of N500 to access all Global exercises.\nCan attend one level of global"
-              " excercise.",textAlign: TextAlign.left,),
+              " excercise.",textAlign: TextAlign.center,),
           actions: <Widget>[
             // usually buttons at the bottom of the dialog
             new FlatButton(

@@ -32,7 +32,7 @@ class _GlobalSpellingState extends State<GlobalSpelling> {
               gradient: LinearGradient(
                 begin: Alignment.topCenter,
                 end: Alignment.bottomRight,
-                colors: [GlobalData.darkblue, GlobalData.darkpurple],
+                colors: [GlobalData.green, GlobalData.green],
               ),
             ),
           ),
