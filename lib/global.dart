@@ -1908,7 +1908,7 @@ class QuizResult extends StatelessWidget {
                                     child: PopupMenuButton(
                                       child: Icon(Icons.more_vert),
                                       itemBuilder: (_) => <PopupMenuItem<String>>[
-                                        new PopupMenuItem<String>(
+                                        /*new PopupMenuItem<String>(
                                             child: GestureDetector(onTap: (){
                                               Navigator.of(context).pushNamed('levelsList');
                                             },
@@ -1924,7 +1924,7 @@ class QuizResult extends StatelessWidget {
                                                   new Text('View',style: TextStyle(fontSize: 15),),
                                                 ],
                                               ),
-                                            ),),
+                                            ),),*/
 
                                         PopupMenuItem<String>(
                                           child: Row(
