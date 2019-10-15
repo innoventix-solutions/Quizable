@@ -94,7 +94,7 @@ class _GlobalDashboardState extends State<GlobalDashboard> {
         title: Center(
           child: Text(
             "Global Exercises Dashboard",
-            style: TextStyle(fontSize: 20),
+            style: TextStyle(fontSize: 17),
           ),
         ),
         flexibleSpace: Container(
@@ -102,7 +102,7 @@ class _GlobalDashboardState extends State<GlobalDashboard> {
             gradient: LinearGradient(
               begin: Alignment.topCenter,
               end: Alignment.bottomRight,
-              colors: [GlobalData.darkblue, GlobalData.darkpurple],
+              colors: [GlobalData.green, GlobalData.green],
             ),
           ),
         ),
@@ -162,7 +162,7 @@ class _GlobalDashboardState extends State<GlobalDashboard> {
                     )
                   ],),
               ),),
-            ),decoration: bg12,),
+            ),color: Colors.green,),
 
 
 
@@ -460,24 +460,24 @@ class _GlobalDashboardState extends State<GlobalDashboard> {
 
                 /*Student Leaderboard*/
 
-            Container(
+            Container(color:Color(0xFFACDF87),
               width: MediaQuery.of(context).size.width,
 
               child: Column(
                 children: <Widget>[
 
                   Padding(
-                    padding: const EdgeInsets.only(top: 25,left: 35),
+                    padding: const EdgeInsets.only(top: 20,left: 35),
                     child: Row(
                       children: <Widget>[
                         Text('Leaderboard',style:
-                        TextStyle(fontSize: 18,color:GlobalData.lightblue,fontWeight: FontWeight.bold),),
+                        TextStyle(fontSize: 18,color:GlobalData.white,fontWeight: FontWeight.bold),),
                       ],
                     ),
                   ),
 
                   Padding(
-                    padding: const EdgeInsets.only(top: 15),
+                    padding: const EdgeInsets.only(top: 15,bottom: 15),
                     child: Container(
                       child: Padding(
                         padding: const EdgeInsets.only(top: 15,left: 35),
