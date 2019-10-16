@@ -99,7 +99,7 @@ class GlobalData{
   static var gendersel="";
   static int CurrentLevel=0;
   static bool isGlobal=false;
-
+  static String signupdate="";
 
 
 
@@ -1943,8 +1943,8 @@ class QuizResult extends StatelessWidget {
                                                 ),
                                               ),
                                               GestureDetector(onTap: (){
-    Share.share("RESULT OF STUDENT \n \n"+"Title Of Quiz Is: " + heading + "\n" "Student Name: " + GlobalData.Username+" \n"+"Grade Of Student is: " + percent +" "
-    +"\n" + "Status: " + progresslabel);
+    Share.share("My EduSupport Quiz Result \n \n"+ GlobalData.Username + " completed Quiz: " + heading + "\n \n"+"My result is: " + percent +" %"
+    +"\n"  + progresslabel);
 
     }
                                               ,

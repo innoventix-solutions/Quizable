@@ -1115,7 +1115,7 @@ Matches =Quetions[i].anwer_options;*/
                                                 Navigator.of(context).pop();
 
                                                 Navigator.of(context).pop();
-                                                Navigator.of(context).pushNamed('studentdashboard');
+                                                Navigator.of(context).pushNamed('studentLevelList');
                                                 setState(() {
 
                                                 });
@@ -1194,12 +1194,12 @@ Matches =Quetions[i].anwer_options;*/
       builder: (BuildContext context) {
         return AlertDialog(
           title: Text('FINISH TIME'),
-          content: const Text('This item is no longer available'),
+          content: const Text('You have exhausted your time for this level. Tap OK to go to next level'),
           actions: <Widget>[
             FlatButton(
               child: Text('Ok'),
               onPressed: () {
-                Navigator.of(context).pushNamed('studentdashboard');
+                Navigator.of(context).pushNamed('studentLevelList');
               },
             ),
           ],

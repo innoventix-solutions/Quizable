@@ -84,7 +84,7 @@ class _MyQuizExerciseLogState extends State<MyQuizExerciseLog> {
         Column(
           children: <Widget>[
             Expanded(
-              child:Quizz_List.isEmpty ? Center(child: Text('No Quiz Exercises Log')) :
+              child:Quizz_List.isEmpty ? Center(child: Text('No exercises in Quiz Log')) :
               ListView.builder(
                   itemCount: Quizz_List.length,
                   itemBuilder: (c,i){
