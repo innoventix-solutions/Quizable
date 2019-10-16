@@ -251,20 +251,29 @@ GlobalData.Studentlist.clear();
                               children: <Widget>[
                                 Stack(
                                   children: <Widget>[
-                                    Container(height: 70,width: 70,margin: EdgeInsets.only(left: 20,top: 15,bottom: 10),
-                                      decoration: new BoxDecoration(
-                                        color: Colors.red,
-                                          shape: BoxShape.circle,
-                                          image: new DecorationImage(
-                                            fit: BoxFit.cover,
+                                    GestureDetector(onTap: (){
+
+                                      GlobalData.currentteacher = GlobalData.Studentlist[index];
+
+                                      Navigator.of(context)
+                                          .pushNamed('studentdetail');
+
+                                    },
+                                      child: Container(height: 70,width: 70,margin: EdgeInsets.only(left: 20,top: 15,bottom: 10),
+                                        decoration: new BoxDecoration(
+                                          color: Colors.red,
+                                            shape: BoxShape.circle,
+                                            image: new DecorationImage(
+                                              fit: BoxFit.cover,
 //                                              image:GlobalData.Studentlist[index].userphoto!=""? NetworkImage("https://images.pexels.com/photos/1313267/pexels-photo-1313267.jpeg"):
 //                                              AssetImage('assets/images/man.png')
-                                            image:GlobalData.Studentlist[index].userphoto!=""?
-                                            NetworkImage(GlobalData.Studentlist[index].userphoto):
-                                            globalData.getUserGender(GlobalData.Studentlist[index].gender),
-                                          ),
-                                        
-                                      ),),
+                                              image:GlobalData.Studentlist[index].userphoto!=""?
+                                              NetworkImage(GlobalData.Studentlist[index].userphoto):
+                                              globalData.getUserGender(GlobalData.Studentlist[index].gender),
+                                            ),
+
+                                        ),),
+                                    ),
 
 
                                     Positioned(

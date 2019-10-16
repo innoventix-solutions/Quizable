@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:newpro/MyQuizResult.dart';
 import 'package:newpro/previewAssignment.dart';
 import 'package:newpro/quizListStudent.dart';
+import 'package:newpro/studentDetail.dart';
 import 'package:newpro/studentLevelList.dart';
 import 'package:newpro/studentRegister.dart';
 import 'package:newpro/studentSelectcCass.dart';
+import 'package:newpro/teacherdetail.dart';
 import 'package:newpro/testpurpose/testing.dart';
 import 'package:share/share.dart';
 
@@ -100,7 +102,7 @@ import 'AssignmentReport.dart';
 import 'setspellingque.dart';
 import 'setspellque.dart';
 import 'trialsubscription.dart';
-import 'UserDetail.dart';
+
 import 'StudentListByAssignment.dart';
 import 'AssignmentAnswerLog.dart';
 import 'MyAssignmentExerciseLog.dart';
@@ -218,7 +220,8 @@ class MyApp extends StatelessWidget {
         'GlobalSpelling':(context)=>GlobalSpelling(),
         'GlobalResults':(context)=>tabforms(),
         'GlobalQuizLog':(context)=>GlobalQuizExerciseLog(),
-        'studentselectsubject':(context)=>StudentSelectSubject()
+        'studentselectsubject':(context)=>StudentSelectSubject(),
+        'studentdetail':(context)=>studentdetail(),
 
       },
     );

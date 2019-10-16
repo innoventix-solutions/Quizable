@@ -100,6 +100,7 @@ class GlobalData{
   static int CurrentLevel=0;
   static bool isGlobal=false;
   static String signupdate="";
+  static String dob="";
 
 
 
@@ -1985,6 +1986,7 @@ class QuizResult extends StatelessWidget {
                         Spacer(),
 
                         getscoreborder(per: double.parse(percent),),
+
                       ],
                     ),
 

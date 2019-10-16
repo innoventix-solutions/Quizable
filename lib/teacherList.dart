@@ -397,7 +397,8 @@ class _TeacherListState extends State<TeacherList> {
                                  // GlobalData.gendersel=GlobalData.Studentlist[index].gender;
                                   //GlobalData.Userphoto=GlobalData.Studentlist[index].userphoto;
 
-                                 */ Navigator.of(context)
+                                 */
+                                  Navigator.of(context)
                                       .pushNamed('userdetail');
                                 },
                                   child: Container(height: 70,width: 70,margin: EdgeInsets.only(left: 20,top: 15,bottom: 10),

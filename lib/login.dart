@@ -100,7 +100,8 @@ class _loginState extends State<login> {
         prefs.setString("Parentsphone", statuss['userdata']['parents_phone_no']);  //16-9-19 a
         prefs.setString("parentsemail", statuss['userdata']['parents_email']);
         prefs.setString("gender", statuss['userdata']['gender']);
-        prefs.setString("signupdate", statuss['userdata']['signup_date']);//16-10-19 a
+        prefs.setString("signupdate", statuss['userdata']['signup_date']);
+        prefs.setString('dob', statuss['userdata']['birthdate']);//16-10-19
         GlobalData.Username=statuss['userdata']['username'];
         GlobalData.Phone=statuss['userdata']['phone_no'];  //14-8-19 a
         GlobalData.Fullname=statuss['userdata']['fullname'];  //14-8-19 a
@@ -122,7 +123,7 @@ class _loginState extends State<login> {
         GlobalData.gendersel = statuss['userdata']['gender'];
         GlobalData.email=statuss['userdata']['email'].toString();
         GlobalData.disc=statuss['userdata']['specification'].toString();
-
+        GlobalData.dob=statuss['userdata']['birthdate'].toString();
         GlobalData.parentsphone=statuss['userdata']['parents_phone_no'].toString();  //16-9-19 a
         GlobalData.parentsemail=statuss['userdata']['parents_email'].toString();   //16-9-19 a
         GlobalData.signupdate = statuss['userdata']['signup_date'].toString();

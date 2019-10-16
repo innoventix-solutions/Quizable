@@ -880,6 +880,7 @@ class _ExamState extends State<Exam> {
       "quiz_id":Quetions[i].quiz_id,
       "level":Quetions[i].level_no.toString(),
       "taken_time":getLevelTime(),
+      "type":"f",
     }).then((res){
       print(res.body);
     });
