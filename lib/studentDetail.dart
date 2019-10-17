@@ -24,8 +24,8 @@ class _studentdetailState extends State<studentdetail> {
   TextEditingController email = new TextEditingController(text: GlobalData.currentteacher.email);
   TextEditingController disc = new TextEditingController(text: GlobalData.currentteacher.specification);
   TextEditingController student = new TextEditingController(text:GlobalData.currentteacher.username );
-  TextEditingController dob = new TextEditingController(text: GlobalData.dob);
-  TextEditingController parentemail = TextEditingController(text: GlobalData.parentsemail);
+  TextEditingController dob = new TextEditingController(text: GlobalData.currentteacher.birthdate);
+  TextEditingController parentemail = TextEditingController(text: GlobalData.currentteacher.parentemail);
   SharedPreferences shared;
   String image64 = "";
   File _image;

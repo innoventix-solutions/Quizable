@@ -277,7 +277,7 @@ class drawerquiz extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(left: 10),
                 child: GestureDetector(
-                  child: Text('Set Quiz Questions',style: TextStyle(
+                  child: Text('Quiz Question Bank ',style: TextStyle(
                       color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
                   onTap: (){Navigator.of(context)
                       .pushNamed('setquizquestions');
@@ -292,7 +292,7 @@ class drawerquiz extends StatelessWidget {
               child: Row(children: <Widget>[Icon(Icons.offline_pin,color: GlobalData.lightblue,),
                 Padding(
                   padding: const EdgeInsets.only(left: 10),
-                  child: Text('Set Spelling Challenge',style: TextStyle(
+                  child: Text('Spelling challenge Bank ',style: TextStyle(
                       color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
                 ),],),
             ),onTap: (){

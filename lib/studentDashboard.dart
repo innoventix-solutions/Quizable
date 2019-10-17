@@ -479,7 +479,7 @@ class _studentdashboardState extends State<studentdashboard> {
                                   fontWeight: FontWeight.bold,fontSize: 18,),
                                 textAlign: TextAlign.center,),
                               ButtonClick: (){
-                                Navigator.of(context).pushNamed('MyQuizExerciseLog');
+                                Navigator.of(context).pushNamed('myclassresults');
                                },)
                         ),
                       ],
