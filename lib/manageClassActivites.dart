@@ -86,7 +86,11 @@ class _questionmenuState extends State<questionmenu> {
                     itemCount: Quizz_List.length,
                     itemBuilder: (c,i){
                     return GestureDetector(
-                    onTap: (){
+                    onTap: (){GlobalData.isGlobal=false;
+                    GlobalData.QuizID=Quizz_List[i].id;
+                    GlobalData.QuizLevels=Quizz_List[i].no_of_levels;
+                    GlobalData.ExamQuiz=Quizz_List[i].quiz_title;
+                    GlobalData.DurationofEachLevel=Quizz_List[i].dur_each_level;
                       Navigator.of(context).pushNamed('StudentListByQuiz');
                     },
                     child: StudentQuizReport(
