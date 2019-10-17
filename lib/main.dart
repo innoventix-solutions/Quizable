@@ -65,7 +65,7 @@ import 'alllevelcomplete.dart';
 import 'myclassroom.dart';
 import 'manageclassactivites.dart';
 //import 'Questions.dart';
-
+import 'questionsNew.dart';
 import 'myquizexercise.dart';
 import 'exam.dart';
 import 'functionclass.dart';
@@ -157,7 +157,7 @@ class MyApp extends StatelessWidget {
         'selectclass':(context) => quizclass(),
         'dashboard':(context) => teacherdashboard(),
         'setquestion':(context) => quizquestion(),
-        'questions':(context)=>Questions(),
+        'questions':(context)=>Questionsnew(),
         'exam':(context)=>Exam(),
         'Quiz_List_student':(context)=>Quiz_List_student(),
         'Question_List':(context)=>Question_List(),

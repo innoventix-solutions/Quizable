@@ -2,12 +2,12 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'global.dart';
 import 'package:http/http.dart' as http;
-class Questions extends StatefulWidget {
+class Questionsnew extends StatefulWidget {
   @override
-  _QuestionsState createState() => _QuestionsState();
+  _QuestionsnewState createState() => _QuestionsnewState();
 }
 
-class _QuestionsState extends State<Questions> {
+class _QuestionsnewState extends State<Questionsnew> {
   String SelectedType = 'Fill-in the gaps';
   List<String> ListofTypes = ['Fill-in the gaps', 'Match Type', 'Single Answer', 'Multiple Answers','True False'];
   List<option> Options = new List();
