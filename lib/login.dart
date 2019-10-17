@@ -112,6 +112,7 @@ class _loginState extends State<login> {
         GlobalData.parentsemail=statuss['userdata']['parents_email'];//16-9-19 a
         GlobalData.gendersel = statuss['userdata']['gender'];
         GlobalData.signupdate = statuss['userdata']['signup_date'];
+        GlobalData.dob=statuss['userdata']['birthdate'];
         print(statuss['userdata']['user_type']);
         print(statuss['userdata']['ID']);
         GlobalData.uid = statuss['userdata']['ID'].toString();

@@ -32,12 +32,12 @@ class pojostydentlist {
       parentemail: parsedJson['parents_email'],
       parentphone: parsedJson['parents_phone_no'],
       password: parsedJson['password'],
-      birthdate: parsedJson['birthdate'],
+      birthdate: parsedJson['birthdate'].toString(),
       specification: parsedJson['specification'],
       gender: parsedJson['gender'],
       usertype: parsedJson['user_type'],
       accounttype: parsedJson['accout_type'],
-      signupdate: parsedJson['signup_date'],
+      signupdate: parsedJson['signup_date'].toString(),
 
     );
   }

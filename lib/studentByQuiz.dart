@@ -106,7 +106,12 @@ class _StudentListByQuizState extends State<StudentListByQuiz> {
                                             shape: BoxShape.circle,
                                             image: new DecorationImage(
                                               fit: BoxFit.cover,
-                                              image:(globlist[index].userphoto==null)?AssetImage('assets/images/bg.png'):NetworkImage(globlist[index].userphoto,),
+                                              image:(globlist[index].userphoto!="")?
+
+                                              NetworkImage(globlist[index].userphoto,)
+                                              :
+                                              AssetImage('assets/images/bg.png')
+                                              ,
                                             )
                                         ),),
                                     ],
@@ -121,8 +126,15 @@ class _StudentListByQuizState extends State<StudentListByQuiz> {
                                       padding: const EdgeInsets.only(left:30),
                                       child: Column(mainAxisAlignment: MainAxisAlignment.start,crossAxisAlignment: CrossAxisAlignment.start,
                                         children: <Widget>[
-                                          Text(globlist[index].username),
-                                          Text(globlist[index].point_awarded+" / "+globlist[index].TotalQuizpoints),
+                                          Text("Name: " + globlist[index].username,style: TextStyle(
+                                            fontWeight: FontWeight.bold,color: Colors.black,fontSize: 16
+                                          ),),
+                                          Padding(
+                                            padding: const EdgeInsets.only(top: 5),
+                                            child: Text("Point Awarded: " + globlist[index].point_awarded+" / "+globlist[index].TotalQuizpoints,style:
+                                              TextStyle(color: Colors.black,fontSize: 14),),
+                                          ),
+
 
 
                                         ],
