@@ -141,234 +141,59 @@ class _StudentSelectSubjectState extends State<StudentSelectSubject> {
         ),*/
 
 
-        body: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.only(top: 35,left: 25),
-            child: Container(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
+        body:
+        Column(
+          children: <Widget>[
+
+            Padding(
+              padding: const EdgeInsets.only(left: 20,top: 20,bottom: 10),
+              child: Row(mainAxisAlignment: MainAxisAlignment.start,
                 children: <Widget>[
-
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: <Widget>[
-                      Checkbox(
-                        value: GlobalData.Slected_subject_bool[0],
-                        onChanged: (bool value) {
-                          setState(() {
-                            GlobalData.Slected_subject_bool[0] = value;
-                          });
-                        },
-                      ),
-                      Text("Religion",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),),
-
-                    ],
-                  ),
-
-
-
-                  Padding(
-                    padding: const EdgeInsets.only(top: 20),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: <Widget>[
-                        Checkbox(
-                          value: GlobalData.Slected_subject_bool[1],
-                          onChanged: (bool value) {
-                            setState(() {
-                              GlobalData.Slected_subject_bool[1] = value;
-                            });
-                          },
-                        ),
-                        Text("Arts & Literature",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),),
-
-                      ],
-                    ),
-                  ),
-
-
-                  Padding(
-                    padding: const EdgeInsets.only(top: 20),
-                    child:Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: <Widget>[
-                        Checkbox(
-                          value: GlobalData.Slected_subject_bool[2],
-                          onChanged: (bool value) {
-                            setState(() {
-                              GlobalData.Slected_subject_bool[2] = value;
-                            });
-                          },
-                        ),
-                        Text("Current Affairs",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),),
-
-                      ],
-                    ),
-                  ),
-
-
-
-                  Padding(
-                    padding: const EdgeInsets.only(top: 20),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: <Widget>[
-                        Checkbox(
-                          value: GlobalData.Slected_subject_bool[3],
-                          onChanged: (bool value) {
-                            setState(() {
-                              GlobalData.Slected_subject_bool[3] = value;
-                            });
-                          },
-                        ),
-                        Text("Entertainment & Sports",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),),
-
-                      ],
-                    ),
-                  ),
-
-
-
-                  Padding(
-                    padding: const EdgeInsets.only(top: 20),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: <Widget>[
-                        Checkbox(
-                          value: GlobalData.Slected_subject_bool[4],
-                          onChanged: (bool value) {
-                            setState(() {
-                              GlobalData.Slected_subject_bool[4] = value;
-                            });
-                          },
-                        ),
-                        Text("Geography",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),),
-
-                      ],
-                    ),
-                  ),
-
-
-
-                  Padding(
-                    padding: const EdgeInsets.only(top: 20),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: <Widget>[
-                        Checkbox(
-                          value: GlobalData.Slected_subject_bool[5],
-                          onChanged: (bool value) {
-                            setState(() {
-                              GlobalData.Slected_subject_bool[5] = value;
-                            });
-                          },
-                        ),
-                        Text("History",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),),
-
-                      ],
-                    ),
-                  ),
-
-
-
-                  Padding(
-                    padding: const EdgeInsets.only(top: 20),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: <Widget>[
-                        Checkbox(
-                          value: GlobalData.Slected_subject_bool[6],
-                          onChanged: (bool value) {
-                            setState(() {
-                              GlobalData.Slected_subject_bool[6] = value;
-                            });
-                          },
-                        ),
-                        Text("Mathematics",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),),
-
-                      ],
-                    ),
-                  ),
-
-
-
-                  Padding(
-                    padding: const EdgeInsets.only(top: 20),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: <Widget>[
-                        Checkbox(
-                          value:GlobalData.Slected_subject_bool[7],
-                          onChanged: (bool value) {
-                            setState(() {
-                              GlobalData.Slected_subject_bool[7] = value;
-                            });
-                          },
-                        ),
-                        Text("Science",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),),
-
-                      ],
-                    ),
-                  ),
-
-
-
-                  Padding(
-                    padding: const EdgeInsets.only(top: 20),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: <Widget>[
-                        Checkbox(
-                          value: GlobalData.Slected_subject_bool[8],
-                          onChanged: (bool value) {
-                            setState(() {
-                              GlobalData.Slected_subject_bool[8] = value;
-                            });
-                          },
-                        ),
-                        Text("General Knowledge",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),),
-
-                      ],
-                    ),
-                  ),
-
-                  Padding(
-                    padding: const EdgeInsets.only(top: 25),
-                    child: SizedBox(width: 100,
-                      child: GradientButtonText(
-                        ButtonClick: (){
-                          GlobalData.Selected_subject=null;
-
-                          for(int i=0;i<GlobalData.Slected_subject_bool.length;i++) {
-                            if(GlobalData.Slected_subject_bool[i]==true) {
-                              if (GlobalData.Selected_subject == null) {
-                                GlobalData.Selected_subject=Textvalues[i];
-                              }else
-                              {
-                                GlobalData.Selected_subject+=", "+Textvalues[i];
-                              }
-                            }
-                          }
-
-                          Navigator.of(context).pushNamed('Quiz_List_student');
-
-
-
-
-                        },
-                        linearGradient:LinearGradient(colors: <Color>[GlobalData.purple,GlobalData.pink]) ,
-                        text: Text("Apply",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 18,),
-                          textAlign: TextAlign.center,),
-                      ),
-                    ),
-                  ),
-
-
-
+                  Text("Students",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
                 ],
               ),
             ),
-          ),
-        ));
+
+
+            Expanded(
+              child:
+              new ListView.builder
+                (
+                  itemCount: Textvalues.length,
+                  itemBuilder: (BuildContext ctxt, int index) {
+                    return
+                      GestureDetector(onTap: (){
+                        /*GlobalData.Selected_subject="";
+
+                        for(int i=0;i<GlobalData.Slected_subject_bool.length;i++) {
+                          if(GlobalData.Slected_subject_bool[i]==true) {
+                            if (GlobalData.Selected_subject == null) {
+                              GlobalData.Selected_subject=Textvalues[i];
+                            }else
+                            {
+                              GlobalData.Selected_subject+=", "+Textvalues[i];
+                            }
+                          }
+                        }*/
+
+                        Navigator.of(context).pushNamed('Quiz_List_student');
+
+                      },
+                        child: Card( //                           <-- Card widget
+                          child: ListTile(
+
+                            title: Text(Textvalues[index]),
+                          ),
+                        ),
+                      );
+
+
+                  }
+              ),
+            ),
+
+          ],
+        ),
+    );
   }
 }
