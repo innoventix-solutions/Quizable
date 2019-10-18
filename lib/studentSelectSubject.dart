@@ -1,5 +1,11 @@
+import 'dart:convert';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'Pojo/pojo_quizzes.dart';
 import 'global.dart';
+import 'pojo/pojo_subject.dart';
 
 
 void main() => runApp(MaterialApp(
@@ -13,11 +19,29 @@ class _StudentSelectSubjectState extends State<StudentSelectSubject> {
 
 
 
-  List<String> Textvalues = ["Religion","Arts & Literature","Current Affairs","Entertainment & Sports","Geography","History","Mathematics","Science","General Knowledge"];
+ List<String> subjectlist = ["Religion","Arts & Literature","Current Affairs","Entertainment & Sports","Geography","History","Mathematics","Science","General Knowledge"];
 
+  List<Subjectcount> mysub = new List();
 
+  countsub() async{
+    await http.post("http://edusupportapp.com/api/get_quizzes_by_class.php",
+        body: {
+          "Class_id":GlobalData.classid,
 
+        }).then((response) {
+      print(response.body);
 
+      var parsedjson = jsonDecode(response.body);
+      print(parsedjson['subjectcount']);
+
+      mysub = (parsedjson['subjectcount'] as List).map((data)=> Subjectcount.fromJson(data)).toList();
+
+      setState(() {
+
+      });
+
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -52,93 +76,7 @@ class _StudentSelectSubjectState extends State<StudentSelectSubject> {
           ],
         ),
 
-        /*drawer: Drawer(
-          // Add a ListView to the drawer. This ensures the user can scroll
-          // through the options in the Drawer if there isn't enough vertical
-          // space to fit everything.
-          child: ListView(
-            // Important: Remove any padding from the ListView.
-            padding: EdgeInsets.zero,
-            children: <Widget>[
-              Container(child: Padding(
-                padding: const EdgeInsets.only(bottom: 40,top: 25),
-                child: DrawerHeader(child: Container(
-                  child: Row(
-                    children: <Widget>[
-                      Padding(
-                        padding: const EdgeInsets.only(left: 5),
-                        child: CircleAvatar(backgroundImage: AssetImage('assets/images/pic.png',),
-                          radius: 35.0,),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 15),
-                        child: Column(mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[Padding(
-                            padding: const EdgeInsets.only(bottom: 15),
-                            child: Text('Stanley Ohanugo',
-                              style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,
-                                  fontSize: 20),),
-                          ),
 
-                            Text('Distance Learning Institute',
-                              style: TextStyle(color: Colors.white,fontSize: 15),)
-                          ],),
-                      )
-                    ],),
-                ),),
-              ),decoration: bg12,),
-
-
-
-              Padding(
-                padding: const EdgeInsets.only(left: 45,top:30),
-                child: Row(children: <Widget>[Icon(Icons.home,color: GlobalData.lightblue,),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 20),
-                    child: Text('Home',style: TextStyle(
-                        color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
-                  )],),
-              ),
-
-              Padding(
-                padding: const EdgeInsets.only(left: 45,top:20),
-                child: Row(children: <Widget>[Icon(Icons.assignment,color: GlobalData.lightblue,),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 20),
-                    child: Text('Assignment Question Bank',style: TextStyle(
-                        color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
-                  )],),
-              ),
-
-              Padding(
-                padding: const EdgeInsets.only(left: 45,top:20),
-                child: Row(children: <Widget>[Icon(Icons.live_help,color: GlobalData.lightblue,),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 20),
-                    child: Text('Set Quiz Questions',style: TextStyle(
-                        color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
-                  )],),
-              ),
-
-              GestureDetector(
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 45,top:20),
-                  child: Row(children: <Widget>[Icon(Icons.offline_pin,color: GlobalData.lightblue,),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 20),
-                      child: Text('Set Spelling Challenge',style: TextStyle(
-                          color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
-                    ),],),
-                ),onTap: (){},
-              ),
-
-
-
-
-            ],
-          ),
-        ),*/
 
 
         body:
@@ -159,22 +97,17 @@ class _StudentSelectSubjectState extends State<StudentSelectSubject> {
               child:
               new ListView.builder
                 (
-                  itemCount: Textvalues.length,
+                  itemCount: subjectlist.length,
                   itemBuilder: (BuildContext ctxt, int index) {
                     return
                       GestureDetector(onTap: (){
-                        GlobalData.Selected_subject="";
 
-                        for(int i=0;i<GlobalData.Slected_subject_bool.length;i++) {
-                          if(GlobalData.Slected_subject_bool[i]==true) {
-                            if (GlobalData.Selected_subject == null) {
-                              GlobalData.Selected_subject=Textvalues[i];
-                            }else
-                            {
-                              GlobalData.Selected_subject+=", "+Textvalues[i];
-                            }
-                          }
-                        }
+
+
+                              GlobalData.Selected_subject=mysub[index].subject;
+
+
+
 
                         Navigator.of(context).pushNamed('Quiz_List_student');
 
@@ -182,18 +115,48 @@ class _StudentSelectSubjectState extends State<StudentSelectSubject> {
                         child: Card( //                           <-- Card widget
                           child: ListTile(
 
-                            title: Text(Textvalues[index]),
+                            title: Column(
+                              children: <Widget>[
+                                Row(
+                                  children: <Widget>[
+                                    Expanded(child: Text(subjectlist[index])),
+                                    Spacer(flex: 1,),
+                                    Expanded(child: Container(
+
+                                      padding: const EdgeInsets.all(5.0),//I used some padding without fixed width and height
+                                      decoration: new BoxDecoration(
+                                        shape: BoxShape.circle,// You can use like this way or like the below line
+                                        //borderRadius: new BorderRadius.circular(30.0),
+                                        color: Colors.green,
+                                      ),
+                                      child: new Text(mysub[index].noRec, style: new TextStyle(color: Colors.white, fontSize: 16.0),textAlign: TextAlign.center,),// You can add a Icon instead of text also, like below.
+
+                                    ),
+                                    )
+                                  ],
+                                ),
+
+
+                          ],
+                            ),
                           ),
                         ),
                       );
 
 
                   }
+
+
               ),
             ),
 
           ],
         ),
     );
+  }@override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    countsub();
   }
 }

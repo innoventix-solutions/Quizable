@@ -115,6 +115,8 @@ import 'tabForQuizAndSpelling.dart';
 import 'GlobalQuizExerciseLog.dart';
 import 'studentSelectSubject.dart';
 import 'myClassResult.dart';
+import 'temp.dart';
+import 'pojo/pojo_subject.dart';
 
 void main() {
   runApp(MyApp());
@@ -126,6 +128,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData(fontFamily: 'yu'),
       home:splash(),
+
       debugShowCheckedModeBanner: false,
       routes: {
         'testing':(context)=>Testing(),
@@ -235,6 +238,11 @@ class Myapplication extends StatefulWidget {
 }
 
 class _MyapplicationState extends State<Myapplication> {
+
+
+
+
+
   var bluecolor=Color(0xff575DFF);
   @override
   Widget build(BuildContext context) {
@@ -286,3 +294,4 @@ class _MyapplicationState extends State<Myapplication> {
     );
   }
 }
+
