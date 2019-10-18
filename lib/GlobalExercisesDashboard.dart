@@ -47,7 +47,7 @@ class _GlobalDashboardState extends State<GlobalDashboard> {
                 children: <Widget>[
                   Padding(
                     padding: const EdgeInsets.only(
-                        right: 50
+                        right: 20
                     ),
                     child:  GestureDetector(
                         onTap: (){
@@ -56,6 +56,18 @@ class _GlobalDashboardState extends State<GlobalDashboard> {
 
 
                   ),
+
+                ],
+              ),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+
+            FlatButton(
+              child: Row(
+                children: <Widget>[
+
                   GestureDetector(
                       onTap: () async {
                         LogoutFunction(context);

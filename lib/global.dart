@@ -171,15 +171,25 @@ void showDialog1(BuildContext context) {
               children: <Widget>[
                 Padding(
                   padding: const EdgeInsets.only(
-                      right: 50
+                      right: 20
                   ),
                   child:  GestureDetector(
                       onTap: (){
                         Navigator.of(context).pushNamed('teacherdashboard');
                       },child: new Text("Cancel")),
-
-
                 ),
+
+              ],
+            ),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          ),
+
+          FlatButton(
+            child: Row(
+              children: <Widget>[
+
                 GestureDetector(
                     onTap: () async {
                       LogoutFunction(context);
@@ -1819,6 +1829,7 @@ class QuizResult extends StatelessWidget {
   final String duration;
   final String percent;
   final String progresslabel;
+  final String timetaken;
 
   QuizResult(
       {
@@ -1831,7 +1842,9 @@ class QuizResult extends StatelessWidget {
         this.duration,
         this.levels,
         this.percent,
-        this.progresslabel});
+        this.progresslabel,
+        this.timetaken
+      });
 
   @override
   Widget build(BuildContext context) {
@@ -1852,26 +1865,6 @@ class QuizResult extends StatelessWidget {
       }
 
       return time;
-
-    }
-    String getLevelTime(){
-
-      // Show_toast_Now(TimerText.substring(2,4),Colors.green);
-      int second = int.parse(TimerText.substring(5,7));
-      int min = int.parse(TimerText.substring(2,4));
-      int ConsumedTime = (int.parse(GlobalData.DurationofEachLevel)*60)-((min*60)+second);
-      int usedSecond= ConsumedTime%60;
-      int usedMin = (ConsumedTime/60).floor();
-      int hour = usedMin==0?0:(usedMin/60).floor();
-
-      String ActualTime = RoundTime(hour.toString())+":"+RoundTime(usedMin.toString())+":"+RoundTime(usedSecond.toString());
-
-      //  Show_toast_Now(RoundTime(hour.toString())+":"+RoundTime(usedMin.toString())+":"+RoundTime(usedSecond.toString()),Colors.green);
-
-
-
-
-      return ActualTime;
 
     }
 
@@ -1988,7 +1981,7 @@ class QuizResult extends StatelessWidget {
                         getscoreborder(per: double.parse(percent),),
 
                       ],
-                    ),
+                    ),Text(timetaken,style: TextStyle(fontSize: 14,color: Colors.black),)
 
                   ],
                 ),

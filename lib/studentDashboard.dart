@@ -79,7 +79,7 @@ class _studentdashboardState extends State<studentdashboard> {
                 children: <Widget>[
                   Padding(
                     padding: const EdgeInsets.only(
-                        right: 50
+                        right: 20
                     ),
                     child:  GestureDetector(
                         onTap: (){
@@ -88,6 +88,17 @@ class _studentdashboardState extends State<studentdashboard> {
 
 
                   ),
+
+                ],
+              ),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+            FlatButton(
+              child: Row(
+                children: <Widget>[
+
                   GestureDetector(
                       onTap: () async {
                         LogoutFunction(context);
@@ -98,7 +109,8 @@ class _studentdashboardState extends State<studentdashboard> {
               onPressed: () {
                 Navigator.of(context).pop();
               },
-            ),
+            )
+
           ],
         );
       },

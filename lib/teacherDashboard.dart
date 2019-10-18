@@ -29,7 +29,7 @@ class _teacherdashboardState extends State<teacherdashboard> {
                 children: <Widget>[
                   Padding(
                     padding: const EdgeInsets.only(
-                        right: 50
+                        right: 20
                     ),
                     child:  GestureDetector(
                         onTap: (){
@@ -38,6 +38,18 @@ class _teacherdashboardState extends State<teacherdashboard> {
 
 
                   ),
+
+                ],
+              ),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+
+            FlatButton(
+              child: Row(
+                children: <Widget>[
+
                   GestureDetector(
                       onTap: () async {
                         LogoutFunction(context);

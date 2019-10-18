@@ -48,6 +48,8 @@ class _TeacherListState extends State<TeacherList> {
   }
 
 
+
+
   int i=0;
 
   Delete(String id) async{
@@ -200,7 +202,7 @@ class _TeacherListState extends State<TeacherList> {
                         image: new DecorationImage(
                           fit: BoxFit.fill,
                           image:GlobalData.Userphoto!=""?
-                          NetworkImage(GlobalData.Userphoto):
+                          NetworkImage(GlobalData.Studentlist[0].userphoto):
                           globalData.getgender(),
                         )
                     )
@@ -218,7 +220,7 @@ class _TeacherListState extends State<TeacherList> {
                     ),
                     Padding(
                       padding: const EdgeInsets.only(left: 10,bottom: 3),
-                      child: Text(GlobalData.Username,style: TextStyle(fontWeight: FontWeight.bold,fontSize:15,color: GlobalData.lightblue ),),
+                      child: Text(GlobalData.Studentlist[0].username,style: TextStyle(fontWeight: FontWeight.bold,fontSize:15,color: GlobalData.lightblue ),),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(left: 10),
