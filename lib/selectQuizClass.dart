@@ -30,7 +30,7 @@ class _quizclassState extends State<quizclass> {
         fontSize: 16.0);
   }
 
-  Getteacherclasses() async{
+  Gteteacherclasses() async{
     await http.post("http://edusupportapp.com/api/get_teacher_classes.php",body: {
       "UserId":GlobalData.uid,
 
@@ -52,7 +52,7 @@ class _quizclassState extends State<quizclass> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    Getteacherclasses();
+    Gteteacherclasses();
   }
 
 
