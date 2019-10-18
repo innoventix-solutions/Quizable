@@ -163,7 +163,7 @@ class _StudentSelectSubjectState extends State<StudentSelectSubject> {
                   itemBuilder: (BuildContext ctxt, int index) {
                     return
                       GestureDetector(onTap: (){
-                        /*GlobalData.Selected_subject="";
+                        GlobalData.Selected_subject="";
 
                         for(int i=0;i<GlobalData.Slected_subject_bool.length;i++) {
                           if(GlobalData.Slected_subject_bool[i]==true) {
@@ -174,7 +174,7 @@ class _StudentSelectSubjectState extends State<StudentSelectSubject> {
                               GlobalData.Selected_subject+=", "+Textvalues[i];
                             }
                           }
-                        }*/
+                        }
 
                         Navigator.of(context).pushNamed('Quiz_List_student');
 

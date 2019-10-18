@@ -880,7 +880,7 @@ class _ExamState extends State<Exam> {
       "quiz_id":Quetions[i].quiz_id,
       "level":Quetions[i].level_no.toString(),
       "taken_time":getLevelTime(),
-      "type":"f",
+      "type":"s",
     }).then((res){
       print(res.body);
     });
@@ -1116,6 +1116,7 @@ Matches =Quetions[i].anwer_options;*/
                                                 Navigator.of(context).pop();
 
                                                 Navigator.of(context).pop();
+                                                submittime();
                                                 Navigator.of(context).pushNamed('studentLevelList');
                                                 setState(() {
 
