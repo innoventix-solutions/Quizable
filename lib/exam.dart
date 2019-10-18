@@ -89,7 +89,7 @@ class _ExamState extends State<Exam> {
 
 
   void changenow(){
-    _list.shuffle();
+   // _list.shuffle();
   }
 
 
@@ -261,7 +261,8 @@ class _ExamState extends State<Exam> {
                         controller: controller,
                         itemCount: MatchingAnswers.length,
                         itemBuilder: (c,i){
-                          return MatchingAnswers[i]==" - " ?DragTarget(
+                          return MatchingAnswers[i]==" - " ?
+                          DragTarget(
                             builder: (context, List<String> candidateData, rejectedData){
                               return Padding(
                                 padding: const EdgeInsets.all(2.0),
@@ -287,7 +288,8 @@ class _ExamState extends State<Exam> {
                               });
                            },
 
-                          ):Padding(
+                          ):
+                          Padding(
                               padding: const EdgeInsets.all(2.0),
                               child:Container(
                             color: Colors.amber,
@@ -298,10 +300,19 @@ class _ExamState extends State<Exam> {
                                   GestureDetector(
                                   onTap: (){
 
+                                    print("Before : "+_Originallist.toString());
+                                    print("Before : "+MatchingAnswers.toString());
+                                    print("Before : "+_list.toString());
+
                                     int no = _Originallist.indexOf(MatchingAnswers[i]);
                                     print("My Index is $no");
                                     _list[no]=MatchingAnswers[i];
                                     MatchingAnswers[i]=" - ";
+
+
+                                    print("After : "+_Originallist.toString());
+                                    print("After : "+MatchingAnswers.toString());
+                                    print("After : "+_list.toString());
 
                              //  _list[_Originallist.indexOf(MatchingAnswers[i])]=MatchingAnswers[i];
                              //  MatchingAnswers[i]="-";
