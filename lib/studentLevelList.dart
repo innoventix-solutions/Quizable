@@ -59,7 +59,8 @@ class _StudentLevelListState extends State<StudentLevelList> {
     return Scaffold(
       appBar: AppBar(
 
-        leading:
+        automaticallyImplyLeading: true,
+        /*leading:
 
           IconButton(
           onPressed: () {
@@ -70,7 +71,7 @@ class _StudentLevelListState extends State<StudentLevelList> {
         color: Colors.white,
         size: 20,
       ),
-    ),
+    ),*/
 
 
       title: Text("Levels"),),
