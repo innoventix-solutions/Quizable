@@ -136,16 +136,7 @@ child: Scaffold(
               ),
             ],
           ),
-        Padding(
-          padding: const EdgeInsets.all(10.0),
-          child: Text('Thank you for registering. We’re glad to have you in our learning community.',style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold),textAlign: TextAlign.center,),
-        ),
-          Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: Text("Date and Time of Account creation: "+GlobalData.signupdate,style: TextStyle(
-
-            ),textAlign: TextAlign.center,),
-          ),
+          Text('Welcome '+GlobalData.Username,style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
           Padding(
             padding: const EdgeInsets.only(top: 45,right: 45,left: 45),
             child: Card(
