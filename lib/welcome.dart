@@ -51,6 +51,9 @@ class _welcomeState extends State<welcome> {
     );
   }
 
+
+
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(

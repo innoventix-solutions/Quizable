@@ -1128,7 +1128,7 @@ Matches =Quetions[i].anwer_options;*/
 
                                                 Navigator.of(context).pop();
                                                 submittime();
-                                                Navigator.of(context).pushNamed('studentLevelList');
+                                                Navigator.of(context).pushReplacementNamed('studentLevelList');
                                                 setState(() {
 
                                                 });
