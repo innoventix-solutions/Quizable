@@ -117,6 +117,8 @@ import 'studentSelectSubject.dart';
 import 'myClassResult.dart';
 import 'temp.dart';
 import 'pojo/pojo_subject.dart';
+import 'StudentsLevelsAnswer.dart';
+import 'GlobalSelectSubject.dart';
 
 void main() {
   runApp(MyApp());
@@ -226,7 +228,9 @@ class MyApp extends StatelessWidget {
         'GlobalQuizLog':(context)=>GlobalQuizExerciseLog(),
         'studentselectsubject':(context)=>StudentSelectSubject(),
         'studentdetail':(context)=>studentdetail(),
-        'myclassresults':(context)=>MyClassResult()
+        'myclassresults':(context)=>MyClassResult(),
+        'StudentsLevelsAnswer':(context)=>StudentsLevelsAnswer(),
+        'globalstudentsubject':(context)=>Globalselectsubject()
       },
     );
   }

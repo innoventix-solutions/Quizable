@@ -906,7 +906,7 @@ class classactivitys extends StatelessWidget {
                       child: Card(color: is_taken?Colors.green:Colors.red,
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
-                          child: Text(is_taken?"Taken":"Missed",style: TextStyle(fontWeight: FontWeight.bold,
+                          child: Text(is_taken?"Taken":"Curent",style: TextStyle(fontWeight: FontWeight.bold,
                               fontSize: 15,color: GlobalData.white),textAlign: TextAlign.center,),
                         ),
                       ),
@@ -1962,7 +1962,7 @@ class QuizResult extends StatelessWidget {
                 ],
               ),
               Container(
-                padding: EdgeInsets.only(left: 25,top: 20,right: 30,bottom: 30),
+                padding: EdgeInsets.only(left: 25,top: 10,right: 30,bottom: 10),
                 child: Column(
                   children: <Widget>[
                     Row(
@@ -1981,7 +1981,16 @@ class QuizResult extends StatelessWidget {
                         getscoreborder(per: double.parse(percent),),
 
                       ],
-                    ),Text(timetaken,style: TextStyle(fontSize: 14,color: Colors.black),)
+                    ),Padding(
+                      padding: const EdgeInsets.only(top: 10),
+                      child: Row(
+                        children: <Widget>[
+                          Expanded(child: Text("Time : " + timetaken,style: TextStyle(fontSize: 14,color: Colors.black),)),
+                          Expanded(child: Text("Exam Date : " + title,style: TextStyle(fontSize: 14,color: Colors.black),)),
+
+                        ],
+                      ),
+                    )
 
                   ],
                 ),

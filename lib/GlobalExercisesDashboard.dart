@@ -8,6 +8,8 @@ import 'package:newpro/Pojo/pojo_getclasses.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:newpro/Pojo/pojo_leaderboard.dart';
+import 'Pojo/pojo_leaderboard.dart';
 
 
 
@@ -26,6 +28,28 @@ class _GlobalDashboardState extends State<GlobalDashboard> {
   List<Pojo_quizzes> Quizz_List = new List();
   List<Pojo_getassignment> assignment_list = new List();
 
+
+  List<leaderboard> leader = new List();
+  leaderboards()async{
+    await http.post("http://edusupportapp.com/api/get_leaderboard.php",
+        body: {
+
+
+        }).then((response) {
+      print(response.body);
+
+      var parsedjson = jsonDecode(response.body);
+      print("Leader " + parsedjson['student_data'].toString());
+
+      leader = (parsedjson['student_data'] as List).map((data)=> leaderboard.fromJson(data)).toList();
+
+      setState(() {
+
+      });
+
+    });
+
+  }
 
 
 
@@ -91,6 +115,8 @@ class _GlobalDashboardState extends State<GlobalDashboard> {
   void initState() {
     // TODO: implement initState
     super.initState();
+
+    leaderboards();
 
 
   }
@@ -189,7 +215,7 @@ class _GlobalDashboardState extends State<GlobalDashboard> {
                   )],),
               ),onTap: (){
               Navigator.of(context)
-                  .pushNamed('GlobalDashboard');
+                  .pushNamed('studentdashboard');
             },
             ),
 
@@ -412,7 +438,7 @@ class _GlobalDashboardState extends State<GlobalDashboard> {
                                           fontSize: 18),textAlign: TextAlign.center,),
                                     ButtonClick: (){
 
-                                      Navigator.of(context).pushNamed('GlobalQuiz');
+                                      Navigator.of(context).pushNamed('globalstudentsubject');
 
                                     },)),
                             ],
@@ -472,82 +498,93 @@ class _GlobalDashboardState extends State<GlobalDashboard> {
 
                 /*Student Leaderboard*/
 
-            Container(color:Color(0xFFACDF87),
-              width: MediaQuery.of(context).size.width,
 
-              child: Column(
+            Padding(
+              padding: const EdgeInsets.only(left:30,top: 20,bottom: 10),
+              child: Row(
                 children: <Widget>[
-
-                  Padding(
-                    padding: const EdgeInsets.only(top: 20,left: 35),
-                    child: Row(
-                      children: <Widget>[
-                        Text('Leaderboard',style:
-                        TextStyle(fontSize: 18,color:GlobalData.white,fontWeight: FontWeight.bold),),
-                      ],
-                    ),
-                  ),
-
-                  Padding(
-                    padding: const EdgeInsets.only(top: 15,bottom: 15),
-                    child: Container(
-                      child: Padding(
-                        padding: const EdgeInsets.only(top: 15,left: 35),
-                        child: Row(
-                          children: <Widget>[
-                            Column(
-                              children: <Widget>[
-                                CircleAvatar(backgroundImage: AssetImage('assets/images/pic.png',),
-                                  radius: 35.0,
-                                ),Padding(
-                                  padding: const EdgeInsets.only(top: 10),
-                                  child: Text("Ginika Okputu",style: TextStyle(fontSize: 12,color: GlobalData.gray),),
-                                ),
-                              ],
-                            ),
-
-                            Padding(
-                              padding: const EdgeInsets.only(left: 35),
-                              child: Column(
-                                children: <Widget>[
-                                  CircleAvatar(backgroundImage: AssetImage('assets/images/pic.png',),
-                                    radius: 35.0,
-                                  ),Padding(
-                                    padding: const EdgeInsets.only(top: 10),
-                                    child: Text("Ginika Okputu",style: TextStyle(fontSize: 12,color: GlobalData.gray),),
-                                  ),
-                                ],
-                              ),
-                            ),
-
-                            Padding(
-                              padding: const EdgeInsets.only(left: 35),
-                              child: Column(
-                                children: <Widget>[
-                                  CircleAvatar(backgroundImage: AssetImage('assets/images/pic.png',),
-                                    radius: 35.0,
-                                  ),Padding(
-                                    padding: const EdgeInsets.only(top: 10),
-                                    child: Text("Ginika Okputu",style: TextStyle(fontSize: 12,color: GlobalData.gray),),
-                                  ),
-                                ],
-                              ),
-                            ),
-
-                          ],
-                        ),
-
-                      ),
-
-                    ),
-                  ),
-
-
+                  Text("Leaderboard",style: TextStyle(color: Colors.black,fontSize: 18,fontWeight: FontWeight.bold),),
 
 
                 ],
               ),
             ),
+
+            Container(height: 200,color: GlobalData.green,
+                width: MediaQuery.of(context).size.width,
+              child: leader.isEmpty?
+              Center
+                (child:
+              Text("No Student's joined yet",style:
+              TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: Colors.red),)
+
+              ) :
+              new ListView.builder
+                (scrollDirection: Axis.horizontal,
+                  itemCount: leader.length,
+                  itemBuilder: (BuildContext ctxt, int index) {
+                    return
+                      Container(
+
+                        child: Column(
+                          children: <Widget>[
+                            Column(
+                              children: <Widget>[
+
+                                    GestureDetector(onTap: (){
+
+                                    },
+                                      child: Container(height: 70,width: 70,margin: EdgeInsets.only(left: 20,top: 20,bottom: 10),
+                                        decoration: new BoxDecoration(
+                                          color: Colors.red,
+                                          shape: BoxShape.circle,
+                                          image: new DecorationImage(
+                                            fit: BoxFit.cover,
+                                            image:leader[index].userphoto!=""?
+                                            NetworkImage(leader[index].userphoto):
+                                            globalData.getUserGender(leader[index].gender),
+                                          ),
+
+                                        ),),
+                                    ),
+
+
+                                Padding(
+                                  padding: const EdgeInsets.only(left:30),
+                                  child: Column(mainAxisAlignment: MainAxisAlignment.start,crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: <Widget>[
+                                      Text(leader[index].username),
+
+
+                                    ],
+                                  ),
+                                ),
+
+                                Padding(
+                                  padding: const EdgeInsets.only(left:30,top: 5),
+                                  child: Column(mainAxisAlignment: MainAxisAlignment.start,crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: <Widget>[
+                                      Text(leader[index].percentage + " %"),
+
+
+                                    ],
+                                  ),
+                                ),
+
+
+
+                              ], ),
+
+                          ],
+                        ),
+                      );
+
+
+                  }
+              ),
+            ),
+
+
 
           ],
         ),

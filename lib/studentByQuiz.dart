@@ -91,7 +91,7 @@ class _StudentListByQuizState extends State<StudentListByQuiz> {
                       GestureDetector(
                         onTap: (){
                           GlobalData.CurrentStudentID = globlist[index].id;
-                          Navigator.of(context).pushNamed('levelsList');
+                          Navigator.of(context).pushNamed('StudentsLevelsAnswer');
                         },
                         child: Container(
 

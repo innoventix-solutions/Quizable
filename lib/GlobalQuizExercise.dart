@@ -20,7 +20,8 @@ class _questionmenuGlobalState extends State<questionmenuGlobal> {
 
     await http.post("http://edusupportapp.com/api/get_global_quizzes.php",
         body: {
-          "UserId":GlobalData.uid
+          "UserId":GlobalData.uid,
+          "subject":GlobalData.Selected_subject
         }).then((res){
       print(res.body);
 

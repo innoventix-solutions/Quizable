@@ -23,10 +23,19 @@ class _StudentSelectSubjectState extends State<StudentSelectSubject> {
 
   List<Subjectcount> mysub = new List();
 
+  bool loading= false;
+
+  _onLoading() {
+   setState(() {
+     loading = true;
+
+   });}
+
   countsub() async{
     await http.post("http://edusupportapp.com/api/get_quizzes_by_class.php",
         body: {
           "Class_id":GlobalData.classid,
+          "UserId":GlobalData.uid
 
         }).then((response) {
       print(response.body);
@@ -37,11 +46,13 @@ class _StudentSelectSubjectState extends State<StudentSelectSubject> {
       mysub = (parsedjson['subjectcount'] as List).map((data)=> Subjectcount.fromJson(data)).toList();
 
       setState(() {
-
+        loading = true;
       });
 
     });
   }
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -83,33 +94,25 @@ class _StudentSelectSubjectState extends State<StudentSelectSubject> {
         Column(
           children: <Widget>[
 
-            Padding(
-              padding: const EdgeInsets.only(left: 20,top: 20,bottom: 10),
-              child: Row(mainAxisAlignment: MainAxisAlignment.start,
-                children: <Widget>[
-                  Text("Students",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
-                ],
-              ),
-            ),
-
-
             Expanded(
-              child:
+              child:mysub.isEmpty?
+              Center
+                (child:Text("No subject",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: Colors.red),)
+
+              ) :
               new ListView.builder
                 (
-                  itemCount: subjectlist.length,
+                  itemCount: mysub.length,
                   itemBuilder: (BuildContext ctxt, int index) {
                     return
                       GestureDetector(onTap: (){
 
 
 
-                              GlobalData.Selected_subject=mysub[index].subject;
+                          GlobalData.Selected_subject = mysub[index].subject;
 
 
-
-
-                        Navigator.of(context).pushNamed('Quiz_List_student');
+                          Navigator.of(context).pushNamed('Quiz_List_student');
 
                       },
                         child: Card( //                           <-- Card widget

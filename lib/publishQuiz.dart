@@ -152,7 +152,10 @@ class _publishquizState extends State<publishquiz> {
                               child: Padding(
                                 padding: const EdgeInsets.only(left: 20),
                                 child: DateTimePickerFormField(
-                                  firstDate: DateTime.now(),
+initialDate: Starting_date,
+                                  lastDate: Closing_date,
+                                  firstDate: Starting_date,
+
                                   inputType:  inputType,
                                   format: formats[inputType],
                                   editable: false,

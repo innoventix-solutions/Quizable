@@ -108,11 +108,12 @@ class _GlobalQuizResultState extends State<GlobalQuizResult> {
                           color: GlobalData.green,
                           heading: Quizz_List[i].quiz_title+" - "+Quizz_List[i].id,
                           paragraph: Quizz_List[i].quiz_subject,
-                          title: Quizz_List[i].quiz_title,
+                          title: Quizz_List[i].takendate.toString(),
                           id: Quizz_List[i].id,
                           is_taken: Quizz_List[i].is_taken,
                           percent: Quizz_List[i].percentage.toString(),
-                          progresslabel:Quizz_List[i].progresslabel
+                          progresslabel:Quizz_List[i].progresslabel,
+                        timetaken: Quizz_List[i].totaltime.toString(),
                       ):SizedBox(),
                     );
                   }

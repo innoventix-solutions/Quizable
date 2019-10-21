@@ -345,7 +345,7 @@ class _selectquizsubjectState extends State<selectquizsubject> {
                                 GlobalData.Selected_subject=Textvalues[i];
                               }else
                                 {
-                                  GlobalData.Selected_subject+=", "+Textvalues[i];
+                                  GlobalData.Selected_subject+=","+Textvalues[i];
                                 }
                             }
                           }
