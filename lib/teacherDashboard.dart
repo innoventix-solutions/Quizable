@@ -3,6 +3,8 @@ import 'package:newpro/global.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:share/share.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+
 
 class teacherdashboard extends StatefulWidget {
   @override
@@ -67,6 +69,17 @@ class _teacherdashboardState extends State<teacherdashboard> {
     );
   }
 
+  Show_toast(String msg, Color color) {
+    Fluttertoast.showToast(
+      msg: msg,
+      toastLength: Toast.LENGTH_SHORT,
+      gravity: ToastGravity.CENTER,
+      timeInSecForIos:60,
+      backgroundColor: color,
+      textColor: Colors.white,
+      fontSize: 16.0,
+    );
+  }
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
@@ -457,8 +470,12 @@ class _teacherdashboardState extends State<teacherdashboard> {
                         color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
                   )],),
               ),onTap: (){
+
               Navigator.of(context)
                   .pushNamed('Announcements');
+              Show_toast("Thank you for registering. We’re glad to have you in our learning community."+ GlobalData.signupdate, Colors.green);
+
+
             },
             ),
 

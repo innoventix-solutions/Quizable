@@ -8,6 +8,7 @@ import 'package:newpro/Pojo/pojo_getclasses.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 
 
@@ -18,6 +19,7 @@ class studentdashboard extends StatefulWidget {
 }
 
 class _studentdashboardState extends State<studentdashboard> {
+
 
 
   GlobalData globalData = new GlobalData();
@@ -140,6 +142,18 @@ class _studentdashboardState extends State<studentdashboard> {
           ],
         );
       },
+    );
+  }
+
+  Show_toast(String msg, Color color) {
+    Fluttertoast.showToast(
+        msg: msg,
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.CENTER,
+        timeInSecForIos:60,
+        backgroundColor: color,
+        textColor: Colors.white,
+        fontSize: 16.0,
     );
   }
 
@@ -305,8 +319,10 @@ class _studentdashboardState extends State<studentdashboard> {
                         color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
                   ),],),
               ),onTap: (){
-                Navigator.of(context)
-                .pushNamed('Announcements');
+              Navigator.of(context)
+                  .pushNamed('Announcements');
+              Show_toast("Thank you for registering. We’re glad to have you in our learning community."+GlobalData.signupdate, Colors.green);
+
               },
             ),
             GestureDetector(

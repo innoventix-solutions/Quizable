@@ -59,7 +59,17 @@ class _StudentLevelListState extends State<StudentLevelList> {
     return Scaffold(
       appBar: AppBar(
 
-        automaticallyImplyLeading: true,
+        automaticallyImplyLeading: false,
+        actions: <Widget>[
+          GestureDetector(
+              onTap: (){
+                Navigator.of(context).pushReplacementNamed('Quiz_List_student');
+
+              },child: Icon(Icons.exit_to_app))
+
+
+        ],
+
         /*leading:
 
           IconButton(

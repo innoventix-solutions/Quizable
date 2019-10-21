@@ -38,6 +38,7 @@ class _AnnouncementState extends State<Announcement> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(automaticallyImplyLeading: true,
+
         backgroundColor: Color(0Xff1F0BE6),
 
 
@@ -71,6 +72,7 @@ class _AnnouncementState extends State<Announcement> {
           ListView.builder(
                     itemCount: announcements.length,
                     itemBuilder: (c, i) {
+
                       return GestureDetector(
                         onTap: () {},
                         child: dummytext(
