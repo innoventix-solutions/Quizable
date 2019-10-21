@@ -63,7 +63,14 @@ class _StudentLevelListState extends State<StudentLevelList> {
         actions: <Widget>[
           GestureDetector(
               onTap: (){
-                Navigator.of(context).pushReplacementNamed('Quiz_List_student');
+                if(GlobalData.isGlobal==true){
+
+                  Navigator.of(context).pushReplacementNamed('GlobalQuiz');
+                }
+                else{
+                  Navigator.of(context).pushReplacementNamed('Quiz_List_student');
+
+                }
 
               },child: Icon(Icons.exit_to_app))
 
