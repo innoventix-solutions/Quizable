@@ -903,7 +903,7 @@ class classactivitys extends StatelessWidget {
 
                     SizedBox(width: 50,),
                     Expanded(
-                      child: Card(color: is_taken?Colors.green:Colors.red,
+                      child: Card(color: is_taken?Colors.green:Colors.green,
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Text(is_taken?"Taken":"Curent",style: TextStyle(fontWeight: FontWeight.bold,
