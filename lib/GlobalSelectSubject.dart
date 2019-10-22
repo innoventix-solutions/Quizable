@@ -34,6 +34,7 @@ class _GlobalselectsubjectState extends State<Globalselectsubject> {
   countsub() async{
     await http.post("http://edusupportapp.com/api/get_global_quizzes.php",
         body: {
+          "UserId":GlobalData.uid,
 
 
 

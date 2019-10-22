@@ -255,9 +255,11 @@ class MyResultBlock extends StatelessWidget {
 
                     child: Row( crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        Padding(
-                          padding: const EdgeInsets.all(10.0),
-                          child: Container(child: Text("Correct Answer: "+(anwer_options.isEmpty?correct_ans:""),style: TextStyle(color: Colors.blue,fontWeight: FontWeight.bold),)),
+                        Expanded(
+                          child: Padding(
+                            padding: const EdgeInsets.all(10.0),
+                            child: Container(child: Text("Correct Answer: "+(anwer_options.isEmpty?correct_ans:""),style: TextStyle(color: Colors.blue,fontWeight: FontWeight.bold),)),
+                          ),
                         ),
 
                       ],
