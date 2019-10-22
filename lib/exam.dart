@@ -20,6 +20,7 @@ class Exam extends StatefulWidget {
 class _ExamState extends State<Exam> {
 
   bool isattempted =false;
+  bool originalCopied =false;
   int Changed=0;
   CountDown cd ;
   int CurrentPage =0;
@@ -89,7 +90,15 @@ class _ExamState extends State<Exam> {
 
 
   void changenow(){
-   // _list.shuffle();
+    _list.shuffle();
+    print("My List : "+_list.toString() );
+
+    if(originalCopied==false) {
+
+      originalCopied=true;
+     // _Originallist = _list;
+      print("My Original List Copied  : " + _Originallist.toString());
+    }
   }
 
 
@@ -144,91 +153,31 @@ class _ExamState extends State<Exam> {
     Options = Answers;
     print(GlobalData.LoadData.toString());
 
-    if(_list.length==0) {
+   /* if(_list.length==0) {
       for (var item in Matches) {
         _list.add(item.val2);
         _Originallist.add(item.val2);
         MatchingAnswers.add(" - ");
       }
+
+      print("SHUFFLE");
+      print(_Originallist.toString());
+      print(_list.toString());
+      print("ARUN");
       print(_list.length);
+
       if(Changed==0)
       {
+        print("calling Changed");
         changenow();
+        Changed=1;
       }
-    }
+    }*/
 
 
     switch (type)
     {
-
       case "Match Type":
-        /*return Container(
-          height: Matches.isEmpty?50.0:Matches.length*60.0,
-          child: Row(
-            children: <Widget>[
-              Expanded(child: Column(
-                children: <Widget>[
-                  Expanded(
-                    child: ListView.builder(
-                        controller: controller,
-                        itemCount: Matches.length,
-                        itemBuilder: (c,i){
-                          return Padding(
-                            padding: const EdgeInsets.all(2.0),
-                            child: Container(
-                              color: Colors.green[300],
-                              child: ListTile(
-                                title: Text( Matches[i].val1),
-                                leading: Icon(Icons.add,color: Colors.transparent,),
-                              ),
-                            ),
-                          );
-                        }),
-                  ),
-                ],
-              ),),
-              Expanded(
-                child: Column(
-                  children: <Widget>[
-                    Expanded(
-                      child: ReorderableListView(
-
-                        children: _list.map((item) =>Padding(key: Key("${item}+padding"),
-                          padding: const EdgeInsets.all(2.0),
-                          child: Container( key: Key("${item}con"),
-                              color:Colors.amber,child: ListTile( key: Key("${item}"), title: Text("${item}"), trailing: Icon(Icons.menu),)),)).toList(),
-                        onReorder: (int start, int current) {
-                          // dragging from top to bottom
-                          if (start < current) {
-                            int end = current - 1;
-                            String startItem = _list[start];
-                            int i = 0;
-                            int local = start;
-                            do {
-                              _list[local] = _list[++local];
-                              i++;
-                            } while (i < end - start);
-                            _list[end] = startItem;
-                          }
-                          // dragging from bottom to top
-                          else if (start > current) {
-                            String startItem = _list[start];
-                            for (int i = start; i > current; i--) {
-                              _list[i] = _list[i - 1];
-                            }
-                            _list[current] = startItem;
-                          }
-                          setState(() {});
-                        },
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
-        );*/
-
       return Container(
           height: Matches.isEmpty?50.0:Matches.length*60.0,
           child: Row(
@@ -277,12 +226,25 @@ class _ExamState extends State<Exam> {
                             },
 
                            onAccept: (data){
+                             print("Before Original : "+_Originallist.toString());
                               print(data);
+
                               MatchingAnswers[i]=_list[int.parse(data)];
                               _list[int.parse(data)]=" - ";
+                             _Originallist[int.parse(data)]=MatchingAnswers[i];
 
                               print(_list[int.parse(data)]);
                               print(MatchingAnswers[i]);
+
+
+                              print("Before Original : "+_Originallist.toString());
+                              print("Before Macting : "+MatchingAnswers.toString());
+                              print("Before list : "+_list.toString());
+
+                              print("After Original: "+_Originallist.toString());
+                              print("After Matching: "+MatchingAnswers.toString());
+                              print("After list: "+_list.toString());
+
                               setState(() {
 
                               });
@@ -300,9 +262,9 @@ class _ExamState extends State<Exam> {
                                   GestureDetector(
                                   onTap: (){
 
-                                    print("Before : "+_Originallist.toString());
-                                    print("Before : "+MatchingAnswers.toString());
-                                    print("Before : "+_list.toString());
+                                    print("Before Original : "+_Originallist.toString());
+                                    print("Before Macting : "+MatchingAnswers.toString());
+                                    print("Before list : "+_list.toString());
 
                                     int no = _Originallist.indexOf(MatchingAnswers[i]);
                                     print("My Index is $no");
@@ -310,9 +272,9 @@ class _ExamState extends State<Exam> {
                                     MatchingAnswers[i]=" - ";
 
 
-                                    print("After : "+_Originallist.toString());
-                                    print("After : "+MatchingAnswers.toString());
-                                    print("After : "+_list.toString());
+                                    print("After Original: "+_Originallist.toString());
+                                    print("After Matching: "+MatchingAnswers.toString());
+                                    print("After list: "+_list.toString());
 
                              //  _list[_Originallist.indexOf(MatchingAnswers[i])]=MatchingAnswers[i];
                              //  MatchingAnswers[i]="-";
@@ -642,6 +604,36 @@ class _ExamState extends State<Exam> {
 
 
   Widget MYQue(){
+
+
+    if(Quetions[i].answer_type=="Match Type")
+      {
+
+       Matches= Quetions[i].anwer_options;
+
+        if(_list.length==0) {
+          for (var item in Matches) {
+            _list.add(item.val2);
+            _Originallist.add(item.val2);
+            MatchingAnswers.add(" - ");
+          }
+
+          print("SHUFFLE");
+          print(_Originallist.toString());
+          print(_list.toString());
+          print("ARUN");
+          print(_list.length);
+
+          if(Changed==0)
+          {
+            print("calling Changed");
+            changenow();
+            Changed=1;
+          }
+        }
+      }
+
+
 
 
 
@@ -1038,6 +1030,7 @@ Matches =Quetions[i].anwer_options;*/
     _list.clear();
     _Originallist.clear();
     MatchingAnswers.clear();
+    originalCopied=false;
 
     //Show_toast_Now(fillupsData.length.toString(), Colors.green);
 
