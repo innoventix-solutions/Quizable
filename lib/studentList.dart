@@ -318,7 +318,8 @@ GlobalData.Studentlist.clear();
                                 ),
 
 
-                               //GlobalData.userType.toLowerCase()=="admin_teacher" ?    // 15-9-19 a
+                               GlobalData.userType.toLowerCase()=="student" ?
+                               SizedBox():
                                Padding(
                                   padding: const EdgeInsets.only(right: 20),
                                   child: Row(mainAxisAlignment: MainAxisAlignment.end,
@@ -350,7 +351,7 @@ GlobalData.Studentlist.clear();
                                    ),
                                     ],
                                   ),
-                                ),//:SizedBox(),     // 15-9-19 a
+                                ),
 
                               ], ),
 
@@ -366,8 +367,8 @@ GlobalData.Studentlist.clear();
 
 
 
-
-
+            GlobalData.userType=="student"?
+                SizedBox():
             Padding(
               padding: const EdgeInsets.only(top:20,bottom: 25, right: 20),
               child: GestureDetector(

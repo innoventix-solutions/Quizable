@@ -428,20 +428,17 @@ class _studentdashboardState extends State<studentdashboard> {
                     child: Text(GlobalData.activeclass!=null?GlobalData.activeclass.classname:"No Class Selected",style:
                     TextStyle(fontSize: 20,color:GlobalData.gray,fontWeight: FontWeight.bold),),
                   ),
-                  GestureDetector(
-                      onTap: (){
-                        Navigator.of(context).pushNamed('studentselectclass');
 
-                      },child: Text("Switch Classroom",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),)),
-                  /*Padding(
+                  Padding(
                     padding: const EdgeInsets.only(top: 10),
                     child: GestureDetector(onTap: (){
                       Navigator.of(context).pushReplacementNamed('studentselectclass');
                     },
                       child: Text('Switch Classroom',style:
-                      TextStyle(fontSize: 15,color: GlobalData.pinkred,decoration: TextDecoration.underline),),
+                      TextStyle(fontSize: 15,fontWeight:FontWeight.bold,
+                          color: GlobalData.lightblue,decoration: TextDecoration.underline),),
                     ),
-                  ),*/
+                  ),
 
                  /* Padding(
                     padding: const EdgeInsets.only(top: 10,left: 35,right: 35,bottom: 5),
@@ -462,7 +459,7 @@ class _studentdashboardState extends State<studentdashboard> {
                     ),
                   ),*/
                   Padding(
-                    padding: const EdgeInsets.only(top:10,left: 35,right: 35,bottom: 5),
+                    padding: const EdgeInsets.only(top:15,left: 35,right: 35,bottom: 5),
                     child: Row(
                       children: <Widget>[
 
