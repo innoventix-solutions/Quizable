@@ -424,10 +424,15 @@ class _studentdashboardState extends State<studentdashboard> {
 
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(top: 10),
+                    padding: const EdgeInsets.only(top: 10,bottom: 10),
                     child: Text(GlobalData.activeclass!=null?GlobalData.activeclass.classname:"No Class Selected",style:
-                    TextStyle(fontSize: 18,color:GlobalData.gray,fontWeight: FontWeight.bold),),
+                    TextStyle(fontSize: 20,color:GlobalData.gray,fontWeight: FontWeight.bold),),
                   ),
+                  GestureDetector(
+                      onTap: (){
+                        Navigator.of(context).pushNamed('studentselectclass');
+
+                      },child: Text("Switch Classroom",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),)),
                   /*Padding(
                     padding: const EdgeInsets.only(top: 10),
                     child: GestureDetector(onTap: (){
@@ -460,6 +465,7 @@ class _studentdashboardState extends State<studentdashboard> {
                     padding: const EdgeInsets.only(top:10,left: 35,right: 35,bottom: 5),
                     child: Row(
                       children: <Widget>[
+
                         Expanded(
                             child: GradientButtonText(
                               linearGradient:LinearGradient(colors: <Color>[GlobalData.purple,GlobalData.pink]) ,
@@ -483,12 +489,12 @@ class _studentdashboardState extends State<studentdashboard> {
 
                               linearGradient:LinearGradient(
                                   colors: <Color>[GlobalData.navy,GlobalData.navyblue]) ,
-                              text: Text("View my Classroom",
+                              text: Text("Enter my Classroom",
                                 style: TextStyle(color: Colors.white,
                                   fontWeight: FontWeight.bold,fontSize: 18,),
                                 textAlign: TextAlign.center,),
                               ButtonClick: (){
-                                Navigator.of(context).pushNamed('studentselectclass');
+                                Navigator.of(context).pushNamed('StudentList');
                                 },)
                         ),
                       ],
