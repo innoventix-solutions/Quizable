@@ -46,7 +46,7 @@ class _Quiz_List_studentState extends State<Quiz_List_student> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          automaticallyImplyLeading: true,
+          automaticallyImplyLeading: false,
           title: Center(
             child: Text(
               "My Quiz Exercises",
@@ -64,10 +64,13 @@ class _Quiz_List_studentState extends State<Quiz_List_student> {
           ),
           actions: <Widget>[
             IconButton(
-              onPressed: (){},
+              onPressed: (){
+                Navigator.of(context).pushNamed('studentdashboard');
+
+              },
               icon: Icon(
-                Icons.account_circle,
-                color: Colors.transparent,
+                Icons.exit_to_app,
+                color: Colors.white,
                 size: 20,
               ),
             ),
