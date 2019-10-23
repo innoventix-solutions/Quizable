@@ -49,11 +49,8 @@ class _GlobalQuizExerciseLogState extends State<GlobalQuizExerciseLog> {
 
     return Scaffold(
         appBar: AppBar(
-          automaticallyImplyLeading: false,
-          leading: GestureDetector(onTap: (){
-            Navigator.of(context).pushNamed('GlobalDashboard');
-          },
-              child: Icon(Icons.arrow_back)),
+          automaticallyImplyLeading: true,
+
 
           title: Center(
             child: Text(

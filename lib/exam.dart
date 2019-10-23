@@ -497,10 +497,7 @@ class _ExamState extends State<Exam> {
           child: Card(
             child: Column(
               children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text("Note : For multiple blanks question please consider answer which has proper sequence of the words separated by underscore '_' .",style: TextStyle(color: Colors.red),),
-                ),
+
                Expanded(child: ListView.builder(
                itemCount: no,itemBuilder: (c,i){
 
@@ -536,10 +533,7 @@ class _ExamState extends State<Exam> {
         return Card(
           child: Column(
             children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(type=="Fill-in the gaps"?"Note : For multiple blanks question please consider answer which has proper sequence of the words separated by underscore '_' .":"",style: TextStyle(color: Colors.red),),
-              ),
+
 
 
 
