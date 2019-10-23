@@ -21,12 +21,13 @@ String percentage;
  String progresslabel;
  String totaltime;
  String takendate;
+ String quizattemptlevel;
 
   Pojo_quizzes({this.id, this.quiz_title, this.techer_id, this.no_of_levels,
       this.que_each_level, this.dur_each_level, this.quiz_subject,
       this.class_id, this.status, this.publish_date, this.closing_date,
       this.created_date, this.classes,this.point_awarded,this.is_taken,this.TotalQuizpoints,this.age,this.total_fill_question,
-  this.percentage,this.progresslabel,this.totaltime,this.takendate});
+  this.percentage,this.progresslabel,this.totaltime,this.takendate,this.quizattemptlevel});
 
   factory Pojo_quizzes.fromJson(Map<String, dynamic> parsedJson){
 
@@ -69,6 +70,7 @@ String percentage;
         progresslabel:parsedJson['quiz_result']['progresslabel'],
       totaltime: tt,
      takendate: td,
+      quizattemptlevel: parsedJson['quiz_attemped_levels'].toString(),
       
     );
   }

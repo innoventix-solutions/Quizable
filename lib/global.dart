@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -778,6 +779,48 @@ class calc extends StatelessWidget {
       );
   }
 }
+
+
+/*class quizstatus extends StatelessWidget {
+
+
+  DateTime closingdate;
+  DateTime currentdate=DateTime.now();
+  int totallevel;
+  int attemptedlevel;
+  String istaken;
+  Color color;
+
+
+  quizstatus({this.closingdate,this.attemptedlevel,this.currentdate,this.totallevel,this.istaken});
+
+  @override
+  Widget build(BuildContext context) {
+
+    if(currentdate.isAfter(closingdate)){
+      istaken="Missed";
+      color=Colors.red;
+    }
+    if(totallevel==attemptedlevel){
+      istaken="Taken";
+      color=Colors.green;
+    }
+    else if(totallevel > attemptedlevel)
+    {
+      istaken="Retake";
+      color=Colors.deepOrange;
+    }
+
+
+    Card(color: color,
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Text(istaken,style: TextStyle(fontWeight: FontWeight.bold,
+            fontSize: 15,color: GlobalData.white),textAlign: TextAlign.center,),
+      ),
+    );
+  }
+}*/
 
 
 class classactivitys extends StatelessWidget {
