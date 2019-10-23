@@ -61,13 +61,16 @@ class Pojo_quizzes{
     // -1 = Ahead
     // 1 = Gone
     int LevelDiffereance = TotalLevels-AttempedLevel;
+    if(AttempedLevel==TotalLevels){
+      Label="Taken";
+    }else
     if(DateStatus==1 && AttempedLevel==0){
       Label="Missed";
     }else if(DateStatus==1 && AttempedLevel>0){
       Label="Taken";
     }else if(DateStatus==-1 && AttempedLevel==0){
       Label="New";
-    }else if(DateStatus==-1 && AttempedLevel>0){
+    }else if(DateStatus==-1 && (AttempedLevel>0&&AttempedLevel<TotalLevels)){
       Label="Continue";
     }
 

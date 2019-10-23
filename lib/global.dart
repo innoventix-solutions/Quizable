@@ -1262,7 +1262,7 @@ class GlobalQuizActivity extends StatelessWidget {
                 ],),
               ),
 
-            
+
 
 
 
