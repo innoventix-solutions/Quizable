@@ -75,7 +75,7 @@ class Pojo_quizzes{
         Label = "Taken";
       } else if (DateStatus == -1 &&
           (AttempedLevel > 0 && AttempedLevel < TotalLevels)) {
-        Label = "Continue";
+        Label = "Pending";
       }
     }
 
