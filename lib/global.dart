@@ -834,8 +834,6 @@ class classactivitys extends StatelessWidget {
   final String levels;
   final String duration;
   final String closingdate;
-
-  String label;
   final Pojo_quizzes quiz;
 
 
@@ -850,7 +848,7 @@ class classactivitys extends StatelessWidget {
       this.duration,
       this.levels,
       this.closingdate,
-      this.quiz,this.label});
+      this.quiz});
 
   @override
   Widget build(BuildContext context) {
@@ -950,13 +948,12 @@ class classactivitys extends StatelessWidget {
 
                     SizedBox(width: 50,),
                     Expanded(
-                      child: Card(
+                      child: Card(color: is_taken?Colors.green:Colors.green,
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
-
-
-    child: Text(quiz.label,style: TextStyle(fontWeight: FontWeight.bold,
-                              fontSize: 15,color: GlobalData.black),textAlign: TextAlign.center,),
+                          
+                          child: Text(quiz.label,style: TextStyle(fontWeight: FontWeight.bold,
+                              fontSize: 15,color: GlobalData.white),textAlign: TextAlign.center,),
                         ),
                       ),
                     ),
