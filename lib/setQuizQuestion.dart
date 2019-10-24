@@ -579,7 +579,7 @@ setalldetails(){
                                   
 
 
-                                if(GlobalData.QuizLevels.length>1 || GlobalData.NosofQuesPerLevel.length>2   && (GlobalData.MyMembership==null ||GlobalData.MyMembership.isActive==false) )
+                                if(GlobalData.QuizLevels.length>1 || GlobalData.NosofQuesPerLevel.length>2  || (GlobalData.MyMembership==null ||GlobalData.MyMembership.isActive==false) )
                                 {
                                   Navigator.of(context).pushNamed('ManageAccount');
                                 }else {
