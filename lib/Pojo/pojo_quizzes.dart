@@ -36,7 +36,7 @@ class Pojo_quizzes{
   factory Pojo_quizzes.fromJson(Map<String, dynamic> parsedJson){
 
     String tt;
-    String td;
+    String td; 
 
     print("asdzfasd :" +parsedJson['ID'].toString());
     print("asdzfasd :" +parsedJson['quiz_attend_data'].toString());

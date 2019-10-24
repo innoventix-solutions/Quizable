@@ -834,6 +834,7 @@ class classactivitys extends StatelessWidget {
   final String levels;
   final String duration;
   final String closingdate;
+  String label;
 
 
   classactivitys(
@@ -846,7 +847,9 @@ class classactivitys extends StatelessWidget {
       this.is_taken,
       this.duration,
       this.levels,
-      this.closingdate});
+      this.closingdate,
+      this.label
+      });
 
   @override
   Widget build(BuildContext context) {
@@ -946,10 +949,10 @@ class classactivitys extends StatelessWidget {
 
                     SizedBox(width: 50,),
                     Expanded(
-                      child: Card(color: is_taken?Colors.green:Colors.green,
+                      child: Card(
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
-                          child: Text(is_taken?"Taken":"Curent",style: TextStyle(fontWeight: FontWeight.bold,
+                          child: Text(label,style: TextStyle(fontWeight: FontWeight.bold,
                               fontSize: 15,color: GlobalData.white),textAlign: TextAlign.center,),
                         ),
                       ),
