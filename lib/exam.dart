@@ -617,13 +617,11 @@ class _ExamState extends State<Exam> {
             _Originallist.add(item.val2);
             MatchingAnswers.add(" - ");
           }
-
           print("SHUFFLE");
           print(_Originallist.toString());
           print(_list.toString());
           print("ARUN");
           print(_list.length);
-
           if(Changed==0)
           {
             print("calling Changed");
