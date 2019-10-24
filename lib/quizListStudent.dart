@@ -363,6 +363,7 @@ class _Quiz_List_studentState extends State<Quiz_List_student> {
                       },
                       child: /*Quizz_List[i].is_taken==false?   */    //22-8-19 a
                     classactivitys(
+                    quiz: Quizz_List[i],
                         color: GlobalData.pinkred,
                         heading: Quizz_List[i].quiz_title+" - "+Quizz_List[i].id,
                         paragraph: Quizz_List[i].quiz_subject,

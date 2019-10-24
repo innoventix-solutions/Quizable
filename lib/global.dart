@@ -834,7 +834,9 @@ class classactivitys extends StatelessWidget {
   final String levels;
   final String duration;
   final String closingdate;
+
   String label;
+  final Pojo_quizzes quiz;
 
 
   classactivitys(
@@ -848,8 +850,7 @@ class classactivitys extends StatelessWidget {
       this.duration,
       this.levels,
       this.closingdate,
-      this.label
-      });
+      this.quiz,this.label});
 
   @override
   Widget build(BuildContext context) {
@@ -952,8 +953,10 @@ class classactivitys extends StatelessWidget {
                       child: Card(
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
-                          child: Text(label,style: TextStyle(fontWeight: FontWeight.bold,
-                              fontSize: 15,color: GlobalData.white),textAlign: TextAlign.center,),
+
+
+    child: Text(quiz.label,style: TextStyle(fontWeight: FontWeight.bold,
+                              fontSize: 15,color: GlobalData.black),textAlign: TextAlign.center,),
                         ),
                       ),
                     ),
@@ -1099,6 +1102,7 @@ class GlobalQuizActivity extends StatelessWidget {
   final String levels;
   final String duration;
   final String closingdate;
+  final Pojo_quizzes quiz;
 
 
   GlobalQuizActivity(
@@ -1111,7 +1115,8 @@ class GlobalQuizActivity extends StatelessWidget {
 
         this.duration,
         this.levels,
-        this.closingdate});
+        this.closingdate,
+      this.quiz});
 
   @override
   Widget build(BuildContext context) {
@@ -1210,6 +1215,15 @@ class GlobalQuizActivity extends StatelessWidget {
                     ),
 
                     SizedBox(width: 50,),
+                    Expanded(
+                      child: Card(color: Colors.red,
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(quiz.label,style: TextStyle(fontWeight: FontWeight.bold,
+                              fontSize: 15,color: GlobalData.white),textAlign: TextAlign.center,),
+                        ),
+                      ),
+                    ),
 
 
                   ],
@@ -1239,18 +1253,20 @@ class GlobalQuizActivity extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Row(children: <Widget>[
-                  Card(color: Colors.red,
+                  Card(
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: Text("Closing Date",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 15,
-                          color: GlobalData.white),textAlign: TextAlign.center,),
+                      child: Text("Closing Date : ",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 15,
+                          color: Colors.white),textAlign: TextAlign.center,),
                     ),
                   ),
                   Text(closingdate,style: TextStyle(fontWeight: FontWeight.bold,fontSize: 14,
                       color: GlobalData.gray),textAlign: TextAlign.center,),
 
                 ],),
-              )
+              ),
+
+
 
 
 

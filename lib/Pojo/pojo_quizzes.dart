@@ -56,18 +56,21 @@ class Pojo_quizzes{
     int AttempedLevel=int.parse(parsedJson['quiz_attemped_levels'].toString());
     int TotalLevels=int.parse(parsedJson['no_of_levels'].toString());
     DateTime closingTime=DateTime.parse(parsedJson['closing_date']);
-    int DateStatus=DateTime.now().compareTo(parsedJson['closing_date']);
+    int DateStatus=DateTime.now().compareTo(DateTime.parse(parsedJson['closing_date']));
     // 0 = Same
     // -1 = Ahead
     // 1 = Gone
     int LevelDiffereance = TotalLevels-AttempedLevel;
+    if(AttempedLevel==TotalLevels){
+      Label="Taken";
+    }else
     if(DateStatus==1 && AttempedLevel==0){
       Label="Missed";
     }else if(DateStatus==1 && AttempedLevel>0){
       Label="Taken";
     }else if(DateStatus==-1 && AttempedLevel==0){
       Label="New";
-    }else if(DateStatus==-1 && AttempedLevel>0){
+    }else if(DateStatus==-1 && (AttempedLevel>0&&AttempedLevel<TotalLevels)){
       Label="Continue";
     }
 

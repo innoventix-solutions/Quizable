@@ -35,9 +35,6 @@ class _GlobalselectsubjectState extends State<Globalselectsubject> {
     await http.post("http://edusupportapp.com/api/get_global_quizzes.php",
         body: {
           "UserId":GlobalData.uid,
-
-
-
         }).then((response) {
       print(response.body);
 
