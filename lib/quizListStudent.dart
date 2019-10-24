@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:newpro/global.dart' as prefix0;
 import 'Pojo/pojo_quizzes.dart';
 import 'package:http/http.dart' as http;
@@ -353,14 +354,29 @@ class _Quiz_List_studentState extends State<Quiz_List_student> {
                     return  GestureDetector(
                       onTap: (){
 
-                        GlobalData.isGlobal=false;
+
+                        if(Quizz_List[i].label == "New" ||  Quizz_List[i].label == "Continue")
+                        {
+                          GlobalData.EditQuiz=false;
+                          GlobalData.QuizID=Quizz_List[i].id;
+                          GlobalData.ExamQuiz=Quizz_List[i].quiz_title;
+                          GlobalData.DurationofEachLevel=Quizz_List[i].dur_each_level;
+                          GlobalData.QuizLevels=Quizz_List[i].no_of_levels;
+                          Navigator.of(context).pushNamed(GlobalData.userType=="student"?'studentLevelList':'Question_List');
+
+                        }
+                        else{Fluttertoast.showToast(msg: "Quiz "+Quizz_List[i].label,fontSize: 16,backgroundColor: Colors.red);}
+
+
+
+                        /* GlobalData.isGlobal=false;
                         GlobalData.QuizID=Quizz_List[i].id;
                         GlobalData.QuizLevels=Quizz_List[i].no_of_levels;
                         GlobalData.ExamQuiz=Quizz_List[i].quiz_title;
                         GlobalData.DurationofEachLevel=Quizz_List[i].dur_each_level; //studentLevelList
                        // Navigator.of(context).pushNamed(Quizz_List[i].is_taken==true?'AnswerLog':'exam');
                         Navigator.of(context).pushNamed('studentLevelList');
-                      },
+                      */},
                       child: /*Quizz_List[i].is_taken==false?   */    //22-8-19 a
                     classactivitys(
                     quiz: Quizz_List[i],
