@@ -735,8 +735,17 @@ class _ExamState extends State<Exam> {
                     Expanded(
                       child: GradientButtonText(
                         ButtonClick: (){
-                          if(CurrentPage-2<Quetions.length)
-                            pageController.jumpToPage(CurrentPage++);
+                          GiveAnswer("skip", (i + 1).toString());
+                          i++;
+                          if (i == Quetions.length) {
+                            getExamResult();
+
+                            i--;
+                          } else {
+                            setState(() {
+
+                            });
+                          }
                         },
                         linearGradient:LinearGradient(colors: <Color>[GlobalData.navy,GlobalData.navyblue]) ,
                         text: Text("Skip",textAlign: TextAlign.center,style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
