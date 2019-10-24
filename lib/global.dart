@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -780,6 +781,48 @@ class calc extends StatelessWidget {
 }
 
 
+/*class quizstatus extends StatelessWidget {
+
+
+  DateTime closingdate;
+  DateTime currentdate=DateTime.now();
+  int totallevel;
+  int attemptedlevel;
+  String istaken;
+  Color color;
+
+
+  quizstatus({this.closingdate,this.attemptedlevel,this.currentdate,this.totallevel,this.istaken});
+
+  @override
+  Widget build(BuildContext context) {
+
+    if(currentdate.isAfter(closingdate)){
+      istaken="Missed";
+      color=Colors.red;
+    }
+    if(totallevel==attemptedlevel){
+      istaken="Taken";
+      color=Colors.green;
+    }
+    else if(totallevel > attemptedlevel)
+    {
+      istaken="Retake";
+      color=Colors.deepOrange;
+    }
+
+
+    Card(color: color,
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Text(istaken,style: TextStyle(fontWeight: FontWeight.bold,
+            fontSize: 15,color: GlobalData.white),textAlign: TextAlign.center,),
+      ),
+    );
+  }
+}*/
+
+
 class classactivitys extends StatelessWidget {
 
   final String heading;
@@ -791,6 +834,7 @@ class classactivitys extends StatelessWidget {
   final String levels;
   final String duration;
   final String closingdate;
+  final Pojo_quizzes quiz;
 
 
   classactivitys(
@@ -803,7 +847,8 @@ class classactivitys extends StatelessWidget {
       this.is_taken,
       this.duration,
       this.levels,
-      this.closingdate});
+      this.closingdate,
+      this.quiz});
 
   @override
   Widget build(BuildContext context) {
@@ -906,7 +951,8 @@ class classactivitys extends StatelessWidget {
                       child: Card(color: is_taken?Colors.green:Colors.green,
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
-                          child: Text(is_taken?"Taken":"Curent",style: TextStyle(fontWeight: FontWeight.bold,
+                          
+                          child: Text(quiz.label,style: TextStyle(fontWeight: FontWeight.bold,
                               fontSize: 15,color: GlobalData.white),textAlign: TextAlign.center,),
                         ),
                       ),
@@ -1053,6 +1099,7 @@ class GlobalQuizActivity extends StatelessWidget {
   final String levels;
   final String duration;
   final String closingdate;
+  final Pojo_quizzes quiz;
 
 
   GlobalQuizActivity(
@@ -1065,7 +1112,8 @@ class GlobalQuizActivity extends StatelessWidget {
 
         this.duration,
         this.levels,
-        this.closingdate});
+        this.closingdate,
+      this.quiz});
 
   @override
   Widget build(BuildContext context) {
@@ -1164,6 +1212,15 @@ class GlobalQuizActivity extends StatelessWidget {
                     ),
 
                     SizedBox(width: 50,),
+                    Expanded(
+                      child: Card(color: Colors.red,
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(quiz.label,style: TextStyle(fontWeight: FontWeight.bold,
+                              fontSize: 15,color: GlobalData.white),textAlign: TextAlign.center,),
+                        ),
+                      ),
+                    ),
 
 
                   ],
@@ -1193,18 +1250,20 @@ class GlobalQuizActivity extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Row(children: <Widget>[
-                  Card(color: Colors.red,
+                  Card(
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: Text("Closing Date",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 15,
-                          color: GlobalData.white),textAlign: TextAlign.center,),
+                      child: Text("Closing Date : ",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 15,
+                          color: Colors.white),textAlign: TextAlign.center,),
                     ),
                   ),
                   Text(closingdate,style: TextStyle(fontWeight: FontWeight.bold,fontSize: 14,
                       color: GlobalData.gray),textAlign: TextAlign.center,),
 
                 ],),
-              )
+              ),
+
+
 
 
 

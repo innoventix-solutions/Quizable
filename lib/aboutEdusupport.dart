@@ -8,6 +8,11 @@ class AboutEdusupport extends StatefulWidget {
 }
 
 class _AboutEdusupportState extends State<AboutEdusupport> {
+
+  void getdata(){
+    DateTime.now();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

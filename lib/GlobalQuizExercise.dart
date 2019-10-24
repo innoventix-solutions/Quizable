@@ -46,7 +46,7 @@ class _questionmenuGlobalState extends State<questionmenuGlobal> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          automaticallyImplyLeading: true,
+          automaticallyImplyLeading: false,
 
           title: Center(
             child: Text(
@@ -65,10 +65,12 @@ class _questionmenuGlobalState extends State<questionmenuGlobal> {
           ),
           actions: <Widget>[
             IconButton(
-              onPressed: (){},
+              onPressed: (){
+                Navigator.of(context).pushNamed('GlobalDashboard');
+              },
               icon: Icon(
-                Icons.account_circle,
-                color: Colors.transparent,
+                Icons.exit_to_app,
+                color: Colors.white,
                 size: 20,
               ),
             ),
@@ -219,6 +221,8 @@ class _questionmenuGlobalState extends State<questionmenuGlobal> {
                         Navigator.of(context).pushNamed(GlobalData.userType=="student"?'studentLevelList':'Question_List');
                       },
                       child: GlobalQuizActivity(
+                        quiz:Quizz_List[i] ,
+
                         color: GlobalData.green,
                         heading: Quizz_List[i].quiz_title,
                         paragraph: Quizz_List[i].quiz_subject,

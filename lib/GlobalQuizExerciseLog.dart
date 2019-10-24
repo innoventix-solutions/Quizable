@@ -51,6 +51,7 @@ class _GlobalQuizExerciseLogState extends State<GlobalQuizExerciseLog> {
         appBar: AppBar(
           automaticallyImplyLeading: true,
 
+
           title: Center(
             child: Text(
               "Global Quiz Exercises Log",

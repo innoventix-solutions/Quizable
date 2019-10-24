@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 class Pojo_quizzes{
   String id;
   String quiz_title;
@@ -17,21 +19,25 @@ class Pojo_quizzes{
   String point_awarded;
   String age;
   int total_fill_question;
-String percentage;
+
+  String percentage;
  String progresslabel;
  String totaltime;
  String takendate;
+ String quizattemptlevel;
+ String label;
 
   Pojo_quizzes({this.id, this.quiz_title, this.techer_id, this.no_of_levels,
       this.que_each_level, this.dur_each_level, this.quiz_subject,
       this.class_id, this.status, this.publish_date, this.closing_date,
       this.created_date, this.classes,this.point_awarded,this.is_taken,this.TotalQuizpoints,this.age,this.total_fill_question,
-  this.percentage,this.progresslabel,this.totaltime,this.takendate});
+  this.percentage,this.progresslabel,this.totaltime,this.takendate,this.quizattemptlevel,this.label});
 
   factory Pojo_quizzes.fromJson(Map<String, dynamic> parsedJson){
 
     String tt;
     String td;
+
     print("asdzfasd :" +parsedJson['ID'].toString());
     print("asdzfasd :" +parsedJson['quiz_attend_data'].toString());
     if(parsedJson['quiz_attend_data']==null||parsedJson['quiz_attend_data']==false)
@@ -44,6 +50,35 @@ String percentage;
       tt=parsedJson['quiz_attend_data']['t_time'];
       td=parsedJson['quiz_attend_data']['taken_date'];
         }
+
+
+    String Label;
+    int AttempedLevel=int.parse(parsedJson['quiz_attemped_levels'].toString());
+    int TotalLevels=int.parse(parsedJson['no_of_levels'].toString());
+    DateTime closingTime=DateTime.parse(parsedJson['closing_date']);
+    int DateStatus=DateTime.now().compareTo(DateTime.parse(parsedJson['closing_date']));
+    // 0 = Same
+    // -1 = Ahead
+    // 1 = Gone
+    int LevelDiffereance = TotalLevels-AttempedLevel;
+    if(AttempedLevel==TotalLevels){
+      Label="Taken";
+    }else
+    if(DateStatus==1 && AttempedLevel==0){
+      Label="Missed";
+    }else if(DateStatus==1 && AttempedLevel>0){
+      Label="Taken";
+    }else if(DateStatus==-1 && AttempedLevel==0){
+      Label="New";
+    }else if(DateStatus==-1 && (AttempedLevel>0&&AttempedLevel<TotalLevels)){
+      Label="Continue";
+    }
+
+
+
+
+
+
 
 
     return Pojo_quizzes(
@@ -69,6 +104,8 @@ String percentage;
         progresslabel:parsedJson['quiz_result']['progresslabel'],
       totaltime: tt,
      takendate: td,
+      quizattemptlevel: parsedJson['quiz_attemped_levels'].toString(),
+      label: Label
       
     );
   }
