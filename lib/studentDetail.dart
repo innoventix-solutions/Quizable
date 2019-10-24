@@ -219,32 +219,32 @@ class _studentdetailState extends State<studentdetail> {
                       ),
                     ),
                   ),
-
-                  Container(
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 40, right: 40,top: 10),
-                      child: Center(
-                        child: Column(
-                          children: <Widget>[
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: <Widget>[
-                                Text(
-                                  "parent's Email",
-                                  style: TextStyle(fontSize: 18,
-                                      color: GlobalData.lightblue,
-                                      fontWeight: FontWeight.bold),
-                                  textAlign: TextAlign.start,
-                                ),
-                              ],
-                            ),
-                            CustomTextField(controller:parentemail,enabled: false,),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-
+GlobalData.userType == "student"?
+               SizedBox()  :
+Container(
+  child: Padding(
+    padding: const EdgeInsets.only(left: 40, right: 40,top: 10),
+    child: Center(
+      child: Column(
+        children: <Widget>[
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: <Widget>[
+              Text(
+                "parent's Email",
+                style: TextStyle(fontSize: 18,
+                    color: GlobalData.lightblue,
+                    fontWeight: FontWeight.bold),
+                textAlign: TextAlign.start,
+              ),
+            ],
+          ),
+          CustomTextField(controller:parentemail,enabled: false,),
+        ],
+      ),
+    ),
+  ),
+)
                 ],
               ),
 

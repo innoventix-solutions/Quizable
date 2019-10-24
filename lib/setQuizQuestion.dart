@@ -117,11 +117,9 @@ setalldetails(){
   var endwithlower;
   var endwithupper;
 
+
   @override
   Widget build(BuildContext context) {
-
-
-
 
     return Scaffold(
       appBar: AppBar(
@@ -572,6 +570,11 @@ setalldetails(){
                                   ),
                                   textAlign: TextAlign.center,
                                 ),ButtonClick: (){
+
+
+
+
+
                                   setalldetails();
                                   SaveQuiz();
 
