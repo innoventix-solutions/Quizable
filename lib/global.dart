@@ -2679,7 +2679,7 @@ class StudentQuizReport extends StatelessWidget {
                 ),
               ),
 
-              GestureDetector(
+              /*GestureDetector(
                 onTap: (){
 
 
@@ -2775,7 +2775,7 @@ class StudentQuizReport extends StatelessWidget {
                   ],
                 )
                 ,
-              ),
+              ),*/
 
 
 
