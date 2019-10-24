@@ -123,11 +123,9 @@ setalldetails(){
   var endwithlower;
   var endwithupper;
 
+
   @override
   Widget build(BuildContext context) {
-
-
-
 
     return Scaffold(
       appBar: AppBar(
@@ -579,10 +577,12 @@ setalldetails(){
                                   textAlign: TextAlign.center,
                                 ),ButtonClick: (){
 
+
                                 if(GlobalData.QuizLevels.length>1 || GlobalData.NosofQuesPerLevel.length>2   && (GlobalData.MyMembership==null ||GlobalData.MyMembership.isActive==false) )
                                 {
                                   Navigator.of(context).pushNamed('ManageAccount');
                                 }else {
+
                                   setalldetails();
                                   SaveQuiz();
                                 }
