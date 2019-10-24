@@ -951,6 +951,7 @@ class classactivitys extends StatelessWidget {
                       child: Card(color: is_taken?Colors.green:Colors.green,
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
+                          
                           child: Text(quiz.label,style: TextStyle(fontWeight: FontWeight.bold,
                               fontSize: 15,color: GlobalData.white),textAlign: TextAlign.center,),
                         ),
