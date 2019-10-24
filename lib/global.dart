@@ -18,7 +18,7 @@ import 'Pojo/pojo_quizzes.dart';
 
 class GlobalData{
 
-
+  static  List<Pojo_quizzes> Quizz_List = new List();
   static bool EditQuiz = false;
   static Pojo_questions Current_Que_To_Edit;
   static Color gradientblue = Color(0Xff1F0BE5); //a
@@ -290,8 +290,33 @@ class drawerquiz extends StatelessWidget {
                 child: GestureDetector(
                   child: Text('Quiz Question Bank ',style: TextStyle(
                       color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
-                  onTap: (){Navigator.of(context)
-                      .pushNamed('setquizquestions');
+                  onTap: () async {
+
+                    if(GlobalData.MyMembership==null ||GlobalData.MyMembership.isActive==false)
+                    {
+                      await GetQuizzes();
+
+                      if(GlobalData.Quizz_List.isNotEmpty)
+                      {
+
+                        Fluttertoast.showToast(msg: "Only One Quizz with max 10 Questions with one Level is Allowed for Free User\n\nSubscribe to create more Quizz");
+
+                        Navigator.of(context).pushNamed('ManageAccount');
+                      }else {
+
+
+                        Navigator.of(context)
+                            .pushNamed('setquizquestions');
+                      }
+
+                    }else
+                    {
+                      Navigator.of(context)
+                          .pushNamed('setquizquestions');
+                    }
+
+
+
                   },
                 ),
               )],),
@@ -3442,3 +3467,13 @@ class dummytext extends StatelessWidget {
   }
 }
 
+GetQuizzes() async {
+  await http.post("http://edusupportapp.com/api/get_quizzes.php",
+      body: {"UserId": GlobalData.uid}).then((res) {
+    print(res.body);
+    var ParsedJson = jsonDecode(res.body);
+    GlobalData.Quizz_List = (ParsedJson['quizdata'] as List)
+        .map((data) => Pojo_quizzes.fromJson(data))
+        .toList();
+  });
+}

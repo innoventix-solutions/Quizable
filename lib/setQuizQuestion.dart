@@ -578,17 +578,28 @@ setalldetails(){
                                 ),ButtonClick: (){
 
                                 setalldetails();
-
-                                if(int.parse(GlobalData.QuizLevels)>1 && int.parse(GlobalData.NosofQuesPerLevel)>10  || (GlobalData.MyMembership==null ||GlobalData.MyMembership.isActive==false) )
-
-
-                                {
-                                  Navigator.of(context).pushNamed('ManageAccount');
-                                }else {
+                                print("asdfasdf"+GlobalData.QuizLevels);
+                                print("asdfasdf"+GlobalData.NosofQuesPerLevel);
 
 
-                                  SaveQuiz();
-                                }
+                                if(GlobalData.MyMembership==null ||GlobalData.MyMembership.isActive==false)
+                                  {
+                                    if(int.parse(GlobalData.QuizLevels)>1 || int.parse(GlobalData.NosofQuesPerLevel)>10   )
+
+
+                                    {
+                                      Navigator.of(context).pushNamed('ManageAccount');
+                                    }else {
+
+
+                                      SaveQuiz();
+                                    }
+
+                                  }else
+                                    {
+                                      SaveQuiz();
+                                    }
+
 
 
                               },
