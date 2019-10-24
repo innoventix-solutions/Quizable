@@ -579,9 +579,8 @@ setalldetails(){
 
 
 
-                                if(GlobalData.QuizLevels.length>1 || GlobalData.NosofQuesPerLevel.length>2  || (GlobalData.MyMembership==null ||GlobalData.MyMembership.isActive==false) )
+                                if(int.parse(GlobalData.QuizLevels)>1 || int.parse(GlobalData.NosofQuesPerLevel)>10  || (GlobalData.MyMembership==null ||GlobalData.MyMembership.isActive==false) )
 
-                                if((Quizz_List.length>=1 || GlobalData.QuizLevels.length>=1 || GlobalData.NosofQuesPerLevel.length>=10 ) && (GlobalData.MyMembership==null ||GlobalData.MyMembership.isActive==false) )
 
                                 {
                                   Navigator.of(context).pushNamed('ManageAccount');
