@@ -951,7 +951,7 @@ class classactivitys extends StatelessWidget {
                       child: Card(color: is_taken?Colors.green:Colors.green,
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
-                          
+
                           child: Text(quiz.label,style: TextStyle(fontWeight: FontWeight.bold,
                               fontSize: 15,color: GlobalData.white),textAlign: TextAlign.center,),
                         ),
@@ -1212,7 +1212,7 @@ class GlobalQuizActivity extends StatelessWidget {
                     ),
 
                     SizedBox(width: 50,),
-                    Expanded(
+                 /*   Expanded(
                       child: Card(color: Colors.red,
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
@@ -1220,7 +1220,7 @@ class GlobalQuizActivity extends StatelessWidget {
                               fontSize: 15,color: GlobalData.white),textAlign: TextAlign.center,),
                         ),
                       ),
-                    ),
+                    ),*/
 
 
                   ],
@@ -1250,7 +1250,7 @@ class GlobalQuizActivity extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Row(children: <Widget>[
-                  Card(
+                  Card(color: Colors.red,
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Text("Closing Date : ",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 15,

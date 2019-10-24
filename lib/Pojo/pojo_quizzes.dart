@@ -25,7 +25,7 @@ class Pojo_quizzes{
  String totaltime;
  String takendate;
  String quizattemptlevel;
- String label;
+ String label ="-";
 
   Pojo_quizzes({this.id, this.quiz_title, this.techer_id, this.no_of_levels,
       this.que_each_level, this.dur_each_level, this.quiz_subject,
@@ -50,28 +50,31 @@ class Pojo_quizzes{
       tt=parsedJson['quiz_attend_data']['t_time'];
       td=parsedJson['quiz_attend_data']['taken_date'];
         }
+    String Label="-";
+    if(parsedJson['quiz_attemped_levels']!=null) {
 
-
-    String Label;
-    int AttempedLevel=int.parse(parsedJson['quiz_attemped_levels'].toString());
-    int TotalLevels=int.parse(parsedJson['no_of_levels'].toString());
-    DateTime closingTime=DateTime.parse(parsedJson['closing_date']);
-    int DateStatus=DateTime.now().compareTo(DateTime.parse(parsedJson['closing_date']));
-    // 0 = Same
-    // -1 = Ahead
-    // 1 = Gone
-    int LevelDiffereance = TotalLevels-AttempedLevel;
-    if(AttempedLevel==TotalLevels){
-      Label="Taken";
-    }else
-    if(DateStatus==1 && AttempedLevel==0){
-      Label="Missed";
-    }else if(DateStatus==1 && AttempedLevel>0){
-      Label="Taken";
-    }else if(DateStatus==-1 && AttempedLevel==0){
-      Label="New";
-    }else if(DateStatus==-1 && (AttempedLevel>0&&AttempedLevel<TotalLevels)){
-      Label="Continue";
+      int AttempedLevel = int.parse(
+          parsedJson['quiz_attemped_levels'].toString());
+      int TotalLevels = int.parse(parsedJson['no_of_levels'].toString());
+      DateTime closingTime = DateTime.parse(parsedJson['closing_date']);
+      int DateStatus = DateTime.now().compareTo(
+          DateTime.parse(parsedJson['closing_date']));
+      // 0 = Same
+      // -1 = Ahead
+      // 1 = Gone
+      int LevelDiffereance = TotalLevels - AttempedLevel;
+      if (AttempedLevel == TotalLevels) {
+        Label = "Taken";
+      } else if (DateStatus == 1 && AttempedLevel == 0) {
+        Label = "Missed";
+      } else if (DateStatus == 1 && AttempedLevel > 0) {
+        Label = "Taken";
+      } else if (DateStatus == -1 && AttempedLevel == 0) {
+        Label = "New";
+      } else if (DateStatus == -1 &&
+          (AttempedLevel > 0 && AttempedLevel < TotalLevels)) {
+        Label = "Continue";
+      }
     }
 
 
