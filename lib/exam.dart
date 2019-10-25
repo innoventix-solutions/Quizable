@@ -602,9 +602,7 @@ class _ExamState extends State<Exam> {
 
     if(Quetions[i].answer_type=="Match Type")
       {
-
        Matches= Quetions[i].anwer_options;
-
         if(_list.length==0) {
           for (var item in Matches) {
             _list.add(item.val2);
