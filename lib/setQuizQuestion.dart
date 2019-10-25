@@ -1,5 +1,5 @@
 import 'dart:convert';
-
+import 'Pojo/pojo_quizzes.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'global.dart';
@@ -16,6 +16,8 @@ class setquizquestion extends StatefulWidget {
 }
 
 class _setquizquestionState extends State<setquizquestion> {
+  List<Pojo_quizzes> Quizz_List = new List();
+
 
   DateTime date1;
   DateTime date2;
@@ -40,6 +42,10 @@ class _setquizquestionState extends State<setquizquestion> {
 
 
   }
+
+
+
+
 
 setalldetails(){
   GlobalData.QuizTitle  = quiztitle.text;
@@ -117,11 +123,9 @@ setalldetails(){
   var endwithlower;
   var endwithupper;
 
+
   @override
   Widget build(BuildContext context) {
-
-
-
 
     return Scaffold(
       appBar: AppBar(
@@ -572,8 +576,30 @@ setalldetails(){
                                   ),
                                   textAlign: TextAlign.center,
                                 ),ButtonClick: (){
-                                  setalldetails();
-                                  SaveQuiz();
+
+                                setalldetails();
+                                print("asdfasdf"+GlobalData.QuizLevels);
+                                print("asdfasdf"+GlobalData.NosofQuesPerLevel);
+
+
+                                if(GlobalData.MyMembership==null ||GlobalData.MyMembership.isActive==false)
+                                  {
+                                    if(int.parse(GlobalData.QuizLevels)>1 || int.parse(GlobalData.NosofQuesPerLevel)>10   )
+
+
+                                    {
+                                      Navigator.of(context).pushNamed('ManageAccount');
+                                    }else {
+
+
+                                      SaveQuiz();
+                                    }
+
+                                  }else
+                                    {
+                                      SaveQuiz();
+                                    }
+
 
 
                               },
