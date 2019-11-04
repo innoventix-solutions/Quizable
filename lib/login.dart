@@ -368,7 +368,7 @@ class _loginState extends State<login> {
 
           GlobalData.total_join = GlobalData.Class_list[index].total_join;
 
-
+    GlobalData.adminmembership=GlobalData.Class_list[index].isactive;
 
 
     print(GlobalData.Class_list[index].classname);
