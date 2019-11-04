@@ -102,7 +102,7 @@ class GlobalData{
   static bool isGlobal=false;
   static String signupdate="";
   static String dob="";
-
+  static String adminmembership="";
 
 
 
@@ -295,10 +295,16 @@ class drawerquiz extends StatelessWidget {
                   child: Text('Quiz Question Bank ',style: TextStyle(
                       color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
                   onTap: () async {
+                    print("adminmembership: " +GlobalData.adminmembership.toString());
 
-                    if(GlobalData.MyMembership==null || GlobalData.MyMembership.isActive==false)
+
+                   // if(GlobalData.MyMembership==null || GlobalData.MyMembership.isActive==false)
+
+                    if(GlobalData.adminmembership==null.toString())
+
                     {
                       await GetQuizzes();
+
 
                       if(GlobalData.Quizz_List.isNotEmpty)
                       {
