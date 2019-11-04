@@ -295,12 +295,16 @@ class drawerquiz extends StatelessWidget {
                   child: Text('Quiz Question Bank ',style: TextStyle(
                       color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
                   onTap: () async {
-                    print("adminmembership: " +GlobalData.adminmembership.toString());
+                    print("adminmembership:" +GlobalData.adminmembership.toString());
 
 
-                   // if(GlobalData.MyMembership==null || GlobalData.MyMembership.isActive==false)
 
-                    if(GlobalData.adminmembership==null.toString())
+
+
+
+
+
+                    if(GlobalData.adminmembership==null.toString() || GlobalData.adminmembership==false.toString())
 
                     {
                       await GetQuizzes();
@@ -1494,6 +1498,7 @@ LogoutFunction(context)async {
   GlobalData.age="";
   GlobalData.parentsphone="";
   GlobalData.parentsemail="";
+  GlobalData.adminmembership=null;
 
   //5-9-19
   GlobalData.AssignmentTitle="";
