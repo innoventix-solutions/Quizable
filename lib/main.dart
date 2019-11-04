@@ -40,7 +40,7 @@ import 'welcome.dart';
 import 'createnewclass.dart';
 import 'invitecode.dart';
 import 'teacherdashboard.dart';
-import 'screen101.dart';
+import 'Developmentpage.dart';
 import 'techerjoinclass.dart';
 import 'infoofedusupport.dart';
 
@@ -230,7 +230,8 @@ class MyApp extends StatelessWidget {
         'studentdetail':(context)=>studentdetail(),
         'myclassresults':(context)=>MyClassResult(),
         'StudentsLevelsAnswer':(context)=>StudentsLevelsAnswer(),
-        'globalstudentsubject':(context)=>Globalselectsubject()
+        'globalstudentsubject':(context)=>Globalselectsubject(),
+        'developpage':(context)=>develop()
       },
     );
   }

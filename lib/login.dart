@@ -368,7 +368,10 @@ class _loginState extends State<login> {
 
           GlobalData.total_join = GlobalData.Class_list[index].total_join;
 
-          print(GlobalData.Class_list[index].classname);
+
+
+
+    print(GlobalData.Class_list[index].classname);
           print(GlobalData.activeclass.classname);
           Navigator.of(context)
               .pushReplacementNamed(NamedPath);

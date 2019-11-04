@@ -84,6 +84,8 @@ class _TeacherSelectClassState extends State<TeacherSelectClass> {
                             GlobalData.Class_list[index].classname;
 
 
+
+
                         print(GlobalData.Class_list[index].classname);
                         print(GlobalData.activeclass.classname);
                         Navigator.of(context)

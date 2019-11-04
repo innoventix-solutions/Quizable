@@ -24,10 +24,10 @@ class _ManageAccountState extends State<ManageAccount> {
     // TODO: implement initState
     PaystackPlugin.initialize(publicKey: publicKey);
     super.initState();
-    if(GlobalData.userType=="admin_teacher")
-      {price="500000";
+    if(GlobalData.userType=="student")
+      {price="50000";
       }else{
-      price="50000";
+      price="500000";
     }
 
   }
@@ -262,7 +262,10 @@ class _ManageAccountState extends State<ManageAccount> {
                         ),
 
                       ],
-                    ):
+                    )
+                        :
+
+                    GlobalData.userType=="admin_teacher"?
                     Column(
                       children: <Widget>[
                         Container(
@@ -405,7 +408,149 @@ class _ManageAccountState extends State<ManageAccount> {
 
                       ],
                     )
-                      ,
+                      :
+                    Column(
+                      children: <Widget>[
+                        Container(
+
+                            child:Column(
+                              children: <Widget>[
+                                Padding(
+                                  padding: const EdgeInsets.all(10.0),
+                                  child: Text("You cannot set more than 10 questions. Please contact your Admin to subscribe.",textAlign: TextAlign.center,style:
+                                  TextStyle(fontSize: 20,color: Colors.white),),
+                                ),
+                                Text("Rate : N"+(int.parse(price)/100).toString() +" /Annum.",style: TextStyle(color: Colors.white,
+                                    fontSize: 18),)],
+                            ) /*RaisedButton(padding:EdgeInsets.only(top:15,bottom: 15),
+                            color: Colors.blue,
+                            shape: new RoundedRectangleBorder(
+                                borderRadius: new BorderRadius.circular(30.0)),
+                            onPressed: () {
+
+                            },
+                            child: Text(
+                              'Annual subscription  -\n  @N500 /Annum.',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(color:Colors.white,fontSize: 18,fontFamily:"yu"),
+                            ),
+                          ),*/
+                        ),
+                        /*  Padding(padding: EdgeInsets.all(9)),
+                        Container(
+
+                          child: RaisedButton(padding:EdgeInsets.only(left:90,right: 90,top:15,bottom: 15),
+                            color: Colors.blue,
+                            shape: new RoundedRectangleBorder(
+                                borderRadius: new BorderRadius.circular(30.0)),
+                            onPressed: () {
+
+                            },
+                            child: Text(
+                              '6 Months - @149',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(color:Colors.white,fontSize: 18,fontFamily:"yu"),
+                            ),
+                          ),*/
+                        /*),*/
+
+                        Padding(
+                          padding: const EdgeInsets.all(18.0),
+                          child: Container(
+
+                            child: RaisedButton(padding:EdgeInsets.only(left:90,right: 90,top:15,bottom: 15),
+                              color: Colors.blue,
+                              shape: new RoundedRectangleBorder(
+                                  borderRadius: new BorderRadius.circular(30.0)),
+                              onPressed: () async {
+
+
+                                print(GlobalData.email);
+                                String AccessCode;
+                                String ref = DateTime.now().year.toString() +
+                                    DateTime.now().month.toString() +
+                                    DateTime.now().day.toString() +
+                                    DateTime.now().hour.toString() +
+                                    DateTime.now().minute.toString() +
+                                    DateTime.now().second.toString();
+                                print(ref);
+
+                                await http.post("https://api.paystack.co/transaction/initialize",
+                                    headers: {
+                                      HttpHeaders.authorizationHeader:
+                                      "Bearer sk_test_ed1fa4cef818023148a44bf20c91e085787301e7"
+                                    },
+                                    body: {
+                                      "amount": price,
+                                      "email": GlobalData.email,
+                                      "reference": ref
+                                    }).then((res) {
+                                  print(res.body);
+                                  var ParsedJson = jsonDecode(res.body);
+                                  AccessCode = ParsedJson['data']['access_code'];
+                                  print(AccessCode);
+                                });
+                                Charge charge = Charge()
+                                  ..amount = int.parse(price)
+                                // ..reference = "ajsdfnjasdfas"
+                                  ..accessCode = AccessCode
+                                  ..email = GlobalData.email;
+                                CheckoutResponse response = await PaystackPlugin.checkout(
+                                  context,
+                                  charge: charge,
+                                );
+                                print(response.reference);
+
+                                if(response!=null) {
+                                  http.post(
+                                      "http://edusupportapp.com/api/membership.php",
+                                      body: {
+                                        "uid": GlobalData.uid,
+                                        "months": 12.toString(),
+                                        "refrence":response.reference
+                                      }).then((response) async {
+                                    var ParsedJson = jsonDecode(response.body);
+                                    print(response.body.toString());
+
+                                    if(ParsedJson['membershipdata']==false)
+                                    {
+
+
+                                      GlobalData.MyMembership = Membership(
+                                          id: 0.toString(),
+                                          enddate: "---",
+                                          isActive: false);
+                                      setState(() {
+
+                                      });
+
+                                    }else {
+
+                                      GlobalData.MyMembership = Membership(
+                                          id: ParsedJson['membershipdata']['ID'],
+                                          enddate: ParsedJson['membershipdata']['date'],
+                                          isActive: ParsedJson['membershipdata']['is_active']);
+                                      setState(() {
+
+                                      });
+                                    }
+
+                                  });
+                                }
+
+
+                              },
+                              child: Text(
+                                'Pay',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(color:Colors.white,fontSize: 18,fontFamily:"yu"),
+                              ),
+                            ),
+                          ),
+                        ),
+
+                      ],
+                    )
                   ]),
                 ),
               ],

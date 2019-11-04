@@ -31,7 +31,8 @@ class Classes{
         username:parsedJson['username'],
         total_join:parsedJson['total_join'].toString(),
       status: parsedJson['status'].toString(),
-      selected: false
+      selected: false,
+
     );
   }
 

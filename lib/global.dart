@@ -105,6 +105,7 @@ class GlobalData{
 
 
 
+
  AssetImage getgender(){
 
 
@@ -277,8 +278,11 @@ class drawerquiz extends StatelessWidget {
                       color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
                 )],),
             ),onTap: (){
+
             Navigator.of(context)
-                .pushNamed('SetAssignment');
+                .pushNamed('developpage');
+           /* Navigator.of(context)
+                .pushNamed('SetAssignment');*/
           },
           ),
 
@@ -333,7 +337,9 @@ class drawerquiz extends StatelessWidget {
                 ),],),
             ),onTap: (){
             Navigator.of(context)
-                .pushNamed('SetSpelling');
+                .pushNamed('developpage');
+            /*Navigator.of(context)
+                .pushNamed('SetSpelling');*/
           },
           ),
 
