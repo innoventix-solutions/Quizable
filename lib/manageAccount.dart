@@ -107,45 +107,6 @@ class _ManageAccountState extends State<ManageAccount> {
               ],
             ),
           ):
-           GlobalData.adminmembership!=null.toString() ||GlobalData.adminmembership!=false.toString()?
-           Center(
-             child: Column(mainAxisAlignment: MainAxisAlignment.center,
-               children: <Widget>[
-                 Container(
-
-
-                   child: Column(children: <Widget>[
-                     Text(
-                       'Already Subscribed',
-                       textAlign: TextAlign.center,
-                       style: TextStyle(color: Colors.white,fontSize:26,fontFamily: "yu", decoration: TextDecoration.underline),
-                     ),
-                     Padding(padding: EdgeInsets.only(top: 10,bottom: 20)),
-                     Column(
-                       children: <Widget>[
-                         Container(
-
-                             child:Column(
-                                 children: <Widget>[
-                                   Padding(
-                                     padding: const EdgeInsets.all(10.0),
-                                     child: Text("Membership Ends on ${GlobalData.MyMembership.enddate}",textAlign: TextAlign.center,style:
-                                     TextStyle(fontSize: 20,color: Colors.white),),
-                                   ),
-                                 ]
-                             )
-
-                         ),
-
-
-
-                       ],
-                     ),
-                   ]),
-                 ),
-               ],
-             ),
-           ):
            Center(
             child: Column(mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[

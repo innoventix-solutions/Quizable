@@ -582,26 +582,26 @@ setalldetails(){
                                 print("asdfasdf"+GlobalData.NosofQuesPerLevel);
 
 
-                                if(GlobalData.MyMembership==null ||GlobalData.MyMembership.isActive==false)
-                                  {
-                                    if(int.parse(GlobalData.QuizLevels)>1 || int.parse(GlobalData.NosofQuesPerLevel)>10   )
+                                if(GlobalData.MyMembership==null ||GlobalData.MyMembership.isActive==false) {
 
+                                  if (GlobalData.adminmembership == null.toString() ||
+                                      GlobalData.adminmembership == false.toString()) {
 
-                                    {
-                                      Navigator.of(context).pushNamed('ManageAccount');
-                                    }else {
-
-
+                                    if (int.parse(GlobalData.QuizLevels) > 1 ||
+                                        int.parse(
+                                            GlobalData.NosofQuesPerLevel) >
+                                            10) {
+                                      Navigator.of(context).pushNamed(
+                                          'ManageAccount');
+                                    } else {
                                       SaveQuiz();
                                     }
-
-                                  }else
-                                    {
-                                      SaveQuiz();
-                                    }
-
-
-
+                                  } else {
+                                    SaveQuiz();
+                                  }
+                                }else{
+                                  SaveQuiz();
+                                }
                               },
                               ),
                             ),

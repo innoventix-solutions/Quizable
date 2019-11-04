@@ -299,8 +299,13 @@ class drawerquiz extends StatelessWidget {
 
                     if(GlobalData.adminmembership==null.toString() || GlobalData.adminmembership==false.toString())
                     {
-                      await GetQuizzes();
 
+
+
+                        if(GlobalData.MyMembership==null ||GlobalData.MyMembership.isActive==false)
+                        {
+
+                          await GetQuizzes();
 
                       if(GlobalData.Quizz_List.isNotEmpty)
                       {
@@ -323,7 +328,12 @@ class drawerquiz extends StatelessWidget {
 
 
 
-                  },
+                  }else {
+                      Navigator.of(context)
+                          .pushNamed('setquizquestions');
+                    }
+
+    }
                 ),
               )],),
           ),
