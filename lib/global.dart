@@ -296,7 +296,7 @@ class drawerquiz extends StatelessWidget {
                       color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
                   onTap: () async {
 
-                    if(GlobalData.MyMembership==null ||GlobalData.MyMembership.isActive==false)
+                    if(GlobalData.MyMembership==null || GlobalData.MyMembership.isActive==false)
                     {
                       await GetQuizzes();
 
