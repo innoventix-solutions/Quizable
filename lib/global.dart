@@ -297,7 +297,15 @@ class drawerquiz extends StatelessWidget {
                   onTap: () async {
                     print("adminmembership:" +GlobalData.adminmembership.toString());
 
+
+
+
+
+
+
+
                     if(GlobalData.adminmembership==null.toString() || GlobalData.adminmembership==false.toString())
+
                     {
 
 
@@ -349,7 +357,7 @@ class drawerquiz extends StatelessWidget {
                 ),],),
             ),onTap: (){
             Navigator.of(context)
-                .pushNamed('developpage');
+                .pushNamed('setspellingque');
             /*Navigator.of(context)
                 .pushNamed('SetSpelling');*/
           },

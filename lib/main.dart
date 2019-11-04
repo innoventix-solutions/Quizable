@@ -100,7 +100,7 @@ import 'AssignmentExam.dart';
 import 'ReportDashboard.dart';
 import 'AssignmentReport.dart';
 import 'setspellingque.dart';
-import 'setspellque.dart';
+import 'spellingQue.dart';
 import 'trialsubscription.dart';
 
 import 'StudentListByAssignment.dart';
@@ -231,7 +231,9 @@ class MyApp extends StatelessWidget {
         'myclassresults':(context)=>MyClassResult(),
         'StudentsLevelsAnswer':(context)=>StudentsLevelsAnswer(),
         'globalstudentsubject':(context)=>Globalselectsubject(),
-        'developpage':(context)=>develop()
+        'developpage':(context)=>develop(),
+        'setspellingque':(context)=>setspellingque(),
+        'spellque':(context)=>setspellque(),
       },
     );
   }
