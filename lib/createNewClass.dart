@@ -207,7 +207,12 @@ class _createnewclassState extends State<createnewclass> {
 
                     if(GlobalData.Class_list.length>=1 && (GlobalData.MyMembership==null ||GlobalData.MyMembership.isActive==false) )
                       {
-                        Navigator.of(context).pushNamed('ManageAccount');
+                        CustomShowDialog(context,title: "Subscription Required",msg:
+                        "Please Subscribe to create more Classes.",onPressed:(){
+                          Navigator.of(context).pushNamed('ManageAccount');
+
+                        });
+                       // Navigator.of(context).pushNamed('ManageAccount');
                       }else {
                       createclass();
                     }
