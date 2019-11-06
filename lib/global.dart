@@ -309,10 +309,14 @@ class drawerquiz extends StatelessWidget {
 
                       if(GlobalData.Quizz_List.isNotEmpty)
                       {
+                        CustomShowDialog(context,title: "Subscription Required",msg:
+                        "Only One Quizz with max 10 Questions with one Level is Allowed for Free User\n\nSubscribe to create more Quizz",onPressed:(){
+                          Navigator.of(context).pushNamed('ManageAccount');
 
-                        Fluttertoast.showToast(msg: "Only One Quizz with max 10 Questions with one Level is Allowed for Free User\n\nSubscribe to create more Quizz");
+                        });
+                        //Fluttertoast.showToast(msg: "Only One Quizz with max 10 Questions with one Level is Allowed for Free User\n\nSubscribe to create more Quizz");
 
-                        Navigator.of(context).pushNamed('ManageAccount');
+                        //Navigator.of(context).pushNamed('ManageAccount');
                       }else {
 
 
