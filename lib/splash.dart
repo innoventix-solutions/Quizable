@@ -208,6 +208,9 @@ class _splashState extends State<splash> {
         GlobalData.class_name =
             GlobalData.Class_list[index].classname;
 
+        GlobalData.adminmembership=GlobalData.Class_list[index].isactive;
+
+
 
         print(GlobalData.Class_list[index].classname);
         print(GlobalData.activeclass.classname);

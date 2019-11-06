@@ -106,6 +106,7 @@ class GlobalData{
 
 
 
+
  AssetImage getgender(){
 
 
@@ -297,20 +298,11 @@ class drawerquiz extends StatelessWidget {
                   onTap: () async {
                     print("adminmembership:" +GlobalData.adminmembership.toString());
 
+                   if(GlobalData.adminmembership==null.toString() || GlobalData.adminmembership==false.toString())
 
+                   {
 
-
-
-
-
-
-                    if(GlobalData.adminmembership==null.toString() || GlobalData.adminmembership==false.toString())
-
-                    {
-
-
-
-                        if(GlobalData.MyMembership==null ||GlobalData.MyMembership.isActive==false)
+                        if(GlobalData.MyMembership==null || GlobalData.MyMembership.isActive==false)
                         {
 
                           await GetQuizzes();
@@ -336,10 +328,11 @@ class drawerquiz extends StatelessWidget {
 
 
 
-                  }else {
-                      Navigator.of(context)
-                          .pushNamed('setquizquestions');
-                    }
+                  }
+                  else {
+                     Navigator.of(context)
+                         .pushNamed('setquizquestions');
+                   }
 
     }
                 ),
@@ -356,10 +349,13 @@ class drawerquiz extends StatelessWidget {
                       color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
                 ),],),
             ),onTap: (){
+
+               /*Navigator.of(context)
+                   .pushNamed('developpage');*/
             Navigator.of(context)
                 .pushNamed('setspellingque');
-            /*Navigator.of(context)
-                .pushNamed('SetSpelling');*/
+
+
           },
           ),
 
@@ -3506,8 +3502,11 @@ GetQuizzes() async {
       body: {"UserId": GlobalData.uid}).then((res) {
     print(res.body);
     var ParsedJson = jsonDecode(res.body);
-    GlobalData.Quizz_List = (ParsedJson['quizdata'] as List)
-        .map((data) => Pojo_quizzes.fromJson(data))
-        .toList();
+    if (ParsedJson['quizdata'] != false) {
+      GlobalData.Quizz_List = (ParsedJson['quizdata'] as List)
+          .map((data) => Pojo_quizzes.fromJson(data))
+          .toList();
+    }
   });
+
 }

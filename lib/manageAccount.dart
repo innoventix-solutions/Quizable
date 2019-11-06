@@ -276,7 +276,7 @@ class _ManageAccountState extends State<ManageAccount> {
                               children: <Widget>[
                                 Padding(
                                   padding: const EdgeInsets.all(10.0),
-                                  child: Text("Please Subscribe to create more Classes.",textAlign: TextAlign.center,style:
+                                  child: Text("Please Subscribe to create more Classes or Quiz.",textAlign: TextAlign.center,style:
                                   TextStyle(fontSize: 20,color: Colors.white),),
                                 ),
                                 Text("Rate : N"+(int.parse(price)/100).toString() +" /Annum.",style: TextStyle(color: Colors.white,

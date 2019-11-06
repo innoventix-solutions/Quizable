@@ -587,10 +587,7 @@ setalldetails(){
                                   if (GlobalData.adminmembership == null.toString() ||
                                       GlobalData.adminmembership == false.toString()) {
 
-                                    if (int.parse(GlobalData.QuizLevels) > 1 ||
-                                        int.parse(
-                                            GlobalData.NosofQuesPerLevel) >
-                                            10) {
+                                    if (int.parse(GlobalData.QuizLevels) > 1 || int.parse(GlobalData.NosofQuesPerLevel) >   10) {
                                       Navigator.of(context).pushNamed(
                                           'ManageAccount');
                                     } else {

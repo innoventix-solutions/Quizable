@@ -124,7 +124,7 @@ class _createnewclassState extends State<createnewclass> {
                               image:_image!=null?  FileImage(_image): AssetImage('assets/images/classicon.png'),
                             ))),
                         Positioned(
-                          right: 0,bottom: 05,
+                          right: 0,bottom: 8,
                           child: GestureDetector(onTap: (){
 
                             getImage();
