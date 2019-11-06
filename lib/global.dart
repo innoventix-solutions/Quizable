@@ -2001,7 +2001,7 @@ class QuizResult extends StatelessWidget {
                         child: Column(
                           children: <Widget>[
                             Padding(
-                              padding: const EdgeInsets.only(top: 5,bottom: 5,left: 10),
+                              padding: const EdgeInsets.only(top: 5,bottom: 5,left: 10,right: 3),
                               child: Row(
                                 children: <Widget>[
                                   Expanded(
@@ -2011,7 +2011,14 @@ class QuizResult extends StatelessWidget {
                                   Padding(
                                     padding: const EdgeInsets.only(right:4),
                                     child: PopupMenuButton(
-                                      child: Icon(Icons.more_vert),
+                                      child: GestureDetector(
+                                          onTap: (){
+                                            Share.share("My EduSupport Quiz Result \n \n"+ GlobalData.Username + " completed Quiz: " + heading + "\n \n"+"My result is: " + percent +" %"
+                                                +"\n"  + progresslabel);
+
+
+
+                                          },child: Icon(Icons.share,color: Colors.white,)),
                                       itemBuilder: (_) => <PopupMenuItem<String>>[
                                         /*new PopupMenuItem<String>(
                                             child: GestureDetector(onTap: (){
@@ -2031,7 +2038,7 @@ class QuizResult extends StatelessWidget {
                                               ),
                                             ),),*/
 
-                                        PopupMenuItem<String>(
+                                       /* PopupMenuItem<String>(
                                           child: Row(
                                             children: <Widget>[
                                               Padding(
@@ -2055,7 +2062,7 @@ class QuizResult extends StatelessWidget {
                                               ,
                                                   child: new Text('Share',style: TextStyle(fontSize: 15),)),
                                             ],
-                                          ),),
+                                          ),),*/
                                       ],
 
                                     )

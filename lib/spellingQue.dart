@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:speech_recognition/speech_recognition.dart';
 import 'global.dart';
+import 'package:permission_handler/permission_handler.dart';
+
 
 class setspellque extends StatefulWidget {
   @override
@@ -223,12 +225,15 @@ class _setspellqueState extends State<setspellque> {
                                             Expanded(child: Text("Audio/Voice recorder",style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold),)),
                                             FloatingActionButton(mini:true,
                                               child: Icon(Icons.mic),
-                                              onPressed: () {
+                                              onPressed: () async {
+                                                Map<PermissionGroup, PermissionStatus> permissions = await PermissionHandler().requestPermissions([PermissionGroup.microphone]);
                                                 if (_isAvailable && !_isListening)
                                                   _speechRecognition
                                                       .listen(locale: "en_US")
                                                       .then((result) => print('$result'));
+
                                               },
+
                                               backgroundColor: Colors.lightBlue,
                                             ),
                                           ],
