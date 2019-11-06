@@ -49,8 +49,16 @@ class _ManageAccountState extends State<ManageAccount> {
         decoration: bg12,
       ),
       actions: <Widget>[
-        IconButton(onPressed: (){Navigator.of(context)
-            .pushNamed('dashboard');},
+        IconButton(onPressed: (){
+          if(GlobalData.userType=="student"){
+
+            Navigator.of(context).pushReplacementNamed('studentdashboard');
+          }
+          else{
+            Navigator.of(context).pushReplacementNamed('dashboard');
+
+          }
+        },
           icon: Icon(
             Icons.exit_to_app,
             color: Colors.white,
