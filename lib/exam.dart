@@ -35,12 +35,14 @@ class _ExamState extends State<Exam> {
   List<Pojo_Answers> Options = List();
   List<MatchClass> Matchs = List();
   List<Pojo_Matchs> Matches = List();
+  List<Pojo_Matchs> Matches2 = List();
   int Selected =0;
   List<int> Selecteditem=new List();
   String TrueorFalse = "";
   List<String> _list = new List();
   List<String> _Originallist = new List();
   List<String> MatchingAnswers = new List();
+  List<String> TestingAnswers = new List();
   List<String> fillupsData = new List();
   bool isloading = true;
   String TimerText ="-:--:--";
@@ -93,13 +95,19 @@ class _ExamState extends State<Exam> {
     _list.shuffle();
     print("My List : "+_list.toString() );
 
+    if(TestingAnswers.toString()==_list.toString())
+      {
+        changenow();
+      }else{
+
+
     if(originalCopied==false) {
 
       originalCopied=true;
      // _Originallist = _list;
       print("My Original List Copied  : " + _Originallist.toString());
     }
-  }
+  }}
 
 
   TextEditingController ans1 = new TextEditingController();
@@ -279,7 +287,6 @@ class _ExamState extends State<Exam> {
                              //  _list[_Originallist.indexOf(MatchingAnswers[i])]=MatchingAnswers[i];
                              //  MatchingAnswers[i]="-";
                                setState(() {
-
                                });
                                   }
                                   ,child: Icon(Icons.cancel,size: 15,)),
@@ -287,7 +294,6 @@ class _ExamState extends State<Exam> {
                                   Expanded(child: Text( MatchingAnswers[i])),
                                 ],
                               ),
-
                             ),
                           ));
                         }),
@@ -597,14 +603,19 @@ class _ExamState extends State<Exam> {
   }
 
 
-  Widget MYQue(){
+  Future<Widget> MYQue() async {
 
 
-    if(Quetions[i].answer_type=="Match Type")
+
+
+    if(Quetions[i].answer_type=="Match Type" && Matches2.isEmpty)
       {
-       Matches= Quetions[i].anwer_options;
+
+       Matches2= Quetions[i].anwer_options;
+       Matches2.shuffle();
         if(_list.length==0) {
-          for (var item in Matches) {
+          for (var item in Matches2) {
+            TestingAnswers.add(item.val1);
             _list.add(item.val2);
             _Originallist.add(item.val2);
             MatchingAnswers.add(" - ");
@@ -617,8 +628,11 @@ class _ExamState extends State<Exam> {
           if(Changed==0)
           {
             print("calling Changed");
-            changenow();
+            await changenow();
             Changed=1;
+
+
+
           }
         }
       }
@@ -1025,6 +1039,7 @@ Matches =Quetions[i].anwer_options;*/
       Textcontroller[i].text="";
     }
 
+    TestingAnswers.clear();
     fillupsData.clear();
     _list.clear();
     _Originallist.clear();
