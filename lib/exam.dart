@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:countdown/countdown.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
 import 'package:share/share.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -19,6 +20,7 @@ class Exam extends StatefulWidget {
 
 class _ExamState extends State<Exam> {
 
+  bool isCompleted=false;
   bool isattempted =false;
   bool originalCopied =false;
   int Changed=0;
@@ -643,7 +645,7 @@ class _ExamState extends State<Exam> {
 
 
     return SafeArea(
-      child: SingleChildScrollView(
+      child:  SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Column(
@@ -749,6 +751,10 @@ class _ExamState extends State<Exam> {
                           GiveAnswer("skip", (i + 1).toString());
                           i++;
                           if (i == Quetions.length) {
+                            isCompleted=true;
+                            setState(() {
+
+                            });
                             getExamResult();
 
                             i--;
@@ -943,7 +949,7 @@ class _ExamState extends State<Exam> {
 Matches =Quetions[i].anwer_options;*/
     return Scaffold(
         appBar: AppBar(title: Text("My Quiz Exercises"),centerTitle: true,),
-        body: isloading==true?Center(child: Text("Loading...")):MYQue()
+        body: isloading==true?Center(child: Text("Loading...")):isCompleted?Container():MYQue()
 
 
 
@@ -1011,6 +1017,7 @@ Matches =Quetions[i].anwer_options;*/
 
 
   GiveAnswer(String answer,String qno)async{
+    Fluttertoast.showToast(msg: "Giving Answer");
     print("Your Answer : "+answer);
     if(cd!=null) {
       cd.isPaused = true;
@@ -1026,6 +1033,7 @@ Matches =Quetions[i].anwer_options;*/
       "q_no":qno,
       "answer":answer
     }).then((res){
+      Fluttertoast.showToast(msg: "ResultSubmitted");
       print(res.body);
     });
 
@@ -1035,15 +1043,17 @@ Matches =Quetions[i].anwer_options;*/
       Textcontroller[i].text="";
     }
 
-    print("Clearing all Data");
-    Changed=0;
-    fillupsData.clear();
-    _TestingList.clear();
-    _list.clear();
-    _Originallist.clear();
-    MatchingAnswers.clear();
-    originalCopied=false;
-    Matches2.clear();
+    if(i>Quetions.length) {
+      print("Clearing all Data");
+      Changed = 0;
+      fillupsData.clear();
+      _TestingList.clear();
+      _list.clear();
+      _Originallist.clear();
+      MatchingAnswers.clear();
+      originalCopied = false;
+      Matches2.clear();
+    }
 
     //Show_toast_Now(fillupsData.length.toString(), Colors.green);
 
@@ -1209,9 +1219,11 @@ Matches =Quetions[i].anwer_options;*/
   stop(){
 
     showDialog<void>(
+      
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
+
           title: Text('FINISH TIME'),
           content: const Text('You have exhausted your time for this level. Tap OK to go to next level'),
           actions: <Widget>[
