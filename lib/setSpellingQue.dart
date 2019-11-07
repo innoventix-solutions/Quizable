@@ -510,7 +510,7 @@ class _setspellingqueState extends State<setspellingque> {
                                 //SaveQuiz();
                                 Navigator.of(context)
                                     .pushNamed(
-                                    'setspellque');
+                                    'spellque');
                               },
                               ),
                             ),

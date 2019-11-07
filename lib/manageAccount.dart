@@ -24,10 +24,10 @@ class _ManageAccountState extends State<ManageAccount> {
     // TODO: implement initState
     PaystackPlugin.initialize(publicKey: publicKey);
     super.initState();
-    if(GlobalData.userType=="admin_teacher")
-      {price="500000";
+    if(GlobalData.userType=="student")
+      {price="50000";
       }else{
-      price="50000";
+      price="500000";
     }
 
   }
@@ -35,7 +35,7 @@ class _ManageAccountState extends State<ManageAccount> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(appBar: AppBar(automaticallyImplyLeading: true,
+    return Scaffold(appBar: AppBar(automaticallyImplyLeading: false,
       backgroundColor: Color(0Xff1F0BE6),
 
 
@@ -49,10 +49,19 @@ class _ManageAccountState extends State<ManageAccount> {
         decoration: bg12,
       ),
       actions: <Widget>[
-        IconButton(onPressed: (){},
+        IconButton(onPressed: (){
+          if(GlobalData.userType=="student"){
+
+            Navigator.of(context).pushReplacementNamed('studentdashboard');
+          }
+          else{
+            Navigator.of(context).pushReplacementNamed('dashboard');
+
+          }
+        },
           icon: Icon(
-            Icons.account_circle,
-            color: Colors.transparent,
+            Icons.exit_to_app,
+            color: Colors.white,
             size: 20,
           ),
         ),
@@ -68,7 +77,8 @@ class _ManageAccountState extends State<ManageAccount> {
               ),
             ),
           ),
-           GlobalData.MyMembership.isActive?Center(
+           GlobalData.MyMembership.isActive?
+           Center(
             child: Column(mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 Container(
@@ -105,7 +115,8 @@ class _ManageAccountState extends State<ManageAccount> {
                 ),
               ],
             ),
-          ):Center(
+          ):
+           Center(
             child: Column(mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 Container(
@@ -262,7 +273,10 @@ class _ManageAccountState extends State<ManageAccount> {
                         ),
 
                       ],
-                    ):
+                    )
+                        :
+
+                    GlobalData.userType=="admin_teacher"?
                     Column(
                       children: <Widget>[
                         Container(
@@ -271,7 +285,7 @@ class _ManageAccountState extends State<ManageAccount> {
                               children: <Widget>[
                                 Padding(
                                   padding: const EdgeInsets.all(10.0),
-                                  child: Text("Please Subscribe to create more Classes.",textAlign: TextAlign.center,style:
+                                  child: Text("Please Subscribe to access more features.",textAlign: TextAlign.center,style:
                                   TextStyle(fontSize: 20,color: Colors.white),),
                                 ),
                                 Text("Rate : N"+(int.parse(price)/100).toString() +" /Annum.",style: TextStyle(color: Colors.white,
@@ -405,7 +419,56 @@ class _ManageAccountState extends State<ManageAccount> {
 
                       ],
                     )
-                      ,
+                      :
+                    Column(
+                      children: <Widget>[
+                        Container(
+
+                            child:Column(
+                              children: <Widget>[
+                                Padding(
+                                  padding: const EdgeInsets.all(10.0),
+                                  child: Text("You cannot set more than 10 questions. Please contact your Admin to subscribe.",textAlign: TextAlign.center,style:
+                                  TextStyle(fontSize: 20,color: Colors.white),),
+                                ),
+                                Text("Rate : N"+(int.parse(price)/100).toString() +" /Annum.",style: TextStyle(color: Colors.white,
+                                    fontSize: 18),)],
+                            ) /*RaisedButton(padding:EdgeInsets.only(top:15,bottom: 15),
+                            color: Colors.blue,
+                            shape: new RoundedRectangleBorder(
+                                borderRadius: new BorderRadius.circular(30.0)),
+                            onPressed: () {
+
+                            },
+                            child: Text(
+                              'Annual subscription  -\n  @N500 /Annum.',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(color:Colors.white,fontSize: 18,fontFamily:"yu"),
+                            ),
+                          ),*/
+                        ),
+                        /*  Padding(padding: EdgeInsets.all(9)),
+                        Container(
+
+                          child: RaisedButton(padding:EdgeInsets.only(left:90,right: 90,top:15,bottom: 15),
+                            color: Colors.blue,
+                            shape: new RoundedRectangleBorder(
+                                borderRadius: new BorderRadius.circular(30.0)),
+                            onPressed: () {
+
+                            },
+                            child: Text(
+                              '6 Months - @149',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(color:Colors.white,fontSize: 18,fontFamily:"yu"),
+                            ),
+                          ),*/
+                        /*),*/
+
+
+
+                      ],
+                    )
                   ]),
                 ),
               ],

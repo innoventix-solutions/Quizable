@@ -102,6 +102,8 @@ class GlobalData{
   static bool isGlobal=false;
   static String signupdate="";
   static String dob="";
+  static String adminmembership="";
+
 
 
 
@@ -277,8 +279,11 @@ class drawerquiz extends StatelessWidget {
                       color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
                 )],),
             ),onTap: (){
+
             Navigator.of(context)
-                .pushNamed('SetAssignment');
+                .pushNamed('developpage');
+           /* Navigator.of(context)
+                .pushNamed('SetAssignment');*/
           },
           ),
 
@@ -291,17 +296,27 @@ class drawerquiz extends StatelessWidget {
                   child: Text('Quiz Question Bank ',style: TextStyle(
                       color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
                   onTap: () async {
+                    print("adminmembership:" +GlobalData.adminmembership.toString());
 
-                    if(GlobalData.MyMembership==null ||GlobalData.MyMembership.isActive==false)
-                    {
-                      await GetQuizzes();
+                   if(GlobalData.adminmembership==null.toString() || GlobalData.adminmembership==false.toString())
+
+                   {
+
+                        if(GlobalData.MyMembership==null || GlobalData.MyMembership.isActive==false)
+                        {
+
+                          await GetQuizzes();
 
                       if(GlobalData.Quizz_List.isNotEmpty)
                       {
+                        CustomShowDialog(context,title: "Subscription Required",msg:
+                        "Only One Quizz with max 10 Questions with one Level is Allowed for Free User\n\nSubscribe to create more Quizz",onPressed:(){
+                          Navigator.of(context).pushNamed('ManageAccount');
 
-                        Fluttertoast.showToast(msg: "Only One Quizz with max 10 Questions with one Level is Allowed for Free User\n\nSubscribe to create more Quizz");
+                        });
+                        //Fluttertoast.showToast(msg: "Only One Quizz with max 10 Questions with one Level is Allowed for Free User\n\nSubscribe to create more Quizz");
 
-                        Navigator.of(context).pushNamed('ManageAccount');
+                        //Navigator.of(context).pushNamed('ManageAccount');
                       }else {
 
 
@@ -317,7 +332,13 @@ class drawerquiz extends StatelessWidget {
 
 
 
-                  },
+                  }
+                  else {
+                     Navigator.of(context)
+                         .pushNamed('setquizquestions');
+                   }
+
+    }
                 ),
               )],),
           ),
@@ -332,8 +353,13 @@ class drawerquiz extends StatelessWidget {
                       color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
                 ),],),
             ),onTap: (){
+
+               /*Navigator.of(context)
+                   .pushNamed('developpage');*/
             Navigator.of(context)
-                .pushNamed('SetSpelling');
+                .pushNamed('setspellingque');
+
+
           },
           ),
 
@@ -1482,6 +1508,7 @@ LogoutFunction(context)async {
   GlobalData.age="";
   GlobalData.parentsphone="";
   GlobalData.parentsemail="";
+  GlobalData.adminmembership=null;
 
   //5-9-19
   GlobalData.AssignmentTitle="";
@@ -1974,7 +2001,7 @@ class QuizResult extends StatelessWidget {
                         child: Column(
                           children: <Widget>[
                             Padding(
-                              padding: const EdgeInsets.only(top: 5,bottom: 5,left: 10),
+                              padding: const EdgeInsets.only(top: 5,bottom: 5,left: 10,right: 3),
                               child: Row(
                                 children: <Widget>[
                                   Expanded(
@@ -1984,7 +2011,14 @@ class QuizResult extends StatelessWidget {
                                   Padding(
                                     padding: const EdgeInsets.only(right:4),
                                     child: PopupMenuButton(
-                                      child: Icon(Icons.more_vert),
+                                      child: GestureDetector(
+                                          onTap: (){
+                                            Share.share("My EduSupport Quiz Result \n \n"+ GlobalData.Username + " completed Quiz: " + heading + "\n \n"+"My result is: " + percent +" %"
+                                                +"\n"  + progresslabel);
+
+
+
+                                          },child: Icon(Icons.share,color: Colors.white,)),
                                       itemBuilder: (_) => <PopupMenuItem<String>>[
                                         /*new PopupMenuItem<String>(
                                             child: GestureDetector(onTap: (){
@@ -2004,7 +2038,7 @@ class QuizResult extends StatelessWidget {
                                               ),
                                             ),),*/
 
-                                        PopupMenuItem<String>(
+                                       /* PopupMenuItem<String>(
                                           child: Row(
                                             children: <Widget>[
                                               Padding(
@@ -2028,7 +2062,7 @@ class QuizResult extends StatelessWidget {
                                               ,
                                                   child: new Text('Share',style: TextStyle(fontSize: 15),)),
                                             ],
-                                          ),),
+                                          ),),*/
                                       ],
 
                                     )
@@ -3472,8 +3506,11 @@ GetQuizzes() async {
       body: {"UserId": GlobalData.uid}).then((res) {
     print(res.body);
     var ParsedJson = jsonDecode(res.body);
-    GlobalData.Quizz_List = (ParsedJson['quizdata'] as List)
-        .map((data) => Pojo_quizzes.fromJson(data))
-        .toList();
+    if (ParsedJson['quizdata'] != false) {
+      GlobalData.Quizz_List = (ParsedJson['quizdata'] as List)
+          .map((data) => Pojo_quizzes.fromJson(data))
+          .toList();
+    }
   });
+
 }

@@ -40,7 +40,7 @@ import 'welcome.dart';
 import 'createnewclass.dart';
 import 'invitecode.dart';
 import 'teacherdashboard.dart';
-import 'screen101.dart';
+import 'Developmentpage.dart';
 import 'techerjoinclass.dart';
 import 'infoofedusupport.dart';
 
@@ -100,7 +100,7 @@ import 'AssignmentExam.dart';
 import 'ReportDashboard.dart';
 import 'AssignmentReport.dart';
 import 'setspellingque.dart';
-import 'setspellque.dart';
+import 'spellingQue.dart';
 import 'trialsubscription.dart';
 
 import 'StudentListByAssignment.dart';
@@ -119,6 +119,8 @@ import 'temp.dart';
 import 'pojo/pojo_subject.dart';
 import 'StudentsLevelsAnswer.dart';
 import 'GlobalSelectSubject.dart';
+
+
 
 void main() {
   runApp(MyApp());
@@ -230,7 +232,10 @@ class MyApp extends StatelessWidget {
         'studentdetail':(context)=>studentdetail(),
         'myclassresults':(context)=>MyClassResult(),
         'StudentsLevelsAnswer':(context)=>StudentsLevelsAnswer(),
-        'globalstudentsubject':(context)=>Globalselectsubject()
+        'globalstudentsubject':(context)=>Globalselectsubject(),
+        'developpage':(context)=>develop(),
+        'setspellingque':(context)=>setspellingque(),
+        'spellque':(context)=>setspellque(),
       },
     );
   }

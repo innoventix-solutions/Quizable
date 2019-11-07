@@ -118,6 +118,5 @@ class Pojo_quizzes{
   Map<String, dynamic> toJson() =>
       {
         'id':id,
-
       };
 }
