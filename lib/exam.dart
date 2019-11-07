@@ -42,8 +42,8 @@ class _ExamState extends State<Exam> {
   List<String> _list = new List();
   List<String> _Originallist = new List();
   List<String> MatchingAnswers = new List();
-  List<String> TestingAnswers = new List();
   List<String> fillupsData = new List();
+  List<String> _TestingList = new List();
   bool isloading = true;
   String TimerText ="-:--:--";
   int timermins = int.parse(GlobalData.DurationofEachLevel);
@@ -95,19 +95,20 @@ class _ExamState extends State<Exam> {
     _list.shuffle();
     print("My List : "+_list.toString() );
 
-    if(TestingAnswers.toString()==_list.toString())
-      {
-        changenow();
-      }else{
+    if(_TestingList.toString()==_list.toString())
+    {
+      print(_TestingList.toString());
+      print(_list.toString());
 
-
-    if(originalCopied==false) {
-
-      originalCopied=true;
-     // _Originallist = _list;
-      print("My Original List Copied  : " + _Originallist.toString());
+      changenow();
+    }else {
+      if (originalCopied == false) {
+        originalCopied = true;
+        // _Originallist = _list;
+        print("My Original List Copied  : " + _Originallist.toString());
+      }
     }
-  }}
+  }
 
 
   TextEditingController ans1 = new TextEditingController();
@@ -603,7 +604,7 @@ class _ExamState extends State<Exam> {
   }
 
 
-  Future<Widget> MYQue() async {
+  Widget MYQue(){
 
 
 
@@ -615,7 +616,7 @@ class _ExamState extends State<Exam> {
        Matches2.shuffle();
         if(_list.length==0) {
           for (var item in Matches2) {
-            TestingAnswers.add(item.val1);
+            _TestingList.add(item.val2);
             _list.add(item.val2);
             _Originallist.add(item.val2);
             MatchingAnswers.add(" - ");
@@ -628,11 +629,9 @@ class _ExamState extends State<Exam> {
           if(Changed==0)
           {
             print("calling Changed");
-            await changenow();
+            changenow();
+
             Changed=1;
-
-
-
           }
         }
       }
@@ -1039,8 +1038,8 @@ Matches =Quetions[i].anwer_options;*/
       Textcontroller[i].text="";
     }
 
-    TestingAnswers.clear();
     fillupsData.clear();
+    _TestingList.clear();
     _list.clear();
     _Originallist.clear();
     MatchingAnswers.clear();
