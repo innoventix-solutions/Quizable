@@ -354,10 +354,10 @@ class drawerquiz extends StatelessWidget {
                 ),],),
             ),onTap: (){
 
-               /*Navigator.of(context)
-                   .pushNamed('developpage');*/
-            Navigator.of(context)
-                .pushNamed('setspellingque');
+               Navigator.of(context)
+                   .pushNamed('developpage');
+            /*Navigator.of(context)
+                .pushNamed('setspellingque');*/
 
 
           },
