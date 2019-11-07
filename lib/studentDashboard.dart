@@ -56,12 +56,15 @@ class _studentdashboardState extends State<studentdashboard> {
       print(res.body);
 
       var ParsedJson = jsonDecode(res.body);
-      assignment_list = (ParsedJson['assignmentdata'] as List).map((data)=>Pojo_getassignment.fromJson(data)).toList();
+      if(ParsedJson['assignmentdata'].toString()!="false") {
+        assignment_list = (ParsedJson['assignmentdata'] as List).map((data) =>
+            Pojo_getassignment.fromJson(data)).toList();
 
-      print(assignment_list.length);
-      setState(() {
+        print(assignment_list.length);
+        setState(() {
 
-      });
+        });
+      }
     });
   }
 

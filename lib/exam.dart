@@ -99,9 +99,29 @@ class _ExamState extends State<Exam> {
     {
       print(_TestingList.toString());
       print(_list.toString());
-
       changenow();
     }else {
+
+      bool isSame=false;
+
+      for(int i=0;i<_list.length;i++)
+        {
+          if(_TestingList[i]==_list[i])
+            {
+              isSame=true;
+              continue;
+            }
+        }
+
+      if(isSame){
+        changenow();
+      }
+
+
+
+
+
+
       if (originalCopied == false) {
         originalCopied = true;
         // _Originallist = _list;
@@ -161,27 +181,6 @@ class _ExamState extends State<Exam> {
     Matches=Data;
     Options = Answers;
     print(GlobalData.LoadData.toString());
-
-   /* if(_list.length==0) {
-      for (var item in Matches) {
-        _list.add(item.val2);
-        _Originallist.add(item.val2);
-        MatchingAnswers.add(" - ");
-      }
-
-      print("SHUFFLE");
-      print(_Originallist.toString());
-      print(_list.toString());
-      print("ARUN");
-      print(_list.length);
-
-      if(Changed==0)
-      {
-        print("calling Changed");
-        changenow();
-        Changed=1;
-      }
-    }*/
 
 
     switch (type)
@@ -606,11 +605,15 @@ class _ExamState extends State<Exam> {
 
   Widget MYQue(){
 
-
-
-
+    print(Quetions[i].answer_type);
+    print("SHUFFLE");
+    print(_Originallist.toString());
+    print(_list.toString());
+    print("ARUN");
+    print(_list.length);
     if(Quetions[i].answer_type=="Match Type" && Matches2.isEmpty)
       {
+        print("Yes we are in Mactch Type");
 
        Matches2= Quetions[i].anwer_options;
        Matches2.shuffle();
@@ -630,7 +633,6 @@ class _ExamState extends State<Exam> {
           {
             print("calling Changed");
             changenow();
-
             Changed=1;
           }
         }
@@ -763,7 +765,7 @@ class _ExamState extends State<Exam> {
                     SizedBox(width: 15,),
                     Expanded(
                       child: GradientButtonText(
-                        ButtonClick: (){
+                        ButtonClick: () async {
                           bool remaning = false;
 
                           String answ="";
@@ -790,14 +792,6 @@ class _ExamState extends State<Exam> {
                                 answ=jsonEncode(Matches);
                                 print(answ);
                               }
-
-
-
-
-
-
-
-
 
                           }else if(Quetions[i].answer_type=="True False")
                           {
@@ -855,7 +849,7 @@ class _ExamState extends State<Exam> {
 
 
                           if(remaning==false) {
-                            GiveAnswer(answ, (i + 1).toString());
+                          await  GiveAnswer(answ, (i + 1).toString());
                             //Show_toast_Now("Data removing",Colors.red);
 
                             TrueorFalse = "";
@@ -866,6 +860,9 @@ class _ExamState extends State<Exam> {
 
                               i--;
                             } else {
+
+                              print("submittingcode");
+
                               setState(() {
 
                               });
@@ -1038,12 +1035,15 @@ Matches =Quetions[i].anwer_options;*/
       Textcontroller[i].text="";
     }
 
+    print("Clearing all Data");
+    Changed=0;
     fillupsData.clear();
     _TestingList.clear();
     _list.clear();
     _Originallist.clear();
     MatchingAnswers.clear();
     originalCopied=false;
+    Matches2.clear();
 
     //Show_toast_Now(fillupsData.length.toString(), Colors.green);
 

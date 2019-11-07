@@ -42,11 +42,14 @@ class _GlobalDashboardState extends State<GlobalDashboard> {
       var parsedjson = jsonDecode(response.body);
       print("Leader " + parsedjson['student_data'].toString());
 
-      leader = (parsedjson['student_data'] as List).map((data)=> leaderboard.fromJson(data)).toList();
+      if(parsedjson['student_data'].toString()!="false") {
+        leader = (parsedjson['student_data'] as List).map((data) =>
+            leaderboard.fromJson(data)).toList();
 
-      setState(() {
+        setState(() {
 
-      });
+        });
+      }
 
     });
 
