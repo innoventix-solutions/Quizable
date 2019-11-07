@@ -1017,7 +1017,7 @@ Matches =Quetions[i].anwer_options;*/
 
 
   GiveAnswer(String answer,String qno)async{
-    Fluttertoast.showToast(msg: "Giving Answer");
+  //  Fluttertoast.showToast(msg: "Giving Answer");
     print("Your Answer : "+answer);
     if(cd!=null) {
       cd.isPaused = true;
@@ -1033,7 +1033,7 @@ Matches =Quetions[i].anwer_options;*/
       "q_no":qno,
       "answer":answer
     }).then((res){
-      Fluttertoast.showToast(msg: "ResultSubmitted");
+     // Fluttertoast.showToast(msg: "ResultSubmitted");
       print(res.body);
     });
 
@@ -1043,7 +1043,10 @@ Matches =Quetions[i].anwer_options;*/
       Textcontroller[i].text="";
     }
 
-    if(i>Quetions.length) {
+
+
+
+    if(i<Quetions.length-1) {
       print("Clearing all Data");
       Changed = 0;
       fillupsData.clear();
@@ -1219,7 +1222,7 @@ Matches =Quetions[i].anwer_options;*/
   stop(){
 
     showDialog<void>(
-       
+
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
