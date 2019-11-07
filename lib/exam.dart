@@ -1017,7 +1017,7 @@ Matches =Quetions[i].anwer_options;*/
 
 
   GiveAnswer(String answer,String qno)async{
-    Fluttertoast.showToast(msg: "Giving Answer");
+    //Fluttertoast.showToast(msg: "Giving Answer");
     print("Your Answer : "+answer);
     if(cd!=null) {
       cd.isPaused = true;
@@ -1033,7 +1033,7 @@ Matches =Quetions[i].anwer_options;*/
       "q_no":qno,
       "answer":answer
     }).then((res){
-      Fluttertoast.showToast(msg: "ResultSubmitted");
+      //Fluttertoast.showToast(msg: "ResultSubmitted");
       print(res.body);
     });
 
