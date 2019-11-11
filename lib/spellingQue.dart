@@ -423,3 +423,7 @@ class _setspellqueState extends State<setspellque> {
   }
 }
 
+/* <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET"/>
+    */
