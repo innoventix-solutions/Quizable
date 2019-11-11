@@ -32,8 +32,9 @@ class _RecentQuestionState extends State<RecentQuestion> {
   }
 
   GetTest() async {
-    await http.post("http://edusupportapp.com/api/get_quizzes.php",
-        body: {"UserId": GlobalData.uid}).then((res) {
+    await http.post("http://edusupportapp.com/api/get_quizzes_by_class.php",
+        body: {"UserId": GlobalData.uid,
+        "Class_id":GlobalData.classid}).then((res) {
       print(res.body);
       var ParsedJson = jsonDecode(res.body);
       Quizz_List = (ParsedJson['quizdata'] as List)

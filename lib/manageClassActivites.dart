@@ -18,9 +18,10 @@ class _questionmenuState extends State<questionmenu> {
 
   GetTest() async{
 
-    await http.post("http://edusupportapp.com/api/get_quizzes.php",
+    await http.post("http://edusupportapp.com/api/get_quizzes_by_class.php",
     body: {
-      "UserId":GlobalData.uid
+      "UserId":GlobalData.uid,
+      "Class_id":GlobalData.classid
     }).then((res){
       print(res.body);
 
