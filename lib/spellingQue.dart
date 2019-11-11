@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:speech_recognition/speech_recognition.dart';
+//import 'package:speech_recognition/speech_recognition.dart';
 import 'global.dart';
 import 'package:permission_handler/permission_handler.dart';
-
+import 'package:speech_to_text/speech_to_text.dart';
+import 'package:speech_to_text/speech_recognition_result.dart';
+import 'package:speech_to_text/speech_recognition_error.dart';
 
 class setspellque extends StatefulWidget {
   @override
@@ -15,21 +17,37 @@ class _setspellqueState extends State<setspellque> {
   TextEditingController Points = new TextEditingController();
   TextEditingController hint = new TextEditingController();
 
+  bool _hasSpeech = false;
+  String lastWords = "";
+  String lastError = "";
+  String lastStatus = "";
+  final SpeechToText speech = SpeechToText();
 
 
-  SpeechRecognition _speechRecognition;
-  bool _isAvailable = false;
-  bool _isListening = false;
-  String resultText = "";
+  //SpeechRecognition _speechRecognition;
+  //bool _isAvailable = false;
+  //bool _isListening = false;
+  //String resultText = "";
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    initSpeechRecognizer();
+    //initSpeechRecognizer();
+    initSpeechState();
   }
 
-  void initSpeechRecognizer() {
+
+
+  Future<void> initSpeechState() async {
+    bool hasSpeech = await speech.initialize(onError: errorListener, onStatus: statusListener );
+
+    if (!mounted) return;
+    setState(() {
+      _hasSpeech = hasSpeech;
+    });
+  }
+  /*void initSpeechRecognizer() {
     _speechRecognition = SpeechRecognition();
     _speechRecognition.setAvailabilityHandler(
             (bool result) => setState(() => _isAvailable = result));
@@ -47,7 +65,7 @@ class _setspellqueState extends State<setspellque> {
           (result) => setState(() => _isAvailable = result),
     );
   }
-
+*/
 
 
 
@@ -88,7 +106,7 @@ class _setspellqueState extends State<setspellque> {
       drawerquiz(),
 
 
-      body: SafeArea(
+      body:  _hasSpeech?SafeArea(
         child: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.all(20.0),
@@ -225,14 +243,13 @@ class _setspellqueState extends State<setspellque> {
                                             Expanded(child: Text("Audio/Voice recorder",style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold),)),
                                             FloatingActionButton(mini:true,
                                               child: Icon(Icons.mic),
-                                              onPressed: () async {
-                                                Map<PermissionGroup, PermissionStatus> permissions = await PermissionHandler().requestPermissions([PermissionGroup.microphone]);
+                                              onPressed: startListening,
+                                                /*Map<PermissionGroup, PermissionStatus> permissions = await PermissionHandler().requestPermissions([PermissionGroup.microphone]);
                                                 if (_isAvailable && !_isListening)
                                                   _speechRecognition
                                                       .listen(locale: "en_US")
-                                                      .then((result) => print('$result'));
+                                                      .then((result) => print('$result'));*/
 
-                                              },
 
                                               backgroundColor: Colors.lightBlue,
                                             ),
@@ -271,7 +288,7 @@ class _setspellqueState extends State<setspellque> {
                           horizontal: 12.0,
                         ),
                         child: Text(
-                          resultText,
+                          lastWords,
                           style: TextStyle(fontSize: 24.0),
                         ),
                       ),
@@ -344,8 +361,47 @@ class _setspellqueState extends State<setspellque> {
             ],),
           ),
         ),
-      ),
+      ):Text("Speech recognition unavailable"),
     );
+  }
+  void startListening() {
+    lastWords = "";
+    lastError = "";
+    speech.listen(onResult: resultListener );
+    setState(() {
+
+    });
+  }
+
+  void stopListening() {
+    speech.stop( );
+    setState(() {
+
+    });
+  }
+
+  void cancelListening() {
+    speech.cancel( );
+    setState(() {
+
+    });
+  }
+
+  void resultListener(SpeechRecognitionResult result) {
+    setState(() {
+      lastWords = "${result.recognizedWords} - ${result.finalResult}";
+    });
+  }
+
+  void errorListener(SpeechRecognitionError error ) {
+    setState(() {
+      lastError = "${error.errorMsg} - ${error.permanent}";
+    });
+  }
+  void statusListener(String status ) {
+    setState(() {
+      lastStatus = "$status";
+    });
   }
 }
 

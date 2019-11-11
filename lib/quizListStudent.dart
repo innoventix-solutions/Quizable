@@ -355,7 +355,7 @@ class _Quiz_List_studentState extends State<Quiz_List_student> {
                       onTap: (){
 
 
-                        if(Quizz_List[i].label == "New" ||  Quizz_List[i].label == "Continue")
+                        if(Quizz_List[i].label == "New" ||  Quizz_List[i].label == "Pending")
                         {
                           GlobalData.EditQuiz=false;
                           GlobalData.QuizID=Quizz_List[i].id;
