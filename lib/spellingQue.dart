@@ -271,6 +271,13 @@ class _setspellqueState extends State<setspellque> {
 
                                               backgroundColor: Colors.lightBlue,
                                             ),
+
+                                            FloatingActionButton(mini:true,
+                                              child: Icon(Icons.cancel),
+                                              onPressed: stopListening,
+
+                                              backgroundColor: Colors.red,
+                                            )
                                           ],
                                         ), ],
                                     ),
@@ -392,14 +399,14 @@ class _setspellqueState extends State<setspellque> {
   }
 
   void stopListening() {
-    speech.stop( );
+    speech.stop();
     setState(() {
 
     });
   }
 
   void cancelListening() {
-    speech.cancel( );
+    speech.cancel();
     setState(() {
 
     });
@@ -407,7 +414,8 @@ class _setspellqueState extends State<setspellque> {
 
   void resultListener(SpeechRecognitionResult result) {
     setState(() {
-      lastWords = "${result.recognizedWords} - ${result.finalResult}";
+      lastWords = "${result.recognizedWords}";
+      //lastWords = "${result.recognizedWords} - ${result.finalResult}";
     });
   }
 
