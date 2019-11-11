@@ -24,8 +24,8 @@ class pojo_anslog{
 
     if(parsedJson['answer_type'].toString()=="Match Type")
     {
-      matchs= (jsonDecode(parsedJson['answer_options']) as List).map((data)=>Pojo_Matchs.fromJson((data))).toList();
-      matchs1= (jsonDecode(parsedJson['user_answer']) as List).map((data)=>Pojo_Matchs.fromJson((data))).toList();
+      matchs= (jsonDecode(parsedJson['user_answer']) as List).map((data)=>Pojo_Matchs.fromJson((data))).toList();
+      matchs1= (jsonDecode(parsedJson['answer_options']) as List).map((data)=>Pojo_Matchs.fromJson((data))).toList();
     }
 
     return pojo_anslog(
