@@ -137,6 +137,24 @@ class _setspellqueState extends State<setspellque> {
                                 child: Text("Word Spell",style: TextStyle(fontSize: 14,fontWeight: FontWeight.bold),
                                   textAlign: TextAlign.left,),
                               ),
+                              Container(
+                                width: MediaQuery
+                                    .of(context)
+                                    .size
+                                    .width * 0.8,
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(6.0),
+                                ),
+                                padding: EdgeInsets.symmetric(
+                                  vertical: 8.0,
+                                  horizontal: 12.0,
+                                ),
+                                child: Text(
+                                  lastWords,
+                                  style: TextStyle(fontSize: 24.0),
+                                ),
+                              ),
                               Padding(
                                 padding: const EdgeInsets.only(left: 20,right: 20),
                                 child: TextField(
@@ -274,7 +292,7 @@ class _setspellqueState extends State<setspellque> {
                   child: Column(crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Text("Use Text to Speech",style: TextStyle(fontWeight: FontWeight.bold),),
-                      Container(
+                      /*Container(
                         width: MediaQuery
                             .of(context)
                             .size
@@ -291,7 +309,7 @@ class _setspellqueState extends State<setspellque> {
                           lastWords,
                           style: TextStyle(fontSize: 24.0),
                         ),
-                      ),
+                      ),*/
                     ],
                   ),
                 ),

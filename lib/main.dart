@@ -119,6 +119,7 @@ import 'temp.dart';
 import 'pojo/pojo_subject.dart';
 import 'StudentsLevelsAnswer.dart';
 import 'GlobalSelectSubject.dart';
+import 'spelling_answer.dart';
 
 
 
@@ -236,6 +237,7 @@ class MyApp extends StatelessWidget {
         'developpage':(context)=>develop(),
         'setspellingque':(context)=>setspellingque(),
         'spellque':(context)=>setspellque(),
+        'spellans':(context)=>spelling_ans()
       },
     );
   }

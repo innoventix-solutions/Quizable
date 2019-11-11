@@ -309,7 +309,7 @@ class _studentdashboardState extends State<studentdashboard> {
                   ),],),
               ),onTap: (){
               Navigator.of(context)
-                  .pushNamed('GameRoom');
+                  .pushNamed('spellans');
             },
             ),
             GestureDetector(
