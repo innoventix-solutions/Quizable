@@ -38,6 +38,7 @@ class _ExamState extends State<Exam> {
   List<MatchClass> Matchs = List();
   List<Pojo_Matchs> Matches = List();
   List<Pojo_Matchs> Matches2 = List();
+  List<Pojo_Matchs> ActualAnswer = List();
   int Selected =0;
   List<int> Selecteditem=new List();
   String TrueorFalse = "";
@@ -778,7 +779,6 @@ class _ExamState extends State<Exam> {
 
                           if(Quetions[i].answer_type=="Match Type")
                           {
-
                             for(int i=0;i<MatchingAnswers.length;i++)
                             {
                              if(MatchingAnswers[i]==" - ")
@@ -791,11 +791,21 @@ class _ExamState extends State<Exam> {
                               Show_toast_Now("Please Complete the Matching.", Colors.red);
                             }else
                               {
-                                for(int i=0;i<MatchingAnswers.length;i++)
+                                /*for(int i=0;i<MatchingAnswers.length;i++)
                                 {
                                   Matches[i].val2=MatchingAnswers[i];
+                                }*/
+
+                                ActualAnswer.clear();
+
+                                for(int i=0;i<Quetions[i].anwer_options.length;i++)
+                                {
+
+                                  ActualAnswer.add(Pojo_Matchs(val1: Quetions[i].anwer_options[i].val1,val2: MatchingAnswers[i]));
+                                 // Matches[i].val2=MatchingAnswers[i];
                                 }
-                                answ=jsonEncode(Matches);
+
+                                answ=jsonEncode(ActualAnswer);
                                 print(answ);
                               }
 
