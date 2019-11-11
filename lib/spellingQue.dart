@@ -286,12 +286,12 @@ class _setspellqueState extends State<setspellque> {
 
                   ],
                 ),),
-              Card(
+              /*Card(
                 child: Padding(
                   padding: const EdgeInsets.all(10.0),
                   child: Column(crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      Text("Use Text to Speech",style: TextStyle(fontWeight: FontWeight.bold),),
+                      //Text("Use Text to Speech",style: TextStyle(fontWeight: FontWeight.bold),),
                       /*Container(
                         width: MediaQuery
                             .of(context)
@@ -313,7 +313,7 @@ class _setspellqueState extends State<setspellque> {
                     ],
                   ),
                 ),
-              ),
+              ),*/
               Row(mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   Padding(
@@ -423,7 +423,3 @@ class _setspellqueState extends State<setspellque> {
   }
 }
 
-/* <uses-permission android:name="android.permission.RECORD_AUDIO" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.INTERNET"/>
-    */
