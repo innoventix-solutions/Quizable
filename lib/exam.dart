@@ -619,7 +619,7 @@ class _ExamState extends State<Exam> {
         print("Yes we are in Mactch Type");
 
        Matches2= Quetions[i].anwer_options;
-       Matches2.shuffle();
+     //  Matches2.shuffle();
         if(_list.length==0) {
           for (var item in Matches2) {
             _TestingList.add(item.val2);
@@ -796,12 +796,21 @@ class _ExamState extends State<Exam> {
                                   Matches[i].val2=MatchingAnswers[i];
                                 }*/
 
-                                ActualAnswer.clear();
 
-                                for(int i=0;i<Quetions[i].anwer_options.length;i++)
+
+                                print("Option Array : "+jsonEncode(Quetions[i].anwer_options));
+                                ActualAnswer.clear();
+                                print("Options : "+Quetions[i].anwer_options.length.toString());
+
+                                ActualAnswer=Quetions[i].anwer_options;
+
+                                for(int i=0;i<ActualAnswer.length;i++)
                                 {
 
-                                  ActualAnswer.add(Pojo_Matchs(val1: Quetions[i].anwer_options[i].val1,val2: MatchingAnswers[i]));
+                                  print(ActualAnswer[i].val1);
+                                  ActualAnswer[i].val2=MatchingAnswers[i];
+
+                                 // ActualAnswer.add(Pojo_Matchs(val1: Quetions[i].anwer_options[i].val1,val2: "0"));
                                  // Matches[i].val2=MatchingAnswers[i];
                                 }
 
