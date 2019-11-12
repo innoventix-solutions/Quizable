@@ -306,3 +306,4 @@ class _MyapplicationState extends State<Myapplication> {
   }
 }
 
+//flutter pub run flutter_launcher_icons:main -f pubspec.yaml
