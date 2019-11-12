@@ -59,8 +59,9 @@ class _teacherdashboardState extends State<teacherdashboard> {
                       },child: new Text("Ok")),
                 ],
               ),
-              onPressed: () {
-                Navigator.of(context).pop();
+              onPressed: () async{
+                LogoutFunction(context);
+                //Navigator.of(context).pop();
               },
             ),
           ],

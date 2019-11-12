@@ -200,8 +200,9 @@ void showDialog1(BuildContext context) {
                     },child: new Text("Ok")),
               ],
             ),
-            onPressed: () {
-              Navigator.of(context).pop();
+            onPressed: () async{
+              LogoutFunction(context);
+              //Navigator.of(context).pop();
             },
           ),
         ],

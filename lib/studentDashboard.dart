@@ -111,8 +111,9 @@ class _studentdashboardState extends State<studentdashboard> {
                       },child: new Text("Ok")),
                 ],
               ),
-              onPressed: () {
-                Navigator.of(context).pop();
+              onPressed: () async{
+                LogoutFunction(context);
+                //Navigator.of(context).pop();
               },
             )
 

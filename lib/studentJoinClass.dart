@@ -29,15 +29,25 @@ class _studentjoinState extends State<studentjoin> {
                 children: <Widget>[
                   Padding(
                     padding: const EdgeInsets.only(
-                        right: 50
+                        right: 20
                     ),
                     child:  GestureDetector(
                         onTap: (){
-                          Navigator.of(context).pushNamed('studentjoinclass');
+                          Navigator.of(context).pushNamed('teacherdashboard');
                         },child: new Text("Cancel")),
-
-
                   ),
+
+                ],
+              ),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+
+            FlatButton(
+              child: Row(
+                children: <Widget>[
+
                   GestureDetector(
                       onTap: () async {
                         LogoutFunction(context);
@@ -45,8 +55,9 @@ class _studentjoinState extends State<studentjoin> {
                       },child: new Text("Ok")),
                 ],
               ),
-              onPressed: () {
-                Navigator.of(context).pop();
+              onPressed: () async{
+                LogoutFunction(context);
+                //Navigator.of(context).pop();
               },
             ),
           ],

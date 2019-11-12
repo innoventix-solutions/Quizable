@@ -41,8 +41,9 @@ class _welcomeState extends State<welcome> {
                       },child: new Text("Ok")),
                 ],
               ),
-              onPressed: () {
-                Navigator.of(context).pop();
+              onPressed: () async{
+                LogoutFunction(context);
+                //Navigator.of(context).pop();
               },
             ),
           ],
