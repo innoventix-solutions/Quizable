@@ -107,6 +107,8 @@ class GlobalData{
 
 
 
+
+
  AssetImage getgender(){
 
 

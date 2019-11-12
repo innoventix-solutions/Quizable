@@ -22,15 +22,15 @@ class _setspellingqueState extends State<setspellingque> {
   String selectedvalue = "Select Quiz Subject";
   String selectedvalue2 = "Select Class";
   TextEditingController teacher = new TextEditingController(text:GlobalData.Username );
-  TextEditingController spelltitle = new TextEditingController(text:GlobalData.QuizTitle );
-  TextEditingController spelllevel = new TextEditingController(text: GlobalData.QuizLevels);
-  TextEditingController queslevel = new TextEditingController(text: GlobalData.NosofQuesPerLevel);
-  TextEditingController durlevel = new TextEditingController(text: GlobalData.DurationofEachLevel);
+  TextEditingController spelltitle = new TextEditingController(text:GlobalData.spelltitle );
+  TextEditingController spelllevel = new TextEditingController(text: GlobalData.spellLevels);
+  TextEditingController queslevel = new TextEditingController(text: GlobalData.spellNosofQuesPerLevel);
+  TextEditingController durlevel = new TextEditingController(text: GlobalData.spellDurationofEachLevel);
   TextEditingController teaguide = new TextEditingController(text:GlobalData.teacherguide);
   TextEditingController spellsubject = new TextEditingController();
-  TextEditingController quizclass = new TextEditingController();
-  TextEditingController publishdate= new TextEditingController();
-  TextEditingController closingdate= new TextEditingController();
+  TextEditingController spellclass = new TextEditingController();
+  //TextEditingController publishdate= new TextEditingController();
+  //TextEditingController closingdate= new TextEditingController();
   @override
   void initState() {
     // TODO: implement initState
@@ -45,6 +45,7 @@ class _setspellingqueState extends State<setspellingque> {
     GlobalData.spellLevels = spelllevel.text;
     GlobalData.spellNosofQuesPerLevel = queslevel.text;
     GlobalData.spellDurationofEachLevel =  durlevel.text;
+    GlobalData.teacherguide=teaguide.text;
   }
 
 
@@ -59,17 +60,19 @@ class _setspellingqueState extends State<setspellingque> {
         fontSize: 16.0);
   }
 
-  Createquiz() async {
-    http.post("http://edusupportapp.com/api/create_quiz.php", body: {
-      "quiz_title":  spelltitle.text.toString(),
+  Createspelling() async {
+    http.post("http://edusupportapp.com/api/create_spelling.php", body: {
+      "spelling_title":  spelltitle.text.toString(),
       "no_of_levels": spelllevel.text.toString(),
       "que_each_level": queslevel.text.toString(),
       "dur_each_level": durlevel.text.toString(),
-      "quiz_subject": spellsubject.text.toString(),
-      "class_id": quizclass.text.toString(),
+      "spelling_subject": spellsubject.text.toString(),
+      "class_id": spellclass.text.toString(),
       "techer_id": teacher.text.toString(),
-      "publish_date":publishdate.text.toString(),
-      "closing_date":closingdate.text.toString(),
+      "teacher_instruction": teaguide.text.toString(),
+
+      //"publish_date":publishdate.text.toString(),
+      //"closing_date":closingdate.text.toString(),
     }).then((response) {
       var status = jsonDecode(response.body);
 
@@ -124,20 +127,18 @@ class _setspellingqueState extends State<setspellingque> {
         actions: <Widget>[
           IconButton(
             onPressed: () {
-              Navigator.of(context)
-                  .pushNamed(
-                  'previewQuiz');
+             // Navigator.of(context).pushNamed('previewQuiz');
             },
             icon: Icon(
-              Icons.remove_red_eye,
+              Icons.line_weight,
               color: Colors.white,
               size: 20,
             ),
           ),
         ],
       ),
-      drawer:
-      drawerquiz(),
+     // drawer:
+      //drawerquiz(),
       body: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -166,7 +167,7 @@ class _setspellingqueState extends State<setspellingque> {
                         child: Align(
                           alignment: Alignment.bottomLeft,
                           child: Text(
-                            'Subject Of Spelling Challenge',
+                            'Subject of Spelling Challenge',
                             style: TextStyle(
                               color: GlobalData.lightblue,
                               fontSize: 18,
@@ -272,7 +273,26 @@ class _setspellingqueState extends State<setspellingque> {
                       CustomTextField(Inputnumber: true,controller: durlevel,Texth: "10 Minutes",hintStyle: TextStyle(fontSize: 20),),
 
 
-                   /*   Padding(
+
+                      Padding(
+                        padding: const EdgeInsets.only(top: 20),
+                        child: Align(
+                          alignment: Alignment.bottomLeft,
+                          child: Text(
+                            "Teacher's Guide & Instructions.",
+                            style: TextStyle(
+                              color: GlobalData.lightblue,
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                            ),
+                            textAlign: TextAlign.left,
+                          ),
+                        ),
+                      ),
+                      CustomTextField(Inputnumber: false,controller:teaguide,hintStyle: TextStyle(fontSize: 20),),
+
+
+                      Padding(
                         padding: const EdgeInsets.only(top: 20),
                         child: Align(
                           alignment: Alignment.bottomLeft,
@@ -286,9 +306,9 @@ class _setspellingqueState extends State<setspellingque> {
                             textAlign: TextAlign.left,
                           ),
                         ),
-                      ),*/
+                      ),
 
-                     /* Padding(
+                      Padding(
                         padding: const EdgeInsets.only(top: 5),
                         child: Container(width: 400,
                           child: Card(
@@ -314,31 +334,13 @@ class _setspellingqueState extends State<setspellingque> {
 
                                 Navigator.of(context)
                                     .pushNamed(
-                                    'selectsubject');
+                                    'spellingsubject');
                               },
                               ),
                             ),
                           ),
                         ),
-                      ),*/
-
-                      Padding(
-                        padding: const EdgeInsets.only(top: 20),
-                        child: Align(
-                          alignment: Alignment.bottomLeft,
-                          child: Text(
-                            "Teacher's Guide & Instructions.",
-                            style: TextStyle(
-                              color: GlobalData.lightblue,
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                            ),
-                            textAlign: TextAlign.left,
-                          ),
-                        ),
                       ),
-                      CustomTextField(Inputnumber: false,controller:teaguide,hintStyle: TextStyle(fontSize: 20),),
-
 
 
 
@@ -383,7 +385,7 @@ class _setspellingqueState extends State<setspellingque> {
                                 ),onTap: (){
                                 Navigator.of(context)
                                     .pushNamed(
-                                    'selectclass');
+                                    'spellingclass');
                               },
                               ),
                             ),
@@ -506,18 +508,16 @@ class _setspellingqueState extends State<setspellingque> {
                                   textAlign: TextAlign.center,
                                 ),ButtonClick: ()
                               {
-                                //setalldetails();
-                                //SaveQuiz();
-                                Navigator.of(context)
-                                    .pushNamed(
-                                    'spellque');
+                                setalldetails();
+                                SaveSpelling();
+                               // Navigator.of(context).pushNamed('spellque');
                               },
                               ),
                             ),
                           ),
                         ],
                       ),
-                      Padding(
+                      /*Padding(
                         padding: const EdgeInsets.only(bottom: 25, right: 5),
                         child: GestureDetector(
                           child: Row(
@@ -538,13 +538,13 @@ class _setspellingqueState extends State<setspellingque> {
                               )
                             ],
                           ),
-                          onTap: () {setalldetails();SaveQuiz();
+                          onTap: () {setalldetails();SaveSpelling();
 //                          Navigator.of(context)
 //                              .pushNamed(
 //                              'questions');
                           },
                         ),
-                      ),
+                      ),*/
                     ],
                   )),
             ),
@@ -580,43 +580,46 @@ class _setspellingqueState extends State<setspellingque> {
 
 
 
-  SaveQuiz()async {
+  SaveSpelling()async {
 
     print(
-        "quiz_title : "+ GlobalData.QuizTitle +
+        "spelling_title : "+ GlobalData.spelltitle +
             "\ntecher_id : "+ GlobalData.uid +
-            "\nno_of_levels : "+ GlobalData.QuizLevels +
-            "\nque_each_level :"+ GlobalData.NosofQuesPerLevel +
-            "\ndur_each_level :"+ GlobalData.DurationofEachLevel +
-            "\nquiz_subject : "+ GlobalData.Selected_subject +
-            "\nclass_id : "+
-            "\npublish_date : 2019-06-23 00:00:01"+
-          "\nclosing_date : 2019-06-26 00:00:01"
+            "\nno_of_levels : "+ GlobalData.spellLevels +
+            "\nque_each_level :"+ GlobalData.spellNosofQuesPerLevel +
+            "\ndur_each_level :"+ GlobalData.spellDurationofEachLevel +
+            "\nspelling_subject: "+ GlobalData.Selected_subject.toString() +
+            "\nclass_id : "
+           // "\npublish_date : 2019-06-23 00:00:01"+
+         // "\nclosing_date : 2019-06-26 00:00:01"
 
     );
 
 
-    if (GlobalData.QuizTitle == null || GlobalData.QuizLevels == null ||
-        GlobalData.NosofQuesPerLevel == null ||
-        GlobalData.DurationofEachLevel == null ||
+    if (GlobalData.spelltitle == null || GlobalData.spellLevels == null ||
+        GlobalData.spellNosofQuesPerLevel == null ||
+        GlobalData.spellDurationofEachLevel == null ||
         GlobalData.Selected_subject == null||
         GlobalData.Selected_class== null||
-        Starting_date==null||
-        Closing_date==null) {
-
+        GlobalData.teacherguide==null
+        //Starting_date==null||
+        //Closing_date==null
+    )
+    {
       _showDialog();
     }
     else{
-      http.post("http://edusupportapp.com/api/create_quiz.php", body: {
-        "quiz_title": GlobalData.QuizTitle,
+      http.post("http://edusupportapp.com/api/create_spelling.php", body: {
+        "spelling_title": GlobalData.spelltitle,
         "techer_id": GlobalData.uid,
-        "no_of_levels": GlobalData.QuizLevels,
-        "que_each_level": GlobalData.NosofQuesPerLevel,
-        "dur_each_level": GlobalData.DurationofEachLevel,
-        "quiz_subject": GlobalData.Selected_subject,
+        "no_of_levels": GlobalData.spellLevels,
+        "que_each_level": GlobalData.spellNosofQuesPerLevel,
+        "dur_each_level": GlobalData.spellDurationofEachLevel,
+        "spelling_subject": GlobalData.Selected_subject,
         "class_id": GlobalData.Selected_class_IDS,
-        "publish_date":Starting_date.toString(),
-        "closing_date":Closing_date.toString(),
+        "teacher_instruction": GlobalData.teacherguide,
+        //"publish_date":Starting_date.toString(),
+        //"closing_date":Closing_date.toString(),
       }).then((response) {
         print(response.body.toString());
         var statuss = jsonDecode(response.body);
@@ -624,11 +627,11 @@ class _setspellingqueState extends State<setspellingque> {
         if(statuss['status']==1){
 
 
-          GlobalData.QuizID=statuss['quizdata']['ID'];
-          print(GlobalData.QuizID);
+          //GlobalData.QuizID=statuss['quizdata']['ID'];
+         // print(GlobalData.QuizID);
           print("gonadsf to qwesdf");
           //  ClearRegisterData();
-          Navigator.of(context).pushNamed('questions');
+          //Navigator.of(context).pushNamed('spellque');
 
 
         }else

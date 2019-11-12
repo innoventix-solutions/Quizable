@@ -120,8 +120,8 @@ import 'pojo/pojo_subject.dart';
 import 'StudentsLevelsAnswer.dart';
 import 'GlobalSelectSubject.dart';
 import 'spelling_answer.dart';
-
-
+import 'selectspellingclass.dart';
+import 'selectspellingsubject.dart';
 
 void main() {
   runApp(MyApp());
@@ -237,7 +237,9 @@ class MyApp extends StatelessWidget {
         'developpage':(context)=>develop(),
         'setspellingque':(context)=>setspellingque(),
         'spellque':(context)=>setspellque(),
-        'spellans':(context)=>spelling_ans()
+        'spellans':(context)=>spelling_ans(),
+        'spellingclass':(context)=>spellingclass(),
+        'spellingsubject':(context)=>selectspellingsubject()
       },
     );
   }
