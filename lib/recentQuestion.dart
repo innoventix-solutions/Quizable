@@ -5,6 +5,7 @@ import 'Pojo/pojo_quizzes.dart';
 import 'global.dart';
 import 'package:http/http.dart' as http;
 import 'package:newpro/Pojo/pojo_getassignment.dart';
+import 'Pojo/pojo_getspelling.dart';
 
 class RecentQuestion extends StatefulWidget {
   @override
@@ -14,7 +15,7 @@ class RecentQuestion extends StatefulWidget {
 class _RecentQuestionState extends State<RecentQuestion> {
   List<Pojo_quizzes> Quizz_List = new List();
   List<Pojo_getassignment> assignment_list = new List();
-  String spellinglist = "0";
+  List<Pojo_spelling> spellinglist = new List();
 
   GetAssignment() async {
     await http.post("http://edusupportapp.com/api/get_assignments.php",
@@ -31,7 +32,7 @@ class _RecentQuestionState extends State<RecentQuestion> {
     });
   }
 
-  GetTest() async {
+  GetQuiz() async {
     await http.post("http://edusupportapp.com/api/get_quizzes_by_class.php",
         body: {"UserId": GlobalData.uid,
         "Class_id":GlobalData.classid}).then((res) {
@@ -45,12 +46,30 @@ class _RecentQuestionState extends State<RecentQuestion> {
     });
   }
 
+
+  Getspellings() async {
+    await http.post("http://edusupportapp.com/api/get_spelling_by_class.php",
+        body: {"UserId": GlobalData.uid,
+          "Class_id":GlobalData.classid}).then((res) {
+      print(res.body);
+      var ParsedJson = jsonDecode(res.body);
+      spellinglist = (ParsedJson['spellingdata'] as List)
+          .map((data) => Pojo_spelling.fromJson(data))
+          .toList();
+      print(spellinglist.length);
+      setState(() {});
+    });
+  }
+
+
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     GetAssignment();
-    GetTest();
+    GetQuiz();
+    Getspellings();
   }
 
   @override
@@ -87,7 +106,7 @@ class _RecentQuestionState extends State<RecentQuestion> {
         drawer: drawerquiz(),
         body: Column(
           children: <Widget>[
-            assignment_list.isEmpty && Quizz_List.isEmpty && spellinglist == "0"
+            assignment_list.isEmpty && Quizz_List.isEmpty && spellinglist.isEmpty
                 ? Center(
                     child: Padding(
                     padding: const EdgeInsets.all(15.0),
@@ -219,7 +238,7 @@ class _RecentQuestionState extends State<RecentQuestion> {
             /*Spelling section*/
             Column(
               children: <Widget>[
-                spellinglist == "0"
+                spellinglist.isEmpty
                     ? Center(child: Text(''))
                     : Card(
                         elevation: 5.0,
@@ -253,21 +272,24 @@ class _RecentQuestionState extends State<RecentQuestion> {
               child: spellinglist.isEmpty
                   ? Center(child: Text(''))
                   : ListView.builder(
-                      itemCount: 1,
-                      itemBuilder: (c, i) {
-                        return GestureDetector(
-                            onTap: () {},
-                            child:
-                                /* recentquestions(
-                      color: GlobalData.pinkred,
-                      heading: Quizz_List[i].quiz_title,
-                      paragraph: Quizz_List[i].publish_date,
-                      id:Quizz_List[i].id ,
-                      title: (int.parse(Quizz_List[i].que_each_level.toString())*int.parse(Quizz_List[i].no_of_levels.toString())).toString(),
-
-                    ),*/
-                                SizedBox());
-                      }),
+                  itemCount: 1,
+                  itemBuilder: (c, i) {
+                    return GestureDetector(
+                      onTap: () {},
+                      child: recentquestions(
+                        color: GlobalData.pinkred,
+                        heading: spellinglist[i].spelling_title,
+                        paragraph: spellinglist[i].publish_date,
+                        id: spellinglist[i].id,
+                        title: (int.parse(spellinglist[i]
+                            .que_each_level
+                            .toString()) *
+                            int.parse(
+                                spellinglist[i].no_of_levels.toString()))
+                            .toString()+ " Questions",
+                      ),
+                    );
+                  }),
             ),
           ],
         ));

@@ -8,12 +8,12 @@ import 'utilities.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
-class spellingclass extends StatefulWidget {
+class selectspellingclass extends StatefulWidget {
   @override
-  _spellingclassState createState() => _spellingclassState();
+  _selectspellingclassState createState() => _selectspellingclassState();
 }
 
-class _spellingclassState extends State<spellingclass> {
+class _selectspellingclassState extends State<selectspellingclass> {
 
 
   List<Classes> Class_list = new List();

@@ -145,6 +145,7 @@ static String spelltitle ="";
 static String spellLevels = "";
 static String spellNosofQuesPerLevel = "";
 static String spellDurationofEachLevel ="";
+static String spellingid="";
 static Membership MyMembership = Membership(isActive: false,enddate: "-",id: "adsf");
 }
 
@@ -352,7 +353,7 @@ class drawerquiz extends StatelessWidget {
               child: Row(children: <Widget>[Icon(Icons.offline_pin,color: GlobalData.lightblue,),
                 Padding(
                   padding: const EdgeInsets.only(left: 10),
-                  child: Text('Spelling challenge Bank ',style: TextStyle(
+                  child: Text('Spelling challenge Bank',style: TextStyle(
                       color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
                 ),],),
             ),onTap: (){
@@ -1476,6 +1477,12 @@ ClearRegisterData(){
   GlobalData.teacherinstruction="";   //20-8-19
   GlobalData.AssignmentID="";         //26-8-19
   GlobalData.teacherobjective="";     //5-9-19
+  GlobalData.spelltitle="";
+  GlobalData.spellLevels="";
+  GlobalData.spellDurationofEachLevel="";
+  GlobalData.spellNosofQuesPerLevel="";
+  GlobalData.teacherguide="";
+  GlobalData.spellingid="";
 }
 
 

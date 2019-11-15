@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:newpro/MyQuizResult.dart';
 import 'package:newpro/previewAssignment.dart';
 import 'package:newpro/quizListStudent.dart';
+import 'package:newpro/setSpellingQue.dart';
 import 'package:newpro/studentDetail.dart';
 import 'package:newpro/studentLevelList.dart';
 import 'package:newpro/studentRegister.dart';
@@ -23,7 +24,7 @@ import 'adminDashboard.dart';
 
 import 'editQuestion.dart';
 
-import 'levelsList.dart';
+import 'QuizlevelsList.dart';
 import 'GlobalQuizExercise.dart';
 
 
@@ -99,7 +100,7 @@ import 'AssignmentListStudents.dart';   //05-9-19
 import 'AssignmentExam.dart';
 import 'ReportDashboard.dart';
 import 'AssignmentReport.dart';
-import 'setspellingque.dart';
+//import 'setspellingque.dart';
 import 'spellingQue.dart';
 import 'trialsubscription.dart';
 
@@ -122,7 +123,13 @@ import 'GlobalSelectSubject.dart';
 import 'spelling_answer.dart';
 import 'selectspellingclass.dart';
 import 'selectspellingsubject.dart';
-
+import 'package:newpro/publishSpelling.dart';
+import 'spellinglevelcomplete.dart';
+import 'spellingQue.dart';
+import 'previewspelling.dart';
+import 'SpellingQuestionList.dart';
+import 'EditSpellingQuestion.dart';
+import 'SpellinglevelList.dart';
 void main() {
   runApp(MyApp());
 }
@@ -187,7 +194,7 @@ class MyApp extends StatelessWidget {
         'SetAssignment':(contexontext)=>assignmentquestionbank(),
         'GameRoom':(context)=>GameRoom(),
         'StudentList':(context)=>assignmentquestionbank(),
-        'SetSpelling':(context)=>setspellingque(),
+        //'SetSpelling':(context)=>setspellingque(),
         'TeacherInviteCode':(context)=>TeacherInviteCode(),
 
         'StudentInviteCode':(ct)=>StudentList(),
@@ -235,11 +242,18 @@ class MyApp extends StatelessWidget {
         'StudentsLevelsAnswer':(context)=>StudentsLevelsAnswer(),
         'globalstudentsubject':(context)=>Globalselectsubject(),
         'developpage':(context)=>develop(),
-        'setspellingque':(context)=>setspellingque(),
+        'setspellingque':(context)=>setspellingquestion(),
         'spellque':(context)=>setspellque(),
         'spellans':(context)=>spelling_ans(),
-        'spellingclass':(context)=>spellingclass(),
-        'spellingsubject':(context)=>selectspellingsubject()
+        'spellingclass':(context)=>selectspellingclass(),
+        'spellingsubject':(context)=>selectspellingsubject(),
+        'publishspelling':(context)=>publishspellingbee(),
+        'spellinglevel':(context)=>spelllevel(),
+        'previewspelling':(context)=>PreviewSpelling(),
+        'spellingquestionlist':(context)=>SpellingQuestion_List(),
+        'spellinglevelsList':(context)=>SpellingLevelLists(),
+        'editspellingquestion':(context)=>EditSpellingQuestions()
+
       },
     );
   }

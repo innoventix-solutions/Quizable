@@ -1,22 +1,28 @@
+import 'dart:convert';
+import 'package:newpro/Pojo/pojo_answer.dart';
+import 'package:newpro/Pojo/pojo_matchs.dart';
 import 'package:flutter/material.dart';
-//import 'package:speech_recognition/speech_recognition.dart';
-import 'global.dart';
-import 'package:permission_handler/permission_handler.dart';
 import 'package:speech_to_text/speech_to_text.dart';
 import 'package:speech_to_text/speech_recognition_result.dart';
 import 'package:speech_to_text/speech_recognition_error.dart';
-import 'package:http/http.dart'as http;
-import 'dart:convert';
-class setspellque extends StatefulWidget {
+import 'global.dart';
+import 'package:http/http.dart' as http;
+class EditSpellingQuestions extends StatefulWidget {
   @override
-  _setspellqueState createState() => _setspellqueState();
+  _EditSpellingQuestionsState createState() => _EditSpellingQuestionsState();
 }
 
-class _setspellqueState extends State<setspellque> {
+class _EditSpellingQuestionsState extends State<EditSpellingQuestions> {
 
-  TextEditingController QuestionName = new TextEditingController();
-  TextEditingController Points = new TextEditingController();
-  //TextEditingController trueanswer = new TextEditingController();
+  List<Pojo_Answers> Options = GlobalData.Current_Que_To_Edit.Options;
+  //List<Pojo_Matchs> Matches = GlobalData.Current_Que_To_Edit.anwer_options;
+
+  //String TrueorFalse=GlobalData.Current_Que_To_Edit.Options[0].trueanswer.toString();
+
+
+  TextEditingController QuestionName = new TextEditingController(text: GlobalData.Current_Que_To_Edit.question);
+  TextEditingController Points = new TextEditingController(text: GlobalData.Current_Que_To_Edit.point_awarded);
+
 
   bool _hasSpeech = false;
   String lastWords = "";
@@ -24,11 +30,14 @@ class _setspellqueState extends State<setspellque> {
   String lastStatus = "";
   final SpeechToText speech = SpeechToText();
 
+  Future<void> initSpeechState() async {
+    bool hasSpeech = await speech.initialize(onError: errorListener, onStatus: statusListener );
 
-  //SpeechRecognition _speechRecognition;
-  //bool _isAvailable = false;
-  //bool _isListening = false;
-  //String resultText = "";
+    if (!mounted) return;
+    setState(() {
+      _hasSpeech = hasSpeech;
+    });
+  }
 
   @override
   void initState() {
@@ -40,33 +49,7 @@ class _setspellqueState extends State<setspellque> {
 
 
 
-  Future<void> initSpeechState() async {
-    bool hasSpeech = await speech.initialize(onError: errorListener, onStatus: statusListener );
 
-    if (!mounted) return;
-    setState(() {
-      _hasSpeech = hasSpeech;
-    });
-  }
-  /*void initSpeechRecognizer() {
-    _speechRecognition = SpeechRecognition();
-    _speechRecognition.setAvailabilityHandler(
-            (bool result) => setState(() => _isAvailable = result));
-
-    _speechRecognition.setRecognitionStartedHandler(() =>
-        setState(() => _isListening = true));
-
-    _speechRecognition.setRecognitionResultHandler((String speech) =>
-        setState(() => resultText = speech));
-
-    _speechRecognition.setRecognitionStartedHandler(() =>
-        setState(() => _isListening = false));
-
-    _speechRecognition.activate().then(
-          (result) => setState(() => _isAvailable = result),
-    );
-  }
-*/
   void SpellingCompleted(BuildContext context)  {
 
     bool Selected = false;
@@ -161,15 +144,20 @@ class _setspellqueState extends State<setspellque> {
   }
 
 
+
+
   @override
   Widget build(BuildContext context) {
+
+
+
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: true,
         title: Center(
           child: Text(
-            "Set Spelling Bee Exercise",
-            style: TextStyle(fontSize: 16),
+            "Set Spelling Questions",
+            style: TextStyle(fontSize: 20),
           ),
         ),
         flexibleSpace: Container(
@@ -192,12 +180,6 @@ class _setspellqueState extends State<setspellque> {
           ),
         ],
       ),
-
-
-      //drawer:
-      //drawerquiz(),
-
-
       body:_hasSpeech?SafeArea(
         child: SingleChildScrollView(
           child: Padding(
@@ -273,7 +255,7 @@ class _setspellqueState extends State<setspellque> {
                     Row(
                       children: <Widget>[
 
-                       ],
+                      ],
                     ),
                     Row(
                       children: <Widget>[
@@ -282,13 +264,13 @@ class _setspellqueState extends State<setspellque> {
                             children: <Widget>[
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
-                                child: Text("Hint",style: TextStyle(fontSize: 14,fontWeight: FontWeight.bold),
+                                child: Text("Hint"+GlobalData.Current_Que_To_Edit.ques_no,style: TextStyle(fontSize: 14,fontWeight: FontWeight.bold),
                                   textAlign: TextAlign.left,),
                               ),
                               Padding(
                                 padding: const EdgeInsets.only(left: 20,right: 20),
                                 child: TextField(
-                                 controller: QuestionName,
+                                  controller: QuestionName,
                                   maxLines: 3,
                                   keyboardType: TextInputType.text,
                                   decoration: InputDecoration(border: InputBorder.none,hintText: ""),
@@ -353,11 +335,11 @@ class _setspellqueState extends State<setspellque> {
                                           children: <Widget>[
                                             Expanded(child: Text("Audio/Voice recorder",style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold),)),
 
-                                          IconButton(
-                                            icon: Icon(Icons.mic),
-                                            onPressed: startListening,
-                                            color: Colors.blue,),
-                                                /*Map<PermissionGroup, PermissionStatus> permissions = await PermissionHandler().requestPermissions([PermissionGroup.microphone]);
+                                            IconButton(
+                                              icon: Icon(Icons.mic),
+                                              onPressed: startListening,
+                                              color: Colors.blue,),
+                                            /*Map<PermissionGroup, PermissionStatus> permissions = await PermissionHandler().requestPermissions([PermissionGroup.microphone]);
                                                 if (_isAvailable && !_isListening)
                                                   _speechRecognition
                                                       .listen(locale: "en_US")
@@ -372,7 +354,7 @@ class _setspellqueState extends State<setspellque> {
                                           ],
                                         ), ],
                                     ),
-                                    ],
+                                  ],
                                 ),
                               ),
 
@@ -432,10 +414,10 @@ class _setspellqueState extends State<setspellque> {
                     child: SizedBox(width: 100,
                       child: GradientButtonText(
                         ButtonClick: (){
-                            SaveSpellingQuestion();
+                          SaveSpellingQuestion();
                         },
                         linearGradient:LinearGradient(colors: <Color>[GlobalData.purple,GlobalData.pink]) ,
-                        text: Text("Save",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 18,),
+                        text: Text("Update",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 18,),
                           textAlign: TextAlign.center,),
                       ),
                     ),
@@ -444,10 +426,10 @@ class _setspellqueState extends State<setspellque> {
 
 
 
-                   ],
+                ],
 
               ),
-             /* Padding(
+              /* Padding(
                 padding: const EdgeInsets.only(bottom: 5, right: 5),
                 child: GestureDetector(
                   child: Row(
@@ -483,6 +465,29 @@ class _setspellqueState extends State<setspellque> {
     );
   }
 
+// user defined function
+  void _showDialog() {
+    // flutter defined function
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        // return object of type Dialog
+        return AlertDialog(
+          title: new Text("Some Values Missing"),
+          content: new Text("Please Fill All the Values"),
+          actions: <Widget>[
+            // usually buttons at the bottom of the dialog
+            new FlatButton(
+              child: new Text("Close",style: TextStyle(color: Colors.black),),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
   SaveSpellingQuestion()async {
     if (QuestionName.text.toString() == "" || Points.text.toString() == "" ||
         lastWords.toString() == "" ) {
@@ -512,26 +517,8 @@ class _setspellqueState extends State<setspellque> {
       }).then((response) {
         var statuss = jsonDecode(response.body);
 
+        Navigator.of(context).pop();
 
-        print(response.body.toString());
-        //    print(response.body.toString());
-        if (statuss['status'] == 1) {
-         lastWords="";
-          QuestionName.clear();
-          Points.clear();
-          GlobalData.QuestionNumber++;
-          setState(() {
-
-          });
-        } else{
-
-        }
-        if(GlobalData.QuestionNumber%(int.parse(GlobalData.spellNosofQuesPerLevel))==0&&(GlobalData.QuestionNumber!=0))
-        {
-          Navigator.of(context).pushNamed('spellinglevel');
-        }else {
-          Navigator.of(context).pushReplacementNamed('spellque');
-        }
       });
     }
   }
@@ -578,5 +565,5 @@ class _setspellqueState extends State<setspellque> {
       lastStatus = "$status";
     });
   }
-}
 
+}

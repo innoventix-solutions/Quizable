@@ -9,12 +9,12 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 
-class setspellingque extends StatefulWidget {
+class setspellingquestion extends StatefulWidget {
   @override
-  _setspellingqueState createState() => _setspellingqueState();
+  _setspellingquestionState createState() => _setspellingquestionState();
 }
 
-class _setspellingqueState extends State<setspellingque> {
+class _setspellingquestionState extends State<setspellingquestion> {
 
   DateTime date1;
   DateTime date2;
@@ -297,7 +297,7 @@ class _setspellingqueState extends State<setspellingque> {
                         child: Align(
                           alignment: Alignment.bottomLeft,
                           child: Text(
-                            'Select Quiz Subject Category.',
+                            'Select Spelling Subject Category.',
                             style: TextStyle(
                               color: GlobalData.lightblue,
                               fontSize: 18,
@@ -627,11 +627,11 @@ class _setspellingqueState extends State<setspellingque> {
         if(statuss['status']==1){
 
 
-          //GlobalData.QuizID=statuss['quizdata']['ID'];
-         // print(GlobalData.QuizID);
+          GlobalData.spellingid=statuss['spellingdata']['ID'];
+          print(GlobalData.spellingid);
           print("gonadsf to qwesdf");
           //  ClearRegisterData();
-          //Navigator.of(context).pushNamed('spellque');
+          Navigator.of(context).pushNamed('spellque');
 
 
         }else
