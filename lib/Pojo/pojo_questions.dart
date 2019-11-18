@@ -49,9 +49,7 @@ class Pojo_questions{
       {
         Answer=parsedJson['anwer_options'];
       }
-    else{
-      Answer=parsedJson['anwer_options'];
-    }
+
 
     return Pojo_questions(
       id: parsedJson['ID'].toString(),

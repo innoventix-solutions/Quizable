@@ -8,7 +8,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'Pojo/pojo_answer.dart';
 import 'Pojo/pojo_matchs.dart';
 import 'global.dart';
-import 'package:newpro/Pojo/pojo_questions.dart';
+//import 'package:newpro/Pojo/pojo_questions.dart';
+import 'Pojo/pojo_spellingquestions.dart';
 
 class SpellingQuestion_List extends StatefulWidget {
   @override
@@ -25,8 +26,8 @@ class _SpellingQuestion_ListState extends State<SpellingQuestion_List> {
 
   int CurrentPage =0;
   PageController pageController = new PageController();
-  List<Pojo_questions> Quetions = new List();
-  List<Pojo_questions> OriginalList = new List();
+  List<Pojo_Spellingquestions> Questions = new List();
+  List<Pojo_Spellingquestions> OriginalList = new List();
   int i=0;
   String ExamAnswer ="";
   ScrollController controller = new ScrollController();
@@ -48,12 +49,12 @@ class _SpellingQuestion_ListState extends State<SpellingQuestion_List> {
     }).then((res){
       print(res.body);
       var ParsedJson = jsonDecode(res.body);
-      OriginalList = (ParsedJson['spellingquestionsdata'] as List).map((data)=>Pojo_questions.fromJson(data)).toList();
+      OriginalList = (ParsedJson['spellingquestionsdata'] as List).map((data)=>Pojo_Spellingquestions.fromJson(data)).toList();
 
       for(var item in OriginalList){
         if(item.level_no==GlobalData.CurrentLevel.toString())
         {
-          Quetions.add(item);
+          Questions.add(item);
           print("Match Found");
         }else{
           print("Not Found");
@@ -72,10 +73,10 @@ class _SpellingQuestion_ListState extends State<SpellingQuestion_List> {
 
 
 
-  Widget AnswerNow(List<Pojo_Matchs> Data,List<Pojo_Answers> Answers,int index)
+  Widget AnswerNow(int index)
   {
 
-    print(jsonEncode(Answers).toString());
+    //print(jsonEncode(Answers).toString());
 
 
     print(GlobalData.LoadData.toString());
@@ -95,7 +96,7 @@ class _SpellingQuestion_ListState extends State<SpellingQuestion_List> {
 
   }
 
-  /* 28-8 delete question*/
+
 
   Delete(String id) async{
 
@@ -176,7 +177,7 @@ class _SpellingQuestion_ListState extends State<SpellingQuestion_List> {
   Widget MYQue(){
     return SafeArea(
       child: ListView.builder(
-          itemCount: Quetions.length,
+          itemCount: Questions.length,
           itemBuilder: (c,i){
             return Padding(
 
@@ -194,27 +195,27 @@ class _SpellingQuestion_ListState extends State<SpellingQuestion_List> {
                               children: <Widget>[
                                 Expanded(child: Padding(
                                   padding: const EdgeInsets.all(8.0),
-                                  child: Text("Level ${Quetions[i].level_no.toString()}",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
+                                  child: Text("Level ${Questions[i].level_no.toString()}",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
                                 )),
                                 GlobalData.EditQuiz==false?Text(""): GestureDetector(
                                     onTap:(){
 
-                                      GlobalData.Current_Que_To_Edit = Quetions[i];
+                                      GlobalData.Edit_spelling_Questions = Questions[i];
                                       Navigator.of(context).pushNamed('editspellingquestion');
 
                                     },child: Icon(Icons.edit,color: Colors.white,))
                                 ,SizedBox(width: 10,),
 
+
                                 GestureDetector(
                                     onTap: (){
 
-                                      _showDialog(context,Quetions[i].id.toString());
+                                      _showDialog(context,Questions[i].id.toString());
 
 
                                     },child: Icon(Icons.cancel,color: Colors.white,)),
-                                SizedBox(width: 10,),
 
-                              ],
+                                SizedBox(width: 10,),                              ],
                             ),
                           ),
                           Container(
@@ -223,7 +224,7 @@ class _SpellingQuestion_ListState extends State<SpellingQuestion_List> {
                               children: <Widget>[
                                 Expanded(child: Padding(
                                   padding: const EdgeInsets.all(8.0),
-                                  child: Text("Question ${i+1} of ${Quetions.length}",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
+                                  child: Text("Question ${i+1} of ${Questions.length}",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
                                 )),
                               ],
                             ),
@@ -234,25 +235,25 @@ class _SpellingQuestion_ListState extends State<SpellingQuestion_List> {
                               children: <Widget>[
                                 Expanded(child: Padding(
                                   padding: const EdgeInsets.all(20.0),
-                                  child: Container(child: Text(Quetions[i].question,style: TextStyle(fontWeight: FontWeight.bold),)),
+                                  child: Container(child: Text(Questions[i].question,style: TextStyle(fontWeight: FontWeight.bold),)),
                                 )),
                               ],
                             ),
                           ),
-                          AnswerNow(Quetions[i].anwer_options,Quetions[i].Options,i),
+                          //AnswerNow(i),
                           Container(
 
                             child: Row(
                               children: <Widget>[
-                                /*Expanded(child: Padding(
+                                Expanded(child: Padding(
                                   padding: const EdgeInsets.all(8.0),
-                                  child: Container(child: Text(Quetions[i].answer_type,style: TextStyle(color: Colors.blue,fontWeight: FontWeight.bold),)),
-                                )),*/
+                                  child: Container(child: Text("Answer Type: Spelling",style: TextStyle(color: Colors.blue,fontWeight: FontWeight.bold),)),
+                                )),
                                 Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: Card(color: Colors.blue,child: Padding(
                                     padding: const EdgeInsets.fromLTRB(10,4, 10, 4),
-                                    child: Text(Quetions[i].point_awarded+" Pts",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
+                                    child: Text(Questions[i].point_awarded+" Pts",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
                                   )),
                                 ),
                               ],
@@ -313,7 +314,7 @@ class _SpellingQuestion_ListState extends State<SpellingQuestion_List> {
 Matches =Quetions[i].anwer_options;*/
     return Scaffold(
         appBar: AppBar(title: Text("Questions List"),centerTitle: true,),
-        body: isloading==true?Center(child: Text("Loading...")):Quetions.isNotEmpty?MYQue():Center(child: Text("No Questions"),)
+        body: isloading==true?Center(child: Text("Loading...")):Questions.isNotEmpty?MYQue():Center(child: Text("No Questions"),)
     );
   }
 
@@ -325,11 +326,11 @@ Matches =Quetions[i].anwer_options;*/
 
     http.post("http://edusupportapp.com/api/spelling_answer.php",body: {
       "user_id":GlobalData.uid,
-      "question_id":Quetions[i].id,
-      "spelling_id":Quetions[i].quiz_id,
+      "question_id":Questions[i].id,
+      "spelling_id":Questions[i].spellingid,
       "answer":answer,
-      "level":Quetions[i].level_no,
-      "q_no":Quetions[i].ques_no
+      "level":Questions[i].level_no,
+      "q_no":Questions[i].ques_no
     }).then((res){
       print(res.body);
     });

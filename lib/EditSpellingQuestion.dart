@@ -14,18 +14,18 @@ class EditSpellingQuestions extends StatefulWidget {
 
 class _EditSpellingQuestionsState extends State<EditSpellingQuestions> {
 
-  List<Pojo_Answers> Options = GlobalData.Current_Que_To_Edit.Options;
+ // List<Pojo_Answers> Options = GlobalData.Current_Que_To_Edit.Options;
   //List<Pojo_Matchs> Matches = GlobalData.Current_Que_To_Edit.anwer_options;
 
-  //String TrueorFalse=GlobalData.Current_Que_To_Edit.Options[0].trueanswer.toString();
+    //String TrueorFalse=GlobalData.Current_Que_To_Edit.Options[0].trueanswer.toString();
 
 
-  TextEditingController QuestionName = new TextEditingController(text: GlobalData.Current_Que_To_Edit.question);
-  TextEditingController Points = new TextEditingController(text: GlobalData.Current_Que_To_Edit.point_awarded);
+  TextEditingController QuestionName = new TextEditingController(text: GlobalData.Edit_spelling_Questions.question);
+  TextEditingController Points = new TextEditingController(text: GlobalData.Edit_spelling_Questions.point_awarded);
 
 
   bool _hasSpeech = false;
-  String lastWords = "";
+  String lastWords = GlobalData.Edit_spelling_Questions.anwer_options;
   String lastError = "";
   String lastStatus = "";
   final SpeechToText speech = SpeechToText();
@@ -264,7 +264,7 @@ class _EditSpellingQuestionsState extends State<EditSpellingQuestions> {
                             children: <Widget>[
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
-                                child: Text("Hint"+GlobalData.Current_Que_To_Edit.ques_no,style: TextStyle(fontSize: 14,fontWeight: FontWeight.bold),
+                                child: Text("Hint",style: TextStyle(fontSize: 14,fontWeight: FontWeight.bold),
                                   textAlign: TextAlign.left,),
                               ),
                               Padding(
@@ -509,7 +509,7 @@ class _EditSpellingQuestionsState extends State<EditSpellingQuestions> {
           "http://edusupportapp.com/api/create_update_spelling_questions.php", body: {
         "question": QuestionName.text.toString(),
         "point_awarded": Points.text.toString(),
-
+        "question_id":GlobalData.Edit_spelling_Questions.id.toString(),
         "spelling_id": GlobalData.spellingid,
         "answer_options": lastWords,
         "level_no": ((GlobalData.QuestionNumber/int.parse(GlobalData.spellNosofQuesPerLevel)).floor()+1).toString(),

@@ -15,11 +15,11 @@ class Pojo_spelling{
   String created_date;
   String classes;
   String teacherinstruction;
-  //bool is_taken;
+  bool is_taken;
   //String TotalQuizpoints;
   //String point_awarded;
   //String age;
-  //int total_fill_question;
+  int total_fill_question;
 
  // String percentage;
   //String progresslabel;
@@ -31,7 +31,7 @@ class Pojo_spelling{
   Pojo_spelling({this.id, this.spelling_title, this.techer_id, this.no_of_levels,
     this.que_each_level, this.dur_each_level, this.spelling_subject,
     this.class_id, this.status, this.publish_date, this.closing_date,
-    this.created_date,this.classes,this.teacherinstruction});
+    this.created_date,this.classes,this.teacherinstruction,this.total_fill_question,this.is_taken});
 
   factory Pojo_spelling.fromJson(Map<String, dynamic> parsedJson){
 
@@ -102,10 +102,10 @@ class Pojo_spelling{
         techer_id: parsedJson['techer_id'].toString(),
         teacherinstruction: parsedJson['teacher_instruction'].toString(),
         //age:parsedJson['age'].toString(),
-       // is_taken: parsedJson['is_taken'],
+       is_taken: parsedJson['is_taken'],
        // point_awarded: parsedJson['quiz_result']['point_awarded'].toString(),
        // TotalQuizpoints: parsedJson['quiz_result']['TotalQuizpoints'].toString(),
-       // total_fill_question:parsedJson['total_fill_question'],
+        total_fill_question:parsedJson['total_fill_question'],
        // percentage:parsedJson['quiz_result']['percentage'].toString(),
        // progresslabel:parsedJson['quiz_result']['progresslabel'],
        // totaltime: tt,

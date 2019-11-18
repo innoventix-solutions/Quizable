@@ -14,6 +14,8 @@ import 'package:share/share.dart';
 import 'package:share/share.dart';
 
 import 'Pojo/pojo_quizzes.dart';
+import 'Pojo/pojo_spellingquestions.dart';
+import 'Pojo/pojo_getspelling.dart';
 
 
 class GlobalData{
@@ -21,6 +23,7 @@ class GlobalData{
   static  List<Pojo_quizzes> Quizz_List = new List();
   static bool EditQuiz = false;
   static Pojo_questions Current_Que_To_Edit;
+  static Pojo_Spellingquestions Edit_spelling_Questions;
   static Color gradientblue = Color(0Xff1F0BE5); //a
   static Color gradientviolet = Color(0Xff730676); //a
   static Color bluecard = Color(0Xff1560A1); //a
@@ -284,10 +287,10 @@ class drawerquiz extends StatelessWidget {
                 )],),
             ),onTap: (){
 
-            Navigator.of(context)
-                .pushNamed('developpage');
-           /* Navigator.of(context)
-                .pushNamed('SetAssignment');*/
+            /*Navigator.of(context)
+                .pushNamed('developpage');*/
+           Navigator.of(context)
+                .pushNamed('SetAssignment');
           },
           ),
 
@@ -2264,6 +2267,7 @@ class PreviewQuizs extends StatelessWidget {
   final String publishedDate;
   final String classes;
   final Pojo_quizzes Quiz;
+  final Pojo_spelling Spelling;
 
 
   PreviewQuizs(
@@ -2276,7 +2280,7 @@ class PreviewQuizs extends StatelessWidget {
       //  this.is_taken,
         this.duration,
         this.levels,
-      this.isActive,this.incomplete,this.continueTo,this.publishedDate,this.classes,this.Quiz});
+      this.isActive,this.incomplete,this.continueTo,this.publishedDate,this.classes,this.Quiz,this.Spelling});
 
 
   // 28-8-19 a
@@ -3523,4 +3527,382 @@ GetQuizzes() async {
     }
   });
 
+}
+
+
+/* Preview Assignments */
+
+class PreviewSpellingss extends StatelessWidget {
+
+  final bool isActive;
+  final String heading;
+  final String paragraph;
+  final Color color;
+  final String title;
+  final String id;
+  // final bool is_taken;
+  final String levels;
+  final String duration;
+  final bool incomplete;
+  final int  continueTo;
+  final String publishedDate;
+  final String classes;
+
+  final Pojo_spelling Spelling;
+
+
+  PreviewSpellingss(
+      {
+        this.heading,
+        this.paragraph,
+        this.color,
+        this.title,
+        this.id,
+        //  this.is_taken,
+        this.duration,
+        this.levels,
+        this.isActive,this.incomplete,this.continueTo,this.publishedDate,this.classes,this.Spelling});
+
+
+  // 28-8-19 a
+  Delete(String id) async{
+
+    await http.post("http://edusupportapp.com/api/delete_spelling.php",
+        body: {
+          "spelling_id":GlobalData.spellingid,
+        }).then((res){
+      print(res.body);
+    });
+  }
+
+  //29-8-19 a
+  void showDialog1(BuildContext context) {
+    // flutter defined function
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        // return object of type Dialog
+        return AlertDialog(
+          title: new Text("Delete"),
+          content: new Text("Are You Sure Want To Delete selected Spelling?"),
+          actions: <Widget>[
+            // usually buttons at the bottom of the dialog
+            new FlatButton(
+              child: Row(
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.only(
+                        right: 50
+                    ),
+                    child: GestureDetector(
+                        onTap: (){
+                          Navigator.of(context).pushNamed('previewspelling');
+                        },child: new Text("Cancel")),
+
+                  ),
+                  GestureDetector(
+                      onTap: (){
+                        Delete(id);
+                        Show_toast("Delete Successfully", Colors.green);
+                        Navigator.of(context).pushNamed('dashboard');
+                      },child: new Text("Ok")),
+                ],
+              ),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  Show_toast(String msg, Color color) {
+    Fluttertoast.showToast(
+        msg: msg,
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.CENTER,
+        timeInSecForIos: 1,
+        backgroundColor: color,
+        textColor: Colors.white,
+        fontSize: 16.0);
+  }
+//29-8-19 a
+
+
+  @override
+  Widget build(BuildContext context) {
+    return
+      Container(decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(40))),
+        child: Card(elevation: 5.0,shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(5.0),
+        ),
+          child: Column(mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Row(
+                children: <Widget>[
+                  Expanded(
+                    child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(5),),color: color),
+
+                      child: Padding(
+                        padding: const EdgeInsets.only(top: 5,bottom: 5),
+                        child: Column(
+                          children: <Widget>[
+                            Padding(
+                              padding: const EdgeInsets.only(top: 5,bottom: 5,left: 10),
+                              child: Row(
+                                children: <Widget>[
+                                  Expanded(
+                                    child: Text(heading,textAlign: TextAlign.left,
+                                      style: TextStyle(color: Colors.white,fontSize: 15,fontWeight: FontWeight.bold),),
+                                  ),
+                                  Expanded(
+                                    child:  Row(mainAxisAlignment: MainAxisAlignment.end,
+                                      children: <Widget>[
+                                        GlobalData.userType=="student"?Text(""):
+                                        isActive?
+                                        PopupMenuButton(
+                                          child: Icon(Icons.more_vert),
+                                          itemBuilder: (_) => <PopupMenuItem<String>>[
+                                            new PopupMenuItem<String>(
+                                                child: Row(
+                                                  children: <Widget>[
+                                                    Padding(
+                                                      padding: const EdgeInsets.only(right: 4,top: 1),
+                                                      child: Icon(
+                                                        Icons.cancel,
+                                                        color: GlobalData.darkpink,size: 12,
+                                                      ),
+                                                    ),
+                                                    new Text('Delete',style: TextStyle(fontSize: 15),),
+                                                  ],
+                                                ), value: 'delete'),
+
+                                          ],
+                                          onSelected: ( value){
+
+                                            if(value=="delete")     //28-8-19 a
+                                                {
+                                              showDialog1(context);
+                                            }
+                                          },
+                                        )
+                                            :
+
+                                        PopupMenuButton(
+                                          child: Icon(Icons.more_vert),
+                                          itemBuilder: (_) => <PopupMenuItem<String>>[
+                                            new PopupMenuItem<String>(
+                                                child: Row(
+                                                  children: <Widget>[
+                                                    Padding(
+                                                      padding: const EdgeInsets.only(right: 4),
+                                                      child: Icon(
+                                                        Icons.edit,
+                                                        color: GlobalData.lightblue,size: 12,
+                                                      ),
+                                                    ),
+                                                    new Text('Edit',style: TextStyle(fontSize: 15),),
+                                                  ],
+                                                ), value: 'edit'),
+
+
+                                            new PopupMenuItem<String>(
+                                                child: Row(
+                                                  children: <Widget>[
+                                                    Padding(
+                                                      padding: const EdgeInsets.only(right: 4,top: 1),
+                                                      child: Icon(
+                                                        Icons.cancel,
+                                                        color: GlobalData.darkpink,size: 12,
+                                                      ),
+                                                    ),
+                                                    new Text('Delete',style: TextStyle(fontSize: 15),),
+                                                  ],
+                                                ), value: 'delete'),
+
+                                          ],
+                                          onSelected: ( value){
+                                            if(value=="edit")
+                                            {
+                                              GlobalData.EditQuiz=true;
+                                              GlobalData.spellingid=id;
+                                              GlobalData.ExamQuiz=title;
+                                              Navigator.of(context).pushNamed('spellinglevelsList');
+                                            }
+                                            if(value=="delete")     //28-8-19 a
+                                                {
+                                              showDialog1(context);
+                                            }
+                                          },
+                                        ),
+                                      ],
+                                    ),
+                                  ), ],
+                              ),
+                            ),
+
+                          ],
+
+                        ),
+                      ),
+
+                    ),
+                  ),
+                ],
+              ),
+              Container(
+                padding: EdgeInsets.only(left: 25,top: 20,right: 30,bottom: 30),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Text("Classes : "+Spelling.classes,style: TextStyle(fontWeight: FontWeight.bold,
+                        fontSize: 15,color: GlobalData.gray),textAlign: TextAlign.justify,),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 10),
+                      child: Card(child: Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            SizedBox(height: 10,),
+                            Text("Created On:"+Spelling.created_date,style:
+                            TextStyle(color: Colors.green,fontWeight: FontWeight.bold),),
+                            SizedBox(height: 10,),
+                            Text(isActive?"Published on : $publishedDate":"Scheduled : $publishedDate",style:
+                            TextStyle(color: isActive?Colors.green:Colors.red,fontWeight: FontWeight.bold),),
+                            SizedBox(height: 10,),
+                            Text("Closing On:"+Spelling.closing_date,style:
+                            TextStyle(color: Colors.grey,fontWeight: FontWeight.bold),),
+                            SizedBox(height: 10,)
+                          ],
+                        ),
+                      ),),
+                    ),
+                    incomplete?
+                    Padding(
+                      padding: const EdgeInsets.only(top: 10),
+                      child: Card(color: Colors.red,child: Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: Text("Incomplete",style:
+                        TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
+                      ),),
+                    ):Text(""),
+
+                    /*Icon(Icons.remove_red_eye,color: isActive?Colors.green:Colors.red,)*/
+
+                  ],
+                ),
+              ),
+
+              /*GestureDetector(
+                onTap: (){
+
+
+
+
+                  GlobalData.QuizID=id;
+
+                  if(GlobalData.userType=="student") {
+                    print("UID"+GlobalData.uid);
+                    print("QID"+(id==null?" Null Value":id));
+//print("Title : "+title);
+//                    print("levels : "+levels);
+//print("Duration : "+duration);
+
+
+
+                    GlobalData.ExamQuiz=title;
+                    GlobalData.DurationofEachLevel=duration??"20";
+                    GlobalData.QuizLevels=levels??"1";
+                    GlobalData.CurrentStudentID=GlobalData.uid;
+
+
+                    Navigator.of(context).pushNamed(is_taken==true?'AnswerLog':'exam');
+
+
+                  }else
+                  {
+
+                    Navigator.of(context).pushNamed('StudentListByQuiz');
+                  }
+
+                },
+                child: GlobalData.userType=="student"?Row(
+                  children: <Widget>[
+                    Expanded(
+                      child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(5),),
+                          color: (is_taken==true)?Colors.blue:Colors.green),
+
+                        child: Padding(
+                          padding: const EdgeInsets.only(top: 5,bottom: 5),
+                          child: Column(
+                            children: <Widget>[
+                              Padding(
+                                padding: const EdgeInsets.only(top: 5,bottom: 5,left: 10),
+                                child: Row(
+                                    children: <Widget>[
+                                      Expanded(
+                                        child: Text(is_taken==true?"Quiz Report":"Give Exam",textAlign: TextAlign.center,
+                                          style: TextStyle(color: Colors.white,fontSize: 15,fontWeight: FontWeight.bold),),
+                                      ),
+
+                                    ]),
+                              ),
+
+                            ],
+
+                          ),
+                        ),
+
+                      ),
+                    ),
+                  ],
+                ):
+                Row(
+                  children: <Widget>[
+                    Expanded(
+                      child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(5),),
+                          color: Colors.blue),
+
+                        child: Padding(
+                          padding: const EdgeInsets.only(top: 5,bottom: 5),
+                          child: Column(
+                            children: <Widget>[
+                              Padding(
+                                padding: const EdgeInsets.only(top: 5,bottom: 5,left: 10),
+                                child: Row(
+                                    children: <Widget>[
+                                      Expanded(
+                                        child: Text("Quiz Report",textAlign: TextAlign.center,
+                                          style: TextStyle(color: Colors.white,fontSize: 15,fontWeight: FontWeight.bold),),
+                                      ),
+
+                                    ]),
+                              ),
+
+                            ],
+
+                          ),
+                        ),
+
+                      ),
+                    ),
+                  ],
+                )
+                ,
+              ),*/
+
+
+
+
+
+            ],
+          ),
+
+        ),
+      );
+  }
 }

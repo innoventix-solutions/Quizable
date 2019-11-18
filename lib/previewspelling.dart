@@ -25,7 +25,7 @@ class _PreviewSpellingState extends State<PreviewSpelling> {
       print(res.body);
 
       var ParsedJson = jsonDecode(res.body);
-      spellinglist = (ParsedJson['quizdata'] as List).map((data)=>Pojo_spelling.fromJson(data)).toList();
+      spellinglist = (ParsedJson['spellingdata'] as List).map((data)=>Pojo_spelling.fromJson(data)).toList();
 
       print(spellinglist.length);
       setState(() {
@@ -43,7 +43,7 @@ class _PreviewSpellingState extends State<PreviewSpelling> {
 
   @override
   Widget build(BuildContext context) {
-    /*return Scaffold(
+    return Scaffold(
         appBar: AppBar(
           automaticallyImplyLeading: true,
 
@@ -105,40 +105,40 @@ class _PreviewSpellingState extends State<PreviewSpelling> {
 
 
 
-                          print((spellinglist[i].total_fill_question<int.parse(spellinglist[i].no_of_levels) * int.parse(Quizz_List[i].que_each_level)));
+                          print((spellinglist[i].total_fill_question<int.parse(spellinglist[i].no_of_levels) * int.parse(spellinglist[i].que_each_level)));
 
-                          if((Quizz_List[i].total_fill_question<int.parse(Quizz_List[i].no_of_levels) * int.parse(Quizz_List[i].que_each_level))){
+                          if((spellinglist[i].total_fill_question<int.parse(spellinglist[i].no_of_levels) * int.parse(spellinglist[i].que_each_level))){
                             //Navigator.of(context).pushNamed(GlobalData.userType=="student"?'exam':'Question_List');
 
-                            GlobalData.QuestionNumber=Quizz_List[i].total_fill_question;
+                            GlobalData.QuestionNumber=spellinglist[i].total_fill_question;
 
-                            Navigator.of(context).pushNamed('questions');
+                            Navigator.of(context).pushNamed('spellque');
                           }else {
                             //Navigator.of(context).pushNamed(GlobalData.userType=="student"?'exam':'Question_List');
 
                             print("asdfasdf");
-                            Navigator.of(context).pushNamed(GlobalData.userType=="student"?'exam':'levelsList');
+                            Navigator.of(context).pushNamed(GlobalData.userType=="student"?'exam':'spellinglevelsList');
                           }
 
                         },
-                        child:  Quizz_List[i].is_taken==false?
-                        PreviewQuizs(
+                        child:  //spellinglist[i].is_taken==false?
+                        PreviewSpellingss(
                           color: GlobalData.pinkred,
-                          heading: Quizz_List[i].quiz_title+"  "+Quizz_List[i].total_fill_question.toString()+""+(int.parse(Quizz_List[i].no_of_levels) * int.parse(Quizz_List[i].que_each_level)).toString(),
-                          paragraph: Quizz_List[i].publish_date,
-                          id:Quizz_List[i].id ,
-                          title: Quizz_List[i].quiz_title,
+                          heading: spellinglist[i].spelling_title+"  "+spellinglist[i].total_fill_question.toString()+""+(int.parse(spellinglist[i].no_of_levels) * int.parse(spellinglist[i].que_each_level)).toString(),
+                          paragraph: spellinglist[i].publish_date,
+                          id:spellinglist[i].id ,
+                          title: spellinglist[i].spelling_title,
                           //is_taken: Quizz_List[i].is_taken,
-                          duration: Quizz_List[i].dur_each_level,
-                          levels: Quizz_List[i].no_of_levels,
-                          isActive: Quizz_List[i].status.toLowerCase()=="publish"?true:false,
-                          incomplete: (Quizz_List[i].total_fill_question<int.parse(Quizz_List[i].no_of_levels) * int.parse(Quizz_List[i].que_each_level)),
-                          continueTo:Quizz_List[i].total_fill_question,
-                          publishedDate: Quizz_List[i].publish_date,
-                          Quiz: Quizz_List[i],
+                          duration: spellinglist[i].dur_each_level,
+                          levels: spellinglist[i].no_of_levels,
+                          isActive: spellinglist[i].status.toLowerCase()=="publish"?true:false,
+                          incomplete: (spellinglist[i].total_fill_question<int.parse(spellinglist[i].no_of_levels) * int.parse(spellinglist[i].que_each_level)),
+                          continueTo:spellinglist[i].total_fill_question,
+                          publishedDate: spellinglist[i].publish_date,
+                         Spelling: spellinglist[i],
 
 
-                        ): SizedBox()
+                        ), //SizedBox()
                     );
                   }),
             ),
@@ -160,7 +160,7 @@ class _PreviewSpellingState extends State<PreviewSpelling> {
                       ),
 
                       Text(
-                        'Add New Quiz Topic',
+                        'Add New Spelling Topic',
                         style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.bold,
@@ -175,13 +175,13 @@ class _PreviewSpellingState extends State<PreviewSpelling> {
                   ],
                 ),
                 onTap: () {
-                  Navigator.of(context).pushNamed('setquizquestions');
+                  Navigator.of(context).pushNamed('setspellingque');
                 },
               ),
             ),
           ],
         )
-    );*/
+    );
   }
 }
 

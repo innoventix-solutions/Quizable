@@ -127,7 +127,7 @@ class _setspellingquestionState extends State<setspellingquestion> {
         actions: <Widget>[
           IconButton(
             onPressed: () {
-             // Navigator.of(context).pushNamed('previewQuiz');
+             Navigator.of(context).pushNamed('previewspelling');
             },
             icon: Icon(
               Icons.line_weight,
