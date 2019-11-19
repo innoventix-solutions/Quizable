@@ -428,7 +428,7 @@ class _ManageAccountState extends State<ManageAccount> {
                               children: <Widget>[
                                 Padding(
                                   padding: const EdgeInsets.all(10.0),
-                                  child: Text("You cannot set more than 10 questions. Please contact your Admin to subscribe.",textAlign: TextAlign.center,style:
+                                  child: Text("You cannot set more than 10 questions. Please contact your Admin to Subscribe for the institution's account.",textAlign: TextAlign.center,style:
                                   TextStyle(fontSize: 20,color: Colors.white),),
                                 ),
                                 Text("Rate : N"+(int.parse(price)/100).toString() +" /Annum.",style: TextStyle(color: Colors.white,

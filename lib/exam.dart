@@ -83,7 +83,7 @@ class _ExamState extends State<Exam> {
     });
     // when it finish the onDone cb is called
     sub.onDone(() {
-      stop();
+      getExamResult();
       cd.isPaused=true;
 
 
@@ -523,8 +523,10 @@ class _ExamState extends State<Exam> {
 
                  return Padding(
                    padding: const EdgeInsets.only(left:8.0,right: 8.0),
-                   child: TextField(
+                   child: TextField( autocorrect: false,
+                     keyboardType: TextInputType.emailAddress,
                      controller: Textcontroller[i],
+
 
                      decoration: InputDecoration(hintText: "Answer ${i+1}"),
 
@@ -664,6 +666,7 @@ class _ExamState extends State<Exam> {
                       onPressed: (){
 
                         print(getLevelTime());
+
                         Navigator.of(context).pushReplacementNamed('studentLevelList');
 
                       },
@@ -967,7 +970,7 @@ class _ExamState extends State<Exam> {
     /*print(Quetions[i].anwer_options.length.toString()+"  asdznaisdfmmb k");
 Matches =Quetions[i].anwer_options;*/
     return Scaffold(
-        appBar: AppBar(title: Text("My Quiz Exercises"),centerTitle: true,),
+        appBar: AppBar(title: Text("My Quiz Exercises"),centerTitle: true,automaticallyImplyLeading: false, ),
         body: isloading==true?Center(child: Text("Loading...")):isCompleted?Container():MYQue()
 
 
