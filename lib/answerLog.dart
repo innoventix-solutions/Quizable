@@ -18,7 +18,7 @@ class _AnswerLogState extends State<AnswerLog> {
   List<pojo_anslog> newlist = new List();
 
   anslog() async{
-    http.post("http://edusupportapp.com/api/get_user_quiz_question_answer.php",
+    await http.post("http://edusupportapp.com/api/get_user_quiz_question_answer.php",
     body: {
       "user_id" : GlobalData.CurrentStudentID,
       "quiz_id" : GlobalData.QuizID
@@ -29,10 +29,11 @@ class _AnswerLogState extends State<AnswerLog> {
       print(response.body);
 
       var pass = jsonDecode(response.body);
-
-      newlist = (pass['data'] as List)
-          .map((data) => pojo_anslog.fromJson(data))
-          .toList();
+      if (pass['data'] != null || pass['data']!= false) {
+        newlist = (pass['data'] as List)
+            .map((data) => pojo_anslog.fromJson(data))
+            .toList();
+      }
 
 
       for(var item in newlist){

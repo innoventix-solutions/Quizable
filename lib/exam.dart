@@ -973,7 +973,7 @@ Matches =Quetions[i].anwer_options;*/
     return WillPopScope(
       onWillPop: () async => false,
       child: Scaffold(
-          appBar: AppBar(title: Text("My Quiz Exercises"),centerTitle: true,),
+          appBar: AppBar(title: Text("My Quiz Exercises"),centerTitle: true,automaticallyImplyLeading: false,),
           body: isloading==true?Center(child: Text("Loading...")):isCompleted?Container():MYQue()
 
 

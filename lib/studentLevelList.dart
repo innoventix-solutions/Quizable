@@ -56,110 +56,113 @@ class _StudentLevelListState extends State<StudentLevelList> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
+    return WillPopScope(
+      onWillPop: () async => false,
+      child: Scaffold(
+        appBar: AppBar(
 
-        automaticallyImplyLeading: false,
-        actions: <Widget>[
-          GestureDetector(
-              onTap: (){
-                if(GlobalData.isGlobal==true){
+          automaticallyImplyLeading: false,
+          actions: <Widget>[
+            GestureDetector(
+                onTap: (){
+                  if(GlobalData.isGlobal==true){
 
-                  Navigator.of(context).pushReplacementNamed('GlobalQuiz');
-                }
-                else{
-                  Navigator.of(context).pushReplacementNamed('Quiz_List_student');
+                    Navigator.of(context).pushReplacementNamed('GlobalQuiz');
+                  }
+                  else{
+                    Navigator.of(context).pushReplacementNamed('Quiz_List_student');
 
-                }
+                  }
 
-              },child: Icon(Icons.exit_to_app))
-
-
-        ],
-
-        /*leading:
-
-          IconButton(
-          onPressed: () {
-            Navigator.of(context).pushNamed('Quiz_List_student');
-          },
-      icon: Icon(
-        Icons.arrow_back,
-        color: Colors.white,
-        size: 20,
-      ),
-    ),*/
+                },child: Icon(Icons.exit_to_app))
 
 
-      title: Text("Levels"),),
-      body: Column(
-        children: <Widget>[
-          SizedBox(height: 20,),
-          Text("Tap on Next Unlocked Level to Open Exercise"),
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.all(12.0),
-              child: Card(
-                child: Padding(
-                  padding: const EdgeInsets.all(3.0),
-                  child: Column(
-                    children: <Widget>[
-                      Expanded(child: GridView.builder(gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
-                          itemCount: Levels_List.length,
-                          itemBuilder: (c,i){
-                        print("Length ${Levels_List.length}");
+          ],
 
-                          int Stars=null;
+          /*leading:
 
-                          if(Levels_List[i].userpointAwarded==-1 &&
-                          i==0
-                          ){
-                            print("Lock Open");
-                            isLocked[i]=false;
-                          }else if(i>0 && Levels_List[i-1].userpointAwarded>-1 &&Levels_List[i].userpointAwarded==-1){
-                            isLocked[i]=false;
-                          } else if(Levels_List[i].userpointAwarded==-1)
-                        {
-                          print("stars null");
-                              Stars = null;
-                        }else if(Levels_List[i].percentage>70)
+            IconButton(
+            onPressed: () {
+              Navigator.of(context).pushNamed('Quiz_List_student');
+            },
+        icon: Icon(
+          Icons.arrow_back,
+          color: Colors.white,
+          size: 20,
+        ),
+      ),*/
+
+
+        title: Text("Levels"),),
+        body: Column(
+          children: <Widget>[
+            SizedBox(height: 20,),
+            Text("Tap on Next Unlocked Level to Open Exercise"),
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: Card(
+                  child: Padding(
+                    padding: const EdgeInsets.all(3.0),
+                    child: Column(
+                      children: <Widget>[
+                        Expanded(child: GridView.builder(gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
+                            itemCount: Levels_List.length,
+                            itemBuilder: (c,i){
+                          print("Length ${Levels_List.length}");
+
+                            int Stars=null;
+
+                            if(Levels_List[i].userpointAwarded==-1 &&
+                            i==0
+                            ){
+                              print("Lock Open");
+                              isLocked[i]=false;
+                            }else if(i>0 && Levels_List[i-1].userpointAwarded>-1 &&Levels_List[i].userpointAwarded==-1){
+                              isLocked[i]=false;
+                            } else if(Levels_List[i].userpointAwarded==-1)
                           {
-                            print("stars 3");
-                            Stars=3;
-                          }else if(Levels_List[i].percentage>40)
-                        {
-                          print("stars 2");
-                          Stars=2;
-                        }else if(Levels_List[i].percentage>-1)
-                        {
-                          print("stars 1");
+                            print("stars null");
+                                Stars = null;
+                          }else if(Levels_List[i].percentage>70)
+                            {
+                              print("stars 3");
+                              Stars=3;
+                            }else if(Levels_List[i].percentage>40)
+                          {
+                            print("stars 2");
+                            Stars=2;
+                          }else if(Levels_List[i].percentage>-1)
+                          {
+                            print("stars 1");
 
-                          Stars=1;
-                        }
+                            Stars=1;
+                          }
 
-                            return LevelCards(lable:Levels_List[i].level.toString(),stars: Stars,lock: isLocked[i],
-                            onPressed: (){
-                              print(locked.toString());
-                              if(Levels_List[i].userpointAwarded==-1 && !isLocked[i]) {
-                                print("asdfasdf : "+GlobalData.isGlobal.toString());
-                                GlobalData.CurrentLevel = (i + 1);
-                                Navigator.of(context).pushNamed(
-                                    GlobalData.isGlobal==true && i>0 && GlobalData.MyMembership.isActive==false?
-                                    'ManageAccount':'exam');
-                                GlobalData.isGlobal=false;
-                              }else
-                              {
-                                Show_toast_Now(isLocked[i]?"Quiz Locked":"Level already attempted", Colors.red);
-                              }
-                            },);
-                          })),
-                    ],
+                              return LevelCards(lable:Levels_List[i].level.toString(),stars: Stars,lock: isLocked[i],
+                              onPressed: (){
+                                print(locked.toString());
+                                if(Levels_List[i].userpointAwarded==-1 && !isLocked[i]) {
+                                  print("asdfasdf : "+GlobalData.isGlobal.toString());
+                                  GlobalData.CurrentLevel = (i + 1);
+                                  Navigator.of(context).pushNamed(
+                                      GlobalData.isGlobal==true && i>0 && GlobalData.MyMembership.isActive==false?
+                                      'ManageAccount':'exam');
+                                  GlobalData.isGlobal=false;
+                                }else
+                                {
+                                  Show_toast_Now(isLocked[i]?"Quiz Locked":"Level already attempted", Colors.red);
+                                }
+                              },);
+                            })),
+                      ],
+                    ),
                   ),
                 ),
               ),
-            ),
-          )
-        ],
+            )
+          ],
+        ),
       ),
     );
   }
