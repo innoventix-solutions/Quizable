@@ -523,9 +523,11 @@ class _ExamState extends State<Exam> {
 
                  return Padding(
                    padding: const EdgeInsets.only(left:8.0,right: 8.0),
-                   child: TextField( autocorrect: false,
-                     keyboardType: TextInputType.emailAddress,
+                   child: TextField(
                      controller: Textcontroller[i],
+                     autocorrect: false,
+                     keyboardType: TextInputType.emailAddress,
+
 
 
                      decoration: InputDecoration(hintText: "Answer ${i+1}"),
@@ -666,7 +668,6 @@ class _ExamState extends State<Exam> {
                       onPressed: (){
 
                         print(getLevelTime());
-
                         Navigator.of(context).pushReplacementNamed('studentLevelList');
 
                       },
@@ -969,66 +970,69 @@ class _ExamState extends State<Exam> {
 
     /*print(Quetions[i].anwer_options.length.toString()+"  asdznaisdfmmb k");
 Matches =Quetions[i].anwer_options;*/
-    return Scaffold(
-        appBar: AppBar(title: Text("My Quiz Exercises"),centerTitle: true,automaticallyImplyLeading: false, ),
-        body: isloading==true?Center(child: Text("Loading...")):isCompleted?Container():MYQue()
+    return WillPopScope(
+      onWillPop: () async => false,
+      child: Scaffold(
+          appBar: AppBar(title: Text("My Quiz Exercises"),centerTitle: true,),
+          body: isloading==true?Center(child: Text("Loading...")):isCompleted?Container():MYQue()
 
 
 
 
-      /*SafeArea(
-        child: Row(
-          children: <Widget>[
-            Expanded(
-              child: Row(
-                children: <Widget>[
-                  Expanded(
-                    child: ListView.builder(
-                        controller:controller ,itemCount: Value1.length,itemBuilder: (c,i){
-                      return ListTile(title: Text(Value1[i]),leading: Icon(Icons.menu),);
-                    }),
-                  ),
-                ],
+        /*SafeArea(
+          child: Row(
+            children: <Widget>[
+              Expanded(
+                child: Row(
+                  children: <Widget>[
+                    Expanded(
+                      child: ListView.builder(
+                          controller:controller ,itemCount: Value1.length,itemBuilder: (c,i){
+                        return ListTile(title: Text(Value1[i]),leading: Icon(Icons.menu),);
+                      }),
+                    ),
+                  ],
+                ),
               ),
-            ),
-            Expanded(
-              child: Row(
-                children: <Widget>[
-                  Expanded(
-                    child: ReorderableListView(
+              Expanded(
+                child: Row(
+                  children: <Widget>[
+                    Expanded(
+                      child: ReorderableListView(
 
 
-                      children:  Value2.map((item) => ListTile(key: Key("${item}"), title: Text("${item}"), trailing: Icon(Icons.menu),)).toList(), onReorder: (int start, int current) {
-                      // dragging from top to bottom
-                      if (start < current) {
-                        int end = current - 1;
-                        String startItem = Value2[start];
-                        int i = 0;
-                        int local = start;
-                        do {
-                          Value2[local] = Value2[++local];
-                          i++;
-                        } while (i < end - start);
-                        Value2[end] = startItem;
-                      }
-                      // dragging from bottom to top
-                      else if (start > current) {
-                        String startItem = Value2[start];
-                        for (int i = start; i > current; i--) {
-                          Value2[i] = Value2[i - 1];
+                        children:  Value2.map((item) => ListTile(key: Key("${item}"), title: Text("${item}"), trailing: Icon(Icons.menu),)).toList(), onReorder: (int start, int current) {
+                        // dragging from top to bottom
+                        if (start < current) {
+                          int end = current - 1;
+                          String startItem = Value2[start];
+                          int i = 0;
+                          int local = start;
+                          do {
+                            Value2[local] = Value2[++local];
+                            i++;
+                          } while (i < end - start);
+                          Value2[end] = startItem;
                         }
-                        Value2[current] = startItem;
-                      }
-                      setState(() {});
-                    },),
-                  ),
-                ],
+                        // dragging from bottom to top
+                        else if (start > current) {
+                          String startItem = Value2[start];
+                          for (int i = start; i > current; i--) {
+                            Value2[i] = Value2[i - 1];
+                          }
+                          Value2[current] = startItem;
+                        }
+                        setState(() {});
+                      },),
+                    ),
+                  ],
+                ),
               ),
-            ),
-          ],
-        ),
-      )*/
+            ],
+          ),
+        )*/
 
+      ),
     );
   }
 

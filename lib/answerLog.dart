@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'Pojo/pojo_anslog.dart';
 import 'Pojo/pojo_matchs.dart';
+import 'Pojo/pojo_quizzes.dart';
 import 'global.dart';
 
 
@@ -71,10 +72,11 @@ class _AnswerLogState extends State<AnswerLog> {
           automaticallyImplyLeading: true,
           title: Center(
             child: Text(
-              "Quiz Report",
-              style: TextStyle(fontSize: 20),
+                GlobalData.ExamQuiz,
+              style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),
             ),
           ),
+
           flexibleSpace: Container(
             decoration: BoxDecoration(
               gradient: LinearGradient(
@@ -136,6 +138,10 @@ class MyResultBlock extends StatelessWidget {
 
   MyResultBlock({this.level, this.que_no, this.que, this.correct_ans,
       this.user_ans,this.result,this.anwer_options,this.afg,this.User_anwer_options});
+
+  List<Pojo_quizzes> Quizz_List = new List();
+
+
 
   @override
   Widget build(BuildContext context) {
