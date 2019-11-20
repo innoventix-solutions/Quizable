@@ -353,8 +353,7 @@ class _Spelling_List_studentState extends State<Spelling_List_student> {
                   itemBuilder: (c,i){
                     return  GestureDetector(
                         onTap: (){
-
-
+                          
                           if(spellinglist[i].label == "New" ||  spellinglist[i].label == "Pending")
                           {
                             GlobalData.EditQuiz=false;
