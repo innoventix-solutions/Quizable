@@ -353,18 +353,18 @@ class _Spelling_List_studentState extends State<Spelling_List_student> {
                   itemBuilder: (c,i){
                     return  GestureDetector(
                         onTap: (){
-                          
-                          if(spellinglist[i].label == "New" ||  spellinglist[i].label == "Pending")
-                          {
+
+                         // if(spellinglist[i].label == "New" ||  spellinglist[i].label == "Pending")
+                          //{
                             GlobalData.EditQuiz=false;
                             GlobalData.spellingid=spellinglist[i].id;
                             GlobalData.ExamQuiz=spellinglist[i].spelling_title;
                             GlobalData.spellDurationofEachLevel=spellinglist[i].dur_each_level;
                             GlobalData.spellLevels=spellinglist[i].no_of_levels;
-                            Navigator.of(context).pushNamed(GlobalData.userType=="student"?'studentLevelList':'Question_List');
+                            Navigator.of(context).pushNamed(GlobalData.userType=="student"?'spellans':'Question_List');
 
-                          }
-                          else{Fluttertoast.showToast(msg: "Quiz "+spellinglist[i].label,fontSize: 16,backgroundColor: Colors.red);}
+                          //}
+                          //else{Fluttertoast.showToast(msg: "Quiz "+spellinglist[i].label,fontSize: 16,backgroundColor: Colors.red);}
 
 
 
