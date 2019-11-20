@@ -4,7 +4,7 @@ import 'package:newpro/previewAssignment.dart';
 import 'package:newpro/quizListStudent.dart';
 import 'package:newpro/setSpellingQue.dart';
 import 'package:newpro/studentDetail.dart';
-import 'package:newpro/studentLevelList.dart';
+import 'package:newpro/studentQuizLevelList.dart';
 import 'package:newpro/studentRegister.dart';
 import 'package:newpro/studentSelectcCass.dart';
 import 'package:newpro/teacherdetail.dart';
@@ -114,7 +114,7 @@ import 'GlobalExercisesDashboard.dart';
 import 'GlobalSpellingBee.dart';
 import 'tabForQuizAndSpelling.dart';
 import 'GlobalQuizExerciseLog.dart';
-import 'studentSelectSubject.dart';
+import 'studentQuizSelectSubject.dart';
 import 'myClassResult.dart';
 import 'temp.dart';
 import 'pojo/pojo_subject.dart';
@@ -130,6 +130,8 @@ import 'previewspelling.dart';
 import 'SpellingQuestionList.dart';
 import 'EditSpellingQuestion.dart';
 import 'SpellinglevelList.dart';
+import 'studentSpellingSelectSubject.dart';
+import 'spellingListStudent.dart';
 void main() {
   runApp(MyApp());
 }
@@ -236,7 +238,7 @@ class MyApp extends StatelessWidget {
         'GlobalSpelling':(context)=>GlobalSpelling(),
         'GlobalResults':(context)=>tabforms(),
         'GlobalQuizLog':(context)=>GlobalQuizExerciseLog(),
-        'studentselectsubject':(context)=>StudentSelectSubject(),
+        'studentselectsubject':(context)=>QuizExamSelectSubject(),
         'studentdetail':(context)=>studentdetail(),
         'myclassresults':(context)=>MyClassResult(),
         'StudentsLevelsAnswer':(context)=>StudentsLevelsAnswer(),
@@ -252,7 +254,9 @@ class MyApp extends StatelessWidget {
         'previewspelling':(context)=>PreviewSpelling(),
         'spellingquestionlist':(context)=>SpellingQuestion_List(),
         'spellinglevelsList':(context)=>SpellingLevelLists(),
-        'editspellingquestion':(context)=>EditSpellingQuestions()
+        'editspellingquestion':(context)=>EditSpellingQuestions(),
+        'spellingexamselectsubject':(context)=>SpellingExamSelectSubject(),
+        'Spelling_List_student':(context)=>Spelling_List_student(),
 
       },
     );

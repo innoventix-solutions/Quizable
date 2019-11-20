@@ -26,12 +26,13 @@ class Pojo_spelling{
   //String totaltime;
  // String takendate;
   //String quizattemptlevel;
-  //String label ="-";
+  String label ="-";
 
   Pojo_spelling({this.id, this.spelling_title, this.techer_id, this.no_of_levels,
     this.que_each_level, this.dur_each_level, this.spelling_subject,
     this.class_id, this.status, this.publish_date, this.closing_date,
-    this.created_date,this.classes,this.teacherinstruction,this.total_fill_question,this.is_taken});
+    this.created_date,this.classes,this.teacherinstruction,this.total_fill_question,this.is_taken,
+  this.label});
 
   factory Pojo_spelling.fromJson(Map<String, dynamic> parsedJson){
 
@@ -50,8 +51,8 @@ class Pojo_spelling{
       //tt=parsedJson['quiz_attend_data']['t_time'];
      // td=parsedJson['quiz_attend_data']['taken_date'];
     //}
-    //String Label="-";
-    /*if(parsedJson['quiz_attemped_levels']!=null) {
+    String Label="-";
+    if(parsedJson['quiz_attemped_levels']!=null) {
 
       int AttempedLevel = int.parse(
           parsedJson['quiz_attemped_levels'].toString());
@@ -77,7 +78,7 @@ class Pojo_spelling{
           (AttempedLevel > 0 && AttempedLevel < TotalLevels)) {
         Label = "Pending";
       }
-    }*/
+    }
 
 
 
@@ -111,7 +112,7 @@ class Pojo_spelling{
        // totaltime: tt,
        // takendate: td,
        // quizattemptlevel: parsedJson['quiz_attemped_levels'].toString(),
-        //label: Label
+        label: Label
 
     );
   }

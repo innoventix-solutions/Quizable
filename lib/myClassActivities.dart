@@ -260,6 +260,8 @@ class _myclassactivitiesState extends State<myclassactivities> {
                                 style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,
                                     fontSize: 18),textAlign: TextAlign.center,),
                               ButtonClick: (){
+                               // Navigator.of(context).pushNamed('spellingexamselectsubject');
+                                Navigator.of(context).pushNamed('Spelling_List_student');
 
                               },)),
                       ],

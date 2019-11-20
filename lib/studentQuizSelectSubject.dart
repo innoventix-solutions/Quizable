@@ -9,13 +9,13 @@ import 'pojo/pojo_subject.dart';
 
 
 void main() => runApp(MaterialApp(
-  home: StudentSelectSubject(),
+  home: QuizExamSelectSubject(),
 ));
-class StudentSelectSubject extends StatefulWidget {
+class QuizExamSelectSubject extends StatefulWidget {
   @override
-  _StudentSelectSubjectState createState() => _StudentSelectSubjectState();
+  _QuizExamSelectSubjectState createState() => _QuizExamSelectSubjectState();
 }
-class _StudentSelectSubjectState extends State<StudentSelectSubject> {
+class _QuizExamSelectSubjectState extends State<QuizExamSelectSubject> {
 
 
 
