@@ -347,7 +347,7 @@ class _Spelling_List_studentState extends State<Spelling_List_student> {
             ),
 
             Expanded(
-              child:spellinglist.isEmpty ? Center(child: Text('No Quiz Exercises published yet')) :  //22-8-19 a
+              child:spellinglist.isEmpty ? Center(child: Text('No Spelling Exercises published yet')) :  //22-8-19 a
               ListView.builder(
                   itemCount: spellinglist.length,
                   itemBuilder: (c,i){
@@ -361,6 +361,10 @@ class _Spelling_List_studentState extends State<Spelling_List_student> {
                             GlobalData.ExamQuiz=spellinglist[i].spelling_title;
                             GlobalData.spellDurationofEachLevel=spellinglist[i].dur_each_level;
                             GlobalData.spellLevels=spellinglist[i].no_of_levels;
+                            GlobalData.spellNosofQuesPerLevel=spellinglist[i].que_each_level;
+                            GlobalData.spelltitle=spellinglist[i].spelling_title;
+                            GlobalData.teacherguide=spellinglist[i].teacherinstruction;
+
                             Navigator.of(context).pushNamed(GlobalData.userType=="student"?'spellans':'Question_List');
 
                           //}

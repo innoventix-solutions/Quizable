@@ -43,13 +43,13 @@ TextEditingController answer = new TextEditingController();
   //List<Pojo_Matchs> matchs = new List();
   String ExamAnswer ="";
   ScrollController controller = new ScrollController();
-  List<Pojo_Answers> Options = List();
+  //List<Pojo_Answers> Options = List();
   //List<MatchClass> Matchs = List();
   //List<Pojo_Matchs> Matches = List();
   //List<Pojo_Matchs> Matches2 = List();
   //List<Pojo_Matchs> ActualAnswer = List();
   int Selected =0;
-  //List<int> Selecteditem=new List();
+  List<int> Selecteditem=new List();
 //  String TrueorFalse = "";
   List<String> _Originallist = new List();
   List<String> MatchingAnswers = new List();
@@ -139,6 +139,7 @@ TextEditingController answer = new TextEditingController();
       }
     }
   }
+
   @override
   dispose()
   {
@@ -202,15 +203,8 @@ TextEditingController answer = new TextEditingController();
     }).then((res){
       print(res.body);
       var ParsedJson = jsonDecode(res.body);
-      OriginalList = (ParsedJson['spellingquestionsdata'] as List).map((data)=>Pojo_Spellingquestions.fromJson(data)).toList();
+      Questions = (ParsedJson['spellingquestionsdata'] as List).map((data)=>Pojo_Spellingquestions.fromJson(data)).toList();
 
-      for(var item in OriginalList){
-        if(item.level_no==GlobalData.CurrentLevel.toString())
-        {
-          Questions.add(item);
-
-        }
-      }
       setState(() {
       });
     });
@@ -220,6 +214,10 @@ TextEditingController answer = new TextEditingController();
     });
   }
 
+
+
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -227,7 +225,7 @@ TextEditingController answer = new TextEditingController();
         title: Text("Spelling Challenge"),
         centerTitle: true,
       ),
-      body:
+      body:isloading==true?Center(child: Text("Loading...")):
       Container(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
@@ -245,7 +243,7 @@ TextEditingController answer = new TextEditingController();
                           child: Padding(
                             padding: const EdgeInsets.all(10.0),
                             child: Text(
-                              "Level"+Questions[i].level_no,
+                             "Level ${Questions[i].level_no.toString()}",
                               style: TextStyle(
                                   color: Colors.white, fontWeight: FontWeight.bold),
                             ),
@@ -375,28 +373,24 @@ TextEditingController answer = new TextEditingController();
                           ButtonClick: () async {
                             bool remaning = false;
 
-                            String answ="";
+                            String answ ="";
 
+                            answ=answer.text.toString();
+                            GiveAnswer(answ, (i + 1).toString());
+                            // TrueorFalse=" ";
+                            Changed=0;
+                            i++;
+                            if(i==Questions.length)
+                            {
+                              //getExamResult();
 
+                              i--;
 
+                            }else {
+                              setState(() {
 
-                              //   answ=fillupsData.toString();
-
-
-                              for (int i = 0; i < fillupsData.length; i++) {
-
-                                answ += fillupsData[i];
-                                if(i<fillupsData.length-1 && fillupsData.length>1  )
-                                {
-                                  answ +=",";
-                                }
-
-                              }
-
-
-
-
-
+                              });
+                            }
 
                           },
                           linearGradient:LinearGradient(colors: <Color>[GlobalData.navyblue,GlobalData.pink]) ,
@@ -465,7 +459,7 @@ TextEditingController answer = new TextEditingController();
       "spelling_id":Questions[i].spellingid,
       "level":Questions[i].level_no.toString(),
       "q_no":qno,
-      "answer":answer,
+      "answer":answer.text.toString(),
     }).then((res){
       // Fluttertoast.showToast(msg: "ResultSubmitted");
       print(res.body);
@@ -629,7 +623,7 @@ TextEditingController answer = new TextEditingController();
     // Show_toast_Now(TimerText.substring(2,4),Colors.green);
     int second = int.parse(TimerText.substring(5,7));
     int min = int.parse(TimerText.substring(2,4));
-    int ConsumedTime = (int.parse(GlobalData.DurationofEachLevel)*60)-((min*60)+second);
+    int ConsumedTime = (int.parse(GlobalData.spellDurationofEachLevel)*60)-((min*60)+second);
     int usedSecond= ConsumedTime%60;
     int usedMin = (ConsumedTime/60).floor();
     int hour = usedMin==0?0:(usedMin/60).floor();

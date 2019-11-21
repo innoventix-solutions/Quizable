@@ -9,6 +9,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'Pojo/pojo_getspelling.dart';
 
 
 
@@ -27,6 +28,7 @@ class _studentdashboardState extends State<studentdashboard> {
   //final List<int> numbers = [1, 2, 3, 5, 8, 13, 21, 34, 55];
   List<Pojo_quizzes> Quizz_List = new List();
   List<Pojo_getassignment> assignment_list = new List();
+  List<Pojo_spelling> spellinglist = new List();
 
   GetTest() async{
 
@@ -61,6 +63,28 @@ class _studentdashboardState extends State<studentdashboard> {
             Pojo_getassignment.fromJson(data)).toList();
 
         print(assignment_list.length);
+        setState(() {
+
+        });
+      }
+    });
+  }
+
+  GetSpelling()async{
+
+
+    await http.post("http://edusupportapp.com/api/get_user_spelling_by_join_class.php",
+        body: {
+          "UserId":GlobalData.uid
+        }).then((res){
+      print(res.body);
+
+      var ParsedJson = jsonDecode(res.body);
+      if(ParsedJson['spellingdata'].toString()!="false") {
+        spellinglist = (ParsedJson['spellingdata'] as List).map((data) =>
+            Pojo_spelling.fromJson(data)).toList();
+
+        print(spellinglist.length);
         setState(() {
 
         });
