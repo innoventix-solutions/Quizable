@@ -107,7 +107,7 @@ class GlobalData{
   static String signupdate="";
   static String dob="";
   static String adminmembership="";
-
+  static Pojo_quizzes quizstatus;
 
 
 
@@ -305,6 +305,10 @@ class drawerquiz extends StatelessWidget {
                       color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
                   onTap: () async {
                     print("adminmembership:" +GlobalData.adminmembership.toString());
+                    print("classname:" +GlobalData.class_name.toString());
+                    print("Quiz Status:" +GlobalData.quizstatus.status.toString());
+
+
 
                    if(GlobalData.adminmembership==null.toString() || GlobalData.adminmembership==false.toString())
 

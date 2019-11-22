@@ -48,9 +48,9 @@ class _RecentQuestionState extends State<RecentQuestion> {
 
 
   Getspellings() async {
-    await http.post("http://edusupportapp.com/api/get_spelling_by_class.php",
+    await http.post("http://edusupportapp.com/api/get_spelling.php",
         body: {"UserId": GlobalData.uid,
-          "Class_id":GlobalData.classid}).then((res) {
+          }).then((res) {
       print(res.body);
       var ParsedJson = jsonDecode(res.body);
       spellinglist = (ParsedJson['spellingdata'] as List)
