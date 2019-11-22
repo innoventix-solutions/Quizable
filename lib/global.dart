@@ -107,7 +107,8 @@ class GlobalData{
   static String signupdate="";
   static String dob="";
   static String adminmembership="";
-  static Pojo_quizzes quizstatus;
+  static String quizstatus="";
+
 
 
 
@@ -305,9 +306,7 @@ class drawerquiz extends StatelessWidget {
                       color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
                   onTap: () async {
                     print("adminmembership:" +GlobalData.adminmembership.toString());
-                    print("classname:" +GlobalData.class_name.toString());
-                    print("Quiz Status:" +GlobalData.quizstatus.status.toString());
-
+                    print("classname:" +GlobalData.class_name .toString());
 
 
                    if(GlobalData.adminmembership==null.toString() || GlobalData.adminmembership==false.toString())
@@ -325,8 +324,15 @@ class drawerquiz extends StatelessWidget {
                         "Only One Quizz with max 10 Questions with one Level is Allowed for Free User\n\nSubscribe to create more Quizz",onPressed:(){
                           Navigator.of(context).pushNamed('ManageAccount');
 
-                        }):CustomShowDialog(context,title: "Subscription Required",msg:
-                      "You cannot set more than 10 questions each level. \n\nPlease contact your Admin to Subscribe for the institution's account.",onPressed:(){
+                        }):
+                          GlobalData.Quizz_List[0].status=="onhold"?
+
+
+
+                          Navigator.of(context)
+                              .pushNamed('previewQuiz'):CustomShowDialog(context,title: "Subscription Required",msg:
+                      "You cannot set more than 10 questions each level. \n\nPlease contact your Admin to Subscribe for the institution's account.",
+                          onPressed:(){
                         Navigator.of(context).pop();
 
                       });

@@ -103,6 +103,7 @@ class _PreviewQuizState extends State<PreviewQuiz> {
                         GlobalData.NosofQuesPerLevel = Quizz_List[i].que_each_level;
                         GlobalData.Selected_class=Quizz_List[i].classes;
                         GlobalData.age=Quizz_List[i].age;
+                        GlobalData.quizstatus=Quizz_List[i].status;
 
 
                         print((Quizz_List[i].total_fill_question<int.parse(Quizz_List[i].no_of_levels) * int.parse(Quizz_List[i].que_each_level)));
