@@ -90,6 +90,7 @@ TextEditingController answer = new TextEditingController();
     });
     // when it finish the onDone cb is called
     sub.onDone(() {
+      stop();
       //getExamResult();
       cd.isPaused=true;
 
@@ -152,7 +153,7 @@ TextEditingController answer = new TextEditingController();
 
     temp();
     print(GlobalData.userType);
-    //Timmer();
+    Timmer();
     GetQuestions();
 
   }
@@ -235,6 +236,27 @@ TextEditingController answer = new TextEditingController();
           child: Card(
             child: Column(
               children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    children: <Widget>[
+                      Text("Timer : ",style: TextStyle(color: Colors.blue),),
+                      Text(TimerText,style: TextStyle(fontWeight: FontWeight.bold,fontSize: 25),),
+                      Spacer(),
+                      RaisedButton(
+                        color: Colors.red,
+                        onPressed: (){
+
+                          print(getLevelTime());
+                          Navigator.of(context).pushReplacementNamed('studentLevelList');
+
+                        },
+                        child: Text("Exit",style: TextStyle(color: Colors.white),),
+                      )
+
+                    ],
+                  ),
+                ),
                 Container(
                   color: Colors.blue,
                   child: Row(
@@ -291,9 +313,37 @@ TextEditingController answer = new TextEditingController();
                             child: Container(
                                 child: Card(
                                   child: Padding(
-                                    padding: const EdgeInsets.all(10.0),
-                                    child: Text("Word point" +Questions[i].point_awarded,textAlign: TextAlign.center,style:
-                                    TextStyle(fontWeight: FontWeight.bold),),
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Row(
+                                      children: <Widget>[
+                                        Expanded(
+                                          child: Text("Word point - " +Questions[i].point_awarded,textAlign: TextAlign.center,style:
+                                          TextStyle(fontWeight: FontWeight.bold),),
+                                        ),
+SizedBox(width: 20,),
+                                        Expanded(
+                                          child: FlatButton.icon(shape: RoundedRectangleBorder(
+                                            borderRadius: new BorderRadius.circular(20.0),
+
+                                          ),
+                                            color: Colors.blue,
+                                            icon: Icon(Icons.hearing,color: Colors.white,), //`Icon` to display
+                                            label: Padding(
+                                              padding: const EdgeInsets.only(top: 5,bottom: 5,right: 10,left: 10),
+                                              child: GestureDetector(onTap: (){
+
+                                                _speak(Questions[i].anwer_options);
+
+                                              },
+                                                  child: Text('Listen',style: TextStyle(fontSize: 20,color: Colors.white),)),
+                                            ), //`Text` to display
+                                            onPressed: () {
+                                              //Code to execute when Floating Action Button is clicked
+                                              //...
+                                            },
+                                          ),
+                                        ),  ],
+                                    ),
                                   ),
 
                                 )),
@@ -305,10 +355,12 @@ TextEditingController answer = new TextEditingController();
                 Card(
                   child:TextField(textCapitalization: TextCapitalization.characters,
                     controller: answer,
+autocorrect: false,keyboardType: TextInputType.emailAddress,
 
                     style: TextStyle(color: Colors.blue, fontSize: 18),
                     decoration: InputDecoration(
                       contentPadding: EdgeInsets.only(left: 5),
+
 
                       prefixIcon: Icon(
                         Icons.email,
@@ -318,26 +370,7 @@ TextEditingController answer = new TextEditingController();
                   ),
                 ),
 
-                FlatButton.icon(shape: RoundedRectangleBorder(
-                  borderRadius: new BorderRadius.circular(20.0),
 
-                ),
-                  color: Colors.blue,
-                  icon: Icon(Icons.hearing,color: Colors.white,), //`Icon` to display
-                  label: Padding(
-                    padding: const EdgeInsets.only(top: 5,bottom: 5,right: 10,left: 10),
-                    child: GestureDetector(onTap: (){
-
-                      _speak(Questions[i].anwer_options);
-
-                    },
-                        child: Text('Listen',style: TextStyle(fontSize: 20,color: Colors.white),)),
-                  ), //`Text` to display
-                  onPressed: () {
-                    //Code to execute when Floating Action Button is clicked
-                    //...
-                  },
-                ),
 
                 Padding(
                   padding: const EdgeInsets.all(20.0),

@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
 import 'Pojo/pojo_quizzes.dart';
 import 'global.dart';
@@ -110,6 +111,8 @@ class _GlobalselectsubjectState extends State<Globalselectsubject> {
                         GlobalData.Selected_subject = mysub [index].subject;
 
                         Navigator.of(context).pushNamed('GlobalQuiz');
+
+
 
                     },
                       child: Card( //                           <-- Card widget
