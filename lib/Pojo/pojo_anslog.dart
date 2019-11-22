@@ -24,7 +24,13 @@ class pojo_anslog{
 
     if(parsedJson['answer_type'].toString()=="Match Type")
     {
-      matchs= (jsonDecode(parsedJson['user_answer']) as List).map((data)=>Pojo_Matchs.fromJson((data))).toList();
+      if(parsedJson['user_answer']=="s_k_i_p"){
+        matchs.add(Pojo_Matchs(val1: "Skipped",val2: "Skipped"));
+      }
+      else {
+        matchs = (jsonDecode(parsedJson['user_answer']) as List).map((data) =>
+            Pojo_Matchs.fromJson((data))).toList();
+      }
       matchs1= (jsonDecode(parsedJson['answer_options']) as List).map((data)=>Pojo_Matchs.fromJson((data))).toList();
     }
 

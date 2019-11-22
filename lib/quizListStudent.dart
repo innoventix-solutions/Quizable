@@ -26,8 +26,11 @@ class _Quiz_List_studentState extends State<Quiz_List_student> {
       print(res.body);
 
       var ParsedJson = jsonDecode(res.body);
-      Quizz_List = (ParsedJson['quizdata'] as List).map((data)=>Pojo_quizzes.fromJson(data)).toList();
 
+      if (ParsedJson['quizdata'] != null || ParsedJson['quizdata']!= false) {
+        Quizz_List = (ParsedJson['quizdata'] as List).map((data) =>
+            Pojo_quizzes.fromJson(data)).toList();
+      }
       print(Quizz_List.length);
       print(jsonEncode(Quizz_List).toString());
       setState(() {
