@@ -300,6 +300,18 @@ class _Spelling_List_studentState extends State<Spelling_List_student> {
                       ],
                     ),
                   ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 10,left: 20),
+                    child: Row(
+                      children: <Widget>[
+                        Expanded(
+                          child: Text(spellinglist.isNotEmpty?"Instruction: "+spellinglist[0].teacherinstruction:"No Quiz Available",style: TextStyle(
+                              fontSize: 18,fontWeight: FontWeight.bold,color:GlobalData.white
+                          ),maxLines: 2,),
+                        ),
+                      ],
+                    ),
+                  ),
 
                   Padding(
                     padding: const EdgeInsets.only(top: 15,left: 20),
@@ -386,7 +398,7 @@ class _Spelling_List_studentState extends State<Spelling_List_student> {
                           color: GlobalData.pinkred,
                           heading: spellinglist[i].spelling_title+" - "+spellinglist[i].id,
                           paragraph: spellinglist[i].spelling_subject,
-                          title: spellinglist[i].spelling_title,
+                          title: spellinglist[i].teacherinstruction,
                           id: spellinglist[i].id,
                           is_taken: spellinglist[i].is_taken.toString()=="true"?true:false,
                           duration: spellinglist[i].dur_each_level,

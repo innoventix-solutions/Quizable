@@ -288,10 +288,10 @@ class drawerquiz extends StatelessWidget {
                 )],),
             ),onTap: (){
 
-            /*Navigator.of(context)
-                .pushNamed('developpage');*/
-           Navigator.of(context)
-                .pushNamed('SetAssignment');
+              Navigator.of(context)
+                .pushNamed('developpage');
+           /*Navigator.of(context)
+                .pushNamed('SetAssignment');*/
           },
           ),
 
@@ -4029,7 +4029,7 @@ class StudentSpellingReport extends StatelessWidget {
                 ],
               ),
               Container(
-                padding: EdgeInsets.only(left: 25,top: 20,right: 30,bottom: 30),
+                padding: EdgeInsets.only(left: 25,top: 20,right: 30,bottom: 15),
                 child: Row(
                   children: <Widget>[
                     Expanded(
@@ -4050,6 +4050,20 @@ class StudentSpellingReport extends StatelessWidget {
                     ),*/
 
                   ],
+                ),
+              ),
+
+
+
+              Container(
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 25,bottom: 15),
+                  child: Row(
+                    children: <Widget>[
+                      Text(title,style: TextStyle(fontWeight: FontWeight.bold,
+                          fontSize: 15,color: GlobalData.gray),textAlign: TextAlign.justify,),
+                    ],
+                  ),
                 ),
               ),
 
