@@ -319,7 +319,27 @@ class drawerquiz extends StatelessWidget {
                           await GetQuizzes();
 
                       if(GlobalData.Quizz_List.isNotEmpty)
-                      {GlobalData.userType=="admin_teacher"?
+                        {
+                          GlobalData.Quizz_List[0].status=="onhold"?
+                          Navigator.of(context).pushNamed('previewQuiz')
+                              :
+                              GlobalData.userType=="admin_teacher"?
+                              CustomShowDialog(context,title: "Subscription Required",msg:
+                              "Only One Quizz with max 10 Questions with one Level is Allowed for Free User\n\nSubscribe to create more Quizz",onPressed:(){
+                                Navigator.of(context).pushNamed('ManageAccount');
+
+                              }):
+                              CustomShowDialog(context,title: "Subscription Required",msg:
+                              "You cannot set more than 10 questions each level. \n\nPlease contact your Admin to Subscribe for the institution's account.",
+                                  onPressed:(){
+                                    Navigator.of(context).pop();
+
+                                  });
+                        }
+
+
+
+                      /*{GlobalData.userType=="admin_teacher"?
                         CustomShowDialog(context,title: "Subscription Required",msg:
                         "Only One Quizz with max 10 Questions with one Level is Allowed for Free User\n\nSubscribe to create more Quizz",onPressed:(){
                           Navigator.of(context).pushNamed('ManageAccount');
@@ -339,7 +359,8 @@ class drawerquiz extends StatelessWidget {
                         //Fluttertoast.showToast(msg: "Only One Quizz with max 10 Questions with one Level is Allowed for Free User\n\nSubscribe to create more Quizz");
 
                         //Navigator.of(context).pushNamed('ManageAccount');
-                      }else {
+                      }*/
+                      else {
 
 
                         Navigator.of(context)
