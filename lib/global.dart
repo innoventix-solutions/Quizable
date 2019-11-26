@@ -16,6 +16,7 @@ import 'package:share/share.dart';
 import 'Pojo/pojo_quizzes.dart';
 import 'Pojo/pojo_spellingquestions.dart';
 import 'Pojo/pojo_getspelling.dart';
+import 'Pojo/pojo_getassignment.dart';
 
 
 class GlobalData{
@@ -288,11 +289,11 @@ class drawerquiz extends StatelessWidget {
                       color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
                 )],),
             ),onTap: (){
-
+/*
               Navigator.of(context)
-                .pushNamed('developpage');
-           /*Navigator.of(context)
-                .pushNamed('SetAssignment');*/
+                .pushNamed('developpage');*/
+           Navigator.of(context)
+                .pushNamed('SetAssignment');
           },
           ),
 
@@ -2485,6 +2486,9 @@ class PreviewQuizs extends StatelessWidget {
                                               GlobalData.EditQuiz=true;
                                               GlobalData.QuizID=id;
                                               GlobalData.ExamQuiz=title;
+                                              GlobalData.QuizLevels=levels;
+                                              GlobalData.QuizTitle=title;
+                                              GlobalData.DurationofEachLevel=duration;
                                               Navigator.of(context).pushNamed('levelsList');
                                             }
                                             if(value=="delete")     //28-8-19 a
@@ -2900,7 +2904,7 @@ class StudentQuizReport extends StatelessWidget {
 
 
 
-
+/* Preview Assignments */
 /*3-9-19*/
 
 class PreviewAssignments extends StatelessWidget {
@@ -3111,6 +3115,290 @@ class PreviewAssignments extends StatelessWidget {
       );
   }
 }
+
+
+/*class PreviewAssignments extends StatelessWidget
+{
+
+  final bool isActive;
+  final String heading;
+  final String paragraph;
+  final Color color;
+  final String title;
+  final String id;
+  // final bool is_taken;
+  final String levels;
+  final String duration;
+  final bool incomplete;
+  final int  continueTo;
+  final String publishedDate;
+  final String classes;
+
+  final Pojo_getassignment Assignment;
+
+
+  PreviewAssignments(
+      {
+        this.heading,
+        this.paragraph,
+        this.color,
+        this.title,
+        this.id,
+        //  this.is_taken,
+        this.duration,
+        this.levels,
+        this.isActive,this.incomplete,this.continueTo,this.publishedDate,this.classes,this.Assignment});
+
+
+  // 28-8-19 a
+  Delete(String id) async{
+
+    await http.post("http://edusupportapp.com/api/delete_assignment.php",
+        body: {
+          "assignment_id":GlobalData.AssignmentID,
+        }).then((res){
+      print(res.body);
+    });
+  }
+
+  //29-8-19 a
+  void showDialog1(BuildContext context) {
+    // flutter defined function
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        // return object of type Dialog
+        return AlertDialog(
+          title: new Text("Delete"),
+          content: new Text("Are You Sure Want To Delete selected Assignment?"),
+          actions: <Widget>[
+            // usually buttons at the bottom of the dialog
+            new FlatButton(
+              child: Row(
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.only(
+                        right: 50
+                    ),
+                    child: GestureDetector(
+                        onTap: (){
+                          Navigator.of(context).pushNamed('Previewassignment');
+                        },child: new Text("Cancel")),
+
+                  ),
+                  GestureDetector(
+                      onTap: (){
+                        Delete(id);
+                        Show_toast("Delete Successfully", Colors.green);
+                        Navigator.of(context).pushNamed('dashboard');
+                      },child: new Text("Ok")),
+                ],
+              ),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  Show_toast(String msg, Color color) {
+    Fluttertoast.showToast(
+        msg: msg,
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.CENTER,
+        timeInSecForIos: 1,
+        backgroundColor: color,
+        textColor: Colors.white,
+        fontSize: 16.0);
+  }
+//29-8-19 a
+
+
+  @override
+  Widget build(BuildContext context) {
+    return
+      Container(decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(40))),
+        child: Card(elevation: 5.0,shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(5.0),
+        ),
+          child: Column(mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Row(
+                children: <Widget>[
+                  Expanded(
+                    child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(5),),color: color),
+
+                      child: Padding(
+                        padding: const EdgeInsets.only(top: 5,bottom: 5),
+                        child: Column(
+                          children: <Widget>[
+                            Padding(
+                              padding: const EdgeInsets.only(top: 5,bottom: 5,left: 10),
+                              child: Row(
+                                children: <Widget>[
+                                  Expanded(
+                                    child: Text(heading,textAlign: TextAlign.left,
+                                      style: TextStyle(color: Colors.white,fontSize: 15,fontWeight: FontWeight.bold),),
+                                  ),
+                                  Expanded(
+                                    child:  Row(mainAxisAlignment: MainAxisAlignment.end,
+                                      children: <Widget>[
+                                        GlobalData.userType=="student"?Text(""):
+                                        isActive?
+                                        PopupMenuButton(
+                                          child: Icon(Icons.more_vert),
+                                          itemBuilder: (_) => <PopupMenuItem<String>>[
+                                            new PopupMenuItem<String>(
+                                                child: Row(
+                                                  children: <Widget>[
+                                                    Padding(
+                                                      padding: const EdgeInsets.only(right: 4,top: 1),
+                                                      child: Icon(
+                                                        Icons.cancel,
+                                                        color: GlobalData.darkpink,size: 12,
+                                                      ),
+                                                    ),
+                                                    new Text('Delete',style: TextStyle(fontSize: 15),),
+                                                  ],
+                                                ), value: 'delete'),
+
+                                          ],
+                                          onSelected: ( value){
+
+                                            if(value=="delete")     //28-8-19 a
+                                                {
+                                              showDialog1(context);
+                                            }
+                                          },
+                                        )
+                                            :
+
+                                        PopupMenuButton(
+                                          child: Icon(Icons.more_vert),
+                                          itemBuilder: (_) => <PopupMenuItem<String>>[
+                                            new PopupMenuItem<String>(
+                                                child: Row(
+                                                  children: <Widget>[
+                                                    Padding(
+                                                      padding: const EdgeInsets.only(right: 4),
+                                                      child: Icon(
+                                                        Icons.edit,
+                                                        color: GlobalData.lightblue,size: 12,
+                                                      ),
+                                                    ),
+                                                    new Text('Edit',style: TextStyle(fontSize: 15),),
+                                                  ],
+                                                ), value: 'edit'),
+
+
+                                            new PopupMenuItem<String>(
+                                                child: Row(
+                                                  children: <Widget>[
+                                                    Padding(
+                                                      padding: const EdgeInsets.only(right: 4,top: 1),
+                                                      child: Icon(
+                                                        Icons.cancel,
+                                                        color: GlobalData.darkpink,size: 12,
+                                                      ),
+                                                    ),
+                                                    new Text('Delete',style: TextStyle(fontSize: 15),),
+                                                  ],
+                                                ), value: 'delete'),
+
+                                          ],
+                                          onSelected: ( value){
+                                            if(value=="edit")
+                                            {
+                                              GlobalData.EditQuiz=true;
+                                              GlobalData.AssignmentID=id;
+                                              GlobalData.ExamQuiz=title;
+
+                                              GlobalData.AssignmentTitle=title;
+                                              //GlobalData.=duration;
+                                              Navigator.of(context).pushNamed('AssignmentQuestionList');
+                                            }
+                                            if(value=="delete")     //28-8-19 a
+                                                {
+                                              showDialog1(context);
+                                            }
+                                          },
+                                        ),
+                                      ],
+                                    ),
+                                  ), ],
+                              ),
+                            ),
+
+                          ],
+
+                        ),
+                      ),
+
+                    ),
+                  ),
+                ],
+              ),
+              Container(
+                padding: EdgeInsets.only(left: 25,top: 20,right: 30,bottom: 30),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Text("Classes : "+Assignment.classes,style: TextStyle(fontWeight: FontWeight.bold,
+                        fontSize: 15,color: GlobalData.gray),textAlign: TextAlign.justify,),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 10),
+                      child: Card(child: Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            SizedBox(height: 10,),
+                            Text("Created On:"+Assignment.created_date,style:
+                            TextStyle(color: Colors.green,fontWeight: FontWeight.bold),),
+                            SizedBox(height: 10,),
+                            Text(isActive?"Published on : $publishedDate":"Scheduled : $publishedDate",style:
+                            TextStyle(color: isActive?Colors.green:Colors.red,fontWeight: FontWeight.bold),),
+                            SizedBox(height: 10,),
+                            Text("Closing On:"+Assignment.closing_date,style:
+                            TextStyle(color: Colors.grey,fontWeight: FontWeight.bold),),
+                            SizedBox(height: 10,)
+                          ],
+                        ),
+                      ),),
+                    ),
+                    incomplete?
+                    Padding(
+                      padding: const EdgeInsets.only(top: 10),
+                      child: Card(color: Colors.red,child: Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: Text("Incomplete",style:
+                        TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
+                      ),),
+                    ):Text(""),
+
+                    /*Icon(Icons.remove_red_eye,color: isActive?Colors.green:Colors.red,)*/
+
+                  ],
+                ),
+              ),
+
+
+
+
+
+
+            ],
+          ),
+
+        ),
+      );
+  }
+}*/
+
 
 
 // 6-9-19
@@ -3566,7 +3854,7 @@ GetQuizzes() async {
 }
 
 
-/* Preview Assignments */
+
 
 class PreviewSpellingss extends StatelessWidget {
 
@@ -3766,6 +4054,9 @@ class PreviewSpellingss extends StatelessWidget {
                                               GlobalData.EditQuiz=true;
                                               GlobalData.spellingid=id;
                                               GlobalData.ExamQuiz=title;
+                                              GlobalData.spellLevels=levels;
+                                              GlobalData.spelltitle=title;
+                                              GlobalData.spellDurationofEachLevel=duration;
                                               Navigator.of(context).pushNamed('spellinglevelsList');
                                             }
                                             if(value=="delete")     //28-8-19 a

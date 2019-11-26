@@ -240,6 +240,16 @@ TextEditingController answer = new TextEditingController();
                   padding: const EdgeInsets.all(8.0),
                   child: Row(
                     children: <Widget>[
+                      Text("Quiz Name: "+ GlobalData.ExamQuiz,style: TextStyle(fontSize: 18,
+                          color: GlobalData.navyblue,fontWeight: FontWeight.bold),),
+                    ],
+                  ),
+                ),
+
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    children: <Widget>[
                       Text("Timer : ",style: TextStyle(color: Colors.blue),),
                       Text(TimerText,style: TextStyle(fontWeight: FontWeight.bold,fontSize: 25),),
                       Spacer(),
