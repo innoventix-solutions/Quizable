@@ -2907,7 +2907,7 @@ class StudentQuizReport extends StatelessWidget {
 /* Preview Assignments */
 /*3-9-19*/
 
-class PreviewAssignments extends StatelessWidget {
+/*class PreviewAssignments extends StatelessWidget {
 
   final String heading;
   final String paragraph;
@@ -3114,10 +3114,10 @@ class PreviewAssignments extends StatelessWidget {
         ),
       );
   }
-}
+}*/
 
 
-/*class PreviewAssignments extends StatelessWidget
+class PreviewAssignments extends StatelessWidget
 {
 
   final bool isActive;
@@ -3127,8 +3127,8 @@ class PreviewAssignments extends StatelessWidget {
   final String title;
   final String id;
   // final bool is_taken;
-  final String levels;
-  final String duration;
+  //final String levels;
+  //final String duration;
   final bool incomplete;
   final int  continueTo;
   final String publishedDate;
@@ -3145,8 +3145,8 @@ class PreviewAssignments extends StatelessWidget {
         this.title,
         this.id,
         //  this.is_taken,
-        this.duration,
-        this.levels,
+        //this.duration,
+       // this.levels,
         this.isActive,this.incomplete,this.continueTo,this.publishedDate,this.classes,this.Assignment});
 
 
@@ -3370,7 +3370,8 @@ class PreviewAssignments extends StatelessWidget {
                         ),
                       ),),
                     ),
-                    incomplete?
+                   /* incomplete assignments*/
+                   /* incomplete?
                     Padding(
                       padding: const EdgeInsets.only(top: 10),
                       child: Card(color: Colors.red,child: Padding(
@@ -3378,7 +3379,7 @@ class PreviewAssignments extends StatelessWidget {
                         child: Text("Incomplete",style:
                         TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
                       ),),
-                    ):Text(""),
+                    ):Text(""),*/
 
                     /*Icon(Icons.remove_red_eye,color: isActive?Colors.green:Colors.red,)*/
 
@@ -3397,7 +3398,7 @@ class PreviewAssignments extends StatelessWidget {
         ),
       );
   }
-}*/
+}
 
 
 

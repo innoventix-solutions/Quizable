@@ -107,8 +107,12 @@ class _PreviewAssignmentState extends State<PreviewAssignment> {
                           id:assignment_list[i].id ,
                           title: assignment_list[i].assignment_title,
                           //is_taken: assignment_list[i].is_taken,
-                          //duration: assignment_list[i].dur_each_level,
-                         // levels: Quizz_List[i].no_of_levels,
+
+                          isActive: assignment_list[i].status.toLowerCase()=="publish"?true:false,
+                          //incomplete: (assignment_list[i].total_que<int.parse(assignment_list[i].total_que.toString()) ),
+                          //continueTo:assignment_list[i].total_que,
+                          publishedDate: assignment_list[i].publish_date,
+                          Assignment: assignment_list[i],
                         ),//: SizedBox()
                     );
                   }),
