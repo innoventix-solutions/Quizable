@@ -18,8 +18,9 @@ class _RecentQuestionState extends State<RecentQuestion> {
   List<Pojo_spelling> spellinglist = new List();
 
   GetAssignment() async {
-    await http.post("http://edusupportapp.com/api/get_assignments.php",
-        body: {"UserId": GlobalData.uid}).then((res) {
+    await http.post("http://edusupportapp.com/api/get_assignments_by_class.php",
+        body: {"user_id": GlobalData.uid,
+        "Class_id":GlobalData.classid}).then((res) {
       print(res.body);
 
       var ParsedJson = jsonDecode(res.body);
@@ -33,8 +34,9 @@ class _RecentQuestionState extends State<RecentQuestion> {
   }
 
   GetQuiz() async {
-    await http.post("http://edusupportapp.com/api/get_quizzes.php",
+    await http.post("http://edusupportapp.com/api/get_quizzes_by_class.php",
         body: {"UserId": GlobalData.uid,
+          "Class_id":GlobalData.classid
        }).then((res) {
       print(res.body);
       var ParsedJson = jsonDecode(res.body);
@@ -48,8 +50,9 @@ class _RecentQuestionState extends State<RecentQuestion> {
 
 
   Getspellings() async {
-    await http.post("http://edusupportapp.com/api/get_spelling.php",
+    await http.post("http://edusupportapp.com/api/get_spelling_by_class.php",
         body: {"UserId": GlobalData.uid,
+          "Class_id":GlobalData.classid
           }).then((res) {
       print(res.body);
       var ParsedJson = jsonDecode(res.body);
