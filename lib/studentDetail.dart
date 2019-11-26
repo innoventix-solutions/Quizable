@@ -38,7 +38,7 @@ class _studentdetailState extends State<studentdetail> {
     setState(() {});
   }
 
-  List<pojostydentlist> globlist = new List();
+  List<pojouserrslist> globlist = new List();
 
 
   getstudent()
@@ -56,7 +56,7 @@ class _studentdetailState extends State<studentdetail> {
       var pass = jsonDecode(response.body);
 
       globlist = (pass['user_data'] as List)
-          .map((data) => pojostydentlist.fromJson(data))
+          .map((data) => pojouserrslist.fromJson(data))
           .toList();
 
       print(globlist.length);

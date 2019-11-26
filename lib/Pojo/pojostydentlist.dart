@@ -1,5 +1,5 @@
 
-class pojostydentlist {
+class pojouserrslist {
   String id;
   String username;
   String email;
@@ -16,13 +16,13 @@ class pojostydentlist {
   String accounttype;
   String signupdate;
 
-  pojostydentlist(
+  pojouserrslist(
       {this.id, this.username, this.email, this.fullname, this.userphoto,
         this.phone, this.parentemail, this.parentphone, this.password, this.birthdate,
         this.specification, this.gender, this.usertype, this.accounttype, this.signupdate});
 
-  factory pojostydentlist.fromJson(Map<String, dynamic> parsedJson){
-    return pojostydentlist(
+  factory pojouserrslist.fromJson(Map<String, dynamic> parsedJson){
+    return pojouserrslist(
       id: parsedJson['ID'],
       username: parsedJson['username'],
       email: parsedJson['email'],

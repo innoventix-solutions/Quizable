@@ -184,7 +184,70 @@ getvalue();
       },
     );
   }
+  void leaveclass() {
+    // flutter defined function
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        // return object of type Dialog
+        return AlertDialog(
+          title: new Text("Leave Class"),
+          content: new Text("Are You Sure Want To Leave the Class?"),
+          actions: <Widget>[
+            // usually buttons at the bottom of the dialog
+            new FlatButton(
+              child: Row(
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.only(
+                        right: 50
+                    ),
+                    child:   GestureDetector(
+                        onTap: (){
+                          Navigator.of(context).pushNamed('EditProfile');
+                        },child: new Text("Cancel")),
 
+                  ),
+
+                  GestureDetector(
+                      onTap: (){
+                        Delete();
+
+
+                        Show_toast("Delete Successfully", Colors.green);
+                        Navigator.of(context).pushNamed('dashboard');
+                      },child: new Text("Ok")),
+
+
+
+                ],
+              ),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  Delete() async{
+
+    await http.post("http://edusupportapp.com/api/delete_user_from_class.php",
+        body: {
+          "class_id":GlobalData.classid,
+          "user_id":GlobalData.uid,
+        }).then((res){
+      print(res.body);
+      //var ParsedJson = jsonDecode(res.body);
+      //Stu_List = (ParsedJson['userdata'] as List).map((data)=>pojostydentlist.fromJson(data)).toList();
+      setState(() {
+
+      });
+
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -218,6 +281,27 @@ getvalue();
             ),
           ),
         ],
+        ),
+        bottomNavigationBar: BottomNavigationBar(
+           // this will be set when a new tab is tapped
+          items: [
+            BottomNavigationBarItem(
+              icon: new Icon(Icons.home,color: Colors.transparent,),
+              title: new Text(''),
+            ),
+            BottomNavigationBarItem(
+              icon: GestureDetector(
+                  onTap: (){
+                    leaveclass();
+
+                  },child: new Icon(Icons.cancel,color: Colors.red,)),
+              title: new Text('Leave Class',style: TextStyle(fontSize: 20,color: Colors.black),),
+            ),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.person,color: Colors.transparent,),
+                title: Text('')
+            )
+          ],
         ),
         body: Center(
           child: SingleChildScrollView(

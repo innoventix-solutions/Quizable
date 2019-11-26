@@ -35,7 +35,7 @@ GlobalData.Studentlist.clear();
       var pass = jsonDecode(response.body);
 
       GlobalData.Studentlist = (pass['user_data'] as List)
-          .map((data) => pojostydentlist.fromJson(data))
+          .map((data) => pojouserrslist.fromJson(data))
           .toList();
 
       print(GlobalData.Studentlist.length);

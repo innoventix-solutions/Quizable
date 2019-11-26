@@ -82,11 +82,11 @@ class GlobalData{
   static String Userphoto="";      //13-8-19 a
   static String Phone="";   //14-8-19 a
   static String Fullname="";  //14-8-19 a
-  static List<pojostydentlist> Studentlist = new List();
+  static List<pojouserrslist> Studentlist = new List();
   static String Queidofquiz = "";
   static String email ="";
   static String disc = "";
-  static pojostydentlist user;   //16-9-19 a
+  static pojouserrslist user;   //16-9-19 a
   static String parentsphone=""; //16-9-19 a
   static String parentsemail=""; //16-9-19 a
   static String age="";
@@ -100,7 +100,7 @@ class GlobalData{
   static String teacherobjective="";
   static String AssignmentID="";
   static String Essayinstructions="";
-  static pojostydentlist currentteacher;
+  static pojouserrslist currentteacher;
   static var gendersel="";
   static int CurrentLevel=0;
   static bool isGlobal=false;
