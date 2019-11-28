@@ -91,7 +91,7 @@ TextEditingController answer = new TextEditingController();
     // when it finish the onDone cb is called
     sub.onDone(() {
       stop();
-      //getExamResult();
+      getExamResult();
       cd.isPaused=true;
 
 
@@ -206,6 +206,15 @@ TextEditingController answer = new TextEditingController();
       var ParsedJson = jsonDecode(res.body);
       Questions = (ParsedJson['spellingquestionsdata'] as List).map((data)=>Pojo_Spellingquestions.fromJson(data)).toList();
 
+
+
+      for(var item in OriginalList){
+
+        if(item.level_no==GlobalData.CurrentLevel.toString()) {
+          Questions.add(item);
+        }
+
+      }
       setState(() {
       });
     });
@@ -221,236 +230,241 @@ TextEditingController answer = new TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Spelling Challenge"),
-        centerTitle: true,
-      ),
-      body:isloading==true?Center(child: Text("Loading...")):
-      Container(
-        width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height,
+    return WillPopScope(
+      onWillPop: () async => false,
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text("Spelling Challenge"),automaticallyImplyLeading: false,
+          centerTitle: true,
+        ),
+        body:isloading==true?Center(child: Text("Loading...")):isCompleted?
+        Container():
 
-        child:
-        SingleChildScrollView(
-          child: Card(
-            child: Column(
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Row(
-                    children: <Widget>[
-                      Text("Quiz Name: "+ GlobalData.ExamQuiz,style: TextStyle(fontSize: 18,
-                          color: GlobalData.navyblue,fontWeight: FontWeight.bold),),
-                    ],
-                  ),
-                ),
+        Container(
+          width: MediaQuery.of(context).size.width,
+          height: MediaQuery.of(context).size.height,
 
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Row(
-                    children: <Widget>[
-                      Text("Timer : ",style: TextStyle(color: Colors.blue),),
-                      Text(TimerText,style: TextStyle(fontWeight: FontWeight.bold,fontSize: 25),),
-                      Spacer(),
-                      RaisedButton(
-                        color: Colors.red,
-                        onPressed: (){
+          child:
+          SingleChildScrollView(
+            child: Card(
+              child: Column(
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      children: <Widget>[
+                        Text("Quiz Name: "+ GlobalData.ExamQuiz,style: TextStyle(fontSize: 18,
+                            color: GlobalData.navyblue,fontWeight: FontWeight.bold),),
+                      ],
+                    ),
+                  ),
 
-                          print(getLevelTime());
-                          Navigator.of(context).pushReplacementNamed('studentLevelList');
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      children: <Widget>[
+                        Text("Timer : ",style: TextStyle(color: Colors.blue),),
+                        Text(TimerText,style: TextStyle(fontWeight: FontWeight.bold,fontSize: 25),),
+                        Spacer(),
+                        RaisedButton(
+                          color: Colors.red,
+                          onPressed: (){
 
-                        },
-                        child: Text("Exit",style: TextStyle(color: Colors.white),),
-                      )
+                            print(getLevelTime());
+                            Navigator.of(context).pushReplacementNamed('studentspellingLevelList');
 
-                    ],
+                          },
+                          child: Text("Exit",style: TextStyle(color: Colors.white),),
+                        )
+
+                      ],
+                    ),
                   ),
-                ),
-                Container(
-                  color: Colors.blue,
-                  child: Row(
-                    children: <Widget>[
-                      Expanded(
-                          child: Padding(
-                            padding: const EdgeInsets.all(10.0),
-                            child: Text(
-                             "Level ${Questions[i].level_no.toString()}",
-                              style: TextStyle(
-                                  color: Colors.white, fontWeight: FontWeight.bold),
-                            ),
-                          )),
-                    ],
+                  Container(
+                    color: Colors.blue,
+                    child: Row(
+                      children: <Widget>[
+                        Expanded(
+                            child: Padding(
+                              padding: const EdgeInsets.all(10.0),
+                              child: Text(
+                               "Level ${Questions[i].level_no.toString()}",
+                                style: TextStyle(
+                                    color: Colors.white, fontWeight: FontWeight.bold),
+                              ),
+                            )),
+                      ],
+                    ),
                   ),
-                ),
-                Container(
-                  color: Colors.brown,
-                  child: Row(
-                    children: <Widget>[
-                      Expanded(
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              "Word Spell ${i+1} of ${Questions.length}",
-                              style: TextStyle(
-                                  color: Colors.white, fontWeight: FontWeight.bold),
-                            ),
-                          )),
-                    ],
+                  Container(
+                    color: Colors.brown,
+                    child: Row(
+                      children: <Widget>[
+                        Expanded(
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text(
+                                "Word Spell ${i+1} of ${Questions.length}",
+                                style: TextStyle(
+                                    color: Colors.white, fontWeight: FontWeight.bold),
+                              ),
+                            )),
+                      ],
+                    ),
                   ),
-                ),
-                Container(
-                  child: Row(
-                    children: <Widget>[
-                      Expanded(
-                          child: Padding(
-                            padding: const EdgeInsets.all(20.0),
-                            child: Container(
-                                child: Text(Questions[i].question,
-                                  style: TextStyle(fontWeight: FontWeight.bold),
-                                )),
-                          )),
-                    ],
+                  Container(
+                    child: Row(
+                      children: <Widget>[
+                        Expanded(
+                            child: Padding(
+                              padding: const EdgeInsets.all(20.0),
+                              child: Container(
+                                  child: Text(Questions[i].question,
+                                    style: TextStyle(fontWeight: FontWeight.bold),
+                                  )),
+                            )),
+                      ],
+                    ),
                   ),
-                ),
-                // AnswerNow(Quetions[i].answer_type,Quetions[i].anwer_options,Quetions[i].Options,Quetions[i].question),
-                Container(
-                  child: Row(
-                    children: <Widget>[
-                      Expanded(
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Container(
-                                child: Card(
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Row(
-                                      children: <Widget>[
-                                        Expanded(
-                                          child: Text("Word point - " +Questions[i].point_awarded,textAlign: TextAlign.center,style:
-                                          TextStyle(fontWeight: FontWeight.bold),),
-                                        ),
+                  // AnswerNow(Quetions[i].answer_type,Quetions[i].anwer_options,Quetions[i].Options,Quetions[i].question),
+                  Container(
+                    child: Row(
+                      children: <Widget>[
+                        Expanded(
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Container(
+                                  child: Card(
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Row(
+                                        children: <Widget>[
+                                          Expanded(
+                                            child: Text("Word point - " +Questions[i].point_awarded,textAlign: TextAlign.center,style:
+                                            TextStyle(fontWeight: FontWeight.bold),),
+                                          ),
 SizedBox(width: 20,),
-                                        Expanded(
-                                          child: FlatButton.icon(shape: RoundedRectangleBorder(
-                                            borderRadius: new BorderRadius.circular(20.0),
+                                          Expanded(
+                                            child: FlatButton.icon(shape: RoundedRectangleBorder(
+                                              borderRadius: new BorderRadius.circular(20.0),
 
-                                          ),
-                                            color: Colors.blue,
-                                            icon: Icon(Icons.hearing,color: Colors.white,), //`Icon` to display
-                                            label: Padding(
-                                              padding: const EdgeInsets.only(top: 5,bottom: 5,right: 10,left: 10),
-                                              child: GestureDetector(onTap: (){
+                                            ),
+                                              color: Colors.blue,
+                                              icon: Icon(Icons.hearing,color: Colors.white,), //`Icon` to display
+                                              label: Padding(
+                                                padding: const EdgeInsets.only(top: 5,bottom: 5,right: 10,left: 10),
+                                                child: GestureDetector(onTap: (){
 
-                                                _speak(Questions[i].anwer_options);
+                                                  _speak(Questions[i].anwer_options);
 
+                                                },
+                                                    child: Text('Listen',style: TextStyle(fontSize: 20,color: Colors.white),)),
+                                              ), //`Text` to display
+                                              onPressed: () {
+                                                //Code to execute when Floating Action Button is clicked
+                                                //...
                                               },
-                                                  child: Text('Listen',style: TextStyle(fontSize: 20,color: Colors.white),)),
-                                            ), //`Text` to display
-                                            onPressed: () {
-                                              //Code to execute when Floating Action Button is clicked
-                                              //...
-                                            },
-                                          ),
-                                        ),  ],
+                                            ),
+                                          ),  ],
+                                      ),
                                     ),
-                                  ),
 
-                                )),
-                          )),
-                    ],
+                                  )),
+                            )),
+                      ],
+                    ),
                   ),
-                ),
 
-                Card(
-                  child:TextField(textCapitalization: TextCapitalization.characters,
-                    controller: answer,
+                  Card(
+                    child:TextField(textCapitalization: TextCapitalization.characters,
+                      controller: answer,
 autocorrect: false,keyboardType: TextInputType.emailAddress,
 
-                    style: TextStyle(color: Colors.blue, fontSize: 18),
-                    decoration: InputDecoration(
-                      contentPadding: EdgeInsets.only(left: 5),
+                      style: TextStyle(color: Colors.blue, fontSize: 18),
+                      decoration: InputDecoration(
+                        contentPadding: EdgeInsets.only(left: 5),
 
 
-                      prefixIcon: Icon(
-                        Icons.email,
-                        color: Colors.white,
+                        prefixIcon: Icon(
+                          Icons.email,
+                          color: Colors.white,
+                        ),
                       ),
                     ),
                   ),
-                ),
 
 
 
-                Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: Row(
-                    children: <Widget>[
-                      SizedBox(width: 15,),
-                      Expanded(
-                        child: GradientButtonText(
-                          ButtonClick: (){
-                            GiveAnswer("skip", (i + 1).toString());
-                            i++;
-                            if (i == Questions.length) {
-                              isCompleted=true;
-                              setState(() {
+                  Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: Row(
+                      children: <Widget>[
+                        SizedBox(width: 15,),
+                        Expanded(
+                          child: GradientButtonText(
+                            ButtonClick: (){
+                              GiveAnswer("skip", (i + 1).toString());
+                              i++;
+                              if (i == Questions.length) {
+                                isCompleted=true;
+                                setState(() {
 
-                              });
-                              //getExamResult();
+                                });
+                                getExamResult();
 
-                              i--;
-                            } else {
-                              setState(() {
+                                i--;
+                              } else {
+                                setState(() {
 
-                              });
-                            }
-                          },
-                          linearGradient:LinearGradient(colors: <Color>[GlobalData.navy,GlobalData.navyblue]) ,
-                          text: Text("Skip",textAlign: TextAlign.center,style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
+                                });
+                              }
+                            },
+                            linearGradient:LinearGradient(colors: <Color>[GlobalData.navy,GlobalData.navyblue]) ,
+                            text: Text("Skip",textAlign: TextAlign.center,style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
+                          ),
                         ),
-                      ),
-                      SizedBox(width: 15,),
-                      Expanded(
-                        child: GradientButtonText(
-                          ButtonClick: () async {
-                            bool remaning = false;
+                        SizedBox(width: 15,),
+                        Expanded(
+                          child: GradientButtonText(
+                            ButtonClick: () async {
+                              bool remaning = false;
 
-                            String answ ="";
+                              String answ ="";
 
-                            answ=answer.text.toString();
-                            GiveAnswer(answ, (i + 1).toString());
-                            // TrueorFalse=" ";
-                            Changed=0;
-                            i++;
-                            if(i==Questions.length)
-                            {
-                              //getExamResult();
+                              answ=answer.text.toString();
+                              GiveAnswer(answ, (i + 1).toString());
+                              // TrueorFalse=" ";
+                              Changed=0;
+                              i++;
+                              if(i==Questions.length)
+                              {
+                                getExamResult();
 
-                              i--;
+                                i--;
 
-                            }else {
-                              setState(() {
+                              }else {
+                                setState(() {
 
-                              });
-                            }
+                                });
+                              }
 
-                          },
-                          linearGradient:LinearGradient(colors: <Color>[GlobalData.navyblue,GlobalData.pink]) ,
-                          text: Text((i+1)==Questions.length?"Submit":"Next",textAlign: TextAlign.center,style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
+                            },
+                            linearGradient:LinearGradient(colors: <Color>[GlobalData.navyblue,GlobalData.pink]) ,
+                            text: Text((i+1)==Questions.length?"Submit":"Next",textAlign: TextAlign.center,style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
+                          ),
                         ),
-                      ),
-                      SizedBox(width: 15,),
-                    ],
-                  ),
-                )
-              ],
+                        SizedBox(width: 15,),
+                      ],
+                    ),
+                  )
+                ],
+              ),
             ),
           ),
         ),
+
+
       ),
-
-
     );
   }
 
@@ -469,13 +483,13 @@ autocorrect: false,keyboardType: TextInputType.emailAddress,
 
 
 
-  /*getExamResult()async{
+  getExamResult()async{
 
     //  submittime();
 
 
-    http.post("http://edusupportapp.com/api/get_user_quiz_result.php",body:{
-      "quiz_id":GlobalData.QuizID,
+    http.post("http://edusupportapp.com/api/get_user_spelling_result.php",body:{
+      "spelling_id":GlobalData.spellingid,
       "user_id":GlobalData.uid,
       "level":GlobalData.CurrentLevel.toString()
     }).then((res){
@@ -485,7 +499,7 @@ autocorrect: false,keyboardType: TextInputType.emailAddress,
 
       ExamCompleted(context,parsedJson['useranswedata']['point_awarded'].toString());
     });
-  }*/
+  }
 
   GiveAnswer(String answers,String qno)async{
     //  Fluttertoast.showToast(msg: "Giving Answer");
@@ -698,7 +712,7 @@ autocorrect: false,keyboardType: TextInputType.emailAddress,
             FlatButton(
               child: Text('Ok'),
               onPressed: () {
-                Navigator.of(context).pushNamed('studentLevelList');
+                Navigator.of(context).pushNamed('studentspellingLevelList');
               },
             ),
           ],

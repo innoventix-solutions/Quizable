@@ -20,10 +20,10 @@ class _StudentsSpellingLevelListState extends State<StudentsSpellingLevelList> {
 
 
   GetLevels() async{
-    await http.post("http://edusupportapp.com/api/get_user_quiz_result_by_level.php",
+    await http.post("http://edusupportapp.com/api/get_user_spelling_result_by_level.php",
         body: {
           "user_id":GlobalData.uid,
-          "quiz_id":GlobalData.QuizID
+          "spelling_id":GlobalData.spellingid
         }).then((res){
       print(res.body);
       var ParsedJson = jsonDecode(res.body);
@@ -70,7 +70,7 @@ class _StudentsSpellingLevelListState extends State<StudentsSpellingLevelList> {
                     Navigator.of(context).pushReplacementNamed('GlobalQuiz');
                   }
                   else{
-                    Navigator.of(context).pushReplacementNamed('Quiz_List_student');
+                    Navigator.of(context).pushReplacementNamed('Spelling_List_student');
 
                   }
 
@@ -147,11 +147,11 @@ class _StudentsSpellingLevelListState extends State<StudentsSpellingLevelList> {
                                     GlobalData.CurrentLevel = (i + 1);
                                     Navigator.of(context).pushNamed(
                                         GlobalData.isGlobal==true && i>0 && GlobalData.MyMembership.isActive==false?
-                                        'ManageAccount':'exam');
+                                        'ManageAccount':'spellans');
                                     GlobalData.isGlobal=false;
                                   }else
                                   {
-                                    Show_toast_Now(isLocked[i]?"Quiz Locked":"Level already attempted", Colors.red);
+                                    Show_toast_Now(isLocked[i]?"Spelling Locked":"Level already attempted", Colors.red);
                                   }
                                 },);
                             })),

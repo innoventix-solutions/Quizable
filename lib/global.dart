@@ -4361,7 +4361,7 @@ class StudentSpellingReport extends StatelessWidget {
                     ),
 
                     SizedBox(width: 50,),
-                    /*Expanded(
+                    Expanded(
                       child: Card(color: is_taken?Colors.green:Colors.green,
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
@@ -4370,7 +4370,7 @@ class StudentSpellingReport extends StatelessWidget {
                               fontSize: 15,color: GlobalData.white),textAlign: TextAlign.center,),
                         ),
                       ),
-                    ),*/
+                    ),
 
                   ],
                 ),

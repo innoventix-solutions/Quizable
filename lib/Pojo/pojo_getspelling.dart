@@ -16,16 +16,16 @@ class Pojo_spelling{
   String classes;
   String teacherinstruction;
   bool is_taken;
-  //String TotalQuizpoints;
-  //String point_awarded;
+  String Totalspellingpoints;
+  String point_awarded;
   //String age;
   int total_fill_question;
 
- // String percentage;
-  //String progresslabel;
-  //String totaltime;
- // String takendate;
-  //String quizattemptlevel;
+  String percentage;
+  String progresslabel;
+  String totaltime;
+  String takendate;
+  String quizattemptlevel;
   String label ="-";
 
 
@@ -33,30 +33,31 @@ class Pojo_spelling{
     this.que_each_level, this.dur_each_level, this.spelling_subject,
     this.class_id, this.status, this.publish_date, this.closing_date,
     this.created_date,this.classes,this.teacherinstruction,this.total_fill_question,this.is_taken,
-  this.label});
+  this.label,this.takendate,this.totaltime,this.Totalspellingpoints,this.progresslabel,this.point_awarded,
+  this.percentage,this.quizattemptlevel});
 
   factory Pojo_spelling.fromJson(Map<String, dynamic> parsedJson){
 
-    //String tt;
-    //String td;
+    String tt;
+    String td;
 
-    //print("asdzfasd :" +parsedJson['ID'].toString());
-    //print("asdzfasd :" +parsedJson['quiz_attend_data'].toString());
-   // if(parsedJson['quiz_attend_data']==null||parsedJson['quiz_attend_data']==false)
-   // {
-    //  tt="NA";
-    //  td="NA";
-   // }else {
+    print("asdzfasd :" +parsedJson['ID'].toString());
+    print("asdzfasd :" +parsedJson['spelling_attend_data'].toString());
+    if(parsedJson['spelling_attend_data']==null||parsedJson['spelling_attend_data']==false)
+    {
+      tt="NA";
+      td="NA";
+    }else {
 
 
-      //tt=parsedJson['quiz_attend_data']['t_time'];
-     // td=parsedJson['quiz_attend_data']['taken_date'];
-    //}
+      tt=parsedJson['spelling_attend_data']['t_time'];
+      td=parsedJson['spelling_attend_data']['taken_date'];
+    }
     String Label="-";
-    if(parsedJson['quiz_attemped_levels']!=null) {
+    if(parsedJson['spelling_attemped_levels']!=null) {
 
       int AttempedLevel = int.parse(
-          parsedJson['quiz_attemped_levels'].toString());
+          parsedJson['spelling_attemped_levels'].toString());
       int TotalLevels = int.parse(parsedJson['no_of_levels'].toString());
       DateTime closingTime = DateTime.parse(parsedJson['closing_date']);
       int DateStatus = DateTime.now().compareTo(
@@ -104,15 +105,15 @@ class Pojo_spelling{
         techer_id: parsedJson['techer_id'].toString(),
         teacherinstruction: parsedJson['teacher_instruction'].toString(),
         //age:parsedJson['age'].toString(),
-       is_taken: parsedJson['is_taken'],
-       // point_awarded: parsedJson['quiz_result']['point_awarded'].toString(),
-       // TotalQuizpoints: parsedJson['quiz_result']['TotalQuizpoints'].toString(),
+        is_taken: parsedJson['is_taken'],
+        point_awarded: parsedJson['spelling_result']['point_awarded'].toString(),
+        Totalspellingpoints: parsedJson['spelling_result']['TotalQuizpoints'].toString(),
         total_fill_question:parsedJson['total_fill_question'],
-       // percentage:parsedJson['quiz_result']['percentage'].toString(),
-       // progresslabel:parsedJson['quiz_result']['progresslabel'],
-       // totaltime: tt,
-       // takendate: td,
-       // quizattemptlevel: parsedJson['quiz_attemped_levels'].toString(),
+        percentage:parsedJson['spelling_result']['percentage'].toString(),
+        progresslabel:parsedJson['spelling_result']['progresslabel'],
+        totaltime: tt,
+        takendate: td,
+        quizattemptlevel: parsedJson['spelling_attemped_levels'].toString(),
         label: Label
 
     );

@@ -21,13 +21,15 @@ class _Spelling_List_studentState extends State<Spelling_List_student> {
     await http.post("http://edusupportapp.com/api/get_user_spelling_by_join_class.php",
         body: {
           "UserId":GlobalData.uid,
-         // "subject": GlobalData.Selected_subject
+          "subject": GlobalData.Selected_subject
         }).then((res){
       print(res.body);
 
       var ParsedJson = jsonDecode(res.body);
-      spellinglist = (ParsedJson['spellingdata'] as List).map((data)=>Pojo_spelling.fromJson(data)).toList();
-
+      if (ParsedJson['spellingdata'] != null || ParsedJson['spellingdata']!= false) {
+        spellinglist = (ParsedJson['spellingdata'] as List).map((data) =>
+            Pojo_spelling.fromJson(data)).toList();
+      }
       print(spellinglist.length);
       print(jsonEncode(spellinglist).toString());
       setState(() {
@@ -263,7 +265,7 @@ class _Spelling_List_studentState extends State<Spelling_List_student> {
 
                               if(spellinglist.isEmpty){
                                 CustomShowDialog(context,title: "Unavailable",msg:
-                                "No Quiz Exercise published yet");
+                                "No Spelling Exercise published yet");
                               }
                               else{
                                 GlobalData.isGlobal=false;
@@ -294,7 +296,7 @@ class _Spelling_List_studentState extends State<Spelling_List_student> {
                     padding: const EdgeInsets.only(top: 10,left: 20),
                     child: Row(
                       children: <Widget>[
-                        Text(spellinglist.isNotEmpty?spellinglist[0].spelling_title:"No Quiz Available",style: TextStyle(
+                        Text(spellinglist.isNotEmpty?spellinglist[0].spelling_title:"No Spelling Available",style: TextStyle(
                             fontSize: 18,fontWeight: FontWeight.bold,color:GlobalData.white
                         ),),
                       ],
@@ -305,7 +307,7 @@ class _Spelling_List_studentState extends State<Spelling_List_student> {
                     child: Row(
                       children: <Widget>[
                         Expanded(
-                          child: Text(spellinglist.isNotEmpty?"Instruction: "+spellinglist[0].teacherinstruction:"No Quiz Available",style: TextStyle(
+                          child: Text(spellinglist.isNotEmpty?"Instruction: "+spellinglist[0].teacherinstruction:"",style: TextStyle(
                               fontSize: 18,fontWeight: FontWeight.bold,color:GlobalData.white
                           ),maxLines: 2,),
                         ),
@@ -366,21 +368,21 @@ class _Spelling_List_studentState extends State<Spelling_List_student> {
                     return  GestureDetector(
                         onTap: (){
 
-                         // if(spellinglist[i].label == "New" ||  spellinglist[i].label == "Pending")
-                          //{
+                         if(spellinglist[i].label == "New" ||  spellinglist[i].label == "Pending")
+                          {
                             GlobalData.EditQuiz=false;
                             GlobalData.spellingid=spellinglist[i].id;
                             GlobalData.ExamQuiz=spellinglist[i].spelling_title;
                             GlobalData.spellDurationofEachLevel=spellinglist[i].dur_each_level;
                             GlobalData.spellLevels=spellinglist[i].no_of_levels;
-                            GlobalData.spellNosofQuesPerLevel=spellinglist[i].que_each_level;
-                            GlobalData.spelltitle=spellinglist[i].spelling_title;
+                            //GlobalData.spellNosofQuesPerLevel=spellinglist[i].que_each_level;
+                            //GlobalData.spelltitle=spellinglist[i].spelling_title;
                             GlobalData.teacherguide=spellinglist[i].teacherinstruction;
 
-                            Navigator.of(context).pushNamed(GlobalData.userType=="student"?'spellans':'Question_List');
+                            Navigator.of(context).pushNamed(GlobalData.userType=="student"?'studentspellingLevelList':'Question_List');
 
-                          //}
-                          //else{Fluttertoast.showToast(msg: "Quiz "+spellinglist[i].label,fontSize: 16,backgroundColor: Colors.red);}
+                          }
+                          else{Fluttertoast.showToast(msg: "Spelling "+spellinglist[i].label,fontSize: 16,backgroundColor: Colors.red);}
 
 
 

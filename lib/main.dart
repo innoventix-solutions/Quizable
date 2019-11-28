@@ -7,6 +7,7 @@ import 'package:newpro/studentDetail.dart';
 import 'package:newpro/studentQuizLevelList.dart';
 import 'package:newpro/studentRegister.dart';
 import 'package:newpro/studentSelectcCass.dart';
+import 'package:newpro/studentSpellingLevelList.dart';
 import 'package:newpro/teacherdetail.dart';
 import 'package:newpro/testpurpose/testing.dart';
 import 'package:share/share.dart';
@@ -257,6 +258,7 @@ class MyApp extends StatelessWidget {
         'editspellingquestion':(context)=>EditSpellingQuestions(),
         'spellingexamselectsubject':(context)=>SpellingExamSelectSubject(),
         'Spelling_List_student':(context)=>Spelling_List_student(),
+        'studentspellingLevelList':(context)=>StudentsSpellingLevelList(),
 
       },
     );
