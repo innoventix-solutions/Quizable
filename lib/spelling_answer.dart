@@ -90,7 +90,7 @@ TextEditingController answer = new TextEditingController();
     });
     // when it finish the onDone cb is called
     sub.onDone(() {
-      stop();
+      //stop();
       getExamResult();
       cd.isPaused=true;
 
@@ -204,7 +204,7 @@ TextEditingController answer = new TextEditingController();
     }).then((res){
       print(res.body);
       var ParsedJson = jsonDecode(res.body);
-      Questions = (ParsedJson['spellingquestionsdata'] as List).map((data)=>Pojo_Spellingquestions.fromJson(data)).toList();
+      OriginalList = (ParsedJson['spellingquestionsdata'] as List).map((data)=>Pojo_Spellingquestions.fromJson(data)).toList();
 
 
 
@@ -431,21 +431,30 @@ autocorrect: false,keyboardType: TextInputType.emailAddress,
 
                               String answ ="";
 
-                              answ=answer.text.toString();
-                              GiveAnswer(answ, (i + 1).toString());
-                              // TrueorFalse=" ";
-                              Changed=0;
-                              i++;
-                              if(i==Questions.length)
-                              {
-                                getExamResult();
+                              answ +=answer.text.toString();
 
-                                i--;
 
-                              }else {
-                                setState(() {
+                              if(remaning==false) {
+                                //answ=answer.text.toString();
 
-                                });
+                                await  GiveAnswer(answ, (i + 1).toString());
+                                //Show_toast_Now("Data removing",Colors.red);
+
+
+                                Changed = 0;
+                                i++;
+                                if (i == Questions.length) {
+                                  getExamResult();
+
+                                  i--;
+                                } else {
+
+                                  print("submittingcode");
+
+                                  setState(() {
+
+                                  });
+                                }
                               }
 
                             },
@@ -523,17 +532,14 @@ autocorrect: false,keyboardType: TextInputType.emailAddress,
     });
 
 
-    for(int i=0;i<fillupsData.length;i++) {
-      fillupsData[i]="";
-      Textcontroller[i].text="";
-    }
-
+   answer.text="";
 
 
 
     if(i<Questions.length-1) {
       print("Clearing all Data");
       Changed = 0;
+      answer.clear();
       fillupsData.clear();
       _TestingList.clear();
       _list.clear();
@@ -632,7 +638,7 @@ autocorrect: false,keyboardType: TextInputType.emailAddress,
 
                                                 Navigator.of(context).pop();
                                                 submittime();
-                                                Navigator.of(context).pushReplacementNamed('MyClassActivities');
+                                                Navigator.of(context).pushReplacementNamed('studentspellingLevelList');
                                                 setState(() {
 
                                                 });
