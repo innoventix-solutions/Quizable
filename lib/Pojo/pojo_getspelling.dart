@@ -25,7 +25,7 @@ class Pojo_spelling{
   String progresslabel;
   String totaltime;
   String takendate;
-  String quizattemptlevel;
+  String spellingattemptlevel;
   String label ="-";
 
 
@@ -34,7 +34,7 @@ class Pojo_spelling{
     this.class_id, this.status, this.publish_date, this.closing_date,
     this.created_date,this.classes,this.teacherinstruction,this.total_fill_question,this.is_taken,
   this.label,this.takendate,this.totaltime,this.Totalspellingpoints,this.progresslabel,this.point_awarded,
-  this.percentage,this.quizattemptlevel});
+  this.percentage,this.spellingattemptlevel});
 
   factory Pojo_spelling.fromJson(Map<String, dynamic> parsedJson){
 
@@ -113,7 +113,7 @@ class Pojo_spelling{
         progresslabel:parsedJson['spelling_result']['progresslabel'],
         totaltime: tt,
         takendate: td,
-        quizattemptlevel: parsedJson['spelling_attemped_levels'].toString(),
+        spellingattemptlevel: parsedJson['spelling_attemped_levels'].toString(),
         label: Label
 
     );

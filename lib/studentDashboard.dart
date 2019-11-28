@@ -958,7 +958,7 @@ class _studentdashboardState extends State<studentdashboard> {
                   .pushNamed('GlobalDashboard');
               globalalert();},
               child: Container(padding: EdgeInsets.only(top: 15,bottom: 15),
-                  child: Text('Global Quiz',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18,color: GlobalData.lightblue),)),
+                  child: Text('Global Quiz & Spelling Bee',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18,color: GlobalData.lightblue),)),
             ),
 
           ],

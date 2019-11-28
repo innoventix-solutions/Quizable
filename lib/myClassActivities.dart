@@ -264,7 +264,29 @@ class _myclassactivitiesState extends State<myclassactivities> {
                                 //Navigator.of(context).pushNamed('Spelling_List_student');
 
                               },)),
-                      ],
+                   ],
+                    ),
+                  ),
+
+                  Padding(
+                    padding: const EdgeInsets.only(left: 35,right: 35,bottom: 5),
+                    child: Row(
+                      children: <Widget>[
+
+
+                        Expanded(
+                            child: GradientButtonText(
+                              linearGradient:LinearGradient(
+                                  colors: <Color>[GlobalData.navy,GlobalData.navyblue]) ,
+                              text: Text("Spelling Exercises Log",
+                                style: TextStyle(color: Colors.white,
+                                  fontWeight: FontWeight.bold,fontSize: 18,),
+                                textAlign: TextAlign.center,),
+                              ButtonClick: (){
+                                Navigator.of(context).pushNamed('spellinglog');
+                              },)
+                        ),
+                         ],
                     ),
                   ),
 
@@ -273,21 +295,20 @@ class _myclassactivitiesState extends State<myclassactivities> {
                     child: Row(
                       children: <Widget>[
                         Expanded(
-                            child: GradientButtonText(
-                              linearGradient:LinearGradient(
-                                  colors: <Color>[GlobalData.pinkred,GlobalData.yellow]) ,
-                              text: Text("See my Results",
-                                style: TextStyle(color: Colors.white,
-                                  fontWeight: FontWeight.bold,fontSize: 18,),
-                                textAlign: TextAlign.center,),
-                              ButtonClick: (){
-                              },)
+                          child: GradientButtonText(
+                            linearGradient:LinearGradient(
+                                colors: <Color>[GlobalData.pinkred,GlobalData.yellow]) ,
+                            text: Text("See my Results",
+                              style: TextStyle(color: Colors.white,
+                                fontWeight: FontWeight.bold,fontSize: 18,),
+                              textAlign: TextAlign.center,),
+                            ButtonClick: (){
+                              Navigator.of(context).pushNamed('');
+                            },),
                         ),
                       ],
                     ),
-                  ),
-
-                ],
+                  ),  ],
               ),
             ),
 

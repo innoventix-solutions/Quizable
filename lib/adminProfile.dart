@@ -204,7 +204,7 @@ getvalue();
                     ),
                     child:   GestureDetector(
                         onTap: (){
-                          Navigator.of(context).pushNamed('EditProfile');
+                          Navigator.of(context).pushNamed('teacherdashboard');
                         },child: new Text("Cancel")),
 
                   ),

@@ -3,6 +3,7 @@ import 'package:newpro/MyQuizResult.dart';
 import 'package:newpro/previewAssignment.dart';
 import 'package:newpro/quizListStudent.dart';
 import 'package:newpro/setSpellingQue.dart';
+import 'package:newpro/spelling_log.dart';
 import 'package:newpro/studentDetail.dart';
 import 'package:newpro/studentQuizLevelList.dart';
 import 'package:newpro/studentRegister.dart';
@@ -259,7 +260,7 @@ class MyApp extends StatelessWidget {
         'spellingexamselectsubject':(context)=>SpellingExamSelectSubject(),
         'Spelling_List_student':(context)=>Spelling_List_student(),
         'studentspellingLevelList':(context)=>StudentsSpellingLevelList(),
-
+        'spellinglog':(context)=>spellinglog()
       },
     );
   }
