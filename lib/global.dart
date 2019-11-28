@@ -1568,6 +1568,13 @@ LogoutFunction(context)async {
   GlobalData.NosofQuesassignment="";
   GlobalData.MyMembership=null;
 
+  GlobalData.spelltitle="";
+  GlobalData.spellLevels="";
+  GlobalData.spellDurationofEachLevel="";
+  GlobalData.spellNosofQuesPerLevel="";
+  GlobalData.teacherguide="";
+  GlobalData.spellingid="";
+
   // Navigator.of(context).dispose();
   // await Navigator.of(context).dispose();
   // Navigator.of(context).pushNamed('login');

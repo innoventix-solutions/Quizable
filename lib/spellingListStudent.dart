@@ -274,7 +274,7 @@ class _Spelling_List_studentState extends State<Spelling_List_student> {
                                 GlobalData.ExamQuiz=spellinglist[0].spelling_title;
                                 GlobalData.spellDurationofEachLevel=spellinglist[0].dur_each_level;//studentLevelList
                                 // Navigator.of(context).pushNamed(Quizz_List[i].is_taken==true?'AnswerLog':'exam');
-                                Navigator.of(context).pushNamed('studentLevelList');
+                                Navigator.of(context).pushNamed('studentspellingLevelList');
                               }
 
                             },
@@ -379,7 +379,7 @@ class _Spelling_List_studentState extends State<Spelling_List_student> {
                             //GlobalData.spelltitle=spellinglist[i].spelling_title;
                             GlobalData.teacherguide=spellinglist[i].teacherinstruction;
 
-                            Navigator.of(context).pushNamed(GlobalData.userType=="student"?'studentspellingLevelList':'Question_List');
+                            Navigator.of(context).pushNamed(GlobalData.userType=="student"?'studentspellingLevelList':'spellingquestionlist');
 
                           }
                           else{Fluttertoast.showToast(msg: "Spelling "+spellinglist[i].label,fontSize: 16,backgroundColor: Colors.red);}
