@@ -303,7 +303,7 @@ class _myclassactivitiesState extends State<myclassactivities> {
                                 fontWeight: FontWeight.bold,fontSize: 18,),
                               textAlign: TextAlign.center,),
                             ButtonClick: (){
-                              Navigator.of(context).pushNamed('');
+                              Navigator.of(context).pushNamed('spellingresult');
                             },),
                         ),
                       ],

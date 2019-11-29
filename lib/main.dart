@@ -111,7 +111,7 @@ import 'AssignmentAnswerLog.dart';
 import 'MyAssignmentExerciseLog.dart';
 import 'MyQuizResult.dart';
 import 'PublishQuiz.dart';
-import 'spellingBeeResult.dart';
+import 'GlobalspellingBeeResult.dart';
 import 'GlobalExercisesDashboard.dart';
 import 'GlobalSpellingBee.dart';
 import 'tabForQuizAndSpelling.dart';
@@ -134,6 +134,9 @@ import 'EditSpellingQuestion.dart';
 import 'SpellinglevelList.dart';
 import 'studentSpellingSelectSubject.dart';
 import 'spellingListStudent.dart';
+import 'spellinganswerlog.dart';
+import 'StudentSpellingResult.dart';
+
 void main() {
   runApp(MyApp());
 }
@@ -260,7 +263,9 @@ class MyApp extends StatelessWidget {
         'spellingexamselectsubject':(context)=>SpellingExamSelectSubject(),
         'Spelling_List_student':(context)=>Spelling_List_student(),
         'studentspellingLevelList':(context)=>StudentsSpellingLevelList(),
-        'spellinglog':(context)=>spellinglog()
+        'spellinglog':(context)=>spellinglog(),
+        'spellinganswerlog':(context)=>SpellingAnswerLog(),
+        'spellingresult':(context)=>StudentSpellingResult(),
       },
     );
   }

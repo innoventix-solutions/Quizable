@@ -3,17 +3,17 @@ import 'package:flutter/material.dart';
 import 'Pojo/pojo_quizzes.dart';
 import 'package:http/http.dart' as http;
 import 'global.dart';
+import 'Pojo/pojo_getspelling.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'setquizquestion.dart';
-import 'Pojo/pojo_getspelling.dart';
 
-class spellinglog extends StatefulWidget {
+class StudentSpellingResult extends StatefulWidget {
   @override
-  _spellinglogState createState() => _spellinglogState();
+  _StudentSpellingResultState createState() => _StudentSpellingResultState();
 }
 
-class _spellinglogState extends State<spellinglog> {
-  List<Pojo_spelling> spellingList = new List();
+class _StudentSpellingResultState extends State<StudentSpellingResult> {
+  List<Pojo_spelling> spellinglist = new List();
 
 
 
@@ -26,10 +26,10 @@ class _spellinglogState extends State<spellinglog> {
       print(res.body);
 
       var ParsedJson = jsonDecode(res.body);
-      spellingList = (ParsedJson['spellingdata'] as List).map((data)=>Pojo_spelling.fromJson(data)).toList();
+      spellinglist = (ParsedJson['spellingdata'] as List).map((data)=>Pojo_spelling.fromJson(data)).toList();
 
-      print(spellingList.length);
-      print(jsonEncode(spellingList).toString());
+      print(spellinglist.length);
+      print(jsonEncode(spellinglist).toString());
       setState(() {
 
       });
@@ -54,7 +54,7 @@ class _spellinglogState extends State<spellinglog> {
 
           title: Center(
             child: Text(
-              "Spelling Exercises Log",
+              "My Spelling Result",
               style: TextStyle(fontSize: 20),
             ),
           ),
@@ -85,29 +85,29 @@ class _spellinglogState extends State<spellinglog> {
         Column(
           children: <Widget>[
             Expanded(
-              child:spellingList.isEmpty ? Center(child: Text('No exercises in Spelling Log')) :
+              child:spellinglist.isEmpty ? Center(child: Text('No Spelling Exercises Log')) :
               ListView.builder(
-                  itemCount: spellingList.length,
+                  itemCount: spellinglist.length,
                   itemBuilder: (c,i){
                     return  GestureDetector(
-                      onTap: (){
-                        GlobalData.spellingid=spellingList[i].id;
-                        GlobalData.QuizLevels=spellingList[i].no_of_levels;
-                        GlobalData.ExamQuiz=spellingList[i].spelling_title;
-                        GlobalData.spellDurationofEachLevel=spellingList[i].dur_each_level;
-                        GlobalData.CurrentStudentID=GlobalData.uid;
-                        Navigator.of(context).pushNamed('spellinglevelsList');
-                      },
-                      child: spellingList[i].is_taken==true?
-                      QuizExerciseLog(
-                          color: GlobalData.pinkred,
-                          heading: spellingList[i].spelling_title+" - "+spellingList[i].id,
-                          paragraph: spellingList[i].spelling_subject,
-                          title: spellingList[i].spelling_title,
-                          id: spellingList[i].id,
-                          is_taken: spellingList[i].is_taken,
-                          //percent: Quizz_List[i].percentage.toString(),
-                          progresslabel:spellingList[i].progresslabel,
+                      /*onTap: (){
+                        GlobalData.QuizID=Quizz_List[i].id;
+                        GlobalData.QuizLevels=Quizz_List[i].no_of_levels;
+                        GlobalData.ExamQuiz=Quizz_List[i].quiz_title;
+                        GlobalData.DurationofEachLevel=Quizz_List[i].dur_each_level;
+                        Navigator.of(context).pushNamed(Quizz_List[i].is_taken==true?'AnswerLog':'exam');
+                      },*/
+                      child: spellinglist[i].is_taken==true?
+                      QuizResult(
+                        color: GlobalData.pinkred,
+                        heading: spellinglist[i].spelling_title+" - "+spellinglist[i].id,
+                        paragraph: spellinglist[i].spelling_subject,
+                        title: spellinglist[i].takendate.toString(),
+                        id: spellinglist[i].id,
+                        is_taken: spellinglist[i].is_taken,
+                        percent: spellinglist[i].percentage.toString(),
+                        progresslabel:spellinglist[i].progresslabel,
+                        timetaken: spellinglist[i].totaltime.toString(),
                       ):SizedBox(),
                     );
                   }

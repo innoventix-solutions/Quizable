@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'GlobalQuizResults.dart';
-import 'spellingBeeResult.dart';
+import 'GlobalspellingBeeResult.dart';
 
 
 class tabforms extends StatefulWidget {

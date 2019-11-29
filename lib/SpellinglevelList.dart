@@ -25,7 +25,7 @@ class _SpellingLevelListsState extends State<SpellingLevelLists> {
                     GlobalData.CurrentLevel=(index+1);
                     Navigator.of(context).pushNamed(
                         GlobalData.isGlobal==true && index>0 && GlobalData.MyMembership.isActive==false?
-                        'ManageAccount':'AnswerLog');
+                        'ManageAccount':'spellinganswerlog');
                     // Navigator.of(context).pushNamed('AnswerLog');
                   }
                   else{
