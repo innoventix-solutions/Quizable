@@ -241,7 +241,7 @@ class MyApp extends StatelessWidget {
         'parentstudent':(context)=>parentstudent(),
         'myquizresult':(context)=>MyQuizResult(),
         'GlobalDashboard':(context)=>GlobalDashboard(),
-        'GlobalSpelling':(context)=>GlobalSpellingsselectsubject(),
+        'GlobalSpellingstudentsubject':(context)=>GlobalSpellingsselectsubject(),
         'GlobalResults':(context)=>tabforms(),
         'GlobalQuizLog':(context)=>GlobalQuizExerciseLog(),
         'studentselectsubject':(context)=>QuizExamSelectSubject(),
@@ -267,6 +267,7 @@ class MyApp extends StatelessWidget {
         'spellinglog':(context)=>spellinglog(),
         'spellinganswerlog':(context)=>SpellingAnswerLog(),
         'spellingresult':(context)=>StudentSpellingResult(),
+        'GlobalSpelling':(context)=>GlobalSpellinglist(),
       },
     );
   }

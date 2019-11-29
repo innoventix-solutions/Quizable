@@ -9,12 +9,12 @@ import 'Pojo/pojo_getspelling.dart';
 
 
 
-class GlobalSpelling extends StatefulWidget {
+class GlobalSpellinglist extends StatefulWidget {
   @override
-  _GlobalSpellingState createState() => _GlobalSpellingState();
+  _GlobalSpellinglistState createState() => _GlobalSpellinglistState();
 }
 
-class _GlobalSpellingState extends State<GlobalSpelling> {
+class _GlobalSpellinglistState extends State<GlobalSpellinglist> {
 
   List<Pojo_spelling> spellinglist = new List();
 

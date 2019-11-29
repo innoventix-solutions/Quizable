@@ -98,7 +98,7 @@ class _StudentSpellingResultState extends State<StudentSpellingResult> {
                         Navigator.of(context).pushNamed(Quizz_List[i].is_taken==true?'AnswerLog':'exam');
                       },*/
                       child: spellinglist[i].is_taken==true?
-                      QuizResult(
+                      SpellingResult(
                         color: GlobalData.pinkred,
                         heading: spellinglist[i].spelling_title+" - "+spellinglist[i].id,
                         paragraph: spellinglist[i].spelling_subject,

@@ -35,7 +35,7 @@ class _tabformsState extends State<tabforms> {
         body: TabBarView(
           children: [
             GlobalQuizResult(),
-            spellingresult(),
+            GlobalSpellingResult(),
           ],
         ),
       ),

@@ -4713,3 +4713,202 @@ class GlobalSpellingActivity extends StatelessWidget {
       );
   }
 }
+
+class SpellingResult extends StatelessWidget {
+
+  final String heading;
+  final String paragraph;
+  final Color color;
+  final String title;
+  final String id;
+  final bool is_taken;
+  final String levels;
+  final String duration;
+  final String percent;
+  final String progresslabel;
+  final String timetaken;
+
+  SpellingResult(
+      {
+        this.heading,
+        this.paragraph,
+        this.color,
+        this.title,
+        this.id,
+        this.is_taken,
+        this.duration,
+        this.levels,
+        this.percent,
+        this.progresslabel,
+        this.timetaken
+      });
+
+  @override
+  Widget build(BuildContext context) {
+
+
+
+
+
+
+
+    String TimerText ="-:--:--";
+
+    String RoundTime(String time){
+
+      if(time.length==1)
+      {
+        time ="0"+time;
+      }
+
+      return time;
+
+    }
+
+
+
+
+
+
+    return
+      Container(decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(40))),
+        child: Card(elevation: 5.0,shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(5.0),
+        ),
+          child: Column(mainAxisAlignment: MainAxisAlignment.start,
+            children: <Widget>[
+              Row(
+                children: <Widget>[
+                  Expanded(
+                    child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(5),),color: color),
+
+                      child: Padding(
+                        padding: const EdgeInsets.only(top: 5,bottom: 5),
+                        child: Column(
+                          children: <Widget>[
+                            Padding(
+                              padding: const EdgeInsets.only(top: 5,bottom: 5,left: 10,right: 3),
+                              child: Row(
+                                children: <Widget>[
+                                  Expanded(
+                                    child: Text(heading,textAlign: TextAlign.left,
+                                      style: TextStyle(color: Colors.white,fontSize: 15,fontWeight: FontWeight.bold),),
+                                  ),
+                                  Padding(
+                                      padding: const EdgeInsets.only(right:4),
+                                      child: PopupMenuButton(
+                                        child: GestureDetector(
+                                            onTap: (){
+                                              Share.share("My EduSupport Spelling Result \n \n"+ GlobalData.Username + " completed spelling: " + heading + "\n \n"+"My result is: " + percent +" %"
+                                                  +"\n"  + progresslabel);
+
+
+
+                                            },child: Icon(Icons.share,color: Colors.white,)),
+                                        itemBuilder: (_) => <PopupMenuItem<String>>[
+                                          /*new PopupMenuItem<String>(
+                                            child: GestureDetector(onTap: (){
+                                              Navigator.of(context).pushNamed('levelsList');
+                                            },
+                                              child: Row(
+                                                children: <Widget>[
+                                                  Padding(
+                                                    padding: const EdgeInsets.only(right: 4),
+                                                    child: Icon(
+                                                      Icons.remove_red_eye,
+                                                      color: GlobalData.pinkred,size: 14,
+                                                    ),
+                                                  ),
+                                                  new Text('View',style: TextStyle(fontSize: 15),),
+                                                ],
+                                              ),
+                                            ),),*/
+
+                                          /* PopupMenuItem<String>(
+                                          child: Row(
+                                            children: <Widget>[
+                                              Padding(
+                                                padding: const EdgeInsets.only(right: 4),
+                                                child: GestureDetector(onTap: (){
+                                                  Share.share("Title Of Quiz Is: " + heading + "\n" "Student Name: " + GlobalData.Username+" \n"+"Grade Of Student is: " + percent +" "
+                                                      +"\n" + "Result: " + progresslabel);
+
+  },
+                                                  child: Icon(
+                                                    Icons.share,
+                                                    color: GlobalData.pinkred,size: 14,
+                                                  ),
+                                                ),
+                                              ),
+                                              GestureDetector(onTap: (){
+    Share.share("My EduSupport Quiz Result \n \n"+ GlobalData.Username + " completed Quiz: " + heading + "\n \n"+"My result is: " + percent +" %"
+    +"\n"  + progresslabel);
+
+    }
+                                              ,
+                                                  child: new Text('Share',style: TextStyle(fontSize: 15),)),
+                                            ],
+                                          ),),*/
+                                        ],
+
+                                      )
+                                  ),],
+                              ),
+                            ),
+
+                          ],
+
+                        ),
+                      ),
+
+                    ),
+                  ),
+                ],
+              ),
+              Container(
+                padding: EdgeInsets.only(left: 25,top: 10,right: 30,bottom: 10),
+                child: Column(
+                  children: <Widget>[
+                    Row(
+                      children: <Widget>[
+                        Expanded(
+                          child: Column(
+                            children: <Widget>[
+                              Text(paragraph,style: TextStyle(fontWeight: FontWeight.bold,
+                                  fontSize: 15,color: GlobalData.gray),textAlign: TextAlign.justify,),
+
+                              getscore(grade:progresslabel)],
+                          ),
+                        ),
+                        Spacer(),
+
+                        getscoreborder(per: double.parse(percent),),
+
+                      ],
+                    ),Padding(
+                      padding: const EdgeInsets.only(top: 10),
+                      child: Row(
+                        children: <Widget>[
+                          Expanded(child: Text("Time : " + timetaken,style: TextStyle(fontSize: 14,color: Colors.black),)),
+                          Expanded(child: Text("Exam Date : " + title,style: TextStyle(fontSize: 14,color: Colors.black),)),
+
+                        ],
+                      ),
+                    )
+
+                  ],
+                ),
+              ),
+
+
+
+
+
+
+            ],
+          ),
+
+        ),
+      );
+  }
+}
