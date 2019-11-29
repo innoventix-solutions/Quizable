@@ -52,7 +52,7 @@ class _ManageAccountState extends State<ManageAccount> {
         IconButton(onPressed: (){
           if(GlobalData.userType=="student"){
 
-            Navigator.of(context).pushReplacementNamed('studentdashboard');
+            Navigator.of(context).pushReplacementNamed('GlobalDashboard');
           }
           else{
             Navigator.of(context).pushReplacementNamed('dashboard');
