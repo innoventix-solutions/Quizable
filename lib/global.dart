@@ -330,8 +330,8 @@ class drawerquiz extends StatelessWidget {
                                 Navigator.of(context).pushNamed('ManageAccount');
 
                               }):
-                              CustomShowDialog(context,title: "Subscription Required",msg:
-                              "You cannot set more than 10 questions each level. \n\nPlease contact your Admin to Subscribe for the institution's account.",
+                              CustomShowDialog(context,title: "SUBSCRIPTION REQUIRED",msg:
+                              "Your Class Admin is on a Trial Subscription. \n\nPlease refer to Class Admin to upgrade account to enable you \nset multi-level questions above 10.\n\nThank you",
                                   onPressed:(){
                                     Navigator.of(context).pop();
 
@@ -396,13 +396,85 @@ class drawerquiz extends StatelessWidget {
                   child: Text('Spelling challenge Bank',style: TextStyle(
                       color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
                 ),],),
-            ),onTap: (){
+            ),onTap: ()async{
+            print("adminmembership:" +GlobalData.adminmembership.toString());
+            print("classname:" +GlobalData.class_name .toString());
 
-               /*Navigator.of(context)
+
+            if(GlobalData.adminmembership==null.toString() || GlobalData.adminmembership==false.toString())
+
+            {
+
+              if(GlobalData.MyMembership==null || GlobalData.MyMembership.isActive==false)
+              {
+
+                await GetQuizzes();
+
+                if(GlobalData.spellinglist.isNotEmpty)
+                {
+                  GlobalData.spellinglist[0].status=="onhold"?
+                  Navigator.of(context).pushNamed('previewspelling')
+                      :
+                  GlobalData.userType=="admin_teacher"?
+                  CustomShowDialog(context,title: "Subscription Required",msg:
+                  "Only One Spelling with max 10 Questions with one Level is Allowed for Free User\n\nSubscribe to create more Spelling",onPressed:(){
+                    Navigator.of(context).pushNamed('ManageAccount');
+
+                  }):
+                  CustomShowDialog(context,title: "SUBSCRIPTION REQUIRED",msg:
+                  "Your Class Admin is on a Trial Subscription. \n\nPlease refer to Class Admin to upgrade account to enable you \nset multi-level questions above 10.\n\nThank you",
+                      onPressed:(){
+                        Navigator.of(context).pop();
+
+                      });
+                }
+
+
+
+                /*{GlobalData.userType=="admin_teacher"?
+                        CustomShowDialog(context,title: "Subscription Required",msg:
+                        "Only One Quizz with max 10 Questions with one Level is Allowed for Free User\n\nSubscribe to create more Quizz",onPressed:(){
+                          Navigator.of(context).pushNamed('ManageAccount');
+
+                        }):
+                          GlobalData.Quizz_List[0].status=="onhold"?
+
+
+
+                          Navigator.of(context)
+                              .pushNamed('previewQuiz'):CustomShowDialog(context,title: "Subscription Required",msg:
+                      "You cannot set more than 10 questions each level. \n\nPlease contact your Admin to Subscribe for the institution's account.",
+                          onPressed:(){
+                        Navigator.of(context).pop();
+
+                      });
+                        //Fluttertoast.showToast(msg: "Only One Quizz with max 10 Questions with one Level is Allowed for Free User\n\nSubscribe to create more Quizz");
+
+                        //Navigator.of(context).pushNamed('ManageAccount');
+                      }*/
+                else {
+
+
+                  Navigator.of(context)
+                      .pushNamed('setspellingque');
+                }
+
+              }else
+              {
+                Navigator.of(context)
+                    .pushNamed('setspellingque');
+              }
+
+
+
+            }
+
+            else {
+              /*Navigator.of(context)
                    .pushNamed('developpage');*/
-            Navigator.of(context)
-                .pushNamed('setspellingque');
-
+              Navigator.of(context)
+                  .pushNamed('setspellingque');
+            }
 
           },
           ),
@@ -3758,7 +3830,7 @@ void CustomShowDialog(context,{String title,String msg,String buttonText,VoidCal
         actions: <Widget>[
           // usually buttons at the bottom of the dialog
           new FlatButton(
-            child: new Text(buttonText??"Ok",style: TextStyle(color: Colors.black),),
+            child: new Text(buttonText??"Ok",style: TextStyle(color: Colors.black),textAlign: TextAlign.center,),
             onPressed: () {
               onPressed==null?
               Navigator.of(context).pop():
