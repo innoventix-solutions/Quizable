@@ -89,13 +89,13 @@ class _MyQuizResultState extends State<MyQuizResult> {
                   itemCount: Quizz_List.length,
                   itemBuilder: (c,i){
                     return  GestureDetector(
-                      /*onTap: (){
-                        GlobalData.QuizID=Quizz_List[i].id;
+                      onTap: (){
+                             GlobalData.QuizID=Quizz_List[i].id;
                         GlobalData.QuizLevels=Quizz_List[i].no_of_levels;
                         GlobalData.ExamQuiz=Quizz_List[i].quiz_title;
                         GlobalData.DurationofEachLevel=Quizz_List[i].dur_each_level;
-                        Navigator.of(context).pushNamed(Quizz_List[i].is_taken==true?'AnswerLog':'exam');
-                      },*/
+                        GlobalData.CurrentStudentID=GlobalData.uid;
+                        Navigator.of(context).pushNamed('levelsList'); },
                       child: Quizz_List[i].is_taken==true?
                       QuizResult(
                           color: GlobalData.pinkred,

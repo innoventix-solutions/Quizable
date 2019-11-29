@@ -303,13 +303,16 @@ class _QuestionsnewState extends State<Questionsnew> {
                                           child: SizedBox(width: 100,
                                             child: GradientButtonText(
                                               ButtonClick: (){
+          if(value1.text !=null && value1.text !="" && value2.text !=null && value2.text !="" ) {
 
                                                 Matches.add(MatchClass(val1: value1.text,val2:value2.text ));
                                                 Navigator.of(context).pop();
                                                 setState(() {
 
                                                 });
-
+          }else{
+            Show_toast_Now("Option can't be blank",Colors.red);
+          }
                                               }
                                               ,linearGradient:
                                             LinearGradient(colors: <Color>[GlobalData.navy,GlobalData.navyblue]),
