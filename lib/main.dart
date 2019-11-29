@@ -13,6 +13,7 @@ import 'package:newpro/teacherdetail.dart';
 import 'package:newpro/testpurpose/testing.dart';
 import 'package:share/share.dart';
 
+import 'GlobalspellingSelectSubject.dart';
 import 'ParentLogin.dart';
 import 'ParentsStudent.dart';
 import 'Questions.dart';
@@ -121,7 +122,7 @@ import 'myClassResult.dart';
 import 'temp.dart';
 import 'pojo/pojo_subject.dart';
 import 'StudentsLevelsAnswer.dart';
-import 'GlobalSelectSubject.dart';
+import 'GlobalQuizSelectSubject.dart';
 import 'spelling_answer.dart';
 import 'selectspellingclass.dart';
 import 'selectspellingsubject.dart';
@@ -240,7 +241,7 @@ class MyApp extends StatelessWidget {
         'parentstudent':(context)=>parentstudent(),
         'myquizresult':(context)=>MyQuizResult(),
         'GlobalDashboard':(context)=>GlobalDashboard(),
-        'GlobalSpelling':(context)=>GlobalSpelling(),
+        'GlobalSpelling':(context)=>GlobalSpellingsselectsubject(),
         'GlobalResults':(context)=>tabforms(),
         'GlobalQuizLog':(context)=>GlobalQuizExerciseLog(),
         'studentselectsubject':(context)=>QuizExamSelectSubject(),

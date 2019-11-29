@@ -4522,3 +4522,194 @@ class StudentSpellingReport extends StatelessWidget {
       );
   }
 }
+
+class GlobalSpellingActivity extends StatelessWidget {
+
+  final String heading;
+  final String paragraph;
+  final Color color;
+  final String title;
+  final String id;
+
+  final String levels;
+  final String duration;
+  final String closingdate;
+  final Pojo_spelling spelling;
+
+
+  GlobalSpellingActivity(
+      {
+        this.heading,
+        this.paragraph,
+        this.color,
+        this.title,
+        this.id,
+
+        this.duration,
+        this.levels,
+        this.closingdate,
+        this.spelling});
+
+  @override
+  Widget build(BuildContext context) {
+    return
+      Container(decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(40))),
+        child: Card(elevation: 5.0,shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(5.0),
+        ),
+          child: Column(mainAxisAlignment: MainAxisAlignment.start,
+            children: <Widget>[
+              Row(
+                children: <Widget>[
+                  Expanded(
+                    child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(5),),color: color),
+
+                      child: Padding(
+                        padding: const EdgeInsets.only(top: 5,bottom: 5),
+                        child: Column(
+                          children: <Widget>[
+                            Padding(
+                              padding: const EdgeInsets.only(top: 5,bottom: 5,left: 10),
+                              child: Row(
+                                children: <Widget>[
+                                  Expanded(
+                                    child: Text(heading,textAlign: TextAlign.left,
+                                      style: TextStyle(color: Colors.white,fontSize: 15,fontWeight: FontWeight.bold),),
+                                  ),
+                                  Expanded(
+                                    child:  Row(mainAxisAlignment: MainAxisAlignment.end,
+                                      children: <Widget>[
+                                        GlobalData.userType=="student"?Text(""):PopupMenuButton(
+                                          child: Icon(Icons.more_vert),
+                                          itemBuilder: (_) => <PopupMenuItem<String>>[
+                                            new PopupMenuItem<String>(
+                                                child: Row(
+                                                  children: <Widget>[
+                                                    Padding(
+                                                      padding: const EdgeInsets.only(right: 4),
+                                                      child: Icon(
+                                                        Icons.edit,
+                                                        color: GlobalData.lightblue,size: 12,
+                                                      ),
+                                                    ),
+                                                    new Text('Edit',style: TextStyle(fontSize: 15),),
+                                                  ],
+                                                ), value: 'edit'),
+
+
+                                            new PopupMenuItem<String>(
+                                                child: Row(
+                                                  children: <Widget>[
+                                                    Padding(
+                                                      padding: const EdgeInsets.only(right: 4,top: 1),
+                                                      child: Icon(
+                                                        Icons.cancel,
+                                                        color: GlobalData.darkpink,size: 12,
+                                                      ),
+                                                    ),
+                                                    new Text('Delete',style: TextStyle(fontSize: 15),),
+                                                  ],
+                                                ), value: 'delete'),
+
+                                          ],
+                                          onSelected: ( value){
+                                            if(value=="edit")
+                                            {
+                                              GlobalData.EditQuiz=true;
+                                              GlobalData.spellingid=id;
+                                              GlobalData.ExamQuiz=title;
+                                              Navigator.of(context).pushNamed('spellingquestionlist');
+                                            }
+                                          },
+                                        ),
+                                      ],
+                                    ),
+                                  ), ],
+                              ),
+                            ),
+
+                          ],
+
+                        ),
+                      ),
+
+                    ),
+                  ),
+                ],
+              ),
+              Container(
+                padding: EdgeInsets.only(left: 25,top: 20,right: 30,bottom: 10),
+                child: Row(
+                  children: <Widget>[
+                    Expanded(
+                      child: Text(paragraph,style: TextStyle(fontWeight: FontWeight.bold,
+                          fontSize: 15,color: GlobalData.gray),textAlign: TextAlign.justify,),
+                    ),
+
+                    SizedBox(width: 50,),
+                    /*   Expanded(
+                      child: Card(color: Colors.red,
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(quiz.label,style: TextStyle(fontWeight: FontWeight.bold,
+                              fontSize: 15,color: GlobalData.white),textAlign: TextAlign.center,),
+                        ),
+                      ),
+                    ),*/
+
+
+                  ],
+                ),
+              ),
+
+              Container(
+                padding: EdgeInsets.only(left: 25,top: 5,right: 30,bottom: 5),
+                child: Row(
+                  children: <Widget>[
+                    Expanded(
+                      child: Text(levels +" Levels",style: TextStyle(fontWeight: FontWeight.bold,
+                          fontSize: 15,color: GlobalData.gray),textAlign: TextAlign.justify,),
+                    ),
+
+                    SizedBox(width: 50,),
+                    Expanded(
+                      child: Text(duration +" Minutes",style: TextStyle(fontWeight: FontWeight.bold,
+                          fontSize: 15,color: GlobalData.gray),textAlign: TextAlign.justify,),
+                    ),
+
+
+                  ],
+                ),
+              ),
+
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(children: <Widget>[
+                  Card(color: Colors.red,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text("Closing Date : ",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 15,
+                          color: Colors.white),textAlign: TextAlign.center,),
+                    ),
+                  ),
+                  Text(closingdate,style: TextStyle(fontWeight: FontWeight.bold,fontSize: 14,
+                      color: GlobalData.gray),textAlign: TextAlign.center,),
+
+                ],),
+              ),
+
+
+
+
+
+
+
+
+
+            ],
+          ),
+
+        ),
+      );
+  }
+}
