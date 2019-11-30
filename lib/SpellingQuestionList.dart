@@ -234,8 +234,19 @@ class _SpellingQuestion_ListState extends State<SpellingQuestion_List> {
                             child: Row(
                               children: <Widget>[
                                 Expanded(child: Padding(
-                                  padding: const EdgeInsets.all(20.0),
-                                  child: Container(child: Text(Questions[i].question,style: TextStyle(fontWeight: FontWeight.bold),)),
+                                  padding: const EdgeInsets.only(left: 10,top: 15,bottom: 15),
+                                  child: Container(child: Text("Question: " +Questions[i].question,style: TextStyle(fontWeight: FontWeight.bold),)),
+                                )),
+                              ],
+                            ),
+                          ),
+                          Container(
+
+                            child: Row(
+                              children: <Widget>[
+                                Expanded(child: Padding(
+                                  padding: const EdgeInsets.only(left: 10),
+                                  child: Container(child: Text("Answer: " +Questions[i].anwer_options,style: TextStyle(fontWeight: FontWeight.bold),)),
                                 )),
                               ],
                             ),
@@ -246,7 +257,7 @@ class _SpellingQuestion_ListState extends State<SpellingQuestion_List> {
                             child: Row(
                               children: <Widget>[
                                 Expanded(child: Padding(
-                                  padding: const EdgeInsets.all(8.0),
+                                  padding: const EdgeInsets.all(10.0),
                                   child: Container(child: Text("Answer Type: Spelling",style: TextStyle(color: Colors.blue,fontWeight: FontWeight.bold),)),
                                 )),
                                 Padding(
@@ -313,7 +324,16 @@ class _SpellingQuestion_ListState extends State<SpellingQuestion_List> {
     /*print(Quetions[i].anwer_options.length.toString()+"  asdznaisdfmmb k");
 Matches =Quetions[i].anwer_options;*/
     return Scaffold(
-        appBar: AppBar(title: Text("Questions List"),centerTitle: true,),
+        appBar: AppBar(title: Text("Questions List"),centerTitle: true,automaticallyImplyLeading: false,
+          actions: <Widget>[
+            GestureDetector(
+                onTap: (){
+                  Navigator.of(context).pushReplacementNamed('previewspelling');
+
+                },child: Icon(Icons.exit_to_app))
+
+
+          ],),
         body: isloading==true?Center(child: Text("Loading...")):Questions.isNotEmpty?MYQue():Center(child: Text("No Questions"),)
     );
   }

@@ -33,7 +33,7 @@ class Pojo_Spellingquestions{
       id: parsedJson['ID'].toString(),
       question: parsedJson['question'].toString(),
      // answer_type : parsedJson['answer_type'].toString(),
-      anwer_options: parsedJson['anwer_options'].toString(),
+      anwer_options: parsedJson['answer_options'].toString(),
       point_awarded: parsedJson['point_awarded'].toString(),
       level_no: parsedJson['level_no'].toString(),
       ques_no:parsedJson['ques_no'].toString(),

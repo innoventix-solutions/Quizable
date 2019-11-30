@@ -234,7 +234,7 @@ class _GlobalDashboardState extends State<GlobalDashboard> {
                   )],),
               ),onTap: (){
               Navigator.of(context)
-                  .pushNamed('studentdashboard');
+                  .pop();
             },
             ),
 

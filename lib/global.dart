@@ -289,11 +289,11 @@ class drawerquiz extends StatelessWidget {
                       color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
                 )],),
             ),onTap: (){
-/*
+
               Navigator.of(context)
-                .pushNamed('developpage');*/
-           Navigator.of(context)
-                .pushNamed('SetAssignment');
+                .pushNamed('developpage');
+          /* Navigator.of(context)
+                .pushNamed('SetAssignment');*/
           },
           ),
 
@@ -408,7 +408,7 @@ class drawerquiz extends StatelessWidget {
               if(GlobalData.MyMembership==null || GlobalData.MyMembership.isActive==false)
               {
 
-                await GetQuizzes();
+                await GetSpellinng();
 
                 if(GlobalData.spellinglist.isNotEmpty)
                 {
@@ -3933,6 +3933,19 @@ GetQuizzes() async {
 
 }
 
+GetSpellinng()async{
+  await http.post("http://edusupportapp.com/api/get_spellings.php",
+      body: {"UserId": GlobalData.uid}).then((res) {
+    print(res.body);
+    var ParsedJson = jsonDecode(res.body);
+    if (ParsedJson['spellingdata'] != false) {
+      GlobalData.spellinglist = (ParsedJson['spellingdata'] as List)
+          .map((data) => Pojo_spelling.fromJson(data))
+          .toList();
+    }
+  });
+
+}
 
 
 
