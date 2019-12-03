@@ -19,7 +19,7 @@ class _GlobalSpellingResultState extends State<GlobalSpellingResult> {
 
   GetTest() async{
 
-    await http.post("http://edusupportapp.com/api/get_global_quizzes.php",
+    await http.post("http://edusupportapp.com/api/get_global_spellings.php",
         body: {
           "UserId":GlobalData.uid
         }).then((res){
@@ -27,6 +27,11 @@ class _GlobalSpellingResultState extends State<GlobalSpellingResult> {
 
       var ParsedJson = jsonDecode(res.body);
       spellinglist = (ParsedJson['spellingdata'] as List).map((data)=>Pojo_spelling.fromJson(data)).toList();
+
+      spellinglist.sort((a, b) {
+        return b.takendate.toLowerCase().compareTo(a.takendate.toLowerCase());
+      });
+
 
       print(spellinglist.length);
       print(jsonEncode(spellinglist).toString());

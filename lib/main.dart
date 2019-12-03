@@ -55,7 +55,7 @@ import 'viewteacherdropdown.dart';
 import 'addteacher.dart';
 import 'adminprofile.dart';
 import 'setquizquestion.dart';
-import 'manageclassactivites.dart';
+import 'StudentsQuizReport.dart';
 import 'assignmentquestionbank.dart';
 import 'json.dart';
 
@@ -67,7 +67,7 @@ import 'myclassactivities.dart';
 import 'level1complete.dart';
 import 'alllevelcomplete.dart';
 import 'myclassroom.dart';
-import 'manageclassactivites.dart';
+import 'StudentsQuizReport.dart';
 //import 'Questions.dart';
 import 'questionsNew.dart';
 import 'myquizexercise.dart';
@@ -137,6 +137,7 @@ import 'studentSpellingSelectSubject.dart';
 import 'spellingListStudent.dart';
 import 'spellinganswerlog.dart';
 import 'StudentSpellingResult.dart';
+import 'StudentsSpellingReport.dart';
 
 void main() {
   runApp(MyApp());
@@ -268,6 +269,7 @@ class MyApp extends StatelessWidget {
         'spellinganswerlog':(context)=>SpellingAnswerLog(),
         'spellingresult':(context)=>StudentSpellingResult(),
         'GlobalSpelling':(context)=>GlobalSpellinglist(),
+        'StudentListBySpelling':(context)=>StudentReportSpelling(),
       },
     );
   }

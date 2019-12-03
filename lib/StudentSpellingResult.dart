@@ -28,6 +28,11 @@ class _StudentSpellingResultState extends State<StudentSpellingResult> {
       var ParsedJson = jsonDecode(res.body);
       spellinglist = (ParsedJson['spellingdata'] as List).map((data)=>Pojo_spelling.fromJson(data)).toList();
 
+      spellinglist.sort((a, b) {
+        return b.takendate.toLowerCase().compareTo(a.takendate.toLowerCase());
+      });
+
+
       print(spellinglist.length);
       print(jsonEncode(spellinglist).toString());
       setState(() {

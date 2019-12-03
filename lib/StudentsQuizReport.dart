@@ -94,7 +94,7 @@ class _questionmenuState extends State<questionmenu> {
                     GlobalData.DurationofEachLevel=Quizz_List[i].dur_each_level;
                       Navigator.of(context).pushNamed('StudentListByQuiz');
                     },
-                    child: StudentQuizReport(
+                    child: StudentActivityReport(
                       color: GlobalData.pinkred,
                       heading: Quizz_List[i].quiz_title,
                       paragraph: Quizz_List[i].quiz_subject,

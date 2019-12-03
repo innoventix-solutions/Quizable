@@ -145,7 +145,7 @@ class _ReportDashboardState extends State<ReportDashboard> {
                         ),
                       ),onTap: (){
                       Navigator.of(context)
-                          .pushNamed('');
+                          .pushNamed('StudentListBySpelling');
                     },
                     ),
 

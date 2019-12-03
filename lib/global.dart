@@ -17,12 +17,16 @@ import 'Pojo/pojo_quizzes.dart';
 import 'Pojo/pojo_spellingquestions.dart';
 import 'Pojo/pojo_getspelling.dart';
 import 'Pojo/pojo_getassignment.dart';
+import 'Pojo/pojo_subject.dart';
+import 'Pojo/pojo_quizbyclass.dart';
 
 
 class GlobalData{
 
-  static  List<Pojo_quizzes> Quizz_List = new List();
+  static List<Pojo_quizzes> Quizz_List = new List();
   static List<Pojo_spelling> spellinglist = new List();
+  static List<Subjectcount> mysub = new List();
+  static List<Pojo_quizzclass> quizclass = new List();
   static bool EditQuiz = false;
   static Pojo_questions Current_Que_To_Edit;
   static Pojo_Spellingquestions Edit_spelling_Questions;
@@ -321,6 +325,7 @@ class drawerquiz extends StatelessWidget {
 
                       if(GlobalData.Quizz_List.isNotEmpty)
                         {
+
                           GlobalData.Quizz_List[0].status=="onhold"?
                           Navigator.of(context).pushNamed('previewQuiz')
                               :
@@ -338,29 +343,6 @@ class drawerquiz extends StatelessWidget {
                                   });
                         }
 
-
-
-                      /*{GlobalData.userType=="admin_teacher"?
-                        CustomShowDialog(context,title: "Subscription Required",msg:
-                        "Only One Quizz with max 10 Questions with one Level is Allowed for Free User\n\nSubscribe to create more Quizz",onPressed:(){
-                          Navigator.of(context).pushNamed('ManageAccount');
-
-                        }):
-                          GlobalData.Quizz_List[0].status=="onhold"?
-
-
-
-                          Navigator.of(context)
-                              .pushNamed('previewQuiz'):CustomShowDialog(context,title: "Subscription Required",msg:
-                      "You cannot set more than 10 questions each level. \n\nPlease contact your Admin to Subscribe for the institution's account.",
-                          onPressed:(){
-                        Navigator.of(context).pop();
-
-                      });
-                        //Fluttertoast.showToast(msg: "Only One Quizz with max 10 Questions with one Level is Allowed for Free User\n\nSubscribe to create more Quizz");
-
-                        //Navigator.of(context).pushNamed('ManageAccount');
-                      }*/
                       else {
 
 
@@ -429,29 +411,6 @@ class drawerquiz extends StatelessWidget {
                       });
                 }
 
-
-
-                /*{GlobalData.userType=="admin_teacher"?
-                        CustomShowDialog(context,title: "Subscription Required",msg:
-                        "Only One Quizz with max 10 Questions with one Level is Allowed for Free User\n\nSubscribe to create more Quizz",onPressed:(){
-                          Navigator.of(context).pushNamed('ManageAccount');
-
-                        }):
-                          GlobalData.Quizz_List[0].status=="onhold"?
-
-
-
-                          Navigator.of(context)
-                              .pushNamed('previewQuiz'):CustomShowDialog(context,title: "Subscription Required",msg:
-                      "You cannot set more than 10 questions each level. \n\nPlease contact your Admin to Subscribe for the institution's account.",
-                          onPressed:(){
-                        Navigator.of(context).pop();
-
-                      });
-                        //Fluttertoast.showToast(msg: "Only One Quizz with max 10 Questions with one Level is Allowed for Free User\n\nSubscribe to create more Quizz");
-
-                        //Navigator.of(context).pushNamed('ManageAccount');
-                      }*/
                 else {
 
 
@@ -2748,7 +2707,7 @@ class PreviewQuizs extends StatelessWidget {
 
 /*2nd sept*/
 
-class StudentQuizReport extends StatelessWidget {
+class StudentActivityReport extends StatelessWidget {
 
   final String heading;
   final String paragraph;
@@ -2760,7 +2719,7 @@ class StudentQuizReport extends StatelessWidget {
   final String duration;
 
 
-  StudentQuizReport(
+  StudentActivityReport(
       {
         this.heading,
         this.paragraph,
@@ -3932,6 +3891,8 @@ GetQuizzes() async {
   });
 
 }
+
+
 
 GetSpellinng()async{
   await http.post("http://edusupportapp.com/api/get_spellings.php",

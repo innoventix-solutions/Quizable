@@ -167,15 +167,61 @@ class _PreviewQuizState extends State<PreviewQuiz> {
                                      ),],
 
                                    ),
-
-
-
-
                               ],
                             ),
-                            onTap: () {
-                           Navigator.of(context).pushNamed('setquizquestions');
-                                },
+                            onTap: () async{
+                              print("adminmembership:" +GlobalData.adminmembership.toString());
+                              print("classname:" +GlobalData.class_name .toString());
+
+
+                              if(GlobalData.adminmembership==null.toString() || GlobalData.adminmembership==false.toString())
+
+                              {
+
+                                if(GlobalData.MyMembership==null || GlobalData.MyMembership.isActive==false)
+                                {
+
+                                  await GetQuizzes();
+
+                                  if(GlobalData.Quizz_List.isNotEmpty)
+                                  {
+
+                                    GlobalData.userType=="admin_teacher"?
+                                    CustomShowDialog(context,title: "Subscription Required",msg:
+                                    "Only One Quizz with max 10 Questions with one Level is Allowed for Free User\n\nSubscribe to create more Quizz",onPressed:(){
+                                      Navigator.of(context).pushNamed('ManageAccount');
+
+                                    }):
+                                    CustomShowDialog(context,title: "SUBSCRIPTION REQUIRED",msg:
+                                    "Your Class Admin is on a Trial Subscription. \n\nPlease refer to Class Admin to upgrade account to enable you \nset multi-level questions above 10.\n\nThank you",
+                                        onPressed:(){
+                                          Navigator.of(context).pop();
+
+                                        });
+                                  }
+
+                                  else {
+
+
+                                    Navigator.of(context)
+                                        .pushNamed('setquizquestions');
+                                  }
+
+                                }else
+                                {
+                                  Navigator.of(context)
+                                      .pushNamed('setquizquestions');
+                                }
+
+
+
+                              }
+                              else {
+                                Navigator.of(context)
+                                    .pushNamed('setquizquestions');
+                              }
+
+                            },
                           ),
                         ),
             ],
