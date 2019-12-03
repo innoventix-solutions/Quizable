@@ -193,12 +193,12 @@ class _EditSpellingQuestionsState extends State<EditSpellingQuestions> {
                         Expanded(
                           child: Container(padding: EdgeInsets.all(5),color:GlobalData.green,
                               child: Text(
-                                "Word Spell " + ((GlobalData.QuestionNumber%int.parse(GlobalData.spellNosofQuesPerLevel))+1).toString()+" of "+GlobalData.spellNosofQuesPerLevel,style: TextStyle(color: Colors.white,fontSize: 15,fontWeight: FontWeight.bold),)),
+                                "Word Spell " +GlobalData.Edit_spelling_Questions.ques_no,style: TextStyle(color: Colors.white,fontSize: 15,fontWeight: FontWeight.bold),)),
                         ),
                         Container(
                             padding: EdgeInsets.all(5),color:GlobalData.green,
-                            child:  Text("Level "+((GlobalData.QuestionNumber/int.parse(GlobalData.spellNosofQuesPerLevel)).floor()+1).toString()//+" of "+GlobalData.QuizLevels,
-                                ,style: TextStyle(color: Colors.white,fontSize: 15,fontWeight: FontWeight.bold))
+                            child:  Text("Level "+GlobalData.Edit_spelling_Questions.level_no,
+                                style: TextStyle(color: Colors.white,fontSize: 15,fontWeight: FontWeight.bold))
                         )
                       ],
                     ),
@@ -517,8 +517,8 @@ class _EditSpellingQuestionsState extends State<EditSpellingQuestions> {
       }).then((response) {
         var statuss = jsonDecode(response.body);
 
-        Navigator.of(context).pop();
-
+        //Navigator.of(context).pop();
+        Navigator.of(context).pushReplacementNamed('spellingquestionlist');
       });
     }
   }

@@ -145,7 +145,7 @@ class _MyClassResultState extends State<MyClassResult> {
                         ),
                       ),onTap: (){
                       Navigator.of(context)
-                          .pushNamed('spellinglog');
+                          .pushNamed('spellingresult');
                     },
                     ),
 

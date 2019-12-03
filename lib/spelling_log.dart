@@ -28,6 +28,11 @@ class _spellinglogState extends State<spellinglog> {
       var ParsedJson = jsonDecode(res.body);
       spellingList = (ParsedJson['spellingdata'] as List).map((data)=>Pojo_spelling.fromJson(data)).toList();
 
+
+      spellingList.sort((a, b) {
+        return b.takendate.toLowerCase().compareTo(a.takendate.toLowerCase());
+      });
+
       print(spellingList.length);
       print(jsonEncode(spellingList).toString());
       setState(() {

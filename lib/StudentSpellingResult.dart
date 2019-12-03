@@ -28,6 +28,11 @@ class _StudentSpellingResultState extends State<StudentSpellingResult> {
       var ParsedJson = jsonDecode(res.body);
       spellinglist = (ParsedJson['spellingdata'] as List).map((data)=>Pojo_spelling.fromJson(data)).toList();
 
+      spellinglist.sort((a, b) {
+        return b.takendate.toLowerCase().compareTo(a.takendate.toLowerCase());
+      });
+
+
       print(spellinglist.length);
       print(jsonEncode(spellinglist).toString());
       setState(() {
@@ -90,13 +95,14 @@ class _StudentSpellingResultState extends State<StudentSpellingResult> {
                   itemCount: spellinglist.length,
                   itemBuilder: (c,i){
                     return  GestureDetector(
-                      /*onTap: (){
-                        GlobalData.QuizID=Quizz_List[i].id;
-                        GlobalData.QuizLevels=Quizz_List[i].no_of_levels;
-                        GlobalData.ExamQuiz=Quizz_List[i].quiz_title;
-                        GlobalData.DurationofEachLevel=Quizz_List[i].dur_each_level;
-                        Navigator.of(context).pushNamed(Quizz_List[i].is_taken==true?'AnswerLog':'exam');
-                      },*/
+                      onTap: (){
+                         GlobalData.spellingid=spellinglist[i].id;
+                        GlobalData.QuizLevels=spellinglist[i].no_of_levels;
+                        GlobalData.ExamQuiz=spellinglist[i].spelling_title;
+                        GlobalData.spellDurationofEachLevel=spellinglist[i].dur_each_level;
+                        GlobalData.CurrentStudentID=GlobalData.uid;
+                        Navigator.of(context).pushNamed('spellinglevelsList');
+                      },
                       child: spellinglist[i].is_taken==true?
                       SpellingResult(
                         color: GlobalData.pinkred,

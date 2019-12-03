@@ -27,6 +27,13 @@ class _MyQuizResultState extends State<MyQuizResult> {
       var ParsedJson = jsonDecode(res.body);
       Quizz_List = (ParsedJson['quizdata'] as List).map((data)=>Pojo_quizzes.fromJson(data)).toList();
 
+
+
+      Quizz_List.sort((a, b) {
+        return b.takendate.toLowerCase().compareTo(a.takendate.toLowerCase());
+      });
+
+
       print(Quizz_List.length);
       print(jsonEncode(Quizz_List).toString());
       setState(() {

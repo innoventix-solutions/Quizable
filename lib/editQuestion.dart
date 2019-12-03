@@ -291,12 +291,17 @@ void _confirmDialogMatches(BuildContext context)  {
                                         child: SizedBox(width: 100,
                                           child: GradientButtonText(
                                             ButtonClick: (){
+        if(value1.text !=null && value1.text !="" && value2.text !=null && value2.text !="" ) {
 
-                                              Matches.add(Pojo_Matchs(val1: value1.text,val2:value2.text ));
+
+        Matches.add(Pojo_Matchs(val1: value1.text,val2:value2.text ));
                                               Navigator.of(context).pop();
                                               setState(() {
 
-                                              });
+                                              });}
+        else{
+          Show_toast_Now("Option can't be blank",Colors.red);
+        }
 
                                             }
                                             ,linearGradient:
@@ -946,8 +951,8 @@ SaveQuizQuestion()async {
       "question_id":GlobalData.Current_Que_To_Edit.id.toString(),
     }).then((response) {
       var statuss = jsonDecode(response.body);
-      Navigator.of(context).pop();
-      //Navigator.of(context).pushReplacementNamed('Question_List');
+      //Navigator.of(context).pop();
+      Navigator.of(context).pushReplacementNamed('Question_List');
 
     });
   }

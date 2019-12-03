@@ -17,12 +17,16 @@ import 'Pojo/pojo_quizzes.dart';
 import 'Pojo/pojo_spellingquestions.dart';
 import 'Pojo/pojo_getspelling.dart';
 import 'Pojo/pojo_getassignment.dart';
+import 'Pojo/pojo_subject.dart';
+import 'Pojo/pojo_quizbyclass.dart';
 
 
 class GlobalData{
 
-  static  List<Pojo_quizzes> Quizz_List = new List();
+  static List<Pojo_quizzes> Quizz_List = new List();
   static List<Pojo_spelling> spellinglist = new List();
+  static List<Subjectcount> mysub = new List();
+  static List<Pojo_quizzclass> quizclass = new List();
   static bool EditQuiz = false;
   static Pojo_questions Current_Que_To_Edit;
   static Pojo_Spellingquestions Edit_spelling_Questions;
@@ -289,11 +293,11 @@ class drawerquiz extends StatelessWidget {
                       color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
                 )],),
             ),onTap: (){
-/*
+
               Navigator.of(context)
-                .pushNamed('developpage');*/
-           Navigator.of(context)
-                .pushNamed('SetAssignment');
+                .pushNamed('developpage');
+          /* Navigator.of(context)
+                .pushNamed('SetAssignment');*/
           },
           ),
 
@@ -321,6 +325,7 @@ class drawerquiz extends StatelessWidget {
 
                       if(GlobalData.Quizz_List.isNotEmpty)
                         {
+
                           GlobalData.Quizz_List[0].status=="onhold"?
                           Navigator.of(context).pushNamed('previewQuiz')
                               :
@@ -330,37 +335,14 @@ class drawerquiz extends StatelessWidget {
                                 Navigator.of(context).pushNamed('ManageAccount');
 
                               }):
-                              CustomShowDialog(context,title: "Subscription Required",msg:
-                              "You cannot set more than 10 questions each level. \n\nPlease contact your Admin to Subscribe for the institution's account.",
+                              CustomShowDialog(context,title: "SUBSCRIPTION REQUIRED",msg:
+                              "Your Class Admin is on a Trial Subscription. \n\nPlease refer to Class Admin to upgrade account to enable you \nset multi-level questions above 10.\n\nThank you",
                                   onPressed:(){
                                     Navigator.of(context).pop();
 
                                   });
                         }
 
-
-
-                      /*{GlobalData.userType=="admin_teacher"?
-                        CustomShowDialog(context,title: "Subscription Required",msg:
-                        "Only One Quizz with max 10 Questions with one Level is Allowed for Free User\n\nSubscribe to create more Quizz",onPressed:(){
-                          Navigator.of(context).pushNamed('ManageAccount');
-
-                        }):
-                          GlobalData.Quizz_List[0].status=="onhold"?
-
-
-
-                          Navigator.of(context)
-                              .pushNamed('previewQuiz'):CustomShowDialog(context,title: "Subscription Required",msg:
-                      "You cannot set more than 10 questions each level. \n\nPlease contact your Admin to Subscribe for the institution's account.",
-                          onPressed:(){
-                        Navigator.of(context).pop();
-
-                      });
-                        //Fluttertoast.showToast(msg: "Only One Quizz with max 10 Questions with one Level is Allowed for Free User\n\nSubscribe to create more Quizz");
-
-                        //Navigator.of(context).pushNamed('ManageAccount');
-                      }*/
                       else {
 
 
@@ -396,13 +378,62 @@ class drawerquiz extends StatelessWidget {
                   child: Text('Spelling challenge Bank',style: TextStyle(
                       color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
                 ),],),
-            ),onTap: (){
+            ),onTap: ()async{
+            print("adminmembership:" +GlobalData.adminmembership.toString());
+            print("classname:" +GlobalData.class_name .toString());
 
-               /*Navigator.of(context)
+
+            if(GlobalData.adminmembership==null.toString() || GlobalData.adminmembership==false.toString())
+
+            {
+
+              if(GlobalData.MyMembership==null || GlobalData.MyMembership.isActive==false)
+              {
+
+                await GetSpellinng();
+
+                if(GlobalData.spellinglist.isNotEmpty)
+                {
+                  GlobalData.spellinglist[0].status=="onhold"?
+                  Navigator.of(context).pushNamed('previewspelling')
+                      :
+                  GlobalData.userType=="admin_teacher"?
+                  CustomShowDialog(context,title: "Subscription Required",msg:
+                  "Only One Spelling with max 10 Questions with one Level is Allowed for Free User\n\nSubscribe to create more Spelling",onPressed:(){
+                    Navigator.of(context).pushNamed('ManageAccount');
+
+                  }):
+                  CustomShowDialog(context,title: "SUBSCRIPTION REQUIRED",msg:
+                  "Your Class Admin is on a Trial Subscription. \n\nPlease refer to Class Admin to upgrade account to enable you \nset multi-level questions above 10.\n\nThank you",
+                      onPressed:(){
+                        Navigator.of(context).pop();
+
+                      });
+                }
+
+                else {
+
+
+                  Navigator.of(context)
+                      .pushNamed('setspellingque');
+                }
+
+              }else
+              {
+                Navigator.of(context)
+                    .pushNamed('setspellingque');
+              }
+
+
+
+            }
+
+            else {
+              /*Navigator.of(context)
                    .pushNamed('developpage');*/
-            Navigator.of(context)
-                .pushNamed('setspellingque');
-
+              Navigator.of(context)
+                  .pushNamed('setspellingque');
+            }
 
           },
           ),
@@ -2676,7 +2707,7 @@ class PreviewQuizs extends StatelessWidget {
 
 /*2nd sept*/
 
-class StudentQuizReport extends StatelessWidget {
+class StudentActivityReport extends StatelessWidget {
 
   final String heading;
   final String paragraph;
@@ -2688,7 +2719,7 @@ class StudentQuizReport extends StatelessWidget {
   final String duration;
 
 
-  StudentQuizReport(
+  StudentActivityReport(
       {
         this.heading,
         this.paragraph,
@@ -3758,7 +3789,7 @@ void CustomShowDialog(context,{String title,String msg,String buttonText,VoidCal
         actions: <Widget>[
           // usually buttons at the bottom of the dialog
           new FlatButton(
-            child: new Text(buttonText??"Ok",style: TextStyle(color: Colors.black),),
+            child: new Text(buttonText??"Ok",style: TextStyle(color: Colors.black),textAlign: TextAlign.center,),
             onPressed: () {
               onPressed==null?
               Navigator.of(context).pop():
@@ -3861,6 +3892,21 @@ GetQuizzes() async {
 
 }
 
+
+
+GetSpellinng()async{
+  await http.post("http://edusupportapp.com/api/get_spellings.php",
+      body: {"UserId": GlobalData.uid}).then((res) {
+    print(res.body);
+    var ParsedJson = jsonDecode(res.body);
+    if (ParsedJson['spellingdata'] != false) {
+      GlobalData.spellinglist = (ParsedJson['spellingdata'] as List)
+          .map((data) => Pojo_spelling.fromJson(data))
+          .toList();
+    }
+  });
+
+}
 
 
 

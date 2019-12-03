@@ -15,18 +15,23 @@ class setspellingquestion extends StatefulWidget {
 }
 
 class _setspellingquestionState extends State<setspellingquestion> {
-
   DateTime date1;
   DateTime date2;
 
   String selectedvalue = "Select Quiz Subject";
   String selectedvalue2 = "Select Class";
-  TextEditingController teacher = new TextEditingController(text:GlobalData.Username );
-  TextEditingController spelltitle = new TextEditingController(text:GlobalData.spelltitle );
-  TextEditingController spelllevel = new TextEditingController(text: GlobalData.spellLevels);
-  TextEditingController queslevel = new TextEditingController(text: GlobalData.spellNosofQuesPerLevel);
-  TextEditingController durlevel = new TextEditingController(text: GlobalData.spellDurationofEachLevel);
-  TextEditingController teaguide = new TextEditingController(text:GlobalData.teacherguide);
+  TextEditingController teacher =
+      new TextEditingController(text: GlobalData.Username);
+  TextEditingController spelltitle =
+      new TextEditingController(text: GlobalData.spelltitle);
+  TextEditingController spelllevel =
+      new TextEditingController(text: GlobalData.spellLevels);
+  TextEditingController queslevel =
+      new TextEditingController(text: GlobalData.spellNosofQuesPerLevel);
+  TextEditingController durlevel =
+      new TextEditingController(text: GlobalData.spellDurationofEachLevel);
+  TextEditingController teaguide =
+      new TextEditingController(text: GlobalData.teacherguide);
   TextEditingController spellsubject = new TextEditingController();
   TextEditingController spellclass = new TextEditingController();
   //TextEditingController publishdate= new TextEditingController();
@@ -35,19 +40,15 @@ class _setspellingquestionState extends State<setspellingquestion> {
   void initState() {
     // TODO: implement initState
     super.initState();
-
-
-
   }
 
-  setalldetails(){
-    GlobalData.spelltitle  = spelltitle.text;
+  setalldetails() {
+    GlobalData.spelltitle = spelltitle.text;
     GlobalData.spellLevels = spelllevel.text;
     GlobalData.spellNosofQuesPerLevel = queslevel.text;
-    GlobalData.spellDurationofEachLevel =  durlevel.text;
-    GlobalData.teacherguide=teaguide.text;
+    GlobalData.spellDurationofEachLevel = durlevel.text;
+    GlobalData.teacherguide = teaguide.text;
   }
-
 
   Show_toast(String msg, Color color) {
     Fluttertoast.showToast(
@@ -62,7 +63,7 @@ class _setspellingquestionState extends State<setspellingquestion> {
 
   Createspelling() async {
     http.post("http://edusupportapp.com/api/create_spelling.php", body: {
-      "spelling_title":  spelltitle.text.toString(),
+      "spelling_title": spelltitle.text.toString(),
       "no_of_levels": spelllevel.text.toString(),
       "que_each_level": queslevel.text.toString(),
       "dur_each_level": durlevel.text.toString(),
@@ -76,22 +77,16 @@ class _setspellingquestionState extends State<setspellingquestion> {
     }).then((response) {
       var status = jsonDecode(response.body);
 
-
-      print("result from Server : "+status['status'].toString());
+      print("result from Server : " + status['status'].toString());
 
       if (status['status'].toString() == "1") {
         Show_toast("Registered Successfully", Colors.green);
-        Navigator.of(context)
-            .pushNamed('login');
+        Navigator.of(context).pushNamed('login');
       } else {
         Show_toast(status['msg'], Colors.red);
       }
     });
   }
-
-
-
-
 
   final formats = {
     InputType.both: DateFormat("yyyy-MM-dd h:mma"),
@@ -127,7 +122,7 @@ class _setspellingquestionState extends State<setspellingquestion> {
         actions: <Widget>[
           IconButton(
             onPressed: () {
-             Navigator.of(context).pushNamed('previewspelling');
+              Navigator.of(context).pushNamed('previewspelling');
             },
             icon: Icon(
               Icons.line_weight,
@@ -137,7 +132,7 @@ class _setspellingquestionState extends State<setspellingquestion> {
           ),
         ],
       ),
-     // drawer:
+      // drawer:
       //drawerquiz(),
       body: SingleChildScrollView(
         child: Column(
@@ -161,7 +156,10 @@ class _setspellingquestionState extends State<setspellingquestion> {
                           textAlign: TextAlign.left,
                         ),
                       ),
-                      CustomTextField(controller:teacher,enabled: false,),
+                      CustomTextField(
+                        controller: teacher,
+                        enabled: false,
+                      ),
                       Padding(
                         padding: const EdgeInsets.only(top: 20),
                         child: Align(
@@ -177,9 +175,9 @@ class _setspellingquestionState extends State<setspellingquestion> {
                           ),
                         ),
                       ),
-                      CustomTextField(controller: spelltitle,),
-
-
+                      CustomTextField(
+                        controller: spelltitle,
+                      ),
                       Center(
                         child: Container(
                           child: Column(
@@ -189,12 +187,11 @@ class _setspellingquestionState extends State<setspellingquestion> {
                                 children: <Widget>[
                                   Expanded(
                                     child: Container(
-
                                       child: Container(
                                         child: Center(
                                           child: Column(
                                             mainAxisAlignment:
-                                            MainAxisAlignment.center,
+                                                MainAxisAlignment.center,
                                             children: <Widget>[
                                               Align(
                                                 alignment: Alignment.bottomLeft,
@@ -208,7 +205,10 @@ class _setspellingquestionState extends State<setspellingquestion> {
                                                   textAlign: TextAlign.left,
                                                 ),
                                               ),
-                                              CustomTextField(Inputnumber: true,controller: spelllevel,),
+                                              CustomTextField(
+                                                Inputnumber: true,
+                                                controller: spelllevel,
+                                              ),
                                             ],
                                           ),
                                         ),
@@ -225,21 +225,27 @@ class _setspellingquestionState extends State<setspellingquestion> {
                                           child: Center(
                                             child: Column(
                                               mainAxisAlignment:
-                                              MainAxisAlignment.center,
+                                                  MainAxisAlignment.center,
                                               children: <Widget>[
                                                 Align(
-                                                  alignment: Alignment.bottomLeft,
+                                                  alignment:
+                                                      Alignment.bottomLeft,
                                                   child: Text(
                                                     'Nos. of Questions In each Level.',
                                                     style: TextStyle(
-                                                      color: GlobalData.lightblue,
+                                                      color:
+                                                          GlobalData.lightblue,
                                                       fontSize: 18,
-                                                      fontWeight: FontWeight.bold,
+                                                      fontWeight:
+                                                          FontWeight.bold,
                                                     ),
                                                     textAlign: TextAlign.left,
                                                   ),
                                                 ),
-                                                CustomTextField(Inputnumber: true,controller: queslevel,),
+                                                CustomTextField(
+                                                  Inputnumber: true,
+                                                  controller: queslevel,
+                                                ),
                                               ],
                                             ),
                                           ),
@@ -253,8 +259,6 @@ class _setspellingquestionState extends State<setspellingquestion> {
                           ),
                         ),
                       ),
-
-
                       Padding(
                         padding: const EdgeInsets.only(top: 0),
                         child: Align(
@@ -270,10 +274,12 @@ class _setspellingquestionState extends State<setspellingquestion> {
                           ),
                         ),
                       ),
-                      CustomTextField(Inputnumber: true,controller: durlevel,Texth: "10 Minutes",hintStyle: TextStyle(fontSize: 20),),
-
-
-
+                      CustomTextField(
+                        Inputnumber: true,
+                        controller: durlevel,
+                        Texth: "10 Minutes",
+                        hintStyle: TextStyle(fontSize: 20),
+                      ),
                       Padding(
                         padding: const EdgeInsets.only(top: 20),
                         child: Align(
@@ -289,9 +295,11 @@ class _setspellingquestionState extends State<setspellingquestion> {
                           ),
                         ),
                       ),
-                      CustomTextField(Inputnumber: false,controller:teaguide,hintStyle: TextStyle(fontSize: 20),),
-
-
+                      CustomTextField(
+                        Inputnumber: false,
+                        controller: teaguide,
+                        hintStyle: TextStyle(fontSize: 20),
+                      ),
                       Padding(
                         padding: const EdgeInsets.only(top: 20),
                         child: Align(
@@ -307,43 +315,44 @@ class _setspellingquestionState extends State<setspellingquestion> {
                           ),
                         ),
                       ),
-
                       Padding(
                         padding: const EdgeInsets.only(top: 5),
-                        child: Container(width: 400,
+                        child: Container(
+                          width: 400,
                           child: Card(
-                            elevation: 5.0, shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10.0),
-                          ),
-                            child:  Container(
-                              padding: EdgeInsets.only(top: 15,left: 20,bottom: 15),
-                              child:  GestureDetector(
+                            elevation: 5.0,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10.0),
+                            ),
+                            child: Container(
+                              padding: EdgeInsets.only(
+                                  top: 15, left: 20, bottom: 15),
+                              child: GestureDetector(
                                 child: Row(
                                   children: <Widget>[
-
                                     Expanded(
-                                      child: Text(GlobalData.Selected_subject==null?'Click Select Quiz Subject':GlobalData.Selected_subject,style: TextStyle(
-                                          fontSize: 15,fontWeight: FontWeight.bold
-                                      ),),
+                                      child: Text(
+                                        GlobalData.Selected_subject == null
+                                            ? 'Click Select Quiz Subject'
+                                            : GlobalData.Selected_subject,
+                                        style: TextStyle(
+                                            fontSize: 15,
+                                            fontWeight: FontWeight.bold),
+                                      ),
                                     ),
-
                                   ],
-                                ),onTap: (){
+                                ),
+                                onTap: () {
+                                  setalldetails();
 
-                                setalldetails();
-
-                                Navigator.of(context)
-                                    .pushNamed(
-                                    'spellingsubject');
-                              },
+                                  Navigator.of(context)
+                                      .pushNamed('spellingsubject');
+                                },
                               ),
                             ),
                           ),
                         ),
                       ),
-
-
-
                       Padding(
                         padding: const EdgeInsets.only(top: 20),
                         child: Align(
@@ -361,43 +370,44 @@ class _setspellingquestionState extends State<setspellingquestion> {
                       ),
                       Padding(
                         padding: const EdgeInsets.only(top: 5),
-                        child: Container(width: 400,
+                        child: Container(
+                          width: 400,
                           child: Card(
-                            elevation: 5.0, shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10.0),
-                          ),
-                            child:  Container(
-                              padding: EdgeInsets.only(top: 15,left: 20,bottom: 15),
-                              child:  GestureDetector(
+                            elevation: 5.0,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10.0),
+                            ),
+                            child: Container(
+                              padding: EdgeInsets.only(
+                                  top: 15, left: 20, bottom: 15),
+                              child: GestureDetector(
                                 child: Row(
                                   children: <Widget>[
-
                                     Expanded(
                                       child: Text(
-                                        GlobalData.Selected_class!=null?GlobalData.Selected_class:'Click to Select Class',style: TextStyle(
-                                          fontSize: 15,fontWeight: FontWeight.bold
-                                      ),),
+                                        GlobalData.Selected_class != null
+                                            ? GlobalData.Selected_class
+                                            : 'Click to Select Class',
+                                        style: TextStyle(
+                                            fontSize: 15,
+                                            fontWeight: FontWeight.bold),
+                                      ),
                                     ),
-
-
-
                                   ],
-                                ),onTap: (){
-                                Navigator.of(context)
-                                    .pushNamed(
-                                    'spellingclass');
-                              },
+                                ),
+                                onTap: () {
+                                  Navigator.of(context)
+                                      .pushNamed('spellingclass');
+                                },
                               ),
                             ),
                           ),
                         ),
                       ),
 
-
                       /* Select starting date and time */
 
-
-                     /* Padding(
+                      /* Padding(
                         padding: const EdgeInsets.only(top: 20),
                         child: Align(
                           alignment: Alignment.bottomLeft,
@@ -469,16 +479,18 @@ class _setspellingquestionState extends State<setspellingquestion> {
                         ),
                       ),*/
 
-
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
                           Padding(
                             padding: const EdgeInsets.only(top: 25, bottom: 40),
-                            child: SizedBox(width: 100,
+                            child: SizedBox(
+                              width: 100,
                               child: GradientButtonText(
-                                linearGradient: LinearGradient(
-                                    colors: <Color>[GlobalData.navy, GlobalData.navyblue]),
+                                linearGradient: LinearGradient(colors: <Color>[
+                                  GlobalData.navy,
+                                  GlobalData.navyblue
+                                ]),
                                 text: Text(
                                   "Back",
                                   style: TextStyle(
@@ -494,10 +506,13 @@ class _setspellingquestionState extends State<setspellingquestion> {
                           Padding(
                             padding: const EdgeInsets.only(
                                 left: 20, top: 25, bottom: 40),
-                            child: SizedBox(width: 100,
+                            child: SizedBox(
+                              width: 100,
                               child: GradientButtonText(
-                                linearGradient:
-                                LinearGradient(colors: <Color>[GlobalData.purple, GlobalData.pink]),
+                                linearGradient: LinearGradient(colors: <Color>[
+                                  GlobalData.purple,
+                                  GlobalData.pink
+                                ]),
                                 text: Text(
                                   "Save",
                                   style: TextStyle(
@@ -506,12 +521,43 @@ class _setspellingquestionState extends State<setspellingquestion> {
                                     fontSize: 18,
                                   ),
                                   textAlign: TextAlign.center,
-                                ),ButtonClick: ()
-                              {
-                                setalldetails();
-                                SaveSpelling();
-                               // Navigator.of(context).pushNamed('spellque');
-                              },
+                                ),
+                                ButtonClick: () {
+                                  setalldetails();
+
+                                  if (GlobalData.MyMembership == null ||
+                                      GlobalData.MyMembership.isActive ==
+                                          false) {
+                                    if (GlobalData.adminmembership ==
+                                            null.toString() ||
+                                        GlobalData.adminmembership ==
+                                            false.toString()) {
+                                      if (int.parse(GlobalData.spellLevels) >
+                                              1 ||
+                                          int.parse(GlobalData
+                                                  .spellNosofQuesPerLevel) >
+                                              10) {
+                                        GlobalData.userType == "admin_teacher"
+                                            ? Navigator.of(context)
+                                                .pushNamed('ManageAccount')
+                                            : CustomShowDialog(context,
+                                                title: "Subscription Required",
+                                                msg:
+                                                    "You cannot set more than 10 questions each level. \n\nPlease contact your Admin to Subscribe for the institution's account.",
+                                                onPressed: () {
+                                                Navigator.of(context).pop();
+                                              });
+                                      } else {
+                                        SaveSpelling();
+                                      }
+                                    } else {
+                                      SaveSpelling();
+                                    }
+                                  } else {
+                                    SaveSpelling();
+                                    // Navigator.of(context).pushNamed('spellque');
+                                  }
+                                },
                               ),
                             ),
                           ),
@@ -566,7 +612,10 @@ class _setspellingquestionState extends State<setspellingquestion> {
           actions: <Widget>[
             // usually buttons at the bottom of the dialog
             new FlatButton(
-              child: new Text("Close",style: TextStyle(color: Colors.black),),
+              child: new Text(
+                "Close",
+                style: TextStyle(color: Colors.black),
+              ),
               onPressed: () {
                 Navigator.of(context).pop();
               },
@@ -577,38 +626,37 @@ class _setspellingquestionState extends State<setspellingquestion> {
     );
   }
 
-
-
-
-  SaveSpelling()async {
-
-    print(
-        "spelling_title : "+ GlobalData.spelltitle +
-            "\ntecher_id : "+ GlobalData.uid +
-            "\nno_of_levels : "+ GlobalData.spellLevels +
-            "\nque_each_level :"+ GlobalData.spellNosofQuesPerLevel +
-            "\ndur_each_level :"+ GlobalData.spellDurationofEachLevel +
-            "\nspelling_subject: "+ GlobalData.Selected_subject.toString() +
+  SaveSpelling() async {
+    print("spelling_title : " +
+            GlobalData.spelltitle +
+            "\ntecher_id : " +
+            GlobalData.uid +
+            "\nno_of_levels : " +
+            GlobalData.spellLevels +
+            "\nque_each_level :" +
+            GlobalData.spellNosofQuesPerLevel +
+            "\ndur_each_level :" +
+            GlobalData.spellDurationofEachLevel +
+            "\nspelling_subject: " +
+            GlobalData.Selected_subject.toString() +
             "\nclass_id : "
-           // "\npublish_date : 2019-06-23 00:00:01"+
-         // "\nclosing_date : 2019-06-26 00:00:01"
+        // "\npublish_date : 2019-06-23 00:00:01"+
+        // "\nclosing_date : 2019-06-26 00:00:01"
 
-    );
+        );
 
-
-    if (GlobalData.spelltitle == null || GlobalData.spellLevels == null ||
-        GlobalData.spellNosofQuesPerLevel == null ||
-        GlobalData.spellDurationofEachLevel == null ||
-        GlobalData.Selected_subject == null||
-        GlobalData.Selected_class== null||
-        GlobalData.teacherguide==null
+    if (GlobalData.spelltitle == null ||
+            GlobalData.spellLevels == null ||
+            GlobalData.spellNosofQuesPerLevel == null ||
+            GlobalData.spellDurationofEachLevel == null ||
+            GlobalData.Selected_subject == null ||
+            GlobalData.Selected_class == null ||
+            GlobalData.teacherguide == null
         //Starting_date==null||
         //Closing_date==null
-    )
-    {
+        ) {
       _showDialog();
-    }
-    else{
+    } else {
       http.post("http://edusupportapp.com/api/create_spelling.php", body: {
         "spelling_title": GlobalData.spelltitle,
         "techer_id": GlobalData.uid,
@@ -624,33 +672,17 @@ class _setspellingquestionState extends State<setspellingquestion> {
         print(response.body.toString());
         var statuss = jsonDecode(response.body);
 
-        if(statuss['status']==1){
-
-
-          GlobalData.spellingid=statuss['spellingdata']['ID'];
+        if (statuss['status'] == 1) {
+          GlobalData.spellingid = statuss['spellingdata']['ID'];
           print(GlobalData.spellingid);
           print("gonadsf to qwesdf");
           //  ClearRegisterData();
           Navigator.of(context).pushNamed('spellque');
-
-
-        }else
-        {
-
-
-
-
-        }
+        } else {}
 //        Navigator.of(context)
 //            .pushNamed(
 //            'questions');
-      }
-
-      );
+      });
     }
   }
-
-
-
-
 }
