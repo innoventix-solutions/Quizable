@@ -352,6 +352,9 @@ class _loginState extends State<login> {
 
 
           GlobalData.classid = GlobalData.Class_list[index].id;
+
+          print("Class id ${GlobalData.classid}");
+
           GlobalData.createdclassdate =
               GlobalData.Class_list[index].createddate;
           GlobalData.student_code =

@@ -580,17 +580,21 @@ setalldetails(){
                                 setalldetails();
                                 print("asdfasdf"+GlobalData.QuizLevels);
                                 print("asdfasdf"+GlobalData.NosofQuesPerLevel);
-
+print(GlobalData.MyMembership.isActive);
 
                                 if(GlobalData.MyMembership==null ||GlobalData.MyMembership.isActive==false)
                                 {
 
-                                  if (GlobalData.adminmembership == null.toString() ||
+                                  print("yahoo");
+
+                                  print(GlobalData.classid  );
+                                  if (GlobalData.adminmembership == null ||
                                       GlobalData.adminmembership == false.toString())
                                   {
 
                                     if (int.parse(GlobalData.QuizLevels) > 1 || int.parse(GlobalData.NosofQuesPerLevel) > 10)
-                                    {GlobalData.userType=="admin_teacher"?
+                                    {
+                                      GlobalData.userType=="admin_teacher"?
                                       Navigator.of(context).pushNamed(
                                           'ManageAccount'):CustomShowDialog(context,title: "Subscription Required",msg:
                                     "You cannot set more than 10 questions each level. \n\nPlease contact your Admin to Subscribe for the institution's account.",onPressed:(){
@@ -601,6 +605,7 @@ setalldetails(){
                                       SaveQuiz();
                                     }
                                   } else {
+
                                     SaveQuiz();
                                   }
                                 }else{
