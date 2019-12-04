@@ -26,7 +26,7 @@ class GlobalData{
   static List<Pojo_quizzes> Quizz_List = new List();
   static List<Pojo_spelling> spellinglist = new List();
   static List<Subjectcount> mysub = new List();
-  static List<Pojo_quizzclass> quizclass = new List();
+  static List<Pojo_quizzclass> quizclass = new List<Pojo_quizzclass>();
   static bool EditQuiz = false;
   static Pojo_questions Current_Que_To_Edit;
   static Pojo_Spellingquestions Edit_spelling_Questions;
@@ -314,21 +314,22 @@ class drawerquiz extends StatelessWidget {
                     print("classname:" +GlobalData.class_name .toString());
 
 
-                   if(GlobalData.adminmembership==null.toString() || GlobalData.adminmembership==false.toString())
+
+                   if(GlobalData.adminmembership.toString()==null.toString() || GlobalData.adminmembership==false.toString())
 
                    {
+                     print("Level 1");
 
                         if(GlobalData.MyMembership==null || GlobalData.MyMembership.isActive==false)
+                        {print("Level 2");
+
+                          await Getclassquiz();
+
+                         // print(GlobalData.quizclass.length);
+
+                      if(GlobalData.quizclass!=null && GlobalData.quizclass.isNotEmpty)
                         {
 
-                          await GetQuizzes();
-
-                      if(GlobalData.Quizz_List.isNotEmpty)
-                        {
-
-                          GlobalData.Quizz_List[0].status=="onhold"?
-                          Navigator.of(context).pushNamed('previewQuiz')
-                              :
                               GlobalData.userType=="admin_teacher"?
                               CustomShowDialog(context,title: "Subscription Required",msg:
                               "Only One Quizz with max 10 Questions with one Level is Allowed for Free User\n\nSubscribe to create more Quizz",onPressed:(){
@@ -1605,6 +1606,7 @@ LogoutFunction(context)async {
   GlobalData.spellNosofQuesPerLevel="";
   GlobalData.teacherguide="";
   GlobalData.spellingid="";
+  GlobalData.quizclass=null;
 
   // Navigator.of(context).dispose();
   // await Navigator.of(context).dispose();
@@ -3878,14 +3880,18 @@ class dummytext extends StatelessWidget {
   }
 }
 
-GetQuizzes() async {
-  await http.post("http://edusupportapp.com/api/get_quizzes.php",
-      body: {"UserId": GlobalData.uid}).then((res) {
+Getclassquiz() async {
+  print("Classid ${GlobalData.classid}");
+  if(GlobalData.quizclass!=null){GlobalData.quizclass.clear();}
+  await http.post("http://edusupportapp.com/api/get_quizzes_by_class.php",
+      body: {"Class_id": GlobalData.classid,
+      "publish_onhold_both":"as"}).then((res) {
     print(res.body);
     var ParsedJson = jsonDecode(res.body);
     if (ParsedJson['quizdata'] != false) {
-      GlobalData.Quizz_List = (ParsedJson['quizdata'] as List)
-          .map((data) => Pojo_quizzes.fromJson(data))
+
+      GlobalData.quizclass = (ParsedJson['quizdata'] as List)
+          .map((data) => Pojo_quizzclass.fromJson(data))
           .toList();
     }
   });

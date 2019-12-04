@@ -4,6 +4,7 @@ import 'package:newpro/previewAssignment.dart';
 import 'package:newpro/quizListStudent.dart';
 import 'package:newpro/setSpellingQue.dart';
 import 'package:newpro/spelling_log.dart';
+import 'package:newpro/studentBySpelling.dart';
 import 'package:newpro/studentDetail.dart';
 import 'package:newpro/studentQuizLevelList.dart';
 import 'package:newpro/studentRegister.dart';
@@ -121,7 +122,7 @@ import 'studentQuizSelectSubject.dart';
 import 'myClassResult.dart';
 import 'temp.dart';
 import 'pojo/pojo_subject.dart';
-import 'StudentsLevelsAnswer.dart';
+import 'StudentsQuizLevelsAnswer.dart';
 import 'GlobalQuizSelectSubject.dart';
 import 'spelling_answer.dart';
 import 'selectspellingclass.dart';
@@ -138,7 +139,8 @@ import 'spellingListStudent.dart';
 import 'spellinganswerlog.dart';
 import 'StudentSpellingResult.dart';
 import 'StudentsSpellingReport.dart';
-
+import 'StudentsQuizLevelsAnswer.dart';
+import 'StudentSpellingLevelAnswer.dart';
 void main() {
   runApp(MyApp());
 }
@@ -269,7 +271,10 @@ class MyApp extends StatelessWidget {
         'spellinganswerlog':(context)=>SpellingAnswerLog(),
         'spellingresult':(context)=>StudentSpellingResult(),
         'GlobalSpelling':(context)=>GlobalSpellinglist(),
-        'StudentListBySpelling':(context)=>StudentReportSpelling(),
+        'Spellingreports':(context)=>StudentReportSpelling(),
+        'StudentListBySpelling':(context)=>StudentListBySpelling(),
+        'StudentsspellingLevelsAnswer':(context)=>StudentsspellLevelsAnswer(),
+
       },
     );
   }

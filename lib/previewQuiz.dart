@@ -181,7 +181,7 @@ class _PreviewQuizState extends State<PreviewQuiz> {
                                 if(GlobalData.MyMembership==null || GlobalData.MyMembership.isActive==false)
                                 {
 
-                                  await GetQuizzes();
+                                  await Getclassquiz();
 
                                   if(GlobalData.Quizz_List.isNotEmpty)
                                   {

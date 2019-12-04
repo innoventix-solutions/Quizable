@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:share/share.dart';
-import 'Pojo/pojo_StudentListResult.dart';
+import 'Pojo/pojo_StudentListQuizResult.dart';
 import 'global.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
