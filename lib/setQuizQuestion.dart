@@ -578,25 +578,38 @@ setalldetails(){
                                 ),ButtonClick: (){
 
                                 setalldetails();
-                                print("asdfasdf"+GlobalData.QuizLevels);
-                                print("asdfasdf"+GlobalData.NosofQuesPerLevel);
-print(GlobalData.MyMembership.isActive);
+                                print("Levels "+GlobalData.QuizLevels);
+                                print("Questions per Level"+GlobalData.NosofQuesPerLevel??"Not allocated");
+                                print(GlobalData.MyMembership.isActive);
 
-                                if(GlobalData.MyMembership==null ||GlobalData.MyMembership.isActive==false)
+                                print(GlobalData.adminmembership.toString());
+
+                                if(GlobalData.MyMembership.isActive==false)
                                 {
 
                                   print("yahoo");
 
-                                  print(GlobalData.classid  );
-                                  if (GlobalData.adminmembership == null ||
+                                  print(GlobalData.classid);
+                                  print(GlobalData.adminmembership.toString());
+                                  
+                                  if (GlobalData.adminmembership == "" ||
+                                      GlobalData.adminmembership == null ||
                                       GlobalData.adminmembership == false.toString())
                                   {
+
+                                    print("Level 1");
 
                                     if (int.parse(GlobalData.QuizLevels) > 1 || int.parse(GlobalData.NosofQuesPerLevel) > 10)
                                     {
                                       GlobalData.userType=="admin_teacher"?
-                                      Navigator.of(context).pushNamed(
-                                          'ManageAccount'):CustomShowDialog(context,title: "Subscription Required",msg:
+                                      CustomShowDialog(context,title: "Subscription Required",msg:
+                                      "Please reduce the number of Quiz Level to 1 and upto 10 Questions\nfor a trial.\nOtherwise, subscribe to set unlimited questions in multiple levels\n\nSubscribe now?",onPressed:(){
+                                        Navigator.of(context).pushNamed('ManageAccount');
+                                      },
+                                          onpressed1: (){
+                                        Navigator.of(context).pop();
+                                      }):
+                                      CustomShowDialog(context,title: "Subscription Required",msg:
                                     "You cannot set more than 10 questions each level. \n\nPlease contact your Admin to Subscribe for the institution's account.",onPressed:(){
                                       Navigator.of(context).pop();
 

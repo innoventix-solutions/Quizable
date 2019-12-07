@@ -90,7 +90,8 @@ class _MyAssignmentExerciseLogState extends State<MyAssignmentExerciseLog> {
                         //GlobalData.QuizLevels=assignment_list[i].no_of_levels;
                         GlobalData.ExamQuiz=assignment_list[i].assignment_title;
                         //GlobalData.DurationofEachLevel=assignment_list[i].dur_each_level;
-                        Navigator.of(context).pushNamed(assignment_list[i].is_taken==true?'AssignmentAnswerLog':'assignmentexam');
+                        GlobalData.CurrentStudentID=GlobalData.uid;
+                        Navigator.of(context).pushNamed('AssignmentAnswerLog');
                       },
                       child: assignment_list[i].is_taken==true?
                       AssignmentExerciseLog(

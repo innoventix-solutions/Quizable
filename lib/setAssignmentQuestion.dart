@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'Pojo/pojo_getassignment.dart';
 import 'global.dart';
 import 'package:http/http.dart' as http;
 class SetAssignmentQuestion extends StatefulWidget {
@@ -17,7 +18,7 @@ class _SetAssignmentQuestionState extends State<SetAssignmentQuestion> {
   TextEditingController QuestionName = new TextEditingController();
   TextEditingController Points = new TextEditingController();
   TextEditingController EssayInstructions = new TextEditingController();
-
+  List<Pojo_getassignment> assignment_list = new List();
 
   void _confirmDialog(BuildContext context)  {
     bool Selected = false;
@@ -141,7 +142,113 @@ class _SetAssignmentQuestionState extends State<SetAssignmentQuestion> {
   }
 
 
+  void showDialog1(BuildContext context) {
+    // flutter defined function
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        // return object of type Dialog
+        return AlertDialog(
+          title: Center(
+            child: new Text(
+              "Confirmation",
+              style: TextStyle(
+                  color: GlobalData.gray,
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold),
+              textAlign: TextAlign.center,
+            ),
+          ),
+          content: new Text(
+            "You have completed the total\nnumber of questions for this\ class assignment.\nDo you want to preview \nquestions before publishing?",
+            textAlign: TextAlign.center,
+            style: TextStyle(
+                color: GlobalData.gray,
+                height: 1.5,
+                fontSize: 16,
+                fontWeight: FontWeight.bold),
+          ),
+          actions: <Widget>[
+            // usually buttons at the bottom of the dialog
 
+            Padding(
+              padding: const EdgeInsets.only(left: 30, right: 20),
+              child: RaisedButton(
+                color: Colors.blue,
+                shape: new RoundedRectangleBorder(
+                    borderRadius: new BorderRadius.circular(15.0)),
+                onPressed: () {
+
+
+                  if(assignment_list.isNotEmpty) {
+                    GlobalData.EditQuiz = true;
+                    GlobalData.AssignmentID = assignment_list[0].id;
+                    GlobalData.ExamQuiz = assignment_list[0].assignment_title;
+
+                    //  Navigator.of(context).pushNamed(GlobalData.userType=="student"?'exam':'Question_List');
+                    Navigator.of(context).pushReplacementNamed('Previewassignment');
+                  }else{
+                    Show_toast_Now("Please Try after few Seconds", Colors.red);
+                  }
+                },
+                child: Text(
+                  'Preview',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(color: Colors.white, fontSize: 16),
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 20, right: 30),
+              child: RaisedButton(
+                color: Colors.red,
+                shape: new RoundedRectangleBorder(
+                    borderRadius: new BorderRadius.circular(15.0)),
+                onPressed: () {
+                  Navigator.of(context).pushReplacementNamed('publishassignment');
+
+                },
+                child: Text(
+                  'Publish',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(color: Colors.white, fontSize: 16),
+                ),
+              ),
+            ),
+
+            /*FlatButton(
+              child: Row(
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.only(
+                        right: 30
+                    ),
+                    child:  GestureDetector(
+                        onTap: (){
+                          Navigator.of(context).pushNamed('Question_List');
+                        },child: RaisedButton(color: GlobalData.blue,child: new Text("Preview"))),
+
+
+                  ),
+                  GestureDetector(
+                      onTap: () async {
+                        Navigator.of(context).pushReplacementNamed('Recentque');
+                        ClearRegisterData();
+                        setState(() {
+
+                        });
+                      },child: new Text("Publish")),
+                ],
+              ),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),*/
+          ],
+        );
+      },
+    );
+  }
   void QuizCompleted(BuildContext context)  {
 
     bool Selected = false;
@@ -757,7 +864,7 @@ class _SetAssignmentQuestionState extends State<SetAssignmentQuestion> {
         }
         if(GlobalData.QuestionNumber>=(int.parse(GlobalData.NosofQuesassignment)))
         {
-          QuizCompleted(context);
+          Navigator.of(context).pushNamed('assignmentcomplete');
         }else {
           Navigator.of(context).pushNamed('SetAssignmentQuestion');
         }

@@ -67,7 +67,7 @@ class _StudentsSpellingLevelListState extends State<StudentsSpellingLevelList> {
                 onTap: (){
                   if(GlobalData.isGlobal==true){
 
-                    Navigator.of(context).pushReplacementNamed('GlobalQuiz');
+                    Navigator.of(context).pushReplacementNamed('GlobalSpelling');
                   }
                   else{
                     Navigator.of(context).pushReplacementNamed('Spelling_List_student');

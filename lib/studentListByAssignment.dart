@@ -107,7 +107,12 @@ class _StudentListByAssignmentState extends State<StudentListByAssignment> {
                                             shape: BoxShape.circle,
                                             image: new DecorationImage(
                                               fit: BoxFit.cover,
-                                              image:(globlist[index].userphoto==null)?AssetImage('assets/images/bg.png'):NetworkImage(globlist[index].userphoto,),
+                                              image:(globlist[index].userphoto!="")?
+
+                                              NetworkImage(globlist[index].userphoto,)
+                                                  :
+                                              AssetImage('assets/images/bg.png')
+                                              ,
                                             )
                                         ),),
                                     ],
