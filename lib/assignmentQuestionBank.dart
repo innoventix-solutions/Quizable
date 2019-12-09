@@ -306,7 +306,7 @@ class _assignmentquestionbankState extends State<assignmentquestionbank> {
                       /* Select starting date and time */
 
 
-                      Padding(
+                      /*Padding(
                         padding: const EdgeInsets.only(top: 20),
                         child: Align(
                           alignment: Alignment.bottomLeft,
@@ -339,14 +339,14 @@ class _assignmentquestionbankState extends State<assignmentquestionbank> {
                             ),
                           ),
                         ),
-                      ),
+                      ),*/
 
 
 
                       /* Select ending date*/
 
 
-                      Padding(
+                     /* Padding(
                         padding: const EdgeInsets.only(top: 20),
                         child: Align(
                           alignment: Alignment.bottomLeft,
@@ -376,7 +376,7 @@ class _assignmentquestionbankState extends State<assignmentquestionbank> {
                             ),
                           ),
                         ),
-                      ),
+                      ),*/
 
 
                       Row(
@@ -495,9 +495,7 @@ class _assignmentquestionbankState extends State<assignmentquestionbank> {
             "\n no_of_questions :"+ GlobalData.NosofQuesassignment +
             "\n teacher_instruction : "+ GlobalData.teacherinstruction +
             "\n teacher_objective : "+ GlobalData.teacherobjective +
-            "\n class_id : "+
-            "\n publish_date : 2019-06-23 00:00:01"+
-            "\n closing_date : 2019-06-26 00:00:01"
+            "\n class_id : "
 
     );
 
@@ -506,9 +504,9 @@ class _assignmentquestionbankState extends State<assignmentquestionbank> {
         GlobalData.NosofQuesassignment == null ||
         GlobalData.teacherinstruction == null||
         GlobalData.teacherobjective == null||
-        GlobalData.Selected_class== null||
-        Starting_date==null||
-        Closing_date==null) {
+        GlobalData.Selected_class== null
+
+        ) {
 
       _showDialog();
     }
@@ -520,8 +518,8 @@ class _assignmentquestionbankState extends State<assignmentquestionbank> {
         "teacher_objective":GlobalData.teacherobjective,
         "class_id": GlobalData.Selected_class_IDS,
         "techer_id": GlobalData.uid,
-        "publish_date":Starting_date.toString(),
-        "closing_date":Closing_date.toString(),
+        //"publish_date":Starting_date.toString(),
+        //"closing_date":Closing_date.toString(),
       }).then((response) {
         print(response.body.toString());
         var statuss = jsonDecode(response.body);

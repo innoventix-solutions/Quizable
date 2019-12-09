@@ -253,7 +253,7 @@ TextEditingController answer = new TextEditingController();
                     padding: const EdgeInsets.all(8.0),
                     child: Row(
                       children: <Widget>[
-                        Text("Quiz Name: "+ GlobalData.ExamQuiz,style: TextStyle(fontSize: 18,
+                        Text("Spelling Name: "+ GlobalData.ExamQuiz,style: TextStyle(fontSize: 18,
                             color: GlobalData.navyblue,fontWeight: FontWeight.bold),),
                       ],
                     ),

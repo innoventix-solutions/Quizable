@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'Pojo/pojo_anslog.dart';
 import 'Pojo/pojo_matchs.dart';
+import 'Pojo/pojo_questions.dart';
 import 'global.dart';
 
 
@@ -13,7 +14,10 @@ class AssignmentAnswerLog extends StatefulWidget {
 
 class _AssignmentAnswerLogState extends State<AssignmentAnswerLog> {
 
+
   List<pojo_anslog> anslist = new List();
+
+ // TextEditingController point = new TextEditingController();
 
   anslog() async{
     http.post("http://edusupportapp.com/api/get_user_assignment_question_answer.php",
@@ -40,6 +44,10 @@ class _AssignmentAnswerLogState extends State<AssignmentAnswerLog> {
       });
     });
   }
+  
+
+
+
 
 
 
@@ -60,7 +68,7 @@ class _AssignmentAnswerLogState extends State<AssignmentAnswerLog> {
             automaticallyImplyLeading: true,
             title: Center(
               child: Text(
-                "Assignment Answer Log",
+                GlobalData.ExamQuiz,
                 style: TextStyle(fontSize: 20),
               ),
             ),
@@ -87,6 +95,7 @@ class _AssignmentAnswerLogState extends State<AssignmentAnswerLog> {
           body:
           ListView.builder(itemBuilder: (c,i){
             return MyResultBlock(correct_ans: anslist[i].trueans,
+              questionid: anslist[i].id,
               //level:  anslist[i].level_no,
               que:  anslist[i].question,
               que_no:  anslist[i].que_no,
@@ -95,6 +104,7 @@ class _AssignmentAnswerLogState extends State<AssignmentAnswerLog> {
               anwer_options: anslist[i].anwer_options,
               afg:anslist[i].json,
               User_anwer_options: anslist[i].user_anwer_options,
+              answertype: anslist[i].answer_type,
             );
           },
             itemCount: anslist.length,)
@@ -114,17 +124,152 @@ class _AssignmentAnswerLogState extends State<AssignmentAnswerLog> {
 
 class MyResultBlock extends StatelessWidget {
  // final String level;
+  final String questionid;
   final String que_no;
   final String que;
   final String correct_ans;
   final String user_ans;
   final int result;
   final String afg;
+  final String answertype;
   List<Pojo_Matchs> User_anwer_options;
   List<Pojo_Matchs> anwer_options;
 
-  MyResultBlock({this.que_no, this.que, this.correct_ans,
-    this.user_ans,this.result,this.anwer_options,this.afg,this.User_anwer_options});
+  MyResultBlock({this.questionid,this.que_no, this.que, this.correct_ans,
+    this.user_ans,this.result,this.anwer_options,this.afg,
+    this.User_anwer_options,this.answertype});
+
+  List<point> Pointessay = new List();
+
+  List<Pojo_questions> Quetions = new List();
+  int i=0;
+
+
+
+  void Pointdialog(BuildContext context)  {
+
+    TextEditingController points = new TextEditingController();
+    giveessaypoint() async{
+      http.post("http://edusupportapp.com/api/story_point.php",
+          body: {
+            "user_id" : GlobalData.CurrentStudentID,
+            "question_id" : GlobalData.questionid,
+            "assignment_id" : GlobalData.AssignmentID,
+            "point": points.text.toString(),
+          }
+
+      ).then((response){
+
+
+        Navigator.of(context).pop();
+        print(response.body);
+        print("userid: " +GlobalData.CurrentStudentID);
+        print("point: " +points.text.toString());
+        print("assignmentid: " +GlobalData.AssignmentID);
+        print("questionid: " +GlobalData.questionid);
+
+
+      });
+    }
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            backgroundColor:Colors.transparent,
+            elevation: 0,
+            content: SingleChildScrollView(
+              child: Column(mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Center(
+                    child: Container(
+                      child: new Card(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(15.0),
+                        ),
+                        child: Column(mainAxisAlignment: MainAxisAlignment.start,
+                          children: <Widget>[
+                            Container(
+
+                              child: Column(
+                                children: <Widget>[
+                                  Center(child: Padding(
+                                    padding: const EdgeInsets.only(top:15),
+
+                                    child: Text('Add Point',textAlign: TextAlign.center,
+                                      style: TextStyle(color: GlobalData.lightblue,fontSize: 25,fontWeight: FontWeight.bold),),
+                                  )),
+
+
+                                  new Divider(
+                                    color: GlobalData.gray,
+                                  ),
+                                  Container(
+                                    padding: EdgeInsets.all(30),
+                                    child: Column(
+                                      children: <Widget>[
+
+                                        Row(
+                                          children: <Widget>[
+                                            Expanded(child: TextField(controller: points,decoration: InputDecoration(hintText: "Option Text"),))
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+
+
+                                  Padding(
+                                    padding: const EdgeInsets.only(bottom: 30),
+                                    child: Row(mainAxisAlignment: MainAxisAlignment.center,
+                                      children: <Widget>[
+
+                                        Container(padding: EdgeInsets.all(5),
+                                          child: SizedBox(width: 100,
+                                            child: GradientButtonText(
+                                              ButtonClick: (){
+
+                                                GlobalData.questionid=questionid;
+                                                giveessaypoint();
+
+
+                                              }
+                                              ,linearGradient:
+                                            LinearGradient(colors: <Color>[GlobalData.navy,GlobalData.navyblue]),
+                                              text: Text('Add',style: TextStyle(color: Colors.white,
+                                                fontWeight: FontWeight.bold,fontSize: 12,),textAlign: TextAlign.center,),
+                                            ),
+                                          ),
+                                        ),
+
+
+
+
+                                      ],
+                                    ),
+                                  )],
+
+                              ),
+
+                            ),
+
+
+
+                          ],
+
+
+                        ),
+                      ),
+                    ),
+                  ),
+
+                ],
+              ),
+            ),
+
+
+          );
+        });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -176,6 +321,7 @@ class MyResultBlock extends StatelessWidget {
                       padding: const EdgeInsets.all(10.0),
                       child: Container(child: Text(que,style: TextStyle(fontWeight: FontWeight.bold),)),
                     )),
+
 
                   ],
                 ),
@@ -274,6 +420,22 @@ class MyResultBlock extends StatelessWidget {
                       ],
                     ),
                   ):SizedBox(),
+
+                    answertype=="Short Essay"?
+                    RaisedButton(child: Text("Give Point"),onPressed:(){
+                      Pointdialog(context);
+
+                    },):
+                    SizedBox(),
+
+                    /*Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Row(
+                      children: <Widget>[
+                        Container(child: Text(answertype,style: TextStyle(fontWeight: FontWeight.bold),)),
+                      ],
+                    ),
+                  ),*/
                 ],
               ),
 

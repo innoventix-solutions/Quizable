@@ -20,30 +20,27 @@ class AssignmentExam extends StatefulWidget {
 
 class _AssignmentExamState extends State<AssignmentExam> {
 
+  bool isCompleted=false;
+  bool isattempted =false;
+  bool originalCopied =false;
   TextEditingController shortessayanswer = new TextEditingController();
   int Changed=0;
-  //CountDown cd ;
   int CurrentPage =0;
   PageController pageController = new PageController();
   List<Pojo_questions> Quetions = new List();
- // List<Pojo_quizzes> timer = new List();
+  List<Pojo_questions> OriginalQuetionsList = new List();
   List<Pojo_getassignment> assignment_list = new List();
   int i=0;
-  //List<Pojo_Matchs> matchs = new List();
   String ExamAnswer ="";
   ScrollController controller = new ScrollController();
   List<Pojo_Answers> Options = List();
- // List<MatchClass> Matchs = List();
-  //List<Pojo_Matchs> Matches = List();
   int Selected =0;
   List<int> Selecteditem=new List();
- // String TrueorFalse = "";
   List<String> _list = new List();
+  List<String> fillupsData = new List();
   bool isloading = true;
-  //String TimerText ="-:--:--";
- // int timermins = int.parse(GlobalData.DurationofEachLevel=="0"||GlobalData.DurationofEachLevel==null?"15".toString():GlobalData.DurationofEachLevel)*int.parse(GlobalData.QuizLevels);
 
-
+  List<TextEditingController> Textcontroller = List();
   List<pojo_anslog> anslist = new List();
 
 
@@ -55,28 +52,8 @@ class _AssignmentExamState extends State<AssignmentExam> {
     });
   }
 
-
-  /*Timmer(){
-    cd = CountDown(Duration(minutes: timermins));
-    var sub = cd.stream.listen(null);
-    // start your countdown by registering a listener
-    sub.onData((Duration d) {
-      print(d);
-      TimerText=d.toString().substring(0,7);
-      setState(() {
-
-      });
-    });
-    // when it finish the onDone cb is called
-    sub.onDone(() {
-      print("done");
-    });
-  }*/
-
-  void changenow(){
-    _list.shuffle();
-  }
-
+  TextEditingController ans1 = new TextEditingController();
+  TextEditingController ans2 = new TextEditingController();
 
   @override
   dispose()
@@ -106,72 +83,67 @@ class _AssignmentExamState extends State<AssignmentExam> {
     });
   }
 
-  Widget AnswerNow(String type,List<Pojo_Matchs> Data,List<Pojo_Answers> Answers)
+  Widget AnswerNow(String type,List<Pojo_Matchs> Data,List<Pojo_Answers> Answers,String que)
   {
 
     //   Show_toast_Now("Current Type :"+type, Colors.red);
     print("Current Type :"+type);
-  //  Matches=Data;
+
     Options = Answers;
     print(GlobalData.LoadData.toString());
 
-    /*if(_list.length==0) {
-      for (var item in Matches) {
-        _list.add(item.val2);
-      }
-      print(_list.length);
-      if(Changed==0)
-      {
-        changenow();
-      }
-    }*/
 
 
     switch (type)
     {
 
-
-
-      case "Multiple Answers":
-        return Card(
-          child: Column(
-            children: <Widget>[
-              Row(
-                children: <Widget>[
-                  Expanded(
-                    child: Container(
-                      height: Options.isEmpty?50.0:Options.length*50.0,
-
-                      child: Column(
-                        children: <Widget>[
-                          Expanded(
-                            child: ListView.builder(
-                                itemCount: Options.length,itemBuilder: (context,index){
-                              return Container(child: Row(
-                                children: <Widget>[
-                                  Checkbox(value: Options[index].trueanswer, onChanged: (value){
-
-
-                                    Options[index].trueanswer=value;setState(() {
-
-                                    });},),
-                                  Text(Options[index].value,maxLines: 4,)
+      case "Fill-in the gaps":
+        int no = ('_'
+            .allMatches(que.toString())
+            .length);
 
 
 
-                                ],),);}),
-                          ),
-                        ],
-                      ),
+        return Container(
+          height: (no*50.0)+100,
+          child: Card(
+            child: Column(
+              children: <Widget>[
+
+                Expanded(child: ListView.builder(
+                    itemCount: no,itemBuilder: (c,i){
+
+
+
+
+
+                  if(fillupsData.length<no ) {
+                    fillupsData.add("");
+                    Textcontroller.add((TextEditingController()));
+                    Textcontroller[i].text="";
+                  }
+
+
+                  return Padding(
+                    padding: const EdgeInsets.only(left:8.0,right: 8.0),
+                    child: TextField(
+                      controller: Textcontroller[i],
+                      autocorrect: false,
+                      keyboardType: TextInputType.emailAddress,
+
+
+
+                      decoration: InputDecoration(hintText: "Answer ${i+1}"),
+
+                      onChanged: (val){
+                        print(val);
+                        fillupsData[i]=val; print("Data : "+fillupsData[i].toString());},
                     ),
-                  ),
-                ],
-              ),
-
-
-
-            ],
-          ),);
+                  );
+                }),)
+              ],
+            ),),
+        );
 
       case "Short Essay":
         return CustomTextField(controller: shortessayanswer,Texth: "Write Short Essay",maxline: 4,);
@@ -181,10 +153,6 @@ class _AssignmentExamState extends State<AssignmentExam> {
         return Card(
           child: Column(
             children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(type=="Fill-in the gaps"?"Note : For multiple blanks question please consider answer which has proper sequence of the words separated by underscore '_' .":"",style: TextStyle(color: Colors.red),),
-              ),
               Row(
                 children: <Widget>[
                   Expanded(
@@ -199,14 +167,6 @@ class _AssignmentExamState extends State<AssignmentExam> {
                               return Container(child: Row(
                                 children: <Widget>[
                                   Checkbox(value: Options[index].trueanswer, onChanged: (value){
-
-
-                                    if(type!="Multiple Answer") {
-                                      for (int i = 0; i <
-                                          Options.length; i++) {
-                                        Options[i].trueanswer = false;
-                                      }
-                                    }
 
 
                                     Options[index].trueanswer=value;setState(() {
@@ -224,6 +184,8 @@ class _AssignmentExamState extends State<AssignmentExam> {
                   ),
                 ],
               ),
+
+
 
             ],
           ),);
@@ -253,32 +215,81 @@ class _AssignmentExamState extends State<AssignmentExam> {
         child: Column(
           children: <Widget>[
 
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                children: <Widget>[
+                  Expanded(
+                    child: Text("Assignment Name: "+ GlobalData.ExamQuiz,style: TextStyle(fontSize: 18,
+                        color: GlobalData.navyblue,fontWeight: FontWeight.bold),maxLines: 4,),
+                  ),
+                ],
+              ),
+            ),
 
 
         Padding(
         padding: EdgeInsets.all(15.0),
-        child: Column(
+        child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            RaisedButton(
-              child: Text('Show/Hide'),
-              onPressed: showToast,
+            Expanded(
+              child: RaisedButton(
+                child: Text('Show Instuctions',maxLines: 2,),
+                onPressed: showToast,
+              ),
             ),
+            SizedBox(width: 50,),
 
-            Visibility (
-              visible: _isVisible,
-              child: Card(
-                child: new ListTile(
-                  title: Center(
-                    child: new Text(GlobalData.teacherinstruction),
-                  ),
-                ),
+            Expanded(
+              child: RaisedButton(
+                color: Colors.red,
+                onPressed: (){
+
+
+                  Navigator.of(context).pushReplacementNamed('AssignmentListStudents');
+
+                },
+                child: Text("Exit",style: TextStyle(color: Colors.white),),
               ),
             ),
 
+
+
           ],
         ),
-      ),
+      ) ,
+
+            Container(child:    Visibility (
+              visible: _isVisible,
+              child: Card(elevation: 10.0,
+                child: Center(
+                  child: new Column(
+                    children: <Widget>[
+                      Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: Row(
+                          children: <Widget>[
+                            new Text("Instructions: " +GlobalData.teacherinstruction,
+                              style:TextStyle(fontSize: 16,fontWeight: FontWeight.bold) ,),
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 0,bottom: 10,left: 10),
+                        child: Row(
+                          children: <Widget>[
+                            new Text("Objective: " +GlobalData.teacherobjective,
+                            style: TextStyle(fontSize: 16),),
+                          ],
+                        ),
+                      ),
+
+                    ],
+                  ),
+                ),
+              ),
+            ),),
 
 
 
@@ -311,7 +322,7 @@ class _AssignmentExamState extends State<AssignmentExam> {
                         ],
                       ),
                     ),
-                    AnswerNow(Quetions[i].answer_type,Quetions[i].anwer_options,Quetions[i].Options),
+                    AnswerNow(Quetions[i].answer_type,Quetions[i].anwer_options,Quetions[i].Options,Quetions[i].question),
                     Container(
 
                       child: Row(
@@ -344,8 +355,23 @@ class _AssignmentExamState extends State<AssignmentExam> {
                   Expanded(
                     child: GradientButtonText(
                       ButtonClick: (){
-                        if(CurrentPage-2<Quetions.length)
-                          pageController.jumpToPage(CurrentPage++);
+                        //if(CurrentPage-2<Quetions.length)
+                          //pageController.jumpToPage(CurrentPage++);
+                        GiveAnswer("skip");
+                        i++;
+                        if (i == Quetions.length) {
+                          isCompleted=true;
+                          setState(() {
+
+                          });
+                          getExamResult();
+
+                          i--;
+                        } else {
+                          setState(() {
+
+                          });
+                        }
                       },
                       linearGradient:LinearGradient(colors: <Color>[GlobalData.navy,GlobalData.navyblue]) ,
                       text: Text("Skip",textAlign: TextAlign.center,style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
@@ -354,8 +380,9 @@ class _AssignmentExamState extends State<AssignmentExam> {
                   SizedBox(width: 15,),
                   Expanded(
                     child: GradientButtonText(
-                      ButtonClick: (){
+                      ButtonClick: ()async{
 
+                        bool remaning = false;
 
                         String answ="";
 
@@ -363,29 +390,61 @@ class _AssignmentExamState extends State<AssignmentExam> {
                           {
                             answ=shortessayanswer.text.toString();
                           }
+                        else if(Quetions[i].answer_type=="Fill-in the gaps")
+                        {
 
+                          for (int i = 0; i < fillupsData.length; i++) {
+
+                            answ += fillupsData[i];
+                            if(i<fillupsData.length-1 && fillupsData.length>1  )
+                            {
+                              answ +=",";
+                            }
+
+                          }
+                        }else{
+                          int Correct = 0;
 
                           for (int i = 0; i < Options.length; i++) {
                             if (Options[i].trueanswer == true) {
-                              answ += Options[i].value;
+                              Correct++;
                             }
                           }
 
 
-                        GiveAnswer(answ);
-                       // TrueorFalse="";
-                        Changed=0;
-                        i++;
-                        if(i==Quetions.length)
-                        {
-                          getExamResult();
+                          for (int i = 0; i < Options.length; i++) {
+                            if (Options[i].trueanswer == true) {
 
-                          i--;
+                              answ += Options[i].value;
 
-                        }else {
-                          setState(() {
+                              if(i<Options.length-1 && Correct>1)
+                              {
+                                answ +=",";
+                              }
+                            }
+                          }
+                        }
 
-                          });
+
+                        if(remaning==false) {
+                          await  GiveAnswer(answ);
+                          //Show_toast_Now("Data removing",Colors.red);
+
+                          //TrueorFalse = "";
+                          Changed = 0;
+                          i++;
+                          if (i == Quetions.length) {
+                            getExamResult();
+
+                            i--;
+                          } else {
+
+                            print("submittingcode");
+
+                            setState(() {
+
+                            });
+                          }
                         }
                       },
                       linearGradient:LinearGradient(colors: <Color>[GlobalData.navyblue,GlobalData.pink]) ,
@@ -422,15 +481,18 @@ class _AssignmentExamState extends State<AssignmentExam> {
   @override
   Widget build(BuildContext context) {
 
-    return Scaffold(
-        appBar: AppBar(title: Text("My Class Assignment"),centerTitle: true,),
-        body: isloading==true?Center(child: Text("Loading...")):MYQue()
+    return WillPopScope(
+      onWillPop: () async => false,
+      child: Scaffold(
+          appBar: AppBar(title: Text("My Class Assignment"),centerTitle: true,automaticallyImplyLeading: false,),
+          body: isloading==true?Center(child: Text("Loading...")):isloading?Container():MYQue()
 
 
 
 
 
 
+      ),
     );
   }
 
@@ -440,7 +502,7 @@ class _AssignmentExamState extends State<AssignmentExam> {
 
   GiveAnswer(String answer)async{
 
-    http.post("http://edusupportapp.com/api/assignment_answer.php",body: {
+    await http.post("http://edusupportapp.com/api/assignment_answer.php",body: {
       "user_id":GlobalData.uid,
       "question_id":Quetions[i].id,
       "assignment_id":Quetions[i].assignment_id,
@@ -451,6 +513,21 @@ class _AssignmentExamState extends State<AssignmentExam> {
 
     print("Your Answer : "+answer);
 
+    for(int i=0;i<fillupsData.length;i++) {
+      fillupsData[i]="";
+      Textcontroller[i].text="";
+    }
+
+
+
+
+    if(i<Quetions.length-1) {
+      print("Clearing all Data");
+      Changed = 0;
+      fillupsData.clear();
+      _list.clear();
+      originalCopied = false;
+    }
   }
 
 
@@ -517,9 +594,9 @@ class _AssignmentExamState extends State<AssignmentExam> {
 
 
                                                 Navigator.of(context).pop();
-
+                                               // submittime();
                                                 Navigator.of(context).pop();
-                                                Navigator.of(context).pushNamed('studentdashboard');
+                                                Navigator.of(context).pushNamed('AssignmentListStudents');
                                                 setState(() {
 
                                                 });

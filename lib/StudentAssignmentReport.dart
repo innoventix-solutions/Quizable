@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'Pojo/pojo_questions.dart';
 import 'Pojo/pojo_quizzes.dart';
 import 'Pojo/pojo_getassignment.dart';
 import 'global.dart';
@@ -17,16 +18,19 @@ class _AssignmentReportState extends State<AssignmentReport> {
 
   List<Pojo_getassignment> assignment_list = new List();
 
+    List<Pojo_questions> Quetions = new List();
+
   GetTest() async{
 
-    await http.post("http://edusupportapp.com/api/get_assignments.php",
+    await http.post("http://edusupportapp.com/api/get_assignments_by_class.php",
         body: {
-          "UserId":GlobalData.uid
+          "user_id":GlobalData.uid,
+          "Class_id":GlobalData.classid,
         }).then((res){
       print(res.body);
 
       var ParsedJson = jsonDecode(res.body);
-      assignment_list = (ParsedJson['assignmentsdata'] as List).map((data)=>Pojo_getassignment.fromJson(data)).toList();
+      assignment_list = (ParsedJson['assignmentdata'] as List).map((data)=>Pojo_getassignment.fromJson(data)).toList();
 
       print(assignment_list.length);
       setState(() {
@@ -88,17 +92,23 @@ class _AssignmentReportState extends State<AssignmentReport> {
                   itemBuilder: (c,i){
                     return GestureDetector(
                       onTap: (){
+                        GlobalData.AssignmentID=assignment_list[i].id;
+
+                        GlobalData.ExamQuiz=assignment_list[i].assignment_title;
+                        GlobalData.NosofQuesassignment= assignment_list[i].total_que;
+
+                        //GlobalData.questionid = Quetions[i].id;
                         Navigator.of(context).pushNamed('StudentListByAssignment');
                       },
-                      child: StudentAssignmentReport(
+                      child: StudentAssignmentActivityReport(
                         color: GlobalData.pinkred,
                         heading: assignment_list[i].assignment_title,
                         paragraph: assignment_list[i].teacher_instruction,
                         id:assignment_list[i].id ,
                         title: assignment_list[i].assignment_title,
                         is_taken: assignment_list[i].is_taken,
-                       // duration: assignment_list[i].dur_each_level,
-                        //levels: assignment_list[i].no_of_levels,
+
+
                       ),
                     );
                   }),

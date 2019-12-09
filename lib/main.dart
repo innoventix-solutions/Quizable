@@ -80,7 +80,7 @@ import 'adminprofile.dart';
 import 'TeacherSelectClass.dart';
 import 'AdminClassShare.dart';
 import 'Announcement.dart';
-import 'Assignment.dart';
+import 'AssignmentComplete.dart';
 import 'SpellingChallange.dart';
 import 'ManageAccount.dart';
 import 'StudentList.dart';
@@ -103,7 +103,7 @@ import 'AssignmentQuestionList.dart';   //05-9-19
 import 'AssignmentListStudents.dart';   //05-9-19
 import 'AssignmentExam.dart';
 import 'ReportDashboard.dart';
-import 'AssignmentReport.dart';
+import 'StudentAssignmentReport.dart';
 //import 'setspellingque.dart';
 import 'spellingQue.dart';
 import 'trialsubscription.dart';
@@ -141,6 +141,9 @@ import 'StudentSpellingResult.dart';
 import 'StudentsSpellingReport.dart';
 import 'StudentsQuizLevelsAnswer.dart';
 import 'StudentSpellingLevelAnswer.dart';
+import 'PublishAssignment.dart';
+import 'AssignmentComplete.dart';
+
 void main() {
   runApp(MyApp());
 }
@@ -274,6 +277,8 @@ class MyApp extends StatelessWidget {
         'Spellingreports':(context)=>StudentReportSpelling(),
         'StudentListBySpelling':(context)=>StudentListBySpelling(),
         'StudentsspellingLevelsAnswer':(context)=>StudentsspellLevelsAnswer(),
+        'publishassignment':(context)=>publishassignments(),
+        'assignmentcomplete':(context)=>assignmentcomplete(),
 
       },
     );
