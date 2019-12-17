@@ -80,8 +80,8 @@ class _MyClassResultState extends State<MyClassResult> {
                           ),
                         ),
                       ),onTap: (){
-                     // Navigator.of(context)
-                          //.pushNamed('AssignmentReport');
+                     Navigator.of(context)
+                          .pushNamed('myassignmentresult');
                     },
                     ),
 

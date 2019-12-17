@@ -7,13 +7,15 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'setquizquestion.dart';
 import 'Pojo/pojo_getassignment.dart';
 
-class MyAssignmentExerciseLog extends StatefulWidget {
+class MyAssignmentResult extends StatefulWidget {
   @override
-  _MyAssignmentExerciseLogState createState() => _MyAssignmentExerciseLogState();
+  _MyAssignmentResultState createState() => _MyAssignmentResultState();
 }
 
-class _MyAssignmentExerciseLogState extends State<MyAssignmentExerciseLog> {
+class _MyAssignmentResultState extends State<MyAssignmentResult> {
   List<Pojo_getassignment> assignment_list = new List();
+
+
 
   GetTest() async{
 
@@ -25,6 +27,13 @@ class _MyAssignmentExerciseLogState extends State<MyAssignmentExerciseLog> {
 
       var ParsedJson = jsonDecode(res.body);
       assignment_list = (ParsedJson['assignmentdata'] as List).map((data)=>Pojo_getassignment.fromJson(data)).toList();
+
+
+
+      assignment_list.sort((a, b) {
+        return b.takendate.toLowerCase().compareTo(a.takendate.toLowerCase());
+      });
+
 
       print(assignment_list.length);
       print(jsonEncode(assignment_list).toString());
@@ -43,13 +52,16 @@ class _MyAssignmentExerciseLogState extends State<MyAssignmentExerciseLog> {
 
   @override
   Widget build(BuildContext context) {
+
+
+
     return Scaffold(
         appBar: AppBar(
           automaticallyImplyLeading: true,
 
           title: Center(
             child: Text(
-              "Assignment Exercises Log",
+              "My Assignment Result",
               style: TextStyle(fontSize: 20),
             ),
           ),
@@ -74,7 +86,7 @@ class _MyAssignmentExerciseLogState extends State<MyAssignmentExerciseLog> {
           ],
         ),
 
-       
+
 
         body:
         Column(
@@ -87,24 +99,26 @@ class _MyAssignmentExerciseLogState extends State<MyAssignmentExerciseLog> {
                     return  GestureDetector(
                       onTap: (){
                         GlobalData.AssignmentID=assignment_list[i].id;
-                        //GlobalData.QuizLevels=assignment_list[i].no_of_levels;
+
                         GlobalData.ExamQuiz=assignment_list[i].assignment_title;
-                        //GlobalData.DurationofEachLevel=assignment_list[i].dur_each_level;
+                        GlobalData.NosofQuesassignment=assignment_list[i].total_que;
                         GlobalData.CurrentStudentID=GlobalData.uid;
-                        Navigator.of(context).pushNamed('AssignmentAnswerLog');
-                      },
+                        Navigator.of(context).pushNamed('AssignmentAnswerLog'); },
                       child: assignment_list[i].is_taken==true?
-                      AssignmentExerciseLog(
+                      AssignmentResult(
                         color: GlobalData.pinkred,
                         heading: assignment_list[i].assignment_title+" - "+assignment_list[i].id,
                         paragraph: assignment_list[i].teacher_instruction,
-                        title: assignment_list[i].assignment_title,
+                        title: assignment_list[i].takendate.toString(),
                         id: assignment_list[i].id,
                         is_taken: assignment_list[i].is_taken,
-                        progresslabel: assignment_list[i].progresslabel,
+                        percent: assignment_list[i].percentage.toString(),
+                        progresslabel:assignment_list[i].progresslabel,
+                        timetaken: assignment_list[i].totaltime.toString(),
                       ):SizedBox(),
                     );
-                  }),
+                  }
+              ),
             ),
           ],
         )

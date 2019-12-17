@@ -23,7 +23,7 @@ class _assignmentcompleteState extends State<assignmentcomplete> {
       print(res.body);
 
       var ParsedJson = jsonDecode(res.body);
-      assignment_list = (ParsedJson['assignmentdata'] as List).map((data)=>Pojo_getassignment.fromJson(data)).toList();
+      assignment_list = (ParsedJson['assignmentsdata'] as List).map((data)=>Pojo_getassignment.fromJson(data)).toList();
 
       print(assignment_list.length);
       print(jsonEncode(assignment_list).toString());
@@ -36,19 +36,7 @@ class _assignmentcompleteState extends State<assignmentcomplete> {
 
 
 
-  bool QuizComplete()
-  {
-    if(((GlobalData.QuestionNumber /
-        int.parse(
-            GlobalData.NosofQuesPerLevel))
-        .floor())>=int.parse(GlobalData.QuizLevels))
-    {
-      return true;
-    }else
-    {
-      return false;
-    }
-  }
+
   void showDialog1(BuildContext context) {
     // flutter defined function
     showDialog(
@@ -67,7 +55,7 @@ class _assignmentcompleteState extends State<assignmentcomplete> {
             ),
           ),
           content: new Text(
-            "You have completed all the \nquestions levels for this Quiz \nexercise.\nDo you want to preview \nquestions before publishiing?",
+            "You have completed all the \nquestions for this Assignment \nexercise.\nDo you want to preview \nquestions before publishing?",
             textAlign: TextAlign.center,
             style: TextStyle(
                 color: GlobalData.gray,
@@ -88,13 +76,17 @@ class _assignmentcompleteState extends State<assignmentcomplete> {
 
 
                   if(assignment_list.isNotEmpty) {
+                    print("ada" + assignment_list.length.toString());
                     GlobalData.EditQuiz = true;
                     GlobalData.AssignmentID = assignment_list[0].id;
                     GlobalData.ExamQuiz = assignment_list[0].assignment_title;
-
+                    GlobalData.NosofQuesassignment=assignment_list[0].total_que;
+                    GlobalData.teacherinstruction=assignment_list[0].teacher_instruction;
+                    GlobalData.teacherobjective=assignment_list[0].teacher_objective;
                     //  Navigator.of(context).pushNamed(GlobalData.userType=="student"?'exam':'Question_List');
-                    Navigator.of(context).pushReplacementNamed('levelsList');
+                    Navigator.of(context).pushReplacementNamed('AssignmentQuestionList');
                   }else{
+                    print("ada" + assignment_list.length.toString());
                     Show_toast_Now("Please Try after few Seconds", Colors.red);
                   }
                 },
@@ -112,7 +104,7 @@ class _assignmentcompleteState extends State<assignmentcomplete> {
                 shape: new RoundedRectangleBorder(
                     borderRadius: new BorderRadius.circular(15.0)),
                 onPressed: () {
-                  Navigator.of(context).pushReplacementNamed('publishquiz');
+                  Navigator.of(context).pushReplacementNamed('publishassignment');
 
                 },
                 child: Text(
@@ -168,10 +160,10 @@ class _assignmentcompleteState extends State<assignmentcomplete> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        automaticallyImplyLeading: true,
+        automaticallyImplyLeading: false,
         title: Center(
           child: Text(
-            "Set Quiz Questions",
+            "Set Assignment Questions",
             style: TextStyle(fontSize: 20),
           ),
         ),
@@ -210,42 +202,17 @@ class _assignmentcompleteState extends State<assignmentcomplete> {
                         Center(
                             child: levelcomplete(
                               color: GlobalData.blue,
-                              heading: QuizComplete() ?
-                              "Quiz Completed":
+                              heading: "Assignment Completed",
 
-                              "Level " +
-                                  ((GlobalData.QuestionNumber /
-                                      int.parse(
-                                          GlobalData.NosofQuesPerLevel))
-                                      .floor())
-                                      .toString() +
-                                  " Completed",
-                              paragraph:QuizComplete() ?
-                              "Congratulations!...\n You have Completed all Levels of Quiz.":
-                              "Congratulations! You have completed the questions for Level " +
-                                  ((GlobalData.QuestionNumber /
-                                      int.parse(
-                                          GlobalData.NosofQuesPerLevel))
-                                      .floor())
-                                      .toString() +
-                                  " Quiz. Use the Next button to continue to set questions for Level " +
-                                  ((GlobalData.QuestionNumber /
-                                      int.parse(GlobalData
-                                          .NosofQuesPerLevel))
-                                      .floor() +
-                                      1)
-                                      .toString() +
-                                  " Quiz.",
+
+                              paragraph: "Congratulations!...\n You have Completed all Questions for this Assignment."
                             )),
                         Padding(
                           padding: const EdgeInsets.only(top: 30),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
-                              GlobalData.QuestionNumber >=
-                                  (int.parse(GlobalData.NosofQuesPerLevel) *
-                                      int.parse(GlobalData.QuizLevels))
-                                  ? Expanded(
+                              Expanded(
                                 child: Container(
                                   child: Padding(
                                     padding: const EdgeInsets.only(
@@ -261,35 +228,6 @@ class _assignmentcompleteState extends State<assignmentcomplete> {
                                           ]),
                                       text: Text(
                                         "Finish",
-                                        style: TextStyle(
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 18,
-                                        ),
-                                        textAlign: TextAlign.center,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              )
-                                  : Expanded(
-                                child: Container(
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(
-                                        top: 25, bottom: 40),
-                                    child: GradientButtonText(
-                                      ButtonClick: () {
-                                        Navigator.of(context)
-                                            .pushReplacementNamed(
-                                            'questions');
-                                      },
-                                      linearGradient: LinearGradient(
-                                          colors: <Color>[
-                                            GlobalData.purple,
-                                            GlobalData.pink
-                                          ]),
-                                      text: Text(
-                                        "Next Level",
                                         style: TextStyle(
                                           color: Colors.white,
                                           fontWeight: FontWeight.bold,

@@ -105,7 +105,7 @@ class _AssignmentReportState extends State<AssignmentReport> {
                         heading: assignment_list[i].assignment_title,
                         paragraph: assignment_list[i].teacher_instruction,
                         id:assignment_list[i].id ,
-                        title: assignment_list[i].assignment_title,
+                        title: assignment_list[i].publish_date,
                         is_taken: assignment_list[i].is_taken,
 
 

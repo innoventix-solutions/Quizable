@@ -417,7 +417,52 @@ class _assignmentquestionbankState extends State<assignmentquestionbank> {
                                   textAlign: TextAlign.center,
                                 ),ButtonClick: (){
                                 setalldetails();
-                                SaveQuiz();
+
+                                print("Total Questions: " + GlobalData.NosofQuesassignment??"Not allocated");
+                                print(GlobalData.MyMembership.isActive);
+
+                                print(GlobalData.adminmembership.toString());
+
+                                if(GlobalData.MyMembership.isActive==false)
+                                {
+
+                                  print("yahoo");
+
+                                  print(GlobalData.classid);
+                                  print(GlobalData.adminmembership.toString());
+
+                                  if (GlobalData.adminmembership == "" ||
+                                      GlobalData.adminmembership == null ||
+                                      GlobalData.adminmembership == false.toString())
+                                  {
+
+                                    print("Level 1");
+
+                                    if (int.parse(GlobalData.NosofQuesassignment) > 10)
+                                    {
+                                      GlobalData.userType=="admin_teacher"?
+                                      CustomShowDialog(context,title: "Subscription Required",msg:
+                                      "Please reduce the number of Questions to 10 for a trial.\nOtherwise, subscribe to set unlimited questions.\n\nSubscribe now?",onPressed:(){
+                                        Navigator.of(context).pushNamed('ManageAccount');
+                                      },
+                                          onpressed1: (){
+                                            Navigator.of(context).pop();
+                                          }):
+                                      CustomShowDialog(context,title: "Subscription Required",msg:
+                                      "You cannot set more than 10 questions. \n\nPlease contact your Admin to Subscribe for the institution's account.",onPressed:(){
+                                        Navigator.of(context).pop();
+
+                                      });
+                                    } else {
+                                      SaveAssignment();
+                                    }
+                                  } else {
+
+                                    SaveAssignment();
+                                  }
+                                }else{
+                                  SaveAssignment();
+                                }
                               },
                               ),
                             ),
@@ -445,7 +490,7 @@ class _assignmentquestionbankState extends State<assignmentquestionbank> {
                               )
                             ],
                           ),
-                          onTap: () {setalldetails();SaveQuiz();
+                          onTap: () {setalldetails();SaveAssignment();
 //                          Navigator.of(context)
 //                              .pushNamed(
 //                              'questions');
@@ -487,7 +532,7 @@ class _assignmentquestionbankState extends State<assignmentquestionbank> {
 
 
 
-  SaveQuiz()async {
+  SaveAssignment()async {
 
     print(
         "assignment_title : "+ GlobalData.AssignmentTitle +

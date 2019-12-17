@@ -69,7 +69,7 @@ class _AssignmentQuestionListState extends State<AssignmentQuestionList> {
 
     switch (type)
     {
-      case "Fiil in the blanks":
+      case "Fill-in the gaps":
 
         return Card(
           child: Column(
@@ -92,8 +92,11 @@ class _AssignmentQuestionListState extends State<AssignmentQuestionList> {
 
                                     child: Row(
                                       children: <Widget>[
-                                        Checkbox(value: Answers[index].trueanswer, ),
-                                        Text(Answers[index].value,maxLines: 4,)
+                                        /*Checkbox(value: Answers[index].trueanswer, ),*/
+                                        Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: Text(Answers[index].value,maxLines: 4,),
+                                        )
                                       ],),);}),
                           ),
                         ],

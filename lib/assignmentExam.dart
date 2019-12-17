@@ -1,8 +1,9 @@
 import 'dart:convert';
-//import 'package:countdown/countdown.dart';
+import 'package:countdown/countdown.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 import 'Pojo/pojo_answer.dart';
 import 'Pojo/pojo_matchs.dart';
@@ -25,6 +26,8 @@ class _AssignmentExamState extends State<AssignmentExam> {
   bool originalCopied =false;
   TextEditingController shortessayanswer = new TextEditingController();
   int Changed=0;
+  CountDown cd ;
+  List<Pojo_getassignment> timer = new List();
   int CurrentPage =0;
   PageController pageController = new PageController();
   List<Pojo_questions> Quetions = new List();
@@ -39,12 +42,50 @@ class _AssignmentExamState extends State<AssignmentExam> {
   List<String> _list = new List();
   List<String> fillupsData = new List();
   bool isloading = true;
+  String TimerText ="-:--:--";
+  int timermins = 10;
 
   List<TextEditingController> Textcontroller = List();
   List<pojo_anslog> anslist = new List();
 
 
   bool _isVisible = true;
+
+
+  bool stoptimer =false;
+
+  Timmer(){
+
+
+    cd = CountDown(Duration(minutes: timermins));
+    var sub = cd.stream.listen(null);
+    // start your countdown by registering a listener
+    sub.onData((Duration d) {
+      //   print(d);
+      if(stoptimer==false){
+        TimerText=d.toString().substring(0,7);
+
+        setState(() {
+
+        });
+      }
+
+
+      /*TimerText=d.toString().substring(0,7);
+
+      setState(() {
+
+      });*/
+    });
+    // when it finish the onDone cb is called
+    sub.onDone(() {
+      getExamResult();
+      cd.isPaused=true;
+
+
+    });
+
+  }
 
   void showToast() {
     setState(() {
@@ -58,8 +99,9 @@ class _AssignmentExamState extends State<AssignmentExam> {
   @override
   dispose()
   {
-
+    cd.isPaused=true;
     super.dispose();
+
   }
 
   GetQuestions() async{
@@ -199,7 +241,7 @@ class _AssignmentExamState extends State<AssignmentExam> {
     super.initState();
 
     print(GlobalData.userType);
-
+    Timmer();
     GetQuestions();
 
   }
@@ -246,7 +288,7 @@ class _AssignmentExamState extends State<AssignmentExam> {
                 color: Colors.red,
                 onPressed: (){
 
-
+                  print(getLevelTime());
                   Navigator.of(context).pushReplacementNamed('AssignmentListStudents');
 
                 },
@@ -270,8 +312,10 @@ class _AssignmentExamState extends State<AssignmentExam> {
                         padding: const EdgeInsets.all(10.0),
                         child: Row(
                           children: <Widget>[
-                            new Text("Instructions: " +GlobalData.teacherinstruction,
-                              style:TextStyle(fontSize: 16,fontWeight: FontWeight.bold) ,),
+                            Expanded(
+                              child: new Text("Instructions: " +GlobalData.teacherinstruction,
+                                style:TextStyle(fontSize: 16,fontWeight: FontWeight.bold) ,),
+                            ),
                           ],
                         ),
                       ),
@@ -279,8 +323,10 @@ class _AssignmentExamState extends State<AssignmentExam> {
                         padding: const EdgeInsets.only(top: 0,bottom: 10,left: 10),
                         child: Row(
                           children: <Widget>[
-                            new Text("Objective: " +GlobalData.teacherobjective,
-                            style: TextStyle(fontSize: 16),),
+                            Expanded(
+                              child: new Text("Objective: " +GlobalData.teacherobjective,
+                              style: TextStyle(fontSize: 16),),
+                            ),
                           ],
                         ),
                       ),
@@ -464,6 +510,20 @@ class _AssignmentExamState extends State<AssignmentExam> {
 
 
 
+  submittime()async{
+    await http.post("http://edusupportapp.com/api/insert_assignment_attend_time.php",body: {
+      "user_id":GlobalData.uid,
+      "assignment_id":Quetions[i].assignment_id,
+      //"level":Quetions[i].level_no.toString(),
+      "taken_time":getLevelTime(),
+      //"type":"s",
+    }).then((res){
+      print(res.body);
+    });
+
+  }
+
+
   getExamResult()async{
     http.post("http://edusupportapp.com/api/get_user_assignment_result.php",body:{
       "assignment_id":GlobalData.AssignmentID,
@@ -501,6 +561,11 @@ class _AssignmentExamState extends State<AssignmentExam> {
 
 
   GiveAnswer(String answer)async{
+
+    print("Your Answer : "+answer);
+    if(cd!=null) {
+      cd.isPaused = true;
+    }
 
     await http.post("http://edusupportapp.com/api/assignment_answer.php",body: {
       "user_id":GlobalData.uid,
@@ -577,6 +642,20 @@ class _AssignmentExamState extends State<AssignmentExam> {
                                       style: TextStyle(color: GlobalData.lightblue,fontSize: 20,fontWeight: FontWeight.bold),),
                                   )),
 
+                                  Center(child: Padding(
+                                    padding: const EdgeInsets.only(top:15),
+
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: <Widget>[
+                                        Icon(Icons.timer),
+                                        SizedBox(width: 10,),
+                                        Text(getLevelTime(),textAlign: TextAlign.center,
+                                          style: TextStyle(color: GlobalData.lightblue,fontSize: 20,fontWeight: FontWeight.bold),),
+                                      ],
+                                    ),
+                                  )),
+
 
 
 
@@ -594,7 +673,7 @@ class _AssignmentExamState extends State<AssignmentExam> {
 
 
                                                 Navigator.of(context).pop();
-                                               // submittime();
+                                                submittime();
                                                 Navigator.of(context).pop();
                                                 Navigator.of(context).pushNamed('AssignmentListStudents');
                                                 setState(() {
@@ -640,7 +719,39 @@ class _AssignmentExamState extends State<AssignmentExam> {
         });
   }
 
+  String getLevelTime(){
 
+    // Show_toast_Now(TimerText.substring(2,4),Colors.green);
+    int second = int.parse(TimerText.substring(5,7));
+    int min = int.parse(TimerText.substring(2,4));
+    int ConsumedTime = (int.parse(timermins.toString())*60)-((min*60)+second);
+    int usedSecond= ConsumedTime%60;
+    int usedMin = (ConsumedTime/60).floor();
+    int hour = usedMin==0?0:(usedMin/60).floor();
+
+    String ActualTime = RoundTime(hour.toString())+":"+RoundTime(usedMin.toString())+":"+RoundTime(usedSecond.toString());
+
+    //  Show_toast_Now(RoundTime(hour.toString())+":"+RoundTime(usedMin.toString())+":"+RoundTime(usedSecond.toString()),Colors.green);
+
+
+
+    stoptimer=true;
+    return ActualTime;
+
+
+  }
+
+
+  String RoundTime(String time){
+
+    if(time.length==1)
+    {
+      time ="0"+time;
+    }
+
+    return time;
+
+  }
 
 
 }

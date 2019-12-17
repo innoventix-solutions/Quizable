@@ -45,7 +45,7 @@ class _PreviewSpellingState extends State<PreviewSpelling> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          automaticallyImplyLeading: false,
+          automaticallyImplyLeading: true,
 
           title: Center(
             child: Text(
@@ -62,13 +62,13 @@ class _PreviewSpellingState extends State<PreviewSpelling> {
               ),
             ),
           ),
-          actions: <Widget>[
+          /*actions: <Widget>[
             GestureDetector(
                 onTap: (){
                   Navigator.of(context).pushReplacementNamed('dashboard');
 
                 },child: Icon(Icons.exit_to_app))
-          ],
+          ],*/
         ),
 
         /*drawer:
@@ -99,6 +99,7 @@ class _PreviewSpellingState extends State<PreviewSpelling> {
                           GlobalData.spelltitle=spellinglist[i].spelling_title;
                           GlobalData.spellNosofQuesPerLevel = spellinglist[i].que_each_level;
                           GlobalData.Selected_class=spellinglist[i].classes;
+                          GlobalData.spellingstatus=spellinglist[i].status;
 
 
 
@@ -171,62 +172,9 @@ class _PreviewSpellingState extends State<PreviewSpelling> {
 
                   ],
                 ),
-                onTap: () async{
-                  print("adminmembership:" +GlobalData.adminmembership.toString());
-                  print("classname:" +GlobalData.class_name .toString());
-
-
-                  if(GlobalData.adminmembership==null.toString() || GlobalData.adminmembership==false.toString())
-
-                  {
-
-                    if(GlobalData.MyMembership==null || GlobalData.MyMembership.isActive==false)
-                    {
-
-                      await GetSpellinng();
-
-                      if(GlobalData.spellinglist.isNotEmpty)
-                      {
-                       // GlobalData.spellinglist[0].status=="onhold"?
-                        //Navigator.of(context).pushNamed('previewspelling')
-                            //:
-                        GlobalData.userType=="admin_teacher"?
-                        CustomShowDialog(context,title: "Subscription Required",msg:
-                        "Only One Spelling with max 10 Questions with one Level is Allowed for Free User\n\nSubscribe to create more Spelling",onPressed:(){
-                          Navigator.of(context).pushNamed('ManageAccount');
-
-                        }):
-                        CustomShowDialog(context,title: "SUBSCRIPTION REQUIRED",msg:
-                        "Your Class Admin is on a Trial Subscription. \n\nPlease refer to Class Admin to upgrade account to enable you \nset multi-level questions above 10.\n\nThank you",
-                            onPressed:(){
-                              Navigator.of(context).pop();
-
-                            });
-                      }
-
-                      else {
-
-
-                        Navigator.of(context)
-                            .pushNamed('setspellingque');
-                      }
-
-                    }else
-                    {
-                      Navigator.of(context)
-                          .pushNamed('setspellingque');
-                    }
-
-
-
-                  }
-
-                  else {
-                    /*Navigator.of(context)
-                   .pushNamed('developpage');*/
-                    Navigator.of(context)
-                        .pushNamed('setspellingque');
-                  }
+                onTap: () {
+                  Navigator.of(context)
+                      .pushNamed('setspellingque');
                 },
               ),
             ),

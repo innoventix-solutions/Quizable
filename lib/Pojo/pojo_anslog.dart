@@ -10,13 +10,18 @@ class pojo_anslog{
   String level_no;
   String que_no;
   String answer_type;
+  String pointawarded;
   int is_true;
   String json;
   List<Pojo_Matchs> anwer_options;
   List<Pojo_Matchs> user_anwer_options;
+  String teacher_given_story_point;
 
 
-  pojo_anslog({this.id, this.question,this.useranswer, this.trueans,this.level_no,this.que_no,this.answer_type,this.is_true,this.anwer_options,this.json,this.user_anwer_options});
+  pojo_anslog({this.id, this.question,this.useranswer,
+    this.trueans,this.level_no,this.que_no,this.answer_type,
+    this.pointawarded,this.is_true,this.anwer_options,
+    this.json,this.user_anwer_options,this.teacher_given_story_point});
 
   factory pojo_anslog.fromJson(Map<String,dynamic> parsedJson){
 
@@ -47,6 +52,8 @@ class pojo_anslog{
         user_anwer_options:parsedJson['answer_type']=="Match Type"?matchs1:[],
       json: parsedJson['answer_options'],
       answer_type: parsedJson['answer_type'].toString(),
+      pointawarded: parsedJson['point_awarded'].toString(),
+        teacher_given_story_point:parsedJson['teacher_given_story_point'].toString(),
 
     );
   }

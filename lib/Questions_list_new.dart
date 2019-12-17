@@ -491,10 +491,10 @@ class _Question_ListState extends State<Question_List> {
 
     /*print(Quetions[i].anwer_options.length.toString()+"  asdznaisdfmmb k");
 Matches =Quetions[i].anwer_options;*/
-    return WillPopScope(onWillPop: () async => false,
-      child: Scaffold(
-          appBar: AppBar(title: Text("Questions List"),centerTitle: true,automaticallyImplyLeading: false,
-            actions: <Widget>[
+
+      return Scaffold(
+          appBar: AppBar(title: Text("Questions List"),centerTitle: true,automaticallyImplyLeading: true,
+           /* actions: <Widget>[
               GestureDetector(
                   onTap: (){
                       Navigator.of(context).pushReplacementNamed('previewQuiz');
@@ -502,10 +502,10 @@ Matches =Quetions[i].anwer_options;*/
                   },child: Icon(Icons.exit_to_app))
 
 
-            ],),
+            ],*/),
           body: isloading==true?Center(child: Text("Loading...")):Quetions.isNotEmpty?MYQue():Center(child: Text("No Questions"),)
-      ),
-    );
+      );
+
   }
 
 

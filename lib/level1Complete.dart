@@ -66,7 +66,7 @@ class _level1State extends State<level1> {
             ),
           ),
           content: new Text(
-            "You have completed all the \nquestions levels for this Quiz \nexercise.\nDo you want to preview \nquestions before publishiing?",
+            "You have completed all the \nquestions levels for this Quiz \nexercise.\nDo you want to preview \nquestions before publishing?",
             textAlign: TextAlign.center,
             style: TextStyle(
                 color: GlobalData.gray,
@@ -88,6 +88,7 @@ class _level1State extends State<level1> {
 
                   if(Quizz_List.isNotEmpty) {
                     GlobalData.EditQuiz = true;
+                    print("ada" + Quizz_List.length.toString());
                     GlobalData.QuizID = Quizz_List[0].id;
                     GlobalData.ExamQuiz = Quizz_List[0].quiz_title;
                     GlobalData.DurationofEachLevel =
@@ -169,7 +170,7 @@ class _level1State extends State<level1> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        automaticallyImplyLeading: true,
+        automaticallyImplyLeading: false,
         title: Center(
           child: Text(
             "Set Quiz Questions",

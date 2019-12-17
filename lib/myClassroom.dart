@@ -83,6 +83,7 @@ class _myclassroomState extends State<myclassroom> {
                         GlobalData.classid = GlobalData.Class_list[index].id;
 
                         GlobalData.activeclass = GlobalData.Class_list[index];
+                        GlobalData.class_name = GlobalData.Class_list[index].classname;
 
                        // GlobalData.parentsphone=GlobalData.Studentlist[index].parentphone;
                        // GlobalData.parentsemail=GlobalData.Studentlist[index].parentemail;

@@ -19,7 +19,8 @@ import 'Pojo/pojo_getspelling.dart';
 import 'Pojo/pojo_getassignment.dart';
 import 'Pojo/pojo_subject.dart';
 import 'Pojo/pojo_quizbyclass.dart';
-
+import 'Pojo/pojo_spellingbyclass.dart';
+import 'Pojo/pojo_assignmentbyclass.dart';
 
 class GlobalData{
 
@@ -27,6 +28,9 @@ class GlobalData{
   static List<Pojo_spelling> spellinglist = new List();
   static List<Subjectcount> mysub = new List();
   static List<Pojo_quizzclass> quizclass = new List<Pojo_quizzclass>();
+  static List<Pojo_spellingclass> spellingclass = new List<Pojo_spellingclass>();
+  static List<Pojo_assignmentclass> assignmentclass = new List<Pojo_assignmentclass>();
+
   static bool EditQuiz = false;
   static Pojo_questions Current_Que_To_Edit;
   static Pojo_Spellingquestions Edit_spelling_Questions;
@@ -114,6 +118,9 @@ class GlobalData{
   static String adminmembership="";
   static String quizstatus="";
   static String questionid="";
+  static String assignmentstatus="";
+  static String spellingstatus="";
+  static String pointawrded="";
 
 
 
@@ -293,12 +300,71 @@ class drawerquiz extends StatelessWidget {
                   child: Text('Assignment Question Bank',style: TextStyle(
                       color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
                 )],),
-            ),onTap: (){
+            ),onTap: ()async{
 
-            Navigator.of(context)
-                .pushNamed('developpage');
-           /*Navigator.of(context)
-                .pushNamed('SetAssignment');*/
+            print("adminmembership:" +GlobalData.adminmembership.toString());
+            print("classname:" +GlobalData.class_name .toString());
+            print("Class ID: "+GlobalData.classid.toString());
+
+
+
+            if(GlobalData.adminmembership == "" ||GlobalData.adminmembership==null || GlobalData.adminmembership==false.toString())
+
+            {
+              print("Level 1");
+
+              if(GlobalData.MyMembership==null || GlobalData.MyMembership.isActive==false)
+              {print("Level 2");
+
+              await GetclassAssignment();
+
+              // print(GlobalData.quizclass.length);
+
+              if(GlobalData.assignmentclass!=null && GlobalData.assignmentclass.isNotEmpty)
+              {
+
+                GlobalData.userType=="admin_teacher"?
+                CustomShowDialog(context,title: "Subscription Required",msg:
+                "Only One Assignment with max 10 Questions is Allowed for Free User\n\nSubscribe to create more Assignment",onPressed:(){
+                  Navigator.of(context).pushNamed('ManageAccount');
+
+                }):
+                CustomShowDialog(context,title: "SUBSCRIPTION REQUIRED",msg:
+                "Your Class Admin is on a Trial Subscription. \n\nPlease refer to Class Admin to upgrade account to enable you \nset questions above 10.\n\nThank you",
+                    onPressed:(){
+                      Navigator.of(context).pushNamed('dashboard');
+
+                    });
+              }
+
+              else {
+
+
+                /*Navigator.of(context)
+                .pushNamed('developpage');*/
+                Navigator.of(context)
+                    .pushNamed('SetAssignment');
+              }
+
+              }else
+              {
+                /*Navigator.of(context)
+                .pushNamed('developpage');*/
+                Navigator.of(context)
+                    .pushNamed('SetAssignment');
+              }
+
+
+
+            }
+            else {
+              /*Navigator.of(context)
+                .pushNamed('developpage');*/
+              Navigator.of(context)
+                  .pushNamed('SetAssignment');
+            }
+
+
           },
           ),
 
@@ -334,7 +400,7 @@ class drawerquiz extends StatelessWidget {
 
                               GlobalData.userType=="admin_teacher"?
                               CustomShowDialog(context,title: "Subscription Required",msg:
-                              "Only One Quizz with max 10 Questions with one Level is Allowed for Free User\n\nSubscribe to create more Quizz",onPressed:(){
+                              "Only One Quiz with maximum 10 Questions with one Level is Allowed for Free User\n\nSubscribe to create more Quiz",onPressed:(){
                                 Navigator.of(context).pushNamed('ManageAccount');
 
                               }):
@@ -384,61 +450,58 @@ class drawerquiz extends StatelessWidget {
             ),onTap: ()async{
             print("adminmembership:" +GlobalData.adminmembership.toString());
             print("classname:" +GlobalData.class_name .toString());
+            print("Class ID: "+GlobalData.classid.toString());
 
 
-            if(GlobalData.adminmembership==null.toString() || GlobalData.adminmembership==false.toString())
+
+            if(GlobalData.adminmembership == "" ||GlobalData.adminmembership==null || GlobalData.adminmembership==false.toString())
 
             {
+              print("Level 1");
 
               if(GlobalData.MyMembership==null || GlobalData.MyMembership.isActive==false)
+              {print("Level 2");
+
+              await GetclassSpellinng();
+
+
+
+              if(GlobalData.spellingclass!=null && GlobalData.spellingclass.isNotEmpty)
               {
 
-                await GetSpellinng();
+                GlobalData.userType=="admin_teacher"?
+                CustomShowDialog(context,title: "Subscription Required",msg:
+                "Only One Spelling with maximum 10 Questions with one Level is Allowed for Free User\n\nSubscribe to create more Spellings",onPressed:(){
+                  Navigator.of(context).pushNamed('ManageAccount');
 
-                if(GlobalData.spellinglist.isNotEmpty)
-                {
-                  GlobalData.spellinglist[0].status=="onhold"?
-                  Navigator.of(context).pushNamed('previewspelling')
-                      :
-                  GlobalData.userType=="admin_teacher"?
-                  CustomShowDialog(context,title: "Subscription Required",msg:
-                  "Only One Spelling with max 10 Questions with one Level is Allowed for Free User\n\nSubscribe to create more Spelling",onPressed:(){
-                    Navigator.of(context).pushNamed('ManageAccount');
+                }):
+                CustomShowDialog(context,title: "SUBSCRIPTION REQUIRED",msg:
+                "Your Class Admin is on a Trial Subscription. \n\nPlease refer to Class Admin to upgrade account to enable you \nset multi-level questions above 10.\n\nThank you",
+                    onPressed:(){
+                      Navigator.of(context).pushNamed('dashboard');
 
-                  }):
-                  CustomShowDialog(context,title: "SUBSCRIPTION REQUIRED",msg:
-                  "Your Class Admin is on a Trial Subscription. \n\nPlease refer to Class Admin to upgrade account to enable you \nset multi-level questions above 10.\n\nThank you",
-                      onPressed:(){
-                        Navigator.of(context).pop();
+                    });
+              }
 
-                      });
-                }
+              else {
 
-                else {
 
-                  Navigator.of(context)
-                      .pushNamed('developpage');
-                  /*Navigator.of(context)
-                      .pushNamed('setspellingque');*/
-                }
+                Navigator.of(context)
+                    .pushNamed('setspellingque');
+              }
 
               }else
               {
                 Navigator.of(context)
-                    .pushNamed('developpage');
-                /*Navigator.of(context)
-                    .pushNamed('setspellingque');*/
+                    .pushNamed('setspellingque');
               }
 
 
 
             }
-
             else {
-               Navigator.of(context)
-                   .pushNamed('developpage');
-              /*Navigator.of(context)
-                  .pushNamed('setspellingque');*/
+              Navigator.of(context)
+                  .pushNamed('setspellingque');
             }
 
           },
@@ -2776,55 +2839,7 @@ class StudentActivityReport extends StatelessWidget {
                                     child: Text(heading,textAlign: TextAlign.left,
                                       style: TextStyle(color: Colors.white,fontSize: 15,fontWeight: FontWeight.bold),),
                                   ),
-                                 /* Expanded(
-                                    child:  Row(mainAxisAlignment: MainAxisAlignment.end,
-                                      children: <Widget>[
-                                        GlobalData.userType=="student"?Text(""):PopupMenuButton(
-                                          child: Icon(Icons.more_vert),
-                                          itemBuilder: (_) => <PopupMenuItem<String>>[
-                                            new PopupMenuItem<String>(
-                                                child: Row(
-                                                  children: <Widget>[
-                                                    Padding(
-                                                      padding: const EdgeInsets.only(right: 4),
-                                                      child: Icon(
-                                                        Icons.edit,
-                                                        color: GlobalData.lightblue,size: 12,
-                                                      ),
-                                                    ),
-                                                    new Text('Edit',style: TextStyle(fontSize: 15),),
-                                                  ],
-                                                ), value: 'edit'),
 
-
-                                            new PopupMenuItem<String>(
-                                                child: Row(
-                                                  children: <Widget>[
-                                                    Padding(
-                                                      padding: const EdgeInsets.only(right: 4,top: 1),
-                                                      child: Icon(
-                                                        Icons.cancel,
-                                                        color: GlobalData.darkpink,size: 12,
-                                                      ),
-                                                    ),
-                                                    new Text('Delete',style: TextStyle(fontSize: 15),),
-                                                  ],
-                                                ), value: 'delete'),
-
-                                          ],
-                                          onSelected: ( value){
-                                            if(value=="edit")
-                                            {
-                                              GlobalData.EditQuiz=true;
-                                              GlobalData.QuizID=id;
-                                              GlobalData.ExamQuiz=title;
-                                              Navigator.of(context).pushNamed('Question_List');
-                                            }
-                                          },
-                                        ),
-                                      ],
-                                    ),
-                                  ), */
 
                                 ],
                               ),
@@ -2843,110 +2858,41 @@ class StudentActivityReport extends StatelessWidget {
                 padding: EdgeInsets.only(left: 25,top: 20,right: 30,bottom: 30),
                 child: Column(
                   children: <Widget>[
-                    Text(paragraph,style: TextStyle(fontWeight: FontWeight.bold,
-                        fontSize: 15,color: GlobalData.gray),textAlign: TextAlign.justify,),
+                    Column(
+                      children: <Widget>[
+                        Row(
+                          children: <Widget>[
+                            Text("Subject: " + paragraph,style: TextStyle(fontWeight: FontWeight.bold,
+                                fontSize: 15,color: GlobalData.gray),textAlign: TextAlign.justify,),
+                          ],
+                        ),
 
+                        Padding(
+                          padding: const EdgeInsets.only(top: 8),
+                          child: Row(
+                            children: <Widget>[
+                              Text("Publish Date: " + title,style: TextStyle(fontWeight: FontWeight.bold,
+                                  fontSize: 15,color: GlobalData.gray),textAlign: TextAlign.justify,),
+                            ],
+                          ),
+                        ),
+
+                        Padding(
+                          padding: const EdgeInsets.only(top:8.0),
+                          child: Row(
+                            children: <Widget>[
+                              Text("Total Levels: " + levels,style: TextStyle(fontWeight: FontWeight.bold,
+                                  fontSize: 15,color: GlobalData.gray),textAlign: TextAlign.justify,),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
                   ],
                 ),
               ),
 
-              /*GestureDetector(
-                onTap: (){
 
-
-
-
-                  GlobalData.QuizID=id;
-
-                  if(GlobalData.userType=="student") {
-                    print("UID"+GlobalData.uid);
-                    print("QID"+(id==null?" Null Value":id));
-//print("Title : "+title);
-//print("levels : "+levels);
-//print("Duration : "+duration);
-
-
-
-                    GlobalData.ExamQuiz=title;
-                    GlobalData.DurationofEachLevel=duration??"20";
-                    GlobalData.QuizLevels=levels??"1";
-                    GlobalData.CurrentStudentID=GlobalData.uid;
-
-
-                    Navigator.of(context).pushNamed(is_taken==true?'AnswerLog':'exam');
-
-
-                  }else
-                  {
-
-                    Navigator.of(context).pushNamed('StudentListByQuiz');
-                  }
-
-                },
-                child: GlobalData.userType=="student"?Row(
-                  children: <Widget>[
-                    Expanded(
-                      child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(5),),
-                          color: (is_taken==true)?Colors.blue:Colors.green),
-
-                        child: Padding(
-                          padding: const EdgeInsets.only(top: 5,bottom: 5),
-                          child: Column(
-                            children: <Widget>[
-                              Padding(
-                                padding: const EdgeInsets.only(top: 5,bottom: 5,left: 10),
-                                child: Row(
-                                    children: <Widget>[
-                                      Expanded(
-                                        child: Text(is_taken==true?"Quiz Report":"Give Exam",textAlign: TextAlign.center,
-                                          style: TextStyle(color: Colors.white,fontSize: 15,fontWeight: FontWeight.bold),),
-                                      ),
-
-                                    ]),
-                              ),
-
-                            ],
-
-                          ),
-                        ),
-
-                      ),
-                    ),
-                  ],
-                ):
-                Row(
-                  children: <Widget>[
-                    Expanded(
-                      child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(5),),
-                          color: Colors.blue),
-
-                        child: Padding(
-                          padding: const EdgeInsets.only(top: 5,bottom: 5),
-                          child: Column(
-                            children: <Widget>[
-                              Padding(
-                                padding: const EdgeInsets.only(top: 5,bottom: 5,left: 10),
-                                child: Row(
-                                    children: <Widget>[
-                                      Expanded(
-                                        child: Text("Quiz Report",textAlign: TextAlign.center,
-                                          style: TextStyle(color: Colors.white,fontSize: 15,fontWeight: FontWeight.bold),),
-                                      ),
-
-                                    ]),
-                              ),
-
-                            ],
-
-                          ),
-                        ),
-
-                      ),
-                    ),
-                  ],
-                )
-                ,
-              ),*/
 
 
 
@@ -3429,7 +3375,7 @@ class PreviewAssignments extends StatelessWidget
                       ),),
                     ),
                    /* incomplete assignments*/
-                   /* incomplete?
+                   incomplete?
                     Padding(
                       padding: const EdgeInsets.only(top: 10),
                       child: Card(color: Colors.red,child: Padding(
@@ -3437,7 +3383,7 @@ class PreviewAssignments extends StatelessWidget
                         child: Text("Incomplete",style:
                         TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
                       ),),
-                    ):Text(""),*/
+                    ):Text(""),
 
                     /*Icon(Icons.remove_red_eye,color: isActive?Colors.green:Colors.red,)*/
 
@@ -3545,7 +3491,7 @@ class StudentAssignmentReport extends StatelessWidget {
                       child: Card(color: is_taken?Colors.green:Colors.green,
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: Text("ddad",style: TextStyle(fontWeight: FontWeight.bold,
+                        child: Text(assignment.label,style: TextStyle(fontWeight: FontWeight.bold,
                             fontSize: 15,color: GlobalData.white),textAlign: TextAlign.center,),
                       ),
                       ),
@@ -3688,6 +3634,7 @@ class AssignmentExerciseLog extends StatelessWidget {
   final bool is_taken;
   //final String levels;
   //final String duration;
+  final String progresslabel;
 
   AssignmentExerciseLog(
       {
@@ -3697,6 +3644,7 @@ class AssignmentExerciseLog extends StatelessWidget {
         this.title,
         this.id,
         this.is_taken,
+        this.progresslabel
        // this.duration,
         //this.levels
   });
@@ -3744,8 +3692,22 @@ class AssignmentExerciseLog extends StatelessWidget {
                 padding: EdgeInsets.only(left: 25,top: 20,right: 30,bottom: 30),
                 child: Column(
                   children: <Widget>[
-                    Text(paragraph,style: TextStyle(fontWeight: FontWeight.bold,
-                        fontSize: 15,color: GlobalData.gray),textAlign: TextAlign.justify,),
+                    Row(
+                      children: <Widget>[
+                        Column(
+                          children: <Widget>[
+                            Text(paragraph,style: TextStyle(fontWeight: FontWeight.bold,
+                                fontSize: 15,color: GlobalData.gray),textAlign: TextAlign.justify,),
+                          ],
+                        ),
+                      ],
+                    ),
+
+                    Row(
+                      children: <Widget>[
+                        getscore(grade:progresslabel),
+                      ],
+                    ),
 
                   ],
                 ),
@@ -3963,20 +3925,42 @@ Getclassquiz() async {
 
 
 
-GetSpellinng()async{
-  await http.post("http://edusupportapp.com/api/get_spellings.php",
-      body: {"UserId": GlobalData.uid}).then((res) {
+GetclassSpellinng()async{
+  print("Classid ${GlobalData.classid}");
+  print("classname ${GlobalData.class_name}");
+  if(GlobalData.spellingclass!=null){GlobalData.spellingclass.clear();}
+  await http.post("http://edusupportapp.com/api/get_spelling_by_class.php",
+      body: {"Class_id": GlobalData.classid,
+        "publish_onhold_both":"as"}).then((res) {
     print(res.body);
     var ParsedJson = jsonDecode(res.body);
     if (ParsedJson['spellingdata'] != false) {
-      GlobalData.spellinglist = (ParsedJson['spellingdata'] as List)
-          .map((data) => Pojo_spelling.fromJson(data))
+      GlobalData.spellingclass = (ParsedJson['spellingdata'] as List)
+          .map((data) => Pojo_spellingclass.fromJson(data))
           .toList();
     }
   });
 
 }
 
+
+GetclassAssignment()async{
+  print("Classid ${GlobalData.classid}");
+  print("classname ${GlobalData.class_name}");
+  if(GlobalData.assignmentclass!=null){GlobalData.assignmentclass.clear();}
+  await http.post("http://edusupportapp.com/api/get_assignments_by_class.php",
+      body: {"Class_id": GlobalData.classid,
+        "publish_onhold_both":"as"}).then((res) {
+    print(res.body);
+    var ParsedJson = jsonDecode(res.body);
+    if (ParsedJson['assignmentdata'] != false) {
+      GlobalData.assignmentclass = (ParsedJson['assignmentdata'] as List)
+          .map((data) => Pojo_assignmentclass.fromJson(data))
+          .toList();
+    }
+  });
+
+}
 
 
 class PreviewSpellingss extends StatelessWidget {
@@ -5075,55 +5059,7 @@ class StudentAssignmentActivityReport extends StatelessWidget {
                                     child: Text(heading,textAlign: TextAlign.left,
                                       style: TextStyle(color: Colors.white,fontSize: 15,fontWeight: FontWeight.bold),),
                                   ),
-                                  /* Expanded(
-                                    child:  Row(mainAxisAlignment: MainAxisAlignment.end,
-                                      children: <Widget>[
-                                        GlobalData.userType=="student"?Text(""):PopupMenuButton(
-                                          child: Icon(Icons.more_vert),
-                                          itemBuilder: (_) => <PopupMenuItem<String>>[
-                                            new PopupMenuItem<String>(
-                                                child: Row(
-                                                  children: <Widget>[
-                                                    Padding(
-                                                      padding: const EdgeInsets.only(right: 4),
-                                                      child: Icon(
-                                                        Icons.edit,
-                                                        color: GlobalData.lightblue,size: 12,
-                                                      ),
-                                                    ),
-                                                    new Text('Edit',style: TextStyle(fontSize: 15),),
-                                                  ],
-                                                ), value: 'edit'),
 
-
-                                            new PopupMenuItem<String>(
-                                                child: Row(
-                                                  children: <Widget>[
-                                                    Padding(
-                                                      padding: const EdgeInsets.only(right: 4,top: 1),
-                                                      child: Icon(
-                                                        Icons.cancel,
-                                                        color: GlobalData.darkpink,size: 12,
-                                                      ),
-                                                    ),
-                                                    new Text('Delete',style: TextStyle(fontSize: 15),),
-                                                  ],
-                                                ), value: 'delete'),
-
-                                          ],
-                                          onSelected: ( value){
-                                            if(value=="edit")
-                                            {
-                                              GlobalData.EditQuiz=true;
-                                              GlobalData.QuizID=id;
-                                              GlobalData.ExamQuiz=title;
-                                              Navigator.of(context).pushNamed('Question_List');
-                                            }
-                                          },
-                                        ),
-                                      ],
-                                    ),
-                                  ), */
 
                                 ],
                               ),
@@ -5142,110 +5078,190 @@ class StudentAssignmentActivityReport extends StatelessWidget {
                 padding: EdgeInsets.only(left: 25,top: 20,right: 30,bottom: 30),
                 child: Column(
                   children: <Widget>[
-                    Text(paragraph,style: TextStyle(fontWeight: FontWeight.bold,
-                        fontSize: 15,color: GlobalData.gray),textAlign: TextAlign.justify,),
+                    Row(
+                      children: <Widget>[
+                        Expanded(
+                          child: Text("Instructions: " + paragraph,style: TextStyle(fontWeight: FontWeight.bold,
+                              fontSize: 15,color: GlobalData.gray),textAlign: TextAlign.justify,),
+                        ),
+                      ],
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 10),
+                      child: Row(
+                        children: <Widget>[
+                          Text("Publish Date: " + title,style: TextStyle(fontWeight: FontWeight.bold,
+                              fontSize: 15,color: GlobalData.gray),textAlign: TextAlign.justify,),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+
+
+
+
+
+
+
+
+            ],
+          ),
+
+        ),
+      );
+  }
+}
+
+
+
+class AssignmentResult extends StatelessWidget {
+
+  final String heading;
+  final String paragraph;
+  final Color color;
+  final String title;
+  final String id;
+  final bool is_taken;
+
+  final String percent;
+  final String progresslabel;
+  final String timetaken;
+
+  AssignmentResult(
+      {
+        this.heading,
+        this.paragraph,
+        this.color,
+        this.title,
+        this.id,
+        this.is_taken,
+
+        this.percent,
+        this.progresslabel,
+        this.timetaken
+      });
+
+  @override
+  Widget build(BuildContext context) {
+
+
+
+
+
+
+
+    String TimerText ="-:--:--";
+
+    String RoundTime(String time){
+
+      if(time.length==1)
+      {
+        time ="0"+time;
+      }
+
+      return time;
+
+    }
+
+
+
+
+
+
+    return
+      Container(decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(40))),
+        child: Card(elevation: 5.0,shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(5.0),
+        ),
+          child: Column(mainAxisAlignment: MainAxisAlignment.start,
+            children: <Widget>[
+              Row(
+                children: <Widget>[
+                  Expanded(
+                    child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(5),),color: color),
+
+                      child: Padding(
+                        padding: const EdgeInsets.only(top: 5,bottom: 5),
+                        child: Column(
+                          children: <Widget>[
+                            Padding(
+                              padding: const EdgeInsets.only(top: 5,bottom: 5,left: 10,right: 3),
+                              child: Row(
+                                children: <Widget>[
+                                  Expanded(
+                                    child: Text(heading,textAlign: TextAlign.left,
+                                      style: TextStyle(color: Colors.white,fontSize: 15,fontWeight: FontWeight.bold),),
+                                  ),
+                                  Padding(
+                                      padding: const EdgeInsets.only(right:4),
+                                      child: PopupMenuButton(
+                                        child: GestureDetector(
+                                            onTap: (){
+                                              Share.share("My EduSupport Quiz Result \n \n"+ GlobalData.Username + " completed Quiz: " + heading + "\n \n"+"My result is: " + percent +" %"
+                                                  +"\n"  + progresslabel);
+
+
+
+                                            },child: Icon(Icons.share,color: Colors.white,)),
+                                        itemBuilder: (_) => <PopupMenuItem<String>>[
+
+                                        ],
+
+                                      )
+                                  ),],
+                              ),
+                            ),
+
+                          ],
+
+                        ),
+                      ),
+
+                    ),
+                  ),
+                ],
+              ),
+              Container(
+                padding: EdgeInsets.only(left: 25,top: 10,right: 30,bottom: 10),
+                child: Column(
+                  children: <Widget>[
+                    Row(
+                      children: <Widget>[
+                        Expanded(
+                          child: Column(
+                            children: <Widget>[
+                              Text(paragraph,style: TextStyle(fontWeight: FontWeight.bold,
+                                  fontSize: 15,color: GlobalData.gray),textAlign: TextAlign.justify,),
+
+                              Row(
+                                children: <Widget>[
+                                  getscore(grade:progresslabel),
+                                ],
+                              )],
+                          ),
+                        ),
+                       // Spacer(),
+
+                        Expanded(child: getscoreborder(per: double.parse(percent),)),
+
+                      ],
+                    ),Padding(
+                      padding: const EdgeInsets.only(top: 10),
+                      child: Row(
+                        children: <Widget>[
+                          Expanded(child: Text("Time : " + timetaken,style: TextStyle(fontSize: 14,color: Colors.black),)),
+                          Expanded(child: Text("Exam Date : " + title,style: TextStyle(fontSize: 14,color: Colors.black),)),
+
+                        ],
+                      ),
+                    )
 
                   ],
                 ),
               ),
 
-              /*GestureDetector(
-                onTap: (){
-
-
-
-
-                  GlobalData.QuizID=id;
-
-                  if(GlobalData.userType=="student") {
-                    print("UID"+GlobalData.uid);
-                    print("QID"+(id==null?" Null Value":id));
-//print("Title : "+title);
-//print("levels : "+levels);
-//print("Duration : "+duration);
-
-
-
-                    GlobalData.ExamQuiz=title;
-                    GlobalData.DurationofEachLevel=duration??"20";
-                    GlobalData.QuizLevels=levels??"1";
-                    GlobalData.CurrentStudentID=GlobalData.uid;
-
-
-                    Navigator.of(context).pushNamed(is_taken==true?'AnswerLog':'exam');
-
-
-                  }else
-                  {
-
-                    Navigator.of(context).pushNamed('StudentListByQuiz');
-                  }
-
-                },
-                child: GlobalData.userType=="student"?Row(
-                  children: <Widget>[
-                    Expanded(
-                      child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(5),),
-                          color: (is_taken==true)?Colors.blue:Colors.green),
-
-                        child: Padding(
-                          padding: const EdgeInsets.only(top: 5,bottom: 5),
-                          child: Column(
-                            children: <Widget>[
-                              Padding(
-                                padding: const EdgeInsets.only(top: 5,bottom: 5,left: 10),
-                                child: Row(
-                                    children: <Widget>[
-                                      Expanded(
-                                        child: Text(is_taken==true?"Quiz Report":"Give Exam",textAlign: TextAlign.center,
-                                          style: TextStyle(color: Colors.white,fontSize: 15,fontWeight: FontWeight.bold),),
-                                      ),
-
-                                    ]),
-                              ),
-
-                            ],
-
-                          ),
-                        ),
-
-                      ),
-                    ),
-                  ],
-                ):
-                Row(
-                  children: <Widget>[
-                    Expanded(
-                      child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(5),),
-                          color: Colors.blue),
-
-                        child: Padding(
-                          padding: const EdgeInsets.only(top: 5,bottom: 5),
-                          child: Column(
-                            children: <Widget>[
-                              Padding(
-                                padding: const EdgeInsets.only(top: 5,bottom: 5,left: 10),
-                                child: Row(
-                                    children: <Widget>[
-                                      Expanded(
-                                        child: Text("Quiz Report",textAlign: TextAlign.center,
-                                          style: TextStyle(color: Colors.white,fontSize: 15,fontWeight: FontWeight.bold),),
-                                      ),
-
-                                    ]),
-                              ),
-
-                            ],
-
-                          ),
-                        ),
-
-                      ),
-                    ),
-                  ],
-                )
-                ,
-              ),*/
 
 
 

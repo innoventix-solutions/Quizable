@@ -1,10 +1,12 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
 import 'Pojo/pojo_anslog.dart';
 import 'Pojo/pojo_matchs.dart';
 import 'Pojo/pojo_questions.dart';
 import 'global.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 
 class AssignmentAnswerLog extends StatefulWidget {
@@ -44,7 +46,29 @@ class _AssignmentAnswerLogState extends State<AssignmentAnswerLog> {
       });
     });
   }
-  
+  RefreshController _refreshController =
+  RefreshController(initialRefresh: false);
+
+  void _onRefresh() async{
+    // monitor network fetch
+    await Future.delayed(Duration(milliseconds: 1000));
+    // if failed,use refreshFailed()
+    _refreshController.refreshCompleted();
+  }
+
+  void _onLoading() async{
+    // monitor network fetch
+    await Future.delayed(Duration(milliseconds: 1000));
+    // if failed,use loadFailed(),if no data return,use LoadNodata()
+    anslog().add((anslist.length+1).toString());
+    if(mounted)
+      setState(() {
+
+      });
+    _refreshController.loadComplete();
+  }
+
+
 
 
 
@@ -93,21 +117,56 @@ class _AssignmentAnswerLogState extends State<AssignmentAnswerLog> {
             ],
           ),
           body:
-          ListView.builder(itemBuilder: (c,i){
-            return MyResultBlock(correct_ans: anslist[i].trueans,
-              questionid: anslist[i].id,
-              //level:  anslist[i].level_no,
-              que:  anslist[i].question,
-              que_no:  anslist[i].que_no,
-              user_ans:  anslist[i].useranswer,
-              result: anslist[i].is_true,
-              anwer_options: anslist[i].anwer_options,
-              afg:anslist[i].json,
-              User_anwer_options: anslist[i].user_anwer_options,
-              answertype: anslist[i].answer_type,
-            );
-          },
-            itemCount: anslist.length,)
+          SmartRefresher(
+            enablePullDown: true,
+            enablePullUp: true,
+            header: WaterDropHeader(),
+            footer: CustomFooter(
+              builder: (BuildContext context, LoadStatus mode){
+                Widget body;
+                if(mode==LoadStatus.idle){
+                  body =  Text("pull up load");
+                }
+                else if(mode==LoadStatus.loading){
+                  body =  Text("");
+                  //CupertinoActivityIndicator();
+                }
+                else if(mode == LoadStatus.failed){
+                  body = Text("Load Failed!Click retry!");
+                }
+                else if(mode == LoadStatus.canLoading){
+                  body = Text("release to load more");
+                }
+                else{
+                  body = Text("No more Data");
+                }
+                return Container(
+                  height: 55.0,
+                  child: Center(child:body),
+                );
+              },
+            ),
+            controller: _refreshController,
+            onRefresh: _onRefresh,
+            onLoading: _onLoading,
+            child: ListView.builder(itemBuilder: (c,i){
+              return MyResultBlock(correct_ans: anslist[i].trueans,
+                questionid: anslist[i].id,
+                //level:  anslist[i].level_no,
+                que:  anslist[i].question,
+                que_no:  anslist[i].que_no,
+                user_ans:  anslist[i].useranswer,
+                result: anslist[i].is_true,
+                anwer_options: anslist[i].anwer_options,
+                afg:anslist[i].json,
+                User_anwer_options: anslist[i].user_anwer_options,
+                answertype: anslist[i].answer_type,
+                pointawarded: anslist[i].pointawarded,
+                teacher_given_story_point: anslist[i].teacher_given_story_point,
+              );
+            },
+              itemCount: anslist.length,),
+          )
 
       ),
     );
@@ -132,12 +191,14 @@ class MyResultBlock extends StatelessWidget {
   final int result;
   final String afg;
   final String answertype;
+  final String pointawarded;
   List<Pojo_Matchs> User_anwer_options;
   List<Pojo_Matchs> anwer_options;
+  final String teacher_given_story_point;
 
   MyResultBlock({this.questionid,this.que_no, this.que, this.correct_ans,
     this.user_ans,this.result,this.anwer_options,this.afg,
-    this.User_anwer_options,this.answertype});
+    this.User_anwer_options,this.answertype,this.pointawarded,this.teacher_given_story_point});
 
   List<point> Pointessay = new List();
 
@@ -149,6 +210,19 @@ class MyResultBlock extends StatelessWidget {
   void Pointdialog(BuildContext context)  {
 
     TextEditingController points = new TextEditingController();
+
+    Show_toast(String msg, Color color) {
+      Fluttertoast.showToast(
+          msg: msg,
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.CENTER,
+          timeInSecForIos: 1,
+          backgroundColor: color,
+          textColor: Colors.white,
+          fontSize: 16.0);
+    }
+
+
     giveessaypoint() async{
       http.post("http://edusupportapp.com/api/story_point.php",
           body: {
@@ -160,6 +234,8 @@ class MyResultBlock extends StatelessWidget {
 
       ).then((response){
 
+        Show_toast("Point Inserted Successfully", Colors.green);
+        //Navigator.of(context).pushNamed('AssignmentReport');
 
         Navigator.of(context).pop();
         print(response.body);
@@ -171,6 +247,25 @@ class MyResultBlock extends StatelessWidget {
 
       });
     }
+
+
+    check(){
+      if(int.parse(points.text.toString())>int.parse(pointawarded)){
+        CustomShowDialog(context,title: "Invalid",msg: "Please set point equal or less then "+ pointawarded  ,
+        onPressed: (){
+          Navigator.of(context).pop();
+        });
+
+        print("pointawrded" + pointawarded);
+      }
+      else{
+
+          giveessaypoint();
+
+
+      }
+    }
+
     showDialog(
         context: context,
         builder: (BuildContext context) {
@@ -229,7 +324,7 @@ class MyResultBlock extends StatelessWidget {
                                               ButtonClick: (){
 
                                                 GlobalData.questionid=questionid;
-                                                giveessaypoint();
+                                                check();
 
 
                                               }
@@ -275,12 +370,12 @@ class MyResultBlock extends StatelessWidget {
   Widget build(BuildContext context) {
     return  Padding(
       padding: const EdgeInsets.all(10.0),
-      child: Container(
+      child:  Container(
 
         child: Card(
           child: Column(
             children: <Widget>[
-           
+
               Container(
 
                 child: Row(
@@ -421,12 +516,43 @@ class MyResultBlock extends StatelessWidget {
                     ),
                   ):SizedBox(),
 
-                    answertype=="Short Essay"?
-                    RaisedButton(child: Text("Give Point"),onPressed:(){
-                      Pointdialog(context);
 
-                    },):
-                    SizedBox(),
+                    Container(child:
+                        Row(children: <Widget>[
+                          Expanded(
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: GlobalData.userType=="student"?Text(""):
+                              answertype=="Short Essay"?
+                                  teacher_given_story_point==false.toString()?
+                              RaisedButton(color: Colors.deepOrange,child: Text("Give Point"),onPressed:(){
+                                Pointdialog(context);
+
+                              },):
+                              SizedBox():SizedBox(),
+                            ),
+                          ),
+
+                          SizedBox(width: 20,),
+
+
+
+                          Expanded(
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child:
+                              //GlobalData.userType=="student"?Text(""):
+                              answertype=="Short Essay"?
+                              teacher_given_story_point!=false.toString()?
+                              Text("Essay Point: " + teacher_given_story_point,style: TextStyle(fontSize: 18),):
+                              SizedBox():SizedBox(),
+                            ),
+                          ),
+
+                        ],),),
+
+
+
 
                     /*Padding(
                     padding: const EdgeInsets.all(10.0),

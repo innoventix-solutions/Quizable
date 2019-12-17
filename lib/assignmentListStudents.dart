@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 //import 'Pojo/pojo_quizzes.dart';
 import 'Pojo/pojo_getassignment.dart';
 import 'package:http/http.dart' as http;
@@ -360,29 +361,31 @@ class _AssignmentListStudentsState extends State<AssignmentListStudents> {
                   itemBuilder: (c,i){
                     return  GestureDetector(
                         onTap: (){
-                          //if(assignment_list[i].label == "New" ||  assignment_list[i].label == "Pending")
-                          //  {
+                          if(assignment_list[i].label == "New" ||  assignment_list[i].label == "Pending")
+                           {
                           GlobalData.AssignmentID=assignment_list[i].id;
                           //GlobalData.QuizLevels=assignment_list[i].no_of_levels;
                           GlobalData.ExamQuiz=assignment_list[i].assignment_title;
                           GlobalData.teacherinstruction=assignment_list[i].teacher_instruction;
                           GlobalData.teacherobjective=assignment_list[i].teacher_objective;
+                          GlobalData.NosofQuesassignment=assignment_list[i].total_que;
                           //GlobalData.DurationofEachLevel=assignment_list[i].dur_each_level;
                           Navigator.of(context).pushNamed(GlobalData.userType=="student"?'assignmentexam':'AssignmentQuestionList');
-                        //}
-                       // else{
-                          //Fluttertoast.showToast(msg: "Quiz "+Quizz_List[i].label,fontSize: 16,backgroundColor: Colors.red);
-                         // }
+                       }
+                        else{
+                          Fluttertoast.showToast(msg: "Assignment "+assignment_list[i].label,fontSize: 16,backgroundColor: Colors.red);
+                         }
 
     },
                         child: //assignment_list[i].is_taken==false?
                         StudentAssignmentReport(
+                          assignment: assignment_list[i],
                           color: GlobalData.pinkred,
                           heading: assignment_list[i].assignment_title+" - "+assignment_list[i].id,
                           paragraph: assignment_list[i].teacher_instruction,
                           title: assignment_list[i].assignment_title,
                           id: assignment_list[i].id,
-                          is_taken: assignment_list[i].is_taken,
+                          is_taken: assignment_list[i].is_taken.toString()=="true"?true:false,
                           closingdate: assignment_list[i].closing_date,
                         ),//:SizedBox()
                     );

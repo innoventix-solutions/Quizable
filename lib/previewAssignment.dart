@@ -88,6 +88,10 @@ class _PreviewAssignmentState extends State<PreviewAssignment> {
               ListView.builder(
                   itemCount: assignment_list.length,
                   itemBuilder: (c,i){
+
+                    int totalQuestions=  int.parse(assignment_list[i].total_que);
+
+
                     return GestureDetector(
                         onTap: (){
                         GlobalData.EditQuiz=false;
@@ -95,9 +99,28 @@ class _PreviewAssignmentState extends State<PreviewAssignment> {
                          GlobalData.ExamQuiz=assignment_list[i].assignment_title;
                          GlobalData.teacherinstruction=assignment_list[i].teacher_instruction;
                          GlobalData.teacherobjective=assignment_list[i].teacher_objective;
+                         GlobalData.AssignmentTitle=assignment_list[i].assignment_title;
+                         GlobalData.NosofQuesassignment=assignment_list[i].total_que;
+                         GlobalData.Selected_class=assignment_list[i].classes;
+                         GlobalData.assignmentstatus=assignment_list[i].status;
+
+                        print((assignment_list[i].total_fill_question<int.parse(assignment_list[i].total_que)));
+
+                        if((assignment_list[i].total_fill_question<int.parse(assignment_list[i].total_que))){
+                          //Navigator.of(context).pushNamed(GlobalData.userType=="student"?'exam':'Question_List');
+
+                          GlobalData.QuestionNumber=assignment_list[i].total_fill_question;
+
+                          Navigator.of(context).pushNamed('SetAssignmentQuestion');
+                        }else {
+                          //Navigator.of(context).pushNamed(GlobalData.userType=="student"?'exam':'Question_List');
+
+                          print("asdfasdf");
+                          Navigator.of(context).pushNamed(GlobalData.userType=="student"?'spellans':'AssignmentQuestionList');
+                        }
                           //GlobalData.DurationofEachLevel=assignment_list[i].dur_each_level;
                          // GlobalData.QuizLevels=assignment_list[i].no_of_levels;
-                          Navigator.of(context).pushNamed('AssignmentQuestionList');
+                          //Navigator.of(context).pushNamed('AssignmentQuestionList');
                         },
                         child:  //assignment_list[i].is_taken==false?
                         PreviewAssignments(
@@ -109,8 +132,8 @@ class _PreviewAssignmentState extends State<PreviewAssignment> {
                           //is_taken: assignment_list[i].is_taken,
 
                           isActive: assignment_list[i].status.toLowerCase()=="publish"?true:false,
-                          //incomplete: (assignment_list[i].total_que<int.parse(assignment_list[i].total_que.toString()) ),
-                          //continueTo:assignment_list[i].total_que,
+                          incomplete: (assignment_list[i].total_fill_question<int.parse(assignment_list[i].total_que.toString()) ),
+                          continueTo:assignment_list[i].total_fill_question,
                           publishedDate: assignment_list[i].publish_date,
                           Assignment: assignment_list[i],
                         ),//: SizedBox()
