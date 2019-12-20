@@ -59,7 +59,7 @@ class leaderboard {
       signupdate: parsedJson['signup_date'].toString(),
       istaken: parsedJson['is_taken'],
       totaltime: tt,
-      percentage: parsedJson['quiz_result']['percentage'].toString()
+      percentage: parsedJson['percentage'].toString()
 
     );
   }

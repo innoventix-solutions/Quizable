@@ -896,7 +896,7 @@ class _studentdashboardState extends State<studentdashboard> {
             ),
 
 
-           /* Container(
+            /*Container(
               width: MediaQuery.of(context).size.width,
 
               child: Column(
@@ -957,20 +957,7 @@ class _studentdashboardState extends State<studentdashboard> {
                     ),
                   ),
 
-                  Padding(
-                    padding: const EdgeInsets.only(top: 15),
-                    child: Text("Go to Global Quiz & Spelling Challenge",
-                    style: TextStyle(fontSize: 15,color: GlobalData.lightblue,
-                        fontWeight: FontWeight.bold),),
-                  ),
 
-
-                  Padding(
-                    padding: const EdgeInsets.only(top: 15,bottom: 10),
-                    child: Text("Parent Login Here",
-                      style: TextStyle(fontSize: 20,color: GlobalData.lightblue,
-                          fontWeight: FontWeight.bold,decoration: TextDecoration.underline),),
-                  ),
 
 
                 ],
@@ -981,7 +968,7 @@ class _studentdashboardState extends State<studentdashboard> {
               onTap: (){Navigator.of(context)
                   .pushNamed('GlobalDashboard');
               globalalert();},
-              child: Container(padding: EdgeInsets.only(top: 15,bottom: 15),
+              child: Container(padding: EdgeInsets.only(top: 20,bottom: 15),
                   child: Text('Global Quiz & Spelling Bee',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18,color: GlobalData.lightblue),)),
             ),
 
