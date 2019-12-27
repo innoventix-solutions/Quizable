@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:share/share.dart';
 import 'package:flutter/material.dart';
+import 'Pojo/pojo_leaderboard.dart';
 import 'Pojo/pojo_quizzes.dart';
 import 'Pojo/pojo_getassignment.dart';
 import 'global.dart';
@@ -29,6 +30,34 @@ class _studentdashboardState extends State<studentdashboard> {
   List<Pojo_quizzes> Quizz_List = new List();
   List<Pojo_getassignment> assignment_list = new List();
   List<Pojo_spelling> spellinglist = new List();
+
+  List<leaderboard> leader = new List();
+
+
+  leaderboards()async{
+    await http.post("http://edusupportapp.com/api/get_class_leaderboard.php",
+        body: {
+          "clsss_id":GlobalData.classid,
+
+        }).then((response) {
+      print(response.body);
+
+      var parsedjson = jsonDecode(response.body);
+      print("Leader " + parsedjson['student_data'].toString());
+
+      if(parsedjson['student_data'].toString()!="false") {
+        leader = (parsedjson['student_data'] as List).map((data) =>
+            leaderboard.fromJson(data)).toList();
+
+        setState(() {
+
+        });
+      }
+
+    });
+
+  }
+
 
   GetTest() async{
 
@@ -193,6 +222,7 @@ class _studentdashboardState extends State<studentdashboard> {
     GetTest();
     GetAssignment();
     GetSpelling();
+    leaderboards();
   }
 
 
@@ -896,79 +926,96 @@ class _studentdashboardState extends State<studentdashboard> {
             ),
 
 
-            /*Container(
-              width: MediaQuery.of(context).size.width,
-
-              child: Column(
+            Padding(
+              padding: const EdgeInsets.only(left:30,top: 20,bottom: 10),
+              child: Row(
                 children: <Widget>[
-
-                  Padding(
-                    padding: const EdgeInsets.only(top: 25,left: 35),
-                    child: Row(
-                      children: <Widget>[
-                        Text('Classroom Leaderboard',style:
-                        TextStyle(fontSize: 18,color:GlobalData.lightblue,fontWeight: FontWeight.bold),),
-                      ],
-                    ),
-                  ),
-
-                  Padding(
-                    padding: const EdgeInsets.only(top: 15),
-                    child: Container(
-                      child: Padding(
-                        padding: const EdgeInsets.only(top: 15,left: 35),
-                        child: Row(
-                          children: <Widget>[
-                            Column(
-                              children: <Widget>[
-                                CircleAvatar(backgroundImage: AssetImage('assets/images/pic.png',),
-                                  radius: 35.0,
-                                ),Text("Ginika Okputu",style: TextStyle(fontSize: 12,color: GlobalData.gray),),
-                              ],
-                            ),
-
-                            Padding(
-                              padding: const EdgeInsets.only(left: 35),
-                              child: Column(
-                                children: <Widget>[
-                                  CircleAvatar(backgroundImage: AssetImage('assets/images/pic.png',),
-                                    radius: 35.0,
-                                  ),Text("Ginika Okputu",style: TextStyle(fontSize: 12,color: GlobalData.gray),),
-                                ],
-                              ),
-                            ),
-
-                            Padding(
-                              padding: const EdgeInsets.only(left: 35),
-                              child: Column(
-                                children: <Widget>[
-                                  CircleAvatar(backgroundImage: AssetImage('assets/images/pic.png',),
-                                    radius: 35.0,
-                                  ),Text("Ginika Okputu",style: TextStyle(fontSize: 12,color: GlobalData.gray),),
-                                ],
-                              ),
-                            ),
-
-                          ],
-                        ),
-
-                      ),
-
-                    ),
-                  ),
-
-
+                  Text("Classroom Leaderboard",style: TextStyle(color: Colors.black,fontSize: 18,fontWeight: FontWeight.bold),),
 
 
                 ],
               ),
-            ),*/
+            ),
+
+            Container(height: 200,
+              width: MediaQuery.of(context).size.width,
+              child: leader.isEmpty?
+              Center
+                (child:
+              Text("No Student's joined yet",style:
+              TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: Colors.red),)
+
+              ) :
+              new ListView.builder
+                (scrollDirection: Axis.horizontal,
+                  itemCount: leader.length,
+                  itemBuilder: (BuildContext ctxt, int index) {
+                    return
+                      Container(
+
+                        child: Column(
+                          children: <Widget>[
+                            Column(
+                              children: <Widget>[
+
+                                GestureDetector(onTap: (){
+
+                                },
+                                  child: Container(height: 70,width: 70,margin: EdgeInsets.only(left: 20,top: 20,bottom: 10),
+                                    decoration: new BoxDecoration(
+                                      color: Colors.red,
+                                      shape: BoxShape.circle,
+                                      image: new DecorationImage(
+                                        fit: BoxFit.cover,
+                                        image:leader[index].userphoto!=""?
+                                        NetworkImage(leader[index].userphoto):
+                                        globalData.getUserGender(leader[index].gender),
+                                      ),
+
+                                    ),),
+                                ),
+
+
+                                Padding(
+                                  padding: const EdgeInsets.only(left:30),
+                                  child: Column(mainAxisAlignment: MainAxisAlignment.start,crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: <Widget>[
+                                      Text(leader[index].username),
+
+
+                                    ],
+                                  ),
+                                ),
+
+                                Padding(
+                                  padding: const EdgeInsets.only(left:30,top: 5),
+                                  child: Column(mainAxisAlignment: MainAxisAlignment.start,crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: <Widget>[
+                                      Text(leader[index].percentage + " %"),
+
+
+                                    ],
+                                  ),
+                                ),
+
+
+
+                              ], ),
+
+                          ],
+                        ),
+                      );
+
+
+                  }
+              ),
+            ),
 
             GestureDetector(
               onTap: (){Navigator.of(context)
                   .pushNamed('GlobalDashboard');
               globalalert();},
-              child: Container(padding: EdgeInsets.only(top: 20,bottom: 15),
+              child: Container(padding: EdgeInsets.only(top: 0,bottom: 20),
                   child: Text('Global Quiz & Spelling Bee',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18,color: GlobalData.lightblue),)),
             ),
 
