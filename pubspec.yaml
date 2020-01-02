@@ -27,6 +27,7 @@ dependencies:
   shared_preferences: ^0.5.3+1
   flutter_range_slider: ^1.4.0
   flutter_launcher_icons: ^0.7.2
+  pull_to_refresh: ^1.5.7
 
 
   flutter:

@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:newpro/Pojo/pojo_answer.dart';
 import 'package:newpro/Pojo/pojo_matchs.dart';
 import 'package:flutter/material.dart';
@@ -16,10 +17,24 @@ List<String> ListofTypes = ['Fill-in the gaps', 'Match Type', 'Single Answer', '
 List<Pojo_Answers> Options = GlobalData.Current_Que_To_Edit.Options;
 List<Pojo_Matchs> Matches = GlobalData.Current_Que_To_Edit.anwer_options;
 
-String TrueorFalse=GlobalData.Current_Que_To_Edit.Options[0].trueanswer.toString();
+String TrueorFalse=GlobalData.Current_Que_To_Edit.Options.toString();
 List<String> Type = ["fillups","matchtype","single","multi","tf"];
 TextEditingController QuestionName = new TextEditingController(text: GlobalData.Current_Que_To_Edit.question);
 TextEditingController Points = new TextEditingController(text: GlobalData.Current_Que_To_Edit.point_awarded);
+
+
+  Show_toast(String msg, Color color) {
+    Fluttertoast.showToast(
+        msg: msg,
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.CENTER,
+        timeInSecForIos: 1,
+        backgroundColor: color,
+        textColor: Colors.white,
+        fontSize: 16.0);
+  }
+
+
 
 void _confirmDialog(BuildContext context)  {
   bool Selected = false;
@@ -867,6 +882,7 @@ Widget build(BuildContext context) {
                                 msg:"Number of answers are less then blanks(_) in the question." );
                           }else
                           {
+
                             SaveQuizQuestion();
                           }
                         },
@@ -952,6 +968,7 @@ SaveQuizQuestion()async {
     }).then((response) {
       var statuss = jsonDecode(response.body);
       //Navigator.of(context).pop();
+      Show_toast("Updated Successfully", Colors.green);
       Navigator.of(context).pushReplacementNamed('Question_List');
 
     });

@@ -431,7 +431,10 @@ class _EditAssignmentQuestionsState extends State<EditAssignmentQuestions> {
                                     Options[index].trueanswer=value;setState(() {
 
                                     });},),*/
-                                  Expanded(child: Text(Options[index].value))
+                                  Expanded(child: Padding(
+                                    padding: const EdgeInsets.all(10.0),
+                                    child: Text(Options[index].value),
+                                  ))
 
                                   ,Padding(
                                     padding: const EdgeInsets.all(8.0),

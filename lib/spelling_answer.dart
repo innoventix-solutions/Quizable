@@ -381,7 +381,7 @@ SizedBox(width: 20,),
 autocorrect: false,keyboardType: TextInputType.emailAddress,
 
                       style: TextStyle(color: Colors.blue, fontSize: 18),
-                      decoration: InputDecoration(
+                      decoration: InputDecoration(hintText: "Type Answer here",
                         contentPadding: EdgeInsets.only(left: 5),
 
 

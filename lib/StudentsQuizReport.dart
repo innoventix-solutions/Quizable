@@ -99,7 +99,7 @@ class _questionmenuState extends State<questionmenu> {
                       heading: Quizz_List[i].quiz_title,
                       paragraph: Quizz_List[i].quiz_subject,
                       id:Quizz_List[i].id ,
-                      title: Quizz_List[i].quiz_title,
+                      title: Quizz_List[i].publish_date,
                       is_taken: Quizz_List[i].is_taken,
                       duration: Quizz_List[i].dur_each_level,
                       levels: Quizz_List[i].no_of_levels,

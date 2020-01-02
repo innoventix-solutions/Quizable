@@ -22,6 +22,7 @@ class _EditSpellingQuestionsState extends State<EditSpellingQuestions> {
 
   TextEditingController QuestionName = new TextEditingController(text: GlobalData.Edit_spelling_Questions.question);
   TextEditingController Points = new TextEditingController(text: GlobalData.Edit_spelling_Questions.point_awarded);
+  TextEditingController trueanswer = new TextEditingController(text: GlobalData.Edit_spelling_Questions.anwer_options);
 
 
   bool _hasSpeech = false;
@@ -225,9 +226,9 @@ class _EditSpellingQuestionsState extends State<EditSpellingQuestions> {
                                   vertical: 8.0,
                                   horizontal: 12.0,
                                 ),
-                                child: Text(
-                                  lastWords,
-                                  style: TextStyle(fontSize: 24.0),
+                                child:  TextField(controller:trueanswer,decoration: InputDecoration(
+                                    border: InputBorder.none,hintText: "Insert correct spelling"
+                                ),style: TextStyle(fontSize: 24.0,),
                                 ),
                               ),
                               /*Padding(
@@ -352,7 +353,28 @@ class _EditSpellingQuestionsState extends State<EditSpellingQuestions> {
 
 
                                           ],
-                                        ), ],
+                                        ),
+
+                                        Container(
+                                          width: MediaQuery
+                                              .of(context)
+                                              .size
+                                              .width * 0.8,
+                                          decoration: BoxDecoration(
+                                            color: Colors.white,
+                                            borderRadius: BorderRadius.circular(6.0),
+                                          ),
+                                          padding: EdgeInsets.symmetric(
+                                            vertical: 8.0,
+                                            horizontal: 12.0,
+                                          ),
+                                          child: Text(
+                                            lastWords,
+                                            style: TextStyle(fontSize: 24.0),
+                                          ),
+                                        ),
+
+                                      ],
                                     ),
                                   ],
                                 ),
@@ -490,7 +512,7 @@ class _EditSpellingQuestionsState extends State<EditSpellingQuestions> {
   }
   SaveSpellingQuestion()async {
     if (QuestionName.text.toString() == "" || Points.text.toString() == "" ||
-        lastWords.toString() == "" ) {
+        lastWords.toString() == ""&& trueanswer.text.toString()==""  ) {
       //_showDialog();
       CustomShowDialog(context,msg: "Some Values are Missing",title:
       "Value Missing");
@@ -499,7 +521,8 @@ class _EditSpellingQuestionsState extends State<EditSpellingQuestions> {
       print( "question "+ QuestionName.text.toString()+
           "point_awarded "+ Points.text.toString()+
           "spelling_id "+ GlobalData.spellingid+
-          "answer_options " + lastWords.toString());
+          "answer_options " + lastWords.toString()+
+          "answer_options " + trueanswer.text.toString());
 
 
 
@@ -511,7 +534,7 @@ class _EditSpellingQuestionsState extends State<EditSpellingQuestions> {
         "point_awarded": Points.text.toString(),
         "question_id":GlobalData.Edit_spelling_Questions.id.toString(),
         "spelling_id": GlobalData.spellingid,
-        "answer_options": lastWords,
+        "answer_options": lastWords.isEmpty?trueanswer.text.toString():lastWords,
         "level_no": ((GlobalData.QuestionNumber/int.parse(GlobalData.spellNosofQuesPerLevel)).floor()+1).toString(),
         "ques_no": ((GlobalData.QuestionNumber%int.parse(GlobalData.spellNosofQuesPerLevel))+1).toString(),
       }).then((response) {

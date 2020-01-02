@@ -268,13 +268,18 @@ class _loginState extends State<login> {
                         ),
                         Padding(
                           padding: const EdgeInsets.only(top: 10),
-                          child: Container(
-                              width: 270,
-                              child: Text(
-                                'Forgot Password?',
-                                textAlign: TextAlign.right,
-                                style: TextStyle(color: Colors.white, fontSize: 15),
-                              )),
+                          child: GestureDetector(onTap: (){
+                            Navigator.of(context)
+                                .pushNamed('forgetpassword');
+                          },
+                            child: Container(
+                                width: 270,
+                                child: Text(
+                                  'Forgot Password?',
+                                  textAlign: TextAlign.right,
+                                  style: TextStyle(color: Colors.white, fontSize: 15),
+                                )),
+                          ),
                         ),
                         Padding(
                           padding: const EdgeInsets.only(top: 45),

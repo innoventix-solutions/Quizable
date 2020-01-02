@@ -49,7 +49,7 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/speech_to_text/ios"
 
 SPEC CHECKSUMS:
-  Flutter: 58dd7d1b27887414a370fcccb9e645c08ffd7a6a
+  Flutter: 0e3d915762c693b495b44d77113d4970485de6ec
   flutter_paystack: 50021637b71e7712780744f69d2843e71b65175d
   flutter_tts: 8ef9d28ecff6321d667307300dbf45151273b3fb
   fluttertoast: b644586ef3b16f67fae9a1f8754cef6b2d6b634b

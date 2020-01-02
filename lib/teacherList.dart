@@ -3,6 +3,7 @@ import 'package:newpro/global.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:newpro/studentList.dart';
 import 'Pojo/pojostydentlist.dart';
 import 'package:newpro/Pojo/pojo_getclasses.dart';
 
@@ -201,7 +202,7 @@ class _TeacherListState extends State<TeacherList> {
                         shape: BoxShape.circle,
                         image: new DecorationImage(
                           fit: BoxFit.fill,
-                          image:GlobalData.Userphoto!=""?
+                          image:GlobalData.Studentlist.isNotEmpty?
                           NetworkImage(GlobalData.Studentlist[0].userphoto):
                           globalData.getgender(),
                         )
@@ -220,7 +221,7 @@ class _TeacherListState extends State<TeacherList> {
                     ),
                     Padding(
                       padding: const EdgeInsets.only(left: 10,bottom: 3),
-                      child: Text(GlobalData.Studentlist[0].username,style: TextStyle(fontWeight: FontWeight.bold,fontSize:15,color: GlobalData.lightblue ),),
+                      child: Text(GlobalData.Studentlist.isNotEmpty?GlobalData.Studentlist[0].username:"",style: TextStyle(fontWeight: FontWeight.bold,fontSize:15,color: GlobalData.lightblue ),),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(left: 10),

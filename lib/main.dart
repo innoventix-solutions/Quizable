@@ -143,6 +143,9 @@ import 'StudentsQuizLevelsAnswer.dart';
 import 'StudentSpellingLevelAnswer.dart';
 import 'PublishAssignment.dart';
 import 'AssignmentComplete.dart';
+import 'myAssignmentResult.dart';
+import 'ForgetPassword.dart';
+import 'NewPassword.dart';
 
 void main() {
   runApp(MyApp());
@@ -279,7 +282,9 @@ class MyApp extends StatelessWidget {
         'StudentsspellingLevelsAnswer':(context)=>StudentsspellLevelsAnswer(),
         'publishassignment':(context)=>publishassignments(),
         'assignmentcomplete':(context)=>assignmentcomplete(),
-
+        'myassignmentresult':(context)=>MyAssignmentResult(),
+        'forgetpassword':(context)=>Forgetpassword(),
+        'newpassword':(context)=>Newpassword(),
       },
     );
   }

@@ -524,38 +524,51 @@ class _setspellingquestionState extends State<setspellingquestion> {
                                 ),
                                 ButtonClick: () {
                                   setalldetails();
+                                  print("Levels "+GlobalData.spellLevels);
+                                  print("Questions per Level"+GlobalData.spellNosofQuesPerLevel??"Not allocated");
+                                  print(GlobalData.MyMembership.isActive);
 
-                                  if (GlobalData.MyMembership == null ||
-                                      GlobalData.MyMembership.isActive ==
-                                          false) {
-                                    if (GlobalData.adminmembership ==
-                                            null.toString() ||
-                                        GlobalData.adminmembership ==
-                                            false.toString()) {
-                                      if (int.parse(GlobalData.spellLevels) >
-                                              1 ||
-                                          int.parse(GlobalData
-                                                  .spellNosofQuesPerLevel) >
-                                              10) {
-                                        GlobalData.userType == "admin_teacher"
-                                            ? Navigator.of(context)
-                                                .pushNamed('ManageAccount')
-                                            : CustomShowDialog(context,
-                                                title: "Subscription Required",
-                                                msg:
-                                                    "You cannot set more than 10 questions each level. \n\nPlease contact your Admin to Subscribe for the institution's account.",
-                                                onPressed: () {
-                                                Navigator.of(context).pop();
-                                              });
+                                  print(GlobalData.adminmembership.toString());
+
+                                  if(GlobalData.MyMembership.isActive==false)
+                                  {
+
+                                    print("yahoo");
+
+                                    print(GlobalData.classid);
+                                    print(GlobalData.adminmembership.toString());
+
+                                    if (GlobalData.adminmembership == "" ||
+                                        GlobalData.adminmembership == null ||
+                                        GlobalData.adminmembership == false.toString())
+                                    {
+
+                                      print("Level 1");
+
+                                      if (int.parse(GlobalData.spellLevels) > 1 || int.parse(GlobalData.spellNosofQuesPerLevel) > 10)
+                                      {
+                                        GlobalData.userType=="admin_teacher"?
+                                        CustomShowDialog(context,title: "Subscription Required",msg:
+                                        "Please reduce the number of Spelling Level to 1 and upto 10 Questions\nfor a trial.\nOtherwise, subscribe to set unlimited questions in multiple levels\n\nSubscribe now?",onPressed:(){
+                                          Navigator.of(context).pushNamed('ManageAccount');
+                                        },
+                                            onpressed1: (){
+                                              Navigator.of(context).pop();
+                                            }):
+                                        CustomShowDialog(context,title: "Subscription Required",msg:
+                                        "You cannot set more than 10 questions each level. \n\nPlease contact your Admin to Subscribe for the institution's account.",onPressed:(){
+                                          Navigator.of(context).pop();
+
+                                        });
                                       } else {
                                         SaveSpelling();
                                       }
                                     } else {
+
                                       SaveSpelling();
                                     }
-                                  } else {
+                                  }else{
                                     SaveSpelling();
-                                    // Navigator.of(context).pushNamed('spellque');
                                   }
                                 },
                               ),

@@ -22,7 +22,7 @@ class studentdashboard extends StatefulWidget {
 class _studentdashboardState extends State<studentdashboard> {
 
 
-
+  int _current = 0;
   GlobalData globalData = new GlobalData();
 
   //final List<int> numbers = [1, 2, 3, 5, 8, 13, 21, 34, 55];
@@ -192,6 +192,7 @@ class _studentdashboardState extends State<studentdashboard> {
     super.initState();
     GetTest();
     GetAssignment();
+    GetSpelling();
   }
 
 
@@ -334,7 +335,7 @@ class _studentdashboardState extends State<studentdashboard> {
                   ),],),
               ),onTap: (){
               Navigator.of(context)
-                  .pushNamed('spellans');
+                  .pushNamed('GameRoom');
             },
             ),
             GestureDetector(
@@ -555,324 +556,347 @@ class _studentdashboardState extends State<studentdashboard> {
               //aspectRatio: 21/9,
               viewportFraction: 0.9,
               initialPage: 0,
+              onPageChanged: (index){
+              setState(() {
+                _current=index;
+              });
+              },
               autoPlayInterval: Duration(seconds: 3),
               autoPlayAnimationDuration: Duration(milliseconds: 800),
               items: <Widget>[
-               Container(height: 400,
-                width: MediaQuery.of(context).size.width,
-                child: ListView(scrollDirection: Axis.horizontal,
+                Container(height: 600,
+                  width: MediaQuery.of(context).size.width,
 
-                  children: <Widget>[
-                    Container(height: 400,
-                      width: MediaQuery.of(context).size.width,
+                  decoration: bg12,
 
-                      decoration: bg12,
+                  child: Column(
 
-                      child: Column(
+                    children: <Widget>[
 
-                        children: <Widget>[
-
-                          Padding(
-                            padding: const EdgeInsets.only(left: 20,right:20,top:5),
-                            child: Row(
-                              children: <Widget>[
-                                SizedBox(width: 100,
-                                  child: GradientButtonText(
-                                    linearGradient:LinearGradient(begin:Alignment.topCenter,
-                                        end: Alignment.bottomCenter,
-                                        colors: <Color>[GlobalData.yellow,GlobalData.pinkred]) ,
-                                    text: Text("Quiz",
-                                      style: TextStyle(color: Colors.white,
-                                        fontWeight: FontWeight.bold,fontSize: 15,),
-                                      textAlign: TextAlign.center,),
-                                    ButtonClick: (){
-                                      if(Quizz_List.isEmpty){
-                                        CustomShowDialog(context,title: "Unavailable",msg:
-                                        "No Quiz Exercise published yet");
-                                      }
-                                      else{
-                                        GlobalData.QuizID.toString();
-                                        GlobalData.QuizLevels.toString();
-                                        GlobalData.ExamQuiz.toString();
-                                        GlobalData.DurationofEachLevel.toString(); //studentLevelList
-                                        // Navigator.of(context).pushNamed(Quizz_List[i].is_taken==true?'AnswerLog':'exam');
-                                        Navigator.of(context).pushNamed('studentLevelList');
-                                      }
-                                    },),
-                                ),
-                              ],
+                      Padding(
+                        padding: const EdgeInsets.only(left: 20,right:20,top:15),
+                        child: Row(
+                          children: <Widget>[
+                            SizedBox(width: 100,
+                              child: GradientButtonText(
+                                linearGradient:LinearGradient(begin:Alignment.topCenter,
+                                    end: Alignment.bottomCenter,
+                                    colors: <Color>[GlobalData.yellow,GlobalData.pinkred]) ,
+                                text: Text("Quiz",
+                                  style: TextStyle(color: Colors.white,
+                                    fontWeight: FontWeight.bold,fontSize: 15,),
+                                  textAlign: TextAlign.center,),
+                                ButtonClick: (){
+                                  if(Quizz_List.isEmpty){
+                                    CustomShowDialog(context,title: "Unavailable",msg:
+                                    "No Quiz Exercise published yet");
+                                  }
+                                  else{
+                                    GlobalData.QuizID=Quizz_List[0].id;
+                                    GlobalData.ExamQuiz=Quizz_List[0].quiz_title;
+                                    GlobalData.DurationofEachLevel=Quizz_List[0].dur_each_level;
+                                    GlobalData.QuizLevels=Quizz_List[0].no_of_levels;
+                                    //studentLevelList
+                                    // Navigator.of(context).pushNamed(Quizz_List[i].is_taken==true?'AnswerLog':'exam');
+                                    Navigator.of(context).pushNamed('studentLevelList');
+                                  }
+                                },),
                             ),
-                          ),
-
-                          Padding(
-                            padding: const EdgeInsets.only(left: 20,top:4),
-                            child: Row(
-                              children: <Widget>[
-                                Text(Quizz_List.isNotEmpty?Quizz_List[0].quiz_title:"No Quiz Available",style: TextStyle(
-                                    fontSize: 18,fontWeight: FontWeight.bold,color:GlobalData.white
-                                ),),
-                              ],
-                            ),
-                          ),
-
-                          Padding(
-                            padding: const EdgeInsets.only(top: 15,left: 20),
-                            child: Row(
-                              children: <Widget>[
-                                Text(Quizz_List.isNotEmpty?Quizz_List[0].quiz_subject:"",style: TextStyle(
-                                    fontSize: 15,fontWeight: FontWeight.bold,color:GlobalData.white
-                                ),),
-                              ],
-                            ),
-                          ),
-
-                          Padding(
-                            padding: const EdgeInsets.only(top: 5,left: 20),
-                            child: Row(
-                              children: <Widget>[
-                                Text(Quizz_List.isNotEmpty?Quizz_List[0].classes:"",style: TextStyle(
-                                    fontSize: 18,fontWeight: FontWeight.bold,color:GlobalData.white
-                                ),),
-                              ],
-                            ),
-                          ),
-
-                          Padding(
-                            padding: const EdgeInsets.only(top:15,left: 20,right: 20,bottom: 10),
-                            child: Row(
-                              children: <Widget>[
-                                SizedBox(width: 100,
-                                  child: GradientButtonText(
-                                    linearGradient:LinearGradient(begin:Alignment.topCenter,
-                                        end: Alignment.bottomCenter,
-                                        colors: <Color>[GlobalData.pinkred,GlobalData.lightpink]) ,
-                                    text: Text("Closing",
-                                      style: TextStyle(color: Colors.white,
-                                        fontWeight: FontWeight.bold,fontSize: 15,),
-                                      textAlign: TextAlign.center,),
-                                    ButtonClick: (){
-                                    },),
-                                ),
-
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 5,top: 20),
-                                  child: Text(Quizz_List.isNotEmpty?Quizz_List[0].closing_date.substring(0,19):"",style:TextStyle(
-                                      fontSize: 15,color: GlobalData.white
-                                  ) ,),
-                                )
-                              ],
-                            ),
-                          ),
-
-
-                        ],
+                          ],
+                        ),
                       ),
 
-                    ),
-
-
-                    Container(
-                      width: MediaQuery.of(context).size.width,
-
-                      decoration: bg12,
-
-                      child: Column(
-
-                        children: <Widget>[
-
-                          Padding(
-                            padding: const EdgeInsets.only(top:15,left: 20,right:20,bottom: 5),
-                            child: Row(
-                              children: <Widget>[
-                                SizedBox(width: 150,
-                                  child: GradientButtonText(
-                                    linearGradient:LinearGradient(begin:Alignment.topCenter,
-                                        end: Alignment.bottomCenter,
-                                        colors: <Color>[GlobalData.yellow,GlobalData.pinkred]) ,
-                                    text: Text("Assignment",
-                                      style: TextStyle(color: Colors.white,
-                                        fontWeight: FontWeight.bold,fontSize: 15,),
-                                      textAlign: TextAlign.center,),
-                                    ButtonClick: (){
-                                    },),
-                                ),
-                              ],
-                            ),
-                          ),
-
-                          Padding(
-                            padding: const EdgeInsets.only(top: 10,left: 20),
-                            child: Row(
-                              children: <Widget>[
-                                Text(assignment_list.isNotEmpty?assignment_list[0].assignment_title:"No Assignment Available",style: TextStyle(
-                                    fontSize: 18,fontWeight: FontWeight.bold,color:GlobalData.white
-                                ),),
-                              ],
-                            ),
-                          ),
-
-                          Padding(
-                            padding: const EdgeInsets.only(top: 15,left: 20),
-                            child: Row(
-                              children: <Widget>[
-                                Text(assignment_list.isNotEmpty?assignment_list[0].teacher_instruction:"",style: TextStyle(
-                                    fontSize: 15,fontWeight: FontWeight.bold,color:GlobalData.white
-                                ),),
-                              ],
-                            ),
-                          ),
-
-                          Padding(
-                            padding: const EdgeInsets.only(top: 5,left: 20),
-                            child: Row(
-                              children: <Widget>[
-                                Text(assignment_list.isNotEmpty?assignment_list[0].classes:"",style: TextStyle(
-                                    fontSize: 18,fontWeight: FontWeight.bold,color:GlobalData.white
-                                ),),
-                              ],
-                            ),
-                          ),
-
-                          Padding(
-                            padding: const EdgeInsets.only(top:0,left: 20,right: 20),
-                            child: Row(
-                              children: <Widget>[
-                                SizedBox(width: 100,
-                                  child: GradientButtonText(
-                                    linearGradient:LinearGradient(begin:Alignment.topCenter,
-                                        end: Alignment.bottomCenter,
-                                        colors: <Color>[GlobalData.pinkred,GlobalData.lightpink]) ,
-                                    text: Text("Closing",
-                                      style: TextStyle(color: Colors.white,
-                                        fontWeight: FontWeight.bold,fontSize: 15,),
-                                      textAlign: TextAlign.center,),
-                                    ButtonClick: (){
-                                    },),
-                                ),
-
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 5),
-                                  child: Text(assignment_list.isNotEmpty?assignment_list[0].closing_date.substring(0,19):"",style:TextStyle(
-                                      fontSize: 15,color: GlobalData.white
-                                  ) ,),
-                                )
-                              ],
-                            ),
-                          ),
-
-
-                        ],
+                      Padding(
+                        padding: const EdgeInsets.only(left: 20,top:4),
+                        child: Row(
+                          children: <Widget>[
+                            Text(Quizz_List.isNotEmpty?Quizz_List[0].quiz_title:"No Quiz Available",style: TextStyle(
+                                fontSize: 18,fontWeight: FontWeight.bold,color:GlobalData.white
+                            ),),
+                          ],
+                        ),
                       ),
 
-                    ),
-
-
-
-                    Container(
-                      width: MediaQuery.of(context).size.width,
-
-                      decoration: bg12,
-
-                      child: Column(
-
-                        children: <Widget>[
-
-                          Padding(
-                            padding: const EdgeInsets.only(left: 20,right:20,bottom: 5),
-                            child: Row(
-                              children: <Widget>[
-                                SizedBox(width: 100,
-                                  child: GradientButtonText(
-                                    linearGradient:LinearGradient(begin:Alignment.topCenter,
-                                        end: Alignment.bottomCenter,
-                                        colors: <Color>[GlobalData.yellow,GlobalData.pinkred]) ,
-                                    text: Text("Quiz",
-                                      style: TextStyle(color: Colors.white,
-                                        fontWeight: FontWeight.bold,fontSize: 15,),
-                                      textAlign: TextAlign.center,),
-                                    ButtonClick: (){
-                                    },),
-                                ),
-                              ],
-                            ),
-                          ),
-
-                          Padding(
-                            padding: const EdgeInsets.only(top: 10,left: 20),
-                            child: Row(
-                              children: <Widget>[
-                                Text(Quizz_List.isNotEmpty?Quizz_List[0].quiz_title:"No Quiz Available",style: TextStyle(
-                                    fontSize: 18,fontWeight: FontWeight.bold,color:GlobalData.white
-                                ),),
-                              ],
-                            ),
-                          ),
-
-                          Padding(
-                            padding: const EdgeInsets.only(top: 15,left: 20),
-                            child: Row(
-                              children: <Widget>[
-                                Text(Quizz_List.isNotEmpty?Quizz_List[0].quiz_subject:"",style: TextStyle(
-                                    fontSize: 15,fontWeight: FontWeight.bold,color:GlobalData.white
-                                ),),
-                              ],
-                            ),
-                          ),
-
-                          Padding(
-                            padding: const EdgeInsets.only(top:5,left: 20),
-                            child: Row(
-                              children: <Widget>[
-                                Text(Quizz_List.isNotEmpty?Quizz_List[0].classes:"",style: TextStyle(
-                                    fontSize: 18,fontWeight: FontWeight.bold,color:GlobalData.white
-                                ),),
-                              ],
-                            ),
-                          ),
-
-                          Padding(
-                            padding: const EdgeInsets.only(left: 20,right: 20),
-                            child: Row(
-                              children: <Widget>[
-                                SizedBox(width: 100,
-                                  child: GradientButtonText(
-                                    linearGradient:LinearGradient(begin:Alignment.topCenter,
-                                        end: Alignment.bottomCenter,
-                                        colors: <Color>[GlobalData.pinkred,GlobalData.lightpink]) ,
-                                    text: Text("Closing",
-                                      style: TextStyle(color: Colors.white,
-                                        fontWeight: FontWeight.bold,fontSize: 15,),
-                                      textAlign: TextAlign.center,),
-                                    ButtonClick: (){
-                                    },),
-                                ),
-
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 5),
-                                  child: Text(Quizz_List.isNotEmpty?Quizz_List[0].closing_date.substring(0,19):"",style:TextStyle(
-                                      fontSize: 15,color: GlobalData.white
-                                  ) ,),
-                                )
-                              ],
-                            ),
-                          ),
-
-
-                        ],
+                      Padding(
+                        padding: const EdgeInsets.only(top: 15,left: 20),
+                        child: Row(
+                          children: <Widget>[
+                            Text(Quizz_List.isNotEmpty?Quizz_List[0].quiz_subject:"",style: TextStyle(
+                                fontSize: 15,fontWeight: FontWeight.bold,color:GlobalData.white
+                            ),),
+                          ],
+                        ),
                       ),
 
-                    ),
-                  ],
+                      Padding(
+                        padding: const EdgeInsets.only(top: 5,left: 20),
+                        child: Row(
+                          children: <Widget>[
+                            Text(Quizz_List.isNotEmpty?Quizz_List[0].classes:"",style: TextStyle(
+                                fontSize: 18,fontWeight: FontWeight.bold,color:GlobalData.white
+                            ),),
+                          ],
+                        ),
+                      ),
 
+                      Padding(
+                        padding: const EdgeInsets.only(top:15,left: 20,right: 20,bottom: 10),
+                        child: Row(
+                          children: <Widget>[
+                            SizedBox(width: 100,
+                              child: GradientButtonText(
+                                linearGradient:LinearGradient(begin:Alignment.topCenter,
+                                    end: Alignment.bottomCenter,
+                                    colors: <Color>[GlobalData.pinkred,GlobalData.lightpink]) ,
+                                text: Text("Closing",
+                                  style: TextStyle(color: Colors.white,
+                                    fontWeight: FontWeight.bold,fontSize: 15,),
+                                  textAlign: TextAlign.center,),
+                                ButtonClick: (){
+                                },),
+                            ),
+
+                            Padding(
+                              padding: const EdgeInsets.only(left: 5,top: 20),
+                              child: Text(Quizz_List.isNotEmpty?Quizz_List[0].closing_date.substring(0,19):"",style:TextStyle(
+                                  fontSize: 15,color: GlobalData.white
+                              ) ,),
+                            )
+                          ],
+                        ),
+                      ),
+
+
+                    ],
+                  ),
 
                 ),
-              ),
+
+
+                Container(height: 600,
+                  width: MediaQuery.of(context).size.width,
+
+                  decoration: bg12,
+
+                  child: Column(
+
+                    children: <Widget>[
+
+                      Padding(
+                        padding: const EdgeInsets.only(top:15,left: 20,right:20,bottom: 5),
+                        child: Row(
+                          children: <Widget>[
+                            SizedBox(width: 150,
+                              child: GradientButtonText(
+                                linearGradient:LinearGradient(begin:Alignment.topCenter,
+                                    end: Alignment.bottomCenter,
+                                    colors: <Color>[GlobalData.yellow,GlobalData.pinkred]) ,
+                                text: Text("Assignment",
+                                  style: TextStyle(color: Colors.white,
+                                    fontWeight: FontWeight.bold,fontSize: 15,),
+                                  textAlign: TextAlign.center,),
+                                ButtonClick: (){
+                                  if(assignment_list.isEmpty){
+                                    CustomShowDialog(context,title: "Unavailable",msg:
+                                    "No Assignment Exercise published yet");
+                                  }
+                                  else{
+                                    GlobalData.AssignmentID.toString();
+                                    GlobalData.NosofQuesassignment.toString();
+                                    GlobalData.ExamQuiz.toString();
+                                    GlobalData.teacherobjective.toString();
+                                    GlobalData.teacherinstruction.toString();
+                                    // Navigator.of(context).pushNamed(Quizz_List[i].is_taken==true?'AnswerLog':'exam');
+                                    Navigator.of(context).pushNamed('AssignmentListStudents');
+                                  }
+                                },),
+                            ),
+                          ],
+                        ),
+                      ),
+
+                      Padding(
+                        padding: const EdgeInsets.only(top: 05,left: 20),
+                        child: Row(
+                          children: <Widget>[
+                            Text(assignment_list.isNotEmpty?assignment_list[0].assignment_title:"No Assignment Available",style: TextStyle(
+                                fontSize: 18,fontWeight: FontWeight.bold,color:GlobalData.white
+                            ),),
+                          ],
+                        ),
+                      ),
+
+                      Padding(
+                        padding: const EdgeInsets.only(top: 15,left: 20),
+                        child: Row(
+                          children: <Widget>[
+                            Text(assignment_list.isNotEmpty?assignment_list[0].teacher_instruction:"",style: TextStyle(
+                                fontSize: 15,fontWeight: FontWeight.bold,color:GlobalData.white
+                            ),),
+                          ],
+                        ),
+                      ),
+
+                      Padding(
+                        padding: const EdgeInsets.only(top: 5,left: 20),
+                        child: Row(
+                          children: <Widget>[
+                            Text(assignment_list.isNotEmpty?assignment_list[0].classes:"",style: TextStyle(
+                                fontSize: 18,fontWeight: FontWeight.bold,color:GlobalData.white
+                            ),),
+                          ],
+                        ),
+                      ),
+
+                      Padding(
+                        padding: const EdgeInsets.only(top:10,left: 20,right: 20),
+                        child: Row(
+                          children: <Widget>[
+                            SizedBox(width: 100,
+                              child: GradientButtonText(
+                                linearGradient:LinearGradient(begin:Alignment.topCenter,
+                                    end: Alignment.bottomCenter,
+                                    colors: <Color>[GlobalData.pinkred,GlobalData.lightpink]) ,
+                                text: Text("Closing",
+                                  style: TextStyle(color: Colors.white,
+                                    fontWeight: FontWeight.bold,fontSize: 15,),
+                                  textAlign: TextAlign.center,),
+                                ButtonClick: (){
+                                },),
+                            ),
+
+                            Padding(
+                              padding: const EdgeInsets.only(left: 5),
+                              child: Text(assignment_list.isNotEmpty?assignment_list[0].closing_date.substring(0,19):"",style:TextStyle(
+                                  fontSize: 15,color: GlobalData.white
+                              ) ,),
+                            )
+                          ],
+                        ),
+                      ),
+
+
+                    ],
+                  ),
+
+                ),
+
+
+
+                Container(height: 600,
+                  width: MediaQuery.of(context).size.width,
+
+                  decoration: bg12,
+
+                  child: Column(
+
+                    children: <Widget>[
+
+                      Padding(
+                        padding: const EdgeInsets.only(left: 20,right:20,bottom: 5,top: 15),
+                        child: Row(
+                          children: <Widget>[
+                            SizedBox(width: 100,
+                              child: GradientButtonText(
+                                linearGradient:LinearGradient(begin:Alignment.topCenter,
+                                    end: Alignment.bottomCenter,
+                                    colors: <Color>[GlobalData.yellow,GlobalData.pinkred]) ,
+                                text: Text("Spelling",
+                                  style: TextStyle(color: Colors.white,
+                                    fontWeight: FontWeight.bold,fontSize: 15,),
+                                  textAlign: TextAlign.center,),
+                                ButtonClick: (){
+                                  if(spellinglist.isEmpty){
+                                    CustomShowDialog(context,title: "Unavailable",msg:
+                                    "No Spelling Exercise published yet");
+                                  }
+                                  else{
+                                    GlobalData.isGlobal=false;
+                                    GlobalData.spellingid=spellinglist[0].id;
+                                    GlobalData.spellLevels=spellinglist[0].no_of_levels;
+                                    GlobalData.ExamQuiz=spellinglist[0].spelling_title;
+                                    GlobalData.spellDurationofEachLevel=spellinglist[0].dur_each_level;
+                                    GlobalData.spellNosofQuesPerLevel=spellinglist[0].que_each_level;
+                                    // Navigator.of(context).pushNamed(Quizz_List[i].is_taken==true?'AnswerLog':'exam');
+                                    Navigator.of(context).pushNamed('studentspellingLevelList');
+                                  }
+                                },),
+                            ),
+                          ],
+                        ),
+                      ),
+
+                      Padding(
+                        padding: const EdgeInsets.only(top: 5,left: 20),
+                        child: Row(
+                          children: <Widget>[
+                            Text(spellinglist.isNotEmpty?spellinglist[0].spelling_title:"No Spelling Available",style: TextStyle(
+                                fontSize: 18,fontWeight: FontWeight.bold,color:GlobalData.white
+                            ),),
+                          ],
+                        ),
+                      ),
+
+                      Padding(
+                        padding: const EdgeInsets.only(top: 15,left: 20),
+                        child: Row(
+                          children: <Widget>[
+                            Text(spellinglist.isNotEmpty?spellinglist[0].spelling_subject:"",style: TextStyle(
+                                fontSize: 15,fontWeight: FontWeight.bold,color:GlobalData.white
+                            ),),
+                          ],
+                        ),
+                      ),
+
+                      Padding(
+                        padding: const EdgeInsets.only(top:5,left: 20),
+                        child: Row(
+                          children: <Widget>[
+                            Text(spellinglist.isNotEmpty?spellinglist[0].classes:"",style: TextStyle(
+                                fontSize: 18,fontWeight: FontWeight.bold,color:GlobalData.white
+                            ),),
+                          ],
+                        ),
+                      ),
+
+                      Padding(
+                        padding: const EdgeInsets.only(left: 20,right: 20,top:10),
+                        child: Row(
+                          children: <Widget>[
+                            SizedBox(width: 100,
+                              child: GradientButtonText(
+                                linearGradient:LinearGradient(begin:Alignment.topCenter,
+                                    end: Alignment.bottomCenter,
+                                    colors: <Color>[GlobalData.pinkred,GlobalData.lightpink]) ,
+                                text: Text("Closing",
+                                  style: TextStyle(color: Colors.white,
+                                    fontWeight: FontWeight.bold,fontSize: 15,),
+                                  textAlign: TextAlign.center,),
+                                ButtonClick: (){
+                                },),
+                            ),
+
+                            Padding(
+                              padding: const EdgeInsets.only(left: 5),
+                              child: Text(spellinglist.isNotEmpty?spellinglist[0].closing_date.substring(0,19):"",style:TextStyle(
+                                  fontSize: 15,color: GlobalData.white
+                              ) ,),
+                            )
+                          ],
+                        ),
+                      ),
+
+
+                    ],
+                  ),
+
+                ),
             ],
 
             ),
 
 
-           /* Container(
+            /*Container(
               width: MediaQuery.of(context).size.width,
 
               child: Column(
@@ -933,20 +957,7 @@ class _studentdashboardState extends State<studentdashboard> {
                     ),
                   ),
 
-                  Padding(
-                    padding: const EdgeInsets.only(top: 15),
-                    child: Text("Go to Global Quiz & Spelling Challenge",
-                    style: TextStyle(fontSize: 15,color: GlobalData.lightblue,
-                        fontWeight: FontWeight.bold),),
-                  ),
 
-
-                  Padding(
-                    padding: const EdgeInsets.only(top: 15,bottom: 10),
-                    child: Text("Parent Login Here",
-                      style: TextStyle(fontSize: 20,color: GlobalData.lightblue,
-                          fontWeight: FontWeight.bold,decoration: TextDecoration.underline),),
-                  ),
 
 
                 ],
@@ -957,7 +968,7 @@ class _studentdashboardState extends State<studentdashboard> {
               onTap: (){Navigator.of(context)
                   .pushNamed('GlobalDashboard');
               globalalert();},
-              child: Container(padding: EdgeInsets.only(top: 15,bottom: 15),
+              child: Container(padding: EdgeInsets.only(top: 20,bottom: 15),
                   child: Text('Global Quiz & Spelling Bee',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18,color: GlobalData.lightblue),)),
             ),
 
