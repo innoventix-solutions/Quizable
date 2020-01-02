@@ -6,6 +6,8 @@
     <string>recognize speech</string>
     <key>NSMicrophoneUsageDescription</key>
     <string>Need microphone access for uploading videos</string>
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>This app requires access to gallery</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>
