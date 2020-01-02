@@ -99,7 +99,7 @@ class _AboutEdusupportState extends State<AboutEdusupport> {
             ),
             Padding(
               padding: const EdgeInsets.all(12.0),
-              child: Text("-Keep track of homework \n"
+              child: Text("- Keep track of homework \n"
                   "- Take spelling tests and quizzes, and view results \n"
                   "- Submit your work online via the app"),
             ),
