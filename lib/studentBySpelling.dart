@@ -83,7 +83,12 @@ class _StudentListBySpellingState extends State<StudentListBySpelling> {
 
 
             Expanded(
-              child: new ListView.builder
+              child: globlist.isEmpty?
+              Center
+                (child:Text("No Student's joined yet",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: Colors.red),)
+
+              ) :
+              new ListView.builder
                 (
                   itemCount: globlist.length,
                   itemBuilder: (BuildContext ctxt, int index) {
