@@ -383,7 +383,7 @@ class drawerquiz extends StatelessWidget {
 
 
 
-                   if(GlobalData.adminmembership == "" ||GlobalData.adminmembership==null || GlobalData.adminmembership==false.toString())
+                   if(GlobalData.adminmembership == "" ||GlobalData.adminmembership=="null" || GlobalData.adminmembership==false.toString())
 
                    {
                      print("Level 1");
@@ -454,7 +454,7 @@ class drawerquiz extends StatelessWidget {
 
 
 
-            if(GlobalData.adminmembership == "" ||GlobalData.adminmembership==null || GlobalData.adminmembership==false.toString())
+            if(GlobalData.adminmembership == "" ||GlobalData.adminmembership=="null" || GlobalData.adminmembership==false.toString())
 
             {
               print("Level 1");
