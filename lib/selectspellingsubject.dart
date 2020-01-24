@@ -27,7 +27,7 @@ class _selectspellingsubjectState extends State<selectspellingsubject> {
 
           title: Center(
             child: Text(
-              "Select Quiz Subject",
+              "Select Spelling Subject",
               style: TextStyle(fontSize: 20),
             ),
           ),
