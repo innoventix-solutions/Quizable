@@ -340,28 +340,28 @@ class drawerquiz extends StatelessWidget {
               else {
 
 
-                Navigator.of(context)
-                .pushNamed('developpage');
                 /*Navigator.of(context)
-                    .pushNamed('SetAssignment');*/
+                .pushNamed('developpage');*/
+                Navigator.of(context)
+                    .pushNamed('SetAssignment');
               }
 
               }else
               {
-                Navigator.of(context)
-                .pushNamed('developpage');
-                /* Navigator.of(context)
-                    .pushNamed('SetAssignment');*/
+                /*Navigator.of(context)
+                .pushNamed('developpage');*/
+                 Navigator.of(context)
+                    .pushNamed('SetAssignment');
               }
 
 
 
             }
             else {
-              Navigator.of(context)
-                .pushNamed('developpage');
               /*Navigator.of(context)
-                  .pushNamed('SetAssignment');*/
+                .pushNamed('developpage');*/
+              Navigator.of(context)
+                  .pushNamed('SetAssignment');
             }
 
 

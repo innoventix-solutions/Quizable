@@ -36,6 +36,11 @@ class _StudentListByQuizState extends State<StudentListByQuiz> {
           .map((data) => Pojo_StudentListResult.fromJson(data))
           .toList();
 
+      globlist.sort((a, b) {
+        return a.point_awarded.toLowerCase().compareTo(b.point_awarded.toLowerCase());
+      });
+
+
       print(globlist.length);
 
       setState(() {
@@ -135,11 +140,12 @@ class _StudentListByQuizState extends State<StudentListByQuiz> {
                                             fontWeight: FontWeight.bold,color: Colors.black,fontSize: 16
                                           ),),
                                           Padding(
-                                            padding: const EdgeInsets.only(top: 5),
+                                            padding: const EdgeInsets.only(top: 5,bottom: 5),
                                             child: Text("Point Awarded: " + globlist[index].point_awarded+" / "+globlist[index].TotalQuizpoints,style:
                                               TextStyle(color: Colors.black,fontSize: 14),),
                                           ),
 
+                                          Text("Time Taken: " + globlist[index].point_awarded)
 
 
                                         ],

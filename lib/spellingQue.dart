@@ -7,12 +7,14 @@ import 'package:speech_to_text/speech_recognition_result.dart';
 import 'package:speech_to_text/speech_recognition_error.dart';
 import 'package:http/http.dart'as http;
 import 'dart:convert';
+
 class setspellque extends StatefulWidget {
   @override
   _setspellqueState createState() => _setspellqueState();
 }
 
 class _setspellqueState extends State<setspellque> {
+
 
   TextEditingController QuestionName = new TextEditingController();
   TextEditingController Points = new TextEditingController();
@@ -247,7 +249,15 @@ class _setspellqueState extends State<setspellque> {
                                   border: InputBorder.none,hintText: "Insert correct spelling"
                                 ),style: TextStyle(fontSize: 24.0,),
                                 ),
+
+
                               ),
+
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Text("Note: The word displayed in the speech to text tab is a guide, student’s answer will be matched with the spelling you provided in the box.",
+                                style: TextStyle(color: Colors.red),),
+                              )
                               /*Padding(
                                 padding: const EdgeInsets.only(left: 20,right: 20),
                                 child: TextField(
@@ -509,7 +519,8 @@ class _setspellqueState extends State<setspellque> {
       //_showDialog();
       CustomShowDialog(context,msg: "Some Values are Missing",title:
       "Value Missing");
-    }else{
+    }
+    else{
 
       print( "question "+ QuestionName.text.toString()+
           "point_awarded "+ Points.text.toString()+
