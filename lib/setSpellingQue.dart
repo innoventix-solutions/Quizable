@@ -333,7 +333,7 @@ class _setspellingquestionState extends State<setspellingquestion> {
                                     Expanded(
                                       child: Text(
                                         GlobalData.Selected_subject == null
-                                            ? 'Click Select Quiz Subject'
+                                            ? 'Click Select Spelling Subject'
                                             : GlobalData.Selected_subject,
                                         style: TextStyle(
                                             fontSize: 15,

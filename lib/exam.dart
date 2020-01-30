@@ -1105,6 +1105,7 @@ Matches =Quetions[i].anwer_options;*/
     bool Selected = false;
     TextEditingController optioncontroller = new TextEditingController();
     showDialog(
+        barrierDismissible: false,
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(

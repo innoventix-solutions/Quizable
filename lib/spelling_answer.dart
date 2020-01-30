@@ -28,6 +28,9 @@ class spelling_ans extends StatefulWidget {
 
 class _spelling_ansState extends State<spelling_ans> {
 
+
+
+
 TextEditingController answer = new TextEditingController();
   bool isCompleted=false;
   bool isattempted =false;
@@ -165,15 +168,15 @@ TextEditingController answer = new TextEditingController();
 
     List<dynamic> languages = await Tts.getLanguages;
 
-    await Tts.setLanguage("en-US");
+    await Tts.setLanguage("en-IN");
 
     await Tts.setSpeechRate(1.0);
 
     await Tts.setVolume(1.0);
 
-    await Tts.setPitch(1.0);
+    await Tts.setPitch(0.8);
 
-    await Tts.isLanguageAvailable("en-US");
+    await Tts.isLanguageAvailable("en-IN");
   }
 
   Future _speak(String Value) async{
@@ -253,8 +256,10 @@ TextEditingController answer = new TextEditingController();
                     padding: const EdgeInsets.all(8.0),
                     child: Row(
                       children: <Widget>[
-                        Text("Spelling Name: "+ GlobalData.ExamQuiz,style: TextStyle(fontSize: 18,
-                            color: GlobalData.navyblue,fontWeight: FontWeight.bold),),
+                        Expanded(
+                          child: Text("Spelling Name: "+ GlobalData.ExamQuiz,style: TextStyle(fontSize: 18,
+                              color: GlobalData.navyblue,fontWeight: FontWeight.bold),),
+                        ),
                       ],
                     ),
                   ),
@@ -427,6 +432,8 @@ autocorrect: false,keyboardType: TextInputType.emailAddress,
                         Expanded(
                           child: GradientButtonText(
                             ButtonClick: () async {
+
+
                               bool remaning = false;
 
                               String answ ="";
@@ -437,26 +444,32 @@ autocorrect: false,keyboardType: TextInputType.emailAddress,
                               if(remaning==false) {
                                 //answ=answer.text.toString();
 
-                                await  GiveAnswer(answ, (i + 1).toString());
-                                //Show_toast_Now("Data removing",Colors.red);
-
-
-                                Changed = 0;
-                                i++;
-                                if (i == Questions.length) {
-                                  getExamResult();
-
-                                  i--;
+                                if (answer.text.toString() == "") {
+                                  //_showDialog();
+                                  CustomShowDialog(
+                                      context, msg: "Please enter your answer or you can skip if not sure",
+                                      title:
+                                      "Answer Missing");
                                 } else {
+                                  await GiveAnswer(answ, (i + 1).toString());
+                                  //Show_toast_Now("Data removing",Colors.red);
 
-                                  print("submittingcode");
 
-                                  setState(() {
+                                  Changed = 0;
+                                  i++;
+                                  if (i == Questions.length) {
+                                    getExamResult();
 
-                                  });
+                                    i--;
+                                  } else {
+                                    print("submittingcode");
+
+                                    setState(() {
+
+                                    });
+                                  }
                                 }
                               }
-
                             },
                             linearGradient:LinearGradient(colors: <Color>[GlobalData.navyblue,GlobalData.pink]) ,
                             text: Text((i+1)==Questions.length?"Submit":"Next",textAlign: TextAlign.center,style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
@@ -562,6 +575,7 @@ autocorrect: false,keyboardType: TextInputType.emailAddress,
     bool Selected = false;
     TextEditingController optioncontroller = new TextEditingController();
     showDialog(
+        barrierDismissible: false,
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(

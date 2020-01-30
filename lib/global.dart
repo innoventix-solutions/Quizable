@@ -350,7 +350,7 @@ class drawerquiz extends StatelessWidget {
               {
                 /*Navigator.of(context)
                 .pushNamed('developpage');*/
-                Navigator.of(context)
+                 Navigator.of(context)
                     .pushNamed('SetAssignment');
               }
 
@@ -383,7 +383,7 @@ class drawerquiz extends StatelessWidget {
 
 
 
-                   if(GlobalData.adminmembership == "" ||GlobalData.adminmembership==null || GlobalData.adminmembership==false.toString())
+                   if(GlobalData.adminmembership == "" ||GlobalData.adminmembership=="null" || GlobalData.adminmembership==false.toString())
 
                    {
                      print("Level 1");
@@ -454,7 +454,7 @@ class drawerquiz extends StatelessWidget {
 
 
 
-            if(GlobalData.adminmembership == "" ||GlobalData.adminmembership==null || GlobalData.adminmembership==false.toString())
+            if(GlobalData.adminmembership == "" ||GlobalData.adminmembership=="null" || GlobalData.adminmembership==false.toString())
 
             {
               print("Level 1");

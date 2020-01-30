@@ -98,7 +98,7 @@ class _SpellingExamSelectSubjectState extends State<SpellingExamSelectSubject> {
           Expanded(
             child:mysub.isEmpty?
             Center
-              (child:Text("No subject",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: Colors.red),)
+              (child:Text("Loading...",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: Colors.red),)
 
             ) :
             new ListView.builder

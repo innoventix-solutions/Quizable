@@ -36,6 +36,10 @@ class _StudentListBySpellingState extends State<StudentListBySpelling> {
           .map((data) => Pojo_StudentListResultSpelling.fromJson(data))
           .toList();
 
+      globlist.sort((a, b) {
+        return a.point_awarded.toLowerCase().compareTo(b.point_awarded.toLowerCase());
+      });
+
       print(globlist.length);
 
       setState(() {
@@ -83,7 +87,12 @@ class _StudentListBySpellingState extends State<StudentListBySpelling> {
 
 
             Expanded(
-              child: new ListView.builder
+              child: globlist.isEmpty?
+              Center
+                (child:Text("No Student's joined yet",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: Colors.red),)
+
+              ) :
+              new ListView.builder
                 (
                   itemCount: globlist.length,
                   itemBuilder: (BuildContext ctxt, int index) {
@@ -130,11 +139,12 @@ class _StudentListBySpellingState extends State<StudentListBySpelling> {
                                               fontWeight: FontWeight.bold,color: Colors.black,fontSize: 16
                                           ),),
                                           Padding(
-                                            padding: const EdgeInsets.only(top: 5),
-                                            child: Text("Point Awarded: " + globlist[index].point_awarded+" / "+globlist[index].TotalQuizpoints,style:
+                                            padding: const EdgeInsets.only(top: 5,bottom: 5),
+                                            child: Text("Point Awarded: " + globlist[index].point_awarded+" / "+globlist[index].TotalSpellingpoints,style:
                                             TextStyle(color: Colors.black,fontSize: 14),),
                                           ),
 
+                                          Text("Time Taken: " + globlist[index].TotalSpellingpoints)
 
 
                                         ],

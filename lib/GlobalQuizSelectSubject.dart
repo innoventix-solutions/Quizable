@@ -33,6 +33,10 @@ class _GlobalselectsubjectState extends State<Globalselectsubject> {
     });}
 
   countsub() async{
+    loading=true;
+    setState(() {
+
+    });
     await http.post("http://edusupportapp.com/api/get_global_quizzes.php",
         body: {
           "UserId":GlobalData.uid,
@@ -45,8 +49,13 @@ class _GlobalselectsubjectState extends State<Globalselectsubject> {
       mysub = (parsedjson['subjectcount'] as List).map((data)=> Subjectcount.fromJson(data)).toList();
 
       setState(() {
-        loading = true;
+
       });
+
+    });
+
+    loading=false;
+    setState(() {
 
     });
   }
@@ -96,7 +105,7 @@ class _GlobalselectsubjectState extends State<Globalselectsubject> {
           Expanded(
             child:mysub.isEmpty?
             Center
-              (child:Text("No subject",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: Colors.red),)
+              (child:Text("Loading...",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: Colors.red),)
 
             ) :
             new ListView.builder

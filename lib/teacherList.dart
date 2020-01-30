@@ -202,9 +202,9 @@ class _TeacherListState extends State<TeacherList> {
                         shape: BoxShape.circle,
                         image: new DecorationImage(
                           fit: BoxFit.fill,
-                          image:GlobalData.Studentlist.isNotEmpty?
+                          image:GlobalData.Studentlist[0].userphoto!=""?
                           NetworkImage(GlobalData.Studentlist[0].userphoto):
-                          globalData.getgender(),
+                          globalData.getUserGender(GlobalData.Studentlist[0].gender)
                         )
                     )
                 ),
