@@ -16,7 +16,7 @@ class ManageAccount extends StatefulWidget {
 class _ManageAccountState extends State<ManageAccount> {
 
 
-  var publicKey = 'pk_test_f6536a3fc6b3326aaa00afc70898e075b4fd1c00';
+  var publicKey = 'pk_live_8907cc11a42252d0f7bf8bf1e6a3fe1191dcaddb';
   String price;
 
   @override
