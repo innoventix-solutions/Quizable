@@ -7,12 +7,13 @@ class Pojo_StudentListResultSpelling {
   String userphoto;
   String TotalSpellingpoints;
   String point_awarded;
+  String timetaken;
 
 
   Pojo_StudentListResultSpelling(
       {this.id, this.username, this.email,
         this.fullname, this.userphoto,
-        this.TotalSpellingpoints,this.point_awarded
+        this.TotalSpellingpoints,this.point_awarded,this.timetaken
       });
 
   factory Pojo_StudentListResultSpelling.fromJson(Map<String, dynamic> parsedJson){
@@ -23,6 +24,8 @@ class Pojo_StudentListResultSpelling {
       userphoto: parsedJson['user_photo'],
       point_awarded: parsedJson['spelling_result']['point_awarded'].toString(),
       TotalSpellingpoints: parsedJson['spelling_result']['Totalspellingpoints'].toString(),
+      timetaken: parsedJson['spelling_attend_data']['t_time'].toString(),
+
 
 
     );

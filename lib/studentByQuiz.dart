@@ -37,7 +37,7 @@ class _StudentListByQuizState extends State<StudentListByQuiz> {
           .toList();
 
       globlist.sort((a, b) {
-        return a.point_awarded.toLowerCase().compareTo(b.point_awarded.toLowerCase());
+        return a.point_awarded.toLowerCase().compareTo(b.timetaken.toLowerCase());
       });
 
 
@@ -145,7 +145,7 @@ class _StudentListByQuizState extends State<StudentListByQuiz> {
                                               TextStyle(color: Colors.black,fontSize: 14),),
                                           ),
 
-                                          Text("Time Taken: " + globlist[index].point_awarded)
+                                          Text("Time Taken: " + globlist[index].timetaken)
 
 
                                         ],

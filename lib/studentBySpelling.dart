@@ -37,7 +37,7 @@ class _StudentListBySpellingState extends State<StudentListBySpelling> {
           .toList();
 
       globlist.sort((a, b) {
-        return a.point_awarded.toLowerCase().compareTo(b.point_awarded.toLowerCase());
+        return a.point_awarded.toLowerCase().compareTo(b.timetaken.toLowerCase());
       });
 
       print(globlist.length);
@@ -144,7 +144,7 @@ class _StudentListBySpellingState extends State<StudentListBySpelling> {
                                             TextStyle(color: Colors.black,fontSize: 14),),
                                           ),
 
-                                          Text("Time Taken: " + globlist[index].TotalSpellingpoints)
+                                          Text("Time Taken: " + globlist[index].timetaken)
 
 
                                         ],

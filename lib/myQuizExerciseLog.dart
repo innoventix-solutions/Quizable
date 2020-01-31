@@ -111,7 +111,8 @@ class _MyQuizExerciseLogState extends State<MyQuizExerciseLog> {
                         is_taken: Quizz_List[i].is_taken,
                         //percent: Quizz_List[i].percentage.toString(),
                           progresslabel:Quizz_List[i].progresslabel
-                      ):SizedBox(),
+                      )
+                          :SizedBox(),
                     );
                   }
                   ),
