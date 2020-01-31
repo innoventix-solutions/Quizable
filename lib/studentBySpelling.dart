@@ -102,64 +102,71 @@ class _StudentListBySpellingState extends State<StudentListBySpelling> {
                           GlobalData.CurrentStudentID = globlist[index].id;
                           Navigator.of(context).pushNamed('StudentsspellingLevelsAnswer');
                         },
-                        child: Container(
+                        child: Padding(
+                          padding: const EdgeInsets.only(bottom: 10),
+                          child: Container(
 
-                          child: Column(
-                            children: <Widget>[
-                              Row(
-                                children: <Widget>[
-                                  Stack(
-                                    children: <Widget>[
-                                      Container(height: 70,width: 70,margin: EdgeInsets.only(left: 20,top: 15,bottom: 10),
-                                        decoration: new BoxDecoration(
-                                            shape: BoxShape.circle,
-                                            image: new DecorationImage(
-                                              fit: BoxFit.cover,
-                                              image:(globlist[index].userphoto!="")?
+                            child: Column(
+                              children: <Widget>[
+                                Row(
+                                  children: <Widget>[
+                                    Stack(
+                                      children: <Widget>[
+                                        Container(height: 70,width: 70,margin: EdgeInsets.only(left: 20,top: 15,bottom: 10),
+                                          decoration: new BoxDecoration(
+                                              shape: BoxShape.circle,
+                                              image: new DecorationImage(
+                                                fit: BoxFit.cover,
+                                                image:(globlist[index].userphoto!="")?
 
-                                              NetworkImage(globlist[index].userphoto,)
-                                                  :
-                                              AssetImage('assets/images/bg.png')
-                                              ,
-                                            )
-                                        ),),
-                                    ],
-                                  ),
-                                  //  Text("fghjkl"+globlist[index].userphoto),
-
-
-
-
-                                  Expanded(
-                                    child: Padding(
-                                      padding: const EdgeInsets.only(left:30),
-                                      child: Column(mainAxisAlignment: MainAxisAlignment.start,crossAxisAlignment: CrossAxisAlignment.start,
-                                        children: <Widget>[
-                                          Text("Name: " + globlist[index].username,style: TextStyle(
-                                              fontWeight: FontWeight.bold,color: Colors.black,fontSize: 16
+                                                NetworkImage(globlist[index].userphoto,)
+                                                    :
+                                                AssetImage('assets/images/bg.png')
+                                                ,
+                                              )
                                           ),),
-                                          Padding(
-                                            padding: const EdgeInsets.only(top: 5,bottom: 5),
-                                            child: Text("Point Awarded: " + globlist[index].point_awarded+" / "+globlist[index].TotalSpellingpoints,style:
-                                            TextStyle(color: Colors.black,fontSize: 14),),
-                                          ),
-
-                                          Text("Time Taken: " + globlist[index].timetaken)
+                                      ],
+                                    ),
+                                    //  Text("fghjkl"+globlist[index].userphoto),
 
 
-                                        ],
+
+
+                                    Expanded(
+                                      child: Padding(
+                                        padding: const EdgeInsets.only(left:30),
+                                        child: Column(mainAxisAlignment: MainAxisAlignment.start,crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: <Widget>[
+                                            Text("Name: " + globlist[index].username,style: TextStyle(
+                                                fontWeight: FontWeight.bold,color: Colors.black,fontSize: 16
+                                            ),),
+                                            Padding(
+                                              padding: const EdgeInsets.only(top: 5,bottom: 5),
+                                              child: Text("Point Awarded: " + globlist[index].point_awarded+" / "+globlist[index].TotalSpellingpoints,style:
+                                              TextStyle(color: Colors.black,fontSize: 14),),
+                                            ),
+
+                                            Text("Time Taken: " + globlist[index].timetaken),
+
+                                            Padding(
+                                              padding: const EdgeInsets.only(top: 5),
+                                              child: Text("Exam Date: " + globlist[index].takendate),
+                                            )
+
+                                          ],
+                                        ),
                                       ),
                                     ),
-                                  ),
 
 
 
 
 
 
-                                ], ),
+                                  ], ),
 
-                            ],
+                              ],
+                            ),
                           ),
                         ),
                       );

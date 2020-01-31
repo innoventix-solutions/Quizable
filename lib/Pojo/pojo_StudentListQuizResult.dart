@@ -8,12 +8,13 @@ class Pojo_StudentListResult {
   String TotalQuizpoints;
   String point_awarded;
   String timetaken;
-
+  String takendate;
 
   Pojo_StudentListResult(
       {this.id, this.username, this.email,
         this.fullname, this.userphoto,
-        this.TotalQuizpoints,this.point_awarded,this.timetaken
+        this.TotalQuizpoints,this.point_awarded,this.timetaken,
+        this.takendate
         });
 
   factory Pojo_StudentListResult.fromJson(Map<String, dynamic> parsedJson){
@@ -25,6 +26,7 @@ class Pojo_StudentListResult {
       point_awarded: parsedJson['quiz_result']['point_awarded'].toString(),
       TotalQuizpoints: parsedJson['quiz_result']['TotalQuizpoints'].toString(),
       timetaken: parsedJson['quiz_attend_data']['t_time'].toString(),
+      takendate: parsedJson['quiz_attend_data']['taken_date'].toString(),
 
 
     );
