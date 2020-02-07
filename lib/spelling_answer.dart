@@ -18,8 +18,9 @@ import 'package:newpro/Pojo/pojo_quizzes.dart';
 import 'package:newpro/Pojo/pojo_anslog.dart';
 import 'package:countdown/countdown.dart';
 import 'Pojo/pojo_getspelling.dart';
-import 'package:audioplayer/audioplayer.dart';
+//import 'package:audioplayer/audioplayer.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:audio_stream_player/audio_stream_player.dart';
 
 
 
@@ -34,13 +35,13 @@ class _spelling_ansState extends State<spelling_ans> {
 
 
 
-  AudioPlayer audioPlayer = new AudioPlayer();
+  AudioStreamPlayer player = AudioStreamPlayer();
 
   bool isPlaying = false;
   bool isStarted = false;
 
   startPlaying()async{
-    await audioPlayer.play(Questions[i].audio_file);
+    await player.play(Questions[i].audio_file);
 
     print(Questions[i].audio_file);
   }
@@ -309,7 +310,7 @@ class _spelling_ansState extends State<spelling_ans> {
                             child: Padding(
                               padding: const EdgeInsets.all(10.0),
                               child: Text(
-                               "Level ${Questions[i].level_no.toString()}",
+                                "Level ${Questions[i].level_no.toString()}",
                                 style: TextStyle(
                                     color: Colors.white, fontWeight: FontWeight.bold),
                               ),
@@ -364,21 +365,21 @@ class _spelling_ansState extends State<spelling_ans> {
                                             child: Text("Word point - " +Questions[i].point_awarded,textAlign: TextAlign.center,style:
                                             TextStyle(fontWeight: FontWeight.bold),),
                                           ),
-SizedBox(width: 20,),
+                                          SizedBox(width: 20,),
 
                                           Expanded(
                                             child:
 
-                                                RaisedButton(onPressed: (){
-                                                  startPlaying();
-                                                  setState(() {});
-                                                },child: Text("Play",style: TextStyle(
-                                                  color: Colors.white
-                                                ),),color: Colors.blue,),
+                                            RaisedButton(onPressed: (){
+                                              startPlaying();
+                                              setState(() {});
+                                            },child: Text("Play",style: TextStyle(
+                                                color: Colors.white
+                                            ),),color: Colors.blue,),
                                           ),
 
 
-                                         ],
+                                        ],
                                       ),
                                     ),
 
@@ -391,7 +392,7 @@ SizedBox(width: 20,),
                   Card(
                     child:TextField(textCapitalization: TextCapitalization.characters,
                       controller: answer,
-autocorrect: false,keyboardType: TextInputType.visiblePassword,
+                      autocorrect: false,keyboardType: TextInputType.visiblePassword,
 
                       style: TextStyle(color: Colors.blue, fontSize: 18),
                       decoration: InputDecoration(hintText: "Type Answer here",
@@ -553,7 +554,7 @@ autocorrect: false,keyboardType: TextInputType.visiblePassword,
     });
 
 
-   answer.text="";
+    answer.text="";
 
 
 
