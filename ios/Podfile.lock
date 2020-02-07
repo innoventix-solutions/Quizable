@@ -1,12 +1,8 @@
 PODS:
-  - audioplayer (0.0.1):
-    - Flutter
   - Flutter (1.0.0)
   - flutter_audio_recorder (0.5.4):
     - Flutter
   - flutter_paystack (0.0.1):
-    - Flutter
-  - flutter_playout (0.0.1):
     - Flutter
   - flutter_plugin_android_lifecycle (0.0.1):
     - Flutter
@@ -32,11 +28,9 @@ PODS:
     - Flutter
 
 DEPENDENCIES:
-  - audioplayer (from `.symlinks/plugins/audioplayer/ios`)
   - Flutter (from `.symlinks/flutter/ios`)
   - flutter_audio_recorder (from `.symlinks/plugins/flutter_audio_recorder/ios`)
   - flutter_paystack (from `.symlinks/plugins/flutter_paystack/ios`)
-  - flutter_playout (from `.symlinks/plugins/flutter_playout/ios`)
   - flutter_plugin_android_lifecycle (from `.symlinks/plugins/flutter_plugin_android_lifecycle/ios`)
   - flutter_tts (from `.symlinks/plugins/flutter_tts/ios`)
   - fluttertoast (from `.symlinks/plugins/fluttertoast/ios`)
@@ -50,16 +44,12 @@ DEPENDENCIES:
   - speech_to_text (from `.symlinks/plugins/speech_to_text/ios`)
 
 EXTERNAL SOURCES:
-  audioplayer:
-    :path: ".symlinks/plugins/audioplayer/ios"
   Flutter:
     :path: ".symlinks/flutter/ios"
   flutter_audio_recorder:
     :path: ".symlinks/plugins/flutter_audio_recorder/ios"
   flutter_paystack:
     :path: ".symlinks/plugins/flutter_paystack/ios"
-  flutter_playout:
-    :path: ".symlinks/plugins/flutter_playout/ios"
   flutter_plugin_android_lifecycle:
     :path: ".symlinks/plugins/flutter_plugin_android_lifecycle/ios"
   flutter_tts:
@@ -84,11 +74,9 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/speech_to_text/ios"
 
 SPEC CHECKSUMS:
-  audioplayer: f4462b84216b9c55f02bbbdc7ab60eec7427b2d4
   Flutter: 0e3d915762c693b495b44d77113d4970485de6ec
   flutter_audio_recorder: eb998d4e75e59b39d9e3ca1818a5e0f3a82f5836
   flutter_paystack: 50021637b71e7712780744f69d2843e71b65175d
-  flutter_playout: a5aed32b3003b02eb4432815ecfe0c0e42a801ff
   flutter_plugin_android_lifecycle: 47de533a02850f070f5696a623995e93eddcdb9b
   flutter_tts: 0f492aab6accf87059b72354fcb4ba934304771d
   fluttertoast: b644586ef3b16f67fae9a1f8754cef6b2d6b634b
