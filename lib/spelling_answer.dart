@@ -18,7 +18,7 @@ import 'package:newpro/Pojo/pojo_quizzes.dart';
 import 'package:newpro/Pojo/pojo_anslog.dart';
 import 'package:countdown/countdown.dart';
 import 'Pojo/pojo_getspelling.dart';
-//import 'package:audioplayer/audioplayer.dart';
+import 'package:audioplayer/audioplayer.dart';
 import 'package:path_provider/path_provider.dart';
 
 
@@ -34,13 +34,16 @@ class _spelling_ansState extends State<spelling_ans> {
 
 
 
-  //AudioPlayer audioPlayer = new AudioPlayer();
+  AudioPlayer audioPlayer = new AudioPlayer();
 
   bool isPlaying = false;
   bool isStarted = false;
 
+  startPlaying()async{
+    await audioPlayer.play(Questions[i].audio_file);
 
-
+    print(Questions[i].audio_file);
+  }
 
 
 
@@ -362,17 +365,20 @@ class _spelling_ansState extends State<spelling_ans> {
                                             TextStyle(fontWeight: FontWeight.bold),),
                                           ),
 SizedBox(width: 20,),
+
                                           Expanded(
                                             child:
-                                            IconButton(
-                                              icon: Icon(
-                                                isPlaying ? Icons.pause : Icons.play_arrow,
-                                              ),
-                                              onPressed: () {
-                                              //  startPlaying();
-                                                setState(() {});
-                                              },
-                                          ), ), ],
+
+                                                RaisedButton(onPressed: (){
+                                                  startPlaying();
+                                                  setState(() {});
+                                                },child: Text("Play",style: TextStyle(
+                                                  color: Colors.white
+                                                ),),color: Colors.blue,),
+                                          ),
+
+
+                                         ],
                                       ),
                                     ),
 

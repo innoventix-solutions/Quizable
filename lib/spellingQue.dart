@@ -370,6 +370,8 @@ class _setspellqueState extends State<setspellque> {
                                             Expanded(child: Text("Audio/Voice recorder",style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold),)),
 
 
+                                            Text("Long Press to record audio"),
+
                                             GestureDetector(
                                                 onLongPressStart: (start) async {
 
@@ -377,6 +379,9 @@ class _setspellqueState extends State<setspellque> {
                                                   setState(() {
 
                                                   });
+
+                                                  await FlutterAudioRecorder.hasPermissions;
+
                                                   var path =await getApplicationSupportDirectory();
 
                                                   print(path.path.toString());
