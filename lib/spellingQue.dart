@@ -9,6 +9,7 @@ import 'package:http/http.dart'as http;
 import 'dart:convert';
 import 'package:flutter_audio_recorder/flutter_audio_recorder.dart';
 import 'package:path_provider/path_provider.dart';
+import 'dart:io';
 
 
 class setspellque extends StatefulWidget {
@@ -389,11 +390,10 @@ class _setspellqueState extends State<setspellque> {
                                                   setState(() {
 
                                                   });
-                                                  var result = await _recorder.stop();
-                                                  print(result.path);
 
 
-                                                  var uri =  Uri.parse('http://edusupportapp.com/api/create_update_spelling_questions.php');
+
+                                                  /*var uri =  Uri.parse('http://edusupportapp.com/api/create_update_spelling_questions.php');
                                                   var request = http.MultipartRequest('POST', uri)
                                                     ..fields['user'] = 'nweiz@google.com'
                                                     ..files.add(await http.MultipartFile.fromPath(
@@ -401,7 +401,7 @@ class _setspellqueState extends State<setspellque> {
                                                     ));
 
                                                   var response = await request.send();
-                                                  if (response.statusCode == 200) print('Uploaded!');
+                                                  if (response.statusCode == 200) print('Uploaded!');*/
                                                 },
                                                 child: Icon(isRecording?Icons.mic:Icons.mic_off,color: isRecording? Colors.green:Colors.grey,size: 50,)
 
@@ -575,6 +575,11 @@ class _setspellqueState extends State<setspellque> {
 
 
 
+      var result = await _recorder.stop();
+      print(result.path);
+      var file = File(result.path);
+      List<int> audiobytes = file.readAsBytesSync();
+      String base64Image = base64Encode(audiobytes);
 
       http.post(
           "http://edusupportapp.com/api/create_update_spelling_questions.php", body: {
@@ -582,7 +587,7 @@ class _setspellqueState extends State<setspellque> {
         "point_awarded": Points.text.toString(),
         "spelling_id": GlobalData.spellingid,
         "answer_options": trueanswer.text.toString(),
-        //"audio":_recorder,
+        "audio":base64Image,
         //"answer_options": lastWords.isEmpty?trueanswer.text.toString():lastWords,
         "level_no": ((GlobalData.QuestionNumber/int.parse(GlobalData.spellNosofQuesPerLevel)).floor()+1).toString(),
         "ques_no": ((GlobalData.QuestionNumber%int.parse(GlobalData.spellNosofQuesPerLevel))+1).toString(),

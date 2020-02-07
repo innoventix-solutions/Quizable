@@ -7,6 +7,9 @@ import 'package:speech_to_text/speech_recognition_result.dart';
 import 'package:speech_to_text/speech_recognition_error.dart';
 import 'global.dart';
 import 'package:http/http.dart' as http;
+import 'package:flutter_audio_recorder/flutter_audio_recorder.dart';
+import 'package:path_provider/path_provider.dart';
+import 'dart:io';
 class EditSpellingQuestions extends StatefulWidget {
   @override
   _EditSpellingQuestionsState createState() => _EditSpellingQuestionsState();
@@ -24,28 +27,30 @@ class _EditSpellingQuestionsState extends State<EditSpellingQuestions> {
   TextEditingController Points = new TextEditingController(text: GlobalData.Edit_spelling_Questions.point_awarded);
   TextEditingController trueanswer = new TextEditingController(text: GlobalData.Edit_spelling_Questions.anwer_options);
 
+  FlutterAudioRecorder _recorder;
+  bool isRecording=false;
 
-  bool _hasSpeech = false;
-  String lastWords = GlobalData.Edit_spelling_Questions.anwer_options;
-  String lastError = "";
-  String lastStatus = "";
-  final SpeechToText speech = SpeechToText();
+  //bool _hasSpeech = false;
+  //String lastWords = GlobalData.Edit_spelling_Questions.anwer_options;
+  //String lastError = "";
+  //String lastStatus = "";
+  //final SpeechToText speech = SpeechToText();
 
-  Future<void> initSpeechState() async {
+  /*Future<void> initSpeechState() async {
     bool hasSpeech = await speech.initialize(onError: errorListener, onStatus: statusListener );
 
     if (!mounted) return;
     setState(() {
       _hasSpeech = hasSpeech;
     });
-  }
+  }*/
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     //initSpeechRecognizer();
-    initSpeechState();
+    //initSpeechState();
   }
 
 
@@ -181,7 +186,7 @@ class _EditSpellingQuestionsState extends State<EditSpellingQuestions> {
           ),
         ],
       ),
-      body:_hasSpeech?SafeArea(
+      body:SafeArea(
         child: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.all(20.0),
@@ -336,7 +341,44 @@ class _EditSpellingQuestionsState extends State<EditSpellingQuestions> {
                                           children: <Widget>[
                                             Expanded(child: Text("Audio/Voice recorder",style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold),)),
 
-                                            IconButton(
+
+                                            GestureDetector(
+                                                onLongPressStart: (start) async {
+
+                                                  isRecording=true;
+                                                  setState(() {
+
+                                                  });
+                                                  var path =await getApplicationSupportDirectory();
+
+                                                  print(path.path.toString());
+
+                                                  _recorder = FlutterAudioRecorder("${path.path.toString()}/${DateTime.now().toIso8601String().toString()}.mp3"); // .wav .aac .m4a
+                                                  await _recorder.initialized;
+                                                  await _recorder.start();
+                                                },
+                                                onLongPressEnd: (end) async {
+                                                  isRecording=false;
+                                                  setState(() {
+
+                                                  });
+
+
+
+                                                  /*var uri =  Uri.parse('http://edusupportapp.com/api/create_update_spelling_questions.php');
+                                                  var request = http.MultipartRequest('POST', uri)
+                                                    ..fields['user'] = 'nweiz@google.com'
+                                                    ..files.add(await http.MultipartFile.fromPath(
+                                                      'fileToUpload', result.path,
+                                                    ));
+
+                                                  var response = await request.send();
+                                                  if (response.statusCode == 200) print('Uploaded!');*/
+                                                },
+                                                child: Icon(isRecording?Icons.mic:Icons.mic_off,color: isRecording? Colors.green:Colors.grey,size: 50,)
+
+                                            )
+                                            /*IconButton(
                                               icon: Icon(Icons.mic),
                                               onPressed: startListening,
                                               color: Colors.blue,),
@@ -349,13 +391,13 @@ class _EditSpellingQuestionsState extends State<EditSpellingQuestions> {
                                             IconButton(
                                               icon: Icon(Icons.cancel),
                                               onPressed: stopListening,
-                                              color: Colors.red,),
+                                              color: Colors.red,),*/
 
 
                                           ],
                                         ),
 
-                                        Container(
+                                        /*Container(
                                           width: MediaQuery
                                               .of(context)
                                               .size
@@ -372,7 +414,7 @@ class _EditSpellingQuestionsState extends State<EditSpellingQuestions> {
                                             lastWords,
                                             style: TextStyle(fontSize: 24.0),
                                           ),
-                                        ),
+                                        ),*/
 
                                       ],
                                     ),
@@ -483,7 +525,7 @@ class _EditSpellingQuestionsState extends State<EditSpellingQuestions> {
             ],),
           ),
         ),
-      ):Text("Speech recognition unavailable"),
+      ),//Text("Speech recognition unavailable"),
     );
   }
 
@@ -512,7 +554,8 @@ class _EditSpellingQuestionsState extends State<EditSpellingQuestions> {
   }
   SaveSpellingQuestion()async {
     if (QuestionName.text.toString() == "" || Points.text.toString() == "" ||
-        lastWords.toString() == ""&& trueanswer.text.toString()==""  ) {
+        //lastWords.toString() == ""&&
+            trueanswer.text.toString()==""  ) {
       //_showDialog();
       CustomShowDialog(context,msg: "Some Values are Missing",title:
       "Value Missing");
@@ -521,12 +564,16 @@ class _EditSpellingQuestionsState extends State<EditSpellingQuestions> {
       print( "question "+ QuestionName.text.toString()+
           "point_awarded "+ Points.text.toString()+
           "spelling_id "+ GlobalData.spellingid+
-          "answer_options " + lastWords.toString()+
+         // "answer_options " + lastWords.toString()+
           "answer_options " + trueanswer.text.toString());
 
 
 
-
+      var result = await _recorder.stop();
+      print(result.path);
+      var file = File(result.path);
+      List<int> audiobytes = file.readAsBytesSync();
+      String base64Image = base64Encode(audiobytes);
 
       http.post(
           "http://edusupportapp.com/api/create_update_spelling_questions.php", body: {
@@ -534,7 +581,9 @@ class _EditSpellingQuestionsState extends State<EditSpellingQuestions> {
         "point_awarded": Points.text.toString(),
         "question_id":GlobalData.Edit_spelling_Questions.id.toString(),
         "spelling_id": GlobalData.spellingid,
-        "answer_options": lastWords.isEmpty?trueanswer.text.toString():lastWords,
+        "answer_options": trueanswer.text.toString(),
+        "audio":base64Image,
+        //"answer_options": lastWords.isEmpty?trueanswer.text.toString():lastWords,
         "level_no": ((GlobalData.QuestionNumber/int.parse(GlobalData.spellNosofQuesPerLevel)).floor()+1).toString(),
         "ques_no": ((GlobalData.QuestionNumber%int.parse(GlobalData.spellNosofQuesPerLevel))+1).toString(),
       }).then((response) {
@@ -547,7 +596,7 @@ class _EditSpellingQuestionsState extends State<EditSpellingQuestions> {
   }
 
 
-
+/*
   void startListening() {
     lastWords = "";
     lastError = "";
@@ -587,6 +636,6 @@ class _EditSpellingQuestionsState extends State<EditSpellingQuestions> {
     setState(() {
       lastStatus = "$status";
     });
-  }
+  }*/
 
 }

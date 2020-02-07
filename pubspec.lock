@@ -22,13 +22,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.4.0"
-  audioplayers:
+  audioplayer:
     dependency: "direct main"
     description:
-      name: audioplayers
+      name: audioplayer
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.14.0"
+    version: "0.5.2"
   boolean_selector:
     dependency: transitive
     description:
@@ -173,12 +173,12 @@ packages:
     source: sdk
     version: "0.0.0"
   flutter_tts:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: flutter_tts
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.2.6"
+    version: "0.8.6"
   flutter_web_plugins:
     dependency: transitive
     description: flutter
@@ -220,7 +220,7 @@ packages:
     source: hosted
     version: "0.6.3+1"
   intl:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: intl
       url: "https://pub.dartlang.org"
@@ -281,7 +281,7 @@ packages:
       name: permission_handler
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.3.0"
+    version: "4.2.0+hotfix.3"
   petitparser:
     dependency: transitive
     description:
@@ -363,7 +363,7 @@ packages:
       name: speech_to_text
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.6.3"
+    version: "0.8.0"
   stack_trace:
     dependency: transitive
     description:
@@ -406,13 +406,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.1.6"
-  uuid:
-    dependency: transitive
-    description:
-      name: uuid
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.0.4"
   vector_math:
     dependency: transitive
     description:
@@ -436,4 +429,4 @@ packages:
     version: "2.2.0"
 sdks:
   dart: ">=2.6.0 <3.0.0"
-  flutter: ">=1.12.13+hotfix.4 <2.0.0"
+  flutter: ">=1.12.13+hotfix.5 <2.0.0"

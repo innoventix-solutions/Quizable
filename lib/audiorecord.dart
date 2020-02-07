@@ -8,7 +8,7 @@ import 'global.dart';
 import 'dart:io';
 
 import 'package:flutter_audio_recorder/flutter_audio_recorder.dart';
-import 'package:audioplayers/audioplayers.dart';
+//import 'package:audioplayers/audioplayers.dart';
 //import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart';
 

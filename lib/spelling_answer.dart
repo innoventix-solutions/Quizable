@@ -18,6 +18,9 @@ import 'package:newpro/Pojo/pojo_quizzes.dart';
 import 'package:newpro/Pojo/pojo_anslog.dart';
 import 'package:countdown/countdown.dart';
 import 'Pojo/pojo_getspelling.dart';
+import 'package:audioplayer/audioplayer.dart';
+import 'package:path_provider/path_provider.dart';
+
 
 import 'global.dart';
 
@@ -30,8 +33,25 @@ class _spelling_ansState extends State<spelling_ans> {
 
 
 
+  AudioPlayer audioPlayer = new AudioPlayer();
 
-TextEditingController answer = new TextEditingController();
+  bool isPlaying = false;
+  bool isStarted = false;
+
+
+  startPlaying() {
+
+   audioPlayer.play(Questions[i].audio_file);
+      isStarted = true;
+
+print(Questions[i].audio_file);
+    // time  = await audioPlayer.getDuration();
+  }
+
+
+
+
+  TextEditingController answer = new TextEditingController();
   bool isCompleted=false;
   bool isattempted =false;
   bool originalCopied =false;
@@ -350,27 +370,16 @@ TextEditingController answer = new TextEditingController();
                                           ),
 SizedBox(width: 20,),
                                           Expanded(
-                                            child: FlatButton.icon(shape: RoundedRectangleBorder(
-                                              borderRadius: new BorderRadius.circular(20.0),
-
-                                            ),
-                                              color: Colors.blue,
-                                              icon: Icon(Icons.hearing,color: Colors.white,), //`Icon` to display
-                                              label: Padding(
-                                                padding: const EdgeInsets.only(top: 5,bottom: 5,right: 10,left: 10),
-                                                child: GestureDetector(onTap: (){
-
-                                                  _speak(Questions[i].anwer_options);
-
-                                                },
-                                                    child: Text('Listen',style: TextStyle(fontSize: 20,color: Colors.white),)),
-                                              ), //`Text` to display
+                                            child:
+                                            IconButton(
+                                              icon: Icon(
+                                                isPlaying ? Icons.pause : Icons.play_arrow,
+                                              ),
                                               onPressed: () {
-                                                //Code to execute when Floating Action Button is clicked
-                                                //...
+                                                startPlaying();
+                                                setState(() {});
                                               },
-                                            ),
-                                          ),  ],
+                                          ), ), ],
                                       ),
                                     ),
 

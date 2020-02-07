@@ -10,14 +10,14 @@ class Pojo_Spellingquestions{
   String anwer_options;
   String level_no;
   String ques_no;
-
+  String audio_file;
   String spellingid;
 
 
 
 
   Pojo_Spellingquestions({this.id, this.question, this.point_awarded,
-    this.anwer_options, this.level_no,this.ques_no,this.spellingid});
+    this.anwer_options, this.level_no,this.ques_no,this.spellingid,this.audio_file});
 
   factory Pojo_Spellingquestions.fromJson(Map<String, dynamic> parsedJson){
 
@@ -38,6 +38,7 @@ class Pojo_Spellingquestions{
       level_no: parsedJson['level_no'].toString(),
       ques_no:parsedJson['ques_no'].toString(),
       spellingid: parsedJson['spelling_id'].toString(),
+        audio_file:parsedJson['audio_file'].toString()
 
     );
   }
