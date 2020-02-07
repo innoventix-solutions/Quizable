@@ -127,8 +127,11 @@ class _StudentListByAssignmentState extends State<StudentListByAssignment> {
                                       padding: const EdgeInsets.only(left:30),
                                       child: Column(mainAxisAlignment: MainAxisAlignment.start,crossAxisAlignment: CrossAxisAlignment.start,
                                         children: <Widget>[
-                                          Text(globlist[index].username),
-                                          Text(globlist[index].point_awarded+" / "+globlist[index].TotalAssignmentpoints),
+                                          Text("Name: " + globlist[index].username),
+                                          Padding(
+                                            padding: const EdgeInsets.only(top: 5,bottom: 5),
+                                            child: Text("Point Awarded: " + globlist[index].point_awarded+" / "+globlist[index].TotalAssignmentpoints),
+                                          ),
 
 
                                         ],

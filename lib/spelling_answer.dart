@@ -383,7 +383,7 @@ SizedBox(width: 20,),
                   Card(
                     child:TextField(textCapitalization: TextCapitalization.characters,
                       controller: answer,
-autocorrect: false,keyboardType: TextInputType.emailAddress,
+autocorrect: false,keyboardType: TextInputType.visiblePassword,
 
                       style: TextStyle(color: Colors.blue, fontSize: 18),
                       decoration: InputDecoration(hintText: "Type Answer here",

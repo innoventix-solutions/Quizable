@@ -305,7 +305,8 @@ class MyResultBlock extends StatelessWidget {
 
                                         Row(
                                           children: <Widget>[
-                                            Expanded(child: TextField(controller: points,decoration: InputDecoration(hintText: "Option Text"),))
+                                            Expanded(child: TextField(controller: points,decoration: InputDecoration(hintText: "Option Text"),
+                                              keyboardType: TextInputType.number,))
                                           ],
                                         ),
                                       ],
@@ -400,7 +401,7 @@ class MyResultBlock extends StatelessWidget {
                         children: <Widget>[
                           Padding(
                             padding: const EdgeInsets.all(10.0),
-                            child: Text(result==1?"Right":"Wrong",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
+                            child: Text(result==1?"Right":answertype=="Short Essay"?"Pending":"Wrong",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
                           ),
                         ],
                       ),

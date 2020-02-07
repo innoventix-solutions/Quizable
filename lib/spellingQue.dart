@@ -7,6 +7,9 @@ import 'package:speech_to_text/speech_recognition_result.dart';
 import 'package:speech_to_text/speech_recognition_error.dart';
 import 'package:http/http.dart'as http;
 import 'dart:convert';
+import 'package:flutter_audio_recorder/flutter_audio_recorder.dart';
+import 'package:path_provider/path_provider.dart';
+
 
 class setspellque extends StatefulWidget {
   @override
@@ -20,12 +23,14 @@ class _setspellqueState extends State<setspellque> {
   TextEditingController Points = new TextEditingController();
   TextEditingController trueanswer = new TextEditingController();
 
-  bool _hasSpeech = false;
-  String lastWords = "";
-  String lastError = "";
-  String lastStatus = "";
-  final SpeechToText speech = SpeechToText();
+  //bool _hasSpeech = false;
+  //String lastWords = "";
+  //String lastError = "";
+  //String lastStatus = "";
+  //final SpeechToText speech = SpeechToText();
 
+  FlutterAudioRecorder _recorder;
+  bool isRecording=false;
 
   //SpeechRecognition _speechRecognition;
   //bool _isAvailable = false;
@@ -37,11 +42,11 @@ class _setspellqueState extends State<setspellque> {
     // TODO: implement initState
     super.initState();
     //initSpeechRecognizer();
-    initSpeechState();
+    //initSpeechState();
   }
 
 
-
+/*
   Future<void> initSpeechState() async {
     bool hasSpeech = await speech.initialize(onError: errorListener, onStatus: statusListener );
 
@@ -49,7 +54,7 @@ class _setspellqueState extends State<setspellque> {
     setState(() {
       _hasSpeech = hasSpeech;
     });
-  }
+  }*/
   /*void initSpeechRecognizer() {
     _speechRecognition = SpeechRecognition();
     _speechRecognition.setAvailabilityHandler(
@@ -200,7 +205,7 @@ class _setspellqueState extends State<setspellque> {
       //drawerquiz(),
 
 
-      body:_hasSpeech?SafeArea(
+      body:SafeArea(
         child: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.all(20.0),
@@ -246,7 +251,7 @@ class _setspellqueState extends State<setspellque> {
                                   horizontal: 12.0,
                                 ),
                                 child: TextField(controller:trueanswer,decoration: InputDecoration(
-                                  border: InputBorder.none,hintText: "Insert correct spelling"
+                                    border: InputBorder.none,hintText: "Insert correct spelling"
                                 ),style: TextStyle(fontSize: 24.0,),
                                 ),
 
@@ -256,7 +261,7 @@ class _setspellqueState extends State<setspellque> {
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: Text("Note: The word displayed in the speech to text tab is a guide, student’s answer will be matched with the spelling you provided in the box.",
-                                style: TextStyle(color: Colors.red),),
+                                  style: TextStyle(color: Colors.red),),
                               )
                               /*Padding(
                                 padding: const EdgeInsets.only(left: 20,right: 20),
@@ -283,7 +288,7 @@ class _setspellqueState extends State<setspellque> {
                     Row(
                       children: <Widget>[
 
-                       ],
+                      ],
                     ),
                     Row(
                       children: <Widget>[
@@ -298,7 +303,7 @@ class _setspellqueState extends State<setspellque> {
                               Padding(
                                 padding: const EdgeInsets.only(left: 20,right: 20),
                                 child: TextField(
-                                 controller: QuestionName,
+                                  controller: QuestionName,
                                   maxLines: 3,
                                   keyboardType: TextInputType.text,
                                   decoration: InputDecoration(border: InputBorder.none,hintText: ""),
@@ -363,26 +368,64 @@ class _setspellqueState extends State<setspellque> {
                                           children: <Widget>[
                                             Expanded(child: Text("Audio/Voice recorder",style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold),)),
 
-                                          IconButton(
-                                            icon: Icon(Icons.mic),
-                                            onPressed: startListening,
-                                            color: Colors.blue,),
-                                                /*Map<PermissionGroup, PermissionStatus> permissions = await PermissionHandler().requestPermissions([PermissionGroup.microphone]);
+
+                                            GestureDetector(
+                                                onLongPressStart: (start) async {
+
+                                                  isRecording=true;
+                                                  setState(() {
+
+                                                  });
+                                                  var path =await getApplicationSupportDirectory();
+
+                                                  print(path.path.toString());
+
+                                                  _recorder = FlutterAudioRecorder("${path.path.toString()}/${DateTime.now().toIso8601String().toString()}.mp3"); // .wav .aac .m4a
+                                                  await _recorder.initialized;
+                                                  await _recorder.start();
+                                                },
+                                                onLongPressEnd: (end) async {
+                                                  isRecording=false;
+                                                  setState(() {
+
+                                                  });
+                                                  var result = await _recorder.stop();
+                                                  print(result.path);
+
+
+                                                  var uri =  Uri.parse('http://edusupportapp.com/api/create_update_spelling_questions.php');
+                                                  var request = http.MultipartRequest('POST', uri)
+                                                    ..fields['user'] = 'nweiz@google.com'
+                                                    ..files.add(await http.MultipartFile.fromPath(
+                                                      'fileToUpload', result.path,
+                                                    ));
+
+                                                  var response = await request.send();
+                                                  if (response.statusCode == 200) print('Uploaded!');
+                                                },
+                                                child: Icon(isRecording?Icons.mic:Icons.mic_off,color: isRecording? Colors.green:Colors.grey,size: 50,)
+
+                                            )
+                                            /*IconButton(
+                                              icon: Icon(Icons.mic),
+                                              onPressed: startListening,
+                                              color: Colors.blue,),*/
+                                            /*Map<PermissionGroup, PermissionStatus> permissions = await PermissionHandler().requestPermissions([PermissionGroup.microphone]);
                                                 if (_isAvailable && !_isListening)
                                                   _speechRecognition
                                                       .listen(locale: "en_US")
                                                       .then((result) => print('$result'));*/
 
-                                            IconButton(
+                                           /* IconButton(
                                               icon: Icon(Icons.cancel),
                                               onPressed: stopListening,
-                                              color: Colors.red,),
+                                              color: Colors.red,),*/
 
 
                                           ],
                                         ),
 
-                                        Container(
+                                        /*Container(
                                           width: MediaQuery
                                               .of(context)
                                               .size
@@ -399,10 +442,10 @@ class _setspellqueState extends State<setspellque> {
                                             lastWords,
                                             style: TextStyle(fontSize: 24.0),
                                           ),
-                                        ),
+                                        ),*/
                                       ],
                                     ),
-                                    ],
+                                  ],
                                 ),
                               ),
 
@@ -462,7 +505,7 @@ class _setspellqueState extends State<setspellque> {
                     child: SizedBox(width: 100,
                       child: GradientButtonText(
                         ButtonClick: (){
-                            SaveSpellingQuestion();
+                          SaveSpellingQuestion();
                         },
                         linearGradient:LinearGradient(colors: <Color>[GlobalData.purple,GlobalData.pink]) ,
                         text: Text("Save",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 18,),
@@ -474,10 +517,10 @@ class _setspellqueState extends State<setspellque> {
 
 
 
-                   ],
+                ],
 
               ),
-             /* Padding(
+              /* Padding(
                 padding: const EdgeInsets.only(bottom: 5, right: 5),
                 child: GestureDetector(
                   child: Row(
@@ -509,13 +552,14 @@ class _setspellqueState extends State<setspellque> {
             ],),
           ),
         ),
-      ):Text("Speech recognition unavailable"),
+      ),//Text("Speech recognition unavailable"),
     );
   }
 
   SaveSpellingQuestion()async {
     if (QuestionName.text.toString() == "" || Points.text.toString() == "" ||
-        lastWords.toString() == "" && trueanswer.text.toString()=="" ) {
+        //lastWords.toString() == "" &&
+            trueanswer.text.toString()=="" ) {
       //_showDialog();
       CustomShowDialog(context,msg: "Some Values are Missing",title:
       "Value Missing");
@@ -525,7 +569,7 @@ class _setspellqueState extends State<setspellque> {
       print( "question "+ QuestionName.text.toString()+
           "point_awarded "+ Points.text.toString()+
           "spelling_id "+ GlobalData.spellingid+
-          "answer_options " + lastWords.toString()+
+         // "answer_options " + lastWords.toString()+
           "answer_options " + trueanswer.text.toString());
 
 
@@ -536,9 +580,10 @@ class _setspellqueState extends State<setspellque> {
           "http://edusupportapp.com/api/create_update_spelling_questions.php", body: {
         "question": QuestionName.text.toString(),
         "point_awarded": Points.text.toString(),
-
         "spelling_id": GlobalData.spellingid,
-        "answer_options": lastWords.isEmpty?trueanswer.text.toString():lastWords,
+        "answer_options": trueanswer.text.toString(),
+        //"audio":_recorder,
+        //"answer_options": lastWords.isEmpty?trueanswer.text.toString():lastWords,
         "level_no": ((GlobalData.QuestionNumber/int.parse(GlobalData.spellNosofQuesPerLevel)).floor()+1).toString(),
         "ques_no": ((GlobalData.QuestionNumber%int.parse(GlobalData.spellNosofQuesPerLevel))+1).toString(),
       }).then((response) {
@@ -548,8 +593,8 @@ class _setspellqueState extends State<setspellque> {
         print(response.body.toString());
         //    print(response.body.toString());
         if (statuss['status'] == 1) {
-         lastWords="";
-         trueanswer.clear();
+          //lastWords="";
+          trueanswer.clear();
           QuestionName.clear();
           Points.clear();
           GlobalData.QuestionNumber++;
@@ -570,7 +615,7 @@ class _setspellqueState extends State<setspellque> {
   }
 
 
-
+/*
   void startListening() {
     lastWords = "";
     lastError = "";
@@ -610,6 +655,6 @@ class _setspellqueState extends State<setspellque> {
     setState(() {
       lastStatus = "$status";
     });
-  }
+  }*/
 }
 

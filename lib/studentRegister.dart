@@ -95,7 +95,7 @@ class _studentregState extends State<studentreg> {
   DateTime selectedDate;
 
   check() {
-    bool emailValid = RegExp(r"^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[a-zA-Z]+").hasMatch(email.text.toString());
+    bool emailValid = RegExp(r"^[a-zA-Z0-9._]+@[a-zA-Z0-9]+\.[a-zA-Z]+").hasMatch(email.text.toString());
     if(emailValid == false){
 
       _showDialog1();

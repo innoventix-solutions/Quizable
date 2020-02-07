@@ -14,7 +14,7 @@ class _StudentsspellLevelsAnswerState extends State<StudentsspellLevelsAnswer> {
     return Scaffold(
       appBar: AppBar(title: Text("Levels"),),
       body: ListView.builder(
-          itemCount: int.parse(GlobalData.QuizLevels),
+          itemCount: int.parse(GlobalData.spellLevels),
           itemBuilder: (context,index){
             return Padding(
               padding: const EdgeInsets.all(1.0),

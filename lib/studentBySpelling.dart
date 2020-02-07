@@ -37,8 +37,9 @@ class _StudentListBySpellingState extends State<StudentListBySpelling> {
           .toList();
 
       globlist.sort((a, b) {
-        return a.point_awarded.toLowerCase().compareTo(b.timetaken.toLowerCase());
+        return b.point_awarded.toLowerCase().compareTo(a.timetaken.toLowerCase());
       });
+
 
       print(globlist.length);
 

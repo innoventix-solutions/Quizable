@@ -936,7 +936,7 @@ class CustomTextField extends StatelessWidget {
               keyboardType: Inputnumber==true?TextInputType.numberWithOptions(decimal: false,signed:false):TextInputType.text,
               decoration:
               InputDecoration(border: InputBorder.none,hintText: Texth,hintStyle: hintStyle),
-              textAlign: TextAlign.center,
+              textAlign: TextAlign.left,style: TextStyle(color: Colors.black),
               controller: controller,
             ),
           ),

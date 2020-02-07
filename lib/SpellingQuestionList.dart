@@ -235,7 +235,7 @@ class _SpellingQuestion_ListState extends State<SpellingQuestion_List> {
                               children: <Widget>[
                                 Expanded(child: Padding(
                                   padding: const EdgeInsets.only(left: 10,top: 15,bottom: 15),
-                                  child: Container(child: Text("Question: " +Questions[i].question,style: TextStyle(fontWeight: FontWeight.bold),)),
+                                  child: Container(child: Text("Hint: " +Questions[i].question,style: TextStyle(fontWeight: FontWeight.bold),)),
                                 )),
                               ],
                             ),

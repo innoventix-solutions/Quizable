@@ -146,6 +146,9 @@ import 'AssignmentComplete.dart';
 import 'myAssignmentResult.dart';
 import 'ForgetPassword.dart';
 import 'NewPassword.dart';
+import 'audiorecord.dart';
+import 'package:newpro/OTP.dart';
+import 'audiorecorder.dart';
 
 void main() {
   runApp(MyApp());
@@ -285,6 +288,9 @@ class MyApp extends StatelessWidget {
         'myassignmentresult':(context)=>MyAssignmentResult(),
         'forgetpassword':(context)=>Forgetpassword(),
         'newpassword':(context)=>Newpassword(),
+        //'audio':(context)=>audio(),
+        'otp':(context)=>onetimepassword(),
+        //'audiorecords':(context)=>audiorecords()
       },
     );
   }

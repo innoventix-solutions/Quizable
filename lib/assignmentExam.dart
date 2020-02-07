@@ -52,6 +52,8 @@ class _AssignmentExamState extends State<AssignmentExam> {
   bool _isVisible = true;
 
 
+  bool _canShowButton = true;
+
   bool stoptimer =false;
 
   Timmer(){
@@ -277,8 +279,13 @@ class _AssignmentExamState extends State<AssignmentExam> {
           children: [
             Expanded(
               child: RaisedButton(
-                child: Text('Show Instuctions',maxLines: 2,),
-                onPressed: showToast,
+                child: Text(_canShowButton?'Hide Instuctions':'Show Instructions',maxLines: 2,),
+                onPressed: (){
+                  setState(() {
+
+                    _canShowButton = !_canShowButton;
+                  });
+                }
               ),
             ),
             SizedBox(width: 50,),
@@ -302,9 +309,9 @@ class _AssignmentExamState extends State<AssignmentExam> {
         ),
       ) ,
 
-            Container(child:    Visibility (
-              visible: _isVisible,
-              child: Card(elevation: 10.0,
+            Container(child:
+                _canShowButton?
+           Card(elevation: 10.0,
                 child: Center(
                   child: new Column(
                     children: <Widget>[
@@ -334,8 +341,8 @@ class _AssignmentExamState extends State<AssignmentExam> {
                     ],
                   ),
                 ),
-              ),
-            ),),
+              ):SizedBox()
+            ),
 
 
 

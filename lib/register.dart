@@ -111,7 +111,7 @@ class _secState extends State<sec> {
 
 
   check() {
-    bool emailValid = RegExp(r"^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[a-zA-Z]+").hasMatch(email.text.toString());
+    bool emailValid = RegExp(r"^[a-zA-Z0-9._]+@[a-zA-Z0-9]+\.[a-zA-Z]+").hasMatch(email.text.toString());
     if(emailValid == false){
       _showDialog1();
     }else if(phone.text.length>11 || phone.text.length<=10)

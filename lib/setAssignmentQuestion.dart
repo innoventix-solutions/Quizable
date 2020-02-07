@@ -539,7 +539,7 @@ class _SetAssignmentQuestionState extends State<SetAssignmentQuestion> {
 
     return Scaffold(
       appBar: AppBar(
-        automaticallyImplyLeading: true,
+        automaticallyImplyLeading: false,
         title: Center(
           child: Text(
             "Set Assignment Questions",

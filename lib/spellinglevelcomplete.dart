@@ -171,7 +171,7 @@ class _spelllevelState extends State<spelllevel> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        automaticallyImplyLeading: true,
+        automaticallyImplyLeading: false,
         title: Center(
           child: Text(
             "Set Spelling Bee Exercise",
