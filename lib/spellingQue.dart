@@ -580,7 +580,6 @@ class _setspellqueState extends State<setspellque> {
       var file = File(result.path);
       List<int> audiobytes = file.readAsBytesSync();
       String base64Image = base64Encode(audiobytes);
-
       http.post(
           "http://edusupportapp.com/api/create_update_spelling_questions.php", body: {
         "question": QuestionName.text.toString(),
