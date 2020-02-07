@@ -18,8 +18,9 @@ import 'package:newpro/Pojo/pojo_quizzes.dart';
 import 'package:newpro/Pojo/pojo_anslog.dart';
 import 'package:countdown/countdown.dart';
 import 'Pojo/pojo_getspelling.dart';
-import 'package:audioplayer/audioplayer.dart';
+//import 'package:audioplayer/audioplayer.dart';
 import 'package:path_provider/path_provider.dart';
+
 
 
 import 'global.dart';
@@ -33,20 +34,12 @@ class _spelling_ansState extends State<spelling_ans> {
 
 
 
-  AudioPlayer audioPlayer = new AudioPlayer();
+  //AudioPlayer audioPlayer = new AudioPlayer();
 
   bool isPlaying = false;
   bool isStarted = false;
 
 
-  startPlaying() {
-
-   audioPlayer.play(Questions[i].audio_file);
-      isStarted = true;
-
-print(Questions[i].audio_file);
-    // time  = await audioPlayer.getDuration();
-  }
 
 
 
@@ -376,7 +369,7 @@ SizedBox(width: 20,),
                                                 isPlaying ? Icons.pause : Icons.play_arrow,
                                               ),
                                               onPressed: () {
-                                                startPlaying();
+                                              //  startPlaying();
                                                 setState(() {});
                                               },
                                           ), ), ],

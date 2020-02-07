@@ -290,7 +290,7 @@ class MyApp extends StatelessWidget {
         'newpassword':(context)=>Newpassword(),
         //'audio':(context)=>audio(),
         'otp':(context)=>onetimepassword(),
-        //'audiorecords':(context)=>audiorecords()
+        'audiorecords':(context)=>audiorecords()
       },
     );
   }
