@@ -18,7 +18,7 @@ import 'package:newpro/Pojo/pojo_quizzes.dart';
 import 'package:newpro/Pojo/pojo_anslog.dart';
 import 'package:countdown/countdown.dart';
 import 'Pojo/pojo_getspelling.dart';
-import 'package:audioplayer/audioplayer.dart';
+import 'package:audioplayers/audioplayers.dart';
 import 'package:path_provider/path_provider.dart';
 
 
