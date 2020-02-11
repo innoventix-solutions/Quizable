@@ -18,9 +18,8 @@ import 'package:newpro/Pojo/pojo_quizzes.dart';
 import 'package:newpro/Pojo/pojo_anslog.dart';
 import 'package:countdown/countdown.dart';
 import 'Pojo/pojo_getspelling.dart';
-//import 'package:audioplayer/audioplayer.dart';
+import 'package:audioplayers/audioplayers.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:audio_stream_player/audio_stream_player.dart';
 
 
 
@@ -35,13 +34,14 @@ class _spelling_ansState extends State<spelling_ans> {
 
 
 
-  AudioStreamPlayer player = AudioStreamPlayer();
+  AudioPlayer audioPlayer = new AudioPlayer();
 
   bool isPlaying = false;
   bool isStarted = false;
 
   startPlaying()async{
-    await player.play(Questions[i].audio_file);
+    isloading=true;
+    await audioPlayer.play(Questions[i].audio_file);
 
     print(Questions[i].audio_file);
   }
@@ -310,7 +310,7 @@ class _spelling_ansState extends State<spelling_ans> {
                             child: Padding(
                               padding: const EdgeInsets.all(10.0),
                               child: Text(
-                                "Level ${Questions[i].level_no.toString()}",
+                               "Level ${Questions[i].level_no.toString()}",
                                 style: TextStyle(
                                     color: Colors.white, fontWeight: FontWeight.bold),
                               ),
@@ -365,21 +365,37 @@ class _spelling_ansState extends State<spelling_ans> {
                                             child: Text("Word point - " +Questions[i].point_awarded,textAlign: TextAlign.center,style:
                                             TextStyle(fontWeight: FontWeight.bold),),
                                           ),
-                                          SizedBox(width: 20,),
+SizedBox(width: 20,),
 
                                           Expanded(
-                                            child:
 
-                                            RaisedButton(onPressed: (){
-                                              startPlaying();
-                                              setState(() {});
-                                            },child: Text("Play",style: TextStyle(
-                                                color: Colors.white
-                                            ),),color: Colors.blue,),
+                                            child: FlatButton.icon(shape: RoundedRectangleBorder(
+                                              borderRadius: new BorderRadius.circular(20.0),
+
+                                            ),
+                                              color: Colors.blue,
+                                              icon: Icon(Icons.hearing,color: Colors.white,), //`Icon` to display
+                                              label: Padding(
+                                                padding: const EdgeInsets.only(top: 5,bottom: 5,right: 10,left: 10),
+                                                child: GestureDetector(onTap: (){
+
+                                                  startPlaying();
+                                                  setState(() {
+
+                                                  });
+
+                                                },
+                                                    child: Text('Listen',style: TextStyle(fontSize: 20,color: Colors.white),)),
+                                              ), //`Text` to display
+                                              onPressed: () {
+                                                //Code to execute when Floating Action Button is clicked
+                                                //...
+                                              },
+                                            ),
                                           ),
 
 
-                                        ],
+                                         ],
                                       ),
                                     ),
 
@@ -392,7 +408,7 @@ class _spelling_ansState extends State<spelling_ans> {
                   Card(
                     child:TextField(textCapitalization: TextCapitalization.characters,
                       controller: answer,
-                      autocorrect: false,keyboardType: TextInputType.visiblePassword,
+autocorrect: false,keyboardType: TextInputType.visiblePassword,
 
                       style: TextStyle(color: Colors.blue, fontSize: 18),
                       decoration: InputDecoration(hintText: "Type Answer here",
@@ -554,7 +570,7 @@ class _spelling_ansState extends State<spelling_ans> {
     });
 
 
-    answer.text="";
+   answer.text="";
 
 
 

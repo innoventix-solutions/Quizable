@@ -1,15 +1,19 @@
+import 'package:audioplayers/audio_cache.dart';
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 //import 'package:speech_recognition/speech_recognition.dart';
 import 'global.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:speech_to_text/speech_to_text.dart';
-import 'package:speech_to_text/speech_recognition_result.dart';
-import 'package:speech_to_text/speech_recognition_error.dart';
+//import 'package:speech_to_text/speech_to_text.dart';
+//import 'package:speech_to_text/speech_recognition_result.dart';
+//import 'package:speech_to_text/speech_recognition_error.dart';
 import 'package:http/http.dart'as http;
 import 'dart:convert';
 import 'package:flutter_audio_recorder/flutter_audio_recorder.dart';
 import 'package:path_provider/path_provider.dart';
 import 'dart:io';
+import 'package:fluttertoast/fluttertoast.dart';
 
 
 class setspellque extends StatefulWidget {
@@ -29,9 +33,45 @@ class _setspellqueState extends State<setspellque> {
   //String lastError = "";
   //String lastStatus = "";
   //final SpeechToText speech = SpeechToText();
+  Show_toast(String msg, Color color) {
+    Fluttertoast.showToast(
+      msg: msg,
+      toastLength: Toast.LENGTH_SHORT,
+      gravity: ToastGravity.CENTER,
+      timeInSecForIos:10,
+      backgroundColor: color,
+      textColor: Colors.white,
+      fontSize: 16.0,
+    );
+  }
 
   FlutterAudioRecorder _recorder;
   bool isRecording=false;
+
+  AudioPlayer audioPlayer = new AudioPlayer();
+  AudioCache audioCache = new AudioCache();
+  bool isPlaying = false;
+  bool isStarted = false;
+
+  startPlaying()async{
+    await audioCache.play("audio/beep-06.mp3");
+
+    setState(() {
+
+    });
+
+  }
+
+  endplaying()async{
+    await
+    audioCache.play("audio/beep-07.mp3");
+
+    setState(() {
+
+    });
+  }
+
+
 
   //SpeechRecognition _speechRecognition;
   //bool _isAvailable = false;
@@ -42,6 +82,7 @@ class _setspellqueState extends State<setspellque> {
   void initState() {
     // TODO: implement initState
     super.initState();
+
     //initSpeechRecognizer();
     //initSpeechState();
   }
@@ -173,7 +214,7 @@ class _setspellqueState extends State<setspellque> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        automaticallyImplyLeading: true,
+        automaticallyImplyLeading: false,
         title: Center(
           child: Text(
             "Set Spelling Bee Exercise",
@@ -375,7 +416,13 @@ class _setspellqueState extends State<setspellque> {
                                             GestureDetector(
                                                 onLongPressStart: (start) async {
 
+                                                  //SystemSound.play(SystemSoundType.click);
+                                                  //HapticFeedback.vibrate();
+                                                  startPlaying();
                                                   isRecording=true;
+                                                  Show_toast("Recording Start", Colors.green);
+
+                                                 // audioCache.play("assets/audio/beep-06.mp3");
                                                   setState(() {
 
                                                   });
@@ -392,6 +439,8 @@ class _setspellqueState extends State<setspellque> {
                                                 },
                                                 onLongPressEnd: (end) async {
                                                   isRecording=false;
+                                                  Show_toast("Recording Ends", Colors.green);
+                                                  endplaying();
                                                   setState(() {
 
                                                   });
@@ -522,6 +571,7 @@ class _setspellqueState extends State<setspellque> {
 
 
 
+
                 ],
 
               ),
@@ -564,7 +614,7 @@ class _setspellqueState extends State<setspellque> {
   SaveSpellingQuestion()async {
     if (QuestionName.text.toString() == "" || Points.text.toString() == "" ||
         //lastWords.toString() == "" &&
-            trueanswer.text.toString()=="" ) {
+            trueanswer.text.toString()==""  ) {
       //_showDialog();
       CustomShowDialog(context,msg: "Some Values are Missing",title:
       "Value Missing");

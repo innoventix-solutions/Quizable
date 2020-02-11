@@ -11,7 +11,7 @@ description: A new Flutter application.
 # In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
 # Read more about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
-version: 33.0.1+33
+version: 35.0.1+35
 
 environment:
   sdk: ">=2.1.0 <3.0.0"
@@ -41,16 +41,14 @@ dependencies:
   material_design_icons_flutter: ^3.4.4895
   carousel_slider: ^1.4.1
   #speech_recognition: ^0.3.0+1
-  speech_to_text: ^0.8.0
+  #speech_to_text: ^0.8.0
   flutter_paystack: ^1.0.1
   permission_handler: ^4.2.0+hotfix.3
   flutter_audio_recorder: ^0.5.5
   path_provider: ^1.6.0
   flutter_tts: ^0.8.6
   intl: ^0.15.0
-  #audioplayer: ^0.5.2
-  audio_stream_player: ^0.0.1
-
+  audioplayers: ^0.14.0
 
 
 dev_dependencies:
@@ -82,8 +80,7 @@ flutter:
     - assets/images/
     - assets/images/logo.png
     - assets/images/icon.png
-
-
+    - assets/audio/
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.io/assets-and-images/#resolution-aware.
 
@@ -101,7 +98,7 @@ flutter:
         - asset: assets/fonts/yu.ttf
 
 
-
-
   # For details regarding fonts from package dependencies,
   # see https://flutter.io/custom-fonts/#from-packages
+
+

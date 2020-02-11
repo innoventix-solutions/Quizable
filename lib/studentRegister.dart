@@ -63,7 +63,7 @@ class _studentregState extends State<studentreg> {
     http.post("http://edusupportapp.com/api/register.php", body: {
       "Fullname": acc.text.toString(),
       "Username": username.text.toString(),
-      "UserEmail": email.text.toString(),
+      "UserEmail": email.text.toString().trim(),
       "password": password.text.toString(),
       "phone_no": phone.text.toString(),
       "birthdate": Starting_date.toString(),

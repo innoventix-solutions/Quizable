@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:newpro/global.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:share/share.dart';
@@ -414,8 +415,9 @@ class _teacherdashboardState extends State<teacherdashboard> {
                           color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
                     )],),
                 ),onTap: (){
+
                 Navigator.of(context)
-                    .pushNamed('audiorecords');
+                    .pushNamed('AboutEduSupport');
               },
               ),
 

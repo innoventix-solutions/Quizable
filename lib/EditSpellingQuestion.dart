@@ -2,14 +2,19 @@ import 'dart:convert';
 import 'package:newpro/Pojo/pojo_answer.dart';
 import 'package:newpro/Pojo/pojo_matchs.dart';
 import 'package:flutter/material.dart';
-import 'package:speech_to_text/speech_to_text.dart';
-import 'package:speech_to_text/speech_recognition_result.dart';
-import 'package:speech_to_text/speech_recognition_error.dart';
+//import 'package:speech_to_text/speech_to_text.dart';
+//import 'package:speech_to_text/speech_recognition_result.dart';
+//import 'package:speech_to_text/speech_recognition_error.dart';
 import 'global.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter_audio_recorder/flutter_audio_recorder.dart';
 import 'package:path_provider/path_provider.dart';
 import 'dart:io';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:audioplayers/audio_cache.dart';
+import 'package:audioplayers/audioplayers.dart';
+
+
 class EditSpellingQuestions extends StatefulWidget {
   @override
   _EditSpellingQuestionsState createState() => _EditSpellingQuestionsState();
@@ -29,6 +34,41 @@ class _EditSpellingQuestionsState extends State<EditSpellingQuestions> {
 
   FlutterAudioRecorder _recorder;
   bool isRecording=false;
+
+  Show_toast(String msg, Color color) {
+    Fluttertoast.showToast(
+      msg: msg,
+      toastLength: Toast.LENGTH_SHORT,
+      gravity: ToastGravity.CENTER,
+      timeInSecForIos:10,
+      backgroundColor: color,
+      textColor: Colors.white,
+      fontSize: 16.0,
+    );
+  }
+
+  AudioPlayer audioPlayer = new AudioPlayer();
+  AudioCache audioCache = new AudioCache();
+  bool isPlaying = false;
+  bool isStarted = false;
+
+  startPlaying()async{
+    await audioCache.play("audio/beep-06.mp3");
+
+    setState(() {
+
+    });
+
+  }
+
+  endplaying()async{
+    await
+    audioCache.play("audio/beep-07.mp3");
+
+    setState(() {
+
+    });
+  }
 
   //bool _hasSpeech = false;
   //String lastWords = GlobalData.Edit_spelling_Questions.anwer_options;
@@ -341,14 +381,21 @@ class _EditSpellingQuestionsState extends State<EditSpellingQuestions> {
                                           children: <Widget>[
                                             Expanded(child: Text("Audio/Voice recorder",style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold),)),
 
+                                            Text("Long Press to record audio"),
 
                                             GestureDetector(
                                                 onLongPressStart: (start) async {
 
+                                                  startPlaying();
                                                   isRecording=true;
+                                                  Show_toast("Recording Start", Colors.green);
+
                                                   setState(() {
 
                                                   });
+
+                                                  await FlutterAudioRecorder.hasPermissions;
+
                                                   var path =await getApplicationSupportDirectory();
 
                                                   print(path.path.toString());
@@ -359,6 +406,8 @@ class _EditSpellingQuestionsState extends State<EditSpellingQuestions> {
                                                 },
                                                 onLongPressEnd: (end) async {
                                                   isRecording=false;
+                                                  Show_toast("Recording Ends", Colors.green);
+                                                  endplaying();
                                                   setState(() {
 
                                                   });

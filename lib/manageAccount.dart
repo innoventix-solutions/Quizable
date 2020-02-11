@@ -222,9 +222,12 @@ class _ManageAccountState extends State<ManageAccount> {
                                     context,
                                     charge: charge,
                                   );
-                                  print(response.reference);
+                                  print("Status: "+ response.status.toString());
+                                  print("Verify: "+ response.verify.toString());
+                                  print("Refrence: "+ response.reference);
+                                  print("Refrence: "+ response.reference);
 
-                                  if(response!=null) {
+                                  if(response.status==true) {
                                     http.post(
                                         "http://edusupportapp.com/api/membership.php",
                                         body: {
@@ -233,7 +236,7 @@ class _ManageAccountState extends State<ManageAccount> {
                                           "refrence":response.reference
                                         }).then((response) async {
                                       var ParsedJson = jsonDecode(response.body);
-                                      print(response.body.toString());
+                                      print(""+ response.body.toString());
 
                                       if(ParsedJson['membershipdata']==false)
                                       {
@@ -333,7 +336,7 @@ class _ManageAccountState extends State<ManageAccount> {
                               onPressed: () async {
 
 
-                                print(GlobalData.email);
+                                print(GlobalData.email.trim()+"email");
                                 String AccessCode;
                                 String ref = DateTime.now().year.toString() +
                                     DateTime.now().month.toString() +
@@ -356,7 +359,7 @@ class _ManageAccountState extends State<ManageAccount> {
                                   print(res.body);
                                   var ParsedJson = jsonDecode(res.body);
                                   AccessCode = ParsedJson['data']['access_code'];
-                                  print(AccessCode);
+                                  print("Accesscode: " + AccessCode);
                                 });
                                 Charge charge = Charge()
                                   ..amount = int.parse(price)
@@ -367,9 +370,12 @@ class _ManageAccountState extends State<ManageAccount> {
                                   context,
                                   charge: charge,
                                 );
-                                print(response.reference);
+                                print("Status: "+ response.status.toString());
+                                print("Verify: "+ response.verify.toString());
+                                print("Refrence: "+ response.reference);
+                                print("Refrence: "+ response.reference);
 
-                                if(response!=null) {
+                                if(response.status==true) {
                                   http.post(
                                       "http://edusupportapp.com/api/membership.php",
                                       body: {

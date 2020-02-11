@@ -66,7 +66,7 @@ class _loginState extends State<login> {
 
 
     http.post("http://edusupportapp.com/api/login.php", body: {
-      "username_email": email.text.toString(),
+      "username_email": email.text.toString().trim(),
       "password": pass.text.toString()
     }).then((response) async {
       var statuss = jsonDecode(response.body);
