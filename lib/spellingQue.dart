@@ -14,6 +14,7 @@ import 'package:flutter_audio_recorder/flutter_audio_recorder.dart';
 import 'package:path_provider/path_provider.dart';
 import 'dart:io';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'dart:io' as io;
 
 
 class setspellque extends StatefulWidget {
@@ -38,7 +39,7 @@ class _setspellqueState extends State<setspellque> {
       msg: msg,
       toastLength: Toast.LENGTH_SHORT,
       gravity: ToastGravity.CENTER,
-      timeInSecForIos:10,
+      timeInSecForIos:1,
       backgroundColor: color,
       textColor: Colors.white,
       fontSize: 16.0,
@@ -427,15 +428,32 @@ class _setspellqueState extends State<setspellque> {
 
                                                   });
 
-                                                  await FlutterAudioRecorder.hasPermissions;
+                                                 if(await FlutterAudioRecorder.hasPermissions){
+                                                   String customPath = '/flutter_audio_recorder_';
+                                                   io.Directory path;
 
-                                                  var path =await getApplicationSupportDirectory();
+                                                   if(io.Platform.isIOS)
+                                                     {
+                                                        path =  await getApplicationDocumentsDirectory();
+                                                     }
+                                                   else{
+                                                      path =await getApplicationSupportDirectory();
 
-                                                  print(path.path.toString());
+                                                   }
+                                                   customPath = path.path +
+                                                       customPath +
+                                                       DateTime.now().millisecondsSinceEpoch.toString();
 
-                                                  _recorder = FlutterAudioRecorder("${path.path.toString()}/${DateTime.now().toIso8601String().toString()}.mp3"); // .wav .aac .m4a
-                                                  await _recorder.initialized;
-                                                  await _recorder.start();
+                                                   print("path audio: " + path.path.toString());
+
+                                                   _recorder = FlutterAudioRecorder("${customPath}.mp3"); // .wav .aac .m4a
+                                                   await _recorder.initialized;
+                                                   await _recorder.start();
+                                                 }
+
+                                                 else{
+                                                   Show_toast("Please allow audio permission", Colors.green);
+                                                 }
                                                 },
                                                 onLongPressEnd: (end) async {
                                                   isRecording=false;
@@ -629,48 +647,98 @@ class _setspellqueState extends State<setspellque> {
 
 
 
+      if(isRecording==false){
 
-      var result = await _recorder.stop();
-      print(result.path);
-      var file = File(result.path);
-      List<int> audiobytes = file.readAsBytesSync();
-      String base64Image = base64Encode(audiobytes);
-      http.post(
-          "http://edusupportapp.com/api/create_update_spelling_questions.php", body: {
-        "question": QuestionName.text.toString(),
-        "point_awarded": Points.text.toString(),
-        "spelling_id": GlobalData.spellingid,
-        "answer_options": trueanswer.text.toString(),
-        "audio":base64Image,
-        //"answer_options": lastWords.isEmpty?trueanswer.text.toString():lastWords,
-        "level_no": ((GlobalData.QuestionNumber/int.parse(GlobalData.spellNosofQuesPerLevel)).floor()+1).toString(),
-        "ques_no": ((GlobalData.QuestionNumber%int.parse(GlobalData.spellNosofQuesPerLevel))+1).toString(),
-      }).then((response) {
-        var statuss = jsonDecode(response.body);
+        //Without audio recorder
+
+        http.post(
+            "http://edusupportapp.com/api/create_update_spelling_questions.php", body: {
+          "question": QuestionName.text.toString(),
+          "point_awarded": Points.text.toString(),
+          "spelling_id": GlobalData.spellingid,
+          "answer_options": trueanswer.text.toString(),
+          //"audio":base64Image,
+          //"answer_options": lastWords.isEmpty?trueanswer.text.toString():lastWords,
+          "level_no": ((GlobalData.QuestionNumber/int.parse(GlobalData.spellNosofQuesPerLevel)).floor()+1).toString(),
+          "ques_no": ((GlobalData.QuestionNumber%int.parse(GlobalData.spellNosofQuesPerLevel))+1).toString(),
+        }).then((response) {
+          var statuss = jsonDecode(response.body);
 
 
-        print(response.body.toString());
-        //    print(response.body.toString());
-        if (statuss['status'] == 1) {
-          //lastWords="";
-          trueanswer.clear();
-          QuestionName.clear();
-          Points.clear();
-          GlobalData.QuestionNumber++;
-          setState(() {
+          print(response.body.toString());
+          //    print(response.body.toString());
+          if (statuss['status'] == 1) {
+            //lastWords="";
+            trueanswer.clear();
+            QuestionName.clear();
+            Points.clear();
+            GlobalData.QuestionNumber++;
+            setState(() {
 
-          });
-        } else{
+            });
+          } else{
 
-        }
-        if(GlobalData.QuestionNumber%(int.parse(GlobalData.spellNosofQuesPerLevel))==0&&(GlobalData.QuestionNumber!=0))
-        {
-          Navigator.of(context).pushNamed('spellinglevel');
-        }else {
-          Navigator.of(context).pushReplacementNamed('spellque');
-        }
-      });
-    }
+          }
+          if(GlobalData.QuestionNumber%(int.parse(GlobalData.spellNosofQuesPerLevel))==0&&(GlobalData.QuestionNumber!=0))
+          {
+            Navigator.of(context).pushNamed('spellinglevel');
+          }else {
+            Navigator.of(context).pushReplacementNamed('spellque');
+          }
+        });
+      }
+
+
+
+else{
+                //With Audio Recorder
+        var result = await _recorder.stop();
+        print("resultaudio: " + result.path);
+        var file = File(result.path);
+        List<int> audiobytes = file.readAsBytesSync();
+        String base64Image = base64Encode(audiobytes);
+        http.post(
+            "http://edusupportapp.com/api/create_update_spelling_questions.php", body: {
+          "question": QuestionName.text.toString(),
+          "point_awarded": Points.text.toString(),
+          "spelling_id": GlobalData.spellingid,
+          "answer_options": trueanswer.text.toString(),
+          "audio":base64Image,
+          //"answer_options": lastWords.isEmpty?trueanswer.text.toString():lastWords,
+          "level_no": ((GlobalData.QuestionNumber/int.parse(GlobalData.spellNosofQuesPerLevel)).floor()+1).toString(),
+          "ques_no": ((GlobalData.QuestionNumber%int.parse(GlobalData.spellNosofQuesPerLevel))+1).toString(),
+        }).then((response) {
+          var statuss = jsonDecode(response.body);
+
+
+          print(response.body.toString());
+          //    print(response.body.toString());
+          if (statuss['status'] == 1) {
+            //lastWords="";
+            trueanswer.clear();
+            QuestionName.clear();
+            Points.clear();
+            GlobalData.QuestionNumber++;
+            setState(() {
+
+            });
+          } else{
+
+          }
+          if(GlobalData.QuestionNumber%(int.parse(GlobalData.spellNosofQuesPerLevel))==0&&(GlobalData.QuestionNumber!=0))
+          {
+            Navigator.of(context).pushNamed('spellinglevel');
+          }else {
+            Navigator.of(context).pushReplacementNamed('spellque');
+          }
+        });
+      }
+      }
+
+
+
+
+
   }
 
 

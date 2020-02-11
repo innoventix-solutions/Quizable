@@ -40,13 +40,27 @@ class _spelling_ansState extends State<spelling_ans> {
   bool isStarted = false;
 
   startPlaying()async{
-    isloading=true;
-    await audioPlayer.play(Questions[i].audio_file);
-
+    //await audioPlayer.play(Questions[i].audio_file);
+    if(Questions[i].audio_file==""){
+      Show_toast("No Audio FIle", Colors.red);
+    }
+    else{
+     await audioPlayer.play(Questions[i].audio_file);
+    }
     print(Questions[i].audio_file);
   }
 
-
+  Show_toast(String msg, Color color) {
+    Fluttertoast.showToast(
+      msg: msg,
+      toastLength: Toast.LENGTH_SHORT,
+      gravity: ToastGravity.CENTER,
+      timeInSecForIos:1,
+      backgroundColor: color,
+      textColor: Colors.white,
+      fontSize: 16.0,
+    );
+  }
 
   TextEditingController answer = new TextEditingController();
   bool isCompleted=false;
