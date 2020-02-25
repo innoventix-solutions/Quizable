@@ -526,7 +526,7 @@ class _ExamState extends State<Exam> {
                    child: TextField(
                      controller: Textcontroller[i],
                      autocorrect: false,
-                     keyboardType: TextInputType.emailAddress,
+                     keyboardType: TextInputType.visiblePassword,
 
 
 

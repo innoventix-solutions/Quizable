@@ -42,6 +42,33 @@ class _loginState extends State<login> {
 
 
 
+  void savingquestion(BuildContext context)  {
+
+    bool Selected = false;
+
+    showDialog(barrierDismissible: false,
+        context: context,
+        builder: (_) => new Dialog(
+          child: new Container(
+            alignment: FractionalOffset.center,
+            height: 80.0,
+            padding: const EdgeInsets.all(20.0),
+            child: new Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                new CircularProgressIndicator(),
+                new Padding(
+                  padding: new EdgeInsets.only(left: 10.0),
+                  child: new Text("Creating..."),
+                ),
+              ],
+            ),
+          ),
+        ));
+  }
+
+
+
   @override
   void initState() {
     GetShared();
@@ -294,6 +321,7 @@ class _loginState extends State<login> {
                               onPressed: () {
 //                        print(email.text.toString());
 //                        print(pass.text.toString());
+                              savingquestion(context);
                                 login();
                               },
                               shape: new RoundedRectangleBorder(

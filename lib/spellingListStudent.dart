@@ -16,7 +16,15 @@ class Spelling_List_student extends StatefulWidget {
 class _Spelling_List_studentState extends State<Spelling_List_student> {
   List<Pojo_spelling> spellinglist = new List();
 
+  bool isloading = true;
+
   GetTest() async{
+
+
+    isloading = true;
+    setState(() {
+
+    });
 
     await http.post("http://edusupportapp.com/api/get_user_spelling_by_join_class.php",
         body: {
@@ -35,6 +43,12 @@ class _Spelling_List_studentState extends State<Spelling_List_student> {
       setState(() {
 
       });
+    });
+
+
+    isloading = false;
+    setState(() {
+
     });
   }
 
@@ -268,7 +282,10 @@ class _Spelling_List_studentState extends State<Spelling_List_student> {
                                 "No Spelling Exercise published yet");
                               }
                               else{
-                                GlobalData.isGlobal=false;
+
+                                if(spellinglist[0].label == "New" ||  spellinglist[0].label == "Pending")
+{
+                                  GlobalData.isGlobal=false;
                                 GlobalData.spellingid=spellinglist[0].id;
                                 GlobalData.spellLevels=spellinglist[0].no_of_levels;
                                 GlobalData.ExamQuiz=spellinglist[0].spelling_title;
@@ -276,12 +293,16 @@ class _Spelling_List_studentState extends State<Spelling_List_student> {
                                 // Navigator.of(context).pushNamed(Quizz_List[i].is_taken==true?'AnswerLog':'exam');
                                 Navigator.of(context).pushNamed('studentspellingLevelList');
                               }
+                                else{Fluttertoast.showToast(msg: "Spelling "+spellinglist[0].label,fontSize: 16,backgroundColor: Colors.red);}
+
+                              }
+
 
                             },
                               child: Card(color:Colors.blue,
                                 child: Padding(
                                   padding: const EdgeInsets.all(8.0),
-                                  child: Text("New",textAlign: TextAlign.center,
+                                  child: Text(spellinglist.isNotEmpty?spellinglist[0].label:"-",textAlign: TextAlign.center,
                                     style: TextStyle(color: Colors.white,fontSize: 16,
                                         fontWeight: FontWeight.bold),),
                                 ),),
@@ -362,6 +383,10 @@ class _Spelling_List_studentState extends State<Spelling_List_student> {
 
             Expanded(
               child:spellinglist.isEmpty ? Center(child: Text('No Spelling Exercises published yet')) :  //22-8-19 a
+
+              isloading==true?Center(child: Text("Loading...",style: TextStyle(
+                  fontSize: 18
+              ),)):
               ListView.builder(
                   itemCount: spellinglist.length,
                   itemBuilder: (c,i){

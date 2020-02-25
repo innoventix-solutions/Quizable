@@ -224,7 +224,7 @@ class MyResultBlock extends StatelessWidget {
 
 
     giveessaypoint() async{
-      http.post("http://edusupportapp.com/api/story_point.php",
+    await  http.post("http://edusupportapp.com/api/story_point.php",
           body: {
             "user_id" : GlobalData.CurrentStudentID,
             "question_id" : GlobalData.questionid,
@@ -233,6 +233,7 @@ class MyResultBlock extends StatelessWidget {
           }
 
       ).then((response){
+
 
         Show_toast("Point Inserted Successfully", Colors.green);
         //Navigator.of(context).pushNamed('AssignmentReport');
@@ -245,7 +246,10 @@ class MyResultBlock extends StatelessWidget {
         print("questionid: " +GlobalData.questionid);
 
 
+
       });
+
+
     }
 
 
@@ -261,7 +265,6 @@ class MyResultBlock extends StatelessWidget {
       else{
 
           giveessaypoint();
-
 
       }
     }

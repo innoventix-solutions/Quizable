@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:convert';
 
 import 'global.dart';
@@ -14,23 +15,88 @@ class parentlogin extends StatefulWidget {
 
 class _parentloginState extends State<parentlogin> {
 
+  Show_toast(String msg, Color color) {
+    Fluttertoast.showToast(
+      msg: msg,
+      toastLength: Toast.LENGTH_SHORT,
+      gravity: ToastGravity.CENTER,
+      timeInSecForIos:1,
+      backgroundColor: color,
+      textColor: Colors.white,
+      fontSize: 16.0,
+    );
+  }
+  SharedPreferences prefs;
+
   TextEditingController email = new TextEditingController();
   TextEditingController pass = new TextEditingController();
 
   Parentlogin() async {
+
+
+
     http.post("http://edusupportapp.com/api/login.php", body: {
-      "username_email":email.text.toString(),
+      "username_email": email.text.toString().trim(),
       "type":"parents_login"
+    }).then((response) async {
+      var statuss = jsonDecode(response.body);
+      print(response.body.toString());
 
-    }).then((response) {
-      print(response.body);
+      if (statuss['status'] == 1) {
 
-      setState(() {
 
-      });
+/*
+
+        Show_toast("Logged in Successfully", Colors.green);
+        prefs.setString("Id", statuss['userdata']['ID']);
+        prefs.setString("type", statuss['userdata']['user_type']);
+        prefs.setString("name", statuss['userdata']['username']);
+        prefs.setString("phone", statuss['userdata']['phone_no']);
+        prefs.setString("Fullname", statuss['userdata']['fullname']);
+        prefs.setString("UserPhoto", statuss['userdata']['user_photo']);
+        prefs.setString("email", statuss['userdata']['email']);
+        prefs.setString("disc", statuss['userdata']['specification']);
+        prefs.setString("Parentsphone", statuss['userdata']['parents_phone_no']);
+        prefs.setString("parentsemail", statuss['userdata']['parents_email']);
+        prefs.setString("gender", statuss['userdata']['gender']);
+        prefs.setString("signupdate", statuss['userdata']['signup_date']);
+        prefs.setString('dob', statuss['userdata']['birthdate']);
+        prefs.setString('password', statuss['userdata']['password']);
+        prefs.setString('accouttype', statuss['userdata']['accout_type']);
+        GlobalData.Username=statuss['userdata']['username'];
+        GlobalData.Phone=statuss['userdata']['phone_no'];
+        GlobalData.Fullname=statuss['userdata']['fullname'];
+        GlobalData.Userphoto=statuss['userdata']['user_photo'];
+        GlobalData.email=statuss['userdata']['email'];
+        GlobalData.disc=statuss['userdata']['specification'];
+        GlobalData.parentsphone=statuss['userdata']['parents_phone_no'];
+        GlobalData.parentsemail=statuss['userdata']['parents_email'];
+        GlobalData.gendersel = statuss['userdata']['gender'];
+        GlobalData.signupdate = statuss['userdata']['signup_date'];
+        GlobalData.dob=statuss['userdata']['birthdate'];
+        print(statuss['userdata']['user_type']);
+        print(statuss['userdata']['ID']);
+        GlobalData.uid = statuss['userdata']['ID'].toString();
+        GlobalData.Username = statuss['userdata']['username'].toString();
+        GlobalData.class_name = statuss['userdata']['class_name'].toString();
+        GlobalData.userType = statuss['userdata']['user_type'].toString();
+        GlobalData.Phone = statuss['userdata']['phone_no'].toString();
+        GlobalData.Fullname = statuss['userdata']['fullname'].toString();
+        GlobalData.gendersel = statuss['userdata']['gender'];
+        GlobalData.email=statuss['userdata']['email'].toString();
+        GlobalData.disc=statuss['userdata']['specification'].toString();
+        GlobalData.dob=statuss['userdata']['birthdate'].toString();
+        GlobalData.parentsphone=statuss['userdata']['parents_phone_no'].toString();
+        GlobalData.parentsemail=statuss['userdata']['parents_email'].toString();
+        GlobalData.signupdate = statuss['userdata']['signup_date'].toString();
+
+
+
+*/
+
+      }
     });
   }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

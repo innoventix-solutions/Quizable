@@ -20,6 +20,33 @@ class _SetAssignmentQuestionState extends State<SetAssignmentQuestion> {
   TextEditingController EssayInstructions = new TextEditingController();
   List<Pojo_getassignment> assignment_list = new List();
 
+
+  void savingquestion(BuildContext context)  {
+
+    bool Selected = false;
+
+    showDialog(barrierDismissible: false,
+        context: context,
+        builder: (_) => new Dialog(
+          child: new Container(
+            alignment: FractionalOffset.center,
+            height: 80.0,
+            padding: const EdgeInsets.all(20.0),
+            child: new Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                new CircularProgressIndicator(),
+                new Padding(
+                  padding: new EdgeInsets.only(left: 10.0),
+                  child: new Text("Saving..."),
+                ),
+              ],
+            ),
+          ),
+        ));
+  }
+
+
   void _confirmDialog(BuildContext context)  {
     bool Selected = false;
     TextEditingController optioncontroller = new TextEditingController();
@@ -702,10 +729,10 @@ class _SetAssignmentQuestionState extends State<SetAssignmentQuestion> {
                       padding: const EdgeInsets.only(top: 25,bottom: 40),
                       child: SizedBox(width: 100,
                         child: GradientButtonText(ButtonClick: (){
-                          Navigator.of(context).pop();
+                          Navigator.of(context).pushNamed('Previewassignment');
                         },
                           linearGradient:LinearGradient(colors: <Color>[GlobalData.navy,GlobalData.navyblue]) ,
-                          text: Text("Back",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 18,),
+                          text: Text("Quit",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 18,),
                             textAlign: TextAlign.center,),
                         ),
                       ),
@@ -754,6 +781,7 @@ class _SetAssignmentQuestionState extends State<SetAssignmentQuestion> {
                                   msg:"Number of answers are less then blanks(_) in the question." );
                             }else
                             {
+                              savingquestion(context);
                               SaveAssignmentQuestion();
                             }
                           },

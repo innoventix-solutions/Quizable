@@ -26,6 +26,10 @@ PODS:
     - Flutter
   - shared_preferences_web (0.0.1):
     - Flutter
+  - speech_recognition (0.3.0):
+    - Flutter
+  - speech_to_text (0.0.1):
+    - Flutter
 
 DEPENDENCIES:
   - audioplayers (from `.symlinks/plugins/audioplayers/ios`)
@@ -42,6 +46,8 @@ DEPENDENCIES:
   - shared_preferences (from `.symlinks/plugins/shared_preferences/ios`)
   - shared_preferences_macos (from `.symlinks/plugins/shared_preferences_macos/ios`)
   - shared_preferences_web (from `.symlinks/plugins/shared_preferences_web/ios`)
+  - speech_recognition (from `.symlinks/plugins/speech_recognition/ios`)
+  - speech_to_text (from `.symlinks/plugins/speech_to_text/ios`)
 
 EXTERNAL SOURCES:
   audioplayers:
@@ -72,6 +78,10 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/shared_preferences_macos/ios"
   shared_preferences_web:
     :path: ".symlinks/plugins/shared_preferences_web/ios"
+  speech_recognition:
+    :path: ".symlinks/plugins/speech_recognition/ios"
+  speech_to_text:
+    :path: ".symlinks/plugins/speech_to_text/ios"
 
 SPEC CHECKSUMS:
   audioplayers: 84f968cea3f2deab00ec4f8ff53358b3c0b3992c
@@ -88,6 +98,8 @@ SPEC CHECKSUMS:
   shared_preferences: 430726339841afefe5142b9c1f50cb6bd7793e01
   shared_preferences_macos: f3f29b71ccbb56bf40c9dd6396c9acf15e214087
   shared_preferences_web: 141cce0c3ed1a1c5bf2a0e44f52d31eeb66e5ea9
+  speech_recognition: b5319aace06c3633c0547de44899f6e0bf8b2168
+  speech_to_text: 41b068d5f61fe3abe7e2bb0296250cf996e45417
 
 PODFILE CHECKSUM: b6a0a141693093b304368d08511b46cf3d1d0ac5
 

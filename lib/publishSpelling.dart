@@ -154,8 +154,8 @@ class _publishspellingbeeState extends State<publishspellingbee> {
                                 child: DateTimePickerFormField(
                                   initialDate: Starting_date,
                                   lastDate: Closing_date,
-                                  firstDate: Starting_date,
-
+                                  firstDate: Starting_date==null?DateTime.now():Starting_date,
+                                  initialTime: TimeOfDay.now(),
                                   inputType:  inputType,
                                   format: formats[inputType],
                                   editable: false,
@@ -310,7 +310,7 @@ class _publishspellingbeeState extends State<publishspellingbee> {
       http.post(
           "http://edusupportapp.com/api/publish_spelling.php", body: {
         "spelling_id":GlobalData.spellingid,
-        "publish_date":DateTime.now().subtract(Duration(hours: 5,minutes: 30)).toString(),
+        "publish_date":DateTime.now().subtract(Duration(hours: 4,minutes: 30)).toString(),
         "closing_date":Closing_date.toString(),
 
       }).then((response) {
@@ -347,8 +347,8 @@ class _publishspellingbeeState extends State<publishspellingbee> {
 
       http.post(
           "http://edusupportapp.com/api/publish_spelling.php", body: {
-        "spelling_id":GlobalData.QuizID,
-        "publish_date":Starting_date.subtract(Duration(hours: 5,minutes: 30)).toString(),
+        "spelling_id":GlobalData.spellingid,
+        "publish_date":Starting_date.subtract(Duration(hours: 4,minutes: 30)).toString(),
         "closing_date":Closing_date.toString(),
 
       }).then((response) {

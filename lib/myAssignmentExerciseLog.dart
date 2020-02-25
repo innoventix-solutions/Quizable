@@ -14,9 +14,13 @@ class MyAssignmentExerciseLog extends StatefulWidget {
 
 class _MyAssignmentExerciseLogState extends State<MyAssignmentExerciseLog> {
   List<Pojo_getassignment> assignment_list = new List();
+  bool isloading = true;
 
   GetTest() async{
+    isloading = true;
+    setState(() {
 
+    });
     await http.post("http://edusupportapp.com/api/get_user_assignments_by_join_class.php",
         body: {
           "UserId":GlobalData.uid
@@ -31,6 +35,10 @@ class _MyAssignmentExerciseLogState extends State<MyAssignmentExerciseLog> {
       setState(() {
 
       });
+    });
+    isloading = false;
+    setState(() {
+
     });
   }
 
@@ -76,7 +84,9 @@ class _MyAssignmentExerciseLogState extends State<MyAssignmentExerciseLog> {
 
        
 
-        body:
+        body:isloading==true?Center(child: Text("Loading...",style: TextStyle(
+            fontSize: 18
+        ),)):
         Column(
           children: <Widget>[
             Expanded(

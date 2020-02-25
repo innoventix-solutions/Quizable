@@ -34,6 +34,31 @@ class _studentregState extends State<studentreg> {
   }
 
 
+  void savingquestion(BuildContext context)  {
+
+    bool Selected = false;
+
+    showDialog(barrierDismissible: false,
+        context: context,
+        builder: (_) => new Dialog(
+          child: new Container(
+            alignment: FractionalOffset.center,
+            height: 80.0,
+            padding: const EdgeInsets.all(20.0),
+            child: new Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                new CircularProgressIndicator(),
+                new Padding(
+                  padding: new EdgeInsets.only(left: 10.0),
+                  child: new Text("Creating..."),
+                ),
+              ],
+            ),
+          ),
+        ));
+  }
+
 
   TextEditingController acc = new TextEditingController();
   TextEditingController username = new TextEditingController();
@@ -437,6 +462,7 @@ class _studentregState extends State<studentreg> {
                               print(selectedDate.toString());
                               print(gendersel.toString());
 
+                              savingquestion(context);
                               check();
                               globalData.getgender();
                             },

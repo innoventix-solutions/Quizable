@@ -22,6 +22,31 @@ class _QuestionsnewState extends State<Questionsnew> {
   TextEditingController Points = new TextEditingController();
 
 
+  void savingquestion(BuildContext context)  {
+
+    bool Selected = false;
+
+    showDialog(barrierDismissible: false,
+        context: context,
+        builder: (_) => new Dialog(
+          child: new Container(
+            alignment: FractionalOffset.center,
+            height: 80.0,
+            padding: const EdgeInsets.all(20.0),
+            child: new Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                new CircularProgressIndicator(),
+                new Padding(
+                  padding: new EdgeInsets.only(left: 10.0),
+                  child: new Text("Saving..."),
+                ),
+              ],
+            ),
+          ),
+        ));
+  }
+
   void _confirmDialog(BuildContext context)  {
     bool Selected = false;
     TextEditingController optioncontroller = new TextEditingController();
@@ -847,7 +872,7 @@ Text("Enter answer in sequence with underscore '_' in between the words",style:
                       padding: const EdgeInsets.only(top: 25,bottom: 40),
                       child: SizedBox(width: 100,
                         child: GradientButtonText(ButtonClick: (){
-                          Navigator.of(context).pop();
+                          Navigator.of(context).pushNamed('previewQuiz');
                         },
                           linearGradient:LinearGradient(colors: <Color>[GlobalData.navy,GlobalData.navyblue]) ,
                           text: Text("Quit",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 18,),
@@ -899,6 +924,7 @@ Text("Enter answer in sequence with underscore '_' in between the words",style:
                              msg:"Number of answers are less then blanks(_) in the question." );
                             }else
                               {
+                                savingquestion(context);
                                 SaveQuizQuestion();
                               }
                           },

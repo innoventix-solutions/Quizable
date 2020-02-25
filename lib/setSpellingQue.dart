@@ -61,6 +61,32 @@ class _setspellingquestionState extends State<setspellingquestion> {
         fontSize: 16.0);
   }
 
+  void savingquestion(BuildContext context)  {
+
+    bool Selected = false;
+
+    showDialog(barrierDismissible: false,
+        context: context,
+        builder: (_) => new Dialog(
+          child: new Container(
+            alignment: FractionalOffset.center,
+            height: 80.0,
+            padding: const EdgeInsets.all(20.0),
+            child: new Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                new CircularProgressIndicator(),
+                new Padding(
+                  padding: new EdgeInsets.only(left: 10.0),
+                  child: new Text("Saving..."),
+                ),
+              ],
+            ),
+          ),
+        ));
+  }
+
+
   Createspelling() async {
     http.post("http://edusupportapp.com/api/create_spelling.php", body: {
       "spelling_title": spelltitle.text.toString(),
@@ -486,7 +512,10 @@ class _setspellingquestionState extends State<setspellingquestion> {
                             padding: const EdgeInsets.only(top: 25, bottom: 40),
                             child: SizedBox(
                               width: 100,
-                              child: GradientButtonText(
+                              child: GradientButtonText(ButtonClick: (){
+                                Navigator.of(context).pushReplacementNamed('dashboard');
+
+                              },
                                 linearGradient: LinearGradient(colors: <Color>[
                                   GlobalData.navy,
                                   GlobalData.navyblue
@@ -561,13 +590,15 @@ class _setspellingquestionState extends State<setspellingquestion> {
 
                                         });
                                       } else {
+                                        savingquestion(context);
                                         SaveSpelling();
                                       }
                                     } else {
-
+                                      savingquestion(context);
                                       SaveSpelling();
                                     }
                                   }else{
+                                    savingquestion(context);
                                     SaveSpelling();
                                   }
                                 },

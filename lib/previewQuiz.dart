@@ -46,7 +46,7 @@ class _PreviewQuizState extends State<PreviewQuiz> {
     return WillPopScope(onWillPop: () async => true,
       child: Scaffold(
           appBar: AppBar(
-            automaticallyImplyLeading: true,
+            automaticallyImplyLeading: false,
 
             title: Center(
               child: Text(
@@ -63,13 +63,13 @@ class _PreviewQuizState extends State<PreviewQuiz> {
                 ),
               ),
             ),
-              /*actions: <Widget>[
+              actions: <Widget>[
                 GestureDetector(
                     onTap: (){
                       Navigator.of(context).pushReplacementNamed('dashboard');
 
                     },child: Icon(Icons.exit_to_app))
-              ],*/
+              ],
           ),
 
           /*drawer:

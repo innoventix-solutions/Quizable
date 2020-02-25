@@ -150,6 +150,8 @@ import 'NewPassword.dart';
 import 'audiorecord.dart';
 import 'package:newpro/OTP.dart';
 import 'audiorecorder.dart';
+import 'doubletap.dart';
+
 
 void main() {
   runApp(MyApp());
@@ -291,7 +293,8 @@ class MyApp extends StatelessWidget {
         'newpassword':(context)=>Newpassword(),
         //'audio':(context)=>audio(),
         'otp':(context)=>onetimepassword(),
-        'audiorecords':(context)=>audiorecords()
+        'audiorecords':(context)=>audiorecords(),
+
       },
     );
   }

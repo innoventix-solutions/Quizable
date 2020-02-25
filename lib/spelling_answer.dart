@@ -33,6 +33,31 @@ class spelling_ans extends StatefulWidget {
 class _spelling_ansState extends State<spelling_ans> {
 
 
+  void savingquestion(BuildContext context)  {
+
+    bool Selected = false;
+
+    showDialog(barrierDismissible: false,
+        context: context,
+        builder: (_) => new Dialog(
+          child: new Container(
+            alignment: FractionalOffset.center,
+            height: 80.0,
+            padding: const EdgeInsets.all(20.0),
+            child: new Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                new CircularProgressIndicator(),
+                new Padding(
+                  padding: new EdgeInsets.only(left: 10.0),
+                  child: new Text("Saving..."),
+                ),
+              ],
+            ),
+          ),
+        ));
+  }
+
 
   AudioPlayer audioPlayer = new AudioPlayer();
 
@@ -42,7 +67,9 @@ class _spelling_ansState extends State<spelling_ans> {
   startPlaying()async{
     //await audioPlayer.play(Questions[i].audio_file);
     if(Questions[i].audio_file==""){
-      Show_toast("No Audio FIle", Colors.red);
+
+      _speak(Questions[i].anwer_options);
+      //Show_toast("No Audio FIle", Colors.red);
     }
     else{
      await audioPlayer.play(Questions[i].audio_file);
@@ -205,7 +232,7 @@ class _spelling_ansState extends State<spelling_ans> {
 
     await Tts.setVolume(1.0);
 
-    await Tts.setPitch(0.8);
+    await Tts.setPitch(0.5);
 
     await Tts.isLanguageAvailable("en-IN");
   }
@@ -454,6 +481,7 @@ autocorrect: false,keyboardType: TextInputType.visiblePassword,
                                 setState(() {
 
                                 });
+
                                 getExamResult();
 
                                 i--;
@@ -497,6 +525,7 @@ autocorrect: false,keyboardType: TextInputType.visiblePassword,
                                   Changed = 0;
                                   i++;
                                   if (i == Questions.length) {
+                                    savingquestion(context);
                                     getExamResult();
 
                                     i--;

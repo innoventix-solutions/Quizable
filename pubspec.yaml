@@ -40,8 +40,8 @@ dependencies:
   cupertino_icons: ^0.1.3
   material_design_icons_flutter: ^3.4.4895
   carousel_slider: ^1.4.1
-  #speech_recognition: ^0.3.0+1
-  #speech_to_text: ^0.8.0
+  speech_recognition: ^0.3.0+1
+  speech_to_text: ^0.8.0
   flutter_paystack: ^1.0.1
   permission_handler: ^4.2.0+hotfix.3
   flutter_audio_recorder: ^0.5.5
@@ -49,7 +49,6 @@ dependencies:
   flutter_tts: ^0.8.6
   intl: ^0.15.0
   audioplayers: ^0.14.0
-
 
 dev_dependencies:
   flutter_launcher_icons: ^0.7.2+1

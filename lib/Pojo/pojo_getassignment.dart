@@ -43,6 +43,22 @@ class Pojo_getassignment{
   factory Pojo_getassignment.fromJson(Map<String, dynamic> parsedJson){
 
 
+    String date;
+    if(parsedJson['status'].toString()!=null){
+      int DateStatus = DateTime.now().compareTo(
+          DateTime.parse(parsedJson['publish_date']));
+
+      if(DateStatus ==-1)
+      {
+        date="Scheduled";
+
+      }
+      else{
+          date=parsedJson['status'].toString();
+      }
+    }
+
+
     String tt;
     String td;
 
@@ -106,7 +122,7 @@ class Pojo_getassignment{
       //que_each_level: parsedJson['que_each_level'].toString(),
       //quiz_subject: parsedJson['quiz_subject'].toString(),
       assignment_title: parsedJson['assignment_title'].toString(),
-      status: parsedJson['status'].toString(),
+      status: date,
       techer_id: parsedJson['techer_id'].toString(),
       is_taken: parsedJson['is_taken'],
       teacher_instruction: parsedJson['teacher_instruction'].toString(),

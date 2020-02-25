@@ -23,15 +23,17 @@ class _QuizExamSelectSubjectState extends State<QuizExamSelectSubject> {
 
   List<Subjectcount> mysub = new List();
 
-  bool loading= false;
+ bool isloading = true;
 
-  _onLoading() {
-   setState(() {
-     loading = true;
 
-   });}
 
   countsub() async{
+
+
+    isloading = true;
+    setState(() {
+
+    });
     await http.post("http://edusupportapp.com/api/get_quizzes_by_class.php",
         body: {
           "Class_id":GlobalData.classid,
@@ -46,8 +48,12 @@ class _QuizExamSelectSubjectState extends State<QuizExamSelectSubject> {
       mysub = (parsedjson['subjectcount'] as List).map((data)=> Subjectcount.fromJson(data)).toList();
 
       setState(() {
-        loading = true;
       });
+
+    });
+
+    isloading = false;
+    setState(() {
 
     });
   }
@@ -90,14 +96,16 @@ class _QuizExamSelectSubjectState extends State<QuizExamSelectSubject> {
 
 
 
-        body:
+        body:isloading==true?Center(child: Text("Loading...",style: TextStyle(
+            fontSize: 18
+        ),)):
         Column(
           children: <Widget>[
 
             Expanded(
               child:mysub.isEmpty?
               Center
-                (child:Text("Loading...",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: Colors.red),)
+                (child:Text("No Quiz Subject",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: Colors.red),)
 
               ) :
               new ListView.builder

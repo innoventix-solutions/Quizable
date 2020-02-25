@@ -2,9 +2,9 @@ import 'dart:convert';
 import 'package:newpro/Pojo/pojo_answer.dart';
 import 'package:newpro/Pojo/pojo_matchs.dart';
 import 'package:flutter/material.dart';
-//import 'package:speech_to_text/speech_to_text.dart';
-//import 'package:speech_to_text/speech_recognition_result.dart';
-//import 'package:speech_to_text/speech_recognition_error.dart';
+import 'package:speech_to_text/speech_to_text.dart';
+import 'package:speech_to_text/speech_recognition_result.dart';
+import 'package:speech_to_text/speech_recognition_error.dart';
 import 'global.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter_audio_recorder/flutter_audio_recorder.dart';
@@ -13,6 +13,9 @@ import 'dart:io';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:audioplayers/audio_cache.dart';
 import 'package:audioplayers/audioplayers.dart';
+import 'dart:io' as io;
+import 'package:flutter_tts/flutter_tts.dart';
+import 'package:speech_recognition/speech_recognition.dart';
 
 
 class EditSpellingQuestions extends StatefulWidget {
@@ -32,6 +35,68 @@ class _EditSpellingQuestionsState extends State<EditSpellingQuestions> {
   TextEditingController Points = new TextEditingController(text: GlobalData.Edit_spelling_Questions.point_awarded);
   TextEditingController trueanswer = new TextEditingController(text: GlobalData.Edit_spelling_Questions.anwer_options);
 
+  void savingquestion(BuildContext context)  {
+
+    bool Selected = false;
+
+    showDialog(barrierDismissible: false,
+        context: context,
+        builder: (_) => new Dialog(
+          child: new Container(
+            alignment: FractionalOffset.center,
+            height: 80.0,
+            padding: const EdgeInsets.all(20.0),
+            child: new Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                new CircularProgressIndicator(),
+                new Padding(
+                  padding: new EdgeInsets.only(left: 10.0),
+                  child: new Text("Updating..."),
+                ),
+              ],
+            ),
+          ),
+        ));
+  }
+
+
+  FlutterTts Tts = new FlutterTts();
+
+  Future temp() async {
+
+    List<dynamic> languages = await Tts.getLanguages;
+
+    await Tts.setLanguage("en-IN");
+
+    await Tts.setSpeechRate(1.0);
+
+    await Tts.setVolume(1.0);
+
+    await Tts.setPitch(0.8);
+
+    await Tts.isLanguageAvailable("en-IN");
+  }
+
+  Future _speak(String Value) async{
+    var result = await Tts.speak(Value);
+
+  }
+
+  Future _stop() async{
+    var result = await Tts.stop();
+
+  }
+
+  var file;
+  String audiopath;
+  bool _hasSpeech = false;
+  String lastWords = "";
+  String lastError = "";
+  String lastStatus = "";
+  final SpeechToText speech = SpeechToText();
+  String base64Image = "";
+
   FlutterAudioRecorder _recorder;
   bool isRecording=false;
 
@@ -40,7 +105,7 @@ class _EditSpellingQuestionsState extends State<EditSpellingQuestions> {
       msg: msg,
       toastLength: Toast.LENGTH_SHORT,
       gravity: ToastGravity.CENTER,
-      timeInSecForIos:10,
+      timeInSecForIos:1,
       backgroundColor: color,
       textColor: Colors.white,
       fontSize: 16.0,
@@ -51,6 +116,26 @@ class _EditSpellingQuestionsState extends State<EditSpellingQuestions> {
   AudioCache audioCache = new AudioCache();
   bool isPlaying = false;
   bool isStarted = false;
+
+
+  playrecord()async{
+    //await audioPlayer.play(Questions[i].audio_file);
+    if(audiopath==""){
+      Show_toast("No Audio File", Colors.red);
+    }
+    else{
+
+
+
+      await audioPlayer.play(audiopath.toString());
+      setState(() {
+
+      });
+    }
+    print(audiopath);
+  }
+
+
 
   startPlaying()async{
     await audioCache.play("audio/beep-06.mp3");
@@ -69,6 +154,12 @@ class _EditSpellingQuestionsState extends State<EditSpellingQuestions> {
 
     });
   }
+
+  SpeechRecognition _speechRecognition;
+  bool _isAvailable = false;
+  bool _isListening = false;
+  String resultText = "";
+
 
   //bool _hasSpeech = false;
   //String lastWords = GlobalData.Edit_spelling_Questions.anwer_options;
@@ -89,8 +180,36 @@ class _EditSpellingQuestionsState extends State<EditSpellingQuestions> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    //initSpeechRecognizer();
-    //initSpeechState();
+    initSpeechRecognizer();
+    initSpeechState();
+  }
+
+
+  Future<void> initSpeechState() async {
+    bool hasSpeech = await speech.initialize(onError: errorListener, onStatus: statusListener );
+
+    if (!mounted) return;
+    setState(() {
+      _hasSpeech = hasSpeech;
+    });
+  }
+  void initSpeechRecognizer() {
+    _speechRecognition = SpeechRecognition();
+    _speechRecognition.setAvailabilityHandler(
+            (bool result) => setState(() => _isAvailable = result));
+
+    _speechRecognition.setRecognitionStartedHandler(() =>
+        setState(() => _isListening = true));
+
+    _speechRecognition.setRecognitionResultHandler((String speech) =>
+        setState(() => resultText = speech));
+
+    _speechRecognition.setRecognitionStartedHandler(() =>
+        setState(() => _isListening = false));
+
+    _speechRecognition.activate().then(
+          (result) => setState(() => _isAvailable = result),
+    );
   }
 
 
@@ -276,6 +395,38 @@ class _EditSpellingQuestionsState extends State<EditSpellingQuestions> {
                                 ),style: TextStyle(fontSize: 24.0,),
                                 ),
                               ),
+
+                              Row(
+                                children: <Widget>[
+                                  IconButton(
+                                    icon: Icon(Icons.play_arrow,size: 30,
+                                      color: Colors.green,),
+                                    onPressed: (){
+                                      if(trueanswer.text.toString()==""){
+                                        Show_toast("No audio", Colors.red);
+                                      }
+                                      else{
+                                        _speak(trueanswer.text.toString());
+                                      }
+                                    },
+                                    color: Colors.red,),
+
+                                  IconButton(
+                                    icon: Icon(Icons.cancel,size: 30,
+                                      color: Colors.red,),
+                                    onPressed: (){
+                                      trueanswer.clear();
+                                      Show_toast("Audio deleted", Colors.red);
+                                    },
+                                    color: Colors.red,),
+                                ],
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Text("Note: The word displayed in the speech to text tab is a guide, student’s answer will be matched with the spelling you provided in the box.",
+                                  style: TextStyle(color: Colors.red),),
+                              )
+
                               /*Padding(
                                 padding: const EdgeInsets.only(left: 20,right: 20),
                                 child: TextField(
@@ -381,52 +532,10 @@ class _EditSpellingQuestionsState extends State<EditSpellingQuestions> {
                                           children: <Widget>[
                                             Expanded(child: Text("Audio/Voice recorder",style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold),)),
 
-                                            Text("Long Press to record audio"),
 
-                                            GestureDetector(
-                                                onLongPressStart: (start) async {
-
-                                                  startPlaying();
-                                                  isRecording=true;
-                                                  Show_toast("Recording Start", Colors.green);
-
-                                                  setState(() {
-
-                                                  });
-
-                                                  await FlutterAudioRecorder.hasPermissions;
-
-                                                  var path =await getApplicationSupportDirectory();
-
-                                                  print(path.path.toString());
-
-                                                  _recorder = FlutterAudioRecorder("${path.path.toString()}/${DateTime.now().toIso8601String().toString()}.mp3"); // .wav .aac .m4a
-                                                  await _recorder.initialized;
-                                                  await _recorder.start();
-                                                },
-                                                onLongPressEnd: (end) async {
-                                                  isRecording=false;
-                                                  Show_toast("Recording Ends", Colors.green);
-                                                  endplaying();
-                                                  setState(() {
-
-                                                  });
+                                            Icon(audiopath==null||audiopath==""?Icons.clear:Icons.check,color: audiopath==null||audiopath==""?Colors.grey:Colors.amber,size: 30,),
 
 
-
-                                                  /*var uri =  Uri.parse('http://edusupportapp.com/api/create_update_spelling_questions.php');
-                                                  var request = http.MultipartRequest('POST', uri)
-                                                    ..fields['user'] = 'nweiz@google.com'
-                                                    ..files.add(await http.MultipartFile.fromPath(
-                                                      'fileToUpload', result.path,
-                                                    ));
-
-                                                  var response = await request.send();
-                                                  if (response.statusCode == 200) print('Uploaded!');*/
-                                                },
-                                                child: Icon(isRecording?Icons.mic:Icons.mic_off,color: isRecording? Colors.green:Colors.grey,size: 50,)
-
-                                            )
                                             /*IconButton(
                                               icon: Icon(Icons.mic),
                                               onPressed: startListening,
@@ -477,6 +586,107 @@ class _EditSpellingQuestionsState extends State<EditSpellingQuestions> {
                       ],
                     ),
 
+
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        children: <Widget>[
+                          Expanded(child: Text("Long Press to record audio")),
+
+                          GestureDetector(
+                              onLongPressStart: (start) async {
+//SystemSound.play(SystemSoundType.click);
+                                //HapticFeedback.vibrate();
+                                startPlaying();
+                                isRecording=true;
+                                Show_toast("Recording Start", Colors.green);
+
+                                // audioCache.play("assets/audio/beep-06.mp3");
+                                setState(() {
+
+                                });
+
+                                if(await FlutterAudioRecorder.hasPermissions){
+                                  String customPath = '/flutter_audio_recorder_';
+                                  io.Directory path;
+
+                                  if(io.Platform.isIOS)
+                                  {
+                                    path =  await getApplicationDocumentsDirectory();
+                                  }
+                                  else{
+                                    path =await getApplicationSupportDirectory();
+
+                                  }
+                                  customPath = path.path +
+                                      customPath +
+                                      DateTime.now().millisecondsSinceEpoch.toString();
+
+                                  print("path audio: " + path.path.toString());
+
+                                  _recorder = FlutterAudioRecorder("${customPath}.mp3"); // .wav .aac .m4a
+                                  await _recorder.initialized;
+                                  await _recorder.start();
+                                }
+
+                                else{
+                                  Show_toast("Please allow audio permission", Colors.green);
+                                }
+                              },
+                              onLongPressEnd: (end) async {
+                                isRecording=false;
+                                Show_toast("Recording Ends", Colors.green);
+                                endplaying();
+                                setState(() {
+
+                                });
+                                var result = await _recorder.stop();
+                                print(result.path);
+                                var file = File(result.path);
+                                List<int> audiobytes = file.readAsBytesSync();
+                                base64Image = base64Encode(audiobytes);
+
+
+                                /*var uri =  Uri.parse('http://edusupportapp.com/api/create_update_spelling_questions.php');
+                                                    var request = http.MultipartRequest('POST', uri)
+                                                      ..fields['user'] = 'nweiz@google.com'
+                                                      ..files.add(await http.MultipartFile.fromPath(
+                                                        'fileToUpload', result.path,
+                                                      ));
+
+                                                    var response = await request.send();
+                                                    if (response.statusCode == 200) print('Uploaded!');*/
+                              },
+                              child: Icon(isRecording?Icons.mic:Icons.mic_off,color: isRecording? Colors.green:Colors.grey,size: 30,)
+
+                          ),
+
+                          GestureDetector(onTap: (){
+                            print(audiopath);
+                            print(file);
+                            audiopath="";
+                            file="";
+                            setState(() {
+
+                            });
+                            Show_toast("Audio deleted", Colors.red);
+                          },
+                            child: Padding(
+                              padding: const EdgeInsets.only(left: 10,right: 10),
+                              child: Icon(Icons.cancel,color:Colors.red,size: 30,),
+                            ),
+                          ),
+
+
+                          GestureDetector(onTap:(){
+                            playrecord();
+                            setState(() {
+
+                            });
+                          },child: Icon(Icons.play_arrow,color:Colors.green,size: 30,))
+                        ],
+                      ),
+                    )
                   ],
                 ),),
               /*Card(
@@ -618,11 +828,7 @@ class _EditSpellingQuestionsState extends State<EditSpellingQuestions> {
 
 
 
-      var result = await _recorder.stop();
-      print(result.path);
-      var file = File(result.path);
-      List<int> audiobytes = file.readAsBytesSync();
-      String base64Image = base64Encode(audiobytes);
+
 
       http.post(
           "http://edusupportapp.com/api/create_update_spelling_questions.php", body: {
@@ -645,7 +851,7 @@ class _EditSpellingQuestionsState extends State<EditSpellingQuestions> {
   }
 
 
-/*
+
   void startListening() {
     lastWords = "";
     lastError = "";
@@ -685,6 +891,6 @@ class _EditSpellingQuestionsState extends State<EditSpellingQuestions> {
     setState(() {
       lastStatus = "$status";
     });
-  }*/
+  }
 
 }

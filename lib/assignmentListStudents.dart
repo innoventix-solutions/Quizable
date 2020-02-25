@@ -16,8 +16,13 @@ class AssignmentListStudents extends StatefulWidget {
 class _AssignmentListStudentsState extends State<AssignmentListStudents> {
   List<Pojo_getassignment> assignment_list = new List();
 
-  GetTest() async{
+  bool isloading = true;
 
+  GetTest() async{
+    isloading = true;
+    setState(() {
+
+    });
     await http.post("http://edusupportapp.com/api/get_user_assignments_by_join_class.php",
         body: {
           "UserId":GlobalData.uid
@@ -35,6 +40,10 @@ class _AssignmentListStudentsState extends State<AssignmentListStudents> {
       setState(() {
 
       });
+    });
+    isloading = false;
+    setState(() {
+
     });
   }
 
@@ -271,7 +280,9 @@ class _AssignmentListStudentsState extends State<AssignmentListStudents> {
                                 "No Assignment Exercise published yet");
                               }
                               else{
-                                GlobalData.isGlobal=false;
+                                if(assignment_list[0].label == "New" ||  assignment_list[0].label == "Pending")
+{
+                                  GlobalData.isGlobal=false;
                                 GlobalData.AssignmentID=assignment_list[0].id;
                                // GlobalData.QuizLevels=Quizz_List[0].no_of_levels;
                                 GlobalData.ExamQuiz=assignment_list[0].assignment_title;
@@ -282,12 +293,17 @@ class _AssignmentListStudentsState extends State<AssignmentListStudents> {
                                 // Navigator.of(context).pushNamed(Quizz_List[i].is_taken==true?'AnswerLog':'exam');
                                 Navigator.of(context).pushNamed('assignmentexam');
                               }
+                                else{
+                                  Fluttertoast.showToast(msg: "Assignment "+assignment_list[0].label,fontSize: 16,backgroundColor: Colors.red);
+
+                                }
+}
 
                             },
                               child: Card(color:Colors.blue,
                                 child: Padding(
                                   padding: const EdgeInsets.all(8.0),
-                                  child: Text("New",textAlign: TextAlign.center,
+                                  child: Text(assignment_list.isNotEmpty?assignment_list[0].label:"-",textAlign: TextAlign.center,
                                     style: TextStyle(color: Colors.white,fontSize: 16,
                                         fontWeight: FontWeight.bold),),
                                 ),),
@@ -356,6 +372,11 @@ class _AssignmentListStudentsState extends State<AssignmentListStudents> {
 
             Expanded(
               child:assignment_list.isEmpty ? Center(child: Text('No Assignment Exercises published yet')) :
+
+              isloading==true?Center(child: Text("Loading...",style: TextStyle(
+                  fontSize: 18
+              ),)):
+
               ListView.builder(
                   itemCount: assignment_list.length,
                   itemBuilder: (c,i){

@@ -15,10 +15,15 @@ class spellinglog extends StatefulWidget {
 class _spellinglogState extends State<spellinglog> {
   List<Pojo_spelling> spellingList = new List();
 
+  bool isloading = true;
 
 
   GetTest() async{
 
+    isloading = true;
+    setState(() {
+
+    });
     await http.post("http://edusupportapp.com/api/get_user_spelling_by_join_class.php",
         body: {
           "UserId":GlobalData.uid
@@ -38,6 +43,11 @@ class _spellinglogState extends State<spellinglog> {
       setState(() {
 
       });
+    });
+
+    isloading = false;
+    setState(() {
+
     });
   }
 
@@ -86,7 +96,9 @@ class _spellinglogState extends State<spellinglog> {
 
 
 
-        body:
+        body: isloading==true?Center(child: Text("Loading...",style: TextStyle(
+            fontSize: 18
+        ),)):
         Column(
           children: <Widget>[
             Expanded(

@@ -143,7 +143,7 @@ class _AboutEdusupportState extends State<AboutEdusupport> {
             ),
 Padding(
   padding: const EdgeInsets.all(12.0),
-  child:   Text("EduSupport Virtual Classroom App is designed to motivate and inspire students to commit to learning activities. Users also have easy access to educational game apps."),
+  child:   Text("- Access to global Quiz and Spelling Bee without signing up for an account or class. \n\n""EduSupport Virtual Classroom App is designed to motivate and inspire students to commit to learning activities. Users also have easy access to educational game apps."),
 )
           ],
         ),

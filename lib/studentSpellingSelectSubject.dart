@@ -24,15 +24,17 @@ class _SpellingExamSelectSubjectState extends State<SpellingExamSelectSubject> {
 
   List<Subjectcount> mysub = new List();
 
-  bool loading= false;
+  bool isloading = true;
 
-  _onLoading() {
-    setState(() {
-      loading = true;
 
-    });}
+
 
   countsub() async{
+
+    isloading = true;
+    setState(() {
+
+    });
     await http.post("http://edusupportapp.com/api/get_spelling_by_class.php",
         body: {
           "Class_id":GlobalData.classid,
@@ -47,8 +49,13 @@ class _SpellingExamSelectSubjectState extends State<SpellingExamSelectSubject> {
       mysub = (parsedjson['subjectcount'] as List).map((data)=> Subjectcount.fromJson(data)).toList();
 
       setState(() {
-        loading = true;
       });
+
+    });
+
+
+    isloading = false;
+    setState(() {
 
     });
   }
@@ -92,13 +99,16 @@ class _SpellingExamSelectSubjectState extends State<SpellingExamSelectSubject> {
 
 
       body:
+      isloading==true?Center(child: Text("Loading...",style: TextStyle(
+          fontSize: 18
+      ),)):
       Column(
         children: <Widget>[
 
           Expanded(
             child:mysub.isEmpty?
             Center
-              (child:Text("Loading...",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: Colors.red),)
+              (child:Text("No Spelling Subject",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: Colors.red),)
 
             ) :
             new ListView.builder

@@ -17,7 +17,6 @@ class _parentstudentState extends State<parentstudent> {
 
 
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -64,7 +63,7 @@ class _parentstudentState extends State<parentstudent> {
                                               //Text(GlobalData.Class_list[index].classname,style: TextStyle(fontSize: 15),textAlign: TextAlign.left,),
                                               Padding(
                                                 padding: const EdgeInsets.only(top:5),
-                                                child: Text('Messie',style: TextStyle(fontSize: 12),),
+                                                child: Text("Sd",style: TextStyle(fontSize: 12),),
                                               ),
                                             ],
                                           ),

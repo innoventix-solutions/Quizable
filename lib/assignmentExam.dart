@@ -173,7 +173,7 @@ class _AssignmentExamState extends State<AssignmentExam> {
                     child: TextField(
                       controller: Textcontroller[i],
                       autocorrect: false,
-                      keyboardType: TextInputType.emailAddress,
+                      keyboardType: TextInputType.visiblePassword,
 
 
 
@@ -190,7 +190,7 @@ class _AssignmentExamState extends State<AssignmentExam> {
         );
 
       case "Short Essay":
-        return CustomTextField(controller: shortessayanswer,Texth: "Write Short Essay",maxline: 4,);
+        return CustomTextField(controller: shortessayanswer,Texth: "Write Short Essay",maxline: 10,);
 
       default:
 
@@ -253,7 +253,7 @@ class _AssignmentExamState extends State<AssignmentExam> {
 
 
 
-    return SafeArea(
+    return SingleChildScrollView(
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(

@@ -15,9 +15,14 @@ class Quiz_List_student extends StatefulWidget {
 
 class _Quiz_List_studentState extends State<Quiz_List_student> {
   List<Pojo_quizzes> Quizz_List = new List();
+  bool isloading = true;
 
   GetTest() async{
 
+    isloading = true;
+    setState(() {
+
+    });
     await http.post("http://edusupportapp.com/api/get_user_quizzes_by_join_class.php",
         body: {
           "UserId":GlobalData.uid,
@@ -36,6 +41,11 @@ class _Quiz_List_studentState extends State<Quiz_List_student> {
       setState(() {
 
       });
+    });
+
+    isloading = false;
+    setState(() {
+
     });
   }
 
@@ -269,7 +279,9 @@ class _Quiz_List_studentState extends State<Quiz_List_student> {
                               "No Quiz Exercise published yet");
                             }
                             else{
-                              GlobalData.isGlobal=false;
+                              if(Quizz_List[0].label == "New" ||  Quizz_List[0].label == "Pending")
+{
+                                GlobalData.isGlobal=false;
                               GlobalData.QuizID=Quizz_List[0].id;
                               GlobalData.QuizLevels=Quizz_List[0].no_of_levels;
                               GlobalData.ExamQuiz=Quizz_List[0].quiz_title;
@@ -278,11 +290,17 @@ class _Quiz_List_studentState extends State<Quiz_List_student> {
                               Navigator.of(context).pushNamed('studentLevelList');
                             }
 
+                            else{
+                              Fluttertoast.showToast(msg: "Quiz "+Quizz_List[0].label,fontSize: 16,backgroundColor: Colors.red);
+                            }
+
+                            }
+
                           },
                             child: Card(color:Colors.blue,
                               child: Padding(
                                 padding: const EdgeInsets.all(8.0),
-                                child: Text("New",textAlign: TextAlign.center,
+                                child: Text(Quizz_List.isNotEmpty?Quizz_List[0].label:"-",textAlign: TextAlign.center,
                                   style: TextStyle(color: Colors.white,fontSize: 16,
                                       fontWeight: FontWeight.bold),),
                               ),),
@@ -350,7 +368,11 @@ class _Quiz_List_studentState extends State<Quiz_List_student> {
           ),
 
             Expanded(
-              child:Quizz_List.isEmpty ? Center(child: Text('No Quiz Exercises published yet')) :  //22-8-19 a
+              child:Quizz_List.isEmpty ? Center(child: Text('No Quiz Exercises published yet')) :
+
+              isloading==true?Center(child: Text("Loading...",style: TextStyle(
+                  fontSize: 18
+              ),)):
               ListView.builder(
                   itemCount: Quizz_List.length,
                   itemBuilder: (c,i){

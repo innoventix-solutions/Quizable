@@ -48,7 +48,7 @@ class _PreviewAssignmentState extends State<PreviewAssignment> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          automaticallyImplyLeading: true,
+          automaticallyImplyLeading: false,
 
           title: Center(
             child: Text(
@@ -65,16 +65,13 @@ class _PreviewAssignmentState extends State<PreviewAssignment> {
               ),
             ),
           ),
-          actions: <Widget>[
-            IconButton(
-              onPressed: (){},
-              icon: Icon(
-                Icons.account_circle,
-                color: Colors.transparent,
-                size: 20,
-              ),
-            ),
-          ],
+            actions: <Widget>[
+              GestureDetector(
+                  onTap: (){
+                    Navigator.of(context).pushReplacementNamed('dashboard');
+
+                  },child: Icon(Icons.exit_to_app))
+            ],
         ),
 
         /*drawer:
@@ -139,6 +136,40 @@ class _PreviewAssignmentState extends State<PreviewAssignment> {
                         ),//: SizedBox()
                     );
                   }),
+            ),
+
+            Padding(
+              padding: const EdgeInsets.only(bottom: 25, right: 15,top: 15),
+              child: GestureDetector(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+
+                    Row(children: <Widget>[
+
+                      Icon(
+                        Icons.add_circle,
+                        color: GlobalData.lightblue,
+                        size: 20,
+                      ),
+
+                      Text(
+                        'Add New Assignment Topic',
+                        style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            color: GlobalData.lightblue),
+                      ),],
+
+                    ),
+                  ],
+                ),
+                onTap: () {
+                  Navigator.of(context)
+                      .pushNamed('SetAssignment');
+                },
+              ),
             ),
           ],
         )

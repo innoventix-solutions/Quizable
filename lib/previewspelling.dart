@@ -45,7 +45,7 @@ class _PreviewSpellingState extends State<PreviewSpelling> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          automaticallyImplyLeading: true,
+          automaticallyImplyLeading: false,
 
           title: Center(
             child: Text(
@@ -62,13 +62,13 @@ class _PreviewSpellingState extends State<PreviewSpelling> {
               ),
             ),
           ),
-          /*actions: <Widget>[
+          actions: <Widget>[
             GestureDetector(
                 onTap: (){
                   Navigator.of(context).pushReplacementNamed('dashboard');
 
                 },child: Icon(Icons.exit_to_app))
-          ],*/
+          ],
         ),
 
         /*drawer:

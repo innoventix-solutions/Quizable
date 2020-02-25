@@ -17,7 +17,15 @@ class _RecentQuestionState extends State<RecentQuestion> {
   List<Pojo_getassignment> assignment_list = new List();
   List<Pojo_spelling> spellinglist = new List();
 
+  bool isloading = true;
+
+
   GetAssignment() async {
+
+    isloading = true;
+    setState(() {
+
+    });
     await http.post("http://edusupportapp.com/api/get_assignments.php",
         body: {"UserId": GlobalData.uid,
        }).then((res) {
@@ -31,9 +39,19 @@ class _RecentQuestionState extends State<RecentQuestion> {
       print(assignment_list.length);
       setState(() {});
     });
+
+    isloading = false;
+    setState(() {
+
+    });
   }
 
   GetQuiz() async {
+
+    isloading = true;
+    setState(() {
+
+    });
     await http.post("http://edusupportapp.com/api/get_quizzes",
         body: {"UserId": GlobalData.uid,
 
@@ -46,10 +64,20 @@ class _RecentQuestionState extends State<RecentQuestion> {
       print(Quizz_List.length);
       setState(() {});
     });
+    isloading = false;
+    setState(() {
+
+    });
   }
 
 
   Getspellings() async {
+
+    isloading = true;
+    setState(() {
+
+    });
+
     await http.post("http://edusupportapp.com/api/get_spellings.php",
         body: {"UserId": GlobalData.uid,
 
@@ -61,6 +89,10 @@ class _RecentQuestionState extends State<RecentQuestion> {
           .toList();
       print(spellinglist.length);
       setState(() {});
+    });
+    isloading = false;
+    setState(() {
+
     });
   }
 
@@ -107,7 +139,9 @@ class _RecentQuestionState extends State<RecentQuestion> {
           ],
         ),
         drawer: drawerquiz(),
-        body: Column(
+        body:isloading==true?Center(child: Text("Loading...",style: TextStyle(
+          fontSize: 18
+        ),)):Column(
           children: <Widget>[
             assignment_list.isEmpty && Quizz_List.isEmpty && spellinglist.isEmpty
                 ? Center(
@@ -166,13 +200,26 @@ class _RecentQuestionState extends State<RecentQuestion> {
                       itemCount: 1,
                       itemBuilder: (c, i) {
                         return GestureDetector(
-                          onTap: () {},
+                          onTap: () {
+
+                            GlobalData.AssignmentID=assignment_list[i].id;
+                            GlobalData.ExamQuiz=assignment_list[i].assignment_title;
+                            GlobalData.teacherinstruction=assignment_list[i].teacher_instruction;
+                            GlobalData.teacherobjective=assignment_list[i].teacher_objective;
+                            GlobalData.AssignmentTitle=assignment_list[i].assignment_title;
+                            GlobalData.NosofQuesassignment=assignment_list[i].total_que;
+                            GlobalData.Selected_class=assignment_list[i].classes;
+                            GlobalData.assignmentstatus=assignment_list[i].status;
+                            Navigator.of(context).pushNamed('AssignmentQuestionList');
+
+                          },
                           child: recentquestions(
                             color: GlobalData.pinkred,
                             heading: assignment_list[i].assignment_title,
                             paragraph: assignment_list[i].publish_date,
                             id: assignment_list[i].id,
                             title: assignment_list[i].total_que +" Questions",
+                            schedule: assignment_list[i].status,
                           ),
                         );
                       }),
@@ -219,7 +266,21 @@ class _RecentQuestionState extends State<RecentQuestion> {
                       itemCount: 1,
                       itemBuilder: (c, i) {
                         return GestureDetector(
-                          onTap: () {},
+                          onTap: () {
+
+                            GlobalData.EditQuiz=false;
+                            GlobalData.QuizID=Quizz_List[i].id;
+                            GlobalData.ExamQuiz=Quizz_List[i].quiz_title;
+                            GlobalData.DurationofEachLevel=Quizz_List[i].dur_each_level;
+                            GlobalData.QuizLevels=Quizz_List[i].no_of_levels;
+                            GlobalData.QuizTitle=Quizz_List[i].quiz_title;
+                            GlobalData.NosofQuesPerLevel = Quizz_List[i].que_each_level;
+                            GlobalData.Selected_class=Quizz_List[i].classes;
+                            GlobalData.age=Quizz_List[i].age;
+                            GlobalData.quizstatus=Quizz_List[i].status;
+                            Navigator.of(context).pushNamed('levelsList');
+
+                          },
                           child: recentquestions(
                             color: GlobalData.pinkred,
                             heading: Quizz_List[i].quiz_title,
@@ -231,6 +292,7 @@ class _RecentQuestionState extends State<RecentQuestion> {
                                     int.parse(
                                         Quizz_List[i].no_of_levels.toString()))
                                 .toString()+ " Questions",
+                            schedule: Quizz_List[i].status,
                           ),
                         );
                       }),
@@ -278,7 +340,21 @@ class _RecentQuestionState extends State<RecentQuestion> {
                   itemCount: 1,
                   itemBuilder: (c, i) {
                     return GestureDetector(
-                      onTap: () {},
+                      onTap: () {
+
+                        GlobalData.EditQuiz=false;
+                        GlobalData.spellingid=spellinglist[i].id;
+                        GlobalData.ExamQuiz=spellinglist[i].spelling_title;
+                        GlobalData.spellDurationofEachLevel=spellinglist[i].dur_each_level;
+                        GlobalData.spellLevels=spellinglist[i].no_of_levels;
+                        GlobalData.spelltitle=spellinglist[i].spelling_title;
+                        GlobalData.spellNosofQuesPerLevel = spellinglist[i].que_each_level;
+                        GlobalData.Selected_class=spellinglist[i].classes;
+                        GlobalData.spellingstatus=spellinglist[i].status;
+
+                        Navigator.of(context).pushNamed('spellinglevelsList');
+
+                      },
                       child: recentquestions(
                         color: GlobalData.pinkred,
                         heading: spellinglist[i].spelling_title,
@@ -290,6 +366,8 @@ class _RecentQuestionState extends State<RecentQuestion> {
                             int.parse(
                                 spellinglist[i].no_of_levels.toString()))
                             .toString()+ " Questions",
+                        schedule: spellinglist[i].status,
+
                       ),
                     );
                   }),

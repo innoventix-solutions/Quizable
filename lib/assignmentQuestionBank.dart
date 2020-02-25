@@ -34,9 +34,34 @@ class _assignmentquestionbankState extends State<assignmentquestionbank> {
     // TODO: implement initState
     super.initState();
 
-
-
   }
+
+
+  void savingquestion(BuildContext context)  {
+
+    bool Selected = false;
+
+    showDialog(barrierDismissible: false,
+        context: context,
+        builder: (_) => new Dialog(
+          child: new Container(
+            alignment: FractionalOffset.center,
+            height: 80.0,
+            padding: const EdgeInsets.all(20.0),
+            child: new Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                new CircularProgressIndicator(),
+                new Padding(
+                  padding: new EdgeInsets.only(left: 10.0),
+                  child: new Text("Saving..."),
+                ),
+              ],
+            ),
+          ),
+        ));
+  }
+
 
   setalldetails(){
     GlobalData.AssignmentTitle  = Assignmenttitle.text;
@@ -385,7 +410,9 @@ class _assignmentquestionbankState extends State<assignmentquestionbank> {
                           Padding(
                             padding: const EdgeInsets.only(top: 25, bottom: 40),
                             child: SizedBox(width: 100,
-                              child: GradientButtonText(
+                              child: GradientButtonText(ButtonClick: (){
+                                Navigator.of(context).pushReplacementNamed('dashboard');
+                              },
                                 linearGradient: LinearGradient(
                                     colors: <Color>[GlobalData.navy, GlobalData.navyblue]),
                                 text: Text(
@@ -454,13 +481,15 @@ class _assignmentquestionbankState extends State<assignmentquestionbank> {
 
                                       });
                                     } else {
+                                      savingquestion(context);
                                       SaveAssignment();
                                     }
                                   } else {
-
+                                    savingquestion(context);
                                     SaveAssignment();
                                   }
                                 }else{
+                                  savingquestion(context);
                                   SaveAssignment();
                                 }
                               },
@@ -547,8 +576,8 @@ class _assignmentquestionbankState extends State<assignmentquestionbank> {
 
     if (GlobalData.AssignmentTitle == null ||
         GlobalData.NosofQuesassignment == null ||
-        GlobalData.teacherinstruction == null||
-        GlobalData.teacherobjective == null||
+        GlobalData.teacherinstruction == "" ||
+        GlobalData.teacherobjective == ""||
         GlobalData.Selected_class== null
 
         ) {

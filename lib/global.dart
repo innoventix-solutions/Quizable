@@ -933,7 +933,7 @@ class CustomTextField extends StatelessWidget {
             padding: const EdgeInsets.all(5),
             child: TextField(maxLines: maxline,
               enabled: enabled==null?true:false,
-              keyboardType: Inputnumber==true?TextInputType.numberWithOptions(decimal: false,signed:false):TextInputType.text,
+              keyboardType: Inputnumber==true?TextInputType.numberWithOptions(decimal: false,signed:false):TextInputType.visiblePassword,
               decoration:
               InputDecoration(border: InputBorder.none,hintText: Texth,hintStyle: hintStyle),
               textAlign: TextAlign.left,style: TextStyle(color: Colors.black),
@@ -1800,6 +1800,7 @@ class recentquestions extends StatelessWidget {
   final Color color;
   final String title;
   final String id;
+  final String schedule;
 
   recentquestions(
       {
@@ -1807,10 +1808,14 @@ class recentquestions extends StatelessWidget {
         this.paragraph,
         this.color,
         this.title,
-        this.id});
+        this.id,
+        this.schedule
+      });
 
   @override
   Widget build(BuildContext context) {
+
+
     return
       Container(decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(40))),
         child: Card(elevation: 5.0,shape: RoundedRectangleBorder(
@@ -1850,7 +1855,7 @@ class recentquestions extends StatelessWidget {
               ),
 
               Container(
-                padding: EdgeInsets.only(left: 25,top: 20,right: 30,bottom: 30),
+                padding: EdgeInsets.only(left: 25,top: 20,right: 30,bottom: 10),
                 child: Row(
                   children: <Widget>[
                     Expanded(
@@ -1863,10 +1868,28 @@ class recentquestions extends StatelessWidget {
                       child: Text(title,style: TextStyle(fontWeight: FontWeight.bold,
                           fontSize: 15,color: GlobalData.gray),textAlign: TextAlign.justify,),
                     ),
+
+
+
                   ],
                 ),
+
               ),
 
+
+              Container(child:Padding(
+                padding: const EdgeInsets.only(left: 25,top: 0,right: 30,bottom: 10),
+                child: Row(
+                  children: <Widget>[
+
+                       Text(schedule,style: TextStyle(fontWeight: FontWeight.bold,
+                          fontSize: 15,color: GlobalData.gray),textAlign: TextAlign.justify,),
+
+                  ],
+                ),
+              ) ,),
+
+              SizedBox(height: 10,),
 
 
 
@@ -2648,13 +2671,13 @@ class PreviewQuizs extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
     SizedBox(height: 10,),
-                            Text("Created On:"+Quiz.created_date,style:
+                            Text("Created On: " + Quiz.created_date,style:
                             TextStyle(color: Colors.green,fontWeight: FontWeight.bold),),
                             SizedBox(height: 10,),
-                            Text(isActive?"Published on : $publishedDate":"Scheduled : $publishedDate",style:
+                            Text(isActive?"Published on :"+Quiz.publish_date:"Scheduled :"+Quiz.publish_date,style:
                             TextStyle(color: isActive?Colors.green:Colors.red,fontWeight: FontWeight.bold),),
     SizedBox(height: 10,),
-                            Text("Closing On:"+Quiz.closing_date,style:
+                            Text("Closing On: "+Quiz.closing_date,style:
                             TextStyle(color: Colors.grey,fontWeight: FontWeight.bold),),
     SizedBox(height: 10,)
                           ],
@@ -4898,7 +4921,7 @@ class SpellingResult extends StatelessWidget {
                                       child: PopupMenuButton(
                                         child: GestureDetector(
                                             onTap: (){
-                                              Share.share("My EduSupport Spelling Result \n \n"+ GlobalData.Username + " completed spelling: " + heading + "\n \n"+"My result is: " + percent +" %"
+                                              Share.share("My EduSupport Spelling Bee Result \n \n"+ GlobalData.Username + " completed Spelling Bee: " + heading + "\n \n"+"My result is: " + percent +" %"
                                                   +"\n"  + progresslabel);
 
 
@@ -5199,7 +5222,7 @@ class AssignmentResult extends StatelessWidget {
                                       child: PopupMenuButton(
                                         child: GestureDetector(
                                             onTap: (){
-                                              Share.share("My EduSupport Quiz Result \n \n"+ GlobalData.Username + " completed Quiz: " + heading + "\n \n"+"My result is: " + percent +" %"
+                                              Share.share("My EduSupport Assignment Result \n \n"+ GlobalData.Username + " completed Assignment: " + heading + "\n \n"+"My result is: " + percent +" %"
                                                   +"\n"  + progresslabel);
 
 

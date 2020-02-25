@@ -38,6 +38,24 @@ class Pojo_spelling{
 
   factory Pojo_spelling.fromJson(Map<String, dynamic> parsedJson){
 
+
+    String date;
+    if(parsedJson['status'].toString()!=null){
+      int DateStatus = DateTime.now().compareTo(
+          DateTime.parse(parsedJson['publish_date']));
+
+      if(DateStatus ==-1)
+      {
+        date="Scheduled";
+
+      }
+      else{
+        date=parsedJson['status'].toString();
+      }
+    }
+
+
+
     String tt;
     String td;
 
@@ -101,7 +119,7 @@ class Pojo_spelling{
         que_each_level: parsedJson['que_each_level'].toString(),
         spelling_subject: parsedJson['spelling_subject'].toString(),
         spelling_title: parsedJson['spelling_title'].toString(),
-        status: parsedJson['status'].toString(),
+        status: date,
         techer_id: parsedJson['techer_id'].toString(),
         teacherinstruction: parsedJson['teacher_instruction'].toString(),
         //age:parsedJson['age'].toString(),
