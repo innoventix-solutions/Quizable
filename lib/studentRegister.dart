@@ -108,6 +108,9 @@ class _studentregState extends State<studentreg> {
       print("result from Server : "+statuss['status'].toString());
 
       if (statuss['status'].toString() == "1") {
+
+        savingquestion(context);
+
         Show_toast("Registered Successfully", Colors.green);
         Navigator.of(context)
             .pushNamedAndRemoveUntil('login', (Route<dynamic> route) => false);
@@ -462,7 +465,7 @@ class _studentregState extends State<studentreg> {
                               print(selectedDate.toString());
                               print(gendersel.toString());
 
-                              savingquestion(context);
+                              //savingquestion(context);
                               check();
                               globalData.getgender();
                             },

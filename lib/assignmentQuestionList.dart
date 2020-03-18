@@ -397,7 +397,7 @@ class _AssignmentQuestionListState extends State<AssignmentQuestionList> {
     /*print(Quetions[i].anwer_options.length.toString()+"  asdznaisdfmmb k");
 Matches =Quetions[i].anwer_options;*/
     return Scaffold(
-        appBar: AppBar(title: Text("Assignment Question"),centerTitle: true,),
+        appBar: AppBar(title: Text("Assignment Question"),centerTitle: true,automaticallyImplyLeading: true,),
         body: isloading==true?Center(child: Text("Loading...")):MYQue()
 
 

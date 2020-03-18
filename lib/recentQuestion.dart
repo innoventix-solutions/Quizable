@@ -139,9 +139,7 @@ class _RecentQuestionState extends State<RecentQuestion> {
           ],
         ),
         drawer: drawerquiz(),
-        body:isloading==true?Center(child: Text("Loading...",style: TextStyle(
-          fontSize: 18
-        ),)):Column(
+        body:Column(
           children: <Widget>[
             assignment_list.isEmpty && Quizz_List.isEmpty && spellinglist.isEmpty
                 ? Center(

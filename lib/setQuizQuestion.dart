@@ -643,16 +643,57 @@ setalldetails(){
 
                                     });
                                     } else {
-                                      savingquestion(context);
+
+                                      if (GlobalData.QuizTitle == null || GlobalData.QuizLevels == null ||
+                                          GlobalData.NosofQuesPerLevel == null ||
+                                          GlobalData.DurationofEachLevel == null ||
+                                          GlobalData.Selected_subject == null||
+                                          GlobalData.Selected_class== null
+                                      //|| Starting_date==null||
+                                      //Closing_date==null
+                                      //||GlobalData.age == null
+                                      ) {
+
+                                        _showDialog();
+                                      }
+                                      else{ savingquestion(context);
                                       SaveQuiz();
+                                      }
+
                                     }
                                   } else {
-                                    savingquestion(context);
+                                    if (GlobalData.QuizTitle == null || GlobalData.QuizLevels == null ||
+                                        GlobalData.NosofQuesPerLevel == null ||
+                                        GlobalData.DurationofEachLevel == null ||
+                                        GlobalData.Selected_subject == null||
+                                        GlobalData.Selected_class== null
+                                    //|| Starting_date==null||
+                                    //Closing_date==null
+                                    //||GlobalData.age == null
+                                    ) {
+
+                                      _showDialog();
+                                    }
+                                    else{ savingquestion(context);
                                     SaveQuiz();
+                                    }
                                   }
                                 }else{
-                                  savingquestion(context);
+                                  if (GlobalData.QuizTitle == null || GlobalData.QuizLevels == null ||
+                                      GlobalData.NosofQuesPerLevel == null ||
+                                      GlobalData.DurationofEachLevel == null ||
+                                      GlobalData.Selected_subject == null||
+                                      GlobalData.Selected_class== null
+                                  //|| Starting_date==null||
+                                  //Closing_date==null
+                                  //||GlobalData.age == null
+                                  ) {
+
+                                    _showDialog();
+                                  }
+                                  else{ savingquestion(context);
                                   SaveQuiz();
+                                  }
                                 }
                               },
                               ),

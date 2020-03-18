@@ -102,7 +102,7 @@ class _studentjoinState extends State<studentjoin> {
     return SafeArea(
       child: Scaffold(
           appBar: AppBar(
-            automaticallyImplyLeading: true,
+            automaticallyImplyLeading: false,
 
             title: Center(
               child: Text(

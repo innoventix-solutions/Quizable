@@ -107,7 +107,8 @@ class _splashState extends State<splash> {
             GlobalData.Class_list.isEmpty ? 'welcome' : 'teacherSelectClass');
       }
       }
-      else{
+      else
+        {
         if(isClassSelected) {
 
           GetmyCurrentClass("studentdashboard");

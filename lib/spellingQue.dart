@@ -392,7 +392,7 @@ class _setspellqueState extends State<setspellque> {
                                   vertical: 8.0,
                                   horizontal: 12.0,
                                 ),
-                                child: TextField(controller:trueanswer,decoration: InputDecoration(
+                                child: TextField(keyboardType: TextInputType.visiblePassword,controller:trueanswer,decoration: InputDecoration(
                                     border: InputBorder.none,hintText: "Insert correct spelling"
                                 ),style: TextStyle(fontSize: 24.0,),
                                 ),
@@ -739,6 +739,14 @@ class _setspellqueState extends State<setspellque> {
                       child: GradientButtonText(
                         ButtonClick: ()async{
 
+                          if (QuestionName.text.toString() == "" || Points.text.toString() == "" ||
+                              //lastWords.toString() == "" &&
+                              trueanswer.text.toString()=="" ) {
+                            //_showDialog();
+                            CustomShowDialog(context,msg: "Some Values are Missing",title:
+                            "Value Missing");
+                          }
+                          else{
                           savingquestion(context);
                           //buttonclick=true;
                          // setState(() {
@@ -747,7 +755,8 @@ class _setspellqueState extends State<setspellque> {
                          //await onclick();
                           //print("buttonclick save: " + buttonclick.toString());
 
-                          SaveSpellingQuestion();
+
+                          SaveSpellingQuestion();}
                         },
                         linearGradient:LinearGradient(colors: <Color>[GlobalData.purple,GlobalData.pink]) ,
                         text: Text("Save",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 18,),

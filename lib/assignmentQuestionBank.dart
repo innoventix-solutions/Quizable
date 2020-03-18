@@ -481,16 +481,57 @@ class _assignmentquestionbankState extends State<assignmentquestionbank> {
 
                                       });
                                     } else {
+
+                                      if (GlobalData.AssignmentTitle == null ||
+                                          GlobalData.NosofQuesassignment == null ||
+                                          GlobalData.teacherinstruction == "" ||
+                                          GlobalData.teacherobjective == ""||
+                                          GlobalData.Selected_class== null
+
+                                      ) {
+
+                                        _showDialog();
+                                      }
+                                      else{
                                       savingquestion(context);
                                       SaveAssignment();
+                                      }
                                     }
                                   } else {
+
+
+                                    if (GlobalData.AssignmentTitle == null ||
+                                        GlobalData.NosofQuesassignment == null ||
+                                        GlobalData.teacherinstruction == "" ||
+                                        GlobalData.teacherobjective == ""||
+                                        GlobalData.Selected_class== null
+
+                                    ) {
+
+                                      _showDialog();
+                                    }
+                                    else{
+                                       savingquestion(context);
+                                      SaveAssignment();
+                                    }
+
+                                  }
+                                }else{
+
+                                  if (GlobalData.AssignmentTitle == null ||
+                                      GlobalData.NosofQuesassignment == null ||
+                                      GlobalData.teacherinstruction == "" ||
+                                      GlobalData.teacherobjective == ""||
+                                      GlobalData.Selected_class== null
+
+                                  ) {
+
+                                    _showDialog();
+                                  }
+                                  else{
                                     savingquestion(context);
                                     SaveAssignment();
                                   }
-                                }else{
-                                  savingquestion(context);
-                                  SaveAssignment();
                                 }
                               },
                               ),

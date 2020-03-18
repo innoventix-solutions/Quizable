@@ -37,8 +37,10 @@ class _StudentListByQuizState extends State<StudentListByQuiz> {
           .toList();
 
       globlist.sort((a, b) {
-        return a.point_awarded.toLowerCase().compareTo(b.timetaken.toLowerCase());
+        return b.point_awarded.toLowerCase().compareTo(a.point_awarded.toLowerCase());
       });
+
+
 
 
       print(globlist.length);
@@ -147,7 +149,7 @@ class _StudentListByQuizState extends State<StudentListByQuiz> {
                                                 TextStyle(color: Colors.black,fontSize: 14),),
                                             ),
 
-                                            Text("Time Taken: " + globlist[index].timetaken),
+                                            Text("Time Taken: " + globlist[index].totaltime),
 
                                             Padding(
                                               padding: const EdgeInsets.only(top: 5),
@@ -159,6 +161,14 @@ class _StudentListByQuizState extends State<StudentListByQuiz> {
                                         ),
                                       ),
                                     ),
+
+                                    GestureDetector(onTap: (){
+                                      Share.share("Student: " + globlist[index].username + " completed Quiz: " + GlobalData.ExamQuiz + "\n \n"+"Point Awarded: " + globlist[index].point_awarded + "/" + globlist[index].TotalQuizpoints + "\n" + "Percentage: " + globlist[index].percentage + "\n" +  "Progress Label: " + globlist[index].progresslabel);
+
+                                    },child: Icon(Icons.share)),
+
+                                    SizedBox(width: 20,),
+
 
 
 

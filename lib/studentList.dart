@@ -15,13 +15,20 @@ class _StudentListState extends State<StudentList> {
 
   GlobalData globalData = new GlobalData();
 
+  bool isloading = true;
+
   //List<pojostydentlist> globlist = new List();
 
   var gets = "A";
 
-  getstudent
-      ()
+  getstudent()
   async {
+
+    isloading = true;
+    setState(() {
+
+    });
+
 GlobalData.Studentlist.clear();
     await http.post("http://edusupportapp.com/api/get_user_list_by_class.php"
         ,body: {
@@ -40,6 +47,11 @@ GlobalData.Studentlist.clear();
 
       print(GlobalData.Studentlist.length);
 
+      setState(() {
+
+      });
+
+      isloading = false;
       setState(() {
 
       });
@@ -160,7 +172,9 @@ GlobalData.Studentlist.clear();
           ],
 
         ),
-        body:
+        body:isloading==true?Center(child: Text("Loading...",style: TextStyle(
+            fontSize: 18
+        ),)):
         Column(
           children: <Widget>[
 

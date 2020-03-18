@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:share/share.dart';
 import 'Pojo/pojo_StudentListQuizResult.dart';
+import 'Pojo/pojo_getassignment.dart';
 import 'global.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'Pojo/pojostydentlist.dart';
 import 'Pojo/pojo_StudentAssignmentResult.dart';
+import 'package:share/share.dart';
 
 class StudentListByAssignment extends StatefulWidget {
   @override
@@ -13,6 +15,9 @@ class StudentListByAssignment extends StatefulWidget {
 }
 
 class _StudentListByAssignmentState extends State<StudentListByAssignment> {
+
+
+  List<Pojo_getassignment> assignment_list = new List();
 
   List<Pojo_StudentAssignmentResult> globlist = new List();
 
@@ -37,6 +42,10 @@ class _StudentListByAssignmentState extends State<StudentListByAssignment> {
           .map((data) => Pojo_StudentAssignmentResult.fromJson(data))
           .toList();
 
+      globlist.sort((a, b) {
+        return b.point_awarded.toLowerCase().compareTo(a.point_awarded.toLowerCase());
+      });
+
       print(globlist.length);
 
       setState(() {
@@ -52,11 +61,9 @@ class _StudentListByAssignmentState extends State<StudentListByAssignment> {
         appBar: AppBar(
           automaticallyImplyLeading: true,
 
-          title: Center(
-            child: Text(
-              "Students List",
-              style: TextStyle(fontSize: 22),textAlign: TextAlign.center,
-            ),
+          title: Text(
+            "Students List",
+            style: TextStyle(fontSize: 22),textAlign: TextAlign.center,
           ),
           flexibleSpace: Container(
             decoration: BoxDecoration(
@@ -67,6 +74,7 @@ class _StudentListByAssignmentState extends State<StudentListByAssignment> {
               ),
             ),
           ),
+
 
         ),
         body:
@@ -139,6 +147,13 @@ class _StudentListByAssignmentState extends State<StudentListByAssignment> {
                                     ),
                                   ),
 
+
+                                  GestureDetector(onTap: (){
+                                    Share.share("Student: " + globlist[index].username + " completed Assignment: " + GlobalData.ExamQuiz + "\n \n"+"Point Awarded: " + globlist[index].point_awarded + "/" + globlist[index].TotalAssignmentpoints + "\n" + "Percentage: " + globlist[index].percentage + "\n" +  "Progress Label: " + globlist[index].progresslabel);
+
+                                  },child: Icon(Icons.share)),
+
+                                  SizedBox(width: 20,),
 
 
 

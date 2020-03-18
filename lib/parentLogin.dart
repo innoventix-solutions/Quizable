@@ -7,6 +7,7 @@ import 'global.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'Pojo/pojostydentlist.dart';
 
 class parentlogin extends StatefulWidget {
   @override
@@ -14,6 +15,33 @@ class parentlogin extends StatefulWidget {
 }
 
 class _parentloginState extends State<parentlogin> {
+
+
+  void savingquestion(BuildContext context)  {
+
+    bool Selected = false;
+
+    showDialog(barrierDismissible: false,
+        context: context,
+        builder: (_) => new Dialog(
+          child: new Container(
+            alignment: FractionalOffset.center,
+            height: 80.0,
+            padding: const EdgeInsets.all(20.0),
+            child: new Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                new CircularProgressIndicator(),
+                new Padding(
+                  padding: new EdgeInsets.only(left: 10.0),
+                  child: new Text("Creating..."),
+                ),
+              ],
+            ),
+          ),
+        ));
+  }
+
 
   Show_toast(String msg, Color color) {
     Fluttertoast.showToast(
@@ -31,6 +59,7 @@ class _parentloginState extends State<parentlogin> {
   TextEditingController email = new TextEditingController();
   TextEditingController pass = new TextEditingController();
 
+
   Parentlogin() async {
 
 
@@ -43,10 +72,29 @@ class _parentloginState extends State<parentlogin> {
       print(response.body.toString());
 
       if (statuss['status'] == 1) {
+        savingquestion(context);
+
+
+        //print("CSID "+ GlobalData.CurrentStudentID);
+        if (statuss['userdata'].toString()!= null || statuss['userdata'].toString()!= "false") {
+
+          GlobalData.Studentlist = (statuss['userdata'] as List)
+              .map((data) => pojouserrslist.fromJson(data))
+              .toList();
+
+
+          print(GlobalData.CurrentStudentID);
+
+        }
+        else{
+
+          print("TESTSTDBFBH");
+        }
+
+        Show_toast("Logged in Successfully", Colors.green);
 
 
 /*
-
         Show_toast("Logged in Successfully", Colors.green);
         prefs.setString("Id", statuss['userdata']['ID']);
         prefs.setString("type", statuss['userdata']['user_type']);
@@ -90,10 +138,16 @@ class _parentloginState extends State<parentlogin> {
         GlobalData.parentsemail=statuss['userdata']['parents_email'].toString();
         GlobalData.signupdate = statuss['userdata']['signup_date'].toString();
 
-
-
 */
 
+
+
+        Navigator.of(context).pushNamed('parentstudent');
+
+
+      }
+      else{
+        Show_toast("Invalid Parent's email or Phone no", Colors.red);
       }
     });
   }
@@ -119,6 +173,7 @@ class _parentloginState extends State<parentlogin> {
                     'assets/images/wlogo.png',
                     width: 80,
                   ),*/
+                 SizedBox(height: 20,),
                  Text("Sign in to continue",style:TextStyle(fontSize: 20,color: Colors.white),textAlign: TextAlign.center,),
                   Container(
                     width: 300,
@@ -194,8 +249,7 @@ class _parentloginState extends State<parentlogin> {
 //                        print(pass.text.toString());
                                 //login();
                                 Parentlogin();
-                                Navigator.of(context)
-                                    .pushNamed('parentstudent');
+
 
                               },
                               shape: new RoundedRectangleBorder(
@@ -235,6 +289,6 @@ class _parentloginState extends State<parentlogin> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    Parentlogin();
+    //Parentlogin();
   }
 }

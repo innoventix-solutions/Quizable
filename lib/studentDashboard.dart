@@ -491,7 +491,7 @@ class _studentdashboardState extends State<studentdashboard> {
                   Padding(
                     padding: const EdgeInsets.only(top: 10),
                     child: GestureDetector(onTap: (){
-                      Navigator.of(context).pushReplacementNamed('studentselectclass');
+                      Navigator.of(context).pushNamed('studentselectclass');
                     },
                       child: Text('Switch Classroom',style:
                       TextStyle(fontSize: 15,fontWeight:FontWeight.bold,

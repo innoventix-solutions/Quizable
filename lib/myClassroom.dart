@@ -13,6 +13,30 @@ class myclassroom extends StatefulWidget {
 class _myclassroomState extends State<myclassroom> {
 
 
+  bool isSwitched = true;
+
+  ActiveDeactiveClass(String action) async{
+    print("class id : "+GlobalData.activeclass.id);
+
+
+    await http.post("http://edusupportapp.com/api/active_deactive_class.php",
+        body: {
+          "Class_id":GlobalData.activeclass.id,
+          "action":action,
+        }).then((res){
+      print(res.body);
+      //var ParsedJson = jsonDecode(res.body);
+      //Stu_List = (ParsedJson['userdata'] as List).map((data)=>pojostydentlist.fromJson(data)).toList();
+
+      GlobalData.activeclass.status=action;
+      Navigator.of(context).pop();
+      setState(() {
+
+      });
+
+
+    });
+  }
   getstudentcount()
   async {
 
@@ -90,6 +114,8 @@ class _myclassroomState extends State<myclassroom> {
                         //GlobalData.uid= GlobalData.Studentlist[index].id;
 
                         print(GlobalData.Class_list[index].classname);
+
+
                         print(GlobalData.activeclass.classname);
                         Navigator.of(context)
                             .pushNamed('StudentList');
@@ -132,11 +158,70 @@ class _myclassroomState extends State<myclassroom> {
                                           child: Text(GlobalData.Class_list[index].total_join==null?"0 Student":GlobalData.Class_list[index].total_join.toString()
                                             +" Students",style: TextStyle(fontSize: 14),),
                                         ),
+
+                                        GlobalData.Class_list[index].status=="active"?
+                                        SizedBox():Padding(
+                                          padding: const EdgeInsets.only(top:5),
+                                          child: Text("Deactivated",style: TextStyle(fontSize: 14,color: Colors.red),),
+                                        )
                                       ],
                                     ),
                                   ),
                                 ),
 
+
+                               /* GlobalData.userType.toLowerCase()=="teacher" ?
+                                SizedBox():
+                                Padding(
+                                  padding: const EdgeInsets.only(right: 20),
+                                  child: Row(mainAxisAlignment: MainAxisAlignment.end,
+                                    children: <Widget>[
+                                      PopupMenuButton(
+                                        child: Icon(Icons.more_vert),
+                                        itemBuilder: (_) => <PopupMenuItem<String>>[
+
+
+
+
+
+                                          new PopupMenuItem<String>(
+                                            child: Row(
+                                              children: <Widget>[
+                                                Padding(
+                                                  padding: const EdgeInsets.only(right:0,top: 1),
+                                                  child: GlobalData.Class_list[index].status=="active"?
+                                                  Text("Deactivate Class"):Text("Activate Class"),
+                                                ),
+                                                Switch(
+                                                  value: (GlobalData.activeclass.status=="active"),
+                                                  onChanged: (value) {
+                                                    if(value == true ){
+
+                                                      ActiveDeactiveClass("active");
+                                                    }
+                                                    else
+                                                    {
+                                                      ActiveDeactiveClass("deactive");
+                                                    }
+                                                    setState(() {
+
+                                                      isSwitched = value;
+                                                    });
+                                                  },
+                                                  activeTrackColor: Colors.lightGreenAccent,
+                                                  activeColor: Colors.green,
+                                                ),
+                                              ],
+                                            ), ),
+
+                                        ],
+                                        onSelected: ( value){
+
+                                        },
+                                      ),
+                                    ],
+                                  ),
+                                ),*/
 
                               ], ),
                           ),

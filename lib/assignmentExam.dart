@@ -21,6 +21,33 @@ class AssignmentExam extends StatefulWidget {
 
 class _AssignmentExamState extends State<AssignmentExam> {
 
+
+  void savingquestion(BuildContext context)  {
+
+    bool Selected = false;
+
+    showDialog(barrierDismissible: false,
+        context: context,
+        builder: (_) => new Dialog(
+          child: new Container(
+            alignment: FractionalOffset.center,
+            height: 80.0,
+            padding: const EdgeInsets.all(20.0),
+            child: new Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                new CircularProgressIndicator(),
+                new Padding(
+                  padding: new EdgeInsets.only(left: 10.0),
+                  child: new Text("Saving..."),
+                ),
+              ],
+            ),
+          ),
+        ));
+  }
+
+
   bool isCompleted=false;
   bool isattempted =false;
   bool originalCopied =false;
@@ -443,19 +470,39 @@ class _AssignmentExamState extends State<AssignmentExam> {
                           {
                             answ=shortessayanswer.text.toString();
                           }
+
                         else if(Quetions[i].answer_type=="Fill-in the gaps")
                         {
 
                           for (int i = 0; i < fillupsData.length; i++) {
 
-                            answ += fillupsData[i];
-                            if(i<fillupsData.length-1 && fillupsData.length>1  )
-                            {
-                              answ +=",";
+
+
+                            if(fillupsData[i]==""){
+                              remaning=true;
                             }
 
+
+
                           }
-                        }else{
+
+                           if(remaning==true){
+                            Show_toast_Now("Please complete the fill in the blanks or can skip the questions", Colors.red);
+                          }
+                          else{
+
+                             for (int i = 0; i < fillupsData.length; i++) {
+                               answ += fillupsData[i];
+                               if (i < fillupsData.length - 1 &&
+                                   fillupsData.length > 1) {
+                                 answ += ",";
+                               }
+                             }
+
+                           }
+                        }
+
+                        else{
                           int Correct = 0;
 
                           for (int i = 0; i < Options.length; i++) {
@@ -480,25 +527,47 @@ class _AssignmentExamState extends State<AssignmentExam> {
 
 
                         if(remaning==false) {
-                          await  GiveAnswer(answ);
-                          //Show_toast_Now("Data removing",Colors.red);
-
-                          //TrueorFalse = "";
-                          Changed = 0;
-                          i++;
-                          if (i == Quetions.length) {
-                            getExamResult();
-
-                            i--;
-                          } else {
-
-                            print("submittingcode");
-
-                            setState(() {
-
-                            });
+                          int selectedAnswers=0;
+                          if(Quetions[i].answer_type=="Multiple Answers" ) {
+                            for (int i = 0; i < Options.length; i++) {
+                              if (Options[i].trueanswer == true) {
+                                selectedAnswers++;
+                              }
+                            }
                           }
-                        }
+
+                          if (Quetions[i].answer_type=="Short Essay" && shortessayanswer.text == "") {
+                            //_showDialog();
+                            Show_toast_Now("Please complete the essay answer or can skip the questions.", Colors.red);
+                          }
+
+                          else if(Quetions[i].answer_type=="Multiple Answers" && selectedAnswers<2)
+                            {
+
+                              Show_toast_Now("Please complete the multiple answer or can skip the questions.", Colors.red);
+                            }
+
+                          else {
+                            await GiveAnswer(answ);
+                            //Show_toast_Now("Data removing",Colors.red);
+
+                            //TrueorFalse = "";
+                            Changed = 0;
+                            i++;
+                            if (i == Quetions.length) {
+                              getExamResult();
+
+                              i--;
+                            } else {
+                              print("submittingcode");
+
+                              setState(() {
+
+                              });
+                            }
+                          }
+                          }
+
                       },
                       linearGradient:LinearGradient(colors: <Color>[GlobalData.navyblue,GlobalData.pink]) ,
                       text: Text((i+1)==Quetions.length?"Submit":"Next",textAlign: TextAlign.center,style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
@@ -607,6 +676,8 @@ class _AssignmentExamState extends State<AssignmentExam> {
     bool Selected = false;
     TextEditingController optioncontroller = new TextEditingController();
     showDialog(
+        barrierDismissible: false,
+
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(

@@ -107,7 +107,7 @@ class _StudentSpellingResultState extends State<StudentSpellingResult> {
                     return  GestureDetector(
                       onTap: (){
                          GlobalData.spellingid=spellinglist[i].id;
-                        GlobalData.QuizLevels=spellinglist[i].no_of_levels;
+                        GlobalData.spellLevels=spellinglist[i].no_of_levels;
                         GlobalData.ExamQuiz=spellinglist[i].spelling_title;
                         GlobalData.spellDurationofEachLevel=spellinglist[i].dur_each_level;
                         GlobalData.CurrentStudentID=GlobalData.uid;

@@ -339,7 +339,10 @@ class drawerquiz extends StatelessWidget {
 
               else {
 
-
+                GlobalData.AssignmentTitle="";
+                GlobalData.NosofQuesassignment="";
+                GlobalData.teacherinstruction="";
+                GlobalData.teacherobjective="";
                 /*Navigator.of(context)
                 .pushNamed('developpage');*/
                 Navigator.of(context)
@@ -348,6 +351,10 @@ class drawerquiz extends StatelessWidget {
 
               }else
               {
+                GlobalData.AssignmentTitle="";
+                GlobalData.NosofQuesassignment="";
+                GlobalData.teacherinstruction="";
+                GlobalData.teacherobjective="";
                 /*Navigator.of(context)
                 .pushNamed('developpage');*/
                  Navigator.of(context)
@@ -358,6 +365,10 @@ class drawerquiz extends StatelessWidget {
 
             }
             else {
+              GlobalData.AssignmentTitle="";
+              GlobalData.NosofQuesassignment="";
+              GlobalData.teacherinstruction="";
+              GlobalData.teacherobjective="";
               /*Navigator.of(context)
                 .pushNamed('developpage');*/
               Navigator.of(context)
@@ -413,7 +424,10 @@ class drawerquiz extends StatelessWidget {
                         }
 
                       else {
-
+                        GlobalData.QuizTitle  = "";
+                        GlobalData.QuizLevels = "";
+                        GlobalData.NosofQuesPerLevel = "";
+                        GlobalData.DurationofEachLevel =  "";
 
                         Navigator.of(context)
                             .pushNamed('setquizquestions');
@@ -421,6 +435,10 @@ class drawerquiz extends StatelessWidget {
 
                     }else
                     {
+                      GlobalData.QuizTitle  = "";
+                      GlobalData.QuizLevels = "";
+                      GlobalData.NosofQuesPerLevel = "";
+                      GlobalData.DurationofEachLevel =  "";
                       Navigator.of(context)
                           .pushNamed('setquizquestions');
                     }
@@ -429,6 +447,10 @@ class drawerquiz extends StatelessWidget {
 
                   }
                   else {
+                     GlobalData.QuizTitle  = "";
+                     GlobalData.QuizLevels = "";
+                     GlobalData.NosofQuesPerLevel = "";
+                     GlobalData.DurationofEachLevel =  "";
                      Navigator.of(context)
                          .pushNamed('setquizquestions');
                    }
@@ -484,7 +506,11 @@ class drawerquiz extends StatelessWidget {
               }
 
               else {
-
+                GlobalData.spelltitle = "";
+                GlobalData.spellLevels = "";
+                GlobalData.spellNosofQuesPerLevel = "";
+                GlobalData.spellDurationofEachLevel = "";
+                GlobalData.teacherguide = "";
 
                 Navigator.of(context)
                     .pushNamed('setspellingque');
@@ -492,6 +518,13 @@ class drawerquiz extends StatelessWidget {
 
               }else
               {
+
+                GlobalData.spelltitle = "";
+                GlobalData.spellLevels = "";
+                GlobalData.spellNosofQuesPerLevel = "";
+                GlobalData.spellDurationofEachLevel = "";
+                GlobalData.teacherguide = "";
+
                 Navigator.of(context)
                     .pushNamed('setspellingque');
               }
@@ -500,6 +533,13 @@ class drawerquiz extends StatelessWidget {
 
             }
             else {
+
+              GlobalData.spelltitle = "";
+              GlobalData.spellLevels = "";
+              GlobalData.spellNosofQuesPerLevel = "";
+              GlobalData.spellDurationofEachLevel = "";
+              GlobalData.teacherguide = "";
+
               Navigator.of(context)
                   .pushNamed('setspellingque');
             }
@@ -1695,6 +1735,35 @@ LogoutFunction(context)async {
   Navigator.of(context)
       .pushNamedAndRemoveUntil('login', (Route<dynamic> route) => false);
 }
+
+
+Getstudent() async {
+
+
+
+   await http.post("http://edusupportapp.com/api/login.php", body: {
+      "username_email": GlobalData.parentsemail,
+      "type":"parents_login"
+    }).then((response) async {
+      var statuss = jsonDecode(response.body);
+      print(response.body.toString());
+
+      if (statuss['userdata'].toString()!= null || statuss['userdata'].toString()!= "false") {
+        print(statuss['userdata']);
+        GlobalData.Studentlist = (statuss['userdata'] as List)
+            .map((data) => pojouserrslist.fromJson(data))
+            .toList();
+      }
+      else{
+
+        print("TESTSTDBFBH");
+      }
+
+      print("STUDENTSLIST "+ GlobalData.Studentlist.length.toString());
+
+
+    });
+  }
 
 
  GetMyClasses() async{

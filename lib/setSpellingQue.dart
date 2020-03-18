@@ -590,16 +590,60 @@ class _setspellingquestionState extends State<setspellingquestion> {
 
                                         });
                                       } else {
+
+                                        if (GlobalData.spelltitle == null ||
+                                            GlobalData.spellLevels == null ||
+                                            GlobalData.spellNosofQuesPerLevel == null ||
+                                            GlobalData.spellDurationofEachLevel == null ||
+                                            GlobalData.Selected_subject == null ||
+                                            GlobalData.Selected_class == null ||
+                                            GlobalData.teacherguide == null
+                                        //Starting_date==null||
+                                        //Closing_date==null
+                                        ) {
+                                          _showDialog();
+                                        }
+                                        else{
+                                          savingquestion(context);
+                                          SaveSpelling();
+                                        }
+
+                                      }
+                                    } else {
+                                      if (GlobalData.spelltitle == null ||
+                                          GlobalData.spellLevels == null ||
+                                          GlobalData.spellNosofQuesPerLevel == null ||
+                                          GlobalData.spellDurationofEachLevel == null ||
+                                          GlobalData.Selected_subject == null ||
+                                          GlobalData.Selected_class == null ||
+                                          GlobalData.teacherguide == null
+                                      //Starting_date==null||
+                                      //Closing_date==null
+                                      ) {
+                                        _showDialog();
+                                      }
+                                      else{
                                         savingquestion(context);
                                         SaveSpelling();
                                       }
-                                    } else {
+                                    }
+                                  }else{
+                                    if (GlobalData.spelltitle == null ||
+                                        GlobalData.spellLevels == null ||
+                                        GlobalData.spellNosofQuesPerLevel == null ||
+                                        GlobalData.spellDurationofEachLevel == null ||
+                                        GlobalData.Selected_subject == null ||
+                                        GlobalData.Selected_class == null ||
+                                        GlobalData.teacherguide == null
+                                    //Starting_date==null||
+                                    //Closing_date==null
+                                    ) {
+                                      _showDialog();
+                                    }
+                                    else{
                                       savingquestion(context);
                                       SaveSpelling();
                                     }
-                                  }else{
-                                    savingquestion(context);
-                                    SaveSpelling();
                                   }
                                 },
                               ),

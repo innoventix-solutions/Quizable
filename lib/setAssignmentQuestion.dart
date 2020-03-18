@@ -743,6 +743,11 @@ class _SetAssignmentQuestionState extends State<SetAssignmentQuestion> {
                       child: SizedBox(width: 100,
                         child: GradientButtonText(
                           ButtonClick: (){
+
+                            if(SelectedType=="Fill-in the gaps" && !QuestionName.text.contains('_')){
+                              CustomShowDialog(context,title: "No '_'",msg:
+                              "Please Add '_' in questions");
+                            }else{
                             int no=0;
                             if(SelectedType=="Fill-in the gaps") {
                               no = ('_'
@@ -784,6 +789,7 @@ class _SetAssignmentQuestionState extends State<SetAssignmentQuestion> {
                               savingquestion(context);
                               SaveAssignmentQuestion();
                             }
+                          }
                           },
                           linearGradient:LinearGradient(colors: <Color>[GlobalData.purple,GlobalData.pink]) ,
                           text: Text("Save",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 18,),

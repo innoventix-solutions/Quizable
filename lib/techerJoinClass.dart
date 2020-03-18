@@ -107,7 +107,7 @@ class _techerjoinclassState extends State<techerjoinclass> {
     return SafeArea(
       child: Scaffold(
           appBar: AppBar(
-            automaticallyImplyLeading: true,
+            automaticallyImplyLeading: false,
 centerTitle: true,
             title: Center(
               child: Text(

@@ -334,7 +334,7 @@ class MyResultBlock extends StatelessWidget {
                                               }
                                               ,linearGradient:
                                             LinearGradient(colors: <Color>[GlobalData.navy,GlobalData.navyblue]),
-                                              text: Text('Add',style: TextStyle(color: Colors.white,
+                                              text: Text('APPLY',style: TextStyle(color: Colors.white,
                                                 fontWeight: FontWeight.bold,fontSize: 12,),textAlign: TextAlign.center,),
                                             ),
                                           ),
@@ -481,7 +481,7 @@ class MyResultBlock extends StatelessWidget {
                       children: <Widget>[
                         Padding(
                           padding: const EdgeInsets.all(10.0),
-                          child: Container(child: Text("Correct Answer: "+(anwer_options.isEmpty?correct_ans:""),style: TextStyle(color: Colors.blue,fontWeight: FontWeight.bold),)),
+                          child: Container(child: Text("Correct Answer: "+(anwer_options.isEmpty?answertype=="Short Essay"?"[Short Essay]":correct_ans:correct_ans),style: TextStyle(color: Colors.blue,fontWeight: FontWeight.bold),)),
                         ),
 
                       ],
@@ -523,21 +523,18 @@ class MyResultBlock extends StatelessWidget {
 
                     Container(child:
                         Row(children: <Widget>[
-                          Expanded(
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: GlobalData.userType=="student"?Text(""):
-                              answertype=="Short Essay"?
-                                  teacher_given_story_point==false.toString()?
-                              RaisedButton(color: Colors.deepOrange,child: Text("Give Point"),onPressed:(){
-                                Pointdialog(context);
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: GlobalData.userType=="admin_teacher" ||
+                                GlobalData.userType=="teacher"?
+                            answertype=="Short Essay"?
+                                teacher_given_story_point==false.toString()?
+                            RaisedButton(color: Colors.deepOrange,child: Text("Give Point"),onPressed:(){
+                              Pointdialog(context);
 
-                              },):
-                              SizedBox():SizedBox(),
-                            ),
+                            },):
+                            SizedBox():SizedBox():Text("")
                           ),
-
-                          SizedBox(width: 20,),
 
 
 
@@ -548,10 +545,24 @@ class MyResultBlock extends StatelessWidget {
                               //GlobalData.userType=="student"?Text(""):
                               answertype=="Short Essay"?
                               teacher_given_story_point!=false.toString()?
-                              Text("Essay Point: " + teacher_given_story_point,style: TextStyle(fontSize: 18),):
+                              Text("Essay Point: " + teacher_given_story_point,style: TextStyle(fontSize: 18
+                              ,color: Colors.blue,fontWeight: FontWeight.bold),):
                               SizedBox():SizedBox(),
                             ),
                           ),
+
+                          SizedBox(width: 20,),
+                          GlobalData.userType=="admin_teacher" ||
+                              GlobalData.userType=="teacher"?
+                          answertype=="Short Essay"?
+                          teacher_given_story_point==false.toString()?
+
+                          Text("Mark Obtainable: " + pointawarded,style: TextStyle(
+                              color: Colors.blue,fontWeight: FontWeight.bold
+                          ),):SizedBox():SizedBox():Text(""),
+                          SizedBox(width: 20,),
+
+
 
                         ],),),
 

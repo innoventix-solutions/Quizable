@@ -851,14 +851,29 @@ class _ExamState extends State<Exam> {
 
                             for (int i = 0; i < fillupsData.length; i++) {
 
-                                answ += fillupsData[i];
-                                if(i<fillupsData.length-1 && fillupsData.length>1  )
-                                {
-                                  answ +=",";
-                                }
+
+
+                              if(fillupsData[i]==""){
+                                remaning=true;
+                              }
+
 
                             }
 
+                            if(remaning==true){
+                              Show_toast_Now("Please complete the fill in the blanks or can skip the questions", Colors.red);
+                            }
+                            else{
+
+                              for (int i = 0; i < fillupsData.length; i++) {
+                                answ += fillupsData[i];
+                                if (i < fillupsData.length - 1 &&
+                                    fillupsData.length > 1) {
+                                  answ += ",";
+                                }
+                              }
+
+                            }
 
                           }else{
                             int Correct = 0;
@@ -886,23 +901,72 @@ class _ExamState extends State<Exam> {
 
 
                           if(remaning==false) {
-                          await  GiveAnswer(answ, (i + 1).toString());
-                            //Show_toast_Now("Data removing",Colors.red);
+                            int selectedAnswers = 0;
+                            if (Quetions[i].answer_type == "Multiple Answers" || Quetions[i].answer_type == "Single Answer") {
+                              for (int i = 0; i < Options.length; i++) {
+                                if (Options[i].trueanswer == true) {
+                                  selectedAnswers++;
+                                }
+                              }
 
-                            TrueorFalse = "";
-                            Changed = 0;
-                            i++;
-                            if (i == Quetions.length) {
-                              getExamResult();
+                            }
 
-                              i--;
-                            } else {
 
-                              print("submittingcode");
+                            else if(Quetions[i].answer_type=="True False")
+                            {
 
-                              setState(() {
+                              if(TrueorFalse!="")
+                              {
+                                selectedAnswers=1;
 
-                              });
+                              }else
+                                {
+                                  answ="s_k_i_p";
+                                }
+
+                            }
+
+
+                            if (Quetions[i].answer_type == "Single Answer" &&
+                                selectedAnswers <1 ) {
+
+                              Show_toast_Now(
+                                  "Please complete the single answer or can skip the questions.",
+                                  Colors.red);
+                            }
+
+                            else if (Quetions[i].answer_type == "Multiple Answers" && selectedAnswers < 2)
+                            {
+                              Show_toast_Now(
+                                  "Please complete the multiple answer or can skip the questions.",
+                                  Colors.red);
+                            }
+                            else if(Quetions[i].answer_type == "True False" && selectedAnswers != 1)
+                              {
+                                Show_toast_Now(
+                                    "Please complete the true or false or can skip the questions.",
+                                    Colors.red);
+                              }
+
+
+                            else {
+                              await GiveAnswer(answ, (i + 1).toString());
+                              //Show_toast_Now("Data removing",Colors.red);
+
+                              TrueorFalse = "";
+                              Changed = 0;
+                              i++;
+                              if (i == Quetions.length) {
+                                getExamResult();
+
+                                i--;
+                              } else {
+                                print("submittingcode");
+
+                                setState(() {
+
+                                });
+                              }
                             }
                           }
                         },
@@ -1257,6 +1321,7 @@ Matches =Quetions[i].anwer_options;*/
   stop(){
 
     showDialog<void>(
+      barrierDismissible: false,
 
       context: context,
       builder: (BuildContext context) {

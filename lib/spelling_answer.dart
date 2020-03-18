@@ -230,7 +230,7 @@ class _spelling_ansState extends State<spelling_ans> {
 
     await Tts.setSpeechRate(1.0);
 
-    await Tts.setVolume(1.0);
+    await Tts.setVolume(50.0);
 
     await Tts.setPitch(0.5);
 
@@ -415,7 +415,14 @@ SizedBox(width: 20,),
 
                                             ),
                                               color: Colors.blue,
-                                              icon: Icon(Icons.hearing,color: Colors.white,), //`Icon` to display
+                                              icon: GestureDetector(onTap:(){
+
+                                                startPlaying();
+                                                setState(() {
+
+                                                });
+
+                                              },child: Icon(Icons.hearing,color: Colors.white,)), //`Icon` to display
                                               label: Padding(
                                                 padding: const EdgeInsets.only(top: 5,bottom: 5,right: 10,left: 10),
                                                 child: GestureDetector(onTap: (){
@@ -429,6 +436,11 @@ SizedBox(width: 20,),
                                                     child: Text('Listen',style: TextStyle(fontSize: 20,color: Colors.white),)),
                                               ), //`Text` to display
                                               onPressed: () {
+
+                                                startPlaying();
+                                                setState(() {
+
+                                                });
                                                 //Code to execute when Floating Action Button is clicked
                                                 //...
                                               },
@@ -511,7 +523,7 @@ autocorrect: false,keyboardType: TextInputType.visiblePassword,
                               if(remaning==false) {
                                 //answ=answer.text.toString();
 
-                                if (answer.text.toString() == "") {
+                                if (answer.text == "") {
                                   //_showDialog();
                                   CustomShowDialog(
                                       context, msg: "Please enter your answer or you can skip if not sure",
@@ -606,7 +618,7 @@ autocorrect: false,keyboardType: TextInputType.visiblePassword,
       "spelling_id":Questions[i].spellingid,
       "level":Questions[i].level_no.toString(),
       "q_no":qno,
-      "answer":answer.text.toString(),
+      "answer":answers,
     }).then((res){
       // Fluttertoast.showToast(msg: "ResultSubmitted");
       print(res.body);
@@ -789,6 +801,7 @@ autocorrect: false,keyboardType: TextInputType.visiblePassword,
   stop(){
 
     showDialog<void>(
+      barrierDismissible: false,
 
       context: context,
       builder: (BuildContext context) {

@@ -23,20 +23,20 @@ class pojouserrslist {
 
   factory pojouserrslist.fromJson(Map<String, dynamic> parsedJson){
     return pojouserrslist(
-      id: parsedJson['ID'],
-      username: parsedJson['username'],
-      email: parsedJson['email'],
-      fullname: parsedJson['fullname'],
+      id: parsedJson['ID'].toString(),
+      username: parsedJson['username'].toString(),
+      email: parsedJson['email'].toString(),
+      fullname: parsedJson['fullname'].toString(),
       userphoto: parsedJson['user_photo'],
-      phone: parsedJson['phone_no'],
-      parentemail: parsedJson['parents_email'],
-      parentphone: parsedJson['parents_phone_no'],
-      password: parsedJson['password'],
+      phone: parsedJson['phone_no'].toString(),
+      parentemail: parsedJson['parents_email'].toString(),
+      parentphone: parsedJson['parents_phone_no'].toString(),
+      password: parsedJson['password'].toString(),
       birthdate: parsedJson['birthdate'].toString(),
-      specification: parsedJson['specification'],
-      gender: parsedJson['gender'],
-      usertype: parsedJson['user_type'],
-      accounttype: parsedJson['accout_type'],
+      specification: parsedJson['specification'].toString(),
+      gender: parsedJson['gender'].toString(),
+      usertype: parsedJson['user_type'].toString(),
+      accounttype: parsedJson['accout_type'].toString(),
       signupdate: parsedJson['signup_date'].toString(),
 
     );

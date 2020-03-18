@@ -100,6 +100,7 @@ class _loginState extends State<login> {
       print(response.body.toString());
       //    print(response.body.toString());
       if (statuss['status'] == 1) {
+        savingquestion(context);
 
         if(statuss['join_classdata'] == false ){
 
@@ -180,7 +181,8 @@ class _loginState extends State<login> {
                     );
           }
 
-        } else if (statuss['userdata']['user_type'] == "admin_teacher") {
+        }
+        else if (statuss['userdata']['user_type'] == "admin_teacher") {
           if(GlobalData.Class_list.isNotEmpty ) {
 
             if(GlobalData.Class_list.length==1) {
@@ -321,7 +323,7 @@ class _loginState extends State<login> {
                               onPressed: () {
 //                        print(email.text.toString());
 //                        print(pass.text.toString());
-                              savingquestion(context);
+                              //savingquestion(context);
                                 login();
                               },
                               shape: new RoundedRectangleBorder(
@@ -349,7 +351,6 @@ class _loginState extends State<login> {
                             child: GestureDetector(
                                 child: Text("Parent Login Here", style: TextStyle(decoration: TextDecoration.underline, color: Colors.white,fontSize: 18)),
                                 onTap: () {
-
                                   Navigator.of(context)
                                       .pushNamed('parentlogin');
 

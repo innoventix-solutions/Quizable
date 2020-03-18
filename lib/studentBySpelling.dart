@@ -37,7 +37,7 @@ class _StudentListBySpellingState extends State<StudentListBySpelling> {
           .toList();
 
       globlist.sort((a, b) {
-        return b.point_awarded.toLowerCase().compareTo(a.timetaken.toLowerCase());
+        return b.point_awarded.toLowerCase().compareTo(a.point_awarded.toLowerCase());
       });
 
 
@@ -147,7 +147,7 @@ class _StudentListBySpellingState extends State<StudentListBySpelling> {
                                               TextStyle(color: Colors.black,fontSize: 14),),
                                             ),
 
-                                            Text("Time Taken: " + globlist[index].timetaken),
+                                            Text("Time Taken: " + globlist[index].totaltime),
 
                                             Padding(
                                               padding: const EdgeInsets.only(top: 5),
@@ -158,6 +158,14 @@ class _StudentListBySpellingState extends State<StudentListBySpelling> {
                                         ),
                                       ),
                                     ),
+
+                                    GestureDetector(onTap: (){
+                                      Share.share("Student: " + globlist[index].username + " completed Spelling: " + GlobalData.ExamQuiz + "\n \n"+"Point Awarded: " + globlist[index].point_awarded + "/" + globlist[index].TotalSpellingpoints + "\n" + "Percentage: " + globlist[index].percentage + "\n" +  "Progress Label: " + globlist[index].progresslabel);
+
+                                    },child: Icon(Icons.share)),
+
+                                    SizedBox(width: 20,),
+
 
 
 

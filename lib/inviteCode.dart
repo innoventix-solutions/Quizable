@@ -28,7 +28,7 @@ class _invitecodeState extends State<invitecode> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        automaticallyImplyLeading: true,
+        automaticallyImplyLeading: false,
 
         title: Text(
           "Create New Classroom",
