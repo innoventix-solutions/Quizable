@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:share/share.dart';
 import 'Pojo/pojo_StudentListQuizResult.dart';
+import 'Pojo/pojo_leaderboard.dart';
 import 'global.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -15,7 +16,53 @@ class _StudentListByQuizState extends State<StudentListByQuiz> {
 
   List<Pojo_StudentListResult> globlist = new List();
 
+  List<leaderboard> leader = new List();
 
+  bool isloading = true;
+
+  leaderboards()async{
+
+
+    isloading = true;
+    setState(() {
+
+    });
+
+    await http.post("http://edusupportapp.com/api/get_leaderboard.php",
+        body: {
+          "clsss_id":GlobalData.classid,
+          "quiz_id": GlobalData.QuizID,
+
+        }).then((response) {
+      print(response.body);
+
+      var parsedjson = jsonDecode(response.body);
+      print("Leader " + parsedjson['student_data'].toString());
+
+
+
+      if(parsedjson['student_data']==false){
+
+      }
+      else {
+        globlist = (parsedjson['student_data'] as List)
+            .map((data) => Pojo_StudentListResult.fromJson(data))
+            .toList();
+
+
+      }
+      setState(() {
+
+      });
+
+
+      isloading = false;
+      setState(() {
+
+      });
+    });
+
+  }
 
   getstudent()
   async {
@@ -210,7 +257,8 @@ class _StudentListByQuizState extends State<StudentListByQuiz> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    getstudent();
+    //getstudent();
+    leaderboards();
   }
 }
 

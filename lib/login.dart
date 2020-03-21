@@ -438,7 +438,7 @@ class _loginState extends State<login> {
 
         GlobalData.MyMembership = Membership(
             id: 0.toString(),
-            enddate: "---",
+            enddate: DateTime.now(),
             isActive: false);
         setState(() {
 
@@ -448,7 +448,7 @@ class _loginState extends State<login> {
 
         GlobalData.MyMembership = Membership(
             id: ParsedJson['membershipdata']['ID'],
-            enddate: ParsedJson['membershipdata']['date'],
+            enddate: DateTime.parse(ParsedJson['membershipdata']['date']),
             isActive: ParsedJson['membershipdata']['is_active']);
         setState(() {
 

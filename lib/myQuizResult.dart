@@ -24,15 +24,22 @@ class _MyQuizResultState extends State<MyQuizResult> {
 
     });
 
-    await http.post("http://edusupportapp.com/api/get_user_quizzes_by_join_class.php",
+    await http.post("http://edusupportapp.com/api/get_quizzes_by_class.php",
         body: {
-          "UserId":GlobalData.uid
+          "UserId":GlobalData.uid,
+          "Class_id":GlobalData.classid
         }).then((res){
       print(res.body);
 
       var ParsedJson = jsonDecode(res.body);
-      Quizz_List = (ParsedJson['quizdata'] as List).map((data)=>Pojo_quizzes.fromJson(data)).toList();
 
+      if(ParsedJson['quizdata']==false){
+
+      }
+      else {
+        Quizz_List = (ParsedJson['quizdata'] as List).map((data) =>
+            Pojo_quizzes.fromJson(data)).toList();
+      }
 
 
       Quizz_List.sort((a, b) {

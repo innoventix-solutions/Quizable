@@ -21,14 +21,17 @@ class _PreviewAssignmentState extends State<PreviewAssignment> {
 
   GetAssignment() async{
 
-    await http.post("http://edusupportapp.com/api/get_assignments.php",
+    await http.post("http://edusupportapp.com/api/get_assignments_by_class.php",
         body: {
-          "UserId":GlobalData.uid
+          "user_id":GlobalData.uid,
+          "Class_id":GlobalData.classid,
+          "publish_onhold_both":"dd"
+
         }).then((res){
       print(res.body);
 
       var ParsedJson = jsonDecode(res.body);
-      assignment_list = (ParsedJson['assignmentsdata'] as List).map((data)=>Pojo_getassignment.fromJson(data)).toList();
+      assignment_list = (ParsedJson['assignmentdata'] as List).map((data)=>Pojo_getassignment.fromJson(data)).toList();
 
       print(assignment_list.length);
       setState(() {
@@ -166,6 +169,11 @@ class _PreviewAssignmentState extends State<PreviewAssignment> {
                   ],
                 ),
                 onTap: () {
+
+                  GlobalData.AssignmentTitle="";
+                  GlobalData.NosofQuesassignment="";
+                  GlobalData.teacherinstruction="";
+                  GlobalData.teacherobjective="";
                   Navigator.of(context)
                       .pushNamed('SetAssignment');
                 },

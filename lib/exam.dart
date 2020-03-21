@@ -53,10 +53,35 @@ class _ExamState extends State<Exam> {
   List<TextEditingController> Textcontroller = List();
 
 
-
   List<pojo_anslog> anslist = new List();
 
   bool stoptimer =false;
+
+  void savingquestion(BuildContext context)  {
+
+    bool Selected = false;
+
+    showDialog(barrierDismissible: false,
+        context: context,
+        builder: (_) => new Dialog(
+          child: new Container(
+            alignment: FractionalOffset.center,
+            height: 80.0,
+            padding: const EdgeInsets.all(20.0),
+            child: new Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                new CircularProgressIndicator(),
+                new Padding(
+                  padding: new EdgeInsets.only(left: 10.0),
+                  child: new Text("Saving..."),
+                ),
+              ],
+            ),
+          ),
+        ));
+  }
+
 
   Timmer(){
 
@@ -785,6 +810,8 @@ class _ExamState extends State<Exam> {
                     Expanded(
                       child: GradientButtonText(
                         ButtonClick: () async {
+
+                          isloading=true;
                           bool remaning = false;
 
                           String answ="";
@@ -864,6 +891,8 @@ class _ExamState extends State<Exam> {
                               Show_toast_Now("Please complete the fill in the blanks or can skip the questions", Colors.red);
                             }
                             else{
+
+
 
                               for (int i = 0; i < fillupsData.length; i++) {
                                 answ += fillupsData[i];
@@ -969,6 +998,7 @@ class _ExamState extends State<Exam> {
                               }
                             }
                           }
+                          isloading=false;
                         },
                         linearGradient:LinearGradient(colors: <Color>[GlobalData.navyblue,GlobalData.pink]) ,
                         text: Text((i+1)==Quetions.length?"Submit":"Next",textAlign: TextAlign.center,style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
@@ -1046,7 +1076,7 @@ Matches =Quetions[i].anwer_options;*/
       onWillPop: () async => false,
       child: Scaffold(
           appBar: AppBar(title: Text("My Quiz Exercises"),centerTitle: true,automaticallyImplyLeading: false,),
-          body: isloading==true?Center(child: Text("Loading...")):isCompleted?Container():MYQue()
+          body: isloading==true?Center(child: Text("Saving...")):isCompleted?Container():MYQue()
 
 
 

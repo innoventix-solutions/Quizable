@@ -1089,7 +1089,9 @@ class _QuestionsnewState extends State<Questionsnew> {
                               CustomShowDialog(context,
                                   title: "No '_'",
                                   msg: "Please Add '_' in questions");
-                            } else {
+                            }
+
+                            else {
                               int no = 0;
                               if (SelectedType == "Fill-in the gaps") {
                                 no = ('_'
@@ -1102,19 +1104,25 @@ class _QuestionsnewState extends State<Questionsnew> {
                                 CustomShowDialog(context,
                                     title: "No Options",
                                     msg: "Please Add Some Options");
-                              } else if (SelectedType == "Single Answer" &&
+                              }
+
+                              else if (SelectedType == "Single Answer" &&
                                   getSelectedOptions() == 0) {
                                 CustomShowDialog(context,
                                     title: "No Option is Selected",
                                     msg: "Please Select an Options");
-                              } else if (SelectedType == "Multiple Answers" &&
+                              }
+
+                              else if (SelectedType == "Multiple Answers" &&
                                   getSelectedOptions() < 2) {
                                 CustomShowDialog(context,
                                     title: getSelectedOptions() == 0
                                         ? "No Option is Selected"
                                         : "Only One Option is Selected",
                                     msg: "Please Select Two or More Options");
-                              } else if (SelectedType == "Fill-in the gaps" &&
+                              }
+
+                              else if (SelectedType == "Fill-in the gaps" &&
                                   no > Options.length) {
                                 print("less number ");
 
@@ -1122,7 +1130,52 @@ class _QuestionsnewState extends State<Questionsnew> {
                                     title: "Less Answers",
                                     msg:
                                         "Number of answers are less then blanks(_) in the question.");
-                              } else {
+                              }
+
+                              else if(SelectedType == "Fill-in the gaps" &&
+                              Points.text==""){
+                                CustomShowDialog(context,
+                                    title: "Value Missing",
+                                    msg:
+                                    "Some value are missing.");
+                              }
+
+                              else if(SelectedType == "Multiple Answers" &&
+                                  Points.text=="" || QuestionName.text==""){
+                                CustomShowDialog(context,
+                                    title: "Value Missing",
+                                    msg:
+                                    "Some value are missing.");
+                              }
+
+                              else if(SelectedType == "Single Answer" &&
+                                  Points.text=="" || QuestionName.text==""){
+                                CustomShowDialog(context,
+                                    title: "Value Missing",
+                                    msg:
+                                    "Some value are missing.");
+                              }
+
+                              else if(SelectedType == "True False" &&
+                                  Points.text=="" || QuestionName.text==""){
+                                CustomShowDialog(context,
+                                    title: "Value Missing",
+                                    msg:
+                                    "Some value are missing.");
+                              }
+
+
+                              else if(SelectedType == "Match Type" &&
+                                  Points.text=="" || QuestionName.text==""){
+                                CustomShowDialog(context,
+                                    title: "Value Missing",
+                                    msg:
+                                    "Some value are missing.");
+                              }
+
+
+
+                              else {
                                 savingquestion(context);
                                 SaveQuizQuestion();
                               }

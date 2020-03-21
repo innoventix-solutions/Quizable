@@ -61,9 +61,11 @@ class _studentdashboardState extends State<studentdashboard> {
 
   GetTest() async{
 
-    await http.post("http://edusupportapp.com/api/get_user_quizzes_by_join_class.php",
+    await http.post("http://edusupportapp.com/api/get_quizzes_by_class.php",
         body: {
-          "UserId":GlobalData.uid
+          "UserId":GlobalData.uid,
+          "Class_id":GlobalData.classid,
+
         }).then((res){
       print(res.body);
 
@@ -80,9 +82,10 @@ class _studentdashboardState extends State<studentdashboard> {
 
   GetAssignment() async{
 
-    await http.post("http://edusupportapp.com/api/get_user_assignments_by_join_class.php",
+    await http.post("http://edusupportapp.com/api/get_assignments_by_class.php",
         body: {
-          "UserId":GlobalData.uid
+          "user_id":GlobalData.uid,
+          "Class_id":GlobalData.classid
         }).then((res){
       print(res.body);
 
@@ -102,9 +105,10 @@ class _studentdashboardState extends State<studentdashboard> {
   GetSpelling()async{
 
 
-    await http.post("http://edusupportapp.com/api/get_user_spelling_by_join_class.php",
+    await http.post("http://edusupportapp.com/api/get_spelling_by_class.php",
         body: {
-          "UserId":GlobalData.uid
+          "UserId":GlobalData.uid,
+          "Class_id":GlobalData.classid
         }).then((res){
       print(res.body);
 
@@ -250,7 +254,10 @@ class _studentdashboardState extends State<studentdashboard> {
         ),
         actions: <Widget>[
           IconButton(
-            onPressed: (){},
+            onPressed: (){
+              Navigator.of(context)
+                  .pushNamed('testttt');
+            },
             icon: Icon(
               Icons.account_circle,
               color: Colors.transparent,
@@ -550,6 +557,7 @@ class _studentdashboardState extends State<studentdashboard> {
                                   fontWeight: FontWeight.bold,fontSize: 18,),
                                 textAlign: TextAlign.center,),
                               ButtonClick: (){
+                                GlobalData.activeclass.id.toString();
                                 Navigator.of(context).pushNamed('StudentList');
                                 },)
                         ),

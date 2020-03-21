@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:share/share.dart';
 import 'Pojo/pojo_StudentListQuizResult.dart';
+import 'Pojo/pojo_leaderboard.dart';
 import 'global.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -15,10 +16,61 @@ class _StudentListBySpellingState extends State<StudentListBySpelling> {
 
   List<Pojo_StudentListResultSpelling> globlist = new List();
 
+  bool isloading = true;
 
+  List<leaderboard> leader = new List();
+
+
+  leaderboards()async{
+
+
+    isloading = true;
+    setState(() {
+
+    });
+
+    await http.post("http://edusupportapp.com/api/get_leaderboard.php",
+        body: {
+          "clsss_id":GlobalData.classid,
+          "spelling_id": GlobalData.spellingid,
+
+        }).then((response) {
+      print(response.body);
+
+      var parsedjson = jsonDecode(response.body);
+      print("Leader " + parsedjson['student_data'].toString());
+
+
+
+      if(parsedjson['student_data']==false){
+
+      }
+      else {
+        globlist = (parsedjson['student_data'] as List)
+            .map((data) => Pojo_StudentListResultSpelling.fromJson(data))
+            .toList();
+      }
+        setState(() {
+
+        });
+
+
+      isloading = false;
+      setState(() {
+
+      });
+    });
+
+  }
 
   getstudent()
   async {
+
+
+    isloading = true;
+    setState(() {
+
+    });
 
     print("ascasd ");
 
@@ -32,10 +84,14 @@ class _StudentListBySpellingState extends State<StudentListBySpelling> {
 
       var pass = jsonDecode(response.body);
 
-      globlist = (pass['student_data'] as List)
-          .map((data) => Pojo_StudentListResultSpelling.fromJson(data))
-          .toList();
+      if(pass['student_data']==false){
 
+      }
+      else {
+        globlist = (pass['student_data'] as List)
+            .map((data) => Pojo_StudentListResultSpelling.fromJson(data))
+            .toList();
+      }
       globlist.sort((a, b) {
         return b.point_awarded.toLowerCase().compareTo(a.point_awarded.toLowerCase());
       });
@@ -46,6 +102,12 @@ class _StudentListBySpellingState extends State<StudentListBySpelling> {
       setState(() {
 
       });
+
+      isloading = false;
+      setState(() {
+
+      });
+
     });
   }
 
@@ -73,7 +135,9 @@ class _StudentListBySpellingState extends State<StudentListBySpelling> {
           ),
 
         ),
-        body:
+        body:isloading==true?Center(child: Text("Loading...",style: TextStyle(
+            fontSize: 18
+        ),)):
         Column(
           children: <Widget>[
 
@@ -205,7 +269,8 @@ class _StudentListBySpellingState extends State<StudentListBySpelling> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    getstudent();
+    //getstudent();
+    leaderboards();
   }
 }
 

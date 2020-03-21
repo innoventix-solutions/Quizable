@@ -294,7 +294,8 @@ class MyApp extends StatelessWidget {
         //'audio':(context)=>audio(),
         'otp':(context)=>onetimepassword(),
         'audiorecords':(context)=>audiorecords(),
-        'studentsclassroom':(context)=>studentssclassroom()
+        'studentsclassroom':(context)=>studentssclassroom(),
+        'testttt':(context)=>TestingArun()
 
       },
     );

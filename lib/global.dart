@@ -164,7 +164,7 @@ static String spellLevels = "";
 static String spellNosofQuesPerLevel = "";
 static String spellDurationofEachLevel ="";
 static String spellingid="";
-static Membership MyMembership = Membership(isActive: false,enddate: "-",id: "adsf");
+static Membership MyMembership = Membership(isActive: false,enddate: DateTime.now(),id: "adsf");
 }
 
 
@@ -172,7 +172,7 @@ static Membership MyMembership = Membership(isActive: false,enddate: "-",id: "ad
 class Membership{
 
   String id;
-  String enddate;
+  DateTime enddate;
   bool isActive;
 
   Membership({this.id, this.enddate, this.isActive});
@@ -428,6 +428,8 @@ class drawerquiz extends StatelessWidget {
                         GlobalData.QuizLevels = "";
                         GlobalData.NosofQuesPerLevel = "";
                         GlobalData.DurationofEachLevel =  "";
+                        GlobalData.Selected_subject = null ;
+                        GlobalData.Selected_class = null;
 
                         Navigator.of(context)
                             .pushNamed('setquizquestions');
@@ -439,6 +441,8 @@ class drawerquiz extends StatelessWidget {
                       GlobalData.QuizLevels = "";
                       GlobalData.NosofQuesPerLevel = "";
                       GlobalData.DurationofEachLevel =  "";
+                      GlobalData.Selected_subject = null ;
+                      GlobalData.Selected_class = null;
                       Navigator.of(context)
                           .pushNamed('setquizquestions');
                     }
@@ -451,6 +455,8 @@ class drawerquiz extends StatelessWidget {
                      GlobalData.QuizLevels = "";
                      GlobalData.NosofQuesPerLevel = "";
                      GlobalData.DurationofEachLevel =  "";
+                     GlobalData.Selected_subject = null ;
+                     GlobalData.Selected_class = null;
                      Navigator.of(context)
                          .pushNamed('setquizquestions');
                    }
@@ -511,6 +517,8 @@ class drawerquiz extends StatelessWidget {
                 GlobalData.spellNosofQuesPerLevel = "";
                 GlobalData.spellDurationofEachLevel = "";
                 GlobalData.teacherguide = "";
+                GlobalData.Selected_subject = null ;
+                    GlobalData.Selected_class = null;
 
                 Navigator.of(context)
                     .pushNamed('setspellingque');
@@ -524,7 +532,8 @@ class drawerquiz extends StatelessWidget {
                 GlobalData.spellNosofQuesPerLevel = "";
                 GlobalData.spellDurationofEachLevel = "";
                 GlobalData.teacherguide = "";
-
+                GlobalData.Selected_subject = null ;
+                GlobalData.Selected_class = null;
                 Navigator.of(context)
                     .pushNamed('setspellingque');
               }
@@ -539,7 +548,8 @@ class drawerquiz extends StatelessWidget {
               GlobalData.spellNosofQuesPerLevel = "";
               GlobalData.spellDurationofEachLevel = "";
               GlobalData.teacherguide = "";
-
+              GlobalData.Selected_subject = null ;
+              GlobalData.Selected_class = null;
               Navigator.of(context)
                   .pushNamed('setspellingque');
             }

@@ -646,7 +646,7 @@ setalldetails(){
 
                                       if (GlobalData.QuizTitle == null || GlobalData.QuizLevels == null ||
                                           GlobalData.NosofQuesPerLevel == null ||
-                                          GlobalData.DurationofEachLevel == null ||
+                                          GlobalData.DurationofEachLevel == "" ||
                                           GlobalData.Selected_subject == null||
                                           GlobalData.Selected_class== null
                                       //|| Starting_date==null||
@@ -664,7 +664,7 @@ setalldetails(){
                                   } else {
                                     if (GlobalData.QuizTitle == null || GlobalData.QuizLevels == null ||
                                         GlobalData.NosofQuesPerLevel == null ||
-                                        GlobalData.DurationofEachLevel == null ||
+                                        GlobalData.DurationofEachLevel == "" ||
                                         GlobalData.Selected_subject == null||
                                         GlobalData.Selected_class== null
                                     //|| Starting_date==null||
@@ -681,7 +681,7 @@ setalldetails(){
                                 }else{
                                   if (GlobalData.QuizTitle == null || GlobalData.QuizLevels == null ||
                                       GlobalData.NosofQuesPerLevel == null ||
-                                      GlobalData.DurationofEachLevel == null ||
+                                      GlobalData.DurationofEachLevel == "" ||
                                       GlobalData.Selected_subject == null||
                                       GlobalData.Selected_class== null
                                   //|| Starting_date==null||

@@ -17,7 +17,8 @@ class _publishassignmentsState extends State<publishassignments> {
   TextEditingController publishdate= new TextEditingController();
   TextEditingController closingdate= new TextEditingController();
 
-  var now = DateTime.now();
+  var timeNigeria = DateTime.now().toString();
+  var timeIndia = DateTime.now().subtract(Duration(hours: 4,minutes: 30)).toString();
 
   @override
   void initState() {
@@ -312,7 +313,7 @@ class _publishassignmentsState extends State<publishassignments> {
       http.post(
           "http://edusupportapp.com/api/publish_assignment.php", body: {
         "assignment_id":GlobalData.AssignmentID,
-        "publish_date":DateTime.now().subtract(Duration(hours: 4,minutes: 30)).toString(),
+        "publish_date":timeIndia,
         "closing_date":Closing_date.toString(),
 
       }).then((response) {
@@ -335,6 +336,9 @@ class _publishassignmentsState extends State<publishassignments> {
   ScheduleAssignment()async {
 
 
+    var scheduledtimeNigeria = Starting_date.toString();
+    var scheduledtimeIndia = Starting_date.subtract(Duration(hours: 4,minutes: 30)).toString();
+
     print(
         "publish_date :"+ Starting_date.toString()+
             "\nclossing_date :"+Closing_date.toString()
@@ -350,7 +354,7 @@ class _publishassignmentsState extends State<publishassignments> {
       http.post(
           "http://edusupportapp.com/api/publish_assignment.php", body: {
         "assignment_id":GlobalData.AssignmentID,
-        "publish_date":Starting_date.subtract(Duration(hours: 4,minutes: 30)).toString(),
+        "publish_date":scheduledtimeIndia,
         "closing_date":Closing_date.toString(),
 
       }).then((response) {

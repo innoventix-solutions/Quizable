@@ -483,7 +483,7 @@ class _assignmentquestionbankState extends State<assignmentquestionbank> {
                                     } else {
 
                                       if (GlobalData.AssignmentTitle == null ||
-                                          GlobalData.NosofQuesassignment == null ||
+                                          GlobalData.NosofQuesassignment == "" ||
                                           GlobalData.teacherinstruction == "" ||
                                           GlobalData.teacherobjective == ""||
                                           GlobalData.Selected_class== null
@@ -501,7 +501,7 @@ class _assignmentquestionbankState extends State<assignmentquestionbank> {
 
 
                                     if (GlobalData.AssignmentTitle == null ||
-                                        GlobalData.NosofQuesassignment == null ||
+                                        GlobalData.NosofQuesassignment == "" ||
                                         GlobalData.teacherinstruction == "" ||
                                         GlobalData.teacherobjective == ""||
                                         GlobalData.Selected_class== null
@@ -519,7 +519,7 @@ class _assignmentquestionbankState extends State<assignmentquestionbank> {
                                 }else{
 
                                   if (GlobalData.AssignmentTitle == null ||
-                                      GlobalData.NosofQuesassignment == null ||
+                                      GlobalData.NosofQuesassignment == "" ||
                                       GlobalData.teacherinstruction == "" ||
                                       GlobalData.teacherobjective == ""||
                                       GlobalData.Selected_class== null
@@ -616,7 +616,7 @@ class _assignmentquestionbankState extends State<assignmentquestionbank> {
 
 
     if (GlobalData.AssignmentTitle == null ||
-        GlobalData.NosofQuesassignment == null ||
+        GlobalData.NosofQuesassignment == "" ||
         GlobalData.teacherinstruction == "" ||
         GlobalData.teacherobjective == ""||
         GlobalData.Selected_class== null

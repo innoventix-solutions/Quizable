@@ -99,7 +99,7 @@ class _ManageAccountState extends State<ManageAccount> {
                               children: <Widget>[
                                 Padding(
                                   padding: const EdgeInsets.all(10.0),
-                                  child: Text("Membership Ends on ${GlobalData.MyMembership.enddate}",textAlign: TextAlign.center,style:
+                                  child: Text("Membership Ends on ${GlobalData.MyMembership.enddate.add(Duration(days: 365)).toString()}",textAlign: TextAlign.center,style:
                                   TextStyle(fontSize: 20,color: Colors.white),),
                                 ),
                              ]
@@ -244,7 +244,7 @@ class _ManageAccountState extends State<ManageAccount> {
 
                                         GlobalData.MyMembership = Membership(
                                             id: 0.toString(),
-                                            enddate: "---",
+                                            enddate: DateTime.now(),
                                             isActive: false);
                                         setState(() {
 
@@ -254,7 +254,7 @@ class _ManageAccountState extends State<ManageAccount> {
 
                                         GlobalData.MyMembership = Membership(
                                             id: ParsedJson['membershipdata']['ID'],
-                                            enddate: ParsedJson['membershipdata']['date'],
+                                            enddate: DateTime.parse(ParsedJson['membershipdata']['date']),
                                             isActive: ParsedJson['membershipdata']['is_active']);
                                         setState(() {
 
@@ -392,7 +392,7 @@ class _ManageAccountState extends State<ManageAccount> {
 
                                       GlobalData.MyMembership = Membership(
                                           id: 0.toString(),
-                                          enddate: "---",
+                                          enddate: DateTime.now(),
                                           isActive: false);
                                       setState(() {
 
@@ -402,7 +402,7 @@ class _ManageAccountState extends State<ManageAccount> {
 
                                       GlobalData.MyMembership = Membership(
                                           id: ParsedJson['membershipdata']['ID'],
-                                          enddate: ParsedJson['membershipdata']['date'],
+                                          enddate: DateTime.parse(ParsedJson['membershipdata']['date']),
                                           isActive: ParsedJson['membershipdata']['is_active']);
                                       setState(() {
 

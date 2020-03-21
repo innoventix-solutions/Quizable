@@ -23,10 +23,11 @@ class _Quiz_List_studentState extends State<Quiz_List_student> {
     setState(() {
 
     });
-    await http.post("http://edusupportapp.com/api/get_user_quizzes_by_join_class.php",
+    await http.post("http://edusupportapp.com/api/get_quizzes_by_class.php",
         body: {
           "UserId":GlobalData.uid,
-          "subject": GlobalData.Selected_subject
+          "Class_id":GlobalData.classid,
+          "subject": GlobalData.Selected_subject,
         }).then((res){
       print(res.body);
 

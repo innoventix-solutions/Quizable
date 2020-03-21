@@ -15,8 +15,15 @@ class questionmenu extends StatefulWidget {
 class _questionmenuState extends State<questionmenu> {
 
   List<Pojo_quizzes> Quizz_List = new List();
+  bool isloading = true;
 
   GetTest() async{
+
+
+    isloading = true;
+    setState(() {
+
+    });
 
     await http.post("http://edusupportapp.com/api/get_quizzes_by_class.php",
     body: {
@@ -26,12 +33,24 @@ class _questionmenuState extends State<questionmenu> {
       print(res.body);
 
       var ParsedJson = jsonDecode(res.body);
-      Quizz_List = (ParsedJson['quizdata'] as List).map((data)=>Pojo_quizzes.fromJson(data)).toList();
 
+      if(ParsedJson['quizdata']==false){
+
+      }
+      else {
+        Quizz_List = (ParsedJson['quizdata'] as List).map((data) =>
+            Pojo_quizzes.fromJson(data)).toList();
+      }
       print(Quizz_List.length);
       setState(() {
 
       });
+
+      isloading = false;
+      setState(() {
+
+      });
+
     });
   }
 
@@ -78,7 +97,9 @@ class _questionmenuState extends State<questionmenu> {
       /*drawer:
       drawerquiz(),*/
 
-      body:
+      body:isloading==true?Center(child: Text("Loading...",style: TextStyle(
+          fontSize: 18
+      ),)):
           Column(
             children: <Widget>[
               Expanded(

@@ -784,7 +784,41 @@ class _SetAssignmentQuestionState extends State<SetAssignmentQuestion> {
 
                               CustomShowDialog(context,title: "Less Answers",
                                   msg:"Number of answers are less then blanks(_) in the question." );
-                            }else
+                            }
+
+                            else if(SelectedType == "Fill-in the gaps" &&
+                                Points.text==""){
+                              CustomShowDialog(context,
+                                  title: "Value Missing",
+                                  msg:
+                                  "Some value are missing.");
+                            }
+
+                            else if(SelectedType == "Multiple Answers" &&
+                                Points.text=="" || QuestionName.text==""){
+                              CustomShowDialog(context,
+                                  title: "Value Missing",
+                                  msg:
+                                  "Some value are missing.");
+                            }
+                            else if(SelectedType == "Fill-in the gaps" &&
+                                Points.text==""){
+                              CustomShowDialog(context,
+                                  title: "Value Missing",
+                                  msg:
+                                  "Some value are missing.");
+                            }
+
+                            else if(SelectedType == "Short Essay" &&
+                                Points.text=="" || QuestionName.text==""){
+                              CustomShowDialog(context,
+                                  title: "Value Missing",
+                                  msg:
+                                  "Some value are missing.");
+                            }
+
+
+                            else
                             {
                               savingquestion(context);
                               SaveAssignmentQuestion();

@@ -30,9 +30,11 @@ class _invitecodeState extends State<invitecode> {
       appBar: AppBar(
         automaticallyImplyLeading: false,
 
-        title: Text(
-          "Create New Classroom",
-          style: TextStyle(fontSize: 22),
+        title: Center(
+          child: Text(
+            "Create New Classroom",
+            style: TextStyle(fontSize: 22),
+          ),
         ),
         flexibleSpace: Container(
           decoration: BoxDecoration(

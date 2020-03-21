@@ -26,16 +26,24 @@ class _RecentQuestionState extends State<RecentQuestion> {
     setState(() {
 
     });
-    await http.post("http://edusupportapp.com/api/get_assignments.php",
-        body: {"UserId": GlobalData.uid,
-       }).then((res) {
+    await http.post("http://edusupportapp.com/api/get_assignments_by_class.php",
+        body: {"user_id": GlobalData.uid,
+          "Class_id":GlobalData.classid,
+          "publish_onhold_both":"dd"
+
+        }).then((res) {
       print(res.body);
 
       var ParsedJson = jsonDecode(res.body);
-      assignment_list = (ParsedJson['assignmentsdata'] as List)
-          .map((data) => Pojo_getassignment.fromJson(data))
-          .toList();
 
+      if(ParsedJson['assignmentsdata']==false){
+
+      }
+      else {
+        assignment_list = (ParsedJson['assignmentdata'] as List)
+            .map((data) => Pojo_getassignment.fromJson(data))
+            .toList();
+      }
       print(assignment_list.length);
       setState(() {});
     });
@@ -52,15 +60,24 @@ class _RecentQuestionState extends State<RecentQuestion> {
     setState(() {
 
     });
-    await http.post("http://edusupportapp.com/api/get_quizzes",
+    await http.post("http://edusupportapp.com/api/get_quizzes_by_class.php",
         body: {"UserId": GlobalData.uid,
+          "Class_id":GlobalData.classid,
+          "publish_onhold_both":"dd"
 
        }).then((res) {
       print(res.body);
       var ParsedJson = jsonDecode(res.body);
-      Quizz_List = (ParsedJson['quizdata'] as List)
-          .map((data) => Pojo_quizzes.fromJson(data))
-          .toList();
+
+      if(ParsedJson['quizdata']==false)
+        {
+
+        }
+      else {
+        Quizz_List = (ParsedJson['quizdata'] as List)
+            .map((data) => Pojo_quizzes.fromJson(data))
+            .toList();
+      }
       print(Quizz_List.length);
       setState(() {});
     });
@@ -78,15 +95,23 @@ class _RecentQuestionState extends State<RecentQuestion> {
 
     });
 
-    await http.post("http://edusupportapp.com/api/get_spellings.php",
+    await http.post("http://edusupportapp.com/api/get_spelling_by_class.php",
         body: {"UserId": GlobalData.uid,
+          "Class_id":GlobalData.classid,
+          "publish_onhold_both":"dd"
 
           }).then((res) {
       print(res.body);
       var ParsedJson = jsonDecode(res.body);
-      spellinglist = (ParsedJson['spellingdata'] as List)
-          .map((data) => Pojo_spelling.fromJson(data))
-          .toList();
+
+      if(ParsedJson['spellingdata']==false){
+
+      }
+      else {
+        spellinglist = (ParsedJson['spellingdata'] as List)
+            .map((data) => Pojo_spelling.fromJson(data))
+            .toList();
+      }
       print(spellinglist.length);
       setState(() {});
     });
@@ -139,7 +164,10 @@ class _RecentQuestionState extends State<RecentQuestion> {
           ],
         ),
         drawer: drawerquiz(),
-        body:Column(
+        body:isloading==true?Center(child: Text("Loading...",style: TextStyle(
+            fontSize: 18
+        ),)):
+        Column(
           children: <Widget>[
             assignment_list.isEmpty && Quizz_List.isEmpty && spellinglist.isEmpty
                 ? Center(

@@ -26,9 +26,10 @@ class _Spelling_List_studentState extends State<Spelling_List_student> {
 
     });
 
-    await http.post("http://edusupportapp.com/api/get_user_spelling_by_join_class.php",
+    await http.post("http://edusupportapp.com/api/get_spelling_by_class.php",
         body: {
           "UserId":GlobalData.uid,
+          "Class_id":GlobalData.classid,
           "subject": GlobalData.Selected_subject
         }).then((res){
       print(res.body);

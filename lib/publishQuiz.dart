@@ -17,8 +17,8 @@ class _publishquizState extends State<publishquiz> {
   TextEditingController publishdate= new TextEditingController();
   TextEditingController closingdate= new TextEditingController();
 
-  var now = DateTime.now();
-  var time = TimeOfDay.now();
+  var timeNigeria = DateTime.now().toString();
+  var timeIndia = DateTime.now().subtract(Duration(hours: 4,minutes: 30)).toString();
 
   @override
   void initState() {
@@ -310,7 +310,7 @@ class _publishquizState extends State<publishquiz> {
       http.post(
           "http://edusupportapp.com/api/publish_quiz.php", body: {
         "quiz_id":GlobalData.QuizID,
-        "publish_date":DateTime.now().subtract(Duration(hours: 4,minutes: 30)).toString(),
+        "publish_date":timeIndia,
         "closing_date":Closing_date.toString(),
 
       }).then((response) {
@@ -332,6 +332,8 @@ class _publishquizState extends State<publishquiz> {
 
   ScheduleQuiz()async {
 
+    var scheduledtimeNigeria = Starting_date.toString();
+    var scheduledtimeIndia = Starting_date.subtract(Duration(hours: 4,minutes: 30)).toString();
 
     print(
         "publish_date :"+ Starting_date.toString()+
@@ -348,7 +350,7 @@ class _publishquizState extends State<publishquiz> {
       http.post(
           "http://edusupportapp.com/api/publish_quiz.php", body: {
         "quiz_id":GlobalData.QuizID,
-        "publish_date":Starting_date.subtract(Duration(hours: 4,minutes: 30)).toString(),
+        "publish_date":scheduledtimeIndia,
         "closing_date":Closing_date.toString(),
 
       }).then((response) {

@@ -18,9 +18,11 @@ class _PreviewQuizState extends State<PreviewQuiz> {
 
   GetTest() async{
 
-    await http.post("http://edusupportapp.com/api/get_quizzes.php",
+    await http.post("http://edusupportapp.com/api/get_quizzes_by_class.php",
         body: {
-          "UserId":GlobalData.uid
+          "UserId":GlobalData.uid,
+          "Class_id":GlobalData.classid,
+          "publish_onhold_both":"dd"
         }).then((res){
       print(res.body);
 
@@ -170,6 +172,10 @@ class _PreviewQuizState extends State<PreviewQuiz> {
                               ],
                             ),
                             onTap: () {
+                              GlobalData.QuizTitle  = "";
+                              GlobalData.QuizLevels = "";
+                              GlobalData.NosofQuesPerLevel = "";
+                              GlobalData.DurationofEachLevel =  "";
                               Navigator.of(context)
                                   .pushNamed('setquizquestions');
                             },

@@ -17,7 +17,15 @@ class _StudentReportSpellingState extends State<StudentReportSpelling> {
 
   List<Pojo_spelling> Spellinglist = new List();
 
+  bool isloading = true;
+
   GetTest() async{
+
+
+    isloading = true;
+    setState(() {
+
+    });
 
     await http.post("http://edusupportapp.com/api/get_spelling_by_class.php",
         body: {
@@ -27,12 +35,24 @@ class _StudentReportSpellingState extends State<StudentReportSpelling> {
       print(res.body);
 
       var ParsedJson = jsonDecode(res.body);
-      Spellinglist = (ParsedJson['spellingdata'] as List).map((data)=>Pojo_spelling.fromJson(data)).toList();
 
+      if(ParsedJson['spellingdata']==false){
+
+      }
+      else {
+        Spellinglist = (ParsedJson['spellingdata'] as List).map((data) =>
+            Pojo_spelling.fromJson(data)).toList();
+      }
       print(Spellinglist.length);
       setState(() {
 
       });
+
+      isloading = false;
+      setState(() {
+
+      });
+
     });
   }
 
@@ -79,7 +99,9 @@ class _StudentReportSpellingState extends State<StudentReportSpelling> {
         /*drawer:
       drawerquiz(),*/
 
-        body:
+        body:isloading==true?Center(child: Text("Loading...",style: TextStyle(
+            fontSize: 18
+        ),)):
         Column(
           children: <Widget>[
             Expanded(

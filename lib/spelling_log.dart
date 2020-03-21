@@ -24,15 +24,22 @@ class _spellinglogState extends State<spellinglog> {
     setState(() {
 
     });
-    await http.post("http://edusupportapp.com/api/get_user_spelling_by_join_class.php",
+    await http.post("http://edusupportapp.com/api/get_spelling_by_class.php",
         body: {
-          "UserId":GlobalData.uid
+          "UserId":GlobalData.uid,
+          "Class_id":GlobalData.classid
         }).then((res){
       print(res.body);
 
       var ParsedJson = jsonDecode(res.body);
-      spellingList = (ParsedJson['spellingdata'] as List).map((data)=>Pojo_spelling.fromJson(data)).toList();
 
+      if(ParsedJson['spellingdata']==false){
+
+      }
+      else {
+        spellingList = (ParsedJson['spellingdata'] as List).map((data) =>
+            Pojo_spelling.fromJson(data)).toList();
+      }
 
       spellingList.sort((a, b) {
         return b.takendate.toLowerCase().compareTo(a.takendate.toLowerCase());

@@ -462,6 +462,8 @@ class _AssignmentExamState extends State<AssignmentExam> {
                     child: GradientButtonText(
                       ButtonClick: ()async{
 
+
+                        isloading=true;
                         bool remaning = false;
 
                         String answ="";
@@ -568,6 +570,7 @@ class _AssignmentExamState extends State<AssignmentExam> {
                           }
                           }
 
+                        isloading=false;
                       },
                       linearGradient:LinearGradient(colors: <Color>[GlobalData.navyblue,GlobalData.pink]) ,
                       text: Text((i+1)==Quetions.length?"Submit":"Next",textAlign: TextAlign.center,style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
@@ -621,7 +624,7 @@ class _AssignmentExamState extends State<AssignmentExam> {
       onWillPop: () async => false,
       child: Scaffold(
           appBar: AppBar(title: Text("My Class Assignment"),centerTitle: true,automaticallyImplyLeading: false,),
-          body: isloading==true?Center(child: Text("Loading...")):isloading?Container():MYQue()
+          body: isloading==true?Center(child: Text("Saving...")):isloading?Container():MYQue()
 
 
 
@@ -753,7 +756,7 @@ class _AssignmentExamState extends State<AssignmentExam> {
                                                 Navigator.of(context).pop();
                                                 submittime();
                                                 Navigator.of(context).pop();
-                                                Navigator.of(context).pushNamed('AssignmentListStudents');
+                                                Navigator.of(context).pushReplacementNamed('AssignmentListStudents');
                                                 setState(() {
 
                                                 });

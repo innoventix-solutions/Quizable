@@ -100,8 +100,8 @@ class Pojo_getassignment{
         Label = "Taken";
       } else if (DateStatus == -1 &&
           (AttempedQuestions > 0 && AttempedQuestions < TotalQuestions)) {
-        //Label = "Taken";
-        Label = "Pending";
+        Label = "Taken";
+        //Label = "Pending";
       }
     }
     else{

@@ -18,9 +18,17 @@ class _AssignmentReportState extends State<AssignmentReport> {
 
   List<Pojo_getassignment> assignment_list = new List();
 
-    List<Pojo_questions> Quetions = new List();
+  List<Pojo_questions> Quetions = new List();
+
+  bool isloading = true;
+
 
   GetTest() async{
+
+    isloading = true;
+    setState(() {
+
+    });
 
     await http.post("http://edusupportapp.com/api/get_assignments_by_class.php",
         body: {
@@ -30,9 +38,20 @@ class _AssignmentReportState extends State<AssignmentReport> {
       print(res.body);
 
       var ParsedJson = jsonDecode(res.body);
-      assignment_list = (ParsedJson['assignmentdata'] as List).map((data)=>Pojo_getassignment.fromJson(data)).toList();
 
+      if(ParsedJson['assignmentdata']== false) {
+
+      }
+      else{
+        assignment_list = (ParsedJson['assignmentdata'] as List).map((data) =>
+            Pojo_getassignment.fromJson(data)).toList();
+      }
       print(assignment_list.length);
+      setState(() {
+
+      });
+
+      isloading = false;
       setState(() {
 
       });
@@ -82,7 +101,9 @@ class _AssignmentReportState extends State<AssignmentReport> {
         /*drawer:
       drawerquiz(),*/
 
-        body:
+        body:isloading==true?Center(child: Text("Loading...",style: TextStyle(
+            fontSize: 18
+        ),)):
         Column(
           children: <Widget>[
             Expanded(

@@ -23,15 +23,20 @@ class _AssignmentListStudentsState extends State<AssignmentListStudents> {
     setState(() {
 
     });
-    await http.post("http://edusupportapp.com/api/get_user_assignments_by_join_class.php",
+    await http.post("http://edusupportapp.com/api/get_assignments_by_class.php",
         body: {
-          "UserId":GlobalData.uid
+          "user_id":GlobalData.uid,
+          "Class_id":GlobalData.classid,
+
         }).then((res){
       print(res.body);
 
       var ParsedJson = jsonDecode(res.body);
 
-      if (ParsedJson['assignmentdata'] != null || ParsedJson['assignmentdata']!= false) {
+      if (ParsedJson['assignmentdata'] == false) {
+
+      }
+      else{
         assignment_list = (ParsedJson['assignmentdata'] as List).map((data) =>
             Pojo_getassignment.fromJson(data)).toList();
       }

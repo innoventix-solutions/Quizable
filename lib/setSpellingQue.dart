@@ -594,10 +594,10 @@ class _setspellingquestionState extends State<setspellingquestion> {
                                         if (GlobalData.spelltitle == null ||
                                             GlobalData.spellLevels == null ||
                                             GlobalData.spellNosofQuesPerLevel == null ||
-                                            GlobalData.spellDurationofEachLevel == null ||
+                                            GlobalData.spellDurationofEachLevel == "" ||
                                             GlobalData.Selected_subject == null ||
                                             GlobalData.Selected_class == null ||
-                                            GlobalData.teacherguide == null
+                                            GlobalData.teacherguide == ""
                                         //Starting_date==null||
                                         //Closing_date==null
                                         ) {
@@ -613,10 +613,10 @@ class _setspellingquestionState extends State<setspellingquestion> {
                                       if (GlobalData.spelltitle == null ||
                                           GlobalData.spellLevels == null ||
                                           GlobalData.spellNosofQuesPerLevel == null ||
-                                          GlobalData.spellDurationofEachLevel == null ||
+                                          GlobalData.spellDurationofEachLevel == "" ||
                                           GlobalData.Selected_subject == null ||
                                           GlobalData.Selected_class == null ||
-                                          GlobalData.teacherguide == null
+                                          GlobalData.teacherguide == ""
                                       //Starting_date==null||
                                       //Closing_date==null
                                       ) {
@@ -631,10 +631,10 @@ class _setspellingquestionState extends State<setspellingquestion> {
                                     if (GlobalData.spelltitle == null ||
                                         GlobalData.spellLevels == null ||
                                         GlobalData.spellNosofQuesPerLevel == null ||
-                                        GlobalData.spellDurationofEachLevel == null ||
+                                        GlobalData.spellDurationofEachLevel == "" ||
                                         GlobalData.Selected_subject == null ||
                                         GlobalData.Selected_class == null ||
-                                        GlobalData.teacherguide == null
+                                        GlobalData.teacherguide == ""
                                     //Starting_date==null||
                                     //Closing_date==null
                                     ) {
@@ -736,10 +736,10 @@ class _setspellingquestionState extends State<setspellingquestion> {
     if (GlobalData.spelltitle == null ||
             GlobalData.spellLevels == null ||
             GlobalData.spellNosofQuesPerLevel == null ||
-            GlobalData.spellDurationofEachLevel == null ||
+            GlobalData.spellDurationofEachLevel == "" ||
             GlobalData.Selected_subject == null ||
             GlobalData.Selected_class == null ||
-            GlobalData.teacherguide == null
+            GlobalData.teacherguide == ""
         //Starting_date==null||
         //Closing_date==null
         ) {

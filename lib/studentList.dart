@@ -30,8 +30,8 @@ class _StudentListState extends State<StudentList> {
     });
 
 GlobalData.Studentlist.clear();
-    await http.post("http://edusupportapp.com/api/get_user_list_by_class.php"
-        ,body: {
+    await http.post("http://edusupportapp.com/api/get_user_list_by_class.php",
+        body: {
           "Class_id": GlobalData.classid,
           "user_type": "student",
         }).
@@ -40,10 +40,16 @@ GlobalData.Studentlist.clear();
       print(response.body);
 
       var pass = jsonDecode(response.body);
+      print(pass['user_data']);
 
-      GlobalData.Studentlist = (pass['user_data'] as List)
-          .map((data) => pojouserrslist.fromJson(data))
-          .toList();
+
+        if (pass['user_data']==false) {
+
+        }else{
+          GlobalData.Studentlist = (pass['user_data'] as List)
+              .map((data) => pojouserrslist.fromJson(data))
+              .toList();
+        }
 
       print(GlobalData.Studentlist.length);
 
