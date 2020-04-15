@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'global.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+import 'package:fluttertoast/fluttertoast.dart';
 
 
 class Forgetpassword extends StatefulWidget {
@@ -12,7 +15,52 @@ class _ForgetpasswordState extends State<Forgetpassword> {
 
   TextEditingController emailid = new TextEditingController();
 
+  Show_toast(String msg, Color color) {
+    Fluttertoast.showToast(
+        msg: msg,
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.CENTER,
+        timeInSecForIos: 1,
+        backgroundColor: color,
+        textColor: Colors.white,
+        fontSize: 16.0);
+  }
 
+  forgotpassword() async{
+
+    await http.post("http://edusupportapp.com/api/forgot_password.php",
+        body: {
+          "user_email":emailid.text.toString(),
+        }).then((res){
+      print(res.body);
+
+      var ParsedJson = jsonDecode(res.body);
+      if (ParsedJson['status'] == 1) {
+
+        GlobalData.Recoveremail=emailid.text.toString();
+        print(GlobalData.Recoveremail);
+
+        print(ParsedJson['userdata']['code'].toString());
+
+        GlobalData.Recoverycode=ParsedJson['userdata']['code'].toString();
+
+        GlobalData.uid = ParsedJson['userdata']['ID'].toString();
+        print("Recovery code "+ GlobalData.Recoverycode);
+        print(ParsedJson['userdata']['ID'].toString());
+        print(GlobalData.uid);
+        Navigator.of(context).pushNamed('otp');
+        Show_toast("Email Sent", Colors.green);
+
+      }
+      else {
+        Show_toast("Invalid Email address", Colors.red);
+      }
+
+      setState(() {
+
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -78,6 +126,7 @@ class _ForgetpasswordState extends State<Forgetpassword> {
                     fontSize: 18,fontWeight: FontWeight.bold,color: Colors.white
                   ),),
                 ),color: GlobalData.navyblue,onPressed: (){
+                  forgotpassword();
 
                 },)
               ],

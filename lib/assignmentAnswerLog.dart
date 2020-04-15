@@ -86,88 +86,90 @@ class _AssignmentAnswerLogState extends State<AssignmentAnswerLog> {
   @override
 
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-          appBar: AppBar(
-            automaticallyImplyLeading: true,
-            title: Center(
-              child: Text(
-                GlobalData.ExamQuiz,
-                style: TextStyle(fontSize: 20),
-              ),
-            ),
-            flexibleSpace: Container(
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomRight,
-                  colors: [GlobalData.darkblue, GlobalData.darkpurple],
+    return WillPopScope(onWillPop: () async => true,
+      child: SafeArea(
+        child: Scaffold(
+            appBar: AppBar(
+              automaticallyImplyLeading: true,
+              title: Center(
+                child: Text(
+                  GlobalData.ExamQuiz,
+                  style: TextStyle(fontSize: 20),
                 ),
               ),
-            ),
-            actions: <Widget>[
-              IconButton(
-                onPressed: () {},
-                icon: Icon(
-                  Icons.account_circle,
-                  color: Colors.transparent,
-                  size: 20,
+              flexibleSpace: Container(
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomRight,
+                    colors: [GlobalData.darkblue, GlobalData.darkpurple],
+                  ),
                 ),
               ),
-            ],
-          ),
-          body:
-          SmartRefresher(
-            enablePullDown: true,
-            enablePullUp: true,
-            header: WaterDropHeader(),
-            footer: CustomFooter(
-              builder: (BuildContext context, LoadStatus mode){
-                Widget body;
-                if(mode==LoadStatus.idle){
-                  body =  Text("pull up load");
-                }
-                else if(mode==LoadStatus.loading){
-                  body =  Text("");
-                  //CupertinoActivityIndicator();
-                }
-                else if(mode == LoadStatus.failed){
-                  body = Text("Load Failed!Click retry!");
-                }
-                else if(mode == LoadStatus.canLoading){
-                  body = Text("release to load more");
-                }
-                else{
-                  body = Text("No more Data");
-                }
-                return Container(
-                  height: 55.0,
-                  child: Center(child:body),
+              actions: <Widget>[
+                IconButton(
+                  onPressed: () {},
+                  icon: Icon(
+                    Icons.account_circle,
+                    color: Colors.transparent,
+                    size: 20,
+                  ),
+                ),
+              ],
+            ),
+            body:
+            SmartRefresher(
+              enablePullDown: true,
+              enablePullUp: true,
+              header: WaterDropHeader(),
+              footer: CustomFooter(
+                builder: (BuildContext context, LoadStatus mode){
+                  Widget body;
+                  if(mode==LoadStatus.idle){
+                    body =  Text("pull up load");
+                  }
+                  else if(mode==LoadStatus.loading){
+                    body =  Text("");
+                    //CupertinoActivityIndicator();
+                  }
+                  else if(mode == LoadStatus.failed){
+                    body = Text("Load Failed!Click retry!");
+                  }
+                  else if(mode == LoadStatus.canLoading){
+                    body = Text("release to load more");
+                  }
+                  else{
+                    body = Text("No more Data");
+                  }
+                  return Container(
+                    height: 55.0,
+                    child: Center(child:body),
+                  );
+                },
+              ),
+              controller: _refreshController,
+              onRefresh: _onRefresh,
+              onLoading: _onLoading,
+              child: ListView.builder(itemBuilder: (c,i){
+                return MyResultBlock(correct_ans: anslist[i].trueans,
+                  questionid: anslist[i].id,
+                  //level:  anslist[i].level_no,
+                  que:  anslist[i].question,
+                  que_no:  anslist[i].que_no,
+                  user_ans:  anslist[i].useranswer,
+                  result: anslist[i].is_true,
+                  anwer_options: anslist[i].anwer_options,
+                  afg:anslist[i].json,
+                  User_anwer_options: anslist[i].user_anwer_options,
+                  answertype: anslist[i].answer_type,
+                  pointawarded: anslist[i].pointawarded,
+                  teacher_given_story_point: anslist[i].teacher_given_story_point,
                 );
               },
-            ),
-            controller: _refreshController,
-            onRefresh: _onRefresh,
-            onLoading: _onLoading,
-            child: ListView.builder(itemBuilder: (c,i){
-              return MyResultBlock(correct_ans: anslist[i].trueans,
-                questionid: anslist[i].id,
-                //level:  anslist[i].level_no,
-                que:  anslist[i].question,
-                que_no:  anslist[i].que_no,
-                user_ans:  anslist[i].useranswer,
-                result: anslist[i].is_true,
-                anwer_options: anslist[i].anwer_options,
-                afg:anslist[i].json,
-                User_anwer_options: anslist[i].user_anwer_options,
-                answertype: anslist[i].answer_type,
-                pointawarded: anslist[i].pointawarded,
-                teacher_given_story_point: anslist[i].teacher_given_story_point,
-              );
-            },
-              itemCount: anslist.length,),
-          )
+                itemCount: anslist.length,),
+            )
 
+        ),
       ),
     );
   }
@@ -236,9 +238,9 @@ class MyResultBlock extends StatelessWidget {
 
 
         Show_toast("Point Inserted Successfully", Colors.green);
-        //Navigator.of(context).pushNamed('AssignmentReport');
+        Navigator.of(context).pushReplacementNamed('StudentListByAssignment');
 
-        Navigator.of(context).pop();
+        //Navigator.of(context).pop();
         print(response.body);
         print("userid: " +GlobalData.CurrentStudentID);
         print("point: " +points.text.toString());

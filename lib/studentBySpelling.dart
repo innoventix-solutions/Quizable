@@ -20,6 +20,32 @@ class _StudentListBySpellingState extends State<StudentListBySpelling> {
 
   List<leaderboard> leader = new List();
 
+  sharedetail(){
+
+
+    String total="";
+
+
+    for(int i=0; i<globlist.length; i++){
+
+      String temp = "Student: " + globlist[i].username +  " completed Spelling: " + GlobalData.ExamQuiz +"\n" + "Point Awarded: " + globlist[i].point_awarded + "/" + globlist[i].TotalSpellingpoints +"\n"+ "Percentage: " + globlist[i].percentage + "\n" + "Progress Label: " + globlist[i].progresslabel + "\n \n";
+
+      total = total + temp;
+
+      setState(() {
+
+      });
+
+    }
+    //print("${globlist[i].username}");
+
+    print(total);
+
+    Share.share(total);
+    //Share.share("Student: " + username + " completed Assignment: " + GlobalData.ExamQuiz + "\n \n"+"Point Awarded: " + pointawarded + "/" + totalpoints + "\n" + "Percentage: " + percent + "\n" +  "Progress Label: " + label);
+
+  }
+
 
   leaderboards()async{
 
@@ -124,6 +150,25 @@ class _StudentListBySpellingState extends State<StudentListBySpelling> {
               style: TextStyle(fontSize: 22),textAlign: TextAlign.center,
             ),
           ),
+
+          actions: <Widget>[
+
+            GestureDetector(onTap: (){
+
+              sharedetail();
+            },
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Icon(
+                  Icons.share,
+                  color: Colors.white,
+                  size: 30,
+                ),
+              ),
+            ),
+
+          ],
+
           flexibleSpace: Container(
             decoration: BoxDecoration(
               gradient: LinearGradient(
@@ -223,10 +268,10 @@ class _StudentListBySpellingState extends State<StudentListBySpelling> {
                                       ),
                                     ),
 
-                                    GestureDetector(onTap: (){
+                                    /*GestureDetector(onTap: (){
                                       Share.share("Student: " + globlist[index].username + " completed Spelling: " + GlobalData.ExamQuiz + "\n \n"+"Point Awarded: " + globlist[index].point_awarded + "/" + globlist[index].TotalSpellingpoints + "\n" + "Percentage: " + globlist[index].percentage + "\n" +  "Progress Label: " + globlist[index].progresslabel);
 
-                                    },child: Icon(Icons.share)),
+                                    },child: Icon(Icons.share)),*/
 
                                     SizedBox(width: 20,),
 

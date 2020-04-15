@@ -151,7 +151,7 @@ class _assignmentquestionbankState extends State<assignmentquestionbank> {
                 'Previewassignment');},
             icon: Icon(
               Icons.line_weight,
-              color: Colors.white,
+              color: Colors.transparent,
               size: 20,
             ),
           ),

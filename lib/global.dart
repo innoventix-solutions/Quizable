@@ -65,7 +65,7 @@ class GlobalData{
   static bool LoadData = true;
   static int QuestionNumber=0;
   static String userType;
-  static String accounttype="";
+  static String accounttype;
   static String uid;
   static String class_name;
   static String class_icon;
@@ -121,6 +121,12 @@ class GlobalData{
   static String assignmentstatus="";
   static String spellingstatus="";
   static String pointawrded="";
+  static String Recoveremail="";
+  static String Recoverycode="";
+  static String adminaccounttype;
+  static String classadminid;
+  static String accountname;
+  static String adminaccountname;
 
 
 
@@ -1698,7 +1704,7 @@ LogoutFunction(context)async {
   GlobalData.LoadData = true;
   GlobalData.QuestionNumber=0;
   GlobalData.userType=null;
-  GlobalData.accounttype="";
+  GlobalData.accounttype;
   GlobalData.uid;
   GlobalData.class_name;
   GlobalData.class_icon;
@@ -1785,11 +1791,21 @@ Getstudent() async {
     print(res.body);
     var ParsedData = await jsonDecode(res.body);
 
-    if(ParsedData['join_classdata'].toString()!="false") {
+    if(ParsedData['join_classdata']== false) {
+
+    }
+    else
+      {
       GlobalData.Class_list =
           (ParsedData['join_classdata'] as List).map((data) =>
               Classes.fromJson(data)).toList();
+
+
+        //GlobalData.userType="teacher";
     }
+
+
+
 
   }
 

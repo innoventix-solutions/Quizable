@@ -319,7 +319,7 @@ class _publishassignmentsState extends State<publishassignments> {
       }).then((response) {
         var status = jsonDecode(response.body);
         if(status['status']==1){
-          Navigator.of(context).pushReplacementNamed('Recentque');
+          Navigator.of(context).pushReplacementNamed('dashboard');
           ClearRegisterData();
           setState(() {});
         }
@@ -360,7 +360,7 @@ class _publishassignmentsState extends State<publishassignments> {
       }).then((response) {
         var status = jsonDecode(response.body);
         if(status['status']==1){
-          Navigator.of(context).pushReplacementNamed('Recentque');
+          Navigator.of(context).pushReplacementNamed('dashboard');
           ClearRegisterData();
           setState(() {});
         }

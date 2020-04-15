@@ -33,7 +33,7 @@ class _techerjoinclassState extends State<techerjoinclass> {
                     ),
                     child:  GestureDetector(
                         onTap: (){
-                          Navigator.of(context).pushNamed('teacherdashboard');
+                          Navigator.of(context).pop();
                         },child: new Text("Cancel")),
                   ),
 
@@ -81,7 +81,9 @@ class _techerjoinclassState extends State<techerjoinclass> {
 
         await GetClasses(statuss['join_classdata'],statuss['classdata']);
 
-
+        print(GlobalData.adminaccountname);
+        print(GlobalData.accountname);
+        print(GlobalData.classadminid);
 
 
 
@@ -95,8 +97,11 @@ class _techerjoinclassState extends State<techerjoinclass> {
 
   void GetClasses(var Data,var CurrentClass) async
   {
-    GlobalData.activeclass = Classes(id:CurrentClass['ID'],classname:CurrentClass['class_name'],classicon: CurrentClass['class_icon'],studentinvitecode: CurrentClass['student_invite_code'],teacherinvitecode:CurrentClass['teacher_invite_code'],   ) ;
+    GlobalData.activeclass = Classes(id:CurrentClass['ID'],classname:CurrentClass['class_name'],classicon: CurrentClass['class_icon'],studentinvitecode: CurrentClass['student_invite_code'],teacherinvitecode:CurrentClass['teacher_invite_code'],userid: CurrentClass['user_id'],accountname: CurrentClass['account_name']) ;
     GlobalData.class_name=GlobalData.activeclass.classname;
+    GlobalData.classadminid = GlobalData.activeclass.userid;
+    GlobalData.adminaccountname = GlobalData.activeclass.accountname;
+
     GlobalData.Class_list = await (Data as List).map((data) =>Classes.fromJson(data)).toList();
     Navigator.of(context).pushNamed('teacherdashboard');
   }

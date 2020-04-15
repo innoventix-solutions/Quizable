@@ -310,13 +310,13 @@ class _publishquizState extends State<publishquiz> {
       http.post(
           "http://edusupportapp.com/api/publish_quiz.php", body: {
         "quiz_id":GlobalData.QuizID,
-        "publish_date":timeIndia,
+        "publish_date":timeNigeria,
         "closing_date":Closing_date.toString(),
 
       }).then((response) {
         var status = jsonDecode(response.body);
         if(status['status']==1){
-          Navigator.of(context).pushReplacementNamed('Recentque');
+          Navigator.of(context).pushReplacementNamed('dashboard');
           ClearRegisterData();
           setState(() {});
         }
@@ -350,13 +350,13 @@ class _publishquizState extends State<publishquiz> {
       http.post(
           "http://edusupportapp.com/api/publish_quiz.php", body: {
         "quiz_id":GlobalData.QuizID,
-        "publish_date":scheduledtimeIndia,
+        "publish_date":scheduledtimeNigeria,
         "closing_date":Closing_date.toString(),
 
       }).then((response) {
         var status = jsonDecode(response.body);
         if(status['status']==1){
-          Navigator.of(context).pushReplacementNamed('Recentque');
+          Navigator.of(context).pushReplacementNamed('dashboard');
           ClearRegisterData();
           setState(() {});
         }

@@ -18,11 +18,11 @@ class _PreviewSpellingState extends State<PreviewSpelling> {
 
   GetTest() async{
 
-    await http.post("http://edusupportapp.com/api/get_spelling_by_class.php",
+    await http.post("http://edusupportapp.com/api/get_spellings.php",
         body: {
           "UserId":GlobalData.uid,
-          "Class_id":GlobalData.classid,
-          "publish_onhold_both":"dd"
+         // "Class_id":GlobalData.classid,
+          //"publish_onhold_both":"dd"
         }).then((res){
       print(res.body);
 

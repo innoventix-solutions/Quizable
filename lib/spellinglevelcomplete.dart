@@ -169,148 +169,150 @@ class _spelllevelState extends State<spelllevel> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        title: Center(
-          child: Text(
-            "Set Spelling Bee Exercise",
-            style: TextStyle(fontSize: 20),
-          ),
-        ),
-        flexibleSpace: Container(
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomRight,
-              colors: [GlobalData.darkblue, GlobalData.darkpurple],
+    return WillPopScope(onWillPop: ()async => false,
+      child: Scaffold(
+        appBar: AppBar(
+          automaticallyImplyLeading: false,
+          title: Center(
+            child: Text(
+              "Set Spelling Bee Exercise",
+              style: TextStyle(fontSize: 20),
             ),
           ),
-        ),
-        actions: <Widget>[
-          IconButton(
-            onPressed: () {},
-            icon: Icon(
-              Icons.account_circle,
-              color: Colors.transparent,
-              size: 20,
-            ),
-          ),
-        ],
-      ),
-      body: SingleChildScrollView(
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              Container(
-                child: Padding(
-                    padding:
-                    const EdgeInsets.only(top: 20, left: 25, right: 25),
-                    child: Column(
-                      children: <Widget>[
-                        Center(
-                            child: levelcomplete(
-                              color: GlobalData.blue,
-                              heading: SpellingComplete() ?
-                              "Spelling Bee Completed":
-
-                              "Level " +
-                                  ((GlobalData.QuestionNumber /
-                                      int.parse(
-                                          GlobalData.spellNosofQuesPerLevel))
-                                      .floor())
-                                      .toString() +
-                                  " Completed",
-                              paragraph:SpellingComplete() ?
-                              "Congratulations!...\n You have Completed all Levels of Spelling Bee.":
-                              "Congratulations! You have completed the questions for Level " +
-                                  ((GlobalData.QuestionNumber /
-                                      int.parse(
-                                          GlobalData.spellNosofQuesPerLevel))
-                                      .floor())
-                                      .toString() +
-                                  " Spelling Bee. Use the Next button to continue to set questions for Level " +
-                                  ((GlobalData.QuestionNumber /
-                                      int.parse(GlobalData
-                                          .spellNosofQuesPerLevel))
-                                      .floor() +
-                                      1)
-                                      .toString() +
-                                  " Spelling Bee.",
-                            )),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 30),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              GlobalData.QuestionNumber >=
-                                  (int.parse(GlobalData.spellNosofQuesPerLevel) *
-                                      int.parse(GlobalData.spellLevels))
-                                  ? Expanded(
-                                child: Container(
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(
-                                        top: 25, bottom: 40),
-                                    child: GradientButtonText(
-                                      ButtonClick: () {
-                                        showDialog1(context);
-                                      },
-                                      linearGradient: LinearGradient(
-                                          colors: <Color>[
-                                            GlobalData.purple,
-                                            GlobalData.pink
-                                          ]),
-                                      text: Text(
-                                        "Finish",
-                                        style: TextStyle(
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 18,
-                                        ),
-                                        textAlign: TextAlign.center,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              )
-                                  : Expanded(
-                                child: Container(
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(
-                                        top: 25, bottom: 40),
-                                    child: GradientButtonText(
-                                      ButtonClick: () {
-                                        Navigator.of(context)
-                                            .pushReplacementNamed(
-                                            'spellque');
-                                      },
-                                      linearGradient: LinearGradient(
-                                          colors: <Color>[
-                                            GlobalData.purple,
-                                            GlobalData.pink
-                                          ]),
-                                      text: Text(
-                                        "Next Level",
-                                        style: TextStyle(
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 18,
-                                        ),
-                                        textAlign: TextAlign.center,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                      ],
-                    )),
+          flexibleSpace: Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomRight,
+                colors: [GlobalData.darkblue, GlobalData.darkpurple],
               ),
-            ],
+            ),
+          ),
+          actions: <Widget>[
+            IconButton(
+              onPressed: () {},
+              icon: Icon(
+                Icons.account_circle,
+                color: Colors.transparent,
+                size: 20,
+              ),
+            ),
+          ],
+        ),
+        body: SingleChildScrollView(
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                Container(
+                  child: Padding(
+                      padding:
+                      const EdgeInsets.only(top: 20, left: 25, right: 25),
+                      child: Column(
+                        children: <Widget>[
+                          Center(
+                              child: levelcomplete(
+                                color: GlobalData.blue,
+                                heading: SpellingComplete() ?
+                                "Spelling Bee Completed":
+
+                                "Level " +
+                                    ((GlobalData.QuestionNumber /
+                                        int.parse(
+                                            GlobalData.spellNosofQuesPerLevel))
+                                        .floor())
+                                        .toString() +
+                                    " Completed",
+                                paragraph:SpellingComplete() ?
+                                "Congratulations!...\n You have Completed all Levels of Spelling Bee.":
+                                "Congratulations! You have completed the questions for Level " +
+                                    ((GlobalData.QuestionNumber /
+                                        int.parse(
+                                            GlobalData.spellNosofQuesPerLevel))
+                                        .floor())
+                                        .toString() +
+                                    " Spelling Bee. Use the Next button to continue to set questions for Level " +
+                                    ((GlobalData.QuestionNumber /
+                                        int.parse(GlobalData
+                                            .spellNosofQuesPerLevel))
+                                        .floor() +
+                                        1)
+                                        .toString() +
+                                    " Spelling Bee.",
+                              )),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 30),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                GlobalData.QuestionNumber >=
+                                    (int.parse(GlobalData.spellNosofQuesPerLevel) *
+                                        int.parse(GlobalData.spellLevels))
+                                    ? Expanded(
+                                  child: Container(
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(
+                                          top: 25, bottom: 40),
+                                      child: GradientButtonText(
+                                        ButtonClick: () {
+                                          showDialog1(context);
+                                        },
+                                        linearGradient: LinearGradient(
+                                            colors: <Color>[
+                                              GlobalData.purple,
+                                              GlobalData.pink
+                                            ]),
+                                        text: Text(
+                                          "Finish",
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 18,
+                                          ),
+                                          textAlign: TextAlign.center,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                )
+                                    : Expanded(
+                                  child: Container(
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(
+                                          top: 25, bottom: 40),
+                                      child: GradientButtonText(
+                                        ButtonClick: () {
+                                          Navigator.of(context)
+                                              .pushReplacementNamed(
+                                              'spellque');
+                                        },
+                                        linearGradient: LinearGradient(
+                                            colors: <Color>[
+                                              GlobalData.purple,
+                                              GlobalData.pink
+                                            ]),
+                                        text: Text(
+                                          "Next Level",
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 18,
+                                          ),
+                                          textAlign: TextAlign.center,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                        ],
+                      )),
+                ),
+              ],
+            ),
           ),
         ),
       ),

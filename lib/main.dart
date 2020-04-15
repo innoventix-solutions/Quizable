@@ -152,6 +152,15 @@ import 'package:newpro/OTP.dart';
 import 'audiorecorder.dart';
 import 'doubletap.dart';
 import 'StudentClassroom.dart';
+import 'OTP.dart';
+import 'Set_Exercise.dart';
+import 'Assignment_Dashboard.dart';
+import 'Quiz_Dashboard.dart';
+import 'Spelling_Dashboard.dart';
+
+
+
+
 
 void main() {
   runApp(MyApp());
@@ -295,7 +304,13 @@ class MyApp extends StatelessWidget {
         'otp':(context)=>onetimepassword(),
         'audiorecords':(context)=>audiorecords(),
         'studentsclassroom':(context)=>studentssclassroom(),
-        'testttt':(context)=>TestingArun()
+        'otp':(context)=>onetimepassword(),
+        'setexercise':(context)=>SetExercise(),
+        'assignmentboard':(context)=>Assignmentboard(),
+        'quizboard':(context)=>Quizboard(),
+        'spellingboard':(context)=>Spellingboard(),
+
+
 
       },
     );

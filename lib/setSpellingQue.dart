@@ -152,7 +152,7 @@ class _setspellingquestionState extends State<setspellingquestion> {
             },
             icon: Icon(
               Icons.line_weight,
-              color: Colors.white,
+              color: Colors.transparent,
               size: 20,
             ),
           ),

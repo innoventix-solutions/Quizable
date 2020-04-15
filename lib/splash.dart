@@ -75,6 +75,8 @@ class _splashState extends State<splash> {
       GlobalData.total_join = prefs.get("joincount");
       GlobalData.Userphoto = prefs.get("UserPhoto");
       GlobalData.email = prefs.get("email");
+      GlobalData.Fullname = prefs.get("Fullname");
+      GlobalData.accountname = prefs.get("accountname");
       print( GlobalData.uid+"  "+GlobalData.Username);
 
       getMembershipdetails();
@@ -212,6 +214,9 @@ class _splashState extends State<splash> {
         GlobalData.adminmembership=GlobalData.Class_list[index].isactive;
         GlobalData.adminmembership=GlobalData.Class_list[index].id;
 
+        GlobalData.adminaccounttype=GlobalData.Class_list[index].accout_type;
+
+        GlobalData.accountname = GlobalData.Class_list[index].classname;
 
 
 

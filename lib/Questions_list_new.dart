@@ -493,16 +493,17 @@ class _Question_ListState extends State<Question_List> {
 Matches =Quetions[i].anwer_options;*/
 
       return Scaffold(
-          appBar: AppBar(title: Text("Questions List"),centerTitle: true,automaticallyImplyLeading: true,
-           /* actions: <Widget>[
+          appBar: AppBar(title: Text("Questions List"),centerTitle: true,automaticallyImplyLeading: false,
+
+            actions: <Widget>[
               GestureDetector(
                   onTap: (){
-                      Navigator.of(context).pushReplacementNamed('previewQuiz');
+                    Navigator.of(context).pushReplacementNamed('levelsList');
 
                   },child: Icon(Icons.exit_to_app))
 
 
-            ],*/),
+            ],),
           body: isloading==true?Center(child: Text("Loading...")):Quetions.isNotEmpty?MYQue():Center(child: Text("No Questions"),)
       );
 

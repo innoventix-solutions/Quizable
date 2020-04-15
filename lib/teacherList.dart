@@ -215,7 +215,7 @@ class _TeacherListState extends State<TeacherList> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: <Widget>[
-                      GlobalData.userType == "teacher"
+                      GlobalData.classadminid != GlobalData.uid
                           ? Text("")
                           : PopupMenuButton(
                               child: Icon(Icons.more_vert),
@@ -442,8 +442,8 @@ class _TeacherListState extends State<TeacherList> {
                                       ),
                                     ),
                                   ),
-                                  GlobalData.userType.toLowerCase() ==
-                                          "admin_teacher"
+                                  GlobalData.classadminid == GlobalData.uid
+
                                       ? Padding(
                                           padding:
                                               const EdgeInsets.only(right: 20),
@@ -511,7 +511,7 @@ class _TeacherListState extends State<TeacherList> {
                         );
                       }),
             ),
-            GlobalData.userType == "teacher"
+            GlobalData.classadminid!=GlobalData.uid
                 ? Text("")
                 : Padding(
                     padding:

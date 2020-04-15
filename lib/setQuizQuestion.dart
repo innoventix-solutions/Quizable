@@ -179,7 +179,7 @@ setalldetails(){
             },
             icon: Icon(
               Icons.line_weight,
-              color: Colors.white,
+              color: Colors.transparent,
               size: 20,
             ),
           ),

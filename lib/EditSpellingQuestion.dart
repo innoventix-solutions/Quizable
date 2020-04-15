@@ -834,16 +834,16 @@ class _EditSpellingQuestionsState extends State<EditSpellingQuestions> {
           "http://edusupportapp.com/api/create_update_spelling_questions.php", body: {
         "question": QuestionName.text.toString(),
         "point_awarded": Points.text.toString(),
-        "question_id":GlobalData.Edit_spelling_Questions.id.toString(),
+        "question_id":GlobalData.Current_Que_To_Edit.id.toString(),
         "spelling_id": GlobalData.spellingid,
         "answer_options": trueanswer.text.toString(),
         "audio":base64Image,
         //"answer_options": lastWords.isEmpty?trueanswer.text.toString():lastWords,
-        "level_no": ((GlobalData.QuestionNumber/int.parse(GlobalData.spellNosofQuesPerLevel)).floor()+1).toString(),
-        "ques_no": ((GlobalData.QuestionNumber%int.parse(GlobalData.spellNosofQuesPerLevel))+1).toString(),
+        "level_no": GlobalData.Current_Que_To_Edit.level_no.toString(),
+        "ques_no": GlobalData.Current_Que_To_Edit.ques_no.toString(),
       }).then((response) {
         var statuss = jsonDecode(response.body);
-
+        Show_toast("Updated Successfully", Colors.green);
         //Navigator.of(context).pop();
         Navigator.of(context).pushReplacementNamed('spellingquestionlist');
       });

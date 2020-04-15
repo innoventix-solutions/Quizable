@@ -130,6 +130,8 @@ class _loginState extends State<login> {
         prefs.setString("gender", statuss['userdata']['gender']);
         prefs.setString("signupdate", statuss['userdata']['signup_date']);
         prefs.setString('dob', statuss['userdata']['birthdate']);//16-10-19
+        prefs.setString('accounttype', statuss['userdata']['accout_type']);
+        prefs.setString('accountname', statuss['userdata']['account_name']);
         GlobalData.Username=statuss['userdata']['username'];
         GlobalData.Phone=statuss['userdata']['phone_no'];  //14-8-19 a
         GlobalData.Fullname=statuss['userdata']['fullname'];  //14-8-19 a
@@ -141,6 +143,8 @@ class _loginState extends State<login> {
         GlobalData.gendersel = statuss['userdata']['gender'];
         GlobalData.signupdate = statuss['userdata']['signup_date'];
         GlobalData.dob=statuss['userdata']['birthdate'];
+        GlobalData.accounttype=statuss['userdata']['accout_type'];
+        GlobalData.accountname=statuss['userdata']['account_name'];
         print(statuss['userdata']['user_type']);
         print(statuss['userdata']['ID']);
         GlobalData.uid = statuss['userdata']['ID'].toString();
@@ -156,6 +160,17 @@ class _loginState extends State<login> {
         GlobalData.parentsphone=statuss['userdata']['parents_phone_no'].toString();  //16-9-19 a
         GlobalData.parentsemail=statuss['userdata']['parents_email'].toString();   //16-9-19 a
         GlobalData.signupdate = statuss['userdata']['signup_date'].toString();
+        GlobalData.accounttype=statuss['userdata']['accout_type'].toString();
+        GlobalData.accountname=statuss['userdata']['account_name'].toString();
+
+
+        print("ACCOUNT TYPE " + statuss['userdata']['accout_type']);
+
+        //print("ACCOUNT NAME " + statuss['userdata']['account_name']);
+
+        //print("ACC NAME " + GlobalData.accountname);
+
+
 
         await getMembershipdetails();
 
@@ -403,9 +418,20 @@ class _loginState extends State<login> {
           GlobalData.class_name =
               GlobalData.Class_list[index].classname;
 
-          GlobalData.total_join = GlobalData.Class_list[index].total_join;
+    GlobalData.classadminid = GlobalData.Class_list[index].userid;
+    GlobalData.adminaccountname = GlobalData.Class_list[index].accountname;
+
+
+    print(GlobalData.classadminid);
+    print(GlobalData.adminaccountname);
+
+    GlobalData.total_join = GlobalData.Class_list[index].total_join;
 
     GlobalData.adminmembership=GlobalData.Class_list[index].isactive;
+    GlobalData.adminmembership=GlobalData.Class_list[index].id;
+
+    GlobalData.adminaccounttype=GlobalData.Class_list[index].accout_type;
+
 
 
     print(GlobalData.Class_list[index].classname);

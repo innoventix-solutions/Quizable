@@ -77,6 +77,7 @@ class _createnewclassState extends State<createnewclass> {
          GlobalData.createdclassdate=Res['classdata']['create_date'];
          GlobalData.classid=Res['classdata']['ID'];
          GlobalData.uid=Res['classdata']['user_id'];
+          GlobalData.classadminid=Res['classdata']['user_id'];
 
          Navigator.of(context)
              .pushNamed('invitecode');

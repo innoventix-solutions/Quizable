@@ -324,16 +324,17 @@ class _SpellingQuestion_ListState extends State<SpellingQuestion_List> {
     /*print(Quetions[i].anwer_options.length.toString()+"  asdznaisdfmmb k");
 Matches =Quetions[i].anwer_options;*/
     return Scaffold(
-        appBar: AppBar(title: Text("Questions List"),centerTitle: true,automaticallyImplyLeading: true,
-        /*  actions: <Widget>[
+        appBar: AppBar(title: Text("Questions List"),centerTitle: true,
+          automaticallyImplyLeading: false,
+          actions: <Widget>[
             GestureDetector(
                 onTap: (){
-                  Navigator.of(context).pushReplacementNamed('previewspelling');
+                  Navigator.of(context).pushReplacementNamed('spellinglevelsList');
 
                 },child: Icon(Icons.exit_to_app))
 
 
-          ],*/),
+          ],),
         body: isloading==true?Center(child: Text("Loading...")):Questions.isNotEmpty?MYQue():Center(child: Text("No Questions"),)
     );
   }

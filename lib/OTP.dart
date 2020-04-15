@@ -1,4 +1,8 @@
+import 'dart:convert';
+import 'package:fluttertoast/fluttertoast.dart';
+
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 import 'global.dart';
 
 class onetimepassword extends StatefulWidget {
@@ -7,6 +11,42 @@ class onetimepassword extends StatefulWidget {
 }
 
 class _onetimepasswordState extends State<onetimepassword> {
+
+
+  TextEditingController code = new TextEditingController();
+
+  Show_toast(String msg, Color color) {
+    Fluttertoast.showToast(
+        msg: msg,
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.CENTER,
+        timeInSecForIos: 1,
+        backgroundColor: color,
+        textColor: Colors.white,
+        fontSize: 16.0);
+  }
+
+
+  otp(){
+    if(GlobalData.Recoverycode==code.text.toString()){
+      Show_toast("Successfully ", Colors.green);
+
+      GlobalData.Recoverycode.toString();
+      GlobalData.Recoveremail.toString();
+
+      GlobalData.uid.toString();
+      print(GlobalData.Recoveremail);
+      print(GlobalData.Recoverycode);
+      print(GlobalData.uid);
+      Navigator.of(context).pushNamed('newpassword');
+
+
+    }
+    else{
+      Show_toast("Incorrect code ", Colors.red);
+
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -58,11 +98,11 @@ class _onetimepasswordState extends State<onetimepassword> {
               padding: const EdgeInsets.all(15.0),
               child: TextField(style: TextStyle(
                 fontSize: 14,color: Colors.black,fontWeight: FontWeight.bold,
-              ),decoration: InputDecoration(hintText: "Enter OTP Code",),),
+              ),decoration: InputDecoration(hintText: "Enter OTP Code",),controller: code,maxLength: 6,),
             ) ,),
 
           Container(
-            child: RaisedButton(onPressed: (){},
+            child: RaisedButton(onPressed: (){otp();},
               child: Text("Submit OTP",style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold,
               color: Colors.white),),color: GlobalData.blue,),)
         ],

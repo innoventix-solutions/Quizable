@@ -90,11 +90,24 @@ class _teacherdashboardState extends State<teacherdashboard> {
           automaticallyImplyLeading: true,
 
           title: Center(
-            child: Text(GlobalData.userType=="teacher"?
-              "Teacher Dashboard":"Admin Dashboard",
-              style: TextStyle(fontSize: 20),
+            child: Column(
+              children: <Widget>[
+                Text(GlobalData.adminaccountname==null||GlobalData.adminaccountname=="null"?"No Account Name":GlobalData.adminaccountname,
+                  style: TextStyle(fontSize: 20),
+                ),
+                Row(mainAxisAlignment: MainAxisAlignment.end,
+                  children: <Widget>[
+
+                    Text(GlobalData.classadminid==GlobalData.uid?"Admin":"Teacher",
+                    style: TextStyle(fontSize: 18),),
+                    //Text(GlobalData.userType=="teacher"? "Teacher":"Admin"),
+                  ],
+                )
+
+              ],
             ),
           ),
+
           flexibleSpace: Container(
             decoration: BoxDecoration(
               gradient: LinearGradient(
@@ -294,7 +307,7 @@ class _teacherdashboardState extends State<teacherdashboard> {
 
 
                               Navigator.of(context)
-                              .pushNamed('Recentque');
+                              .pushNamed('setexercise');
                               },
                           ),
                           GestureDetector(onTap: (){
@@ -447,7 +460,7 @@ class _teacherdashboardState extends State<teacherdashboard> {
                     )],),
                 ),onTap: (){
                 Navigator.of(context)
-                    .pushNamed('EditProfile');
+                      .pushNamed('EditProfile');
               },
               ),
 

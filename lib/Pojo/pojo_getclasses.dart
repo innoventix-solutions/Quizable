@@ -8,6 +8,7 @@ class Classes{
   String createddate;
   bool selected;
   String accout_type;
+  String accountname;
   String username;
   String total_join;
   String status;
@@ -15,7 +16,7 @@ class Classes{
 
 
   Classes({this.id,this.userid,this.classname,this.classicon,this.studentinvitecode,
-  this.teacherinvitecode,this.createddate,this.selected,this.accout_type,
+  this.teacherinvitecode,this.createddate,this.selected,this.accout_type, this.accountname,
     this.username,this.total_join,this.status,this.isactive});
 
 
@@ -31,6 +32,7 @@ class Classes{
       createddate: parsedJson['create_date'].toString(),
         accout_type:parsedJson['accout_type'].toString(),
         username:parsedJson['username'].toString(),
+        accountname: parsedJson['account_name'].toString(),
         total_join:parsedJson['total_join'].toString(),
       status: parsedJson['status'].toString(),
       selected: false,

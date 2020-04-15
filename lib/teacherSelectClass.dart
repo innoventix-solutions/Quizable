@@ -27,7 +27,7 @@ class _TeacherSelectClassState extends State<TeacherSelectClass> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          automaticallyImplyLeading: true,
+          automaticallyImplyLeading: false,
           title: Center(
             child: Text(
               "My Class",
@@ -67,26 +67,38 @@ class _TeacherSelectClassState extends State<TeacherSelectClass> {
 
                         preferences.setString("selectedClass", GlobalData.Class_list[index].id);
 
-
                         GlobalData.classid = GlobalData.Class_list[index].id;
-                        GlobalData.createdclassdate =
-                            GlobalData.Class_list[index].createddate;
-                        GlobalData.student_code =
-                            GlobalData.Class_list[index].studentinvitecode;
-                        GlobalData.teacher_code =
-                            GlobalData.Class_list[index].teacherinvitecode;
 
-                        GlobalData.class_name =
-                            GlobalData.Class_list[index].classname;
+                        GlobalData.createdclassdate = GlobalData.Class_list[index].createddate;
+
+                        GlobalData.student_code = GlobalData.Class_list[index].studentinvitecode;
+
+                        GlobalData.teacher_code = GlobalData.Class_list[index].teacherinvitecode;
+
+                        GlobalData.class_name = GlobalData.Class_list[index].classname;
 
                         GlobalData.activeclass = GlobalData.Class_list[index];
-                        GlobalData.class_name =
-                            GlobalData.Class_list[index].classname;
+
+                        GlobalData.class_name = GlobalData.Class_list[index].classname;
 
                         GlobalData.adminmembership=GlobalData.Class_list[index].isactive;
 
+                        GlobalData.adminaccounttype=GlobalData.Class_list[index].accout_type;
+
+                        GlobalData.classadminid = GlobalData.Class_list[index].userid;
+
+                        GlobalData.adminaccountname = GlobalData.Class_list[index].accountname;
+                        GlobalData.adminmembership=GlobalData.Class_list[index].id;
+
+                        print(GlobalData.classadminid);
+                        print(GlobalData.adminmembership);
+                        print(GlobalData.adminaccountname);
+                        print(GlobalData.accountname);
+                        print(GlobalData.Class_list[index].accout_type);
+                        print(GlobalData.adminaccounttype);
                         print(GlobalData.Class_list[index].classname);
                         print(GlobalData.activeclass.classname);
+                        print(GlobalData.userType);
                         Navigator.of(context)
                             .pushReplacementNamed('teacherdashboard');
                       },

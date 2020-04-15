@@ -23,8 +23,6 @@ import 'package:path_provider/path_provider.dart';
 
 
 
-import 'global.dart';
-
 class spelling_ans extends StatefulWidget {
   @override
   _spelling_ansState createState() => _spelling_ansState();
@@ -33,31 +31,7 @@ class spelling_ans extends StatefulWidget {
 class _spelling_ansState extends State<spelling_ans> {
 
 
-  void savingquestion(BuildContext context)  {
-
-    bool Selected = false;
-
-    showDialog(barrierDismissible: false,
-        context: context,
-        builder: (_) => new Dialog(
-          child: new Container(
-            alignment: FractionalOffset.center,
-            height: 80.0,
-            padding: const EdgeInsets.all(20.0),
-            child: new Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                new CircularProgressIndicator(),
-                new Padding(
-                  padding: new EdgeInsets.only(left: 10.0),
-                  child: new Text("Saving..."),
-                ),
-              ],
-            ),
-          ),
-        ));
-  }
-
+ 
 
   AudioPlayer audioPlayer = new AudioPlayer();
 
@@ -298,7 +272,7 @@ class _spelling_ansState extends State<spelling_ans> {
           title: Text("Spelling Challenge"),automaticallyImplyLeading: false,
           centerTitle: true,
         ),
-        body:isloading==true?Center(child: Text("Loading...")):isCompleted?
+        body:isloading==true?Center(child: Text("Saving...")):isCompleted?
         Container():
 
         Container(
@@ -511,6 +485,7 @@ autocorrect: false,keyboardType: TextInputType.visiblePassword,
                         Expanded(
                           child: GradientButtonText(
                             ButtonClick: () async {
+                              isloading=true;
 
 
                               bool remaning = false;
@@ -537,7 +512,7 @@ autocorrect: false,keyboardType: TextInputType.visiblePassword,
                                   Changed = 0;
                                   i++;
                                   if (i == Questions.length) {
-                                    savingquestion(context);
+                                   // savingquestion(context);
                                     getExamResult();
 
                                     i--;
@@ -550,6 +525,7 @@ autocorrect: false,keyboardType: TextInputType.visiblePassword,
                                   }
                                 }
                               }
+                              isloading=false;
                             },
                             linearGradient:LinearGradient(colors: <Color>[GlobalData.navyblue,GlobalData.pink]) ,
                             text: Text((i+1)==Questions.length?"Submit":"Next",textAlign: TextAlign.center,style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),

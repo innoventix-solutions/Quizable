@@ -12,7 +12,17 @@ class _LevelsListsState extends State<LevelsLists> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Levels"),),
+      appBar: AppBar(title: Text("Levels"),
+        automaticallyImplyLeading: false,
+        actions: <Widget>[
+          GestureDetector(
+              onTap: (){
+                Navigator.of(context).pushReplacementNamed('level');
+
+              },child: Icon(Icons.exit_to_app))
+
+
+        ],),
       body: ListView.builder(
         itemCount: int.parse(GlobalData.QuizLevels),
           itemBuilder: (context,index){

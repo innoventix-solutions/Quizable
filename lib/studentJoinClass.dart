@@ -33,7 +33,7 @@ class _studentjoinState extends State<studentjoin> {
                     ),
                     child:  GestureDetector(
                         onTap: (){
-                          Navigator.of(context).pushNamed('teacherdashboard');
+                          Navigator.of(context).pop();
                         },child: new Text("Cancel")),
                   ),
 

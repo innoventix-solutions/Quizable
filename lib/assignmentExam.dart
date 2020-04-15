@@ -671,6 +671,7 @@ class _AssignmentExamState extends State<AssignmentExam> {
       fillupsData.clear();
       _list.clear();
       originalCopied = false;
+      shortessayanswer.text="";
     }
   }
 

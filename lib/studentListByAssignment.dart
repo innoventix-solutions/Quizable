@@ -21,11 +21,40 @@ class _StudentListByAssignmentState extends State<StudentListByAssignment> {
 
   List<Pojo_StudentAssignmentResult> globlist = new List();
 
+  bool isloading = true;
+
+
+
+  sharedetail(){
+
+
+    String total="";
+
+
+  for(int i=0; i<globlist.length; i++){
+
+    String temp = "Student: " + globlist[i].username +  " completed Assignment: " + GlobalData.ExamQuiz +"\n" + "Point Awarded: " + globlist[i].point_awarded + "/" + globlist[i].TotalAssignmentpoints +"\n"+ "Percentage: " + globlist[i].percentage + "\n" + "Progress Label: " + globlist[i].progresslabel + "\n \n";
+
+    total = total + temp;
+
+    setState(() {
+
+    });
+
+       }
+    //print("${globlist[i].username}");
+
+    print(total);
+
+    Share.share(total);
+    //Share.share("Student: " + username + " completed Assignment: " + GlobalData.ExamQuiz + "\n \n"+"Point Awarded: " + pointawarded + "/" + totalpoints + "\n" + "Percentage: " + percent + "\n" +  "Progress Label: " + label);
+
+  }
 
 
   getstudent()
   async {
-
+    isloading = true;
     print("ascasd ");
 
     await http.post("http://edusupportapp.com/api/get_students_by_teacher_assignment.php"
@@ -47,129 +76,159 @@ class _StudentListByAssignmentState extends State<StudentListByAssignment> {
       });
 
       print(globlist.length);
-
+      isloading = false;
       setState(() {
 
       });
     });
   }
 
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Scaffold(
-        appBar: AppBar(
-          automaticallyImplyLeading: true,
+      child: WillPopScope(onWillPop: () async => false,
+        child: Scaffold(
+          appBar: AppBar(
+            leading: GestureDetector(onTap:(){
+            Navigator.of(context)
+                .pushNamed('AssignmentReport');
+          },child: Icon(Icons.exit_to_app)),
+            automaticallyImplyLeading: false,
 
-          title: Text(
-            "Students List",
-            style: TextStyle(fontSize: 22),textAlign: TextAlign.center,
-          ),
-          flexibleSpace: Container(
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomRight,
-                colors: [GlobalData.darkblue, GlobalData.darkpurple],
+            title: Text(
+              "Students List",
+              style: TextStyle(fontSize: 22),textAlign: TextAlign.center,
+            ),
+            actions: <Widget>[
+
+             GestureDetector(onTap: (){
+
+               sharedetail();
+             },
+               child: Padding(
+                 padding: const EdgeInsets.all(8.0),
+                 child: Icon(
+                      Icons.share,
+                      color: Colors.white,
+                      size: 30,
+                    ),
+               ),
+             ),
+
+            ],
+            flexibleSpace: Container(
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomRight,
+                  colors: [GlobalData.darkblue, GlobalData.darkpurple],
+                ),
               ),
             ),
+
+
           ),
+          body:
+          Column(
+            children: <Widget>[
 
-
-        ),
-        body:
-        Column(
-          children: <Widget>[
-
-            Padding(
-              padding: const EdgeInsets.only(left: 20,top: 20),
-              child: Row(mainAxisAlignment: MainAxisAlignment.start,
-                children: <Widget>[
-                  Text("Students",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
-                ],
+              Padding(
+                padding: const EdgeInsets.only(left: 20,top: 20),
+                child: Row(mainAxisAlignment: MainAxisAlignment.start,
+                  children: <Widget>[
+                    Text("Students",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
+                  ],
+                ),
               ),
-            ),
 
 
-            Expanded(child: globlist.isEmpty ? Center(child: Text('No Students')) :
-            new ListView.builder
-                (
-                  itemCount: globlist.length,
-                  itemBuilder: (BuildContext ctxt, int index) {
-                    return
-                      GestureDetector(
-                        onTap: (){
-                          GlobalData.CurrentStudentID = globlist[index].id;
-                          Navigator.of(context).pushNamed('AssignmentAnswerLog');
-                        },
-                        child: Container(
+              Expanded(child: globlist.isEmpty ? Center(child: Text('No Students')) :
+              new ListView.builder
+                  (
+                    itemCount: globlist.length,
+                    itemBuilder: (BuildContext ctxt, int index) {
+                      return
+                        GestureDetector(
+                          onTap: (){
+                            isloading=true;
 
-                          child: Column(
-                            children: <Widget>[
-                              Row(
-                                children: <Widget>[
-                                  Stack(
-                                    children: <Widget>[
-                                      Container(height: 70,width: 70,margin: EdgeInsets.only(left: 20,top: 15,bottom: 10),
-                                        decoration: new BoxDecoration(
-                                            shape: BoxShape.circle,
-                                            image: new DecorationImage(
-                                              fit: BoxFit.cover,
-                                              image:(globlist[index].userphoto!="")?
+                            GlobalData.CurrentStudentID = globlist[index].id;
+                            Navigator.of(context).pushNamed('AssignmentAnswerLog');
+                            isloading=false;
 
-                                              NetworkImage(globlist[index].userphoto,)
-                                                  :
-                                              AssetImage('assets/images/bg.png')
-                                              ,
-                                            )
-                                        ),),
-                                    ],
-                                  ),
-                                  //  Text("fghjkl"+globlist[index].userphoto),
+                          },
+                          child: Container(
 
+                            child: Column(
+                              children: <Widget>[
+                                Row(
+                                  children: <Widget>[
+                                    Stack(
+                                      children: <Widget>[
+                                        Container(height: 70,width: 70,margin: EdgeInsets.only(left: 20,top: 15,bottom: 10),
+                                          decoration: new BoxDecoration(
+                                              shape: BoxShape.circle,
+                                              image: new DecorationImage(
+                                                fit: BoxFit.cover,
+                                                image:(globlist[index].userphoto!="")?
 
-
-
-                                  Expanded(
-                                    child: Padding(
-                                      padding: const EdgeInsets.only(left:30),
-                                      child: Column(mainAxisAlignment: MainAxisAlignment.start,crossAxisAlignment: CrossAxisAlignment.start,
-                                        children: <Widget>[
-                                          Text("Name: " + globlist[index].username),
-                                          Padding(
-                                            padding: const EdgeInsets.only(top: 5,bottom: 5),
-                                            child: Text("Point Awarded: " + globlist[index].point_awarded+" / "+globlist[index].TotalAssignmentpoints),
-                                          ),
+                                                NetworkImage(globlist[index].userphoto,)
+                                                    :
+                                                AssetImage('assets/images/bg.png')
+                                                ,
+                                              )
+                                          ),),
+                                      ],
+                                    ),
+                                    //  Text("fghjkl"+globlist[index].userphoto),
 
 
-                                        ],
+
+
+                                    Expanded(
+                                      child: Padding(
+                                        padding: const EdgeInsets.only(left:30),
+                                        child: Column(mainAxisAlignment: MainAxisAlignment.start,crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: <Widget>[
+                                            Text("Name: " + globlist[index].username),
+                                            Padding(
+                                              padding: const EdgeInsets.only(top: 5,bottom: 5),
+                                              child: Text("Point Awarded: " + globlist[index].point_awarded+" / "+globlist[index].TotalAssignmentpoints),
+                                            ),
+
+
+                                          ],
+                                        ),
                                       ),
                                     ),
-                                  ),
 
 
-                                  GestureDetector(onTap: (){
-                                    Share.share("Student: " + globlist[index].username + " completed Assignment: " + GlobalData.ExamQuiz + "\n \n"+"Point Awarded: " + globlist[index].point_awarded + "/" + globlist[index].TotalAssignmentpoints + "\n" + "Percentage: " + globlist[index].percentage + "\n" +  "Progress Label: " + globlist[index].progresslabel);
+                                    /*GestureDetector(onTap: (){
+                                      Share.share("Student: " + globlist[index].username + " completed Assignment: " + GlobalData.ExamQuiz + "\n \n"+"Point Awarded: " + globlist[index].point_awarded + "/" + globlist[index].TotalAssignmentpoints + "\n" + "Percentage: " + globlist[index].percentage + "\n" +  "Progress Label: " + globlist[index].progresslabel);
 
-                                  },child: Icon(Icons.share)),
+                                    },child: Icon(Icons.share)),*/
 
-                                  SizedBox(width: 20,),
-
-
+                                    SizedBox(width: 20,),
 
 
 
-                                ], ),
 
-                            ],
+
+
+
+
+                                  ], ),
+
+                              ],
+                            ),
                           ),
-                        ),
-                      );
+                        );
 
 
-                  }
+                    }
+                ),
               ),
-            ),
 
 
 
@@ -177,10 +236,11 @@ class _StudentListByAssignmentState extends State<StudentListByAssignment> {
 
 
 
-          ],
+            ],
+          ),
+
+
         ),
-
-
       ),
 
     );

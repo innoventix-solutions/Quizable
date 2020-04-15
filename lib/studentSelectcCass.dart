@@ -18,7 +18,7 @@ class _studentselectclassState extends State<studentselectclass> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          automaticallyImplyLeading: true,
+          automaticallyImplyLeading: false,
           title: Center(
             child: Text(
               "My Class",
@@ -68,6 +68,8 @@ class _studentselectclassState extends State<studentselectclass> {
                                   GlobalData.Class_list[index];
                               GlobalData.class_name=GlobalData.Class_list[index].classname;
                               GlobalData.classid = GlobalData.Class_list[index].id;
+
+                              GlobalData.adminaccounttype=GlobalData.Class_list[index].accout_type;
 
                               print(GlobalData.Class_list[index].classname);
                               print(GlobalData.activeclass.classname);

@@ -46,7 +46,7 @@ class _secState extends State<sec> {
                 new CircularProgressIndicator(),
                 new Padding(
                   padding: new EdgeInsets.only(left: 10.0),
-                  child: new Text("Registering..."),
+                  child: new Text("Creating..."),
                 ),
               ],
             ),
@@ -89,7 +89,7 @@ class _secState extends State<sec> {
     print(GlobalData.accounttype);
 
     http.post("http://edusupportapp.com/api/register.php", body: {
-      "Fullname": acc.text.toString(),
+      "account_name": acc.text.toString(),
       "Username": username.text.toString(),
       "UserEmail": email.text.toString().trim(),
       "password": password.text.toString(),
@@ -108,6 +108,7 @@ class _secState extends State<sec> {
 
     }).then((response) {
 
+      print(response.body.toString());
 
 
       var statuss = jsonDecode(response.body);
@@ -115,7 +116,11 @@ class _secState extends State<sec> {
 
       print("result from Server : "+statuss['status'].toString());
 
-      if (statuss['status'].toString() == "1") { Show_toast("Registered Successfully", Colors.green);
+      if (statuss['status'].toString() == "1")
+      {
+        savingquestion(context);
+
+        Show_toast("Registered Successfully", Colors.green);
 
       GlobalData.userType=="teacher" ? Navigator.of(context)
           .pushNamedAndRemoveUntil('login', (Route<dynamic> route) => false) :
@@ -149,6 +154,7 @@ class _secState extends State<sec> {
       _showDialog(Msg: "Password must contain atleast 6 digit");
     }
       else if (password.text.toString() == cpass.text.toString()) {
+        //savingquestion(context);
       Signup();
     } else {
       _showDialog();
@@ -417,7 +423,7 @@ class _secState extends State<sec> {
                               print(gendersel.toString());
 
                               check();
-                              savingquestion(context);
+                              //savingquestion(context);
                               globalData.getgender();
 
                               },
