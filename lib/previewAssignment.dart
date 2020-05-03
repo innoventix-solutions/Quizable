@@ -168,14 +168,86 @@ class _PreviewAssignmentState extends State<PreviewAssignment> {
                     ),
                   ],
                 ),
-                onTap: () {
+                onTap: () async{
+                  print("adminmembership:" +GlobalData.adminmembership.toString());
+                  print("classname:" +GlobalData.class_name .toString());
+                  print("Class ID: "+GlobalData.classid.toString());
+                  print("MyMebership: " +GlobalData.MyMembership.isActive.toString());
+                  print(GlobalData.uid);
 
-                  GlobalData.AssignmentTitle="";
-                  GlobalData.NosofQuesassignment="";
-                  GlobalData.teacherinstruction="";
-                  GlobalData.teacherobjective="";
-                  Navigator.of(context)
-                      .pushNamed('SetAssignment');
+                  if(GlobalData.adminmembership == "" ||GlobalData.adminmembership=="null" ||
+                      GlobalData.adminmembership==false.toString()||GlobalData.adminmembership==null)
+
+                  {
+                    print("Level 1");
+
+                    if(GlobalData.MyMembership==null || GlobalData.MyMembership.isActive==false)
+                    {print("Level 2");
+
+                    await GetclassAssignment();
+
+                    // print(GlobalData.quizclass.length);
+
+                    if(GlobalData.assignmentclass!=null && GlobalData.assignmentclass.isNotEmpty)
+                    {
+
+                      GlobalData.classadminid==GlobalData.uid?
+
+                      GlobalData.userType=="admin_teacher"?
+                      CustomShowDialog(context,title: "Subscription Required",msg:
+                      "Only One Assignment with max 10 Questions is Allowed for Free User\n\nSubscribe to create more Assignment",onPressed:(){
+                        Navigator.of(context).pushNamed('ManageAccount');
+
+                      }):
+                      CustomShowDialog(context,title: "SUBSCRIPTION REQUIRED",msg:
+                      "Your Class Admin is on a Trial Subscription. \n\nPlease refer to Class Admin to upgrade account to enable you \nset questions above 10.\n\nThank you",
+                          onPressed:(){
+                            Navigator.of(context).pushNamed('dashboard');
+
+                          }):CustomShowDialog(context,title: "SUBSCRIPTION REQUIRED",msg:
+                      "Your Class Admin is on a Trial Subscription. \n\nPlease refer to Class Admin to upgrade account to enable you \nset questions above 10.\n\nThank you",
+                          onPressed:(){
+                            Navigator.of(context).pushNamed('dashboard');
+
+                          });
+                    }
+
+                    else {
+
+                      GlobalData.AssignmentTitle="";
+                      GlobalData.NosofQuesassignment="";
+                      GlobalData.teacherinstruction="";
+                      GlobalData.teacherobjective="";
+                      /*Navigator.of(context)
+                .pushNamed('developpage');*/
+                      Navigator.of(context)
+                          .pushNamed('SetAssignment');
+                    }
+
+                    }else
+                    {
+                      GlobalData.AssignmentTitle="";
+                      GlobalData.NosofQuesassignment="";
+                      GlobalData.teacherinstruction="";
+                      GlobalData.teacherobjective="";
+                      /*Navigator.of(context)
+                .pushNamed('developpage');*/
+                      Navigator.of(context)
+                          .pushNamed('SetAssignment');
+                    }
+
+                  }
+                  else {
+                    GlobalData.AssignmentTitle="";
+                    GlobalData.NosofQuesassignment="";
+                    GlobalData.teacherinstruction="";
+                    GlobalData.teacherobjective="";
+                    /*Navigator.of(context)
+                .pushNamed('developpage');*/
+                    Navigator.of(context)
+                        .pushNamed('SetAssignment');
+                  }
+
                 },
               ),
             ),

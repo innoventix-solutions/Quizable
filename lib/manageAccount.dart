@@ -201,7 +201,7 @@ class _ManageAccountState extends State<ManageAccount> {
                                   await http.post("https://api.paystack.co/transaction/initialize",
                                       headers: {
                                         HttpHeaders.authorizationHeader:
-                                        "Bearer sk_live_13331e243bff4a953c5fa70da1fd7931f305864a"
+                                        "Bearer sk_live_584ccdb42801858da3582a730f9d07ab276ed854"
                                       },
                                       body: {
                                         "amount": price,
@@ -349,7 +349,7 @@ class _ManageAccountState extends State<ManageAccount> {
                                 await http.post("https://api.paystack.co/transaction/initialize",
                                     headers: {
                                       HttpHeaders.authorizationHeader:
-                                      "Bearer sk_live_13331e243bff4a953c5fa70da1fd7931f305864a"
+                                      "Bearer sk_live_584ccdb42801858da3582a730f9d07ab276ed854"
                                     },
                                     body: {
                                       "amount": price,

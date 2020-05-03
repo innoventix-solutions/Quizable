@@ -229,11 +229,13 @@ class _invitecodeState extends State<invitecode> {
                     color:GlobalData.lightblue,fontSize: 15,fontWeight: FontWeight.bold,
                     decoration: TextDecoration.underline
                 ),),onTap: (){
+                  print(GlobalData.adminaccountname);
                 Navigator.of(context)
                     .pushNamed('teacherdashboard');},
               ),
-            ),
 
+
+            ),
 
 
 

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'global.dart';
 import 'package:newpro/Pojo/pojo_getclasses.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:http/http.dart'as http;
+import 'dart:convert';
 
 class TeacherSelectClass extends StatefulWidget {
   @override
@@ -13,6 +15,9 @@ class _TeacherSelectClassState extends State<TeacherSelectClass> {
   GlobalData globalData = new GlobalData();
 
   SharedPreferences preferences;
+
+
+
 
   @override
   void initState() {
@@ -56,100 +61,7 @@ class _TeacherSelectClassState extends State<TeacherSelectClass> {
         ),
         body: Column(
           children: <Widget>[
-            Expanded(
-              child: new ListView.builder(
-                  itemCount: GlobalData.Class_list.length,
-                  itemBuilder: (BuildContext ctxt, int index) {
-                    return GestureDetector(
-                      onTap: () async{
-
-                        preferences = await SharedPreferences.getInstance();
-
-                        preferences.setString("selectedClass", GlobalData.Class_list[index].id);
-
-                        GlobalData.classid = GlobalData.Class_list[index].id;
-
-                        GlobalData.createdclassdate = GlobalData.Class_list[index].createddate;
-
-                        GlobalData.student_code = GlobalData.Class_list[index].studentinvitecode;
-
-                        GlobalData.teacher_code = GlobalData.Class_list[index].teacherinvitecode;
-
-                        GlobalData.class_name = GlobalData.Class_list[index].classname;
-
-                        GlobalData.activeclass = GlobalData.Class_list[index];
-
-                        GlobalData.class_name = GlobalData.Class_list[index].classname;
-
-                        GlobalData.adminmembership=GlobalData.Class_list[index].isactive;
-
-                        GlobalData.adminaccounttype=GlobalData.Class_list[index].accout_type;
-
-                        GlobalData.classadminid = GlobalData.Class_list[index].userid;
-
-                        GlobalData.adminaccountname = GlobalData.Class_list[index].accountname;
-                        GlobalData.adminmembership=GlobalData.Class_list[index].id;
-
-                        print(GlobalData.classadminid);
-                        print(GlobalData.adminmembership);
-                        print(GlobalData.adminaccountname);
-                        print(GlobalData.accountname);
-                        print(GlobalData.Class_list[index].accout_type);
-                        print(GlobalData.adminaccounttype);
-                        print(GlobalData.Class_list[index].classname);
-                        print(GlobalData.activeclass.classname);
-                        print(GlobalData.userType);
-                        Navigator.of(context)
-                            .pushReplacementNamed('teacherdashboard');
-                      },
-                      child: Column(
-                        children: <Widget>[
-                          Container(
-                            child: Row(
-                              children: <Widget>[
-                                Stack(
-                                  children: <Widget>[
-
-                                    Container(height: 70,width: 70,margin: EdgeInsets.only(left: 20,top: 15,bottom: 10),
-                                      child: ClipOval(
-                                        child: FadeInImage.assetNetwork(
-                                          placeholder: 'assets/images/classicon.png',
-                                          image: GlobalData.Class_list[index].classicon,fit: BoxFit.cover,
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                Expanded(
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(left: 30),
-                                    child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: <Widget>[
-                                        Text(
-                                          GlobalData
-                                              .Class_list[index].classname,
-                                          style: TextStyle(fontSize: 15),
-                                          textAlign: TextAlign.left,
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          new Divider(
-                            color: Colors.black,
-                          ),
-                        ],
-                      ),
-                    );
-                  }),
-            ),
+            Expanded(child: ClassesPerAccount()),
             GlobalData.userType == "admin_teacher"
                 ? Padding(
                     padding: const EdgeInsets.only(left: 60, right: 60),

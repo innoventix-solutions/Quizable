@@ -460,13 +460,16 @@ class _assignmentquestionbankState extends State<assignmentquestionbank> {
 
                                   if (GlobalData.adminmembership == "" ||
                                       GlobalData.adminmembership == null ||
-                                      GlobalData.adminmembership == false.toString())
+                                      GlobalData.adminmembership == false.toString()||
+                                      GlobalData.adminmembership=="null")
                                   {
 
                                     print("Level 1");
 
                                     if (int.parse(GlobalData.NosofQuesassignment) > 10)
                                     {
+                                      GlobalData.classadminid==GlobalData.uid?
+
                                       GlobalData.userType=="admin_teacher"?
                                       CustomShowDialog(context,title: "Subscription Required",msg:
                                       "Please reduce the number of Questions to 10 for a trial.\nOtherwise, subscribe to set unlimited questions.\n\nSubscribe now?",onPressed:(){
@@ -475,6 +478,12 @@ class _assignmentquestionbankState extends State<assignmentquestionbank> {
                                           onpressed1: (){
                                             Navigator.of(context).pop();
                                           }):
+                                      CustomShowDialog(context,title: "Subscription Required",msg:
+                                      "You cannot set more than 10 questions. \n\nPlease contact your Admin to Subscribe for the institution's account.",onPressed:(){
+                                        Navigator.of(context).pop();
+
+                                      }):
+
                                       CustomShowDialog(context,title: "Subscription Required",msg:
                                       "You cannot set more than 10 questions. \n\nPlease contact your Admin to Subscribe for the institution's account.",onPressed:(){
                                         Navigator.of(context).pop();

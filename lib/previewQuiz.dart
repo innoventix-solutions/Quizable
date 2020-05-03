@@ -171,13 +171,89 @@ class _PreviewQuizState extends State<PreviewQuiz> {
                                    ),
                               ],
                             ),
-                            onTap: () {
-                              GlobalData.QuizTitle  = "";
-                              GlobalData.QuizLevels = "";
-                              GlobalData.NosofQuesPerLevel = "";
-                              GlobalData.DurationofEachLevel =  "";
-                              Navigator.of(context)
-                                  .pushNamed('setquizquestions');
+                            onTap: () async{
+                              print("adminmembership:" +GlobalData.adminmembership.toString());
+                              print("classname:" +GlobalData.class_name .toString());
+                              print("Class ID: "+GlobalData.classid.toString());
+                              print("MyMebership: " +GlobalData.MyMembership.isActive.toString());
+                              print(GlobalData.uid);
+
+
+
+                              if(GlobalData.adminmembership == "" ||GlobalData.adminmembership=="null" ||
+                                  GlobalData.adminmembership==false.toString() ||GlobalData.adminmembership==null)
+
+                              {
+                                print("Level 1");
+
+                                if(GlobalData.MyMembership==null || GlobalData.MyMembership.isActive==false)
+                                {print("Level 2");
+
+                                await Getclassquiz();
+
+                                // print(GlobalData.quizclass.length);
+
+                                if(GlobalData.quizclass!=null && GlobalData.quizclass.isNotEmpty)
+                                {
+                                  GlobalData.classadminid==GlobalData.uid?
+
+                                  GlobalData.userType=="admin_teacher"?
+                                  CustomShowDialog(context,title: "Subscription Required",msg:
+                                  "Only One Quiz with maximum 10 Questions with one Level is Allowed for Free User\n\nSubscribe to create more Quiz",onPressed:(){
+                                    Navigator.of(context).pushNamed('ManageAccount');
+
+                                  }):
+                                  CustomShowDialog(context,title: "SUBSCRIPTION REQUIRED",msg:
+                                  "Your Class Admin is on a Trial Subscription. \n\nPlease refer to Class Admin to upgrade account to enable you \nset multi-level questions above 10.\n\nThank you",
+                                      onPressed:(){
+                                        Navigator.of(context).pushNamed('dashboard');
+
+                                      }):
+                                  CustomShowDialog(context,title: "SUBSCRIPTION REQUIRED",msg:
+                                  "Your Class Admin is on a Trial Subscription. \n\nPlease refer to Class Admin to upgrade account to enable you \nset multi-level questions above 10.\n\nThank you",
+                                      onPressed:(){
+                                        Navigator.of(context).pushNamed('dashboard');
+
+                                      });
+                                }
+
+                                else {
+                                  GlobalData.QuizTitle="";
+                                  GlobalData.QuizLevels="";
+                                  GlobalData.NosofQuesPerLevel="";
+                                  GlobalData.DurationofEachLevel="";
+                                  GlobalData.Selected_subject=null ;
+                                  GlobalData.Selected_class=null;
+
+                                  Navigator.of(context)
+                                      .pushNamed('setquizquestions');
+                                }
+
+                                }else
+                                {
+                                  GlobalData.QuizTitle  = "";
+                                  GlobalData.QuizLevels = "";
+                                  GlobalData.NosofQuesPerLevel = "";
+                                  GlobalData.DurationofEachLevel =  "";
+                                  GlobalData.Selected_subject = null ;
+                                  GlobalData.Selected_class = null;
+                                  Navigator.of(context)
+                                      .pushNamed('setquizquestions');
+                                }
+
+
+
+                              }
+                              else {
+                                GlobalData.QuizTitle  = "";
+                                GlobalData.QuizLevels = "";
+                                GlobalData.NosofQuesPerLevel = "";
+                                GlobalData.DurationofEachLevel =  "";
+                                GlobalData.Selected_subject = null ;
+                                GlobalData.Selected_class = null;
+                                Navigator.of(context)
+                                    .pushNamed('setquizquestions');
+                              }
                             },
                           ),
                         ),

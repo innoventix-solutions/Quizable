@@ -313,7 +313,7 @@ class _publishassignmentsState extends State<publishassignments> {
       http.post(
           "http://edusupportapp.com/api/publish_assignment.php", body: {
         "assignment_id":GlobalData.AssignmentID,
-        "publish_date":timeIndia,
+        "publish_date":timeNigeria,
         "closing_date":Closing_date.toString(),
 
       }).then((response) {
@@ -354,7 +354,7 @@ class _publishassignmentsState extends State<publishassignments> {
       http.post(
           "http://edusupportapp.com/api/publish_assignment.php", body: {
         "assignment_id":GlobalData.AssignmentID,
-        "publish_date":scheduledtimeIndia,
+        "publish_date":scheduledtimeNigeria,
         "closing_date":Closing_date.toString(),
 
       }).then((response) {

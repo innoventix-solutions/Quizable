@@ -157,8 +157,13 @@ import 'Set_Exercise.dart';
 import 'Assignment_Dashboard.dart';
 import 'Quiz_Dashboard.dart';
 import 'Spelling_Dashboard.dart';
-
-
+import 'AllAssignmentLog.dart';
+import 'AllAssignmentReport.dart';
+import 'AllQuizLog.dart';
+import 'AllQuizReport.dart';
+import 'AllSpellingLog.dart';
+import 'AllSpellingReport.dart';
+import 'testingarun.dart';
 
 
 
@@ -309,6 +314,13 @@ class MyApp extends StatelessWidget {
         'assignmentboard':(context)=>Assignmentboard(),
         'quizboard':(context)=>Quizboard(),
         'spellingboard':(context)=>Spellingboard(),
+        'allassignment':(context)=>AllAssignment(),
+        'allassignmentreport':(context)=>AllsAssignmentReport(),
+        'allquizlog':(context)=>AllQuiz(),
+        'allquizresult':(context)=>AllsQuizReport(),
+        'allspellinglog':(context)=>AllSpelling(),
+        'allspellingreport':(context)=>AllsSpellingReport(),
+        'demo':(context)=>demo()
 
 
 

@@ -323,7 +323,7 @@ class MyResultBlock extends StatelessWidget {
                                     padding: const EdgeInsets.only(bottom: 30),
                                     child: Row(mainAxisAlignment: MainAxisAlignment.center,
                                       children: <Widget>[
-
+                                        GlobalData.classadminid==GlobalData.uid?
                                         Container(padding: EdgeInsets.all(5),
                                           child: SizedBox(width: 100,
                                             child: GradientButtonText(
@@ -340,7 +340,8 @@ class MyResultBlock extends StatelessWidget {
                                                 fontWeight: FontWeight.bold,fontSize: 12,),textAlign: TextAlign.center,),
                                             ),
                                           ),
-                                        ),
+                                        ):Text("You have no rights to give marks",
+                                        style: TextStyle(color: Colors.red),)
 
 
 
@@ -528,7 +529,8 @@ class MyResultBlock extends StatelessWidget {
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: GlobalData.userType=="admin_teacher" ||
-                                GlobalData.userType=="teacher"?
+                                GlobalData.userType=="teacher"
+                                ?
                             answertype=="Short Essay"?
                                 teacher_given_story_point==false.toString()?
                             RaisedButton(color: Colors.deepOrange,child: Text("Give Point"),onPressed:(){

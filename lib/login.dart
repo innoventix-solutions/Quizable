@@ -144,6 +144,7 @@ class _loginState extends State<login> {
         GlobalData.signupdate = statuss['userdata']['signup_date'];
         GlobalData.dob=statuss['userdata']['birthdate'];
         GlobalData.accounttype=statuss['userdata']['accout_type'];
+        GlobalData.adminaccountname=statuss['userdata']['account_name'];
         GlobalData.accountname=statuss['userdata']['account_name'];
         print(statuss['userdata']['user_type']);
         print(statuss['userdata']['ID']);
@@ -161,6 +162,7 @@ class _loginState extends State<login> {
         GlobalData.parentsemail=statuss['userdata']['parents_email'].toString();   //16-9-19 a
         GlobalData.signupdate = statuss['userdata']['signup_date'].toString();
         GlobalData.accounttype=statuss['userdata']['accout_type'].toString();
+        GlobalData.adminaccountname=statuss['userdata']['account_name'].toString();
         GlobalData.accountname=statuss['userdata']['account_name'].toString();
 
 
@@ -168,11 +170,15 @@ class _loginState extends State<login> {
 
         //print("ACCOUNT NAME " + statuss['userdata']['account_name']);
 
-        //print("ACC NAME " + GlobalData.accountname);
+        print("ACC NAME " + GlobalData.accountname);
+        print("ACC NAME " + GlobalData.adminaccountname);
+
+
 
 
 
         await getMembershipdetails();
+
 
 
         if (statuss['userdata']['user_type'] == "teacher") {
@@ -420,6 +426,7 @@ class _loginState extends State<login> {
 
     GlobalData.classadminid = GlobalData.Class_list[index].userid;
     GlobalData.adminaccountname = GlobalData.Class_list[index].accountname;
+    GlobalData.accountname= GlobalData.Class_list[index].accountname;
 
 
     print(GlobalData.classadminid);
@@ -427,8 +434,9 @@ class _loginState extends State<login> {
 
     GlobalData.total_join = GlobalData.Class_list[index].total_join;
 
-    GlobalData.adminmembership=GlobalData.Class_list[index].isactive;
-    GlobalData.adminmembership=GlobalData.Class_list[index].id;
+    //GlobalData.adminmember.isActive.toString();ship=GlobalData.Class_list[index].membershipData.isActive.toString();
+    GlobalData.adminmembership=GlobalData.Class_list[index].membershipData==null?"false":
+    GlobalData.Class_list[index].membershipData.isActive.toString();
 
     GlobalData.adminaccounttype=GlobalData.Class_list[index].accout_type;
 
@@ -457,10 +465,8 @@ class _loginState extends State<login> {
 
       var ParsedJson = jsonDecode(response.body);
 
-
       if(ParsedJson['membershipdata']==false)
       {
-
 
         GlobalData.MyMembership = Membership(
             id: 0.toString(),
@@ -483,6 +489,9 @@ class _loginState extends State<login> {
     });
 
   }
+
+
+
 
 }
 

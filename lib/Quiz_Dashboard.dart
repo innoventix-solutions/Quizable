@@ -60,12 +60,13 @@ class _QuizboardState extends State<Quizboard> {
                     print("adminmembership:" +GlobalData.adminmembership.toString());
                     print("classname:" +GlobalData.class_name .toString());
                     print("Class ID: "+GlobalData.classid.toString());
+                    print("MyMebership: " +GlobalData.MyMembership.isActive.toString());
                     print(GlobalData.uid);
 
 
 
                     if(GlobalData.adminmembership == "" ||GlobalData.adminmembership=="null" ||
-                        GlobalData.adminmembership==false.toString())
+                        GlobalData.adminmembership==false.toString() ||GlobalData.adminmembership==null)
 
                     {
                       print("Level 1");
@@ -80,6 +81,7 @@ class _QuizboardState extends State<Quizboard> {
                       if(GlobalData.quizclass!=null && GlobalData.quizclass.isNotEmpty)
                       {
 
+                        GlobalData.classadminid==GlobalData.uid?
                         GlobalData.userType=="admin_teacher"?
                         CustomShowDialog(context,title: "Subscription Required",msg:
                         "Only One Quiz with maximum 10 Questions with one Level is Allowed for Free User\n\nSubscribe to create more Quiz",onPressed:(){
@@ -87,6 +89,11 @@ class _QuizboardState extends State<Quizboard> {
 
                         }):
                         CustomShowDialog(context,title: "SUBSCRIPTION REQUIRED",msg:
+                        "Your Class Admin is on a Trial Subscription. \n\nPlease refer to Class Admin to upgrade account to enable you \nset multi-level questions above 10.\n\nThank you",
+                            onPressed:(){
+                              Navigator.of(context).pushNamed('dashboard');
+
+                            }):CustomShowDialog(context,title: "SUBSCRIPTION REQUIRED",msg:
                         "Your Class Admin is on a Trial Subscription. \n\nPlease refer to Class Admin to upgrade account to enable you \nset multi-level questions above 10.\n\nThank you",
                             onPressed:(){
                               Navigator.of(context).pushNamed('dashboard');
@@ -165,7 +172,7 @@ class _QuizboardState extends State<Quizboard> {
                           child: Container(
                             child: Row(mainAxisAlignment: MainAxisAlignment.center,
                               children: <Widget>[
-                                Text('Quiz Exercises Log',style: TextStyle(fontSize: 16,
+                                Text('My Quiz Exercises Log',style: TextStyle(fontSize: 16,
                                     fontWeight:  FontWeight.bold,color: GlobalData.gray),
                                 ),
                               ],),
@@ -175,6 +182,30 @@ class _QuizboardState extends State<Quizboard> {
                     ),
                   ),
 
+
+                  GestureDetector(onTap: (){
+
+                    Navigator.of(context)
+                        .pushNamed(
+                        'allquizlog');
+                  },
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 20,right: 20,top: 10),
+                      child: Card(elevation: 5.0,
+                        child: Padding(
+                          padding: const EdgeInsets.only(top: 20,bottom: 20),
+                          child: Container(
+                            child: Row(mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                Text('All Quiz Exercises Log',style: TextStyle(fontSize: 16,
+                                    fontWeight:  FontWeight.bold,color: GlobalData.gray),
+                                ),
+                              ],),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
 
                   GestureDetector(onTap: (){
                     Navigator.of(context)
@@ -188,7 +219,29 @@ class _QuizboardState extends State<Quizboard> {
                           child: Container(
                             child: Row(mainAxisAlignment: MainAxisAlignment.center,
                               children: <Widget>[
-                                Text('Quiz Results',style: TextStyle(fontSize: 16,
+                                Text('My Quiz Results',style: TextStyle(fontSize: 16,
+                                    fontWeight:  FontWeight.bold,color: GlobalData.gray),),
+                              ],),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+
+
+                  GestureDetector(onTap: (){
+                    Navigator.of(context)
+                        .pushNamed('allquizresult');
+                  },
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 20,right: 20,top: 10),
+                      child: Card(elevation: 5.0,
+                        child: Padding(
+                          padding: const EdgeInsets.only(top: 20,bottom: 20),
+                          child: Container(
+                            child: Row(mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                Text('All Quiz Results',style: TextStyle(fontSize: 16,
                                     fontWeight:  FontWeight.bold,color: GlobalData.gray),),
                               ],),
                           ),

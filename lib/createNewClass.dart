@@ -67,6 +67,7 @@ class _createnewclassState extends State<createnewclass> {
 
       if(Res['status']==1)
         {
+          savingquestion(context);
 
           await GetMyClasses();
 
@@ -78,7 +79,7 @@ class _createnewclassState extends State<createnewclass> {
          GlobalData.classid=Res['classdata']['ID'];
          GlobalData.uid=Res['classdata']['user_id'];
           GlobalData.classadminid=Res['classdata']['user_id'];
-
+          GlobalData.adminaccountname=Res['classdata']['account_name'];
          Navigator.of(context)
              .pushNamed('invitecode');
 
@@ -240,10 +241,10 @@ class _createnewclassState extends State<createnewclass> {
                         });
                        // Navigator.of(context).pushNamed('ManageAccount');
                       }else {
-                      savingquestion(context);
                       createclass();
                     }
 
+                    print(GlobalData.Class_list.length);
                  //print(classname.text.toString());
                   },
                 )

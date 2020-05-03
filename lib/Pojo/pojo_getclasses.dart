@@ -1,3 +1,7 @@
+import 'dart:convert';
+
+import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
+
 class Classes{
   String id;
   String userid;
@@ -12,12 +16,12 @@ class Classes{
   String username;
   String total_join;
   String status;
-  String isactive;
+  MembershipData membershipData;
 
 
   Classes({this.id,this.userid,this.classname,this.classicon,this.studentinvitecode,
   this.teacherinvitecode,this.createddate,this.selected,this.accout_type, this.accountname,
-    this.username,this.total_join,this.status,this.isactive});
+    this.username,this.total_join,this.status,this.membershipData});
 
 
   factory Classes.fromJson(Map<String,dynamic> parsedJson){
@@ -36,7 +40,9 @@ class Classes{
         total_join:parsedJson['total_join'].toString(),
       status: parsedJson['status'].toString(),
       selected: false,
-      isactive: parsedJson['membership_data'].toString()
+      membershipData: parsedJson['membership_data']==null?null:
+      parsedJson['membership_data']==false?null:
+      MembershipData.fromJson(parsedJson['membership_data'])
 
     );
   }
@@ -60,4 +66,35 @@ class Classes{
 
 }
 
+class MembershipData {
+  String iD;
+  String userId;
+  String month;
+  String reference;
+  String date;
+  bool isActive;
+
+  MembershipData({this.iD,
+    this.userId,
+    this.month,
+    this.reference,
+    this.date,
+    this.isActive});
+
+  factory MembershipData.fromJson(Map<String,dynamic> parsedJson){
+
+    return MembershipData(
+        iD: parsedJson['ID'].toString(),
+        userId: parsedJson['user_id'].toString(),
+        month: parsedJson['month'].toString(),
+        reference: parsedJson['reference'].toString(),
+        date: parsedJson['date'].toString(),
+        isActive: parsedJson['is_active']
+
+
+
+    );
+  }
+
+}
 

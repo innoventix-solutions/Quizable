@@ -60,10 +60,13 @@ class _SpellingboardState extends State<Spellingboard> {
                     print("adminmembership:" +GlobalData.adminmembership.toString());
                     print("classname:" +GlobalData.class_name .toString());
                     print("Class ID: "+GlobalData.classid.toString());
+                    print("MyMebership: " +GlobalData.MyMembership.isActive.toString());
+                    print(GlobalData.uid);
 
 
 
-                    if(GlobalData.adminmembership == "" ||GlobalData.adminmembership=="null" || GlobalData.adminmembership==false.toString())
+                    if(GlobalData.adminmembership == "" ||GlobalData.adminmembership=="null" ||
+                        GlobalData.adminmembership==false.toString()||GlobalData.adminmembership==null)
 
                     {
                       print("Level 1");
@@ -77,6 +80,7 @@ class _SpellingboardState extends State<Spellingboard> {
 
                       if(GlobalData.spellingclass!=null && GlobalData.spellingclass.isNotEmpty)
                       {
+                        GlobalData.classadminid==GlobalData.uid?
 
                         GlobalData.userType=="admin_teacher"?
                         CustomShowDialog(context,title: "Subscription Required",msg:
@@ -84,6 +88,12 @@ class _SpellingboardState extends State<Spellingboard> {
                           Navigator.of(context).pushNamed('ManageAccount');
 
                         }):
+                        CustomShowDialog(context,title: "SUBSCRIPTION REQUIRED",msg:
+                        "Your Class Admin is on a Trial Subscription. \n\nPlease refer to Class Admin to upgrade account to enable you \nset multi-level questions above 10.\n\nThank you",
+                            onPressed:(){
+                              Navigator.of(context).pushNamed('dashboard');
+
+                            }):
                         CustomShowDialog(context,title: "SUBSCRIPTION REQUIRED",msg:
                         "Your Class Admin is on a Trial Subscription. \n\nPlease refer to Class Admin to upgrade account to enable you \nset multi-level questions above 10.\n\nThank you",
                             onPressed:(){
@@ -166,7 +176,30 @@ class _SpellingboardState extends State<Spellingboard> {
                           child: Container(
                             child: Row(mainAxisAlignment: MainAxisAlignment.center,
                               children: <Widget>[
-                                Text('Spelling Exercises Log',style: TextStyle(fontSize: 16,
+                                Text('My Spelling Exercises Log',style: TextStyle(fontSize: 16,
+                                    fontWeight:  FontWeight.bold,color: GlobalData.gray),
+                                ),
+                              ],),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+
+
+
+                  GestureDetector(onTap: (){
+                    Navigator.of(context).pushNamed('allspellinglog');
+                  },
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 20,right: 20,top: 10),
+                      child: Card(elevation: 5.0,
+                        child: Padding(
+                          padding: const EdgeInsets.only(top: 20,bottom: 20),
+                          child: Container(
+                            child: Row(mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                Text('All Spelling Exercises Log',style: TextStyle(fontSize: 16,
                                     fontWeight:  FontWeight.bold,color: GlobalData.gray),
                                 ),
                               ],),
@@ -189,7 +222,7 @@ class _SpellingboardState extends State<Spellingboard> {
                           child: Container(
                             child: Row(mainAxisAlignment: MainAxisAlignment.center,
                               children: <Widget>[
-                                Text('Spelling Results',style: TextStyle(fontSize: 16,
+                                Text('My Spelling Results',style: TextStyle(fontSize: 16,
                                     fontWeight:  FontWeight.bold,color: GlobalData.gray),),
                               ],),
                           ),
@@ -198,6 +231,27 @@ class _SpellingboardState extends State<Spellingboard> {
                     ),
                   ),
 
+
+                  GestureDetector(onTap: (){
+                    Navigator.of(context)
+                        .pushNamed('allspellingreport');
+                  },
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 20,right: 20,top: 10),
+                      child: Card(elevation: 5.0,
+                        child: Padding(
+                          padding: const EdgeInsets.only(top: 20,bottom: 20),
+                          child: Container(
+                            child: Row(mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                Text('All Spelling Results',style: TextStyle(fontSize: 16,
+                                    fontWeight:  FontWeight.bold,color: GlobalData.gray),),
+                              ],),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
 
 
                 ],

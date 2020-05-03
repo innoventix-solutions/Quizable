@@ -84,6 +84,10 @@ class _techerjoinclassState extends State<techerjoinclass> {
         print(GlobalData.adminaccountname);
         print(GlobalData.accountname);
         print(GlobalData.classadminid);
+        print(GlobalData.username);
+
+        GlobalData.adminaccountname =GlobalData.activeclass.accountname;
+        GlobalData.accountname = GlobalData.activeclass.accountname;
 
 
 
@@ -101,7 +105,9 @@ class _techerjoinclassState extends State<techerjoinclass> {
     GlobalData.class_name=GlobalData.activeclass.classname;
     GlobalData.classadminid = GlobalData.activeclass.userid;
     GlobalData.adminaccountname = GlobalData.activeclass.accountname;
+    GlobalData.accountname = GlobalData.activeclass.accountname;
 
+    print(GlobalData.accountname);
     GlobalData.Class_list = await (Data as List).map((data) =>Classes.fromJson(data)).toList();
     Navigator.of(context).pushNamed('teacherdashboard');
   }
@@ -206,6 +212,7 @@ centerTitle: true,
                   ),
                 ),
                 SizedBox(height: 20,),
+
                 GlobalData.Class_list.isNotEmpty?
                 Column(
                   children: <Widget>[

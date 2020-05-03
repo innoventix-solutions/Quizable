@@ -569,13 +569,16 @@ class _setspellingquestionState extends State<setspellingquestion> {
 
                                     if (GlobalData.adminmembership == "" ||
                                         GlobalData.adminmembership == null ||
-                                        GlobalData.adminmembership == false.toString())
+                                        GlobalData.adminmembership == false.toString()||
+                                        GlobalData.adminmembership=="null")
                                     {
 
                                       print("Level 1");
 
                                       if (int.parse(GlobalData.spellLevels) > 1 || int.parse(GlobalData.spellNosofQuesPerLevel) > 10)
                                       {
+                                        GlobalData.classadminid==GlobalData.uid?
+
                                         GlobalData.userType=="admin_teacher"?
                                         CustomShowDialog(context,title: "Subscription Required",msg:
                                         "Please reduce the number of Spelling Level to 1 and upto 10 Questions\nfor a trial.\nOtherwise, subscribe to set unlimited questions in multiple levels\n\nSubscribe now?",onPressed:(){
@@ -584,6 +587,11 @@ class _setspellingquestionState extends State<setspellingquestion> {
                                             onpressed1: (){
                                               Navigator.of(context).pop();
                                             }):
+                                        CustomShowDialog(context,title: "Subscription Required",msg:
+                                        "You cannot set more than 10 questions each level. \n\nPlease contact your Admin to Subscribe for the institution's account.",onPressed:(){
+                                          Navigator.of(context).pop();
+
+                                        }):
                                         CustomShowDialog(context,title: "Subscription Required",msg:
                                         "You cannot set more than 10 questions each level. \n\nPlease contact your Admin to Subscribe for the institution's account.",onPressed:(){
                                           Navigator.of(context).pop();

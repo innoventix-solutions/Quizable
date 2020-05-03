@@ -111,10 +111,12 @@ class _quizclassState extends State<quizclass> {
 
 
                       },
-                      child: Column(
+                      child: GlobalData.classadminid==GlobalData.Class_list[index].userid?Column(
                         children: <Widget>[
                           Container(
-                            color: Class_list[index].selected==true?Colors.blue[50]:Colors.white,
+                            color: Class_list[index].selected==true
+                                &&
+                                Class_list[index].status=="active"?Colors.blue[50]:Colors.white,
                             child: Row(
                               children: <Widget>[
                                 Stack(
@@ -140,7 +142,11 @@ class _quizclassState extends State<quizclass> {
                                     child: Column(mainAxisAlignment: MainAxisAlignment.start,crossAxisAlignment: CrossAxisAlignment.start,
                                       children: <Widget>[
                                         Text(Class_list[index].classname,style: TextStyle(fontSize: 15),textAlign: TextAlign.left,),
-
+                                        GlobalData.Class_list[index].status=="active"?
+                                        SizedBox():Padding(
+                                          padding: const EdgeInsets.only(top:5),
+                                          child: Text("Deactivated",style: TextStyle(fontSize: 14,color: Colors.red),),
+                                        )
                                       ],
                                     ),
                                   ),
@@ -153,7 +159,7 @@ class _quizclassState extends State<quizclass> {
                             color: Colors.black,
                           ),
                         ],
-                      ),
+                      ):Text(""),
                     );
                   }
               ),

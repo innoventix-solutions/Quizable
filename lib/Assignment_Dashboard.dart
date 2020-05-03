@@ -60,11 +60,11 @@ class _AssignmentboardState extends State<Assignmentboard> {
                     print("adminmembership:" +GlobalData.adminmembership.toString());
                     print("classname:" +GlobalData.class_name .toString());
                     print("Class ID: "+GlobalData.classid.toString());
-
+                    print("MyMebership: " +GlobalData.MyMembership.isActive.toString());
                     print(GlobalData.uid);
 
-                    if(GlobalData.adminmembership == "" ||GlobalData.adminmembership==null ||
-                        GlobalData.adminmembership==false.toString())
+                    if(GlobalData.adminmembership == "" ||GlobalData.adminmembership=="null" ||
+                        GlobalData.adminmembership==false.toString()||GlobalData.adminmembership==null)
 
                     {
                       print("Level 1");
@@ -79,6 +79,8 @@ class _AssignmentboardState extends State<Assignmentboard> {
                       if(GlobalData.assignmentclass!=null && GlobalData.assignmentclass.isNotEmpty)
                       {
 
+                        GlobalData.classadminid==GlobalData.uid?
+
                         GlobalData.userType=="admin_teacher"?
                         CustomShowDialog(context,title: "Subscription Required",msg:
                         "Only One Assignment with max 10 Questions is Allowed for Free User\n\nSubscribe to create more Assignment",onPressed:(){
@@ -86,6 +88,11 @@ class _AssignmentboardState extends State<Assignmentboard> {
 
                         }):
                         CustomShowDialog(context,title: "SUBSCRIPTION REQUIRED",msg:
+                        "Your Class Admin is on a Trial Subscription. \n\nPlease refer to Class Admin to upgrade account to enable you \nset questions above 10.\n\nThank you",
+                            onPressed:(){
+                              Navigator.of(context).pushNamed('dashboard');
+
+                            }):CustomShowDialog(context,title: "SUBSCRIPTION REQUIRED",msg:
                         "Your Class Admin is on a Trial Subscription. \n\nPlease refer to Class Admin to upgrade account to enable you \nset questions above 10.\n\nThank you",
                             onPressed:(){
                               Navigator.of(context).pushNamed('dashboard');
@@ -166,7 +173,31 @@ class _AssignmentboardState extends State<Assignmentboard> {
                           child: Container(
                             child: Row(mainAxisAlignment: MainAxisAlignment.center,
                               children: <Widget>[
-                                Text('Assignment Exercises Log',style: TextStyle(fontSize: 16,
+                                Text('My Assignments Exercises Log',style: TextStyle(fontSize: 16,
+                                    fontWeight:  FontWeight.bold,color: GlobalData.gray),
+                                ),
+                              ],),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+
+
+                  GestureDetector(onTap: (){
+                    Navigator.of(context)
+                        .pushNamed(
+                        'allassignment');
+                  },
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 20,right: 20,top: 10),
+                      child: Card(elevation: 5.0,
+                        child: Padding(
+                          padding: const EdgeInsets.only(top: 20,bottom: 20),
+                          child: Container(
+                            child: Row(mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                Text('All Assignments Exercises Log',style: TextStyle(fontSize: 16,
                                     fontWeight:  FontWeight.bold,color: GlobalData.gray),
                                 ),
                               ],),
@@ -189,7 +220,28 @@ class _AssignmentboardState extends State<Assignmentboard> {
                           child: Container(
                             child: Row(mainAxisAlignment: MainAxisAlignment.center,
                               children: <Widget>[
-                                Text('Assignment Results',style: TextStyle(fontSize: 16,
+                                Text('My Assignments Results',style: TextStyle(fontSize: 16,
+                                    fontWeight:  FontWeight.bold,color: GlobalData.gray),),
+                              ],),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+
+                  GestureDetector(onTap: (){
+                    Navigator.of(context)
+                        .pushNamed('allassignmentreport');
+                  },
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 20,right: 20,top: 10),
+                      child: Card(elevation: 5.0,
+                        child: Padding(
+                          padding: const EdgeInsets.only(top: 20,bottom: 20),
+                          child: Container(
+                            child: Row(mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                Text('All Assignments Results',style: TextStyle(fontSize: 16,
                                     fontWeight:  FontWeight.bold,color: GlobalData.gray),),
                               ],),
                           ),

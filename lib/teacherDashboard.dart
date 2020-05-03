@@ -92,9 +92,14 @@ class _teacherdashboardState extends State<teacherdashboard> {
           title: Center(
             child: Column(
               children: <Widget>[
-                Text(GlobalData.adminaccountname==null||GlobalData.adminaccountname=="null"?"No Account Name":GlobalData.adminaccountname,
+                Text(GlobalData.accountname==null||GlobalData.accountname=="null"
+                    ||GlobalData.adminaccountname==null||GlobalData.adminaccountname=="null"?GlobalData.class_name:GlobalData.adminaccountname,
+                  style: TextStyle(fontSize: 20),),
+                /*Text(GlobalData.adminaccountname==null||GlobalData.adminaccountname=="null"||
+                    GlobalData.accountname==null||GlobalData.accountname=="null"?
+                GlobalData.accountname:GlobalData.adminaccountname,
                   style: TextStyle(fontSize: 20),
-                ),
+                ),*/
                 Row(mainAxisAlignment: MainAxisAlignment.end,
                   children: <Widget>[
 
@@ -118,7 +123,9 @@ class _teacherdashboardState extends State<teacherdashboard> {
             ),
           ),
           actions: <Widget>[
-            IconButton(onPressed: (){},
+            IconButton(onPressed: (){
+              Navigator.pushNamed(context, 'demo');
+            },
               icon: Icon(
                 Icons.account_circle,
                 color: Colors.transparent,
@@ -304,6 +311,7 @@ class _teacherdashboardState extends State<teacherdashboard> {
                             ),onTap: (){
 
                               print(GlobalData.classid);
+                              print(GlobalData.userType);
 
 
                               Navigator.of(context)
@@ -476,6 +484,7 @@ class _teacherdashboardState extends State<teacherdashboard> {
                           color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
                     )],),
                 ),onTap: (){
+                  print(GlobalData.MyMembership.isActive);
                 Navigator.of(context)
                     .pushNamed('ManageAccount');
               },

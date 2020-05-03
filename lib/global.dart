@@ -125,8 +125,8 @@ class GlobalData{
   static String Recoverycode="";
   static String adminaccounttype;
   static String classadminid;
-  static String accountname;
-  static String adminaccountname;
+  static String accountname="";
+  static String adminaccountname="";
 
 
 
@@ -171,9 +171,17 @@ static String spellNosofQuesPerLevel = "";
 static String spellDurationofEachLevel ="";
 static String spellingid="";
 static Membership MyMembership = Membership(isActive: false,enddate: DateTime.now(),id: "adsf");
+
+static ClassMembership classmemberships = ClassMembership(isActive: false,enddate: DateTime.now(),id: "adsf");
 }
 
+class ClassMembership{
+  String id;
+  DateTime enddate;
+  bool isActive;
 
+  ClassMembership({this.id, this.enddate, this.isActive});
+}
 
 class Membership{
 
@@ -1733,6 +1741,7 @@ LogoutFunction(context)async {
   GlobalData.AssignmentID="";
   GlobalData.NosofQuesassignment="";
   GlobalData.MyMembership=null;
+  GlobalData.classmemberships=null;
 
   GlobalData.spelltitle="";
   GlobalData.spellLevels="";
@@ -1743,6 +1752,8 @@ LogoutFunction(context)async {
   GlobalData.quizclass=null;
   GlobalData.Selected_class_IDS=null;
   GlobalData.Selected_class=null;
+  GlobalData.accountname="";
+  GlobalData.adminaccountname="";
 
 
   // Navigator.of(context).dispose();
@@ -2589,24 +2600,33 @@ class PreviewQuizs extends StatelessWidget {
                     padding: const EdgeInsets.only(
                         right: 50
                     ),
-                    child: GestureDetector(
-                        onTap: (){
-                          Navigator.of(context).pushNamed('previewQuiz');
-                        },child: new Text("Cancel")),
+                    child: new Text("Cancel"),
 
                   ),
-                  GestureDetector(
-                      onTap: (){
-                        Delete(id);
-                        Show_toast("Delete Successfully", Colors.green);
-                        Navigator.of(context).pushNamed('dashboard');
-                      },child: new Text("Ok")),
+
                 ],
               ),
-              onPressed: () {
-                Navigator.of(context).pop();
+              onPressed: (){
+                Navigator.of(context).pushNamed('previewQuiz');
+
               },
+
             ),
+
+            new FlatButton(
+              child: Row(
+                children: <Widget>[
+
+                  new Text("Ok"),
+                ],
+              ),
+              onPressed: (){
+                Delete(id);
+                Show_toast("Delete Successfully", Colors.green);
+                Navigator.of(context).pushNamed('dashboard');
+              },
+
+            )
           ],
         );
       },
@@ -5392,3 +5412,158 @@ class AssignmentResult extends StatelessWidget {
       );
   }
 }
+
+
+
+class ClassesPerAccount extends StatelessWidget {
+
+
+  // ClassesPerAccount call krke dekh kisi page pr shi chalta hai ?
+
+  @override
+  Widget build(BuildContext context) {
+
+    List<String> UserIds = new List();
+
+    SharedPreferences preferences;
+
+
+    for(int i=0;i<GlobalData.Class_list.length;i++){
+      if(!UserIds.contains(GlobalData.Class_list[i].accountname)){
+        UserIds.add(GlobalData.Class_list[i].accountname);
+        print("Already tehre ");
+      }else{
+        print("Already tehre ");}
+    }
+
+    print("Class Admins : ${UserIds}");
+
+
+    return Container(
+      child: ListView.builder(
+        shrinkWrap: true,
+        itemCount: UserIds.length
+      ,itemBuilder: (context,index){
+          return Column(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+
+              Card(elevation: 5.0,
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 5,bottom: 5,left: 10),
+                  child: Container(
+                    child: Column(mainAxisAlignment: MainAxisAlignment.start,
+                      children: <Widget>[
+                        Row(mainAxisAlignment: MainAxisAlignment.start,
+                          children: <Widget>[
+                            Text(GlobalData
+                                .Class_list[index].accountname==null||GlobalData
+                                .Class_list[index].accountname=="null"?"No Account Name":"${UserIds[index]}",style: TextStyle(fontSize: 20,
+                                fontWeight:  FontWeight.bold,color: GlobalData.gray),),
+                          ],)
+                      ],),
+                  ),
+                ),
+              ),
+              ListView.builder(scrollDirection: Axis.vertical,
+                  shrinkWrap: true,
+              itemCount: GlobalData.Class_list.length
+              ,
+              itemBuilder: (c,i){
+                return GestureDetector(
+                  onTap: ()async{
+
+
+                    preferences = await SharedPreferences.getInstance();
+
+                    preferences.setString("selectedClass", GlobalData.Class_list[index].id);
+
+                    GlobalData.classid = GlobalData.Class_list[i].id;
+
+                    GlobalData.createdclassdate = GlobalData.Class_list[i].createddate;
+
+                    GlobalData.student_code = GlobalData.Class_list[i].studentinvitecode;
+
+                    GlobalData.teacher_code = GlobalData.Class_list[i].teacherinvitecode;
+
+                    GlobalData.class_name = GlobalData.Class_list[i].classname;
+
+                    GlobalData.activeclass = GlobalData.Class_list[i];
+
+                    GlobalData.class_name = GlobalData.Class_list[i].classname;
+
+                   // GlobalData.adminmembership=GlobalData.Class_list[i].isactive;
+                    GlobalData.adminmembership=GlobalData.Class_list[index].membershipData==null?"false":
+                    GlobalData.Class_list[index].membershipData.isActive.toString();
+
+                    GlobalData.adminaccounttype=GlobalData.Class_list[i].accout_type;
+
+                    GlobalData.classadminid = GlobalData.Class_list[i].userid;
+                    print(GlobalData.uid);
+
+                    GlobalData.adminaccountname = GlobalData.Class_list[i].accountname;
+                    GlobalData.accountname=GlobalData.Class_list[i].accountname;
+
+                    print(GlobalData.classadminid);
+                    print(GlobalData.adminaccountname);
+                    print(GlobalData.accountname);
+                    print(GlobalData.Class_list[i].accout_type);
+                    print(GlobalData.adminaccounttype);
+                    print(GlobalData.Class_list[i].classname);
+                    print(GlobalData.activeclass.classname);
+                    print(GlobalData.userType);
+                    print(GlobalData.MyMembership.isActive);
+                    print(GlobalData.adminmembership);
+
+
+                    Navigator.of(context)
+                        .pushReplacementNamed('teacherdashboard');
+                  },
+                  child: Column(
+                    children: <Widget>[
+
+                      Container(
+                        child: Row(children: <Widget>[
+
+                          GlobalData.Class_list[i].accountname==UserIds[index]?
+                          Stack(
+                            children: <Widget>[
+
+
+                              Container(height: 70,width: 70,margin: EdgeInsets.only(left: 20,top: 15,bottom: 10),
+                                child: ClipOval(
+                                  child: FadeInImage.assetNetwork(
+                                    placeholder: 'assets/images/classicon.png',
+                                    image: GlobalData.Class_list[i].classicon,fit: BoxFit.cover,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ):SizedBox(),
+
+
+                          GlobalData.Class_list[i].accountname==UserIds[index]?
+                          Padding(
+                            padding: const EdgeInsets.only(left: 30),
+                            child: Column(
+                              children: <Widget>[
+                                Text(GlobalData.Class_list[i].classname),
+                              ],
+                            ),
+                          ):SizedBox(),
+
+                        ],),
+                      )
+                    ],
+                  ),
+                );
+              }
+              ),Divider( color: Colors.black,)
+            ],
+          );
+      }),
+    );
+  }
+}
+
+

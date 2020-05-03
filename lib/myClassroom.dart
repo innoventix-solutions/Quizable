@@ -121,7 +121,7 @@ class _myclassroomState extends State<myclassroom> {
                             .pushNamed('StudentList');
 
                       },
-                      child: Column(
+                      child: GlobalData.classadminid==GlobalData.Class_list[index].userid?Column(
                         children: <Widget>[
                           Container(
                             color: GlobalData.Class_list[index].selected==true?Colors.blue[50]:Colors.white,
@@ -229,7 +229,7 @@ class _myclassroomState extends State<myclassroom> {
                             color: Colors.black,
                           ),
                         ],
-                      ),
+                      ):Text("")
                     );
                   }
               ),

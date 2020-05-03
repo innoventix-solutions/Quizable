@@ -57,6 +57,7 @@ class _splashState extends State<splash> {
 
   }
 
+
   GetUserdetails()async{
     prefs = await SharedPreferences.getInstance();
     print(prefs.get("Id"));
@@ -211,17 +212,27 @@ class _splashState extends State<splash> {
         GlobalData.class_name =
             GlobalData.Class_list[index].classname;
 
-        GlobalData.adminmembership=GlobalData.Class_list[index].isactive;
-        GlobalData.adminmembership=GlobalData.Class_list[index].id;
+       // GlobalData.adminmembership=GlobalData.Class_list[index].isactive;
+
+        GlobalData.adminmembership=GlobalData.Class_list[index].membershipData==null?"false":
+        GlobalData.Class_list[index].membershipData.isActive.toString();
+
+        GlobalData.adminaccountname = GlobalData.Class_list[index].accountname;
 
         GlobalData.adminaccounttype=GlobalData.Class_list[index].accout_type;
 
-        GlobalData.accountname = GlobalData.Class_list[index].classname;
+        GlobalData.accountname = GlobalData.Class_list[index].accountname;
 
 
 
         print(GlobalData.Class_list[index].classname);
         print(GlobalData.activeclass.classname);
+
+
+        print(GlobalData.Class_list[index].accountname);
+        print(GlobalData.activeclass.accountname);
+
+
         Navigator.of(context)
             .pushReplacementNamed(NamedPath);
       }
