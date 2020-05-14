@@ -8,7 +8,6 @@ import 'utilities.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
-import 'package:flutter_range_slider/flutter_range_slider.dart' as frs;
 
 class setquizquestion extends StatefulWidget {
   @override

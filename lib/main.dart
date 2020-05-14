@@ -164,8 +164,10 @@ import 'AllQuizReport.dart';
 import 'AllSpellingLog.dart';
 import 'AllSpellingReport.dart';
 import 'testingarun.dart';
-
-
+import 'PreviewQuizlevelList.dart';
+import 'PreviewQuestionList.dart';
+import 'PreviewSpellingLevelList.dart';
+import 'PreviewSpellingQuestinList.dart';
 
 void main() {
   runApp(MyApp());
@@ -320,7 +322,11 @@ class MyApp extends StatelessWidget {
         'allquizresult':(context)=>AllsQuizReport(),
         'allspellinglog':(context)=>AllSpelling(),
         'allspellingreport':(context)=>AllsSpellingReport(),
-        'demo':(context)=>demo()
+        'demo':(context)=>demo(),
+        'previewQuizlevellists':(context)=>PreviewLevelsLists(),
+        'previewQuizquestionlist':(context)=>PreviewQuizQuestion_List(),
+        'previewspellinglevellist':(context)=>PreviewSpellingLevelListss(),
+        'previewspellingquestionslist':(context)=>PreviewSpellingQuestionListss()
 
 
 

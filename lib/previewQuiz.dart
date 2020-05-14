@@ -118,7 +118,7 @@ class _PreviewQuizState extends State<PreviewQuiz> {
                               //Navigator.of(context).pushNamed(GlobalData.userType=="student"?'exam':'Question_List');
 
                             print("asdfasdf");
-                              Navigator.of(context).pushNamed(GlobalData.userType=="student"?'exam':'levelsList');
+                              Navigator.of(context).pushNamed(GlobalData.userType=="student"?'exam':'previewQuizlevellists');
                             }
 
                         },

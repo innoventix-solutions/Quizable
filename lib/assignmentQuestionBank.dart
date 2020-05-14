@@ -548,7 +548,7 @@ class _assignmentquestionbankState extends State<assignmentquestionbank> {
                           ),
                         ],
                       ),
-                      Padding(
+                      /*Padding(
                         padding: const EdgeInsets.only(bottom: 25, right: 5),
                         child: GestureDetector(
                           child: Row(
@@ -575,7 +575,7 @@ class _assignmentquestionbankState extends State<assignmentquestionbank> {
 //                              'questions');
                           },
                         ),
-                      ),
+                      ),*/
                     ],
                   )),
             ),

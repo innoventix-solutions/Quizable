@@ -117,7 +117,7 @@ class _PreviewSpellingState extends State<PreviewSpelling> {
                             //Navigator.of(context).pushNamed(GlobalData.userType=="student"?'exam':'Question_List');
 
                             print("asdfasdf");
-                            Navigator.of(context).pushNamed(GlobalData.userType=="student"?'exam':'spellinglevelsList');
+                            Navigator.of(context).pushNamed(GlobalData.userType=="student"?'exam':'previewspellinglevellist');
                           }
 
                         },
