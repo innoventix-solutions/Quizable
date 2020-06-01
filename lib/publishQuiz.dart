@@ -31,20 +31,25 @@ class _publishquizState extends State<publishquiz> {
         msg: msg,
         toastLength: Toast.LENGTH_SHORT,
         gravity: ToastGravity.CENTER,
-        timeInSecForIos: 1,
+        timeInSecForIosWeb	: 1,
         backgroundColor: color,
         textColor: Colors.white,
         fontSize: 16.0);
   }
 
 
-  final formats = {
+  final formatdate = DateFormat("yyyy-MM-dd");
+  final formattime = DateFormat("HH:mm");
+  final formatdatetime = DateFormat("yyyy-MM-dd h:mma");
+
+
+  /*final formats = {
     InputType.both: DateFormat("yyyy-MM-dd h:mma"),
     InputType.date: DateFormat('yyyy-MM-dd'),
     InputType.time: DateFormat("HH:mm"),
-  };
+  };*/
 
-  InputType inputType = InputType.both;
+  //InputType inputType = InputType.both;
   bool editable = true;
   DateTime Starting_date;
   DateTime Closing_date;
@@ -152,7 +157,36 @@ class _publishquizState extends State<publishquiz> {
                             child: Card(elevation: 5.0,shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0),),
                               child: Padding(
                                 padding: const EdgeInsets.only(left: 20),
-                                child: DateTimePickerFormField(
+                                child:
+
+                                DateTimeField(
+                                  format: formatdatetime,
+                                  onShowPicker: (context, currentValue) async {
+                                    final date = await showDatePicker(
+                                      context: context,
+                                      firstDate: Starting_date==null?DateTime.now():Starting_date,
+                                      initialDate: Starting_date ?? DateTime.now(),
+                                      lastDate: DateTime(2100),);
+                                    if (date != null) {
+                                      final time = await showTimePicker(
+                                        context: context,
+                                        initialTime:
+                                        TimeOfDay.now(),
+                                      );
+                                      return DateTimeField.combine(date, time);
+                                    } else {
+                                      return currentValue;
+                                    }
+                                  },
+
+                                  decoration: InputDecoration(
+                                      labelText: 'Select Closing Date',labelStyle:
+                                  TextStyle(color: Colors.blueAccent,fontWeight: FontWeight.bold), hasFloatingPlaceholder: false,border:InputBorder.none),
+                                  onChanged: (dt) => setState(() => Closing_date = dt),
+                                ),
+
+
+                                /*DateTimePickerFormField(
                                   initialDate: Starting_date,
                                   lastDate: Closing_date,
                                   firstDate: Starting_date==null?DateTime.now():Starting_date,
@@ -164,7 +198,7 @@ class _publishquizState extends State<publishquiz> {
                                       labelText: 'Select Closing Date',labelStyle:
                                   TextStyle(color: Colors.blueAccent,fontWeight: FontWeight.bold), hasFloatingPlaceholder: false,border:InputBorder.none),
                                   onChanged: (dt) => setState(() => Closing_date = dt),
-                                ),
+                                ),*/
                               ),
                             ),
                           ),
@@ -175,7 +209,7 @@ class _publishquizState extends State<publishquiz> {
                 ),
               ),
 
-
+//Text(Closing_date.toString()),
               Container(
                 child: Padding(
                   padding: const EdgeInsets.only(
@@ -232,7 +266,33 @@ class _publishquizState extends State<publishquiz> {
                                 child: Card(elevation: 5.0,shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0),),
                                     child: Padding(
                                       padding: const EdgeInsets.only(left: 20),
-                                      child: DateTimePickerFormField(
+                                      child:
+
+                                      DateTimeField(
+                                        format: formatdatetime,
+                                        onShowPicker: (context, currentValue) async {
+                                          final date = await showDatePicker(
+                                            context: context,
+                                            firstDate: DateTime.now(),
+                                              initialDate: DateTime.now(),
+                                              lastDate: DateTime(2100)
+                                          );
+                                          if (date != null) {
+                                            final time = await showTimePicker(
+                                              context: context,
+                                              initialTime: TimeOfDay.fromDateTime(currentValue ?? DateTime.now()),
+                                            );
+                                            return DateTimeField.combine(date, time);
+                                          } else {
+                                            return currentValue;
+                                          }
+                                        },decoration:  InputDecoration(
+                                          labelText: 'Choose Date and Time',labelStyle:
+                                      TextStyle(color: Colors.blueAccent,fontWeight: FontWeight.bold), hasFloatingPlaceholder: false,border:InputBorder.none),
+                                        onChanged: (dt) => setState(() => Starting_date = dt),
+                                      ),
+
+                                      /*DateTimePickerFormField(
                                         firstDate: DateTime.now(),
                                         inputType:  inputType,
                                         format: formats[inputType],
@@ -241,7 +301,7 @@ class _publishquizState extends State<publishquiz> {
                                             labelText: 'Choose Date and Time',labelStyle:
                                         TextStyle(color: Colors.blueAccent,fontWeight: FontWeight.bold), hasFloatingPlaceholder: false,border:InputBorder.none),
                                         onChanged: (dt) => setState(() => Starting_date = dt),
-                                      ),
+                                      ),*/
                                     ),
                                   ),
                               ),
@@ -297,7 +357,7 @@ class _publishquizState extends State<publishquiz> {
 
     print(
         "publish_date :"+ DateTime.now().toString()+
-            "\nclosing_date : 2019-06-26 00:00:01"
+            "\nclosing_date :"+Closing_date.toString()
     );
 
     if (Closing_date==null  ) {

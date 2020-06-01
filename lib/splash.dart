@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'Pojo/pojo_getclasses.dart';
@@ -14,6 +15,7 @@ class _splashState extends State<splash> {
   SharedPreferences prefs ;
   bool isClassSelected =false;
   String selectedClass ="";
+  final FirebaseMessaging firebaseMessaging = new FirebaseMessaging();
 
 
   getMembershipdetails()async{
@@ -160,10 +162,27 @@ class _splashState extends State<splash> {
     GetUserdetails();
   }
 
+
+  void registerNotification() {
+    firebaseMessaging.requestNotificationPermissions();
+
+    firebaseMessaging.configure(onMessage: (Map<String, dynamic> message) {
+      print('onMessage: $message');
+      //showNotification(message['notification']);
+      return;
+    }, onResume: (Map<String, dynamic> message) {
+      print('onResume: $message');
+      return;
+    }, onLaunch: (Map<String, dynamic> message) {
+      print('onLaunch: $message');
+      return;
+    });
+  }
+
   @override
   void initState() {
     GetShared();
-
+    registerNotification();
     // TODO: implement initState
     super.initState();
   }

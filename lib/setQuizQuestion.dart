@@ -85,7 +85,7 @@ setalldetails(){
         msg: msg,
         toastLength: Toast.LENGTH_SHORT,
         gravity: ToastGravity.CENTER,
-        timeInSecForIos: 1,
+        timeInSecForIosWeb	: 1,
         backgroundColor: color,
         textColor: Colors.white,
         fontSize: 16.0);
@@ -126,13 +126,13 @@ setalldetails(){
 
 
 
-  final formats = {
+  /*final formats = {
     InputType.both: DateFormat("yyyy-MM-dd h:mma"),
     InputType.date: DateFormat('yyyy-MM-dd'),
     InputType.time: DateFormat("HH:mm"),
-  };
+  };*/
 
-  InputType inputType = InputType.both;
+ // InputType inputType = InputType.both;
   bool editable = true;
   DateTime Starting_date;
   DateTime Closing_date;

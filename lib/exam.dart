@@ -660,8 +660,10 @@ class _ExamState extends State<Exam> {
               padding: const EdgeInsets.all(8.0),
               child: Row(
                 children: <Widget>[
-                  Text("Quiz Name: "+ GlobalData.ExamQuiz,style: TextStyle(fontSize: 18,
-                  color: GlobalData.navyblue,fontWeight: FontWeight.bold),),
+                  Flexible(
+                    child: Text("Quiz Name: "+ GlobalData.ExamQuiz,style: TextStyle(fontSize: 18,
+                    color: GlobalData.navyblue,fontWeight: FontWeight.bold),maxLines: 3,),
+                  ),
                 ],
               ),
             ),

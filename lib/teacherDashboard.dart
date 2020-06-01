@@ -76,7 +76,7 @@ class _teacherdashboardState extends State<teacherdashboard> {
       msg: msg,
       toastLength: Toast.LENGTH_SHORT,
       gravity: ToastGravity.CENTER,
-      timeInSecForIos:60,
+      timeInSecForIosWeb	:60,
       backgroundColor: color,
       textColor: Colors.white,
       fontSize: 16.0,
@@ -136,238 +136,240 @@ class _teacherdashboardState extends State<teacherdashboard> {
         ),
 
 
-        body: Column(
-          children: <Widget>[
-            Container(
-              width: MediaQuery.of(context).size.width,
-              height: 180,
-              decoration: bg12,
-              child: Column(
-                children: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.only(top: 15),
-                    child: Stack(
+        body: SafeArea(
+          child: Column(
+            children: <Widget>[
+              Container(
+                width: MediaQuery.of(context).size.width,
+                height: 180,
+                decoration: bg12,
+                child: Column(
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.only(top: 15),
+                      child: Stack(
 
-                        children: <Widget>[
-                    Container(
-                        child:CircleAvatar(
-                          backgroundImage:GlobalData.Userphoto!=""?
-                          NetworkImage(GlobalData.Userphoto):globalData.getgender(),
-                          radius: 35.0,
+                          children: <Widget>[
+                      Container(
+                          child:CircleAvatar(
+                            backgroundImage:GlobalData.Userphoto!=""?
+                            NetworkImage(GlobalData.Userphoto):globalData.getgender(),
+                            radius: 35.0,
+                          ),
+                        ),
+                            Positioned(
+                              right: 0,bottom: 0,
+                              child: GestureDetector(onTap: (){
+
+                                Navigator.of(context)
+                                    .pushNamed('EditProfile');
+
+                              },
+                                child: Card(color: Colors.black,elevation: 5.0,
+                                  shape: RoundedRectangleBorder(side: BorderSide(color: Colors.white),
+                                    borderRadius: BorderRadius.circular(0.0),
+                                  ),
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(4.0),
+                                    child: Container(
+
+
+
+
+                                        child:Icon(
+                                          Icons.file_upload,
+                                          color: Colors.white,
+                                          size: 12.0,
+
+                                        ),),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                      ),
+                    ),Padding(
+                      padding: const EdgeInsets.only(top: 10),
+                      child: Text(GlobalData.Username,style:
+                      TextStyle(fontSize: 20,color: Colors.white,fontWeight: FontWeight.bold),),
+                    ),
+                   /* Padding(
+                      padding: const EdgeInsets.only(top: 10),
+                      child: Text('Distance Learning Institute',style:
+                      TextStyle(fontSize: 15,color: Colors.white),),
+                    ),*/
+                    Text(GlobalData.class_name==""?"No Class Selected":GlobalData.class_name,
+                      style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,
+                          fontSize: 16),),   ],
+                ),
+              ),
+
+
+
+              Center(
+                child: Container(
+
+                  child: Column(
+
+                    children: <Widget>[
+
+                      Padding(
+                        padding: const EdgeInsets.only(top: 70),
+                        child: Row(mainAxisAlignment: MainAxisAlignment.center,
+                          children:
+                          <Widget>[
+
+
+                            Padding(
+                              padding: const EdgeInsets.only(left: 15),
+                              child: GestureDetector(
+                                child: Container(height: 100,width: 150,
+
+
+                                  child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(10),),color:GlobalData.bluecard,),
+
+
+                                    child:Center(
+                                      child: Column(mainAxisAlignment: MainAxisAlignment.center,
+                                        children: <Widget>[
+                                          Icon(Icons.settings,size: 50,color: Colors.white,),
+                                          Text("Manage My",textAlign: TextAlign.center,style: TextStyle(color: Colors.white,fontSize: 13,fontWeight: FontWeight.bold),),
+                                          Text("Classrooms",textAlign: TextAlign.center,style: TextStyle(color: Colors.white,fontSize: 13,fontWeight: FontWeight.bold),),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ),onTap: (){
+                                  print(GlobalData.Class_list.length.toString());
+                                Navigator.of(context)
+                                    .pushNamed('myclassroom');
+                              },
+                              ),
+
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 15,right: 15),
+                              child: GestureDetector(
+                                child: Container(height: 100,width: 150,
+
+
+                                  child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(10),),color:GlobalData.pinkcard,),
+
+
+                                    child:Center(
+                                      child: Column(mainAxisAlignment: MainAxisAlignment.center,
+                                        children: <Widget>[
+                                          new Image.asset(
+                                            'assets/images/teacher.png',
+                                            width: 50.0,
+                                            height: 50.0,
+
+                                          ),
+                                          Padding(
+                                            padding: const EdgeInsets.only(top: 5),
+                                            child: Text("Teacher's Board",textAlign: TextAlign.center,style: TextStyle(color: Colors.white,fontSize: 13,fontWeight: FontWeight.bold),),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ),onTap: (){
+
+                                Navigator.of(context)
+                                    .pushNamed('TeacherList');
+                              },
+                              ),
+
+                            )
+
+
+
+                          ],
                         ),
                       ),
-                          Positioned(
-                            right: 0,bottom: 0,
-                            child: GestureDetector(onTap: (){
-
-                              Navigator.of(context)
-                                  .pushNamed('EditProfile');
-
-                            },
-                              child: Card(color: Colors.black,elevation: 5.0,
-                                shape: RoundedRectangleBorder(side: BorderSide(color: Colors.white),
-                                  borderRadius: BorderRadius.circular(0.0),
-                                ),
-                                child: Padding(
-                                  padding: const EdgeInsets.all(4.0),
-                                  child: Container(
+                      Padding(
+                        padding: const EdgeInsets.only(top: 30,left: 15),
+                        child: Row(mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            GestureDetector(
+                              child: Container(height: 100,width: 150,decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(10),),color:GlobalData.greencard,),
 
 
 
 
-                                      child:Icon(
-                                        Icons.file_upload,
-                                        color: Colors.white,
-                                        size: 12.0,
 
-                                      ),),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                    ),
-                  ),Padding(
-                    padding: const EdgeInsets.only(top: 10),
-                    child: Text(GlobalData.Username,style:
-                    TextStyle(fontSize: 20,color: Colors.white,fontWeight: FontWeight.bold),),
-                  ),
-                 /* Padding(
-                    padding: const EdgeInsets.only(top: 10),
-                    child: Text('Distance Learning Institute',style:
-                    TextStyle(fontSize: 15,color: Colors.white),),
-                  ),*/
-                  Text(GlobalData.class_name==""?"No Class Selected":GlobalData.class_name,
-                    style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,
-                        fontSize: 16),),   ],
-              ),
-            ),
-
-
-
-            Center(
-              child: Container(
-
-                child: Column(
-
-                  children: <Widget>[
-
-                    Padding(
-                      padding: const EdgeInsets.only(top: 70),
-                      child: Row(mainAxisAlignment: MainAxisAlignment.center,
-                        children:
-                        <Widget>[
-
-
-                          Padding(
-                            padding: const EdgeInsets.only(left: 15),
-                            child: GestureDetector(
-                              child: Container(height: 100,width: 150,
-
-
-                                child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(10),),color:GlobalData.bluecard,),
-
-
-                                  child:Center(
-                                    child: Column(mainAxisAlignment: MainAxisAlignment.center,
-                                      children: <Widget>[
-                                        Icon(Icons.settings,size: 50,color: Colors.white,),
-                                        Text("Manage My",textAlign: TextAlign.center,style: TextStyle(color: Colors.white,fontSize: 13,fontWeight: FontWeight.bold),),
-                                        Text("Classrooms",textAlign: TextAlign.center,style: TextStyle(color: Colors.white,fontSize: 13,fontWeight: FontWeight.bold),),
-                                      ],
-                                    ),
+                                child:Center(
+                                  child: Column(mainAxisAlignment: MainAxisAlignment.center,
+                                    children: <Widget>[
+                                      Icon(Icons.local_activity,size: 50,color: Colors.white,),
+                                      Text("Manage Class",textAlign: TextAlign.center,style: TextStyle(color: Colors.white,fontSize: 13,fontWeight: FontWeight.bold),),
+                                      Text('Activities',textAlign: TextAlign.center,style: TextStyle(color: Colors.white,fontSize: 13,fontWeight: FontWeight.bold),),
+                                    ],
                                   ),
                                 ),
-                              ),onTap: (){
-                                print(GlobalData.Class_list.length.toString());
-                              Navigator.of(context)
-                                  .pushNamed('myclassroom');
-                            },
-                            ),
-
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 15,right: 15),
-                            child: GestureDetector(
-                              child: Container(height: 100,width: 150,
 
 
-                                child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(10),),color:GlobalData.pinkcard,),
-
-
-                                  child:Center(
-                                    child: Column(mainAxisAlignment: MainAxisAlignment.center,
-                                      children: <Widget>[
-                                        new Image.asset(
-                                          'assets/images/teacher.png',
-                                          width: 50.0,
-                                          height: 50.0,
-
-                                        ),
-                                        Padding(
-                                          padding: const EdgeInsets.only(top: 5),
-                                          child: Text("Teacher's Board",textAlign: TextAlign.center,style: TextStyle(color: Colors.white,fontSize: 13,fontWeight: FontWeight.bold),),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
                               ),onTap: (){
 
-                              Navigator.of(context)
-                                  .pushNamed('TeacherList');
-                            },
+                                print(GlobalData.classid);
+                                print(GlobalData.userType);
+
+
+                                Navigator.of(context)
+                                .pushNamed('setexercise');
+                                },
                             ),
-
-                          )
-
-
-
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 30,left: 15),
-                      child: Row(mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          GestureDetector(
-                            child: Container(height: 100,width: 150,decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(10),),color:GlobalData.greencard,),
-
-
-
-
-
-                              child:Center(
-                                child: Column(mainAxisAlignment: MainAxisAlignment.center,
-                                  children: <Widget>[
-                                    Icon(Icons.local_activity,size: 50,color: Colors.white,),
-                                    Text("Manage Class",textAlign: TextAlign.center,style: TextStyle(color: Colors.white,fontSize: 13,fontWeight: FontWeight.bold),),
-                                    Text('Activities',textAlign: TextAlign.center,style: TextStyle(color: Colors.white,fontSize: 13,fontWeight: FontWeight.bold),),
-                                  ],
-                                ),
-                              ),
-
-
-                            ),onTap: (){
-
-                              print(GlobalData.classid);
-                              print(GlobalData.userType);
-
-
+                            GestureDetector(onTap: (){
                               Navigator.of(context)
-                              .pushNamed('setexercise');
+            .pushNamed('ReportDashboard');
                               },
-                          ),
-                          GestureDetector(onTap: (){
-                            Navigator.of(context)
-          .pushNamed('ReportDashboard');
-                            },
-                            child: Padding(
-                              padding: const EdgeInsets.only(left: 15,right: 15),
-                              child: Container(height: 100,width: 150,
+                              child: Padding(
+                                padding: const EdgeInsets.only(left: 15,right: 15),
+                                child: Container(height: 100,width: 150,
 
 
-                                child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(10),),color:GlobalData.orange,),
+                                  child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(10),),color:GlobalData.orange,),
 
 
-                                  child:Center(
-                                    child: Column(mainAxisAlignment: MainAxisAlignment.center,
-                                      children: <Widget>[
-                                        Icon(Icons.speaker_notes,size: 50,color: Colors.white,),
-                                        Text("Report",textAlign: TextAlign.center,style: TextStyle(color: Colors.white,fontSize: 13,fontWeight: FontWeight.bold),),
-                                      ],
+                                    child:Center(
+                                      child: Column(mainAxisAlignment: MainAxisAlignment.center,
+                                        children: <Widget>[
+                                          Icon(Icons.speaker_notes,size: 50,color: Colors.white,),
+                                          Text("Report",textAlign: TextAlign.center,style: TextStyle(color: Colors.white,fontSize: 13,fontWeight: FontWeight.bold),),
+                                        ],
+                                      ),
                                     ),
                                   ),
                                 ),
+
                               ),
-
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
-                    ),
 
-                  ],
+                    ],
+                  ),
+
                 ),
-
               ),
-            ),
 
-            Padding(
-              padding: const EdgeInsets.only(top: 40),
-              child: GestureDetector(
-                  child: Text("Switch Classroom", style: TextStyle(decoration: TextDecoration.underline,
-                      color: GlobalData.lightblue,
-                      fontSize: 22,
-                      fontWeight: FontWeight.bold)),
-                  onTap: () {
-                    Navigator.of(context).pushNamed('teacherSelectClass');
-                    // do what you need to do when "Click here" gets clicked
-                  }
+              Padding(
+                padding: const EdgeInsets.only(top: 40),
+                child: GestureDetector(
+                    child: Text("Switch Classroom", style: TextStyle(decoration: TextDecoration.underline,
+                        color: GlobalData.lightblue,
+                        fontSize: 22,
+                        fontWeight: FontWeight.bold)),
+                    onTap: () {
+                      Navigator.of(context).pushNamed('teacherSelectClass');
+                      // do what you need to do when "Click here" gets clicked
+                    }
+                ),
               ),
-            ),
 
-          ],
+            ],
+          ),
         ),
 
 
@@ -390,21 +392,23 @@ class _teacherdashboardState extends State<teacherdashboard> {
                         NetworkImage(GlobalData.Userphoto):globalData.getgender(),
                           radius: 35.0,),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 15),
-                        child: Column(mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[Padding(
-                            padding: const EdgeInsets.only(bottom: 15),
-                            child: Text(GlobalData.Username,
-                              style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,
-                                  fontSize: 14),),
-                          ),
+                      Expanded(
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 15),
+                          child: Column(mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[Padding(
+                              padding: const EdgeInsets.only(bottom: 15),
+                              child: Text(GlobalData.Username,
+                                style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,
+                                    fontSize: 12),),
+                            ),
 
-                            Text(GlobalData.class_name==""?"No Class Selected":GlobalData.class_name,
-                              style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,
-                                  fontSize: 14),),
-                          ],),
+                              Text(GlobalData.class_name==""?"No Class Selected":GlobalData.class_name,
+                                style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,
+                                    fontSize: 12),),
+                            ],),
+                        ),
                       )
                     ],),
                 ),),

@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -78,49 +79,55 @@ class _studentregState extends State<studentreg> {
         msg: msg,
         toastLength: Toast.LENGTH_SHORT,
         gravity: ToastGravity.CENTER,
-        timeInSecForIos: 1,
+        timeInSecForIosWeb: 1,
         backgroundColor: color,
         textColor: Colors.white,
         fontSize: 16.0);
   }
 
   Signup() async {
-    http.post("http://edusupportapp.com/api/register.php", body: {
-      "Fullname": acc.text.toString(),
-      "Username": username.text.toString(),
-      "UserEmail": email.text.toString().trim(),
-      "password": password.text.toString(),
-      "phone_no": phone.text.toString(),
-      "birthdate": Starting_date.toString(),
-      "gender": gendersel.toString(),
-      "specification": "",
-      "user_type": GlobalData.userType,
-      "parents_email": par_email.text.toString(),
-      "parents_phone_no": par_phone.text.toString(),
-      "accout_type":GlobalData.accounttype,
-      "image":image64,
-    }).then((response) {
-      print(response.body.toString());
 
-      var statuss = jsonDecode(response.body);
+    print(GlobalData.accounttype);
+
+    FirebaseMessaging().getToken().then((token){
+      http.post("http://edusupportapp.com/api/register.php", body: {
+        "Fullname": acc.text.toString(),
+        "Username": username.text.toString(),
+        "UserEmail": email.text.toString().trim(),
+        "password": password.text.toString(),
+        "phone_no": phone.text.toString(),
+        "birthdate": Starting_date.toString(),
+        "gender": gendersel.toString(),
+        "specification": "Student".toString(),
+        "user_type": GlobalData.userType,
+        "parents_email": par_email.text.toString(),
+        "parents_phone_no": par_phone.text.toString(),
+        //"accout_type":GlobalData.accounttype,
+        "image":image64,
+        "access_token":token
+      }).then((response) {
+        print(response.body.toString());
+
+        var statuss = jsonDecode(response.body);
 
 
-      print("result from Server : "+statuss['status'].toString());
+        print("result from Server : "+statuss['status'].toString());
 
-      if (statuss['status'].toString() == "1") {
+        if (statuss['status'].toString() == "1") {
 
-        savingquestion(context);
+          savingquestion(context);
 
-        Show_toast("Registered Successfully", Colors.green);
-        Navigator.of(context)
-            .pushNamedAndRemoveUntil('login', (Route<dynamic> route) => false);
-      } else {
-        Show_toast(statuss['msg'], Colors.red);
-      }
+          Show_toast("Registered Successfully", Colors.green);
+          Navigator.of(context)
+              .pushNamedAndRemoveUntil('login', (Route<dynamic> route) => false);
+        } else {
+          Show_toast(statuss['msg'], Colors.red);
+        }
+      });
     });
+
   }
 
-  DateTime selectedDate;
 
   check() {
     bool emailValid = RegExp(r"^[a-zA-Z0-9._]+@[a-zA-Z0-9]+\.[a-zA-Z]+").hasMatch(email.text.toString());
@@ -131,21 +138,22 @@ class _studentregState extends State<studentreg> {
     {
       print(phone.text.toString());
       print(phone.text.length.toString());
-      _showDialog(Msg: "Phone Number is not Valid");
+      _showDialog(Msg: "Phone Number must contain 11 digit");
     }
-   else if(par_phone.text.length>11 || par_phone.text.length<=10)
+    else if(par_phone.text.length>11 || par_phone.text.length<=10)
     {
 
-      _showDialog(Msg: "Parent Phone Number is not Valid");
+      _showDialog(Msg: "Parent Phone Number must contain 11 digit");
     }
     else if(password.text.length<6){
       _showDialog(Msg: "Password must contain atleast 6 digit");
     }
-    else if(Starting_date == null){
+    else if(Starting_date == null ){
       dob();
     }else
     if (password.text.toString() == cpass.text.toString()) {
       Signup();
+      print("successful");
     } else {
       _showDialog();
     }
@@ -204,13 +212,17 @@ class _studentregState extends State<studentreg> {
       });
   }*/
 
-  final formats = {
+  final formatdate = DateFormat("yyyy-MM-dd");
+  final formattime = DateFormat("HH:mm");
+  final formatdatetime = DateFormat("yyyy-MM-dd h:mma");
+
+  /*final formats = {
 
     InputType.date: DateFormat('yyyy-MM-dd'),
 
-  };
+  };*/
 
-  InputType inputType = InputType.date;
+  //InputType inputType = InputType.date;
   bool editable = true;
   DateTime Starting_date;
 
@@ -373,7 +385,24 @@ class _studentregState extends State<studentreg> {
                         padding: const EdgeInsets.only(left: 30, right: 30, top: 15),
                         child: Theme(
                           data:ThemeData(hintColor: GlobalData.lightblue) ,
-                          child: DateTimePickerFormField(
+                          child:
+                          DateTimeField(
+                            format: formatdate,
+                            onShowPicker: (context, currentValue) {
+                              return showDatePicker(
+                                  context: context,
+                                  firstDate: DateTime(1900),
+                                  initialDate: currentValue ?? DateTime.now(),
+                                  lastDate: DateTime.now());
+                            },
+                              decoration: InputDecoration(contentPadding: EdgeInsets.only(left: 5),
+                                  labelText: 'DOB',border:OutlineInputBorder(
+                                      borderRadius: new BorderRadius.circular(50.0),
+                                      borderSide: BorderSide(color: Colors.white)),prefixIcon: Icon(Icons.calendar_today,color: GlobalData.blue,)),
+                              onChanged: (dt) => setState(() => Starting_date = dt),
+                          ),
+
+                          /*DateTimePickerFormField(
                             inputType:  inputType,
                             format: formats[inputType],
                             editable: false,
@@ -382,7 +411,7 @@ class _studentregState extends State<studentreg> {
                                     borderRadius: new BorderRadius.circular(50.0),
                                     borderSide: BorderSide(color: Colors.white)),prefixIcon: Icon(Icons.calendar_today,color: GlobalData.blue,)),
                             onChanged: (dt) => setState(() => Starting_date = dt),
-                          ),
+                          ),*/
                         ),
                       ),
 
@@ -462,9 +491,9 @@ class _studentregState extends State<studentreg> {
 
                               print(par_email.toString());
                               print(par_phone.toString());
-                              print(selectedDate.toString());
+                              print(Starting_date.toString());
                               print(gendersel.toString());
-
+                              FirebaseMessaging().getToken();
                               //savingquestion(context);
                               check();
                               globalData.getgender();

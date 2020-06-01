@@ -146,14 +146,16 @@ class _questionmenuGlobalState extends State<questionmenuGlobal> {
                     padding: const EdgeInsets.only(top: 10, left: 20),
                     child: Row(
                       children: <Widget>[
-                        Text(
-                          Quizz_List.isNotEmpty
-                              ? Quizz_List[0].quiz_title
-                              : "No Quiz Available",
-                          style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                              color: GlobalData.white),
+                        Flexible(
+                          child: Text(
+                            Quizz_List.isNotEmpty
+                                ? Quizz_List[0].quiz_title
+                                : "No Quiz Available",
+                            style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                                color: GlobalData.white,),maxLines: 2,
+                          ),
                         ),
                       ],
                     ),

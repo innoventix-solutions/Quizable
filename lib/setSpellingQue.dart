@@ -55,7 +55,7 @@ class _setspellingquestionState extends State<setspellingquestion> {
         msg: msg,
         toastLength: Toast.LENGTH_SHORT,
         gravity: ToastGravity.CENTER,
-        timeInSecForIos: 1,
+        timeInSecForIosWeb	: 1,
         backgroundColor: color,
         textColor: Colors.white,
         fontSize: 16.0);
@@ -114,13 +114,19 @@ class _setspellingquestionState extends State<setspellingquestion> {
     });
   }
 
-  final formats = {
+  /*final formats = {
     InputType.both: DateFormat("yyyy-MM-dd h:mma"),
     InputType.date: DateFormat('yyyy-MM-dd'),
     InputType.time: DateFormat("HH:mm"),
-  };
+  };*/
 
-  InputType inputType = InputType.both;
+  final formatdate = DateFormat("yyyy-MM-dd");
+  final formattime = DateFormat("HH:mm");
+  final formatdatetime = DateFormat("yyyy-MM-dd h:mma");
+
+
+
+  //InputType inputType = InputType.both;
   bool editable = true;
   DateTime Starting_date;
   DateTime Closing_date;

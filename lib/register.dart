@@ -6,6 +6,7 @@ import 'global.dart';
 import 'package:http/http.dart' as http;
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 
 
 class sec extends StatefulWidget {
@@ -75,7 +76,7 @@ class _secState extends State<sec> {
         msg: msg,
         toastLength: Toast.LENGTH_SHORT,
         gravity: ToastGravity.CENTER,
-        timeInSecForIos: 1,
+        timeInSecForIosWeb	: 1,
         backgroundColor: color,
         textColor: Colors.white,
         fontSize: 16.0);
@@ -87,26 +88,29 @@ class _secState extends State<sec> {
 
 
     print(GlobalData.accounttype);
+    http.post("http://edusupportapp.com/api/register.php",
+        body: {
 
-    http.post("http://edusupportapp.com/api/register.php", body: {
-      "account_name": acc.text.toString(),
-      "Username": username.text.toString(),
-      "UserEmail": email.text.toString().trim(),
-      "password": password.text.toString(),
-      "phone_no": phone.text.toString(),
-      "specification": disc.text.toString(),
-      "birthdate": "11-11-12".toString(),
-      "gender": gendersel.toString(),
-      "user_type": GlobalData.userType,
-     "parents_email": "asdf".toString(),
-     "parents_phone_no": "sadf".toString(),
-    //  "user_type":"student".toString(),
-    "accout_type":GlobalData.accounttype,
-      "image":image64,
+          "account_name": acc.text.toString(),
+          "Username": username.text.toString(),
+          "UserEmail": email.text.toString().trim(),
+          "password": password.text.toString(),
+          "phone_no": phone.text.toString(),
+          "specification": disc.text.toString(),
+          "birthdate": "11-11-12".toString(),
+          "gender": gendersel.toString(),
+          "user_type": GlobalData.userType,
+          "parents_email": "asdf".toString(),
+          "parents_phone_no": "sadf".toString(),
+          //  "user_type":"student".toString(),
+          "accout_type":GlobalData.accounttype,
+          "image":image64,
 
 
 
-    }).then((response) {
+
+        }).
+    then((response) {
 
       print(response.body.toString());
 
@@ -122,10 +126,10 @@ class _secState extends State<sec> {
 
         Show_toast("Registered Successfully", Colors.green);
 
-      GlobalData.userType=="teacher" ? Navigator.of(context)
-          .pushNamedAndRemoveUntil('login', (Route<dynamic> route) => false) :
-      Navigator.of(context)
-          .pushNamedAndRemoveUntil('trialsub', (Route<dynamic> route) => false);
+        GlobalData.userType=="teacher" ? Navigator.of(context)
+            .pushNamedAndRemoveUntil('login', (Route<dynamic> route) => false) :
+        Navigator.of(context)
+            .pushNamedAndRemoveUntil('trialsub', (Route<dynamic> route) => false);
 
 
 
@@ -134,6 +138,7 @@ class _secState extends State<sec> {
         Show_toast(statuss['msg'], Colors.red);
       }
     });
+
 
 
   }
@@ -147,7 +152,7 @@ class _secState extends State<sec> {
       _showDialog1();
     }else if(phone.text.length>11 || phone.text.length<=10)
       {
-        _showDialog(Msg: "Phone Number is not Valid");
+        _showDialog(Msg: "Phone Number must contain 11 digit");
       }
 
     else if(password.text.length<6){

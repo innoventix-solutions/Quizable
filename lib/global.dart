@@ -604,7 +604,7 @@ Show_toast_Now(String msg,Color color){
       msg: msg,
       toastLength: Toast.LENGTH_SHORT,
       gravity: ToastGravity.CENTER,
-      timeInSecForIos: 1,
+      timeInSecForIosWeb	: 1,
       backgroundColor: color,
       textColor: Colors.white,
       fontSize: 16.0
@@ -2638,7 +2638,7 @@ class PreviewQuizs extends StatelessWidget {
         msg: msg,
         toastLength: Toast.LENGTH_SHORT,
         gravity: ToastGravity.CENTER,
-        timeInSecForIos: 1,
+        timeInSecForIosWeb	: 1,
         backgroundColor: color,
         textColor: Colors.white,
         fontSize: 16.0);
@@ -3136,7 +3136,7 @@ class StudentActivityReport extends StatelessWidget {
         msg: msg,
         toastLength: Toast.LENGTH_SHORT,
         gravity: ToastGravity.CENTER,
-        timeInSecForIos: 1,
+        timeInSecForIosWeb	: 1,
         backgroundColor: color,
         textColor: Colors.white,
         fontSize: 16.0);
@@ -3351,7 +3351,7 @@ class PreviewAssignments extends StatelessWidget
         msg: msg,
         toastLength: Toast.LENGTH_SHORT,
         gravity: ToastGravity.CENTER,
-        timeInSecForIos: 1,
+        timeInSecForIosWeb	: 1,
         backgroundColor: color,
         textColor: Colors.white,
         fontSize: 16.0);
@@ -4192,7 +4192,7 @@ class PreviewSpellingss extends StatelessWidget {
         msg: msg,
         toastLength: Toast.LENGTH_SHORT,
         gravity: ToastGravity.CENTER,
-        timeInSecForIos: 1,
+        timeInSecForIosWeb	: 1,
         backgroundColor: color,
         textColor: Colors.white,
         fontSize: 16.0);
@@ -5417,6 +5417,8 @@ class AssignmentResult extends StatelessWidget {
 
 class ClassesPerAccount extends StatelessWidget {
 
+  final ScrollController scroncontroller = ScrollController();
+
 
   // ClassesPerAccount call krke dekh kisi page pr shi chalta hai ?
 
@@ -5465,99 +5467,102 @@ class ClassesPerAccount extends StatelessWidget {
                   ),
                 ),
               ),
-              ListView.builder(scrollDirection: Axis.vertical,
-                  shrinkWrap: true,
-              itemCount: GlobalData.Class_list.length
-              ,
-              itemBuilder: (c,i){
-                return GestureDetector(
-                  onTap: ()async{
+              Scrollbar(
+                isAlwaysShown: true,
+                controller: scroncontroller,
+                child: ListView.builder(
+                  controller: scroncontroller,
+                    shrinkWrap: true,
+                itemCount: GlobalData.Class_list.length
+                ,
+                itemBuilder: (c,i){
+                  return GestureDetector(
+                    onTap: ()async{
 
 
-                    preferences = await SharedPreferences.getInstance();
+                      preferences = await SharedPreferences.getInstance();
 
-                    preferences.setString("selectedClass", GlobalData.Class_list[index].id);
+                      preferences.setString("selectedClass", GlobalData.Class_list[index].id);
 
-                    GlobalData.classid = GlobalData.Class_list[i].id;
+                      GlobalData.classid = GlobalData.Class_list[i].id;
 
-                    GlobalData.createdclassdate = GlobalData.Class_list[i].createddate;
+                      GlobalData.createdclassdate = GlobalData.Class_list[i].createddate;
 
-                    GlobalData.student_code = GlobalData.Class_list[i].studentinvitecode;
+                      GlobalData.student_code = GlobalData.Class_list[i].studentinvitecode;
 
-                    GlobalData.teacher_code = GlobalData.Class_list[i].teacherinvitecode;
+                      GlobalData.teacher_code = GlobalData.Class_list[i].teacherinvitecode;
 
-                    GlobalData.class_name = GlobalData.Class_list[i].classname;
+                      GlobalData.class_name = GlobalData.Class_list[i].classname;
 
-                    GlobalData.activeclass = GlobalData.Class_list[i];
+                      GlobalData.activeclass = GlobalData.Class_list[i];
 
-                    GlobalData.class_name = GlobalData.Class_list[i].classname;
+                      GlobalData.class_name = GlobalData.Class_list[i].classname;
 
-                   // GlobalData.adminmembership=GlobalData.Class_list[i].isactive;
-                    GlobalData.adminmembership=GlobalData.Class_list[index].membershipData==null?"false":
-                    GlobalData.Class_list[index].membershipData.isActive.toString();
+                     // GlobalData.adminmembership=GlobalData.Class_list[i].isactive;
+                      GlobalData.adminmembership=GlobalData.Class_list[index].membershipData==null?"false":
+                      GlobalData.Class_list[index].membershipData.isActive.toString();
 
-                    GlobalData.adminaccounttype=GlobalData.Class_list[i].accout_type;
+                      GlobalData.adminaccounttype=GlobalData.Class_list[i].accout_type;
 
-                    GlobalData.classadminid = GlobalData.Class_list[i].userid;
-                    print(GlobalData.uid);
+                      GlobalData.classadminid = GlobalData.Class_list[i].userid;
+                      print(GlobalData.uid);
 
-                    GlobalData.adminaccountname = GlobalData.Class_list[i].accountname;
-                    GlobalData.accountname=GlobalData.Class_list[i].accountname;
+                      GlobalData.adminaccountname = GlobalData.Class_list[i].accountname;
+                      GlobalData.accountname=GlobalData.Class_list[i].accountname;
 
-                    print(GlobalData.classadminid);
-                    print(GlobalData.adminaccountname);
-                    print(GlobalData.accountname);
-                    print(GlobalData.Class_list[i].accout_type);
-                    print(GlobalData.adminaccounttype);
-                    print(GlobalData.Class_list[i].classname);
-                    print(GlobalData.activeclass.classname);
-                    print(GlobalData.userType);
-                    print(GlobalData.MyMembership.isActive);
-                    print(GlobalData.adminmembership);
-
-
-                    Navigator.of(context)
-                        .pushReplacementNamed('teacherdashboard');
-                  },
-                  child: Column(
-                    children: <Widget>[
-
-                      Container(
-                        child: Row(children: <Widget>[
-
-                          GlobalData.Class_list[i].accountname==UserIds[index]?
-                          Stack(
-                            children: <Widget>[
+                      print(GlobalData.classadminid);
+                      print(GlobalData.adminaccountname);
+                      print(GlobalData.accountname);
+                      print(GlobalData.Class_list[i].accout_type);
+                      print(GlobalData.adminaccounttype);
+                      print(GlobalData.Class_list[i].classname);
+                      print(GlobalData.activeclass.classname);
+                      print(GlobalData.userType);
+                      print(GlobalData.MyMembership.isActive);
+                      print(GlobalData.adminmembership);
 
 
-                              Container(height: 70,width: 70,margin: EdgeInsets.only(left: 20,top: 15,bottom: 10),
-                                child: ClipOval(
-                                  child: FadeInImage.assetNetwork(
-                                    placeholder: 'assets/images/classicon.png',
-                                    image: GlobalData.Class_list[i].classicon,fit: BoxFit.cover,
-                                  ),
+                      Navigator.of(context)
+                          .pushReplacementNamed('teacherdashboard');
+                    },
+                    child: Container(
+                      child: Row(children: <Widget>[
+
+                        GlobalData.Class_list[i].accountname==UserIds[index]?
+                        Stack(
+                          children: <Widget>[
+
+
+                            Container(height: 70,width: 70,margin: EdgeInsets.only(left: 20,top: 15,bottom: 10),
+                              child: ClipOval(
+                                child: FadeInImage.assetNetwork(
+                                  placeholder: 'assets/images/classicon.png',
+                                  image: GlobalData.Class_list[i].classicon,fit: BoxFit.cover,
                                 ),
                               ),
-                            ],
-                          ):SizedBox(),
+                            ),
+                          ],
+                        ):SizedBox(),
 
 
-                          GlobalData.Class_list[i].accountname==UserIds[index]?
-                          Padding(
+                        GlobalData.Class_list[i].accountname==UserIds[index]?
+                        Expanded(
+                          child: Padding(
                             padding: const EdgeInsets.only(left: 30),
-                            child: Column(
+                            child: Column(mainAxisAlignment: MainAxisAlignment.start,crossAxisAlignment: CrossAxisAlignment.start,
                               children: <Widget>[
-                                Text(GlobalData.Class_list[i].classname),
+                                Text(GlobalData.Class_list[i].classname,
+                                ),
                               ],
                             ),
-                          ):SizedBox(),
+                          ),
+                        ):SizedBox(),
 
-                        ],),
-                      )
-                    ],
-                  ),
-                );
-              }
+                      ],),
+                    ),
+                  );
+                }
+                ),
               ),Divider( color: Colors.black,)
             ],
           );

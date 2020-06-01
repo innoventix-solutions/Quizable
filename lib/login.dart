@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:newpro/global.dart' as prefix0;
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/material.dart';
@@ -81,7 +82,7 @@ class _loginState extends State<login> {
         msg: msg,
         toastLength: Toast.LENGTH_SHORT,
         gravity: ToastGravity.CENTER,
-        timeInSecForIos: 1,
+        timeInSecForIosWeb	: 1,
         backgroundColor: color,
         textColor: Colors.white,
         fontSize: 16.0);
@@ -91,103 +92,105 @@ class _loginState extends State<login> {
   login() async {
 
 
+    FirebaseMessaging().getToken().then((token) {
 
-    http.post("http://edusupportapp.com/api/login.php", body: {
-      "username_email": email.text.toString().trim(),
-      "password": pass.text.toString()
-    }).then((response) async {
-      var statuss = jsonDecode(response.body);
-      print(response.body.toString());
-      //    print(response.body.toString());
-      if (statuss['status'] == 1) {
-        savingquestion(context);
+      http.post("http://edusupportapp.com/api/login.php", body: {
+        "username_email": email.text.toString().trim(),
+        "password": pass.text.toString(),
+        "access_token":token
+      }).then((response) async {
+        var statuss = jsonDecode(response.body);
+        print(response.body.toString());
+        //    print(response.body.toString());
+        if (statuss['status'] == 1) {
+          savingquestion(context);
 
-        if(statuss['join_classdata'] == false ){
+          if(statuss['join_classdata'] == false ){
 
-          print("error");
+            print("error");
 
-        }
-        else {
-          GlobalData.Class_list =
-              (statuss['join_classdata'] as List).map((data) =>
-                  Classes.fromJson(data)).toList();
-        }
-        print(GlobalData.Class_list.length.toString() + "Avilable class");
+          }
+          else {
+            GlobalData.Class_list =
+                (statuss['join_classdata'] as List).map((data) =>
+                    Classes.fromJson(data)).toList();
+          }
+          print(GlobalData.Class_list.length.toString() + "Avilable class");
 
-        Show_toast("Logged in Successfully", Colors.green);
-        prefs.setString('Data',await jsonEncode(GlobalData.Class_list));
-        prefs.setString("Id", statuss['userdata']['ID']);
-        prefs.setString("type", statuss['userdata']['user_type']);
-        prefs.setString("name", statuss['userdata']['username']);
-        prefs.setString("classname", statuss['userdata']['class_name']);
-        prefs.setString("phone", statuss['userdata']['phone_no']);  //14-8-19 a
-        prefs.setString("Fullname", statuss['userdata']['fullname']);  //14-8-19 a
-        prefs.setString("UserPhoto", statuss['userdata']['user_photo']);  //16-8-19  a
-        prefs.setString("email", statuss['userdata']['email']);  //16-8-19  a
-        prefs.setString("disc", statuss['userdata']['specification']);  //16-8-19  a
-        prefs.setString("Parentsphone", statuss['userdata']['parents_phone_no']);  //16-9-19 a
-        prefs.setString("parentsemail", statuss['userdata']['parents_email']);
-        prefs.setString("gender", statuss['userdata']['gender']);
-        prefs.setString("signupdate", statuss['userdata']['signup_date']);
-        prefs.setString('dob', statuss['userdata']['birthdate']);//16-10-19
-        prefs.setString('accounttype', statuss['userdata']['accout_type']);
-        prefs.setString('accountname', statuss['userdata']['account_name']);
-        GlobalData.Username=statuss['userdata']['username'];
-        GlobalData.Phone=statuss['userdata']['phone_no'];  //14-8-19 a
-        GlobalData.Fullname=statuss['userdata']['fullname'];  //14-8-19 a
-        GlobalData.Userphoto=statuss['userdata']['user_photo'];   //16-8-19  a
-        GlobalData.email=statuss['userdata']['email'];
-        GlobalData.disc=statuss['userdata']['specification'];
-        GlobalData.parentsphone=statuss['userdata']['parents_phone_no'];  //16-9-19 a
-        GlobalData.parentsemail=statuss['userdata']['parents_email'];//16-9-19 a
-        GlobalData.gendersel = statuss['userdata']['gender'];
-        GlobalData.signupdate = statuss['userdata']['signup_date'];
-        GlobalData.dob=statuss['userdata']['birthdate'];
-        GlobalData.accounttype=statuss['userdata']['accout_type'];
-        GlobalData.adminaccountname=statuss['userdata']['account_name'];
-        GlobalData.accountname=statuss['userdata']['account_name'];
-        print(statuss['userdata']['user_type']);
-        print(statuss['userdata']['ID']);
-        GlobalData.uid = statuss['userdata']['ID'].toString();
-        GlobalData.Username = statuss['userdata']['username'].toString();
-        GlobalData.class_name = statuss['userdata']['class_name'].toString();
-        GlobalData.userType = statuss['userdata']['user_type'].toString();
-        GlobalData.Phone = statuss['userdata']['phone_no'].toString();  //14-8-19 a
-        GlobalData.Fullname = statuss['userdata']['fullname'].toString();  //14-8-19 a
-        GlobalData.gendersel = statuss['userdata']['gender'];
-        GlobalData.email=statuss['userdata']['email'].toString();
-        GlobalData.disc=statuss['userdata']['specification'].toString();
-        GlobalData.dob=statuss['userdata']['birthdate'].toString();
-        GlobalData.parentsphone=statuss['userdata']['parents_phone_no'].toString();  //16-9-19 a
-        GlobalData.parentsemail=statuss['userdata']['parents_email'].toString();   //16-9-19 a
-        GlobalData.signupdate = statuss['userdata']['signup_date'].toString();
-        GlobalData.accounttype=statuss['userdata']['accout_type'].toString();
-        GlobalData.adminaccountname=statuss['userdata']['account_name'].toString();
-        GlobalData.accountname=statuss['userdata']['account_name'].toString();
-
-
-        print("ACCOUNT TYPE " + statuss['userdata']['accout_type']);
-
-        //print("ACCOUNT NAME " + statuss['userdata']['account_name']);
-
-        print("ACC NAME " + GlobalData.accountname);
-        print("ACC NAME " + GlobalData.adminaccountname);
+          Show_toast("Logged in Successfully", Colors.green);
+          prefs.setString('Data',await jsonEncode(GlobalData.Class_list));
+          prefs.setString("Id", statuss['userdata']['ID']);
+          prefs.setString("type", statuss['userdata']['user_type']);
+          prefs.setString("name", statuss['userdata']['username']);
+          prefs.setString("classname", statuss['userdata']['class_name']);
+          prefs.setString("phone", statuss['userdata']['phone_no']);  //14-8-19 a
+          prefs.setString("Fullname", statuss['userdata']['fullname']);  //14-8-19 a
+          prefs.setString("UserPhoto", statuss['userdata']['user_photo']);  //16-8-19  a
+          prefs.setString("email", statuss['userdata']['email']);  //16-8-19  a
+          prefs.setString("disc", statuss['userdata']['specification']);  //16-8-19  a
+          prefs.setString("Parentsphone", statuss['userdata']['parents_phone_no']);  //16-9-19 a
+          prefs.setString("parentsemail", statuss['userdata']['parents_email']);
+          prefs.setString("gender", statuss['userdata']['gender']);
+          prefs.setString("signupdate", statuss['userdata']['signup_date']);
+          prefs.setString('dob', statuss['userdata']['birthdate']);//16-10-19
+          prefs.setString('accounttype', statuss['userdata']['accout_type']);
+          prefs.setString('accountname', statuss['userdata']['account_name']);
+          GlobalData.Username=statuss['userdata']['username'];
+          GlobalData.Phone=statuss['userdata']['phone_no'];  //14-8-19 a
+          GlobalData.Fullname=statuss['userdata']['fullname'];  //14-8-19 a
+          GlobalData.Userphoto=statuss['userdata']['user_photo'];   //16-8-19  a
+          GlobalData.email=statuss['userdata']['email'];
+          GlobalData.disc=statuss['userdata']['specification'];
+          GlobalData.parentsphone=statuss['userdata']['parents_phone_no'];  //16-9-19 a
+          GlobalData.parentsemail=statuss['userdata']['parents_email'];//16-9-19 a
+          GlobalData.gendersel = statuss['userdata']['gender'];
+          GlobalData.signupdate = statuss['userdata']['signup_date'];
+          GlobalData.dob=statuss['userdata']['birthdate'];
+          GlobalData.accounttype=statuss['userdata']['accout_type'];
+          GlobalData.adminaccountname=statuss['userdata']['account_name'];
+          GlobalData.accountname=statuss['userdata']['account_name'];
+          print(statuss['userdata']['user_type']);
+          print(statuss['userdata']['ID']);
+          GlobalData.uid = statuss['userdata']['ID'].toString();
+          GlobalData.Username = statuss['userdata']['username'].toString();
+          GlobalData.class_name = statuss['userdata']['class_name'].toString();
+          GlobalData.userType = statuss['userdata']['user_type'].toString();
+          GlobalData.Phone = statuss['userdata']['phone_no'].toString();  //14-8-19 a
+          GlobalData.Fullname = statuss['userdata']['fullname'].toString();  //14-8-19 a
+          GlobalData.gendersel = statuss['userdata']['gender'];
+          GlobalData.email=statuss['userdata']['email'].toString();
+          GlobalData.disc=statuss['userdata']['specification'].toString();
+          GlobalData.dob=statuss['userdata']['birthdate'].toString();
+          GlobalData.parentsphone=statuss['userdata']['parents_phone_no'].toString();  //16-9-19 a
+          GlobalData.parentsemail=statuss['userdata']['parents_email'].toString();   //16-9-19 a
+          GlobalData.signupdate = statuss['userdata']['signup_date'].toString();
+          GlobalData.accounttype=statuss['userdata']['accout_type'].toString();
+          GlobalData.adminaccountname=statuss['userdata']['account_name'].toString();
+          GlobalData.accountname=statuss['userdata']['account_name'].toString();
 
 
+          print("ACCOUNT TYPE " + statuss['userdata']['accout_type']);
 
+          //print("ACCOUNT NAME " + statuss['userdata']['account_name']);
 
-
-        await getMembershipdetails();
+          print("ACC NAME " + GlobalData.accountname);
+          print("ACC NAME " + GlobalData.adminaccountname);
 
 
 
-        if (statuss['userdata']['user_type'] == "teacher") {
 
-          if(GlobalData.Class_list.isNotEmpty ) {
 
-            if(GlobalData.Class_list.length==1) {
-              GetmyCurrentClass("teacherdashboard");
-            }else
+          await getMembershipdetails();
+
+
+
+          if (statuss['userdata']['user_type'] == "teacher") {
+
+            if(GlobalData.Class_list.isNotEmpty ) {
+
+              if(GlobalData.Class_list.length==1) {
+                GetmyCurrentClass("teacherdashboard");
+              }else
               {
                 Navigator.of(context).pushReplacementNamed(
 
@@ -195,53 +198,55 @@ class _loginState extends State<login> {
                 );
               }
             }
-          else {
-            Navigator.of(context).pushReplacementNamed(
-
-                    'techerjoinclass'
-                    );
-          }
-
-        }
-        else if (statuss['userdata']['user_type'] == "admin_teacher") {
-          if(GlobalData.Class_list.isNotEmpty ) {
-
-            if(GlobalData.Class_list.length==1) {
-              GetmyCurrentClass("teacherdashboard");
-            }else
-            {
+            else {
               Navigator.of(context).pushReplacementNamed(
 
-                  'teacherSelectClass'
+                  'techerjoinclass'
               );
             }
+
           }
-          else {
-          Navigator.of(context).pushReplacementNamed(
-              'welcome');
-        }
+          else if (statuss['userdata']['user_type'] == "admin_teacher") {
+            if(GlobalData.Class_list.isNotEmpty ) {
+
+              if(GlobalData.Class_list.length==1) {
+                GetmyCurrentClass("teacherdashboard");
+              }else
+              {
+                Navigator.of(context).pushReplacementNamed(
+
+                    'teacherSelectClass'
+                );
+              }
+            }
+            else {
+              Navigator.of(context).pushReplacementNamed(
+                  'welcome');
+            }
+          } else {
+            if(GlobalData.Class_list.length == 0) {
+              Navigator.of(context).pushReplacementNamed('studentjoin');
+            }
+            else
+            {
+              if(GlobalData.Class_list.length==1) {
+                GetmyCurrentClass("studentdashboard");
+              }else
+              {
+                Navigator.of(context).pushReplacementNamed(
+
+                    'studentselectclass'
+                );
+              }
+
+            }
+          }
         } else {
-          if(GlobalData.Class_list.length == 0) {
-            Navigator.of(context).pushReplacementNamed('studentjoin');
-          }
-          else
-          {
-            if(GlobalData.Class_list.length==1) {
-              GetmyCurrentClass("studentdashboard");
-            }else
-            {
-              Navigator.of(context).pushReplacementNamed(
-
-                  'studentselectclass'
-              );
-            }
-
-          }
+          Show_toast("Invalid Username or Password", Colors.red);
         }
-      } else {
-        Show_toast("Invalid Username or Password", Colors.red);
-      }
+      });
     });
+
   }
 
   @override
@@ -345,6 +350,7 @@ class _loginState extends State<login> {
 //                        print(email.text.toString());
 //                        print(pass.text.toString());
                               //savingquestion(context);
+                                FirebaseMessaging().getToken();
                                 login();
                               },
                               shape: new RoundedRectangleBorder(

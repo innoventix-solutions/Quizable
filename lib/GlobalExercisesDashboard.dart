@@ -119,7 +119,7 @@ class _GlobalDashboardState extends State<GlobalDashboard> {
       msg: msg,
       toastLength: Toast.LENGTH_SHORT,
       gravity: ToastGravity.CENTER,
-      timeInSecForIos:60,
+      timeInSecForIosWeb	:60,
       backgroundColor: color,
       textColor: Colors.white,
       fontSize: 16.0,

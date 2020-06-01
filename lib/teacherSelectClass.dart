@@ -24,42 +24,43 @@ class _TeacherSelectClassState extends State<TeacherSelectClass> {
     // TODO: implement initState
     super.initState();
     GetMyClasses();
+    print(GlobalData.Class_list.length);
     print(GlobalData.userType);
   }
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        appBar: AppBar(
-          automaticallyImplyLeading: false,
-          title: Center(
-            child: Text(
-              "My Class",
-              style: TextStyle(fontSize: 22),
-            ),
+    return Scaffold(
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        title: Center(
+          child: Text(
+            "My Class",
+            style: TextStyle(fontSize: 22),
           ),
-          flexibleSpace: Container(
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomRight,
-                colors: [GlobalData.darkblue, GlobalData.darkpurple],
-              ),
-            ),
-          ),
-          actions: <Widget>[
-            IconButton(
-              onPressed: () {},
-              icon: Icon(
-                Icons.account_circle,
-                color: Colors.transparent,
-                size: 20,
-              ),
-            ),
-          ],
         ),
-        body: Column(
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomRight,
+              colors: [GlobalData.darkblue, GlobalData.darkpurple],
+            ),
+          ),
+        ),
+        actions: <Widget>[
+          IconButton(
+            onPressed: () {},
+            icon: Icon(
+              Icons.account_circle,
+              color: Colors.transparent,
+              size: 20,
+            ),
+          ),
+        ],
+      ),
+      body: SafeArea(
+        child: Column(
           children: <Widget>[
             Expanded(child: ClassesPerAccount()),
             GlobalData.userType == "admin_teacher"

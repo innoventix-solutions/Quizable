@@ -32,20 +32,24 @@ class _publishspellingbeeState extends State<publishspellingbee> {
         msg: msg,
         toastLength: Toast.LENGTH_SHORT,
         gravity: ToastGravity.CENTER,
-        timeInSecForIos: 1,
+        timeInSecForIosWeb	: 1,
         backgroundColor: color,
         textColor: Colors.white,
         fontSize: 16.0);
   }
 
+  final formatdate = DateFormat("yyyy-MM-dd");
+  final formattime = DateFormat("HH:mm");
+  final formatdatetime = DateFormat("yyyy-MM-dd h:mma");
 
-  final formats = {
+
+  /*final formats = {
     InputType.both: DateFormat("yyyy-MM-dd h:mma"),
     InputType.date: DateFormat('yyyy-MM-dd'),
     InputType.time: DateFormat("HH:mm"),
-  };
+  };*/
 
-  InputType inputType = InputType.both;
+ // InputType inputType = InputType.both;
   bool editable = true;
   DateTime Starting_date;
   DateTime Closing_date;
@@ -153,7 +157,34 @@ class _publishspellingbeeState extends State<publishspellingbee> {
                             child: Card(elevation: 5.0,shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0),),
                               child: Padding(
                                 padding: const EdgeInsets.only(left: 20),
-                                child: DateTimePickerFormField(
+                                child:
+                                DateTimeField(
+                                  format: formatdatetime,
+                                  onShowPicker: (context, currentValue) async {
+                                    final date = await showDatePicker(
+                                      context: context,
+                                      firstDate: Starting_date==null?DateTime.now():Starting_date,
+                                      initialDate: Starting_date ?? DateTime.now(),
+                                      lastDate: DateTime(2100),);
+                                    if (date != null) {
+                                      final time = await showTimePicker(
+                                        context: context,
+                                        initialTime:
+                                        TimeOfDay.now(),
+                                      );
+                                      return DateTimeField.combine(date, time);
+                                    } else {
+                                      return currentValue;
+                                    }
+                                  },
+
+                                  decoration: InputDecoration(
+                                      labelText: 'Select Closing Date',labelStyle:
+                                  TextStyle(color: Colors.blueAccent,fontWeight: FontWeight.bold), hasFloatingPlaceholder: false,border:InputBorder.none),
+                                  onChanged: (dt) => setState(() => Closing_date = dt),
+                                ),
+
+                                /*DateTimePickerFormField(
                                   initialDate: Starting_date,
                                   lastDate: Closing_date,
                                   firstDate: Starting_date==null?DateTime.now():Starting_date,
@@ -165,7 +196,7 @@ class _publishspellingbeeState extends State<publishspellingbee> {
                                       labelText: 'Select Closing Date',labelStyle:
                                   TextStyle(color: Colors.blueAccent,fontWeight: FontWeight.bold), hasFloatingPlaceholder: false,border:InputBorder.none),
                                   onChanged: (dt) => setState(() => Closing_date = dt),
-                                ),
+                                ),*/
                               ),
                             ),
                           ),
@@ -233,7 +264,33 @@ class _publishspellingbeeState extends State<publishspellingbee> {
                               child: Card(elevation: 5.0,shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0),),
                                 child: Padding(
                                   padding: const EdgeInsets.only(left: 20),
-                                  child: DateTimePickerFormField(
+                                  child:
+
+                                  DateTimeField(
+                                    format: formatdatetime,
+                                    onShowPicker: (context, currentValue) async {
+                                      final date = await showDatePicker(
+                                        context: context,
+                                        firstDate: DateTime.now(),
+                                          initialDate: DateTime.now(),
+                                          lastDate: DateTime(2100)
+                                      );
+                                      if (date != null) {
+                                        final time = await showTimePicker(
+                                          context: context,
+                                          initialTime: TimeOfDay.fromDateTime(currentValue ?? DateTime.now()),
+                                        );
+                                        return DateTimeField.combine(date, time);
+                                      } else {
+                                        return currentValue;
+                                      }
+                                    },decoration:  InputDecoration(
+                                      labelText: 'Choose Date and Time',labelStyle:
+                                  TextStyle(color: Colors.blueAccent,fontWeight: FontWeight.bold), hasFloatingPlaceholder: false,border:InputBorder.none),
+                                    onChanged: (dt) => setState(() => Starting_date = dt),
+                                  ),
+
+                                 /* DateTimePickerFormField(
                                     firstDate: DateTime.now(),
                                     inputType:  inputType,
                                     format: formats[inputType],
@@ -242,7 +299,7 @@ class _publishspellingbeeState extends State<publishspellingbee> {
                                         labelText: 'Choose Date and Time',labelStyle:
                                     TextStyle(color: Colors.blueAccent,fontWeight: FontWeight.bold), hasFloatingPlaceholder: false,border:InputBorder.none),
                                     onChanged: (dt) => setState(() => Starting_date = dt),
-                                  ),
+                                  ),*/
                                 ),
                               ),
                             ),

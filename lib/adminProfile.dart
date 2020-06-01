@@ -1,3 +1,4 @@
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:newpro/global.dart';
 import 'dart:convert';
@@ -23,7 +24,7 @@ class _adminprofileState extends State<adminprofile> {
         msg: msg,
         toastLength: Toast.LENGTH_SHORT,
         gravity: ToastGravity.CENTER,
-        timeInSecForIos: 1,
+        timeInSecForIosWeb: 1,
         backgroundColor: color,
         textColor: Colors.white,
         fontSize: 16.0);
@@ -120,6 +121,7 @@ class _adminprofileState extends State<adminprofile> {
           "phone_no":Phone.text.toString(),
 
 
+
         }).then((response) async {
       print(response.body);
       var ParsedJson = jsonDecode(response.body);
@@ -145,6 +147,7 @@ class _adminprofileState extends State<adminprofile> {
     setState(() {
 
     });
+
   }
 
   @override
@@ -435,7 +438,11 @@ getvalue();
                         linearGradient:LinearGradient(colors: <Color>[GlobalData.purple,GlobalData.pink]) ,
                         text: Text("Save Changes",style: TextStyle(color: Colors.white,
                           fontWeight: FontWeight.bold,fontSize: 15,),textAlign: TextAlign.center,),
-                        ButtonClick: (){check();GetShared();},
+                        ButtonClick: (){
+                          check();
+                          GetShared();
+
+                        },
                       ),
                     ),
 
