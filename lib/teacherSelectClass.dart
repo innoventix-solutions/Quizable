@@ -15,7 +15,44 @@ class _TeacherSelectClassState extends State<TeacherSelectClass> {
   GlobalData globalData = new GlobalData();
 
   SharedPreferences preferences;
+  getclassMembershipdetails()async{
 
+
+
+    await http.post(
+        "http://edusupportapp.com/api/get_user_membership.php",
+        body: {
+          "uid": GlobalData.classadminid,
+        }).then((response) async {
+
+      print(response.body.toString());
+
+      var ParsedJson = jsonDecode(response.body);
+
+      if(ParsedJson['membershipdata']==false)
+      {
+
+        GlobalData.classmemberships = ClassMembership(
+            id: 0.toString(),
+            enddate: DateTime.now(),
+            isActive: false);
+        setState(() {
+
+        });
+
+      }else {
+
+        GlobalData.classmemberships = ClassMembership(
+            id: ParsedJson['membershipdata']['ID'],
+            enddate: DateTime.parse(ParsedJson['membershipdata']['date']),
+            isActive: ParsedJson['membershipdata']['is_active']);
+        setState(() {
+
+        });
+      }
+    });
+
+  }
 
 
 
@@ -24,8 +61,11 @@ class _TeacherSelectClassState extends State<TeacherSelectClass> {
     // TODO: implement initState
     super.initState();
     GetMyClasses();
+    getclassMembershipdetails();
     print(GlobalData.Class_list.length);
     print(GlobalData.userType);
+    //print(GlobalData.classmemberships.isActive);
+    print(GlobalData.adminmembership.toString());
   }
 
   @override

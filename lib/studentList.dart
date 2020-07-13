@@ -51,7 +51,7 @@ GlobalData.Studentlist.clear();
               .toList();
         }
 
-      print(GlobalData.Studentlist.length);
+      print("Student List" + GlobalData.Studentlist.length.toString());
 
       setState(() {
 
@@ -154,7 +154,7 @@ GlobalData.Studentlist.clear();
           title: Center(
             child: Text(
              GlobalData.class_name,
-              style: TextStyle(fontSize: 22),textAlign: TextAlign.center,
+              style: TextStyle(fontSize: 16),textAlign: TextAlign.center,
             ),
           ),
           flexibleSpace: Container(

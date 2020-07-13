@@ -10,12 +10,12 @@ import 'Pojo/pojo_matchs.dart';
 import 'global.dart';
 import 'package:newpro/Pojo/pojo_questions.dart';
 
-class PreviewQuizQuestion_List extends StatefulWidget {
+class PreviewAssignmentQuestionList extends StatefulWidget {
   @override
-  _PreviewQuizQuestion_ListState createState() => _PreviewQuizQuestion_ListState();
+  _PreviewAssignmentQuestionListState createState() => _PreviewAssignmentQuestionListState();
 }
 
-class _PreviewQuizQuestion_ListState extends State<PreviewQuizQuestion_List> {
+class _PreviewAssignmentQuestionListState extends State<PreviewAssignmentQuestionList> {
 
 
 
@@ -26,17 +26,16 @@ class _PreviewQuizQuestion_ListState extends State<PreviewQuizQuestion_List> {
   int CurrentPage =0;
   PageController pageController = new PageController();
   List<Pojo_questions> Quetions = new List();
-  List<Pojo_questions> OriginalList = new List();
   int i=0;
-  List<Pojo_Matchs> matchs = new List();
+  //List<Pojo_Matchs> matchs = new List();
   String ExamAnswer ="";
   ScrollController controller = new ScrollController();
   List<Pojo_Answers> Options = List();
-  List<MatchClass> Matchs = List();
-  List<Pojo_Matchs> Matches = List();
+  //List<MatchClass> Matchs = List();
+  //List<Pojo_Matchs> Matches = List();
   int Selected =0;
   List<int> Selecteditem=new List();
-  String TrueorFalse = "";
+  // String TrueorFalse = "";
   List<String> _list = new List();
   bool isloading = true;
 
@@ -46,22 +45,12 @@ class _PreviewQuizQuestion_ListState extends State<PreviewQuizQuestion_List> {
 
     });
     print(GlobalData.QuizID);
-    await http.post("http://edusupportapp.com/api/get_quiz_questions.php",body: {
-      "QuizId":GlobalData.QuizID
+    await http.post("http://edusupportapp.com/api/get_assignment_questions.php",body: {
+      "assignment_id":GlobalData.AssignmentID
     }).then((res){
       print(res.body);
       var ParsedJson = jsonDecode(res.body);
-      OriginalList = (ParsedJson['quizquestionsdata'] as List).map((data)=>Pojo_questions.fromJson(data)).toList();
-
-      for(var item in OriginalList){
-        if(item.level_no==GlobalData.CurrentLevel.toString())
-        {
-          Quetions.add(item);
-          print("Match Found");
-        }else{
-          print("Not Found");
-        }
-      }
+      Quetions = (ParsedJson['assignmentquestionsdata'] as List).map((data)=>Pojo_questions.fromJson(data)).toList();
       setState(() {
       });
     });
@@ -70,11 +59,6 @@ class _PreviewQuizQuestion_ListState extends State<PreviewQuizQuestion_List> {
 
     });
   }
-
-
-
-
-
   Widget AnswerNow(String type,List<Pojo_Matchs> Data,List<Pojo_Answers> Answers,int index)
   {
 
@@ -83,109 +67,10 @@ class _PreviewQuizQuestion_ListState extends State<PreviewQuizQuestion_List> {
 
     print(GlobalData.LoadData.toString());
 
-    if(_list.length==0) {
-      for (var item in Matches) {
-        _list.add(item.val2);
-      }
-      print(_list.length);
-    }
-
-
     switch (type)
     {
-      case "Match Type":
-
-        return Data.isEmpty? Text(""): Container(
-          height: Data.isEmpty?50.0:Data.length*60.0,
-          child: Row(
-            children: <Widget>[
-              Expanded(child: Container(
-                color:Colors.green[300],
-                child: Column(
-                  children: <Widget>[
-                    Expanded(
-                      child: ListView.builder(
-                          shrinkWrap: true,
-                          key:Key("MatchType"+index.toString()),
-                          controller: controller,
-                          itemCount: Data.length,
-                          itemBuilder: (c,i){
-                            return Column(
-                              children: <Widget>[
-
-                                Row(
-                                  children: <Widget>[
-                                    Expanded(child: Card(
-
-                                      child: Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: Container(
-                                          height: 35,
-                                          child: Row(children: <Widget>[
-                                            Expanded(child: Text( Data[i].val1),),
-                                            Expanded(child: Text( Data[i].val2),)
-                                          ],),
-                                        ),
-                                      ),
-                                    )),
-                                  ],
-                                )
-                              ],
-                            );
-
-                          }),
-                    ),
-                  ],
-                ),
-              ),),
-
-
-            ],
-          ),
-        );
-      case "True False":
-
-        return Card(
-          child: Column(
-            children: <Widget>[
-              Row(
-                children: <Widget>[
-                  Expanded(
-                    child: Container(padding: EdgeInsets.all(5),child: Text("Select Answer",style: TextStyle(color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),)),
-                  ),
-
-                ],
-              ),
-              Row(
-                children: <Widget>[
-                  Expanded(
-                    child: Container(
-                      height: 110.0,
-                      child: Column(
-                        children: <Widget>[
-                          Container(child: Row(
-                            children: <Widget>[
-                              Radio(value: "true", groupValue: Answers[0].trueanswer.toString(), ),
-                              Text(Answers[0].value.toUpperCase())
-                            ],),),
-                          Container(child: Row(
-                            children: <Widget>[
-                              Radio(value: "true", groupValue: Answers[1].trueanswer.toString(), ),
-                              Text(Answers[1].value.toUpperCase())
-                            ],),)
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-
-
-
-            ],
-          ),);
-
       case "Fill-in the gaps":
+
         return Card(
           child: Column(
             children: <Widget>[
@@ -225,6 +110,7 @@ class _PreviewQuizQuestion_ListState extends State<PreviewQuizQuestion_List> {
 
             ],
           ),);
+
       default:
         return Card(
           child: Column(
@@ -262,6 +148,7 @@ class _PreviewQuizQuestion_ListState extends State<PreviewQuizQuestion_List> {
 
             ],
           ),);
+
     }
   }
 
@@ -275,13 +162,13 @@ class _PreviewQuizQuestion_ListState extends State<PreviewQuizQuestion_List> {
 
   }
 
-  /* 28-8 delete question*/
+  /* 17-09-19  a  delete question*/
 
   Delete(String id) async{
 
-    await http.post("http://edusupportapp.com/api/delete_quiz_question.php",
+    await http.post("http://edusupportapp.com/api/delete_assignment_question.php",
         body: {
-          "quiz_id":GlobalData.QuizID,
+          "assignment_id":GlobalData.AssignmentID,
           "question_id":id,
         }).then((res){
       print(res.body);
@@ -303,7 +190,7 @@ class _PreviewQuizQuestion_ListState extends State<PreviewQuizQuestion_List> {
         // return object of type Dialog
         return AlertDialog(
           title: new Text("Delete"),
-          content: new Text("Are you sure want to delete the selected Questions?"),
+          content: new Text("Are You Sure Want To Delete Selected Question?"),
           actions: <Widget>[
             // usually buttons at the bottom of the dialog
             new FlatButton(
@@ -315,16 +202,18 @@ class _PreviewQuizQuestion_ListState extends State<PreviewQuizQuestion_List> {
                     ),
                     child: GestureDetector(
                         onTap: (){
-                          Delete(id);
-                          Show_toast("Delete Successfully", Colors.green);
-                          Navigator.of(context).pushNamed('previewQuiz');
-                        },child: new Text("Ok")),
+                          Navigator.of(context).pushNamed('Previewassignment');
+                        },child: new Text("Cancel")),
 
                   ),
                   GestureDetector(
                       onTap: (){
-                        Navigator.of(context).pushNamed('previewQuiz');
-                      },child: new Text("Cancel")),
+                        Delete(id);
+                        Show_toast("Delete Successfully", Colors.green);
+                        Navigator.of(context).pushNamed('Previewassignment');
+                      },child: new Text("Ok")),
+
+
                 ],
               ),
               onPressed: () {
@@ -374,25 +263,26 @@ class _PreviewQuizQuestion_ListState extends State<PreviewQuizQuestion_List> {
                               children: <Widget>[
                                 Expanded(child: Padding(
                                   padding: const EdgeInsets.all(8.0),
-                                  child: Text("Level ${Quetions[i].level_no.toString()}",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
+                                  child: Text("Question ${Quetions[i].ques_no.toString()}",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
                                 )),
                                 GlobalData.EditQuiz==false?Text(""): GestureDetector(
                                     onTap:(){
 
                                       GlobalData.Current_Que_To_Edit = Quetions[i];
-                                      Navigator.of(context).pushNamed('edit_question');
+                                      Navigator.of(context).pushNamed('EditAssignmentQuestions');
 
                                     },child: Icon(Icons.edit,color: Colors.white,))
                                 ,SizedBox(width: 10,),
 
                                 GestureDetector(
                                     onTap: (){
-                                      print("quiztecherid " +GlobalData.quiztecherid);
+                                      print("assignmenttecherid " +GlobalData.assignmentteacehrid);
                                       print("uid " + GlobalData.uid);
-                                      GlobalData.quiztecherid==GlobalData.uid?
+                                      GlobalData.assignmentteacehrid==GlobalData.uid?
                                       _showDialog(context,Quetions[i].id.toString())
                                           :
                                       Show_toast_Now("Access Denied", Colors.red);
+
 
                                     },child: Icon(Icons.cancel,color: Colors.white,)),
                                 SizedBox(width: 10,),
@@ -423,6 +313,22 @@ class _PreviewQuizQuestion_ListState extends State<PreviewQuizQuestion_List> {
                             ),
                           ),
                           AnswerNow(Quetions[i].answer_type,Quetions[i].anwer_options,Quetions[i].Options,i),
+
+                          Container(
+
+                            child: Row(
+                              children: <Widget>[
+                                Expanded(
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(20.0),
+                                    child: Container(child: Text(Quetions[i].essay_instructions,style: TextStyle(fontWeight: FontWeight.bold),)),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+
+
                           Container(
 
                             child: Row(
@@ -459,7 +365,7 @@ class _PreviewQuizQuestion_ListState extends State<PreviewQuizQuestion_List> {
 
 
 
-  getExamResult()async{
+  /*getExamResult()async{
     http.post("http://edusupportapp.com/api/get_user_quiz_result.php",body:{
       "quiz_id":GlobalData.QuizID,
       "user_id":GlobalData.uid
@@ -470,7 +376,7 @@ class _PreviewQuizQuestion_ListState extends State<PreviewQuizQuestion_List> {
 
       ExamCompleted(context,parsedJson['useranswedata']['point_awarded'].toString());
     });
-  }
+  }*/
 
 
   @override
@@ -494,147 +400,32 @@ class _PreviewQuizQuestion_ListState extends State<PreviewQuizQuestion_List> {
 
     /*print(Quetions[i].anwer_options.length.toString()+"  asdznaisdfmmb k");
 Matches =Quetions[i].anwer_options;*/
-
     return Scaffold(
-        appBar: AppBar(title: Text("Questions List"),centerTitle: true,automaticallyImplyLeading: false,
-
+        appBar: AppBar(title: Text("Assignment Question"),centerTitle:
+        true,automaticallyImplyLeading: false,
           actions: <Widget>[
             GestureDetector(
                 onTap: (){
-                  Navigator.of(context).pushReplacementNamed('previewQuizlevellists');
-
-                },child: Icon(Icons.exit_to_app))
-
-
+                  Navigator.of(context).pushNamed('Previewassignment');
+                  //assignmentcomplete
+                },
+                child: Icon(Icons.exit_to_app)
+            )
           ],),
-        body: isloading==true?Center(child: Text("Loading...")):Quetions.isNotEmpty?MYQue():Center(child: Text("No Questions"),)
+        body: isloading==true?Center(child: Text("Loading...")):MYQue()
+
+
+
+
+
+
     );
-
   }
 
 
 
 
 
-  GiveAnswer(String answer)async{
-
-    http.post("http://edusupportapp.com/api/quiz_answer.php",body: {
-      "user_id":GlobalData.uid,
-      "question_id":Quetions[i].id,
-      "quiz_id":Quetions[i].quiz_id,
-      "answer":answer
-    }).then((res){
-      print(res.body);
-    });
-
-  }
-
-
-  void ExamCompleted(BuildContext context,String Score)  {
-    bool Selected = false;
-    TextEditingController optioncontroller = new TextEditingController();
-    showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            backgroundColor:Colors.transparent,
-            elevation: 0,
-            content: SingleChildScrollView(
-              child: Column(mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Center(
-                    child: Container(
-                      child: new Card(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(15.0),
-                        ),
-                        child: Column(mainAxisAlignment: MainAxisAlignment.start,
-                          children: <Widget>[
-                            Container(
-
-                              child: Column(
-                                children: <Widget>[
-                                  Center(child: Padding(
-                                    padding: const EdgeInsets.only(top:15),
-
-                                    child: Text('Quiz Completed',textAlign: TextAlign.center,
-                                      style: TextStyle(color: GlobalData.lightblue,fontSize: 25,fontWeight: FontWeight.bold),),
-                                  )),
-                                  new Divider(
-                                    color: GlobalData.gray,
-                                  ),
-                                  Center(child: Padding(
-                                    padding: const EdgeInsets.all(15),
-
-                                    child:
-                                    Image.asset("assets/images/trophy.png",height: 150,),
-                                  )),
-                                  Center(child: Padding(
-                                    padding: const EdgeInsets.only(top:15),
-
-                                    child: Text('Score : '+Score,textAlign: TextAlign.center,
-                                      style: TextStyle(color: GlobalData.lightblue,fontSize: 20,fontWeight: FontWeight.bold),),
-                                  )),
-
-
-
-
-
-                                  Padding(
-                                    padding: const EdgeInsets.only(bottom: 30),
-                                    child: Row(mainAxisAlignment: MainAxisAlignment.center,
-                                      children: <Widget>[
-
-                                        Container(padding: EdgeInsets.all(5),
-                                          child: SizedBox(width: 100,
-                                            child: GradientButtonText(
-                                              ButtonClick: (){
-                                                Navigator.of(context).pop();
-
-                                                Navigator.of(context).pop();
-                                                Navigator.of(context).pushNamed('Quiz_List_student');
-                                                setState(() {
-
-                                                });
-
-                                              }
-                                              ,linearGradient:
-                                            LinearGradient(colors: <Color>[GlobalData.navy,GlobalData.navyblue]),
-                                              text: Text('Ok',style: TextStyle(color: Colors.white,
-                                                fontWeight: FontWeight.bold,fontSize: 12,),textAlign: TextAlign.center,),
-                                            ),
-                                          ),
-                                        ),
-
-
-
-
-                                      ],
-                                    ),
-                                  )],
-
-                              ),
-
-                            ),
-
-
-
-                          ],
-
-
-                        ),
-                      ),
-                    ),
-                  ),
-
-                ],
-              ),
-            ),
-
-
-          );
-        });
-  }
 
 
 

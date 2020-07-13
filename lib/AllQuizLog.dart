@@ -15,24 +15,39 @@ class AllQuiz extends StatefulWidget {
 class _AllQuizState extends State<AllQuiz> {
 
   List<Pojo_quizzes> Quizz_List = new List();
+  bool isloading = true;
 
   GetTest() async{
+    isloading = true;
+    setState(() {
 
+    });
     await http.post("http://edusupportapp.com/api/get_quizzes_by_class.php",
         body: {
           "UserId":GlobalData.uid,
           "Class_id":GlobalData.classid,
-          //"publish_onhold_both":"dd"
+          "publish_onhold_both":"dd"
         }).then((res){
       print(res.body);
 
       var ParsedJson = jsonDecode(res.body);
-      Quizz_List = (ParsedJson['quizdata'] as List).map((data)=>Pojo_quizzes.fromJson(data)).toList();
+
+      if(ParsedJson['quizdata']==false){
+
+      }
+      else {
+        Quizz_List = (ParsedJson['quizdata'] as List).
+        map((data) => Pojo_quizzes.fromJson(data)).toList();
+      }
 
       print(Quizz_List.length);
       setState(() {
 
       });
+    });
+    isloading = false;
+    setState(() {
+
     });
   }
 
@@ -40,6 +55,7 @@ class _AllQuizState extends State<AllQuiz> {
   void initState() {
     // TODO: implement initState
     super.initState();
+    print("QuizTecaherid: " + GlobalData.quiztecherid);
     GetTest();
   }
 
@@ -77,7 +93,9 @@ class _AllQuizState extends State<AllQuiz> {
           /*drawer:
           drawerquiz(),*/
 
-          body:
+          body:isloading==true?Center(child: Text("Loading...",style: TextStyle(
+              fontSize: 18
+          ),)):
           Column(
             children: <Widget>[
               Expanded(
@@ -104,6 +122,7 @@ class _AllQuizState extends State<AllQuiz> {
                             GlobalData.Selected_class=Quizz_List[i].classes;
                             GlobalData.age=Quizz_List[i].age;
                             GlobalData.quizstatus=Quizz_List[i].status;
+                            GlobalData.quiztecherid=Quizz_List[i].techer_id;
 
 
                             print((Quizz_List[i].total_fill_question<int.parse(Quizz_List[i].no_of_levels) * int.parse(Quizz_List[i].que_each_level)));
@@ -113,12 +132,17 @@ class _AllQuizState extends State<AllQuiz> {
 
                               GlobalData.QuestionNumber=Quizz_List[i].total_fill_question;
 
-                              Navigator.of(context).pushNamed('questions');
+                              GlobalData.quiztecherid=Quizz_List[i].techer_id;
+                              print("QuizTecaherid: " + GlobalData.quiztecherid);
+
+                              Quizz_List[i].techer_id==GlobalData.uid?
+                              Navigator.of(context).pushNamed('questions'):
+                                  Show_toast_Now("Access Denied", Colors.red);
                             }else {
                               //Navigator.of(context).pushNamed(GlobalData.userType=="student"?'exam':'Question_List');
 
                               print("asdfasdf");
-                              Navigator.of(context).pushNamed(GlobalData.userType=="student"?'exam':'levelsList');
+                              Navigator.of(context).pushNamed(GlobalData.userType=="student"?'exam':'previewQuizlevellists');
                             }
 
                           },

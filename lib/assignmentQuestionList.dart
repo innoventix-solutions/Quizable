@@ -397,7 +397,17 @@ class _AssignmentQuestionListState extends State<AssignmentQuestionList> {
     /*print(Quetions[i].anwer_options.length.toString()+"  asdznaisdfmmb k");
 Matches =Quetions[i].anwer_options;*/
     return Scaffold(
-        appBar: AppBar(title: Text("Assignment Question"),centerTitle: true,automaticallyImplyLeading: true,),
+        appBar: AppBar(title: Text("Assignment Question"),centerTitle:
+        true,automaticallyImplyLeading: false,
+        actions: <Widget>[
+          GestureDetector(
+            onTap: (){
+              Navigator.of(context).pushNamed('assignmentcomplete');
+              //assignmentcomplete
+            },
+              child: Icon(Icons.exit_to_app)
+          )
+        ],),
         body: isloading==true?Center(child: Text("Loading...")):MYQue()
 
 

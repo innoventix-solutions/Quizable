@@ -137,7 +137,10 @@ automaticallyImplyLeading: false,
               ),
             ],
           ),
-          Text('Welcome '+GlobalData.Username,style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
+          Padding(
+            padding: const EdgeInsets.only(left: 25,right: 25),
+            child: Text('Welcome '+GlobalData.Username,style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
+          ),
           Padding(
             padding: const EdgeInsets.only(top: 45,right: 45,left: 45),
             child: Card(

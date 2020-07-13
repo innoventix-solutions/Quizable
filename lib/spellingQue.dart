@@ -1,5 +1,6 @@
 import 'package:audioplayers/audio_cache.dart';
 import 'package:audioplayers/audioplayers.dart';
+import 'package:clipboard/clipboard.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:speech_recognition/speech_recognition.dart';
@@ -412,6 +413,7 @@ class _setspellqueState extends State<setspellque> {
                                       }
                                       else{
                                         _speak(trueanswer.text.toString());
+
                                       }
                                     },
                                     color: Colors.red,),
@@ -634,14 +636,21 @@ class _setspellqueState extends State<setspellque> {
                                 file = File(result.path);
                                 List<int> audiobytes = file.readAsBytesSync();
                                 base64Image = base64Encode(audiobytes);
+                                print("base64: " + base64Image);
+                                /*FlutterClipboard.copy('base64Image').then((value) =>
+                                print('base64Image'));
+                                FlutterClipboard.paste().then((value) {
+                                  // Do what ever you want with the value.
+                                  setState(() {
+                                    QuestionName.text = value;
+
+                                  });
+                                });*/
                               }
                               else{
                                 Show_toast("Please clear speech to text", Colors.red);
 
                               }
-
-
-
 
                               /*var uri =  Uri.parse('http://edusupportapp.com/api/create_update_spelling_questions.php');
                                                     var request = http.MultipartRequest('POST', uri)

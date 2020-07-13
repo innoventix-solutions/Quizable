@@ -45,9 +45,9 @@ class _trialsubscriptionState extends State<trialsubscription> {
                                 padding: EdgeInsets.all(15),
                                 child: Column(
                                   children: <Widget>[
-                                    Text('You have completed your Admin Account setup on Edusupport and your one month free trial subscription has started running.'
-                                        '\n\nYou can add up to 1 Classrooms per institution for this Admin Account.'
-                                        'Use the Manage my Account button in your Profile slider to renew your Account Subscription',
+                                    Text('You have completed your Admin Account setup on Edusupport.'
+                                        '\n\nFor a trial subscription you can add up to 1 Classrooms for this institution on this Admin Account.'
+                                        'Use the Manage my Account button in your profile slider page to renew your Account subscription',
                                       style: TextStyle(fontWeight: FontWeight.bold,
                                           fontSize: 15,color: GlobalData.black),textAlign: TextAlign.center,),
 

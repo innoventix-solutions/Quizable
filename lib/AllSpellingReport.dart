@@ -30,7 +30,8 @@ class _AllsSpellingReportState extends State<AllsSpellingReport> {
     await http.post("http://edusupportapp.com/api/get_spelling_by_class.php",
         body: {
           "UserId":GlobalData.uid,
-          "Class_id":GlobalData.classid
+          "Class_id":GlobalData.classid,
+          "publish_onhold_both":""
         }).then((res){
       print(res.body);
 
@@ -117,6 +118,7 @@ class _AllsSpellingReportState extends State<AllsSpellingReport> {
                       GlobalData.spellDurationofEachLevel=Spellinglist[i].dur_each_level;
                       Navigator.of(context).pushNamed('StudentListBySpelling');
                       },
+
                       child: StudentActivityReport(
                         color: GlobalData.pinkred,
                         heading: Spellinglist[i].spelling_title,

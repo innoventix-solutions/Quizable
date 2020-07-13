@@ -595,57 +595,71 @@ class _EditSpellingQuestionsState extends State<EditSpellingQuestions> {
 
                           GestureDetector(
                               onLongPressStart: (start) async {
-//SystemSound.play(SystemSoundType.click);
-                                //HapticFeedback.vibrate();
-                                startPlaying();
-                                isRecording=true;
-                                Show_toast("Recording Start", Colors.green);
 
-                                // audioCache.play("assets/audio/beep-06.mp3");
-                                setState(() {
+                                if(lastWords==""){
+                                  //SystemSound.play(SystemSoundType.click);
+                                  //HapticFeedback.vibrate();
+                                  startPlaying();
+                                  isRecording=true;
+                                  Show_toast("Recording Start", Colors.green);
 
-                                });
+                                  // audioCache.play("assets/audio/beep-06.mp3");
+                                  setState(() {
 
-                                if(await FlutterAudioRecorder.hasPermissions){
-                                  String customPath = '/flutter_audio_recorder_';
-                                  io.Directory path;
+                                  });
 
-                                  if(io.Platform.isIOS)
-                                  {
-                                    path =  await getApplicationDocumentsDirectory();
+                                  if(await FlutterAudioRecorder.hasPermissions){
+                                    String customPath = '/flutter_audio_recorder_';
+                                    io.Directory path;
+
+                                    if(io.Platform.isIOS)
+                                    {
+                                      path =  await getApplicationDocumentsDirectory();
+                                    }
+                                    else{
+                                      path =await getApplicationSupportDirectory();
+
+                                    }
+                                    customPath = path.path +
+                                        customPath +
+                                        DateTime.now().millisecondsSinceEpoch.toString();
+
+                                    print("path audio: " + path.path.toString());
+
+                                    _recorder = FlutterAudioRecorder("${customPath}.mp3"); // .wav .aac .m4a
+                                    await _recorder.initialized;
+                                    await _recorder.start();
                                   }
+
                                   else{
-                                    path =await getApplicationSupportDirectory();
-
+                                    Show_toast("Please allow audio permission", Colors.green);
                                   }
-                                  customPath = path.path +
-                                      customPath +
-                                      DateTime.now().millisecondsSinceEpoch.toString();
-
-                                  print("path audio: " + path.path.toString());
-
-                                  _recorder = FlutterAudioRecorder("${customPath}.mp3"); // .wav .aac .m4a
-                                  await _recorder.initialized;
-                                  await _recorder.start();
                                 }
-
                                 else{
-                                  Show_toast("Please allow audio permission", Colors.green);
+                                  Show_toast("Please clear speech to text", Colors.red);
                                 }
                               },
                               onLongPressEnd: (end) async {
-                                isRecording=false;
-                                Show_toast("Recording Ends", Colors.green);
-                                endplaying();
-                                setState(() {
 
-                                });
-                                var result = await _recorder.stop();
-                                print(result.path);
-                                var file = File(result.path);
-                                List<int> audiobytes = file.readAsBytesSync();
-                                base64Image = base64Encode(audiobytes);
+                                if(lastWords=="")
+                                {
+                                  isRecording=false;
+                                  Show_toast("Recording Ends", Colors.green);
+                                  endplaying();
+                                  setState(() {
 
+                                  });
+                                  var result = await _recorder.stop();
+                                  print("resultaudio: " + result.path);
+                                  audiopath= result.path;
+                                  file = File(result.path);
+                                  List<int> audiobytes = file.readAsBytesSync();
+                                  base64Image = base64Encode(audiobytes);
+                                }
+                                else{
+                                  Show_toast("Please clear speech to text", Colors.red);
+
+                                }
 
                                 /*var uri =  Uri.parse('http://edusupportapp.com/api/create_update_spelling_questions.php');
                                                     var request = http.MultipartRequest('POST', uri)
@@ -834,17 +848,18 @@ class _EditSpellingQuestionsState extends State<EditSpellingQuestions> {
           "http://edusupportapp.com/api/create_update_spelling_questions.php", body: {
         "question": QuestionName.text.toString(),
         "point_awarded": Points.text.toString(),
-        "question_id":GlobalData.Current_Que_To_Edit.id.toString(),
+        "question_id":GlobalData.Edit_spelling_Questions.id.toString(),
         "spelling_id": GlobalData.spellingid,
         "answer_options": trueanswer.text.toString(),
         "audio":base64Image,
         //"answer_options": lastWords.isEmpty?trueanswer.text.toString():lastWords,
-        "level_no": GlobalData.Current_Que_To_Edit.level_no.toString(),
-        "ques_no": GlobalData.Current_Que_To_Edit.ques_no.toString(),
+        "level_no": GlobalData.Edit_spelling_Questions.level_no.toString(),
+        "ques_no": GlobalData.Edit_spelling_Questions.ques_no.toString(),
       }).then((response) {
         var statuss = jsonDecode(response.body);
         Show_toast("Updated Successfully", Colors.green);
         //Navigator.of(context).pop();
+        //print("currentid " + GlobalData.Current_Que_To_Edit.id.toString());
         Navigator.of(context).pushReplacementNamed('spellingquestionlist');
       });
     }

@@ -135,7 +135,7 @@ class _parentstudentState extends State<parentstudent> {
                                       print("STID: " + GlobalData.Studentlist[index].username.toString());
 
                                       Navigator.of(context)
-                                          .pushNamed('studentsclassroom');
+                                            .pushNamed('studentsclassroom');
 
 
                                     },

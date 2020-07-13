@@ -15,9 +15,14 @@ class PreviewQuiz extends StatefulWidget {
 class _PreviewQuizState extends State<PreviewQuiz> {
 
   List<Pojo_quizzes> Quizz_List = new List();
+  bool isloading = true;
 
   GetTest() async{
 
+    isloading = true;
+    setState(() {
+
+    });
     await http.post("http://edusupportapp.com/api/get_quizzes.php",
         body: {
           "UserId":GlobalData.uid,
@@ -27,12 +32,23 @@ class _PreviewQuizState extends State<PreviewQuiz> {
       print(res.body);
 
       var ParsedJson = jsonDecode(res.body);
-      Quizz_List = (ParsedJson['quizdata'] as List).map((data)=>Pojo_quizzes.fromJson(data)).toList();
+
+      if(ParsedJson['quizdata']==false){
+
+      }
+      else {
+        Quizz_List = (ParsedJson['quizdata'] as List).
+        map((data) => Pojo_quizzes.fromJson(data)).toList();
+      }
 
       print(Quizz_List.length);
       setState(() {
 
       });
+    });
+    isloading = false;
+    setState(() {
+
     });
   }
 
@@ -77,7 +93,9 @@ class _PreviewQuizState extends State<PreviewQuiz> {
           /*drawer:
           drawerquiz(),*/
 
-          body:
+          body:isloading==true?Center(child: Text("Loading...",style: TextStyle(
+              fontSize: 18
+          ),)):
           Column(
             children: <Widget>[
               Expanded(
@@ -104,7 +122,7 @@ class _PreviewQuizState extends State<PreviewQuiz> {
                           GlobalData.Selected_class=Quizz_List[i].classes;
                           GlobalData.age=Quizz_List[i].age;
                           GlobalData.quizstatus=Quizz_List[i].status;
-
+                          GlobalData.quiztecherid=Quizz_List[i].techer_id;
 
                           print((Quizz_List[i].total_fill_question<int.parse(Quizz_List[i].no_of_levels) * int.parse(Quizz_List[i].que_each_level)));
 
@@ -181,7 +199,9 @@ class _PreviewQuizState extends State<PreviewQuiz> {
 
 
                               if(GlobalData.adminmembership == "" ||GlobalData.adminmembership=="null" ||
-                                  GlobalData.adminmembership==false.toString() ||GlobalData.adminmembership==null)
+                                  GlobalData.adminmembership==false.toString() ||
+                                  GlobalData.adminmembership==null && GlobalData.classmemberships==null||
+                                  GlobalData.classmemberships.isActive==false)
 
                               {
                                 print("Level 1");

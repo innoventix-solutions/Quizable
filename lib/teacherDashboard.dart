@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:newpro/global.dart';
@@ -5,6 +7,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:share/share.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:http/http.dart'as http;
 
 
 class teacherdashboard extends StatefulWidget {
@@ -15,6 +18,45 @@ class teacherdashboard extends StatefulWidget {
 class _teacherdashboardState extends State<teacherdashboard> {
 
   GlobalData globalData = new GlobalData();
+
+  getclassMembershipdetails()async{
+
+
+
+    await http.post(
+        "http://edusupportapp.com/api/get_user_membership.php",
+        body: {
+          "uid": GlobalData.classadminid,
+        }).then((response) async {
+
+      print(response.body.toString());
+
+      var ParsedJson = jsonDecode(response.body);
+
+      if(ParsedJson['membershipdata']==false)
+      {
+
+        GlobalData.classmemberships = ClassMembership(
+            id: 0.toString(),
+            enddate: DateTime.now(),
+            isActive: false);
+        setState(() {
+
+        });
+
+      }else {
+
+        GlobalData.classmemberships = ClassMembership(
+            id: ParsedJson['membershipdata']['ID'],
+            enddate: DateTime.parse(ParsedJson['membershipdata']['date']),
+            isActive: ParsedJson['membershipdata']['is_active']);
+        setState(() {
+
+        });
+      }
+    });
+
+  }
 
   void showDialog1(BuildContext context) {
     // flutter defined function
@@ -94,7 +136,7 @@ class _teacherdashboardState extends State<teacherdashboard> {
               children: <Widget>[
                 Text(GlobalData.accountname==null||GlobalData.accountname=="null"
                     ||GlobalData.adminaccountname==null||GlobalData.adminaccountname=="null"?GlobalData.class_name:GlobalData.adminaccountname,
-                  style: TextStyle(fontSize: 20),),
+                  style: TextStyle(fontSize: 18),),
                 /*Text(GlobalData.adminaccountname==null||GlobalData.adminaccountname=="null"||
                     GlobalData.accountname==null||GlobalData.accountname=="null"?
                 GlobalData.accountname:GlobalData.adminaccountname,
@@ -104,7 +146,7 @@ class _teacherdashboardState extends State<teacherdashboard> {
                   children: <Widget>[
 
                     Text(GlobalData.classadminid==GlobalData.uid?"Admin":"Teacher",
-                    style: TextStyle(fontSize: 18),),
+                    style: TextStyle(fontSize: 16),),
                     //Text(GlobalData.userType=="teacher"? "Teacher":"Admin"),
                   ],
                 )
@@ -242,7 +284,7 @@ class _teacherdashboardState extends State<teacherdashboard> {
                                 ),onTap: (){
                                   print(GlobalData.Class_list.length.toString());
                                 Navigator.of(context)
-                                    .pushNamed('myclassroom');
+                                    .pushNamed('StudentList');
                               },
                               ),
 
@@ -310,7 +352,7 @@ class _teacherdashboardState extends State<teacherdashboard> {
 
 
                               ),onTap: (){
-
+                              getclassMembershipdetails();
                                 print(GlobalData.classid);
                                 print(GlobalData.userType);
 

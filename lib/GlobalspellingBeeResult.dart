@@ -16,9 +16,13 @@ class _GlobalSpellingResultState extends State<GlobalSpellingResult> {
   List<Pojo_spelling> spellinglist = new List();
 
 
+  bool isloading = true;
 
   GetTest() async{
+    isloading = true;
+    setState(() {
 
+    });
     await http.post("http://edusupportapp.com/api/get_global_spellings.php",
         body: {
           "UserId":GlobalData.uid
@@ -26,8 +30,13 @@ class _GlobalSpellingResultState extends State<GlobalSpellingResult> {
       print(res.body);
 
       var ParsedJson = jsonDecode(res.body);
-      spellinglist = (ParsedJson['spellingdata'] as List).map((data)=>Pojo_spelling.fromJson(data)).toList();
+      if(ParsedJson['spellingdata']==false){
 
+      }
+      else {
+        spellinglist = (ParsedJson['spellingdata'] as List).
+        map((data) => Pojo_spelling.fromJson(data)).toList();
+      }
       spellinglist.sort((a, b) {
         return b.takendate.toLowerCase().compareTo(a.takendate.toLowerCase());
       });
@@ -38,6 +47,10 @@ class _GlobalSpellingResultState extends State<GlobalSpellingResult> {
       setState(() {
 
       });
+    });
+    isloading = false;
+    setState(() {
+
     });
   }
 
@@ -95,6 +108,9 @@ class _GlobalSpellingResultState extends State<GlobalSpellingResult> {
                   fontSize: 16,color: Colors.black,fontWeight: FontWeight.bold
               ),textAlign: TextAlign.left,),
             ),
+            isloading==true?Center(child: Text("Loading...",style: TextStyle(
+                fontSize: 18
+            ),)):
             Expanded(
               child:spellinglist.isEmpty ? Center(child: Text('No Spelling Exercises Log')) :
               ListView.builder(

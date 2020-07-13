@@ -51,10 +51,54 @@ class _StudentListByAssignmentState extends State<StudentListByAssignment> {
 
   }
 
+  leaderboards()async{
+
+
+    isloading = true;
+    setState(() {
+
+    });
+
+    await http.post("http://edusupportapp.com/api/get_leaderboard.php",
+        body: {
+          "clsss_id":GlobalData.classid,
+          "assignment_id": GlobalData.AssignmentID,
+
+        }).then((response) {
+      print(response.body);
+
+      var parsedjson = jsonDecode(response.body);
+      print("Leader " + parsedjson['student_data'].toString());
+
+
+
+      if(parsedjson['student_data']==false){
+
+      }
+      else {
+        globlist = (parsedjson['student_data'] as List)
+            .map((data) => Pojo_StudentAssignmentResult.fromJson(data))
+            .toList();
+      }
+      setState(() {
+
+      });
+
+
+      isloading = false;
+      setState(() {
+
+      });
+    });
+
+  }
 
   getstudent()
   async {
     isloading = true;
+    setState(() {
+
+    });
     print("ascasd ");
 
     await http.post("http://edusupportapp.com/api/get_students_by_teacher_assignment.php"
@@ -66,20 +110,27 @@ class _StudentListByAssignmentState extends State<StudentListByAssignment> {
       print(response.body);
 
       var pass = jsonDecode(response.body);
+      if(pass['student_data']== false) {
 
-      globlist = (pass['student_data'] as List)
-          .map((data) => Pojo_StudentAssignmentResult.fromJson(data))
-          .toList();
-
+      }
+      else {
+        globlist = (pass['student_data'] as List)
+            .map((data) => Pojo_StudentAssignmentResult.fromJson(data))
+            .toList();
+      }
       globlist.sort((a, b) {
         return b.point_awarded.toLowerCase().compareTo(a.point_awarded.toLowerCase());
       });
 
       print(globlist.length);
-      isloading = false;
+
       setState(() {
 
       });
+    });
+    isloading = false;
+    setState(() {
+
     });
   }
 
@@ -129,7 +180,9 @@ class _StudentListByAssignmentState extends State<StudentListByAssignment> {
 
 
           ),
-          body:
+          body:isloading==true?Center(child: Text("Loading...",style: TextStyle(
+              fontSize: 18
+          ),)):
           Column(
             children: <Widget>[
 
@@ -143,7 +196,11 @@ class _StudentListByAssignmentState extends State<StudentListByAssignment> {
               ),
 
 
-              Expanded(child: globlist.isEmpty ? Center(child: Text('No Students')) :
+              Expanded(child: globlist.isEmpty ?
+              Center
+                (child:Text("No Student's joined yet",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: Colors.red),)
+
+              ) :
               new ListView.builder
                   (
                     itemCount: globlist.length,
@@ -152,6 +209,9 @@ class _StudentListByAssignmentState extends State<StudentListByAssignment> {
                         GestureDetector(
                           onTap: (){
                             isloading=true;
+
+                            print("essayteacherid: " + GlobalData.essayteacherid);
+                            print("uid: " + GlobalData.uid);
 
                             GlobalData.CurrentStudentID = globlist[index].id;
                             Navigator.of(context).pushNamed('AssignmentAnswerLog');
@@ -191,7 +251,7 @@ class _StudentListByAssignmentState extends State<StudentListByAssignment> {
                                         padding: const EdgeInsets.only(left:30),
                                         child: Column(mainAxisAlignment: MainAxisAlignment.start,crossAxisAlignment: CrossAxisAlignment.start,
                                           children: <Widget>[
-                                            Text("Name: " + globlist[index].username),
+                                            Text("Name: " + globlist[index].fullname),
                                             Padding(
                                               padding: const EdgeInsets.only(top: 5,bottom: 5),
                                               child: Text("Point Awarded: " + globlist[index].point_awarded+" / "+globlist[index].TotalAssignmentpoints),
@@ -251,7 +311,8 @@ class _StudentListByAssignmentState extends State<StudentListByAssignment> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    getstudent();
+    //getstudent();
+    leaderboards();
   }
 }
 

@@ -61,12 +61,16 @@ class _SpellingboardState extends State<Spellingboard> {
                     print("classname:" +GlobalData.class_name .toString());
                     print("Class ID: "+GlobalData.classid.toString());
                     print("MyMebership: " +GlobalData.MyMembership.isActive.toString());
+                    //print("Classmembership: " +GlobalData.classmemberships.isActive.toString());
+
                     print(GlobalData.uid);
 
 
 
                     if(GlobalData.adminmembership == "" ||GlobalData.adminmembership=="null" ||
-                        GlobalData.adminmembership==false.toString()||GlobalData.adminmembership==null)
+                        GlobalData.adminmembership==false.toString()||
+                        GlobalData.adminmembership==null && GlobalData.classmemberships==null||
+                    GlobalData.classmemberships.isActive==false)
 
                     {
                       print("Level 1");

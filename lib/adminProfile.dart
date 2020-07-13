@@ -58,9 +58,9 @@ class _adminprofileState extends State<adminprofile> {
 
 
   check() {
-    if(Phone.text.length>11 || Phone.text.length<=10)
+    if(Phone.text.length>15 || Phone.text.length<=10)
     {
-      _showDialog(Msg: "Phone Number is not Valid");
+      _showDialog(Msg: "Phone Number must contain 11 Or 15 digit");
     }
     else
      {

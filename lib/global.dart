@@ -127,6 +127,10 @@ class GlobalData{
   static String classadminid;
   static String accountname="";
   static String adminaccountname="";
+  static String essayteacherid="";
+  static String assignmentteacehrid="";
+  static String quiztecherid="";
+  static String spellteacherid="";
 
 
 
@@ -2700,7 +2704,12 @@ class PreviewQuizs extends StatelessWidget {
 
                                             if(value=="delete")     //28-8-19 a
                                                 {
-                                              showDialog1(context);
+
+                                              print("QuizTecaherid: " + GlobalData.quiztecherid);
+                                              print("uid: " + GlobalData.uid);
+                                              GlobalData.quiztecherid==GlobalData.uid?
+                                              showDialog1(context):
+                                              Show_toast_Now("Access Denied", Colors.red);
                                             }
                                           },
                                         )
@@ -2748,12 +2757,26 @@ class PreviewQuizs extends StatelessWidget {
                                               GlobalData.QuizLevels=levels;
                                               GlobalData.QuizTitle=title;
                                               GlobalData.DurationofEachLevel=duration;
-                                              Navigator.of(context).pushNamed('levelsList');
+
+                                              print("QuizTecaherid: " + GlobalData.quiztecherid);
+                                              print("uid: " + GlobalData.uid);
+                                              GlobalData.quiztecherid==GlobalData.uid?
+
+                                              Navigator.of(context).pushNamed('levelsList')
+                                                  :
+                                              Show_toast_Now("Access Denied", Colors.red);
                                             }
                                             if(value=="delete")     //28-8-19 a
                                                {
-                                                showDialog1(context);
-                                              }
+                                              print("QuizTecaherid: " + GlobalData.quiztecherid);
+                                              print("uid: " + GlobalData.uid);
+                                              GlobalData.quiztecherid==GlobalData.uid?
+
+                                                showDialog1(context)
+                                              :
+                                            Show_toast_Now("Access Denied", Colors.red);
+
+                                          }
                                           },
                                         ),
                                       ],
@@ -3009,8 +3032,10 @@ class StudentActivityReport extends StatelessWidget {
                           padding: const EdgeInsets.only(top: 8),
                           child: Row(
                             children: <Widget>[
-                              Text("Publish Date: " + title,style: TextStyle(fontWeight: FontWeight.bold,
-                                  fontSize: 15,color: GlobalData.gray),textAlign: TextAlign.justify,),
+                              Flexible(
+                                child: Text("Publish Date: " + title,style: TextStyle(fontWeight: FontWeight.bold,
+                                    fontSize: 15,color: GlobalData.gray),textAlign: TextAlign.justify,),
+                              ),
                             ],
                           ),
                         ),
@@ -3303,13 +3328,15 @@ class PreviewAssignments extends StatelessWidget
     });
   }
 
-  //29-8-19 a
+  //29-8-19
+
   void showDialog1(BuildContext context) {
     // flutter defined function
     showDialog(
       context: context,
       builder: (BuildContext context) {
         // return object of type Dialog
+
         return AlertDialog(
           title: new Text("Delete"),
           content: new Text("Are You Sure Want To Delete selected Assignment?"),
@@ -3413,7 +3440,11 @@ class PreviewAssignments extends StatelessWidget
 
                                             if(value=="delete")     //28-8-19 a
                                                 {
-                                              showDialog1(context);
+                                              print("AssignmentTecaherid: " + GlobalData.assignmentteacehrid);
+                                              print("uid: " + GlobalData.uid);
+                                              GlobalData.assignmentteacehrid==GlobalData.uid?
+                                              showDialog1(context):
+                                              Show_toast_Now("Access Denied", Colors.red);
                                             }
                                           },
                                         )
@@ -3461,11 +3492,20 @@ class PreviewAssignments extends StatelessWidget
 
                                               GlobalData.AssignmentTitle=title;
                                               //GlobalData.=duration;
-                                              Navigator.of(context).pushNamed('AssignmentQuestionList');
+
+                                              print("AssignmentTecaherid: " + GlobalData.assignmentteacehrid);
+                                              print("uid: " + GlobalData.uid);
+                                              GlobalData.assignmentteacehrid==GlobalData.uid?
+                                              Navigator.of(context).pushNamed('AssignmentQuestionList'):
+                                              Show_toast_Now("Access Denied", Colors.red);
                                             }
                                             if(value=="delete")     //28-8-19 a
                                                 {
-                                              showDialog1(context);
+                                              print("AssignmentTecaherid: " + GlobalData.assignmentteacehrid);
+                                              print("uid: " + GlobalData.uid);
+                                              GlobalData.assignmentteacehrid==GlobalData.uid?
+                                              showDialog1(context):
+                                              Show_toast_Now("Access Denied", Colors.red);
                                             }
                                           },
                                         ),
@@ -4141,6 +4181,7 @@ class PreviewSpellingss extends StatelessWidget {
           "spelling_id":GlobalData.spellingid,
         }).then((res){
       print(res.body);
+      print(GlobalData.spellingid);
     });
   }
 
@@ -4247,14 +4288,19 @@ class PreviewSpellingss extends StatelessWidget {
                                                     ),
                                                     new Text('Delete',style: TextStyle(fontSize: 15),),
                                                   ],
-                                                ), value: 'delete'),
+                                                ), value:'delete'),
 
                                           ],
-                                          onSelected: ( value){
+                                          onSelected: (value){
 
                                             if(value=="delete")     //28-8-19 a
                                                 {
-                                              showDialog1(context);
+                                                  //print("Cz");
+                                                  print("SPssellTecaherid: " + GlobalData.spellteacherid);
+                                                  print("uid: " + GlobalData.uid);
+                                                  GlobalData.spellteacherid==GlobalData.uid?
+                                              showDialog1(context):
+                                                  Show_toast_Now("Access Denied", Colors.red);
                                             }
                                           },
                                         )
@@ -4296,17 +4342,28 @@ class PreviewSpellingss extends StatelessWidget {
                                           onSelected: ( value){
                                             if(value=="edit")
                                             {
+
                                               GlobalData.EditQuiz=true;
                                               GlobalData.spellingid=id;
                                               GlobalData.ExamQuiz=title;
                                               GlobalData.spellLevels=levels;
                                               GlobalData.spelltitle=title;
                                               GlobalData.spellDurationofEachLevel=duration;
-                                              Navigator.of(context).pushNamed('spellinglevelsList');
+                                              print("SPssellTecaherid: " + GlobalData.spellteacherid);
+                                              print("uid: " + GlobalData.uid);
+                                              GlobalData.spellteacherid==GlobalData.uid?
+                                              Navigator.of(context).pushNamed('spellinglevelsList'):
+                                              Show_toast_Now("Access Denied", Colors.red);
                                             }
                                             if(value=="delete")     //28-8-19 a
                                                 {
-                                              showDialog1(context);
+
+                                              print("SPssellTecaherid: " + GlobalData.spellteacherid);
+                                              print("uid: " + GlobalData.uid);
+                                              GlobalData.spellteacherid==GlobalData.uid?
+                                              showDialog1(context):
+                                              Show_toast_Now("Access Denied", Colors.red);
+                                              //showDialog1(context);
                                             }
                                           },
                                         ),
@@ -5226,12 +5283,8 @@ class StudentAssignmentActivityReport extends StatelessWidget {
                     ),
                     Padding(
                       padding: const EdgeInsets.only(top: 10),
-                      child: Row(
-                        children: <Widget>[
-                          Text("Publish Date: " + title,style: TextStyle(fontWeight: FontWeight.bold,
-                              fontSize: 15,color: GlobalData.gray),textAlign: TextAlign.justify,),
-                        ],
-                      ),
+                      child: Text("Publish Date: " + title,style: TextStyle(fontWeight: FontWeight.bold,
+                          fontSize: 15,color: GlobalData.gray),textAlign: TextAlign.left  ,),
                     ),
                   ],
                 ),
@@ -5440,6 +5493,7 @@ class ClassesPerAccount extends StatelessWidget {
 
     print("Class Admins : ${UserIds}");
 
+    print(GlobalData.adminmembership);
 
     return Container(
       child: ListView.builder(
@@ -5499,8 +5553,11 @@ class ClassesPerAccount extends StatelessWidget {
                       GlobalData.class_name = GlobalData.Class_list[i].classname;
 
                      // GlobalData.adminmembership=GlobalData.Class_list[i].isactive;
-                      GlobalData.adminmembership=GlobalData.Class_list[index].membershipData==null?"false":
-                      GlobalData.Class_list[index].membershipData.isActive.toString();
+
+                      GlobalData.adminmembership.toString();
+
+                      // GlobalData.adminmembership=GlobalData.Class_list[index].membershipData==null?"false":
+                      //GlobalData.Class_list[index].membershipData.isActive.toString();
 
                       GlobalData.adminaccounttype=GlobalData.Class_list[i].accout_type;
 
@@ -5518,8 +5575,10 @@ class ClassesPerAccount extends StatelessWidget {
                       print(GlobalData.Class_list[i].classname);
                       print(GlobalData.activeclass.classname);
                       print(GlobalData.userType);
+                      //print(GlobalData.classmemberships.isActive);
                       print(GlobalData.MyMembership.isActive);
                       print(GlobalData.adminmembership);
+                      print("asdadadadaddada");
 
 
                       Navigator.of(context)

@@ -34,6 +34,7 @@ class _AllsAssignmentReportState extends State<AllsAssignmentReport> {
         body: {
           "user_id":GlobalData.uid,
           "Class_id":GlobalData.classid,
+          "publish_onhold_both":""
         }).then((res){
       print(res.body);
 
@@ -123,7 +124,8 @@ class _AllsAssignmentReportState extends State<AllsAssignmentReport> {
 
                           GlobalData.ExamQuiz=assignment_list[i].assignment_title;
                           GlobalData.NosofQuesassignment= assignment_list[i].total_que;
-
+                          GlobalData.essayteacherid=assignment_list[i].techer_id;
+                          print(GlobalData.essayteacherid);
                           //GlobalData.questionid = Quetions[i].id;
                           Navigator.of(context).pushNamed('StudentListByAssignment');
                           isloading=false;

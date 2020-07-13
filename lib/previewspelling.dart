@@ -15,9 +15,14 @@ class PreviewSpelling extends StatefulWidget {
 class _PreviewSpellingState extends State<PreviewSpelling> {
 
   List<Pojo_spelling> spellinglist = new List();
+  bool isloading = true;
 
   GetTest() async{
 
+    isloading = true;
+    setState(() {
+
+    });
     await http.post("http://edusupportapp.com/api/get_spellings.php",
         body: {
           "UserId":GlobalData.uid,
@@ -27,12 +32,23 @@ class _PreviewSpellingState extends State<PreviewSpelling> {
       print(res.body);
 
       var ParsedJson = jsonDecode(res.body);
-      spellinglist = (ParsedJson['spellingdata'] as List).map((data)=>Pojo_spelling.fromJson(data)).toList();
+
+      if(ParsedJson['spellingdata']==false){
+
+      }
+      else {
+        spellinglist = (ParsedJson['spellingdata'] as List).
+        map((data) => Pojo_spelling.fromJson(data)).toList();
+      }
 
       print(spellinglist.length);
       setState(() {
 
       });
+    });
+    isloading = false;
+    setState(() {
+
     });
   }
 
@@ -76,7 +92,9 @@ class _PreviewSpellingState extends State<PreviewSpelling> {
         /*drawer:
         drawerquiz(),*/
 
-        body:
+        body:isloading==true?Center(child: Text("Loading...",style: TextStyle(
+            fontSize: 18
+        ),)):
         Column(
           children: <Widget>[
             Expanded(
@@ -102,6 +120,7 @@ class _PreviewSpellingState extends State<PreviewSpelling> {
                           GlobalData.spellNosofQuesPerLevel = spellinglist[i].que_each_level;
                           GlobalData.Selected_class=spellinglist[i].classes;
                           GlobalData.spellingstatus=spellinglist[i].status;
+                          GlobalData.spellteacherid=spellinglist[i].techer_id;
 
 
 
@@ -121,7 +140,7 @@ class _PreviewSpellingState extends State<PreviewSpelling> {
                           }
 
                         },
-                        child:  //spellinglist[i].is_taken==false?
+                        child:  spellinglist[i].is_taken==false?
                         PreviewSpellingss(
                           color: GlobalData.pinkred,
                           heading: spellinglist[i].spelling_title+"  "+spellinglist[i].total_fill_question.toString()+""+(int.parse(spellinglist[i].no_of_levels) * int.parse(spellinglist[i].que_each_level)).toString(),
@@ -138,7 +157,8 @@ class _PreviewSpellingState extends State<PreviewSpelling> {
                          Spelling: spellinglist[i],
 
 
-                        ), //SizedBox()
+                        ):
+                      SizedBox()
                     );
                   }),
             ),
@@ -184,7 +204,9 @@ class _PreviewSpellingState extends State<PreviewSpelling> {
 
 
                   if(GlobalData.adminmembership == "" ||GlobalData.adminmembership=="null" ||
-                      GlobalData.adminmembership==false.toString()||GlobalData.adminmembership==null)
+                      GlobalData.adminmembership==false.toString()||
+                      GlobalData.adminmembership==null && GlobalData.classmemberships==null||
+                      GlobalData.classmemberships.isActive==false)
 
                   {
                     print("Level 1");

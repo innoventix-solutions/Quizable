@@ -72,6 +72,7 @@ class _loginState extends State<login> {
 
   @override
   void initState() {
+
     GetShared();
     // TODO: implement initState
     super.initState();
@@ -175,8 +176,8 @@ class _loginState extends State<login> {
 
           print("ACC NAME " + GlobalData.accountname);
           print("ACC NAME " + GlobalData.adminaccountname);
-
-
+          prefs.setString("adminmembership", GlobalData.adminmembership);
+          //prefs.setString("classadminmembership", GlobalData.classmemberships.isActive.toString());
 
 
 
@@ -425,6 +426,7 @@ class _loginState extends State<login> {
 
           GlobalData.class_name =
               GlobalData.Class_list[index].classname;
+    GlobalData.adminmembership.toString();
 
           GlobalData.activeclass = GlobalData.Class_list[index];
           GlobalData.class_name =
@@ -446,6 +448,9 @@ class _loginState extends State<login> {
 
     GlobalData.adminaccounttype=GlobalData.Class_list[index].accout_type;
 
+
+    prefs.setString("adminmembership", GlobalData.adminmembership);
+    //prefs.setString("classadminmembership", GlobalData.classmemberships.isActive.toString());
 
 
     print(GlobalData.Class_list[index].classname);
@@ -495,6 +500,9 @@ class _loginState extends State<login> {
     });
 
   }
+
+
+
 
 
 

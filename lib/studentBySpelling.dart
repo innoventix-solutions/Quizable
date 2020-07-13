@@ -80,11 +80,9 @@ class _StudentListBySpellingState extends State<StudentListBySpelling> {
 
         });
 
+    });isloading = false;
+    setState(() {
 
-      isloading = false;
-      setState(() {
-
-      });
     });
 
   }
@@ -129,10 +127,9 @@ class _StudentListBySpellingState extends State<StudentListBySpelling> {
 
       });
 
-      isloading = false;
-      setState(() {
-
-      });
+    });
+    isloading = false;
+    setState(() {
 
     });
   }
@@ -247,7 +244,7 @@ class _StudentListBySpellingState extends State<StudentListBySpelling> {
                                         padding: const EdgeInsets.only(left:30),
                                         child: Column(mainAxisAlignment: MainAxisAlignment.start,crossAxisAlignment: CrossAxisAlignment.start,
                                           children: <Widget>[
-                                            Text("Name: " + globlist[index].username,style: TextStyle(
+                                            Text("Name: " + globlist[index].fullname,style: TextStyle(
                                                 fontWeight: FontWeight.bold,color: Colors.black,fontSize: 16
                                             ),),
                                             Padding(

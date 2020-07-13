@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import 'GlobalQuizResults.dart';
 import 'GlobalspellingBeeResult.dart';
+import 'global.dart';
 
 
 class tabforms extends StatefulWidget {
@@ -17,8 +18,19 @@ class _tabformsState extends State<tabforms> {
     return DefaultTabController(
       length: 2,
       child: Scaffold(
-        appBar: AppBar(automaticallyImplyLeading: true,
+        appBar: AppBar(automaticallyImplyLeading: false,
           backgroundColor:Colors.green,
+          actions: <Widget>[
+            GestureDetector(
+                onTap: (){
+
+
+                  Navigator.of(context).pushReplacementNamed('GlobalDashboard');
+
+                },child: Icon(Icons.exit_to_app))
+
+
+          ],
           bottom: TabBar(indicator: ShapeDecoration.fromBoxDecoration(BoxDecoration(
               color: Colors.blue
           )),

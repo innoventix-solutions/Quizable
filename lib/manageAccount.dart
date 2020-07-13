@@ -21,6 +21,8 @@ class _ManageAccountState extends State<ManageAccount> {
 
   @override
   void initState() {
+
+    print("se " + GlobalData.uid);
     // TODO: implement initState
     PaystackPlugin.initialize(publicKey: publicKey);
     super.initState();

@@ -26,6 +26,7 @@ class _StudentListByQuizState extends State<StudentListByQuiz> {
     String total="";
 
 
+
     for(int i=0; i<globlist.length; i++){
 
       String temp = "Student: " + globlist[i].username +  " completed Quiz: " + GlobalData.ExamQuiz +"\n" + "Point Awarded: " + globlist[i].point_awarded + "/" + globlist[i].TotalQuizpoints +"\n"+ "Percentage: " + globlist[i].percentage + "\n" + "Progress Label: " + globlist[i].progresslabel + "\n \n";
@@ -82,18 +83,20 @@ class _StudentListByQuizState extends State<StudentListByQuiz> {
 
       });
 
+    });
+    isloading = false;
+    setState(() {
 
-      isloading = false;
-      setState(() {
-
-      });
     });
 
   }
 
   getstudent()
   async {
+    isloading = true;
+    setState(() {
 
+    });
     print("ascasd ");
 
     await http.post("http://edusupportapp.com/api/get_students_by_teacher_quiz.php"
@@ -105,10 +108,14 @@ class _StudentListByQuizState extends State<StudentListByQuiz> {
       print(response.body);
 
       var pass = jsonDecode(response.body);
+      if(pass['student_data']==false){
 
-      globlist = (pass['student_data'] as List)
-          .map((data) => Pojo_StudentListResult.fromJson(data))
-          .toList();
+      }
+      else {
+        globlist = (pass['student_data'] as List)
+            .map((data) => Pojo_StudentListResult.fromJson(data))
+            .toList();
+      }
 
       globlist.sort((a, b) {
         return b.point_awarded.toLowerCase().compareTo(a.point_awarded.toLowerCase());
@@ -122,6 +129,10 @@ class _StudentListByQuizState extends State<StudentListByQuiz> {
       setState(() {
 
       });
+    });
+    isloading = false;
+    setState(() {
+
     });
   }
 
@@ -168,7 +179,9 @@ class _StudentListByQuizState extends State<StudentListByQuiz> {
           ),
 
         ),
-        body:
+        body:isloading==true?Center(child: Text("Loading...",style: TextStyle(
+            fontSize: 18
+        ),)):
         Column(
           children: <Widget>[
 
@@ -233,7 +246,7 @@ class _StudentListByQuizState extends State<StudentListByQuiz> {
                                         padding: const EdgeInsets.only(left:30),
                                         child: Column(mainAxisAlignment: MainAxisAlignment.start,crossAxisAlignment: CrossAxisAlignment.start,
                                           children: <Widget>[
-                                            Text("Name: " + globlist[index].username,style: TextStyle(
+                                            Text("Name: " + globlist[index].fullname,style: TextStyle(
                                               fontWeight: FontWeight.bold,color: Colors.black,fontSize: 16
                                             ),),
                                             Padding(

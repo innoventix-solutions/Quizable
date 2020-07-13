@@ -323,7 +323,7 @@ class MyResultBlock extends StatelessWidget {
                                     padding: const EdgeInsets.only(bottom: 30),
                                     child: Row(mainAxisAlignment: MainAxisAlignment.center,
                                       children: <Widget>[
-                                        GlobalData.classadminid==GlobalData.uid?
+                                        GlobalData.essayteacherid==GlobalData.uid?
                                         Container(padding: EdgeInsets.all(5),
                                           child: SizedBox(width: 100,
                                             child: GradientButtonText(

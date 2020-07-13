@@ -26,7 +26,8 @@ class _StudentSpellingResultState extends State<StudentSpellingResult> {
     await http.post("http://edusupportapp.com/api/get_spelling_by_class.php",
         body: {
           "UserId":GlobalData.uid,
-          "Class_id":GlobalData.classid
+          "Class_id":GlobalData.classid,
+          "publish_onhold_both":"",
         }).then((res){
       print(res.body);
 
@@ -70,7 +71,7 @@ class _StudentSpellingResultState extends State<StudentSpellingResult> {
 
     return Scaffold(
         appBar: AppBar(
-          automaticallyImplyLeading: true,
+          automaticallyImplyLeading: false,
 
           title: Center(
             child: Text(
@@ -88,14 +89,15 @@ class _StudentSpellingResultState extends State<StudentSpellingResult> {
             ),
           ),
           actions: <Widget>[
-            IconButton(
-              onPressed: (){},
-              icon: Icon(
-                Icons.account_circle,
-                color: Colors.transparent,
-                size: 20,
-              ),
-            ),
+            GestureDetector(
+                onTap: (){
+
+
+                  Navigator.of(context).pushReplacementNamed('myclassresults');
+
+                },child: Icon(Icons.exit_to_app))
+
+
           ],
         ),
 

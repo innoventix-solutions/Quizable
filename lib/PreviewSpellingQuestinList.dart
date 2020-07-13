@@ -210,7 +210,14 @@ class _PreviewSpellingQuestionListssState extends State<PreviewSpellingQuestionL
                                 GestureDetector(
                                     onTap: (){
 
-                                      _showDialog(context,Questions[i].id.toString());
+
+                                      print("spelltecherid " +GlobalData.spellteacherid);
+                                      print("uid " + GlobalData.uid);
+                                      GlobalData.spellteacherid==GlobalData.uid?
+                                      _showDialog(context,Questions[i].id.toString())
+                                          :
+                                      Show_toast_Now("Access Denied", Colors.red);
+
 
 
                                     },child: Icon(Icons.cancel,color: Colors.white,)),

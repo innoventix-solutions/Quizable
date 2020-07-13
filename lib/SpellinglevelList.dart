@@ -16,7 +16,24 @@ class _SpellingLevelListsState extends State<SpellingLevelLists> {
         actions: <Widget>[
           GestureDetector(
               onTap: (){
-                Navigator.of(context).pushReplacementNamed('spellinglevel');
+
+
+                if(GlobalData.userType=="student" && GlobalData.isGlobal==true)
+                  {
+                    Navigator.of(context).pushReplacementNamed('GlobalResults');
+
+                }
+                else if(GlobalData.userType=="student" && GlobalData.isGlobal==false)
+                  {
+                 // Navigator.of(context).pushReplacementNamed('spellingresult');
+
+                    Navigator.pop(context);
+                  }
+                else{
+                  Navigator.of(context).pushReplacementNamed('spellinglevel');
+
+                }
+
 
               },child: Icon(Icons.exit_to_app))
 

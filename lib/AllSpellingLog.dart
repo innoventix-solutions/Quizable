@@ -15,24 +15,37 @@ class AllSpelling extends StatefulWidget {
 class _AllSpellingState extends State<AllSpelling> {
 
   List<Pojo_spelling> spellinglist = new List();
+  bool isloading = true;
 
   GetTest() async{
+    isloading = true;
+    setState(() {
 
+    });
     await http.post("http://edusupportapp.com/api/get_spelling_by_class.php",
         body: {
           "UserId":GlobalData.uid,
           "Class_id":GlobalData.classid,
-          //"publish_onhold_both":"dd"
+          "publish_onhold_both":"dd"
         }).then((res){
       print(res.body);
 
       var ParsedJson = jsonDecode(res.body);
-      spellinglist = (ParsedJson['spellingdata'] as List).map((data)=>Pojo_spelling.fromJson(data)).toList();
+      if(ParsedJson['spellingdata']==false){
 
+      }
+      else {
+        spellinglist = (ParsedJson['spellingdata'] as List).
+        map((data) => Pojo_spelling.fromJson(data)).toList();
+      }
       print(spellinglist.length);
       setState(() {
 
       });
+    });
+    isloading = false;
+    setState(() {
+
     });
   }
 
@@ -40,6 +53,8 @@ class _AllSpellingState extends State<AllSpelling> {
   void initState() {
     // TODO: implement initState
     super.initState();
+
+    print("SPellTecaherid: " + GlobalData.spellteacherid);
     GetTest();
   }
 
@@ -76,7 +91,9 @@ class _AllSpellingState extends State<AllSpelling> {
         /*drawer:
         drawerquiz(),*/
 
-        body:
+        body:isloading==true?Center(child: Text("Loading...",style: TextStyle(
+            fontSize: 18
+        ),)):
         Column(
           children: <Widget>[
             Expanded(
@@ -103,6 +120,7 @@ class _AllSpellingState extends State<AllSpelling> {
                         GlobalData.Selected_class=spellinglist[i].classes;
                         GlobalData.spellingstatus=spellinglist[i].status;
 
+                        GlobalData.spellteacherid=spellinglist[i].techer_id;
 
 
                         print((spellinglist[i].total_fill_question<int.parse(spellinglist[i].no_of_levels) * int.parse(spellinglist[i].que_each_level)));
@@ -112,16 +130,20 @@ class _AllSpellingState extends State<AllSpelling> {
 
                           GlobalData.QuestionNumber=spellinglist[i].total_fill_question;
 
-                          Navigator.of(context).pushNamed('spellque');
+                          GlobalData.spellteacherid=spellinglist[i].techer_id;
+                          print("SPellTecaherid: " + GlobalData.spellteacherid);
+                          spellinglist[i].techer_id==GlobalData.uid?
+                          Navigator.of(context).pushNamed('spellque'):
+                          Show_toast_Now("Access Denied", Colors.red);
                         }else {
                           //Navigator.of(context).pushNamed(GlobalData.userType=="student"?'exam':'Question_List');
 
                           print("asdfasdf");
-                          Navigator.of(context).pushNamed(GlobalData.userType=="student"?'exam':'spellinglevelsList');
+                          Navigator.of(context).pushNamed(GlobalData.userType=="student"?'exam':'previewspellinglevellist');
                         }
 
                       },
-                      child:  //spellinglist[i].is_taken==false?
+                      child:  spellinglist[i].is_taken==false?
                       PreviewSpellingss(
                         color: GlobalData.pinkred,
                         heading: spellinglist[i].spelling_title+"  "+spellinglist[i].total_fill_question.toString()+""+(int.parse(spellinglist[i].no_of_levels) * int.parse(spellinglist[i].que_each_level)).toString(),
@@ -138,7 +160,7 @@ class _AllSpellingState extends State<AllSpelling> {
                         Spelling: spellinglist[i],
 
 
-                      ), //SizedBox()
+                      ): SizedBox()
                     );
                   }),
             ),

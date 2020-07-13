@@ -46,10 +46,11 @@ class _questionmenuState extends State<questionmenu> {
 
       });
 
-      isloading = false;
-      setState(() {
 
-      });
+
+    });
+    isloading = false;
+    setState(() {
 
     });
   }

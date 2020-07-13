@@ -608,10 +608,12 @@ setalldetails(){
                                 print("Levels "+GlobalData.QuizLevels);
                                 print("Questions per Level"+GlobalData.NosofQuesPerLevel??"Not allocated");
                                 print(GlobalData.MyMembership.isActive);
+                                print("Classmembership: " +GlobalData.classmemberships.isActive.toString());
 
                                 print(GlobalData.adminmembership.toString());
 
-                                if(GlobalData.MyMembership.isActive==false)
+                                if(GlobalData.MyMembership.isActive==false&&
+                                    GlobalData.classmemberships.isActive==false)
                                 {
 
                                   print("yahoo");

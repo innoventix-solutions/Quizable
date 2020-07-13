@@ -409,7 +409,7 @@ class _publishspellingbeeState extends State<publishspellingbee> {
       http.post(
           "http://edusupportapp.com/api/publish_spelling.php", body: {
         "spelling_id":GlobalData.spellingid,
-        "publish_date":scheduledtimeNigeria   ,
+        "publish_date":scheduledtimeNigeria,
         "closing_date":Closing_date.toString(),
 
       }).then((response) {

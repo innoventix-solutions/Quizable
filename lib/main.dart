@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:newpro/MyQuizResult.dart';
+import 'package:newpro/Preview_Assignment_QuestionList.dart';
 import 'package:newpro/previewAssignment.dart';
 import 'package:newpro/quizListStudent.dart';
 import 'package:newpro/setSpellingQue.dart';
@@ -326,8 +327,8 @@ class MyApp extends StatelessWidget {
         'previewQuizlevellists':(context)=>PreviewLevelsLists(),
         'previewQuizquestionlist':(context)=>PreviewQuizQuestion_List(),
         'previewspellinglevellist':(context)=>PreviewSpellingLevelListss(),
-        'previewspellingquestionslist':(context)=>PreviewSpellingQuestionListss()
-
+        'previewspellingquestionslist':(context)=>PreviewSpellingQuestionListss(),
+        'previewassignmentquestionlist':(context)=>PreviewAssignmentQuestionList()
 
 
       },

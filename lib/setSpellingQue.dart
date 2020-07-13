@@ -565,18 +565,21 @@ class _setspellingquestionState extends State<setspellingquestion> {
 
                                   print(GlobalData.adminmembership.toString());
 
-                                  if(GlobalData.MyMembership.isActive==false)
+                                  if(GlobalData.MyMembership.isActive==false&&
+                                  GlobalData.classmemberships.isActive==false)
                                   {
 
                                     print("yahoo");
 
                                     print(GlobalData.classid);
                                     print(GlobalData.adminmembership.toString());
+                                    //print("Classmembership: " +GlobalData.classmemberships.isActive.toString());
 
                                     if (GlobalData.adminmembership == "" ||
                                         GlobalData.adminmembership == null ||
                                         GlobalData.adminmembership == false.toString()||
-                                        GlobalData.adminmembership=="null")
+                                        GlobalData.adminmembership=="null"
+                                           )
                                     {
 
                                       print("Level 1");

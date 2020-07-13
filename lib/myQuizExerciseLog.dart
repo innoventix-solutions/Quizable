@@ -26,7 +26,8 @@ class _MyQuizExerciseLogState extends State<MyQuizExerciseLog> {
     await http.post("http://edusupportapp.com/api/get_quizzes_by_class.php",
         body: {
           "UserId":GlobalData.uid,
-          "Class_id":GlobalData.classid
+          "Class_id":GlobalData.classid,
+          "publish_onhold_both":"",
         }).then((res){
       print(res.body);
 

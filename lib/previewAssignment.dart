@@ -17,10 +17,14 @@ class _PreviewAssignmentState extends State<PreviewAssignment> {
 
   List<Pojo_getassignment> assignment_list = new List();
 
+  bool isloading = true;
 
 
   GetAssignment() async{
+    isloading = true;
+    setState(() {
 
+    });
     await http.post("http://edusupportapp.com/api/get_assignments.php",
         body: {
           "UserId":GlobalData.uid,
@@ -31,12 +35,22 @@ class _PreviewAssignmentState extends State<PreviewAssignment> {
       print(res.body);
 
       var ParsedJson = jsonDecode(res.body);
-      assignment_list = (ParsedJson['assignmentsdata'] as List).map((data)=>Pojo_getassignment.fromJson(data)).toList();
+      if(ParsedJson['assignmentsdata']==false){
+
+      }
+      else {
+        assignment_list = (ParsedJson['assignmentsdata'] as List).
+        map((data) => Pojo_getassignment.fromJson(data)).toList();
+      }
 
       print(assignment_list.length);
       setState(() {
 
       });
+    });
+    isloading = false;
+    setState(() {
+
     });
   }
 
@@ -80,7 +94,9 @@ class _PreviewAssignmentState extends State<PreviewAssignment> {
         /*drawer:
         drawerquiz(),*/
 
-        body:
+        body:isloading==true?Center(child: Text("Loading...",style: TextStyle(
+            fontSize: 18
+        ),)):
         Column(
           children: <Widget>[
             Expanded(
@@ -103,6 +119,7 @@ class _PreviewAssignmentState extends State<PreviewAssignment> {
                          GlobalData.NosofQuesassignment=assignment_list[i].total_que;
                          GlobalData.Selected_class=assignment_list[i].classes;
                          GlobalData.assignmentstatus=assignment_list[i].status;
+                        GlobalData.assignmentteacehrid=assignment_list[i].techer_id;
 
                         print((assignment_list[i].total_fill_question<int.parse(assignment_list[i].total_que)));
 
@@ -116,13 +133,13 @@ class _PreviewAssignmentState extends State<PreviewAssignment> {
                           //Navigator.of(context).pushNamed(GlobalData.userType=="student"?'exam':'Question_List');
 
                           print("asdfasdf");
-                          Navigator.of(context).pushNamed(GlobalData.userType=="student"?'spellans':'AssignmentQuestionList');
+                          Navigator.of(context).pushNamed(GlobalData.userType=="student"?'spellans':'previewassignmentquestionlist');
                         }
                           //GlobalData.DurationofEachLevel=assignment_list[i].dur_each_level;
                          // GlobalData.QuizLevels=assignment_list[i].no_of_levels;
                           //Navigator.of(context).pushNamed('AssignmentQuestionList');
                         },
-                        child:  //assignment_list[i].is_taken==false?
+                        child:  assignment_list[i].is_taken==false?
                         PreviewAssignments(
                           color: GlobalData.pinkred,
                           heading: assignment_list[i].assignment_title,
@@ -136,7 +153,7 @@ class _PreviewAssignmentState extends State<PreviewAssignment> {
                           continueTo:assignment_list[i].total_fill_question,
                           publishedDate: assignment_list[i].publish_date,
                           Assignment: assignment_list[i],
-                        ),//: SizedBox()
+                        ): SizedBox()
                     );
                   }),
             ),
@@ -176,7 +193,9 @@ class _PreviewAssignmentState extends State<PreviewAssignment> {
                   print(GlobalData.uid);
 
                   if(GlobalData.adminmembership == "" ||GlobalData.adminmembership=="null" ||
-                      GlobalData.adminmembership==false.toString()||GlobalData.adminmembership==null)
+                      GlobalData.adminmembership==false.toString()||
+                      GlobalData.adminmembership==null && GlobalData.classmemberships==null||
+                      GlobalData.classmemberships.isActive==false)
 
                   {
                     print("Level 1");

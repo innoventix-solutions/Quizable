@@ -16,27 +16,40 @@ class AllAssignment extends StatefulWidget {
 class _AllAssignmentState extends State<AllAssignment> {
 
   List<Pojo_getassignment> assignment_list = new List();
+  bool isloading = true;
 
 
 
   GetAssignment() async{
+    isloading = true;
+    setState(() {
 
+    });
     await http.post("http://edusupportapp.com/api/get_assignments_by_class.php",
         body: {
           "user_id":GlobalData.uid,
           "Class_id":GlobalData.classid,
-          //"publish_onhold_both":"dd"
+          "publish_onhold_both":"dd"
 
         }).then((res){
       print(res.body);
 
       var ParsedJson = jsonDecode(res.body);
-      assignment_list = (ParsedJson['assignmentdata'] as List).map((data)=>Pojo_getassignment.fromJson(data)).toList();
+      if(ParsedJson['assignmentdata']==false){
 
+      }
+      else {
+        assignment_list = (ParsedJson['assignmentdata'] as List).
+        map((data) => Pojo_getassignment.fromJson(data)).toList();
+      }
       print(assignment_list.length);
       setState(() {
 
       });
+    });
+    isloading = false;
+    setState(() {
+
     });
   }
 
@@ -44,6 +57,7 @@ class _AllAssignmentState extends State<AllAssignment> {
   void initState() {
     // TODO: implement initState
     super.initState();
+    print("AssignmentTecaherid: " + GlobalData.assignmentteacehrid);
     GetAssignment();
   }
 
@@ -80,7 +94,9 @@ class _AllAssignmentState extends State<AllAssignment> {
         /*drawer:
         drawerquiz(),*/
 
-        body:
+        body:isloading==true?Center(child: Text("Loading...",style: TextStyle(
+            fontSize: 18
+        ),)):
         Column(
           children: <Widget>[
             Expanded(
@@ -103,6 +119,7 @@ class _AllAssignmentState extends State<AllAssignment> {
                         GlobalData.NosofQuesassignment=assignment_list[i].total_que;
                         GlobalData.Selected_class=assignment_list[i].classes;
                         GlobalData.assignmentstatus=assignment_list[i].status;
+                        GlobalData.assignmentteacehrid=assignment_list[i].techer_id;
 
                         print((assignment_list[i].total_fill_question<int.parse(assignment_list[i].total_que)));
 
@@ -111,18 +128,23 @@ class _AllAssignmentState extends State<AllAssignment> {
 
                           GlobalData.QuestionNumber=assignment_list[i].total_fill_question;
 
-                          Navigator.of(context).pushNamed('SetAssignmentQuestion');
+                          GlobalData.assignmentteacehrid=assignment_list[i].techer_id;
+                          print("AssignmentTecaherid: " + GlobalData.assignmentteacehrid);
+
+                          assignment_list[i].techer_id==GlobalData.uid?
+                          Navigator.of(context).pushNamed('SetAssignmentQuestion'):
+                          Show_toast_Now("Access Denied", Colors.red);
                         }else {
                           //Navigator.of(context).pushNamed(GlobalData.userType=="student"?'exam':'Question_List');
 
                           print("asdfasdf");
-                          Navigator.of(context).pushNamed(GlobalData.userType=="student"?'spellans':'AssignmentQuestionList');
+                          Navigator.of(context).pushNamed(GlobalData.userType=="student"?'spellans':'previewassignmentquestionlist');
                         }
                         //GlobalData.DurationofEachLevel=assignment_list[i].dur_each_level;
                         // GlobalData.QuizLevels=assignment_list[i].no_of_levels;
                         //Navigator.of(context).pushNamed('AssignmentQuestionList');
                       },
-                      child:  //assignment_list[i].is_taken==false?
+                      child:  assignment_list[i].is_taken==false?
                       PreviewAssignments(
                         color: GlobalData.pinkred,
                         heading: assignment_list[i].assignment_title,
@@ -136,7 +158,7 @@ class _AllAssignmentState extends State<AllAssignment> {
                         continueTo:assignment_list[i].total_fill_question,
                         publishedDate: assignment_list[i].publish_date,
                         Assignment: assignment_list[i],
-                      ),//: SizedBox()
+                      ): SizedBox()
                     );
                   }),
             ),

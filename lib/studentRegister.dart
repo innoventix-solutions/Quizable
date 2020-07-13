@@ -134,16 +134,16 @@ class _studentregState extends State<studentreg> {
     if(emailValid == false){
 
       _showDialog1();
-    }else if(phone.text.length>11 || phone.text.length<=10)
+    }else if(phone.text.length>15 || phone.text.length<=10)
     {
       print(phone.text.toString());
       print(phone.text.length.toString());
-      _showDialog(Msg: "Phone Number must contain 11 digit");
+      _showDialog(Msg: "Phone Number must contain 11 Or 15 digit");
     }
-    else if(par_phone.text.length>11 || par_phone.text.length<=10)
+    else if(par_phone.text.length>15 || par_phone.text.length<=10)
     {
 
-      _showDialog(Msg: "Parent Phone Number must contain 11 digit");
+      _showDialog(Msg: "Parent Phone Number must contain 11 Or 15 digit");
     }
     else if(password.text.length<6){
       _showDialog(Msg: "Password must contain atleast 6 digit");

@@ -178,7 +178,7 @@ class _SpellingQuestion_ListState extends State<SpellingQuestion_List> {
     return SafeArea(
       child: ListView.builder(
           itemCount: Questions.length,
-          itemBuilder: (c,i){
+          itemBuilder: (c,i){print(Questions[i].anwer_options);
             return Padding(
 
               key: Key(i.toString()),
@@ -199,6 +199,7 @@ class _SpellingQuestion_ListState extends State<SpellingQuestion_List> {
                                 )),
                                 GlobalData.EditQuiz==false?Text(""): GestureDetector(
                                     onTap:(){
+                                      print(Questions[i].id);
 
                                       GlobalData.Edit_spelling_Questions = Questions[i];
                                       Navigator.of(context).pushNamed('editspellingquestion');

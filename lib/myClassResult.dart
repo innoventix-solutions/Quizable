@@ -18,7 +18,7 @@ class _MyClassResultState extends State<MyClassResult> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          automaticallyImplyLeading: true,
+          automaticallyImplyLeading: false,
 
           title: Center(
             child: Text(
@@ -36,14 +36,15 @@ class _MyClassResultState extends State<MyClassResult> {
             ),
           ),
           actions: <Widget>[
-            IconButton(
-              onPressed: (){},
-              icon: Icon(
-                Icons.account_circle,
-                color: Colors.transparent,
-                size: 20,
-              ),
-            ),
+            GestureDetector(
+                onTap: (){
+
+
+                  Navigator.of(context).pushReplacementNamed('studentdashboard');
+
+                },child: Icon(Icons.exit_to_app))
+
+
           ],
 
         ),

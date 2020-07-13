@@ -14,10 +14,13 @@ class GlobalQuizResult extends StatefulWidget {
 class _GlobalQuizResultState extends State<GlobalQuizResult> {
   List<Pojo_quizzes> Quizz_List = new List();
 
-
+  bool isloading = true;
 
   GetTest() async{
+    isloading = true;
+    setState(() {
 
+    });
     await http.post("http://edusupportapp.com/api/get_global_quizzes.php",
         body: {
           "UserId":GlobalData.uid
@@ -37,6 +40,10 @@ class _GlobalQuizResultState extends State<GlobalQuizResult> {
       setState(() {
 
       });
+    });
+    isloading = false;
+    setState(() {
+
     });
   }
 

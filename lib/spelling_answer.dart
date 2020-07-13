@@ -42,6 +42,7 @@ class _spelling_ansState extends State<spelling_ans> {
     //await audioPlayer.play(Questions[i].audio_file);
     if(Questions[i].audio_file==""){
 
+      Text("Loading");
       _speak(Questions[i].anwer_options);
       //Show_toast("No Audio FIle", Colors.red);
     }

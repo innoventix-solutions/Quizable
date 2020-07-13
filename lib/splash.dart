@@ -60,6 +60,45 @@ class _splashState extends State<splash> {
   }
 
 
+  getclassMembershipdetails()async{
+
+
+
+    await http.post(
+        "http://edusupportapp.com/api/get_user_membership.php",
+        body: {
+          "uid": GlobalData.classadminid,
+        }).then((response) async {
+
+      print(response.body.toString());
+
+      var ParsedJson = jsonDecode(response.body);
+
+      if(ParsedJson['membershipdata']==false)
+      {
+
+        GlobalData.classmemberships = ClassMembership(
+            id: 0.toString(),
+            enddate: DateTime.now(),
+            isActive: false);
+        setState(() {
+
+        });
+
+      }else {
+
+        GlobalData.classmemberships = ClassMembership(
+            id: ParsedJson['membershipdata']['ID'],
+            enddate: DateTime.parse(ParsedJson['membershipdata']['date']),
+            isActive: ParsedJson['membershipdata']['is_active']);
+        setState(() {
+
+        });
+      }
+    });
+
+  }
+
   GetUserdetails()async{
     prefs = await SharedPreferences.getInstance();
     print(prefs.get("Id"));
@@ -80,9 +119,15 @@ class _splashState extends State<splash> {
       GlobalData.email = prefs.get("email");
       GlobalData.Fullname = prefs.get("Fullname");
       GlobalData.accountname = prefs.get("accountname");
+      GlobalData.adminmembership=prefs.get("adminmembership");
+      GlobalData.classmemberships.isActive=prefs.get("classadminmembership");
       print( GlobalData.uid+"  "+GlobalData.Username);
+      //print("Adminmembership: " + GlobalData.adminmembership);
 
+      GlobalData.adminmembership.toString();
       getMembershipdetails();
+
+      getclassMembershipdetails();
 
 
       await GetMyClasses();
@@ -138,6 +183,7 @@ class _splashState extends State<splash> {
     prefs = await SharedPreferences.getInstance();
     print("Selected Class "+(prefs.getString('selectedClass')??""));
     selectedClass =await prefs.getString('selectedClass')??"";
+    GlobalData.adminmembership=prefs.get("adminmembership");
 
     if(selectedClass!="")
     {
@@ -181,10 +227,17 @@ class _splashState extends State<splash> {
 
   @override
   void initState() {
+    print("aaadddd");
+    print(GlobalData.adminmembership.toString());
     GetShared();
+    getclassMembershipdetails();
     registerNotification();
     // TODO: implement initState
     super.initState();
+    setState(() {
+      print(GlobalData.adminmembership.toString());
+      GlobalData.adminmembership.toString();
+    });
   }
 
   @override
@@ -241,8 +294,9 @@ class _splashState extends State<splash> {
         GlobalData.adminaccounttype=GlobalData.Class_list[index].accout_type;
 
         GlobalData.accountname = GlobalData.Class_list[index].accountname;
+        GlobalData.adminmembership=prefs.get("adminmembership");
 
-
+       // GlobalData.adminmembership.toString();
 
         print(GlobalData.Class_list[index].classname);
         print(GlobalData.activeclass.classname);
@@ -251,6 +305,9 @@ class _splashState extends State<splash> {
         print(GlobalData.Class_list[index].accountname);
         print(GlobalData.activeclass.accountname);
 
+        print("sdfsc");
+        print(GlobalData.Class_list[index].membershipData);
+        print(GlobalData.adminmembership);
 
         Navigator.of(context)
             .pushReplacementNamed(NamedPath);

@@ -48,10 +48,9 @@ class _StudentReportSpellingState extends State<StudentReportSpelling> {
 
       });
 
-      isloading = false;
-      setState(() {
 
-      });
+    });isloading = false;
+    setState(() {
 
     });
   }

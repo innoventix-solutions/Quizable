@@ -212,7 +212,7 @@ class _GlobalDashboardState extends State<GlobalDashboard> {
                           Container(
                             child: Text(GlobalData.activeclass!=null?GlobalData.activeclass.classname:"No Class Selected",
                               style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,
-                                  fontSize: 14),),
+                                  fontSize: 12),),
                           ),
 
                         ],),

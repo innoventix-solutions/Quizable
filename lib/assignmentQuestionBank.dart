@@ -451,10 +451,13 @@ class _assignmentquestionbankState extends State<assignmentquestionbank> {
 
                                 print("Total Questions: " + GlobalData.NosofQuesassignment??"Not allocated");
                                 print(GlobalData.MyMembership.isActive);
+                                print("Classmembership: " +GlobalData.classmemberships.isActive.toString());
 
                                 print(GlobalData.adminmembership.toString());
 
-                                if(GlobalData.MyMembership.isActive==false)
+                                if(GlobalData.MyMembership.isActive==false&&
+                                    GlobalData.classmemberships.isActive==false
+                                )
                                 {
 
                                   print("yahoo");

@@ -27,7 +27,8 @@ class _MyAssignmentResultState extends State<MyAssignmentResult> {
     await http.post("http://edusupportapp.com/api/get_assignments_by_class.php",
         body: {
           "user_id":GlobalData.uid,
-          "Class_id":GlobalData.classid
+          "Class_id":GlobalData.classid,
+          "publish_onhold_both":"",
         }).then((res){
       print(res.body);
 

@@ -23,9 +23,12 @@ class _studentdetailState extends State<studentdetail> {
 
   TextEditingController email = new TextEditingController(text: GlobalData.currentteacher.email);
   TextEditingController disc = new TextEditingController(text: GlobalData.currentteacher.specification);
-  TextEditingController student = new TextEditingController(text:GlobalData.currentteacher.username );
+  TextEditingController student = new TextEditingController(text:GlobalData.currentteacher.fullname);
   TextEditingController dob = new TextEditingController(text: GlobalData.currentteacher.birthdate);
   TextEditingController parentemail = TextEditingController(text: GlobalData.currentteacher.parentemail);
+  TextEditingController parentphone = TextEditingController(text: GlobalData.currentteacher.parentphone);
+  TextEditingController phonenum = TextEditingController(text: GlobalData.currentteacher.phone);
+
   SharedPreferences shared;
   String image64 = "";
   File _image;
@@ -100,160 +103,224 @@ class _studentdetailState extends State<studentdetail> {
 
         ],
       ),
-      body: Column(
-        children: <Widget>[
-          Container( width: MediaQuery.of(context).size.width,
+      body: SingleChildScrollView(
+        child: Column(
+          children: <Widget>[
+            Container( width: MediaQuery.of(context).size.width,
 
-            child: Column(children: <Widget>[
+              child: Column(children: <Widget>[
 
-              Padding(
-                padding: const EdgeInsets.only(top: 15),
-                child: Container(
-                  child: CircleAvatar(backgroundImage:GlobalData.currentteacher.userphoto!=""?
-                  NetworkImage(GlobalData.currentteacher.userphoto):globalData.getUserGender(GlobalData.currentteacher.gender),
-                    radius: 35.0,
+                Padding(
+                  padding: const EdgeInsets.only(top: 15),
+                  child: Container(
+                    child: CircleAvatar(backgroundImage:GlobalData.currentteacher.userphoto!=""?
+                    NetworkImage(GlobalData.currentteacher.userphoto):globalData.getUserGender(GlobalData.currentteacher.gender),
+                      radius: 35.0,
+                    ),
                   ),
                 ),
-              ),
 
-              Column(
-                children: <Widget>[
-                  Container(
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 40, right: 40,top: 10),
-                      child: Center(
-                        child: Column(
-                          children: <Widget>[
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: <Widget>[
-                                Text(
-                                  "Student's Name",
-                                  style: TextStyle(fontSize: 18,
-                                      color: GlobalData.lightblue,
-                                      fontWeight: FontWeight.bold),
-                                  textAlign: TextAlign.start,
-                                ),
-                              ],
-                            ),
-                            CustomTextField(controller:student,
-                              enabled: false,),
-                          ],
+                Column(
+                  children: <Widget>[
+                    Container(
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 40, right: 40,top: 10),
+                        child: Center(
+                          child: Column(
+                            children: <Widget>[
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: <Widget>[
+                                  Text(
+                                    "Student's Name",
+                                    style: TextStyle(fontSize: 18,
+                                        color: GlobalData.lightblue,
+                                        fontWeight: FontWeight.bold),
+                                    textAlign: TextAlign.start,
+                                  ),
+                                ],
+                              ),
+                              CustomTextField(controller:student,
+                                enabled: false,),
+                            ],
+                          ),
                         ),
                       ),
                     ),
-                  ),
 
-                /*  Container(
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 40, right: 40,top: 10),
-                      child: Center(
-                        child: Column(
-                          children: <Widget>[
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: <Widget>[
-                                Text(
-                                  "Teacher's Discipline",
-                                  style: TextStyle(fontSize: 18,
-                                      color: GlobalData.lightblue,
-                                      fontWeight: FontWeight.bold),
-                                  textAlign: TextAlign.start,
-                                ),
-                              ],
-                            ),
-                            CustomTextField(controller:disc,enabled: false,),
-                          ],
+                  /*  Container(
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 40, right: 40,top: 10),
+                        child: Center(
+                          child: Column(
+                            children: <Widget>[
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: <Widget>[
+                                  Text(
+                                    "Teacher's Discipline",
+                                    style: TextStyle(fontSize: 18,
+                                        color: GlobalData.lightblue,
+                                        fontWeight: FontWeight.bold),
+                                    textAlign: TextAlign.start,
+                                  ),
+                                ],
+                              ),
+                              CustomTextField(controller:disc,enabled: false,),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),*/
+
+                    Container(
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 40, right: 40,top: 10),
+                        child: Center(
+                          child: Column(
+                            children: <Widget>[
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: <Widget>[
+                                  Text(
+                                    "Student's Email",
+                                    style: TextStyle(fontSize: 18,
+                                        color: GlobalData.lightblue,
+                                        fontWeight: FontWeight.bold),
+                                    textAlign: TextAlign.start,
+                                  ),
+                                ],
+                              ),
+                              CustomTextField(controller:email,enabled: false,),
+                            ],
+                          ),
                         ),
                       ),
                     ),
-                  ),*/
 
-                  Container(
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 40, right: 40,top: 10),
-                      child: Center(
-                        child: Column(
-                          children: <Widget>[
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: <Widget>[
-                                Text(
-                                  "Student's Email",
-                                  style: TextStyle(fontSize: 18,
-                                      color: GlobalData.lightblue,
-                                      fontWeight: FontWeight.bold),
-                                  textAlign: TextAlign.start,
-                                ),
-                              ],
-                            ),
-                            CustomTextField(controller:email,enabled: false,),
-                          ],
+
+                    Container(
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 40, right: 40,top: 10),
+                        child: Center(
+                          child: Column(
+                            children: <Widget>[
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: <Widget>[
+                                  Text(
+                                    "Student's DOB",
+                                    style: TextStyle(fontSize: 18,
+                                        color: GlobalData.lightblue,
+                                        fontWeight: FontWeight.bold),
+                                    textAlign: TextAlign.start,
+                                  ),
+                                ],
+                              ),
+                              CustomTextField(controller:dob,enabled: false,),
+                            ],
+                          ),
                         ),
                       ),
                     ),
-                  ),
 
 
-                  Container(
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 40, right: 40,top: 10),
-                      child: Center(
-                        child: Column(
-                          children: <Widget>[
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: <Widget>[
-                                Text(
-                                  "Student's DOB",
-                                  style: TextStyle(fontSize: 18,
-                                      color: GlobalData.lightblue,
-                                      fontWeight: FontWeight.bold),
-                                  textAlign: TextAlign.start,
-                                ),
-                              ],
-                            ),
-                            CustomTextField(controller:dob,enabled: false,),
-                          ],
+                    Container(
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 40, right: 40,top: 10),
+                        child: Center(
+                          child: Column(
+                            children: <Widget>[
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: <Widget>[
+                                  Text(
+                                    "Student's Phone",
+                                    style: TextStyle(fontSize: 18,
+                                        color: GlobalData.lightblue,
+                                        fontWeight: FontWeight.bold),
+                                    textAlign: TextAlign.start,
+                                  ),
+                                ],
+                              ),
+                              CustomTextField(controller:phonenum,enabled: false,),
+                            ],
+                          ),
                         ),
                       ),
                     ),
-                  ),
-GlobalData.userType == "student"?
-               SizedBox()  :
-Container(
-  child: Padding(
-    padding: const EdgeInsets.only(left: 40, right: 40,top: 10),
-    child: Center(
-      child: Column(
-        children: <Widget>[
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: <Widget>[
-              Text(
-                "parent's Email",
-                style: TextStyle(fontSize: 18,
-                    color: GlobalData.lightblue,
-                    fontWeight: FontWeight.bold),
-                textAlign: TextAlign.start,
-              ),
-            ],
-          ),
-          CustomTextField(controller:parentemail,enabled: false,),
-        ],
-      ),
+
+                    GlobalData.userType == "student"?
+                 SizedBox()  :
+                Container(
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 40, right: 40,top: 10),
+                    child: Center(
+                     child: Column(
+                        children: <Widget>[
+                  Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: <Widget>[
+                Text(
+                  "Parent's Email",
+                  style: TextStyle(fontSize: 18,
+                      color: GlobalData.lightblue,
+                      fontWeight: FontWeight.bold),
+                  textAlign: TextAlign.start,
+                ),
+              ],
+            ),
+            CustomTextField(controller:parentemail,enabled: false,),
+          ],
+        ),
     ),
   ),
-)
-                ],
-              ),
+),
 
 
 
 
-            ],),
-          ),
-        ],
+                    GlobalData.userType == "student"?
+                    SizedBox()  :
+                    Container(
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 40, right: 40,top: 10),
+                        child: Center(
+                          child: Column(
+                            children: <Widget>[
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: <Widget>[
+                                  Text(
+                                    "Parent's Phone",
+                                    style: TextStyle(fontSize: 18,
+                                        color: GlobalData.lightblue,
+                                        fontWeight: FontWeight.bold),
+                                    textAlign: TextAlign.start,
+                                  ),
+                                ],
+                              ),
+                              CustomTextField(controller:parentphone,enabled: false,),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+
+
+
+
+
+                  ],
+                ),
+
+
+
+
+              ],),
+            ),
+          ],
+        ),
       ),
     );
   }
