@@ -64,7 +64,7 @@ class _parentloginState extends State<parentlogin> {
 
 
 
-    http.post("http://edusupportapp.com/api/login.php", body: {
+    http.post(GlobalData.applink+"login.php", body: {
       "username_email": email.text.toString().trim(),
       "type":"parents_login"
     }).then((response) async {

@@ -17,9 +17,9 @@ class _publishquizState extends State<publishquiz> {
   TextEditingController publishdate= new TextEditingController();
   TextEditingController closingdate= new TextEditingController();
 
-  var timeNigeria = DateTime.now().toString();
-  var timeIndia = DateTime.now().subtract(Duration(hours: 4,minutes: 30)).toString();
-
+  //var timeNigeria = DateTime.now().toString();
+  var timeIndia = DateTime.now().subtract(Duration(hours: 5,minutes: 30)).toString();
+  //var timeIndia = DateTime.now().toString();
   @override
   void initState() {
     // TODO: implement initState
@@ -55,7 +55,7 @@ class _publishquizState extends State<publishquiz> {
   DateTime Closing_date;
 
   Publishquiz() async {
-    http.post("http://edusupportapp.com/api/publish_quiz.php", body: {
+    http.post(GlobalData.applink+"publish_quiz.php", body: {
       "quiz_id":GlobalData.QuizID,
       "publish_date":publishdate.text.toString(),
       "closing_date":closingdate.text.toString(),
@@ -222,7 +222,7 @@ class _publishquizState extends State<publishquiz> {
                       },
                       linearGradient: LinearGradient(
                           colors: <Color>[
-                            GlobalData.purple,
+                            GlobalData.greya,
                             GlobalData.pink
                           ]),
                       text: Text(
@@ -329,7 +329,7 @@ class _publishquizState extends State<publishquiz> {
                       },
                       linearGradient: LinearGradient(
                           colors: <Color>[
-                            GlobalData.purple,
+                            GlobalData.greya,
                             GlobalData.pink
                           ]),
                       text: Text(
@@ -368,9 +368,9 @@ class _publishquizState extends State<publishquiz> {
     }else{
 
       http.post(
-          "http://edusupportapp.com/api/publish_quiz.php", body: {
+          GlobalData.applink+"publish_quiz.php", body: {
         "quiz_id":GlobalData.QuizID,
-        "publish_date":timeNigeria,
+        "publish_date":timeIndia,
         "closing_date":Closing_date.toString(),
 
       }).then((response) {
@@ -392,9 +392,9 @@ class _publishquizState extends State<publishquiz> {
 
   ScheduleQuiz()async {
 
-    var scheduledtimeNigeria = Starting_date.toString();
-    var scheduledtimeIndia = Starting_date.subtract(Duration(hours: 4,minutes: 30)).toString();
-
+    //var scheduledtimeNigeria = Starting_date.toString();
+    var scheduledtimeIndia = Starting_date.subtract(Duration(hours: 5,minutes: 30)).toString();
+    //var scheduledtimeIndia = Starting_date.toString();
     print(
         "publish_date :"+ Starting_date.toString()+
             "\nclossing_date :"+Closing_date.toString()
@@ -408,9 +408,9 @@ class _publishquizState extends State<publishquiz> {
     }else{
 
       http.post(
-          "http://edusupportapp.com/api/publish_quiz.php", body: {
+          GlobalData.applink+"publish_quiz.php", body: {
         "quiz_id":GlobalData.QuizID,
-        "publish_date":scheduledtimeNigeria,
+        "publish_date":scheduledtimeIndia,
         "closing_date":Closing_date.toString(),
 
       }).then((response) {

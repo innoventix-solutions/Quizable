@@ -30,7 +30,7 @@ class _loginandsignupState extends State<loginandsignup> {
                   Padding(
                     padding: const EdgeInsets.only(bottom: 15),
                     child: Text(
-                      "eduSupport",
+                      "Quizable",
                       style: TextStyle(
                           color:GlobalData.darkpink,
                           fontSize: 25,
@@ -38,19 +38,11 @@ class _loginandsignupState extends State<loginandsignup> {
                     ),
                   ),
                   Text(
-                    "Supporting and improving",
+                    "Quizable Educational App to manage the new normal of digital classroom.",
                     textAlign: TextAlign.left,
                     style: TextStyle(color: Colors.white, fontSize: 25),
                   ),
-                  Text(
-                    "the health of education ",
-                    textAlign: TextAlign.left,
-                    style: TextStyle(color: Colors.white, fontSize: 25),
-                  ),
-                  Text(
-                    "through technology",
-                    style: TextStyle(color: Colors.white, fontSize: 25),
-                  ),
+
 
                   Expanded(child: Text(""),),
 

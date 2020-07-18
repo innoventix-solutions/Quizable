@@ -88,7 +88,7 @@ class _setspellingquestionState extends State<setspellingquestion> {
 
 
   Createspelling() async {
-    http.post("http://edusupportapp.com/api/create_spelling.php", body: {
+    http.post(GlobalData.applink+"create_spelling.php", body: {
       "spelling_title": spelltitle.text.toString(),
       "no_of_levels": spelllevel.text.toString(),
       "que_each_level": queslevel.text.toString(),
@@ -545,7 +545,7 @@ class _setspellingquestionState extends State<setspellingquestion> {
                               width: 100,
                               child: GradientButtonText(
                                 linearGradient: LinearGradient(colors: <Color>[
-                                  GlobalData.purple,
+                                  GlobalData.greya,
                                   GlobalData.pink
                                 ]),
                                 text: Text(
@@ -559,108 +559,21 @@ class _setspellingquestionState extends State<setspellingquestion> {
                                 ),
                                 ButtonClick: () {
                                   setalldetails();
-                                  print("Levels "+GlobalData.spellLevels);
-                                  print("Questions per Level"+GlobalData.spellNosofQuesPerLevel??"Not allocated");
-                                  print(GlobalData.MyMembership.isActive);
-
-                                  print(GlobalData.adminmembership.toString());
-
-                                  if(GlobalData.MyMembership.isActive==false&&
-                                  GlobalData.classmemberships.isActive==false)
-                                  {
-
-                                    print("yahoo");
-
-                                    print(GlobalData.classid);
-                                    print(GlobalData.adminmembership.toString());
-                                    //print("Classmembership: " +GlobalData.classmemberships.isActive.toString());
-
-                                    if (GlobalData.adminmembership == "" ||
-                                        GlobalData.adminmembership == null ||
-                                        GlobalData.adminmembership == false.toString()||
-                                        GlobalData.adminmembership=="null"
-                                           )
-                                    {
-
-                                      print("Level 1");
-
-                                      if (int.parse(GlobalData.spellLevels) > 1 || int.parse(GlobalData.spellNosofQuesPerLevel) > 10)
-                                      {
-                                        GlobalData.classadminid==GlobalData.uid?
-
-                                        GlobalData.userType=="admin_teacher"?
-                                        CustomShowDialog(context,title: "Subscription Required",msg:
-                                        "Please reduce the number of Spelling Level to 1 and upto 10 Questions\nfor a trial.\nOtherwise, subscribe to set unlimited questions in multiple levels\n\nSubscribe now?",onPressed:(){
-                                          Navigator.of(context).pushNamed('ManageAccount');
-                                        },
-                                            onpressed1: (){
-                                              Navigator.of(context).pop();
-                                            }):
-                                        CustomShowDialog(context,title: "Subscription Required",msg:
-                                        "You cannot set more than 10 questions each level. \n\nPlease contact your Admin to Subscribe for the institution's account.",onPressed:(){
-                                          Navigator.of(context).pop();
-
-                                        }):
-                                        CustomShowDialog(context,title: "Subscription Required",msg:
-                                        "You cannot set more than 10 questions each level. \n\nPlease contact your Admin to Subscribe for the institution's account.",onPressed:(){
-                                          Navigator.of(context).pop();
-
-                                        });
-                                      } else {
-
-                                        if (GlobalData.spelltitle == null ||
-                                            GlobalData.spellLevels == null ||
-                                            GlobalData.spellNosofQuesPerLevel == null ||
-                                            GlobalData.spellDurationofEachLevel == "" ||
-                                            GlobalData.Selected_subject == null ||
-                                            GlobalData.Selected_class == null ||
-                                            GlobalData.teacherguide == ""
-                                        //Starting_date==null||
-                                        //Closing_date==null
-                                        ) {
-                                          _showDialog();
-                                        }
-                                        else{
-                                          savingquestion(context);
-                                          SaveSpelling();
-                                        }
-
-                                      }
-                                    } else {
-                                      if (GlobalData.spelltitle == null ||
-                                          GlobalData.spellLevels == null ||
-                                          GlobalData.spellNosofQuesPerLevel == null ||
-                                          GlobalData.spellDurationofEachLevel == "" ||
-                                          GlobalData.Selected_subject == null ||
-                                          GlobalData.Selected_class == null ||
-                                          GlobalData.teacherguide == ""
-                                      //Starting_date==null||
-                                      //Closing_date==null
-                                      ) {
-                                        _showDialog();
-                                      }
-                                      else{
-                                        savingquestion(context);
-                                        SaveSpelling();
-                                      }
-                                    }
-                                  }else{
-                                    if (GlobalData.spelltitle == null ||
-                                        GlobalData.spellLevels == null ||
-                                        GlobalData.spellNosofQuesPerLevel == null ||
-                                        GlobalData.spellDurationofEachLevel == "" ||
-                                        GlobalData.Selected_subject == null ||
-                                        GlobalData.Selected_class == null ||
-                                        GlobalData.teacherguide == ""
-                                    //Starting_date==null||
-                                    //Closing_date==null
-                                    ) {
-                                      _showDialog();
-                                    }
-                                    else{
-                                      savingquestion(context);
-                                      SaveSpelling();
-                                    }
+                                  if (GlobalData.spelltitle == null ||
+                                      GlobalData.spellLevels == null ||
+                                      GlobalData.spellNosofQuesPerLevel == null ||
+                                      GlobalData.spellDurationofEachLevel == "" ||
+                                      GlobalData.Selected_subject == null ||
+                                      GlobalData.Selected_class == null ||
+                                      GlobalData.teacherguide == ""
+                                  //Starting_date==null||
+                                  //Closing_date==null
+                                  ) {
+                                    _showDialog();
+                                  }
+                                  else{
+                                    savingquestion(context);
+                                    SaveSpelling();
                                   }
                                 },
                               ),
@@ -762,7 +675,7 @@ class _setspellingquestionState extends State<setspellingquestion> {
         ) {
       _showDialog();
     } else {
-      http.post("http://edusupportapp.com/api/create_spelling.php", body: {
+      http.post(GlobalData.applink+"create_spelling.php", body: {
         "spelling_title": GlobalData.spelltitle,
         "techer_id": GlobalData.uid,
         "no_of_levels": GlobalData.spellLevels,

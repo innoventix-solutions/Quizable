@@ -21,7 +21,7 @@ class _GlobalQuizResultState extends State<GlobalQuizResult> {
     setState(() {
 
     });
-    await http.post("http://edusupportapp.com/api/get_global_quizzes.php",
+    await http.post(GlobalData.applink+"get_global_quizzes.php",
         body: {
           "UserId":GlobalData.uid
         }).then((res){
@@ -119,7 +119,7 @@ class _GlobalQuizResultState extends State<GlobalQuizResult> {
                         },
                       child: Quizz_List[i].is_taken==true?
                       QuizResult(
-                          color: GlobalData.green,
+                          color: GlobalData.pinkred,
                           heading: Quizz_List[i].quiz_title+" - "+Quizz_List[i].id,
                           paragraph: Quizz_List[i].quiz_subject,
                           title: Quizz_List[i].takendate.toString(),

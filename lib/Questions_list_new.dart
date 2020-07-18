@@ -46,7 +46,7 @@ class _Question_ListState extends State<Question_List> {
 
     });
     print(GlobalData.QuizID);
-    await http.post("http://edusupportapp.com/api/get_quiz_questions.php",body: {
+    await http.post(GlobalData.applink+"get_quiz_questions.php",body: {
       "QuizId":GlobalData.QuizID
     }).then((res){
       print(res.body);
@@ -279,7 +279,7 @@ class _Question_ListState extends State<Question_List> {
 
   Delete(String id) async{
 
-    await http.post("http://edusupportapp.com/api/delete_quiz_question.php",
+    await http.post(GlobalData.applink+"delete_quiz_question.php",
         body: {
           "quiz_id":GlobalData.QuizID,
           "question_id":id,
@@ -457,7 +457,7 @@ class _Question_ListState extends State<Question_List> {
 
 
   getExamResult()async{
-    http.post("http://edusupportapp.com/api/get_user_quiz_result.php",body:{
+    http.post(GlobalData.applink+"get_user_quiz_result.php",body:{
       "quiz_id":GlobalData.QuizID,
       "user_id":GlobalData.uid
     }).then((res){
@@ -493,7 +493,8 @@ class _Question_ListState extends State<Question_List> {
 Matches =Quetions[i].anwer_options;*/
 
       return Scaffold(
-          appBar: AppBar(title: Text("Questions List"),centerTitle: true,automaticallyImplyLeading: false,
+          appBar: AppBar(title: Text("Questions List"),
+            backgroundColor: GlobalData.darkpurple,centerTitle: true,automaticallyImplyLeading: false,
 
             actions: <Widget>[
               GestureDetector(
@@ -515,7 +516,7 @@ Matches =Quetions[i].anwer_options;*/
 
   GiveAnswer(String answer)async{
 
-    http.post("http://edusupportapp.com/api/quiz_answer.php",body: {
+    http.post(GlobalData.applink+"quiz_answer.php",body: {
       "user_id":GlobalData.uid,
       "question_id":Quetions[i].id,
       "quiz_id":Quetions[i].quiz_id,

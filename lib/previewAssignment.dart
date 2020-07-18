@@ -25,7 +25,7 @@ class _PreviewAssignmentState extends State<PreviewAssignment> {
     setState(() {
 
     });
-    await http.post("http://edusupportapp.com/api/get_assignments.php",
+    await http.post(GlobalData.applink+"get_assignments.php",
         body: {
           "UserId":GlobalData.uid,
           //"Class_id":GlobalData.classid,
@@ -58,6 +58,7 @@ class _PreviewAssignmentState extends State<PreviewAssignment> {
   void initState() {
     // TODO: implement initState
     super.initState();
+    print("AssignmentTecaherid: " + GlobalData.assignmentteacehrid);
     GetAssignment();
   }
 
@@ -186,86 +187,14 @@ class _PreviewAssignmentState extends State<PreviewAssignment> {
                   ],
                 ),
                 onTap: () async{
-                  print("adminmembership:" +GlobalData.adminmembership.toString());
-                  print("classname:" +GlobalData.class_name .toString());
-                  print("Class ID: "+GlobalData.classid.toString());
-                  print("MyMebership: " +GlobalData.MyMembership.isActive.toString());
-                  print(GlobalData.uid);
-
-                  if(GlobalData.adminmembership == "" ||GlobalData.adminmembership=="null" ||
-                      GlobalData.adminmembership==false.toString()||
-                      GlobalData.adminmembership==null && GlobalData.classmemberships==null||
-                      GlobalData.classmemberships.isActive==false)
-
-                  {
-                    print("Level 1");
-
-                    if(GlobalData.MyMembership==null || GlobalData.MyMembership.isActive==false)
-                    {print("Level 2");
-
-                    await GetclassAssignment();
-
-                    // print(GlobalData.quizclass.length);
-
-                    if(GlobalData.assignmentclass!=null && GlobalData.assignmentclass.isNotEmpty)
-                    {
-
-                      GlobalData.classadminid==GlobalData.uid?
-
-                      GlobalData.userType=="admin_teacher"?
-                      CustomShowDialog(context,title: "Subscription Required",msg:
-                      "Only One Assignment with max 10 Questions is Allowed for Free User\n\nSubscribe to create more Assignment",onPressed:(){
-                        Navigator.of(context).pushNamed('ManageAccount');
-
-                      }):
-                      CustomShowDialog(context,title: "SUBSCRIPTION REQUIRED",msg:
-                      "Your Class Admin is on a Trial Subscription. \n\nPlease refer to Class Admin to upgrade account to enable you \nset questions above 10.\n\nThank you",
-                          onPressed:(){
-                            Navigator.of(context).pushNamed('dashboard');
-
-                          }):CustomShowDialog(context,title: "SUBSCRIPTION REQUIRED",msg:
-                      "Your Class Admin is on a Trial Subscription. \n\nPlease refer to Class Admin to upgrade account to enable you \nset questions above 10.\n\nThank you",
-                          onPressed:(){
-                            Navigator.of(context).pushNamed('dashboard');
-
-                          });
-                    }
-
-                    else {
-
-                      GlobalData.AssignmentTitle="";
-                      GlobalData.NosofQuesassignment="";
-                      GlobalData.teacherinstruction="";
-                      GlobalData.teacherobjective="";
-                      /*Navigator.of(context)
+                  GlobalData.AssignmentTitle="";
+                  GlobalData.NosofQuesassignment="";
+                  GlobalData.teacherinstruction="";
+                  GlobalData.teacherobjective="";
+                  /*Navigator.of(context)
                 .pushNamed('developpage');*/
-                      Navigator.of(context)
-                          .pushNamed('SetAssignment');
-                    }
-
-                    }else
-                    {
-                      GlobalData.AssignmentTitle="";
-                      GlobalData.NosofQuesassignment="";
-                      GlobalData.teacherinstruction="";
-                      GlobalData.teacherobjective="";
-                      /*Navigator.of(context)
-                .pushNamed('developpage');*/
-                      Navigator.of(context)
-                          .pushNamed('SetAssignment');
-                    }
-
-                  }
-                  else {
-                    GlobalData.AssignmentTitle="";
-                    GlobalData.NosofQuesassignment="";
-                    GlobalData.teacherinstruction="";
-                    GlobalData.teacherobjective="";
-                    /*Navigator.of(context)
-                .pushNamed('developpage');*/
-                    Navigator.of(context)
-                        .pushNamed('SetAssignment');
-                  }
+                  Navigator.of(context)
+                      .pushNamed('SetAssignment');
 
                 },
               ),

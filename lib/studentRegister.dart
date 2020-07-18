@@ -90,7 +90,7 @@ class _studentregState extends State<studentreg> {
     print(GlobalData.accounttype);
 
     FirebaseMessaging().getToken().then((token){
-      http.post("http://edusupportapp.com/api/register.php", body: {
+      http.post(GlobalData.applink+"register.php", body: {
         "Fullname": acc.text.toString(),
         "Username": username.text.toString(),
         "UserEmail": email.text.toString().trim(),
@@ -134,16 +134,16 @@ class _studentregState extends State<studentreg> {
     if(emailValid == false){
 
       _showDialog1();
-    }else if(phone.text.length>15 || phone.text.length<=10)
+    }else if(phone.text.length>11 || phone.text.length<=9)
     {
       print(phone.text.toString());
       print(phone.text.length.toString());
-      _showDialog(Msg: "Phone Number must contain 11 Or 15 digit");
+      _showDialog(Msg: "Phone Number must contain 10 Or 11 digit");
     }
-    else if(par_phone.text.length>15 || par_phone.text.length<=10)
+    else if(par_phone.text.length>11 || par_phone.text.length<=9)
     {
 
-      _showDialog(Msg: "Parent Phone Number must contain 11 Or 15 digit");
+      _showDialog(Msg: "Parent Phone Number must contain 10 Or 11 digit");
     }
     else if(password.text.length<6){
       _showDialog(Msg: "Password must contain atleast 6 digit");
@@ -261,7 +261,7 @@ class _studentregState extends State<studentreg> {
                                     shape: BoxShape.circle,
                                     image: new DecorationImage(
                                       fit: BoxFit.fill,
-                                      image:_image!=null?  FileImage(_image): AssetImage('assets/images/users.png'),
+                                      image:_image!=null?  FileImage(_image): AssetImage('assets/images/quizable.png'),
                                     ))),
                             Positioned(
                               right: 5,bottom: 15,
@@ -499,7 +499,7 @@ class _studentregState extends State<studentreg> {
                               globalData.getgender();
                             },
                             "Get Started",
-                            LinearGradient(colors: <Color>[GlobalData.purple, GlobalData.pink]),
+                            LinearGradient(colors: <Color>[GlobalData.greya, GlobalData.pink]),
                           ),
                         ),
                       ),

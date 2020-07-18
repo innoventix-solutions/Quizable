@@ -76,7 +76,7 @@ class _alllevelState extends State<alllevel> {
                                       Container(padding: EdgeInsets.all(5),
                                         child: SizedBox(width: 100,
                                           child: GradientButtonText(linearGradient:
-                                          LinearGradient(colors: <Color>[GlobalData.purple,GlobalData.pink]),
+                                          LinearGradient(colors: <Color>[GlobalData.greya,GlobalData.pink]),
                                             text: Text('Publish',style: TextStyle(color: Colors.white,
                                               fontWeight: FontWeight.bold,fontSize: 12,),textAlign: TextAlign.center,),
 
@@ -275,7 +275,7 @@ class _alllevelState extends State<alllevel> {
                                     child: Padding(
                                       padding: const EdgeInsets.only(top: 25,bottom: 40),
                                       child: GradientButtonText(
-                                        linearGradient:LinearGradient(colors: <Color>[GlobalData.purple,GlobalData.pink]) ,
+                                        linearGradient:LinearGradient(colors: <Color>[GlobalData.greya,GlobalData.pink]) ,
                                         text: Text("Finish",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 18,),
                                           textAlign: TextAlign.center,),
                                         ButtonClick: ()=> _confirmDialog(context),

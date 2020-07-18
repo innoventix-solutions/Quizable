@@ -30,7 +30,7 @@ class _StudentListState extends State<StudentList> {
     });
 
 GlobalData.Studentlist.clear();
-    await http.post("http://edusupportapp.com/api/get_user_list_by_class.php",
+    await http.post(GlobalData.applink+"get_user_list_by_class.php",
         body: {
           "Class_id": GlobalData.classid,
           "user_type": "student",
@@ -71,7 +71,7 @@ GlobalData.Studentlist.clear();
 
   Delete(String id) async{
 
-    await http.post("http://edusupportapp.com/api/delete_user_from_class.php",
+    await http.post(GlobalData.applink+"delete_user_from_class.php",
         body: {
           "class_id":GlobalData.classid,
           "user_id":id,

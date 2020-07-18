@@ -30,7 +30,7 @@ class _AllsAssignmentReportState extends State<AllsAssignmentReport> {
 
     });
 
-    await http.post("http://edusupportapp.com/api/get_assignments_by_class.php",
+    await http.post(GlobalData.applink+"get_assignments_by_class.php",
         body: {
           "user_id":GlobalData.uid,
           "Class_id":GlobalData.classid,

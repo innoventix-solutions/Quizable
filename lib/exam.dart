@@ -154,7 +154,7 @@ class _ExamState extends State<Exam> {
 
     });
     print(GlobalData.QuizID);
-    await http.post("http://edusupportapp.com/api/get_quiz_questions.php",body: {
+    await http.post(GlobalData.applink+"get_quiz_questions.php",body: {
       "QuizId":GlobalData.QuizID
     }).then((res){
       print(res.body);
@@ -997,7 +997,7 @@ class _ExamState extends State<Exam> {
 
 
   submittime()async{
-    await http.post("http://edusupportapp.com/api/insert_quiz_attend_time.php",body: {
+    await http.post(GlobalData.applink+"insert_quiz_attend_time.php",body: {
       "user_id":GlobalData.uid,
       "quiz_id":Quetions[i].quiz_id,
       "level":Quetions[i].level_no.toString(),
@@ -1016,7 +1016,7 @@ class _ExamState extends State<Exam> {
   //  submittime();
 
 
-    http.post("http://edusupportapp.com/api/get_user_quiz_result.php",body:{
+    http.post(GlobalData.applink+"get_user_quiz_result.php",body:{
       "quiz_id":GlobalData.QuizID,
       "user_id":GlobalData.uid,
       "level":GlobalData.CurrentLevel.toString()
@@ -1054,7 +1054,7 @@ Matches =Quetions[i].anwer_options;*/
     return WillPopScope(
       onWillPop: () async => false,
       child: Scaffold(
-          appBar: AppBar(title: Text("My Quiz Exercises"),centerTitle: true,automaticallyImplyLeading: false,),
+          appBar: AppBar(title: Text("My Quiz Exercises"),backgroundColor: GlobalData.darkpurple,centerTitle: true,automaticallyImplyLeading: false,),
           body: isloading==true?Center(child: Text("Saving...")):isCompleted?Container():MYQue()
 
 
@@ -1132,7 +1132,7 @@ Matches =Quetions[i].anwer_options;*/
 
 
 
-  await  http.post("http://edusupportapp.com/api/quiz_answer.php",body: {
+  await  http.post(GlobalData.applink+"quiz_answer.php",body: {
       "user_id":GlobalData.uid,
       "question_id":Quetions[i].id,
       "quiz_id":Quetions[i].quiz_id,

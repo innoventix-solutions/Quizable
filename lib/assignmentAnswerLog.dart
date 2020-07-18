@@ -22,7 +22,7 @@ class _AssignmentAnswerLogState extends State<AssignmentAnswerLog> {
  // TextEditingController point = new TextEditingController();
 
   anslog() async{
-    http.post("http://edusupportapp.com/api/get_user_assignment_question_answer.php",
+    http.post(GlobalData.applink+"get_user_assignment_question_answer.php",
         body: {
           "user_id" : GlobalData.CurrentStudentID,
           "assignment_id" : GlobalData.AssignmentID
@@ -226,7 +226,7 @@ class MyResultBlock extends StatelessWidget {
 
 
     giveessaypoint() async{
-    await  http.post("http://edusupportapp.com/api/story_point.php",
+    await  http.post(GlobalData.applink+"story_point.php",
           body: {
             "user_id" : GlobalData.CurrentStudentID,
             "question_id" : GlobalData.questionid,
@@ -478,13 +478,17 @@ class MyResultBlock extends StatelessWidget {
                       ],
                     ),
                   ):SizedBox(),
+
                   Container(
 
                     child: Row( crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        Padding(
-                          padding: const EdgeInsets.all(10.0),
-                          child: Container(child: Text("Correct Answer: "+(anwer_options.isEmpty?answertype=="Short Essay"?"[Short Essay]":correct_ans:correct_ans),style: TextStyle(color: Colors.blue,fontWeight: FontWeight.bold),)),
+                        Expanded(
+                          child: Padding(
+                            padding: const EdgeInsets.all(10.0),
+                            child: Container(child: Text("Correct Answer: "+(anwer_options.isEmpty?answertype=="Short Essay"?"[Short Essay]":correct_ans:correct_ans),
+                              style: TextStyle(color: Colors.blue,fontWeight: FontWeight.bold),)),
+                          ),
                         ),
 
                       ],

@@ -24,7 +24,7 @@ class _teacherdashboardState extends State<teacherdashboard> {
 
 
     await http.post(
-        "http://edusupportapp.com/api/get_user_membership.php",
+        GlobalData.applink+"get_user_membership.php",
         body: {
           "uid": GlobalData.classadminid,
         }).then((response) async {
@@ -178,7 +178,7 @@ class _teacherdashboardState extends State<teacherdashboard> {
         ),
 
 
-        body: SafeArea(
+        body: SingleChildScrollView(
           child: Column(
             children: <Widget>[
               Container(
@@ -268,7 +268,10 @@ class _teacherdashboardState extends State<teacherdashboard> {
                                 child: Container(height: 100,width: 150,
 
 
-                                  child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(10),),color:GlobalData.bluecard,),
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.all(Radius.circular(10),),
+                                      color:GlobalData.gradientEnd,),
 
 
                                     child:Center(
@@ -295,7 +298,9 @@ class _teacherdashboardState extends State<teacherdashboard> {
                                 child: Container(height: 100,width: 150,
 
 
-                                  child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(10),),color:GlobalData.pinkcard,),
+                                  child: Container(decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.all(Radius.circular(10),),
+                                    color:GlobalData.bgblue,),
 
 
                                     child:Center(
@@ -334,7 +339,10 @@ class _teacherdashboardState extends State<teacherdashboard> {
                         child: Row(mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
                             GestureDetector(
-                              child: Container(height: 100,width: 150,decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(10),),color:GlobalData.greencard,),
+                              child: Container(height: 100,width: 150,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.all(Radius.circular(10),),
+                                  color:GlobalData.lightpink,),
 
 
 
@@ -370,7 +378,9 @@ class _teacherdashboardState extends State<teacherdashboard> {
                                 child: Container(height: 100,width: 150,
 
 
-                                  child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(10),),color:GlobalData.orange,),
+                                  child: Container(decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.all(Radius.circular(10),),
+                                    color:GlobalData.greencard,),
 
 
                                     child:Center(
@@ -478,13 +488,13 @@ class _teacherdashboardState extends State<teacherdashboard> {
                   child: Row(children: <Widget>[Icon(Icons.info,color: GlobalData.lightblue,),
                     Padding(
                       padding: const EdgeInsets.only(left: 20),
-                      child: Text('About EduSupport',style: TextStyle(
+                      child: Text('About Quizable',style: TextStyle(
                           color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
                     )],),
                 ),onTap: (){
 
                 Navigator.of(context)
-                    .pushNamed('AboutEduSupport');
+                    .pushNamed('AboutQuizable');
               },
               ),
 
@@ -519,7 +529,7 @@ class _teacherdashboardState extends State<teacherdashboard> {
               ),
 
 
-              GlobalData.userType=="teacher" ? SizedBox() :
+              /*GlobalData.userType=="teacher" ? SizedBox() :
               GestureDetector(
                 child: Padding(
                   padding: const EdgeInsets.only(left: 45,top:20),
@@ -531,10 +541,12 @@ class _teacherdashboardState extends State<teacherdashboard> {
                     )],),
                 ),onTap: (){
                   print(GlobalData.MyMembership.isActive);
-                Navigator.of(context)
-                    .pushNamed('ManageAccount');
+                  Navigator.of(context)
+                      .pushNamed('developpage');
+                /*Navigator.of(context)
+                    .pushNamed('ManageAccount');*/
               },
-              ),
+              ),*/
 
               GestureDetector(
                 child: Padding(
@@ -558,7 +570,7 @@ class _teacherdashboardState extends State<teacherdashboard> {
               GestureDetector(
                 onTap: (){
 
-      Share.share(GlobalData.Username +" is Sharing App - "+ "https://play.google.com/store/apps/details?id=com.innoventixsolutions.edusupport&hl=en");
+      Share.share(GlobalData.Username +" is Sharing App - "+ "https://play.google.com/store/apps/details?id=com.innoventixsolutions.quizable");
       },
                 child: Padding(
                   padding: const EdgeInsets.only(left: 45,top:20),

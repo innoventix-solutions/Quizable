@@ -19,7 +19,7 @@ class _tabformsState extends State<tabforms> {
       length: 2,
       child: Scaffold(
         appBar: AppBar(automaticallyImplyLeading: false,
-          backgroundColor:Colors.green,
+          backgroundColor:GlobalData.pinkred,
           actions: <Widget>[
             GestureDetector(
                 onTap: (){
@@ -32,10 +32,10 @@ class _tabformsState extends State<tabforms> {
 
           ],
           bottom: TabBar(indicator: ShapeDecoration.fromBoxDecoration(BoxDecoration(
-              color: Colors.blue
+              color: Colors.black
           )),
-            indicatorColor:Colors.black,labelColor: Colors.white,labelStyle: TextStyle(fontWeight: FontWeight.bold,
-                color: Colors.white,fontSize: 16),
+              indicatorColor:Colors.black,labelColor: Colors.white,labelStyle: TextStyle(fontWeight: FontWeight.bold,
+                color: Colors.white,fontSize: 14),
             tabs: [
 
               Tab(text: "Quiz Results",),

@@ -16,7 +16,7 @@ class _AnnouncementState extends State<Announcement> {
 
   GetAnnouncement() async{
 
-    await http.post("http://edusupportapp.com/api/get_announcement.php",
+    await http.post(GlobalData.applink+"get_announcement.php",
         body: {
 
         }).then((res){

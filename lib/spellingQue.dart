@@ -767,7 +767,7 @@ class _setspellqueState extends State<setspellque> {
 
                           SaveSpellingQuestion();}
                         },
-                        linearGradient:LinearGradient(colors: <Color>[GlobalData.purple,GlobalData.pink]) ,
+                        linearGradient:LinearGradient(colors: <Color>[GlobalData.greya,GlobalData.pink]) ,
                         text: Text("Save",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 18,),
                           textAlign: TextAlign.center,),
                       ),
@@ -838,7 +838,7 @@ class _setspellqueState extends State<setspellque> {
 
 
      await http.post(
-          "http://edusupportapp.com/api/create_update_spelling_questions.php", body: {
+         GlobalData.applink+"create_update_spelling_questions.php", body: {
         "question": QuestionName.text.toString(),
         "point_awarded": Points.text.toString(),
         "spelling_id": GlobalData.spellingid,

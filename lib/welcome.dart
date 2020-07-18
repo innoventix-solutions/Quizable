@@ -157,7 +157,7 @@ automaticallyImplyLeading: false,
                     children: <Widget>[
                       Expanded(
                         child: GradientButtonText(
-                          linearGradient:LinearGradient(colors: <Color>[GlobalData.purple,GlobalData.pink]) ,text: Text("Create a Class",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 14),textAlign: TextAlign.center,),
+                          linearGradient:LinearGradient(colors: <Color>[GlobalData.greya,GlobalData.pink]) ,text: Text("Create a Class",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 14),textAlign: TextAlign.center,),
                           ButtonClick: (){
                             Navigator.of(context)
                                 .pushNamed('createnewclass');

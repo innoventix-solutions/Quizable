@@ -753,7 +753,7 @@ class _EditSpellingQuestionsState extends State<EditSpellingQuestions> {
                         ButtonClick: (){
                           SaveSpellingQuestion();
                         },
-                        linearGradient:LinearGradient(colors: <Color>[GlobalData.purple,GlobalData.pink]) ,
+                        linearGradient:LinearGradient(colors: <Color>[GlobalData.greya,GlobalData.pink]) ,
                         text: Text("Update",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 18,),
                           textAlign: TextAlign.center,),
                       ),
@@ -845,7 +845,7 @@ class _EditSpellingQuestionsState extends State<EditSpellingQuestions> {
 
 
       http.post(
-          "http://edusupportapp.com/api/create_update_spelling_questions.php", body: {
+          GlobalData.applink+"create_update_spelling_questions.php", body: {
         "question": QuestionName.text.toString(),
         "point_awarded": Points.text.toString(),
         "question_id":GlobalData.Edit_spelling_Questions.id.toString(),

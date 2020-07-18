@@ -15,11 +15,11 @@ class _accounttypeState extends State<accounttype> {
     return Scaffold(
 
       appBar: AppBar(automaticallyImplyLeading: true,
-      backgroundColor: Color(0Xff1F0BE6)),
+      backgroundColor: GlobalData.darkpurple),
 
       body:
       Container(
-        decoration: BoxDecoration(color: GlobalData.bgblue),
+        decoration: BoxDecoration(color: GlobalData.darkblue),
 
 
           child: Center(

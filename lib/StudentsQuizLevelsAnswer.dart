@@ -12,7 +12,8 @@ class _StudentsLevelsAnswerState extends State<StudentsLevelsAnswer> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Levels"),),
+      appBar: AppBar(title: Text("Levels"),
+        backgroundColor: GlobalData.darkpurple,),
       body: ListView.builder(
           itemCount: int.parse(GlobalData.QuizLevels),
           itemBuilder: (context,index){

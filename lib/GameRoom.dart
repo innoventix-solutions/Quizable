@@ -16,7 +16,7 @@ class _GameRoomState extends State<GameRoom> {
 
           title: Center(
             child: Text(
-              "EduSupport Game Room",
+              "Quizable Game Room",
               style: TextStyle(fontSize: 22),
             ),
           ),

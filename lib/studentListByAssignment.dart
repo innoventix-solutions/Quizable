@@ -59,7 +59,7 @@ class _StudentListByAssignmentState extends State<StudentListByAssignment> {
 
     });
 
-    await http.post("http://edusupportapp.com/api/get_leaderboard.php",
+    await http.post(GlobalData.applink+"get_leaderboard.php",
         body: {
           "clsss_id":GlobalData.classid,
           "assignment_id": GlobalData.AssignmentID,
@@ -101,7 +101,7 @@ class _StudentListByAssignmentState extends State<StudentListByAssignment> {
     });
     print("ascasd ");
 
-    await http.post("http://edusupportapp.com/api/get_students_by_teacher_assignment.php"
+    await http.post(GlobalData.applink+"get_students_by_teacher_assignment.php"
         ,body: {
           "assignment_id": GlobalData.AssignmentID,
         }).

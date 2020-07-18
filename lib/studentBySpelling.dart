@@ -55,7 +55,7 @@ class _StudentListBySpellingState extends State<StudentListBySpelling> {
 
     });
 
-    await http.post("http://edusupportapp.com/api/get_leaderboard.php",
+    await http.post(GlobalData.applink+"get_leaderboard.php",
         body: {
           "clsss_id":GlobalData.classid,
           "spelling_id": GlobalData.spellingid,
@@ -98,7 +98,7 @@ class _StudentListBySpellingState extends State<StudentListBySpelling> {
 
     print("ascasd ");
 
-    await http.post("http://edusupportapp.com/api/get_students_by_teacher_spelling.php"
+    await http.post(GlobalData.applink+"get_students_by_teacher_spelling.php"
         ,body: {
           "spelling_id": GlobalData.spellingid,
         }).

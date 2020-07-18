@@ -44,7 +44,7 @@ class _SpellingQuestion_ListState extends State<SpellingQuestion_List> {
 
     });
     print(GlobalData.spellingid);
-    await http.post("http://edusupportapp.com/api/get_spelling_questions.php",body: {
+    await http.post(GlobalData.applink+"get_spelling_questions.php",body: {
       "spelling_id":GlobalData.spellingid
     }).then((res){
       print(res.body);
@@ -100,7 +100,7 @@ class _SpellingQuestion_ListState extends State<SpellingQuestion_List> {
 
   Delete(String id) async{
 
-    await http.post("http://edusupportapp.com/api/delete_spelling_question.php",
+    await http.post(GlobalData.applink+"delete_spelling_question.php",
         body: {
           "spelling_id":GlobalData.spellingid,
           "question_id":id,
@@ -325,7 +325,8 @@ class _SpellingQuestion_ListState extends State<SpellingQuestion_List> {
     /*print(Quetions[i].anwer_options.length.toString()+"  asdznaisdfmmb k");
 Matches =Quetions[i].anwer_options;*/
     return Scaffold(
-        appBar: AppBar(title: Text("Questions List"),centerTitle: true,
+        appBar: AppBar(title: Text("Questions List"),
+          backgroundColor: GlobalData.darkpurple,centerTitle: true,
           automaticallyImplyLeading: false,
           actions: <Widget>[
             GestureDetector(
@@ -346,7 +347,7 @@ Matches =Quetions[i].anwer_options;*/
 
   GiveAnswer(String answer)async{
 
-    http.post("http://edusupportapp.com/api/spelling_answer.php",body: {
+    http.post(GlobalData.applink+"spelling_answer.php",body: {
       "user_id":GlobalData.uid,
       "question_id":Questions[i].id,
       "spelling_id":Questions[i].spellingid,

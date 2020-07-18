@@ -28,7 +28,7 @@ class _ForgetpasswordState extends State<Forgetpassword> {
 
   forgotpassword() async{
 
-    await http.post("http://edusupportapp.com/api/forgot_password.php",
+    await http.post(GlobalData.applink+"forgot_password.php",
         body: {
           "user_email":emailid.text.toString(),
         }).then((res){

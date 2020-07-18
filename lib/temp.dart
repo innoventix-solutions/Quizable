@@ -19,7 +19,7 @@ class _tempfileState extends State<tempfile> {
 
 
   temp() async{
-    await http.post("http://edusupportapp.com/api/get_quizzes_by_class.php",
+    await http.post(GlobalData.applink+"get_quizzes_by_class.php",
         body: {
       "Class_id":"1",
 

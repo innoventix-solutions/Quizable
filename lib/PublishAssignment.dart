@@ -17,9 +17,10 @@ class _publishassignmentsState extends State<publishassignments> {
   TextEditingController publishdate= new TextEditingController();
   TextEditingController closingdate= new TextEditingController();
 
-  var timeNigeria = DateTime.now().toString();
-  var timeIndia = DateTime.now().subtract(Duration(hours: 4,minutes: 30)).toString();
+  //var timeNigeria = DateTime.now().toString();
+  var timeIndia = DateTime.now().subtract(Duration(hours: 5,minutes: 30)).toString();
 
+  //var timeIndia = DateTime.now().toString();
   @override
   void initState() {
     // TODO: implement initState
@@ -54,7 +55,7 @@ class _publishassignmentsState extends State<publishassignments> {
   DateTime Closing_date;
 
   Publishassignment() async {
-    http.post("http://edusupportapp.com/api/publish_assignment.php", body: {
+    http.post(GlobalData.applink+"publish_assignment.php", body: {
       "assignment_id":GlobalData.AssignmentID,
       "publish_date":publishdate.text.toString(),
       "closing_date":closingdate.text.toString(),
@@ -222,7 +223,7 @@ class _publishassignmentsState extends State<publishassignments> {
                       },
                       linearGradient: LinearGradient(
                           colors: <Color>[
-                            GlobalData.purple,
+                            GlobalData.greya,
                             GlobalData.pink
                           ]),
                       text: Text(
@@ -329,7 +330,7 @@ class _publishassignmentsState extends State<publishassignments> {
                       },
                       linearGradient: LinearGradient(
                           colors: <Color>[
-                            GlobalData.purple,
+                            GlobalData.greya,
                             GlobalData.pink
                           ]),
                       text: Text(
@@ -368,10 +369,9 @@ class _publishassignmentsState extends State<publishassignments> {
       "Please Select Closing Date");
     }else{
 
-      http.post(
-          "http://edusupportapp.com/api/publish_assignment.php", body: {
+      http.post(GlobalData.applink+"publish_assignment.php", body: {
         "assignment_id":GlobalData.AssignmentID,
-        "publish_date":timeNigeria,
+        "publish_date":timeIndia,
         "closing_date":Closing_date.toString(),
 
       }).then((response) {
@@ -394,9 +394,9 @@ class _publishassignmentsState extends State<publishassignments> {
   ScheduleAssignment()async {
 
 
-    var scheduledtimeNigeria = Starting_date.toString();
-    var scheduledtimeIndia = Starting_date.subtract(Duration(hours: 4,minutes: 30)).toString();
-
+    //var scheduledtimeNigeria = Starting_date.toString();
+    var scheduledtimeIndia = Starting_date.subtract(Duration(hours: 5,minutes: 30)).toString();
+    //var scheduledtimeIndia = Starting_date.toString();
     print(
         "publish_date :"+ Starting_date.toString()+
             "\nclossing_date :"+Closing_date.toString()
@@ -409,10 +409,9 @@ class _publishassignmentsState extends State<publishassignments> {
       "Please Select Starting and Closing Date");
     }else{
 
-      http.post(
-          "http://edusupportapp.com/api/publish_assignment.php", body: {
+      http.post(GlobalData.applink+"publish_assignment.php", body: {
         "assignment_id":GlobalData.AssignmentID,
-        "publish_date":scheduledtimeNigeria,
+        "publish_date":scheduledtimeIndia,
         "closing_date":Closing_date.toString(),
 
       }).then((response) {

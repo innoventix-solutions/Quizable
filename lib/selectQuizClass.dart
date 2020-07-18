@@ -31,7 +31,7 @@ class _quizclassState extends State<quizclass> {
   }
 
   Gteteacherclasses() async{
-    await http.post("http://edusupportapp.com/api/get_teacher_classes.php",body: {
+    await http.post(GlobalData.applink+"get_teacher_classes.php",body: {
       "UserId":GlobalData.uid,
 
     }).then((response) {
@@ -195,7 +195,7 @@ class _quizclassState extends State<quizclass> {
                               Navigator.of(context).pushNamed('setquizquestions');
 
                             },
-                            linearGradient:LinearGradient(colors: <Color>[GlobalData.purple,GlobalData.pink]) ,
+                            linearGradient:LinearGradient(colors: <Color>[GlobalData.greya,GlobalData.pink]) ,
                             text: Text("Apply",
                               style: TextStyle(color: Colors.white,
                                 fontWeight: FontWeight.bold,fontSize: 18,),

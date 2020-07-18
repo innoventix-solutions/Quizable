@@ -17,8 +17,9 @@ class _publishspellingbeeState extends State<publishspellingbee> {
   TextEditingController publishdate= new TextEditingController();
   TextEditingController closingdate= new TextEditingController();
 
-  var timeNigeria = DateTime.now().toString();
-  var timeIndia = DateTime.now().subtract(Duration(hours: 4,minutes: 30)).toString();
+  //var timeNigeria = DateTime.now().toString();
+  var timeIndia = DateTime.now().subtract(Duration(hours: 5,minutes: 30)).toString();
+  //var timeIndia = DateTime.now().toString();
 
 
   @override
@@ -55,7 +56,7 @@ class _publishspellingbeeState extends State<publishspellingbee> {
   DateTime Closing_date;
 
   Publishquiz() async {
-    http.post("http://edusupportapp.com/api/publish_spelling.php", body: {
+    http.post(GlobalData.applink+"publish_spelling.php", body: {
       "spelling_id":GlobalData.spellingid,
       "publish_date":publishdate.text.toString(),
       "closing_date":closingdate.text.toString(),
@@ -220,7 +221,7 @@ class _publishspellingbeeState extends State<publishspellingbee> {
                       },
                       linearGradient: LinearGradient(
                           colors: <Color>[
-                            GlobalData.purple,
+                            GlobalData.greya,
                             GlobalData.pink
                           ]),
                       text: Text(
@@ -327,7 +328,7 @@ class _publishspellingbeeState extends State<publishspellingbee> {
                       },
                       linearGradient: LinearGradient(
                           colors: <Color>[
-                            GlobalData.purple,
+                            GlobalData.greya,
                             GlobalData.pink
                           ]),
                       text: Text(
@@ -367,9 +368,9 @@ class _publishspellingbeeState extends State<publishspellingbee> {
     }else{
 
       http.post(
-          "http://edusupportapp.com/api/publish_spelling.php", body: {
+          GlobalData.applink+"publish_spelling.php", body: {
         "spelling_id":GlobalData.spellingid,
-        "publish_date":timeNigeria,
+        "publish_date":timeIndia,
         "closing_date":Closing_date.toString(),
 
       }).then((response) {
@@ -391,8 +392,10 @@ class _publishspellingbeeState extends State<publishspellingbee> {
 
   ScheduleSpelling()async {
 
-    var scheduledtimeNigeria = Starting_date.toString();
-    var scheduledtimeIndia = Starting_date.subtract(Duration(hours: 4,minutes: 30)).toString();
+    //var scheduledtimeNigeria = Starting_date.toString();
+    var scheduledtimeIndia = Starting_date.subtract(Duration(hours: 5,minutes: 30)).toString();
+
+    //var scheduledtimeIndia = Starting_date.toString();
 
     print(
         "publish_date :"+ Starting_date.toString()+
@@ -407,9 +410,9 @@ class _publishspellingbeeState extends State<publishspellingbee> {
     }else{
 
       http.post(
-          "http://edusupportapp.com/api/publish_spelling.php", body: {
+          GlobalData.applink+"publish_spelling.php", body: {
         "spelling_id":GlobalData.spellingid,
-        "publish_date":scheduledtimeNigeria,
+        "publish_date":scheduledtimeIndia,
         "closing_date":Closing_date.toString(),
 
       }).then((response) {

@@ -84,7 +84,7 @@ class _assignmentquestionbankState extends State<assignmentquestionbank> {
   }
 
   CreateAssignment() async {
-    http.post("http://edusupportapp.com/api/create_assignment.php", body: {
+    http.post(GlobalData.applink+"create_assignment.php", body: {
       "assignment_title":  Assignmenttitle.text.toString(),
       "no_of_questions": noofque.text.toString(),
       "teacher_instruction":instruction.text.toString(),
@@ -437,7 +437,7 @@ class _assignmentquestionbankState extends State<assignmentquestionbank> {
                             child: SizedBox(width: 100,
                               child: GradientButtonText(
                                 linearGradient:
-                                LinearGradient(colors: <Color>[GlobalData.purple, GlobalData.pink]),
+                                LinearGradient(colors: <Color>[GlobalData.greya, GlobalData.pink]),
                                 text: Text(
                                   "Save",
                                   style: TextStyle(
@@ -449,105 +449,19 @@ class _assignmentquestionbankState extends State<assignmentquestionbank> {
                                 ),ButtonClick: (){
                                 setalldetails();
 
-                                print("Total Questions: " + GlobalData.NosofQuesassignment??"Not allocated");
-                                print(GlobalData.MyMembership.isActive);
-                                print("Classmembership: " +GlobalData.classmemberships.isActive.toString());
+                                if (GlobalData.AssignmentTitle == null ||
+                                    GlobalData.NosofQuesassignment == "" ||
+                                    GlobalData.teacherinstruction == "" ||
+                                    GlobalData.teacherobjective == ""||
+                                    GlobalData.Selected_class== null
 
-                                print(GlobalData.adminmembership.toString());
+                                ) {
 
-                                if(GlobalData.MyMembership.isActive==false&&
-                                    GlobalData.classmemberships.isActive==false
-                                )
-                                {
-
-                                  print("yahoo");
-
-                                  print(GlobalData.classid);
-                                  print(GlobalData.adminmembership.toString());
-
-                                  if (GlobalData.adminmembership == "" ||
-                                      GlobalData.adminmembership == null ||
-                                      GlobalData.adminmembership == false.toString()||
-                                      GlobalData.adminmembership=="null")
-                                  {
-
-                                    print("Level 1");
-
-                                    if (int.parse(GlobalData.NosofQuesassignment) > 10)
-                                    {
-                                      GlobalData.classadminid==GlobalData.uid?
-
-                                      GlobalData.userType=="admin_teacher"?
-                                      CustomShowDialog(context,title: "Subscription Required",msg:
-                                      "Please reduce the number of Questions to 10 for a trial.\nOtherwise, subscribe to set unlimited questions.\n\nSubscribe now?",onPressed:(){
-                                        Navigator.of(context).pushNamed('ManageAccount');
-                                      },
-                                          onpressed1: (){
-                                            Navigator.of(context).pop();
-                                          }):
-                                      CustomShowDialog(context,title: "Subscription Required",msg:
-                                      "You cannot set more than 10 questions. \n\nPlease contact your Admin to Subscribe for the institution's account.",onPressed:(){
-                                        Navigator.of(context).pop();
-
-                                      }):
-
-                                      CustomShowDialog(context,title: "Subscription Required",msg:
-                                      "You cannot set more than 10 questions. \n\nPlease contact your Admin to Subscribe for the institution's account.",onPressed:(){
-                                        Navigator.of(context).pop();
-
-                                      });
-                                    } else {
-
-                                      if (GlobalData.AssignmentTitle == null ||
-                                          GlobalData.NosofQuesassignment == "" ||
-                                          GlobalData.teacherinstruction == "" ||
-                                          GlobalData.teacherobjective == ""||
-                                          GlobalData.Selected_class== null
-
-                                      ) {
-
-                                        _showDialog();
-                                      }
-                                      else{
-                                      savingquestion(context);
-                                      SaveAssignment();
-                                      }
-                                    }
-                                  } else {
-
-
-                                    if (GlobalData.AssignmentTitle == null ||
-                                        GlobalData.NosofQuesassignment == "" ||
-                                        GlobalData.teacherinstruction == "" ||
-                                        GlobalData.teacherobjective == ""||
-                                        GlobalData.Selected_class== null
-
-                                    ) {
-
-                                      _showDialog();
-                                    }
-                                    else{
-                                       savingquestion(context);
-                                      SaveAssignment();
-                                    }
-
-                                  }
-                                }else{
-
-                                  if (GlobalData.AssignmentTitle == null ||
-                                      GlobalData.NosofQuesassignment == "" ||
-                                      GlobalData.teacherinstruction == "" ||
-                                      GlobalData.teacherobjective == ""||
-                                      GlobalData.Selected_class== null
-
-                                  ) {
-
-                                    _showDialog();
-                                  }
-                                  else{
-                                    savingquestion(context);
-                                    SaveAssignment();
-                                  }
+                                  _showDialog();
+                                }
+                                else{
+                                  savingquestion(context);
+                                  SaveAssignment();
                                 }
                               },
                               ),
@@ -642,7 +556,7 @@ class _assignmentquestionbankState extends State<assignmentquestionbank> {
       _showDialog();
     }
     else{
-      http.post("http://edusupportapp.com/api/create_assignment.php", body: {
+      http.post(GlobalData.applink+"create_assignment.php", body: {
         "assignment_title":  GlobalData.AssignmentTitle,
         "no_of_questions": GlobalData.NosofQuesassignment,
         "teacher_instruction":GlobalData.teacherinstruction,

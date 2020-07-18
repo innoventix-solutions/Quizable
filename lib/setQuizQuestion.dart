@@ -92,7 +92,7 @@ setalldetails(){
   }
 
   Createquiz() async {
-    http.post("http://edusupportapp.com/api/create_quiz.php", body: {
+    http.post(GlobalData.applink+"create_quiz.php", body: {
       "quiz_title":  quiztitle.text.toString(),
       "no_of_levels": quizlevel.text.toString(),
       "que_each_level": queslevel.text.toString(),
@@ -593,7 +593,7 @@ setalldetails(){
                             child: SizedBox(width: 100,
                               child: GradientButtonText(
                                 linearGradient:
-                                LinearGradient(colors: <Color>[GlobalData.purple, GlobalData.pink]),
+                                LinearGradient(colors: <Color>[GlobalData.greya, GlobalData.pink]),
                                 text: Text(
                                   "Save",
                                   style: TextStyle(
@@ -605,103 +605,20 @@ setalldetails(){
                                 ),ButtonClick: (){
 
                                 setalldetails();
-                                print("Levels "+GlobalData.QuizLevels);
-                                print("Questions per Level"+GlobalData.NosofQuesPerLevel??"Not allocated");
-                                print(GlobalData.MyMembership.isActive);
-                                print("Classmembership: " +GlobalData.classmemberships.isActive.toString());
+                                if (GlobalData.QuizTitle == null || GlobalData.QuizLevels == null ||
+                                    GlobalData.NosofQuesPerLevel == null ||
+                                    GlobalData.DurationofEachLevel == "" ||
+                                    GlobalData.Selected_subject == null||
+                                    GlobalData.Selected_class== null
+                                //|| Starting_date==null||
+                                //Closing_date==null
+                                //||GlobalData.age == null
+                                ) {
 
-                                print(GlobalData.adminmembership.toString());
-
-                                if(GlobalData.MyMembership.isActive==false&&
-                                    GlobalData.classmemberships.isActive==false)
-                                {
-
-                                  print("yahoo");
-
-                                  print(GlobalData.classid);
-                                  print(GlobalData.adminmembership.toString());
-                                  
-                                  if (GlobalData.adminmembership == "" ||
-                                      GlobalData.adminmembership == null ||
-                                      GlobalData.adminmembership == false.toString()||
-                                  GlobalData.adminmembership=="null")
-                                  {
-
-                                    print("Level 1");
-
-                                    if (int.parse(GlobalData.QuizLevels) > 1 || int.parse(GlobalData.NosofQuesPerLevel) > 10)
-                                    {
-                                      GlobalData.classadminid==GlobalData.uid?
-
-                                      GlobalData.userType=="admin_teacher"?
-                                      CustomShowDialog(context,title: "Subscription Required",msg:
-                                      "Please reduce the number of Quiz Level to 1 and upto 10 Questions\nfor a trial.\nOtherwise, subscribe to set unlimited questions in multiple levels\n\nSubscribe now?",onPressed:(){
-                                        Navigator.of(context).pushNamed('ManageAccount');
-                                      },
-                                          onpressed1: (){
-                                        Navigator.of(context).pop();
-                                      }):
-                                      CustomShowDialog(context,title: "Subscription Required",msg:
-                                    "You cannot set more than 10 questions each level. \n\nPlease contact your Admin to Subscribe for the institution's account.",onPressed:(){
-                                      Navigator.of(context).pop();
-
-                                    }): CustomShowDialog(context,title: "Subscription Required",msg:
-                                      "You cannot set more than 10 questions each level. \n\nPlease contact your Admin to Subscribe for the institution's account.",onPressed:(){
-                                        Navigator.of(context).pop();
-
-                                      });
-                                    } else {
-
-                                      if (GlobalData.QuizTitle == null || GlobalData.QuizLevels == null ||
-                                          GlobalData.NosofQuesPerLevel == null ||
-                                          GlobalData.DurationofEachLevel == "" ||
-                                          GlobalData.Selected_subject == null||
-                                          GlobalData.Selected_class== null
-                                      //|| Starting_date==null||
-                                      //Closing_date==null
-                                      //||GlobalData.age == null
-                                      ) {
-
-                                        _showDialog();
-                                      }
-                                      else{ savingquestion(context);
-                                      SaveQuiz();
-                                      }
-
-                                    }
-                                  } else {
-                                    if (GlobalData.QuizTitle == null || GlobalData.QuizLevels == null ||
-                                        GlobalData.NosofQuesPerLevel == null ||
-                                        GlobalData.DurationofEachLevel == "" ||
-                                        GlobalData.Selected_subject == null||
-                                        GlobalData.Selected_class== null
-                                    //|| Starting_date==null||
-                                    //Closing_date==null
-                                    //||GlobalData.age == null
-                                    ) {
-
-                                      _showDialog();
-                                    }
-                                    else{ savingquestion(context);
-                                    SaveQuiz();
-                                    }
-                                  }
-                                }else{
-                                  if (GlobalData.QuizTitle == null || GlobalData.QuizLevels == null ||
-                                      GlobalData.NosofQuesPerLevel == null ||
-                                      GlobalData.DurationofEachLevel == "" ||
-                                      GlobalData.Selected_subject == null||
-                                      GlobalData.Selected_class== null
-                                  //|| Starting_date==null||
-                                  //Closing_date==null
-                                  //||GlobalData.age == null
-                                  ) {
-
-                                    _showDialog();
-                                  }
-                                  else{ savingquestion(context);
-                                  SaveQuiz();
-                                  }
+                                  _showDialog();
+                                }
+                                else{ savingquestion(context);
+                                SaveQuiz();
                                 }
                               },
                               ),
@@ -802,7 +719,7 @@ setalldetails(){
       _showDialog();
     }
     else{
-      http.post("http://edusupportapp.com/api/create_quiz.php", body: {
+      http.post(GlobalData.applink+"create_quiz.php", body: {
         "quiz_title": GlobalData.QuizTitle,
         "techer_id": GlobalData.uid,
         "no_of_levels": GlobalData.QuizLevels,

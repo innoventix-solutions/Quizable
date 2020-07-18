@@ -27,7 +27,7 @@ class _StudentReportSpellingState extends State<StudentReportSpelling> {
 
     });
 
-    await http.post("http://edusupportapp.com/api/get_spellings.php",
+    await http.post(GlobalData.applink+"get_spellings.php",
         body: {
           "UserId":GlobalData.uid,
          // "Class_id":GlobalData.classid

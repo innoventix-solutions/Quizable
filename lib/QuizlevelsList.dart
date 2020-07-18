@@ -13,6 +13,7 @@ class _LevelsListsState extends State<LevelsLists> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text("Levels"),
+        backgroundColor: GlobalData.darkpurple,
         automaticallyImplyLeading: false,
         actions: <Widget>[
           GestureDetector(

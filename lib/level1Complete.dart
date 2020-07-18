@@ -15,7 +15,7 @@ class _level1State extends State<level1> {
 
   GetTest() async{
 
-    await http.post("http://edusupportapp.com/api/get_quizzes.php",
+    await http.post(GlobalData.applink+"get_quizzes.php",
         body: {
           "UserId":GlobalData.uid
         }).then((res){
@@ -259,7 +259,7 @@ class _level1State extends State<level1> {
                                               },
                                               linearGradient: LinearGradient(
                                                   colors: <Color>[
-                                                    GlobalData.purple,
+                                                    GlobalData.greya,
                                                     GlobalData.pink
                                                   ]),
                                               text: Text(
@@ -288,7 +288,7 @@ class _level1State extends State<level1> {
                                               },
                                               linearGradient: LinearGradient(
                                                   colors: <Color>[
-                                                    GlobalData.purple,
+                                                    GlobalData.greya,
                                                     GlobalData.pink
                                                   ]),
                                               text: Text(

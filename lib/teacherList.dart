@@ -20,7 +20,7 @@ class _TeacherListState extends State<TeacherList> {
   var gets = "A";
 
   getstudent() async {
-    await http.post("http://edusupportapp.com/api/get_user_list_by_class.php",
+    await http.post(GlobalData.applink+"get_user_list_by_class.php",
         body: {
           "Class_id": GlobalData.classid,
           "user_type": "teacher"
@@ -43,7 +43,7 @@ class _TeacherListState extends State<TeacherList> {
 
   Delete(String id) async {
     await http
-        .post("http://edusupportapp.com/api/delete_user_from_class.php", body: {
+        .post(GlobalData.applink+"delete_user_from_class.php", body: {
       "class_id": GlobalData.classid,
       "user_id": id,
     }).then((res) {
@@ -58,7 +58,7 @@ class _TeacherListState extends State<TeacherList> {
     print("class id : " + GlobalData.activeclass.id);
 
     await http
-        .post("http://edusupportapp.com/api/active_deactive_class.php", body: {
+        .post(GlobalData.applink+"active_deactive_class.php", body: {
       "Class_id": GlobalData.activeclass.id,
       "action": action,
     }).then((res) {
@@ -173,11 +173,10 @@ class _TeacherListState extends State<TeacherList> {
                         shape: BoxShape.circle,
                         image: new DecorationImage(
                             fit: BoxFit.fill,
-                            image: GlobalData.Studentlist[0].userphoto != ""
-                                ? NetworkImage(
-                                    GlobalData.Studentlist[0].userphoto)
-                                : globalData.getUserGender(
-                                    GlobalData.Studentlist[0].gender)))),
+                            image: GlobalData.Userphoto!=""?
+                            NetworkImage(GlobalData.Userphoto):globalData.getUserGender(
+                              GlobalData.Studentlist[0].gender
+                            )))),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
@@ -307,60 +306,7 @@ class _TeacherListState extends State<TeacherList> {
                           fontSize: 20,
                           color: Colors.red),
                     )
-                      /*ListView.builder( itemCount: 1,
 
-            itemBuilder: (BuildContext ctxt, int index) {
-              return  GestureDetector(
-                onTap: (){
-                },
-                child: Column(
-                  children: <Widget>[
-                    Container(
-                      color: Colors.grey,
-                      child: Row(
-                        children: <Widget>[
-                          Stack(
-                            children: <Widget>[
-                              Container(height: 70,width: 70,margin: EdgeInsets.only(left: 20,top: 15,bottom: 10),
-                                decoration: new BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    image: new DecorationImage(
-                                      fit: BoxFit.fill,
-                                      image:AssetImage('assets/images/man.png'),
-                                    )
-                                ),),
-                            ],
-                          ),
-
-
-
-
-
-                          Expanded(
-                            child: Padding(
-                              padding: const EdgeInsets.only(left:30),
-                              child: Column(mainAxisAlignment: MainAxisAlignment.start,crossAxisAlignment: CrossAxisAlignment.start,
-                                children: <Widget>[
-                                  //Text(GlobalData.Class_list[index].classname,style: TextStyle(fontSize: 15),textAlign: TextAlign.left,),
-                                  Padding(
-                                    padding: const EdgeInsets.only(top:5),
-                                    child: Text('Name of Teacher Here',style: TextStyle(fontSize: 12),),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-
-
-                        ], ),
-                    ),
-                    new Divider(
-                      color: Colors.black,
-                    ),
-                  ],
-                ),
-              );
-            })*/
                       )
                   : new ListView.builder(
                       itemCount: GlobalData.Studentlist.length,
@@ -386,6 +332,8 @@ class _TeacherListState extends State<TeacherList> {
                                   //GlobalData.Userphoto=GlobalData.Studentlist[index].userphoto;
 
                                  */
+
+                                          GlobalData.Userphoto=GlobalData.Studentlist[index].userphoto;
                                           Navigator.of(context)
                                               .pushNamed('userdetail');
                                         },
@@ -551,6 +499,7 @@ class _TeacherListState extends State<TeacherList> {
     // TODO: implement initState
     super.initState();
     getstudent();
+    GlobalData.Userphoto.toString();
     print("My Photo" + GlobalData.Userphoto);
   }
 }

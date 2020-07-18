@@ -87,8 +87,8 @@ class _secState extends State<sec> {
 
 
 
-    print(GlobalData.accounttype);
-    http.post("http://edusupportapp.com/api/register.php",
+
+    http.post(GlobalData.applink+"register.php",
         body: {
 
           "account_name": acc.text.toString(),
@@ -103,7 +103,7 @@ class _secState extends State<sec> {
           "parents_email": "asdf".toString(),
           "parents_phone_no": "sadf".toString(),
           //  "user_type":"student".toString(),
-          "accout_type":GlobalData.accounttype,
+          "accout_type":GlobalData.accounttype==null?"basic school":GlobalData.accounttype,
           "image":image64,
 
 
@@ -150,9 +150,9 @@ class _secState extends State<sec> {
     bool emailValid = RegExp(r"^[a-zA-Z0-9._]+@[a-zA-Z0-9]+\.[a-zA-Z]+").hasMatch(email.text.toString());
     if(emailValid == false){
       _showDialog1();
-    }else if(phone.text.length>15 || phone.text.length<=10)
+    }else if(phone.text.length>11 || phone.text.length<=9)
       {
-        _showDialog(Msg: "Phone Number must contain 11 Or 15 digit");
+        _showDialog(Msg: "Phone Number must contain 10 Or 11 digit");
       }
 
     else if(password.text.length<6){
@@ -232,7 +232,7 @@ class _secState extends State<sec> {
                                     shape: BoxShape.circle,
                                     image: new DecorationImage(
                                       fit: BoxFit.fill,
-                                      image:_image!=null?  FileImage(_image): AssetImage('assets/images/users.png'),
+                                      image:_image!=null?  FileImage(_image): AssetImage('assets/images/quizable.png'),
                                     ))),
                             Positioned(
                               right: 5,bottom: 15,
@@ -417,7 +417,7 @@ class _secState extends State<sec> {
                           child: GradientButton(
                             () {
 
-                              print(acc.text.toString());
+
                               print(username.text.toString());
                               print(email.text.toString());
                               print(phone.text.toString());
@@ -429,11 +429,14 @@ class _secState extends State<sec> {
 
                               check();
                               //savingquestion(context);
+                              print("1");
                               globalData.getgender();
+                              print("2");
 
-                              },
+
+                            },
                             "Get Started",
-                            LinearGradient(colors: <Color>[GlobalData.purple, GlobalData.pink]),
+                            LinearGradient(colors: <Color>[GlobalData.greya, GlobalData.pink]),
 
                            ),
                         ),

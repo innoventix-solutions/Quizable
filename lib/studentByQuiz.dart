@@ -56,7 +56,7 @@ class _StudentListByQuizState extends State<StudentListByQuiz> {
 
     });
 
-    await http.post("http://edusupportapp.com/api/get_leaderboard.php",
+    await http.post(GlobalData.applink+"get_leaderboard.php",
         body: {
           "clsss_id":GlobalData.classid,
           "quiz_id": GlobalData.QuizID,
@@ -99,7 +99,7 @@ class _StudentListByQuizState extends State<StudentListByQuiz> {
     });
     print("ascasd ");
 
-    await http.post("http://edusupportapp.com/api/get_students_by_teacher_quiz.php"
+    await http.post(GlobalData.applink+"get_students_by_teacher_quiz.php"
         ,body: {
           "quiz_id": GlobalData.QuizID,
         }).

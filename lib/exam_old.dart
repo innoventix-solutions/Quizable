@@ -32,7 +32,7 @@ class _ExamState extends State<Exam> {
   List<String> _list = new List();
   GetQuestions() async{
     print(GlobalData.QuizID);
-    http.post("http://edusupportapp.com/api/get_quiz_questions.php",body: {
+    http.post(GlobalData.applink+"get_quiz_questions.php",body: {
       "QuizId":GlobalData.QuizID
     }).then((res){
       print(res.body);

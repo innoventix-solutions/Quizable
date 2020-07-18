@@ -34,7 +34,7 @@ class _QuizExamSelectSubjectState extends State<QuizExamSelectSubject> {
     setState(() {
 
     });
-    await http.post("http://edusupportapp.com/api/get_quizzes_by_class.php",
+    await http.post(GlobalData.applink+"get_quizzes_by_class.php",
         body: {
           "Class_id":GlobalData.classid,
           "UserId":GlobalData.uid

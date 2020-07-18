@@ -42,7 +42,7 @@ class _spelling_ansState extends State<spelling_ans> {
     //await audioPlayer.play(Questions[i].audio_file);
     if(Questions[i].audio_file==""){
 
-      Text("Loading");
+
       _speak(Questions[i].anwer_options);
       //Show_toast("No Audio FIle", Colors.red);
     }
@@ -235,7 +235,7 @@ class _spelling_ansState extends State<spelling_ans> {
 
     });
     print(GlobalData.spellingid);
-    await http.post("http://edusupportapp.com/api/get_spelling_questions.php",body: {
+    await http.post(GlobalData.applink+"get_spelling_questions.php",body: {
       "spelling_id":GlobalData.spellingid
     }).then((res){
       print(res.body);
@@ -270,7 +270,8 @@ class _spelling_ansState extends State<spelling_ans> {
       onWillPop: () async => false,
       child: Scaffold(
         appBar: AppBar(
-          title: Text("Spelling Challenge"),automaticallyImplyLeading: false,
+          title: Text("Spelling Challenge"),
+          backgroundColor: GlobalData.darkpurple,automaticallyImplyLeading: false,
           centerTitle: true,
         ),
         body:isloading==true?Center(child: Text("Saving...")):isCompleted?
@@ -548,7 +549,7 @@ autocorrect: false,keyboardType: TextInputType.visiblePassword,
   }
 
   submittime()async{
-    await http.post("http://edusupportapp.com/api/insert_spelling_attend_time.php",body: {
+    await http.post(GlobalData.applink+"insert_spelling_attend_time.php",body: {
       "user_id":GlobalData.uid,
       "spelling_id":Questions[i].spellingid,
       "level":Questions[i].level_no.toString(),
@@ -567,7 +568,7 @@ autocorrect: false,keyboardType: TextInputType.visiblePassword,
     //  submittime();
 
 
-    http.post("http://edusupportapp.com/api/get_user_spelling_result.php",body:{
+    http.post(GlobalData.applink+"get_user_spelling_result.php",body:{
       "spelling_id":GlobalData.spellingid,
       "user_id":GlobalData.uid,
       "level":GlobalData.CurrentLevel.toString()
@@ -589,7 +590,7 @@ autocorrect: false,keyboardType: TextInputType.visiblePassword,
 
 
 
-    await  http.post("http://edusupportapp.com/api/spelling_answer.php",body: {
+    await  http.post(GlobalData.applink+"spelling_answer.php",body: {
       "user_id":GlobalData.uid,
       "question_id":Questions[i].id,
       "spelling_id":Questions[i].spellingid,

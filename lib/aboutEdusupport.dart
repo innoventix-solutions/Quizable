@@ -22,7 +22,7 @@ class _AboutEdusupportState extends State<AboutEdusupport> {
 
         title: Center(
           child: Text(
-            "About EduSupport",
+            "About Quizable",
             style: TextStyle(fontSize: 22),
           ),
         ),
@@ -45,15 +45,11 @@ class _AboutEdusupportState extends State<AboutEdusupport> {
           children: <Widget>[
   Padding(
     padding: const EdgeInsets.all(12.0),
-    child: Text("EduSupport Virtual Classroom "
-        "App is a digital classroom that helps "
-        "the teacher manage communication with "
-        "students anywhere and anytime."
-        "It is an online Educational tool "
-        "used by teachers,students and parents "
-        "globally for viewing and setting "
-        "homework,quiz and spelling bee.\n \n"
-        "EduSupport Virtual Classroom App is suitable for all learning situations, such as conventional schools, distant learning, religious and vocational institutes etc. Once your organization has signed up and classes created, you can invite students to join a class and use the App to access all your classes, manage homework, quiz and spelling bee on the go.",style: TextStyle(
+    child: Text("Quizable Educational App to manage the new normal of digital classroom. "
+        "This app allows teachers to create virtual class, quiz, challenges and assignments"
+        " for their students.\n\nQuizable App is suitable for distant learning and allowing educational "
+        "institutes to register for and publish class quizzes and exams for their students.",
+      style: TextStyle(
       fontSize: 14
     ),),
 
@@ -63,52 +59,58 @@ class _AboutEdusupportState extends State<AboutEdusupport> {
                 color: Colors.blueGrey,
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Text("Benefits for teachers:",textAlign: TextAlign.center,style:
+                  child: Text("Advantages for each user role",textAlign: TextAlign.center,style:
                   TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
                 ),
                 constraints: BoxConstraints(
-                    maxHeight: 200.0,
-                    maxWidth: 200.0,
-                    minWidth: 100.0,
-                    minHeight: 10.0
+
+                ),
+              ),
+            ),
+
+            Card(elevation: 5,
+              child: Container(
+                color: Colors.blueGrey,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text("School Admin :",textAlign: TextAlign.center,style:
+                  TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
+                ),
+                constraints: BoxConstraints(
+
                 ),
               ),
             ),
 
             Padding(
               padding: const EdgeInsets.all(12.0),
-              child: Text("- Signed up as institution admin or class teacher.\n"
-                  "- Manage students and classroom activities.\n"
-                  "- Set task in 5 question types apt for typical educational institutes."),
+              child: Text("Admin can create classrooms , manage teachers, students and announcement all at one place"),
             ),
+
+
             Card(elevation: 5,
               child: Container(
                 color: Colors.blueGrey,
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Text("Benefits for students:",textAlign: TextAlign.center,style:
+                  child: Text("Teacher :",style:
                   TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
                 ),
                 constraints: BoxConstraints(
-                    maxHeight: 200.0,
-                    maxWidth: 200.0,
-                    minWidth: 100.0,
-                    minHeight: 10.0
+
                 ),
               ),
             ),
             Padding(
               padding: const EdgeInsets.all(12.0),
-              child: Text("- Keep track of homework \n"
-                  "- Take spelling tests and quizzes, and view results \n"
-                  "- Submit your work online via the app"),
+              child: Text("Teacher can create class, send class code to students, create quiz/challenges/assignments and view results"),
             ),
             Card(elevation: 5,
               child: Container(
                 color: Colors.blueGrey,
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Text("Benefits for parents:",textAlign: TextAlign.center,style:
+                  child: Text("Students and regular Users",textAlign: TextAlign.center,style:
                   TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
                 ),
                 constraints: BoxConstraints(
@@ -121,30 +123,9 @@ class _AboutEdusupportState extends State<AboutEdusupport> {
             ),
            Padding(
              padding: const EdgeInsets.all(12.0),
-             child: Text("- Keep track of your children’s school activities. \n"
-                 "- View quiz and spelling test results. \n"
-                 "- User-friendly feedback between parents and the teacher."),
+             child: Text("Students can join class ,attend quiz/challenge/assignment/view leaderboard and results\n\nQuizable Educational App is designed to motivate and inspire students to commit to learning activities."),
            ),
-            Card(elevation: 5,
-              child: Container(
-                color: Colors.blueGrey,
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text("Global Users",textAlign: TextAlign.center,style:
-                  TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
-                ),
-                constraints: BoxConstraints(
-                    maxHeight: 200.0,
-                    maxWidth: 200.0,
-                    minWidth: 100.0,
-                    minHeight: 10.0
-                ),
-              ),
-            ),
-Padding(
-  padding: const EdgeInsets.all(12.0),
-  child:   Text("- Access to global Quiz and Spelling Bee without signing up for an account or class. \n\n""EduSupport Virtual Classroom App is designed to motivate and inspire students to commit to learning activities. Users also have easy access to educational game apps."),
-)
+
           ],
         ),
       ),

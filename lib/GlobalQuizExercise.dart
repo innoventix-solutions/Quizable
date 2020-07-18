@@ -15,7 +15,7 @@ class _questionmenuGlobalState extends State<questionmenuGlobal> {
   List<Pojo_quizzes> Quizz_List = new List();
 
   GetTest() async {
-    await http.post("http://edusupportapp.com/api/get_global_quizzes.php",
+    await http.post(GlobalData.applink+"get_global_quizzes.php",
         body: {
           "UserId": GlobalData.uid,
           "subject": GlobalData.Selected_subject
@@ -55,7 +55,7 @@ class _questionmenuGlobalState extends State<questionmenuGlobal> {
               gradient: LinearGradient(
                 begin: Alignment.topCenter,
                 end: Alignment.bottomRight,
-                colors: [GlobalData.green, GlobalData.green],
+                colors: [GlobalData.pinkred, GlobalData.pinkred],
               ),
             ),
           ),
@@ -76,7 +76,7 @@ class _questionmenuGlobalState extends State<questionmenuGlobal> {
           children: <Widget>[
             Container(
               width: MediaQuery.of(context).size.width,
-              decoration: BoxDecoration(color: Colors.green),
+              decoration: BoxDecoration(color: prefix0.GlobalData.pinkred),
               child: Column(
                 children: <Widget>[
                   Padding(
@@ -123,7 +123,7 @@ class _questionmenuGlobalState extends State<questionmenuGlobal> {
                                 }
                               },
                               child: Card(
-                                color: Colors.blue,
+                                color: GlobalData.gradientEnd,
                                 child: Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: Text(
@@ -201,7 +201,7 @@ class _questionmenuGlobalState extends State<questionmenuGlobal> {
                                 begin: Alignment.topCenter,
                                 end: Alignment.bottomCenter,
                                 colors: <Color>[
-                                  Colors.orange,
+                                  Colors.red,
                                   Colors.deepOrange
                                 ]),
                             text: Text(
@@ -256,7 +256,7 @@ class _questionmenuGlobalState extends State<questionmenuGlobal> {
                       },
                       child: GlobalQuizActivity(
                         quiz: Quizz_List[i],
-                        color: GlobalData.green,
+                        color: GlobalData.pinkred,
                         heading: Quizz_List[i].quiz_title,
                         paragraph: Quizz_List[i].quiz_subject,
                         id: Quizz_List[i].id,

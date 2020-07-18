@@ -45,7 +45,7 @@ class _PreviewAssignmentQuestionListState extends State<PreviewAssignmentQuestio
 
     });
     print(GlobalData.QuizID);
-    await http.post("http://edusupportapp.com/api/get_assignment_questions.php",body: {
+    await http.post(GlobalData.applink+"get_assignment_questions.php",body: {
       "assignment_id":GlobalData.AssignmentID
     }).then((res){
       print(res.body);
@@ -166,7 +166,7 @@ class _PreviewAssignmentQuestionListState extends State<PreviewAssignmentQuestio
 
   Delete(String id) async{
 
-    await http.post("http://edusupportapp.com/api/delete_assignment_question.php",
+    await http.post(GlobalData.applink+"delete_assignment_question.php",
         body: {
           "assignment_id":GlobalData.AssignmentID,
           "question_id":id,
@@ -401,7 +401,8 @@ class _PreviewAssignmentQuestionListState extends State<PreviewAssignmentQuestio
     /*print(Quetions[i].anwer_options.length.toString()+"  asdznaisdfmmb k");
 Matches =Quetions[i].anwer_options;*/
     return Scaffold(
-        appBar: AppBar(title: Text("Assignment Question"),centerTitle:
+        appBar: AppBar(title: Text("Assignment Question"),
+          backgroundColor: GlobalData.darkpurple,centerTitle:
         true,automaticallyImplyLeading: false,
           actions: <Widget>[
             GestureDetector(

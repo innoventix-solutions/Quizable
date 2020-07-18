@@ -25,7 +25,7 @@ class _questionmenuState extends State<questionmenu> {
 
     });
 
-    await http.post("http://edusupportapp.com/api/get_quizzes.php",
+    await http.post(GlobalData.applink+"get_quizzes.php",
     body: {
       "UserId":GlobalData.uid,
       //"Class_id":GlobalData.classid

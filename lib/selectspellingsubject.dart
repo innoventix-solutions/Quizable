@@ -356,7 +356,7 @@ class _selectspellingsubjectState extends State<selectspellingsubject> {
 
 
                         },
-                        linearGradient:LinearGradient(colors: <Color>[GlobalData.purple,GlobalData.pink]) ,
+                        linearGradient:LinearGradient(colors: <Color>[GlobalData.greya,GlobalData.pink]) ,
                         text: Text("Apply",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 18,),
                           textAlign: TextAlign.center,),
                       ),

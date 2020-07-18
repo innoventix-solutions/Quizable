@@ -1182,7 +1182,7 @@ class _QuestionsnewState extends State<Questionsnew> {
                             }
                           },
                           linearGradient: LinearGradient(colors: <Color>[
-                            GlobalData.purple,
+                            GlobalData.greya,
                             GlobalData.pink
                           ]),
                           text: Text(
@@ -1272,7 +1272,7 @@ class _QuestionsnewState extends State<Questionsnew> {
           "Actual Value" +
           TrueorFalse);
 
-      http.post("http://edusupportapp.com/api/create_update_quiz_questions.php",
+      http.post(GlobalData.applink+"create_update_quiz_questions.php",
           body: {
             "question": QuestionName.text.toString(),
             "point_awarded": Points.text.toString(),

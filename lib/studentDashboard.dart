@@ -40,7 +40,7 @@ class _studentdashboardState extends State<studentdashboard> {
   }
 
   leaderboards()async{
-    await http.post("http://edusupportapp.com/api/get_class_leaderboard.php",
+    await http.post(GlobalData.applink+"get_class_leaderboard.php",
         body: {
           "clsss_id":GlobalData.classid,
 
@@ -66,7 +66,7 @@ class _studentdashboardState extends State<studentdashboard> {
 
   GetTest() async{
 
-    await http.post("http://edusupportapp.com/api/get_quizzes_by_class.php",
+    await http.post(GlobalData.applink+"get_quizzes_by_class.php",
         body: {
           "UserId":GlobalData.uid,
           "Class_id":GlobalData.classid,
@@ -87,7 +87,7 @@ class _studentdashboardState extends State<studentdashboard> {
 
   GetAssignment() async{
 
-    await http.post("http://edusupportapp.com/api/get_assignments_by_class.php",
+    await http.post(GlobalData.applink+"get_assignments_by_class.php",
         body: {
           "user_id":GlobalData.uid,
           "Class_id":GlobalData.classid
@@ -110,7 +110,7 @@ class _studentdashboardState extends State<studentdashboard> {
   GetSpelling()async{
 
 
-    await http.post("http://edusupportapp.com/api/get_spelling_by_class.php",
+    await http.post(GlobalData.applink+"get_spelling_by_class.php",
         body: {
           "UserId":GlobalData.uid,
           "Class_id":GlobalData.classid
@@ -341,12 +341,12 @@ class _studentdashboardState extends State<studentdashboard> {
                 child: Row(children: <Widget>[Icon(Icons.info,color: GlobalData.lightblue,),
                   Padding(
                     padding: const EdgeInsets.only(left: 20),
-                    child: Text('About eduSupport',style: TextStyle(
+                    child: Text('About Quizable',style: TextStyle(
                         color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
                   )],),
               ),onTap: (){
               Navigator.of(context)
-                  .pushNamed('AboutEduSupport');
+                  .pushNamed('AboutQuizable');
             },
             ),
 
@@ -366,7 +366,7 @@ class _studentdashboardState extends State<studentdashboard> {
             ),
 
 
-            GestureDetector(
+            /*GestureDetector(
               child: Padding(
                 padding: const EdgeInsets.only(left: 45,top:20),
                 child: Row(children: <Widget>[Icon(Icons.gamepad,color: GlobalData.lightblue,),
@@ -379,7 +379,8 @@ class _studentdashboardState extends State<studentdashboard> {
               Navigator.of(context)
                   .pushNamed('GameRoom');
             },
-            ),
+            ),*/
+
             GestureDetector(
               child: Padding(
                 padding: const EdgeInsets.only(left: 45,top:20),
@@ -406,7 +407,7 @@ class _studentdashboardState extends State<studentdashboard> {
                         color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
                   ),],),
               ),onTap: (){
-              Share.share(GlobalData.Username +" is Sharing App - "+ "https://play.google.com/store/apps/details?id=com.innoventixsolutions.edusupport&hl=en");
+              Share.share(GlobalData.Username +" is Sharing App - "+ "https://play.google.com/store/apps/details?id=com.innoventixsolutions.quizable");
 
             },
             ),
@@ -536,7 +537,7 @@ class _studentdashboardState extends State<studentdashboard> {
 
                         Expanded(
                             child: GradientButtonText(
-                              linearGradient:LinearGradient(colors: <Color>[GlobalData.purple,GlobalData.pink]) ,
+                              linearGradient:LinearGradient(colors: <Color>[GlobalData.greya,GlobalData.pink]) ,
                               text: Text("View my Class Activities",
                                 style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,
                                     fontSize: 18),textAlign: TextAlign.center,),
@@ -978,13 +979,16 @@ class _studentdashboardState extends State<studentdashboard> {
                                     "No Quiz Exercise published yet");
                                   }
                                   else{
-                                    GlobalData.QuizID=Quizz_List[0].id;
+                                    if(Quizz_List[0].label == "New" ||  Quizz_List[0].label == "Pending")
+                                    {GlobalData.QuizID=Quizz_List[0].id;
                                     GlobalData.ExamQuiz=Quizz_List[0].quiz_title;
                                     GlobalData.DurationofEachLevel=Quizz_List[0].dur_each_level;
                                     GlobalData.QuizLevels=Quizz_List[0].no_of_levels;
                                     //studentLevelList
                                     // Navigator.of(context).pushNamed(Quizz_List[i].is_taken==true?'AnswerLog':'exam');
-                                    Navigator.of(context).pushNamed('studentLevelList');
+                                    Navigator.of(context).pushNamed('studentLevelList');}
+                                    else{Fluttertoast.showToast(msg: "Quiz "+Quizz_List[0].label,fontSize: 16,backgroundColor: Colors.red);}
+
                                   }
                                 },),
                             ),
@@ -1197,7 +1201,10 @@ class _studentdashboardState extends State<studentdashboard> {
                                     "No Spelling Exercise published yet");
                                   }
                                   else{
-                                    GlobalData.isGlobal=false;
+                                    if(spellinglist[0].label == "New" ||  spellinglist[0].label == "Pending")
+
+                                      {
+                                      GlobalData.isGlobal=false;
                                     GlobalData.spellingid=spellinglist[0].id;
                                     GlobalData.spellLevels=spellinglist[0].no_of_levels;
                                     GlobalData.ExamQuiz=spellinglist[0].spelling_title;
@@ -1205,6 +1212,9 @@ class _studentdashboardState extends State<studentdashboard> {
                                     GlobalData.spellNosofQuesPerLevel=spellinglist[0].que_each_level;
                                     // Navigator.of(context).pushNamed(Quizz_List[i].is_taken==true?'AnswerLog':'exam');
                                     Navigator.of(context).pushNamed('studentspellingLevelList');
+                                  }
+
+                                    else{Fluttertoast.showToast(msg: "Spelling "+spellinglist[0].label,fontSize: 16,backgroundColor: Colors.red);}
                                   }
                                 },),
                             ),
@@ -1370,7 +1380,8 @@ class _studentdashboardState extends State<studentdashboard> {
             GestureDetector(
               onTap: (){Navigator.of(context)
                   .pushNamed('GlobalDashboard');
-              globalalert();},
+              //globalalert();
+              },
               child: Container(padding: EdgeInsets.only(top: 0,bottom: 20),
                   child: Text('Global Quiz & Spelling Bee',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18,color: GlobalData.lightblue),)),
             ),

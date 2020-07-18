@@ -78,7 +78,7 @@ class _myclassactivitiesState extends State<myclassactivities> {
                       children: <Widget>[
                         Expanded(
                             child: GradientButtonText(
-                              linearGradient:LinearGradient(colors: <Color>[GlobalData.purple,GlobalData.pink]) ,
+                              linearGradient:LinearGradient(colors: <Color>[GlobalData.greya,GlobalData.pink]) ,
                               text: Text("New Assignment",
                                 style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,
                                     fontSize: 18),textAlign: TextAlign.center,),
@@ -166,7 +166,7 @@ class _myclassactivitiesState extends State<myclassactivities> {
                       children: <Widget>[
                         Expanded(
                             child: GradientButtonText(
-                              linearGradient:LinearGradient(colors: <Color>[GlobalData.purple,GlobalData.pink]) ,
+                              linearGradient:LinearGradient(colors: <Color>[GlobalData.greya,GlobalData.pink]) ,
                               text: Text("New Quiz",
                                 style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,
                                     fontSize: 18),textAlign: TextAlign.center,),
@@ -256,7 +256,7 @@ class _myclassactivitiesState extends State<myclassactivities> {
                       children: <Widget>[
                         Expanded(
                             child: GradientButtonText(
-                              linearGradient:LinearGradient(colors: <Color>[GlobalData.purple,GlobalData.pink]) ,
+                              linearGradient:LinearGradient(colors: <Color>[GlobalData.greya,GlobalData.pink]) ,
                               text: Text("New Exercise",
                                 style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,
                                     fontSize: 18),textAlign: TextAlign.center,),

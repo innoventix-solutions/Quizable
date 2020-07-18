@@ -1063,7 +1063,7 @@ class _Edit_QuestionState extends State<Edit_Question> {
                             }
                           },
                           linearGradient: LinearGradient(colors: <Color>[
-                            GlobalData.purple,
+                            GlobalData.greya,
                             GlobalData.pink
                           ]),
                           text: Text(
@@ -1135,19 +1135,7 @@ class _Edit_QuestionState extends State<Edit_Question> {
           "answer_options " +
           MyQuestionAnswer(SelectedType));
 
-      http.post(
-
-          /*  question
-        point_awarded
-        answer_type
-        quiz_id
-        answer_options ( must be in array or json)
-    level_no (require)
-    ques_no (require)
-    question_id (require)
-*/
-
-          "http://edusupportapp.com/api/create_update_quiz_questions.php",
+      http.post(GlobalData.applink+"create_update_quiz_questions.php",
           body: {
             "question": QuestionName.text.toString(),
             "point_awarded": Points.text.toString(),

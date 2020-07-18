@@ -23,7 +23,7 @@ class _GlobalSpellingResultState extends State<GlobalSpellingResult> {
     setState(() {
 
     });
-    await http.post("http://edusupportapp.com/api/get_global_spellings.php",
+    await http.post(GlobalData.applink+"get_global_spellings.php",
         body: {
           "UserId":GlobalData.uid
         }).then((res){
@@ -129,7 +129,7 @@ class _GlobalSpellingResultState extends State<GlobalSpellingResult> {
                       },
                       child: spellinglist[i].is_taken==true?
                       SpellingResult(
-                        color: GlobalData.green,
+                        color: GlobalData.pinkred,
                         heading: spellinglist[i].spelling_title+" - "+spellinglist[i].id,
                         paragraph: spellinglist[i].spelling_subject,
                         title: spellinglist[i].takendate.toString(),

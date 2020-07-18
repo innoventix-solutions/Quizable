@@ -153,7 +153,7 @@ class _studentselectclassState extends State<studentselectclass> {
                                     .pushNamed('studentjoinclass');
                               },
                               linearGradient: LinearGradient(colors: <Color>[
-                                GlobalData.purple,
+                                GlobalData.greya,
                                 GlobalData.pink
                               ]),
                               text: Text(
@@ -174,20 +174,20 @@ class _studentselectclassState extends State<studentselectclass> {
                 ],
               ),
             ),
-            GestureDetector(
+            /*GestureDetector(
               onTap: () {
                 Navigator.of(context).pushNamed('GlobalQuiz');
               },
               child: Container(
                   padding: EdgeInsets.only(top: 5, bottom: 5),
                   child: Text(
-                    'Global Quiz',
+                    'sGlobal Quiz',
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 18,
                         color: GlobalData.lightblue),
                   )),
-            ),
+            ),*/
           ],
         ),
       ),

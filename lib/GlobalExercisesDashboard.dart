@@ -32,7 +32,7 @@ class _GlobalDashboardState extends State<GlobalDashboard> {
 
   List<leaderboard> leader = new List();
   leaderboards()async{
-    await http.post("http://edusupportapp.com/api/get_leaderboard.php",
+    await http.post(GlobalData.applink+"get_leaderboard.php",
         body: {
 
 
@@ -159,7 +159,7 @@ class _GlobalDashboardState extends State<GlobalDashboard> {
             gradient: LinearGradient(
               begin: Alignment.topCenter,
               end: Alignment.bottomRight,
-              colors: [GlobalData.green, GlobalData.green],
+              colors: [GlobalData.pinkred, GlobalData.pinkred],
             ),
           ),
         ),
@@ -219,7 +219,7 @@ class _GlobalDashboardState extends State<GlobalDashboard> {
                     )
                   ],),
               ),),
-            ),color: Colors.green,),
+            ),color: GlobalData.pinkred,),
 
 
 
@@ -244,12 +244,12 @@ class _GlobalDashboardState extends State<GlobalDashboard> {
                 child: Row(children: <Widget>[Icon(Icons.info,color: GlobalData.lightblue,),
                   Padding(
                     padding: const EdgeInsets.only(left: 20),
-                    child: Text('About eduSupport',style: TextStyle(
+                    child: Text('About Quizable',style: TextStyle(
                         color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
                   )],),
               ),onTap: (){
               Navigator.of(context)
-                  .pushNamed('AboutEduSupport');
+                  .pushNamed('AboutQuizable');
             },
             ),
 
@@ -282,7 +282,7 @@ class _GlobalDashboardState extends State<GlobalDashboard> {
             },
             ),
 
-            GestureDetector(
+           /* GestureDetector(
               child: Padding(
                 padding: const EdgeInsets.only(left: 45,top:20),
                 child: Row(children: <Widget>[Icon(Icons.gamepad,color: GlobalData.lightblue,),
@@ -295,7 +295,7 @@ class _GlobalDashboardState extends State<GlobalDashboard> {
               Navigator.of(context)
                   .pushNamed('GameRoom');
             },
-            ),
+            ),*/
 
             GestureDetector(
               child: Padding(
@@ -324,7 +324,7 @@ class _GlobalDashboardState extends State<GlobalDashboard> {
                         color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
                   ),],),
               ),onTap: (){
-              Share.share(GlobalData.Username +" is Sharing App - "+ "https://play.google.com/store/apps/details?id=com.innoventixsolutions.edusupport&hl=en");
+              Share.share(GlobalData.Username +" is Sharing App - "+ "https://play.google.com/store/apps/details?id=com.innoventixsolutions.quizable");
 
             },
             ),
@@ -339,8 +339,11 @@ class _GlobalDashboardState extends State<GlobalDashboard> {
                         color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
                   ),],),
               ),onTap: (){
+
               Navigator.of(context)
-                  .pushNamed('ManageAccount');
+                  .pushNamed('developpage');
+              /*Navigator.of(context)
+                  .pushNamed('ManageAccount');*/
             },
             ),
 
@@ -432,7 +435,7 @@ class _GlobalDashboardState extends State<GlobalDashboard> {
 
                   Padding(
                     padding: const EdgeInsets.only(top: 20),
-                    child: Text("Welcome to \n EduSupport Global Exercises",style:
+                    child: Text("Welcome to \n Quizable Global Exercises",style:
                     TextStyle(fontSize: 21,color:GlobalData.lightblue,fontWeight: FontWeight.bold,height: 1.1),
                       textAlign: TextAlign.center,),
                   ),
@@ -524,14 +527,15 @@ class _GlobalDashboardState extends State<GlobalDashboard> {
               padding: const EdgeInsets.only(left:30,top: 20,bottom: 10),
               child: Row(
                 children: <Widget>[
-                  Text("Leaderboard",style: TextStyle(color: Colors.black,fontSize: 18,fontWeight: FontWeight.bold),),
+                  Text("Leaderboard",style: TextStyle(color: Colors.black,
+                      fontSize: 18,fontWeight: FontWeight.bold),),
 
 
                 ],
               ),
             ),
 
-            Container(height: 200,color: GlobalData.green,
+            Container(height: 200,color: GlobalData.pinkred,
                 width: MediaQuery.of(context).size.width,
               child: leader.isEmpty?
               Center
@@ -574,7 +578,8 @@ class _GlobalDashboardState extends State<GlobalDashboard> {
                                   padding: const EdgeInsets.only(left:30),
                                   child: Column(mainAxisAlignment: MainAxisAlignment.start,crossAxisAlignment: CrossAxisAlignment.start,
                                     children: <Widget>[
-                                      Text(leader[index].username),
+                                      Text(leader[index].username,style: TextStyle(color: Colors.white,
+                                          fontWeight:FontWeight.bold ),),
 
 
                                     ],
@@ -585,7 +590,8 @@ class _GlobalDashboardState extends State<GlobalDashboard> {
                                   padding: const EdgeInsets.only(left:30,top: 5),
                                   child: Column(mainAxisAlignment: MainAxisAlignment.start,crossAxisAlignment: CrossAxisAlignment.start,
                                     children: <Widget>[
-                                      Text(leader[index].percentage + " %"),
+                                      Text(leader[index].percentage + " %",style: TextStyle(color: Colors.white,
+                                          fontWeight:FontWeight.bold ),),
 
 
                                     ],

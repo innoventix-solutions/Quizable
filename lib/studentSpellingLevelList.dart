@@ -20,7 +20,7 @@ class _StudentsSpellingLevelListState extends State<StudentsSpellingLevelList> {
 
 
   GetLevels() async{
-    await http.post("http://edusupportapp.com/api/get_user_spelling_result_by_level.php",
+    await http.post(GlobalData.applink+"get_user_spelling_result_by_level.php",
         body: {
           "user_id":GlobalData.uid,
           "spelling_id":GlobalData.spellingid
@@ -60,7 +60,7 @@ class _StudentsSpellingLevelListState extends State<StudentsSpellingLevelList> {
       onWillPop: () async => false,
       child: Scaffold(
         appBar: AppBar(
-
+          backgroundColor: GlobalData.darkpurple,
           automaticallyImplyLeading: false,
           actions: <Widget>[
             GestureDetector(

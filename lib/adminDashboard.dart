@@ -347,7 +347,7 @@ class _admindashboardState extends State<admindashboard> {
                 child: Row(children: <Widget>[Icon(Icons.info,color: GlobalData.lightblue,),
                   Padding(
                     padding: const EdgeInsets.only(left: 20),
-                    child: Text('About EduSupport',style: TextStyle(
+                    child: Text('About Quizable',style: TextStyle(
                         color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
                   )],),
               ),onTap: (){ Navigator.of(context)
@@ -415,7 +415,7 @@ class _admindashboardState extends State<admindashboard> {
                   padding: const EdgeInsets.only(left: 20),
                   child: GestureDetector(onTap: (){
 
-                    Share.share(GlobalData.Username +" is Sharing App - "+ "https://play.google.com/store/apps/details?id=com.innoventixsolutions.edusupport&hl=en");
+                    Share.share(GlobalData.Username +" is Sharing App - "+ "https://play.google.com/store/apps/details?id=com.innoventixsolutions.quizable");
                   },
                     child: Text('Share App',style: TextStyle(
                         color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),

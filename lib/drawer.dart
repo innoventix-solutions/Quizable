@@ -279,7 +279,7 @@ class _drawerState extends State<drawer> {
               child: Row(children: <Widget>[Icon(Icons.info,color: GlobalData.lightblue,),
                 Padding(
                   padding: const EdgeInsets.only(left: 20),
-                  child: Text('About EduSupport',style: TextStyle(
+                  child: Text('About Quizable',style: TextStyle(
                       color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
                 )],),
             ),

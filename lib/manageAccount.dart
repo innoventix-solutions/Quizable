@@ -231,7 +231,7 @@ class _ManageAccountState extends State<ManageAccount> {
 
                                   if(response.status==true) {
                                     http.post(
-                                        "http://edusupportapp.com/api/membership.php",
+                                        GlobalData.applink+"membership.php",
                                         body: {
                                           "uid": GlobalData.uid,
                                           "months": 12.toString(),
@@ -379,7 +379,7 @@ class _ManageAccountState extends State<ManageAccount> {
 
                                 if(response.status==true) {
                                   http.post(
-                                      "http://edusupportapp.com/api/membership.php",
+                                      GlobalData.applink+"membership.php",
                                       body: {
                                         "uid": GlobalData.uid,
                                         "months": 12.toString(),

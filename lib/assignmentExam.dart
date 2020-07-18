@@ -70,7 +70,7 @@ class _AssignmentExamState extends State<AssignmentExam> {
   List<String> fillupsData = new List();
   bool isloading = true;
   String TimerText ="-:--:--";
-  int timermins = 10;
+  int timermins = 50;
 
   List<TextEditingController> Textcontroller = List();
   List<pojo_anslog> anslist = new List();
@@ -139,7 +139,7 @@ class _AssignmentExamState extends State<AssignmentExam> {
 
     });
     print(GlobalData.QuizID);
-    await http.post("http://edusupportapp.com/api/get_assignment_questions.php",body: {
+    await http.post(GlobalData.applink+"get_assignment_questions.php",body: {
       "assignment_id":GlobalData.AssignmentID
     }).then((res){
       print(res.body);
@@ -590,7 +590,7 @@ class _AssignmentExamState extends State<AssignmentExam> {
 
 
   submittime()async{
-    await http.post("http://edusupportapp.com/api/insert_assignment_attend_time.php",body: {
+    await http.post(GlobalData.applink+"insert_assignment_attend_time.php",body: {
       "user_id":GlobalData.uid,
       "assignment_id":Quetions[i].assignment_id,
       //"level":Quetions[i].level_no.toString(),
@@ -604,7 +604,7 @@ class _AssignmentExamState extends State<AssignmentExam> {
 
 
   getExamResult()async{
-    http.post("http://edusupportapp.com/api/get_user_assignment_result.php",body:{
+    http.post(GlobalData.applink+"get_user_assignment_result.php",body:{
       "assignment_id":GlobalData.AssignmentID,
       "user_id":GlobalData.uid
     }).then((res){
@@ -623,7 +623,7 @@ class _AssignmentExamState extends State<AssignmentExam> {
     return WillPopScope(
       onWillPop: () async => false,
       child: Scaffold(
-          appBar: AppBar(title: Text("My Class Assignment"),centerTitle: true,automaticallyImplyLeading: false,),
+          appBar: AppBar(title: Text("My Class Assignment"),backgroundColor: GlobalData.darkpurple,centerTitle: true,automaticallyImplyLeading: false,),
           body: isloading==true?Center(child: Text("Saving...")):isloading?Container():MYQue()
 
 
@@ -646,7 +646,7 @@ class _AssignmentExamState extends State<AssignmentExam> {
       cd.isPaused = true;
     }
 
-    await http.post("http://edusupportapp.com/api/assignment_answer.php",body: {
+    await http.post(GlobalData.applink+"assignment_answer.php",body: {
       "user_id":GlobalData.uid,
       "question_id":Quetions[i].id,
       "assignment_id":Quetions[i].assignment_id,

@@ -1,41 +1,41 @@
 {
   "project_info": {
-    "project_number": "551944062323",
-    "firebase_url": "https://edu-support-f9e95.firebaseio.com",
-    "project_id": "edu-support-f9e95",
-    "storage_bucket": "edu-support-f9e95.appspot.com"
+    "project_number": "96924074074",
+    "firebase_url": "https://quizable-40190.firebaseio.com",
+    "project_id": "quizable-40190",
+    "storage_bucket": "quizable-40190.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:551944062323:android:d57b0caffca56ac41ff106",
+        "mobilesdk_app_id": "1:96924074074:android:832f752d0c67987a961863",
         "android_client_info": {
-          "package_name": "com.innoventixsolutions.edusupport"
+          "package_name": "com.innoventixsolutions.quizable"
         }
       },
       "oauth_client": [
         {
-          "client_id": "551944062323-mkv5qfc5fllbtkv7ts2265jjcpf9a1bd.apps.googleusercontent.com",
+          "client_id": "96924074074-60c98tvd5mm603qc0sc6ok7hj32jo2bf.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCJiol0YdCoUYoVVYxnOVkUuVnbZQu3mOE"
+          "current_key": "AIzaSyDKG92-_KQ96pGbUD6coqt5f_EmD-bxFnA"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "551944062323-mkv5qfc5fllbtkv7ts2265jjcpf9a1bd.apps.googleusercontent.com",
+              "client_id": "96924074074-60c98tvd5mm603qc0sc6ok7hj32jo2bf.apps.googleusercontent.com",
               "client_type": 3
             },
             {
-              "client_id": "551944062323-fiqrln59k1qkh0t7k0es3a03960la3vd.apps.googleusercontent.com",
+              "client_id": "96924074074-q7dnvoeknd1l39g2fi0k9nt8566vv4mi.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.innoventixsolution.newpro"
+                "bundle_id": "com.innoventixsolution.quizable"
               }
             }
           ]

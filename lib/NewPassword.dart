@@ -32,7 +32,7 @@ class _NewpasswordState extends State<Newpassword> {
 
   UpdatePassword()async{
 
-    await http.post("http://edusupportapp.com/api/update_profile.php",
+    await http.post(GlobalData.applink+"update_profile.php",
         body:{
           "user_id":GlobalData.uid,
 

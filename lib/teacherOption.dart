@@ -11,10 +11,10 @@ class _teacheroptionState extends State<teacheroption> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(automaticallyImplyLeading: true,
-       backgroundColor: Color(0Xff1F0BE6)),
+       backgroundColor: GlobalData.darkpurple),
       body:
         Container(
-        decoration: BoxDecoration(color: GlobalData.bgblue),
+        decoration: BoxDecoration(color: GlobalData.darkblue),
     child:Column(mainAxisAlignment: MainAxisAlignment.center,
     children: <Widget>[
       Center(
@@ -44,7 +44,10 @@ class _teacheroptionState extends State<teacheroption> {
                         padding: EdgeInsets.all(15),
                         child: Column(
                           children: <Widget>[
-                            Text('As a Teacher, you can join existing classes by Teacher Admin invitation, then you can add students to the class and set tasks for your classroom members.\n\nBut if you want to create a new class, you will need to sign up for an Admin account.\n\nDo you want to set up Admin Account?',
+                            Text('As a Teacher, you can join existing classes by Teacher Admin invitation, '
+                                'then you can add students to the class and set tasks for your classroom '
+                                'members.\n\nBut if you want to create a new class, you will need to sign'
+                                ' up for an Admin account.\n\nDo you want to set up Admin Account?',
                                 style: TextStyle(fontWeight: FontWeight.bold,
                                 fontSize: 15,color: GlobalData.black),textAlign: TextAlign.justify,),
 

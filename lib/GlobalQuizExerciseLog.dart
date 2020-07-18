@@ -18,7 +18,7 @@ class _GlobalQuizExerciseLogState extends State<GlobalQuizExerciseLog> {
 
   GetTest() async{
 
-    await http.post("http://edusupportapp.com/api/get_global_quizzes.php",
+    await http.post(GlobalData.applink+"get_global_quizzes.php",
         body: {
           "UserId":GlobalData.uid
         }).then((res){

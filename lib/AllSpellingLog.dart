@@ -22,7 +22,7 @@ class _AllSpellingState extends State<AllSpelling> {
     setState(() {
 
     });
-    await http.post("http://edusupportapp.com/api/get_spelling_by_class.php",
+    await http.post(GlobalData.applink+"get_spelling_by_class.php",
         body: {
           "UserId":GlobalData.uid,
           "Class_id":GlobalData.classid,

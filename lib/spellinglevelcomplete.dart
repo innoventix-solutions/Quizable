@@ -15,7 +15,7 @@ class _spelllevelState extends State<spelllevel> {
 
   GetTest() async{
 
-    await http.post("http://edusupportapp.com/api/get_spellings.php",
+    await http.post(GlobalData.applink+"get_spellings.php",
         body: {
           "UserId":GlobalData.uid
         }).then((res){
@@ -260,7 +260,7 @@ class _spelllevelState extends State<spelllevel> {
                                         },
                                         linearGradient: LinearGradient(
                                             colors: <Color>[
-                                              GlobalData.purple,
+                                              GlobalData.greya,
                                               GlobalData.pink
                                             ]),
                                         text: Text(
@@ -289,7 +289,7 @@ class _spelllevelState extends State<spelllevel> {
                                         },
                                         linearGradient: LinearGradient(
                                             colors: <Color>[
-                                              GlobalData.purple,
+                                              GlobalData.greya,
                                               GlobalData.pink
                                             ]),
                                         text: Text(

@@ -43,7 +43,7 @@ class _userdetailState extends State<userdetail> {
   getstudent()
   async {
 
-    await http.post("http://edusupportapp.com/api/get_user_list_by_class.php"
+    await http.post(GlobalData.applink+"get_user_list_by_class.php"
         ,body: {
           "Class_id": GlobalData.classid,
           "user_type": "teacher"

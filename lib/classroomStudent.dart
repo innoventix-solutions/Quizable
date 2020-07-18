@@ -27,7 +27,7 @@ class _classroomstudentState extends State<classroomstudent> {
   }
 
   Getteacherclasses() async{
-    await http.post("http://edusupportapp.com/api/get_teacher_classes.php",body: {
+    await http.post(GlobalData.applink+"get_teacher_classes.php",body: {
       "UserId":GlobalData.uid,
 
     }).then((response) {

@@ -23,7 +23,7 @@ class _Quiz_List_studentState extends State<Quiz_List_student> {
     setState(() {
 
     });
-    await http.post("http://edusupportapp.com/api/get_quizzes_by_class.php",
+    await http.post(GlobalData.applink+"get_quizzes_by_class.php",
         body: {
           "UserId":GlobalData.uid,
           "Class_id":GlobalData.classid,
@@ -249,7 +249,7 @@ class _Quiz_List_studentState extends State<Quiz_List_student> {
             Container(
             width: MediaQuery.of(context).size.width,
 
-            decoration: BoxDecoration(color: Colors.pinkAccent),
+            decoration: BoxDecoration(color: GlobalData.darkpurple),
 
             child: Column(
 
@@ -343,7 +343,7 @@ class _Quiz_List_studentState extends State<Quiz_List_student> {
                         child: GradientButtonText(
                           linearGradient:LinearGradient(begin:Alignment.topCenter,
                               end: Alignment.bottomCenter,
-                              colors: <Color>[Colors.orange,Colors.deepOrange]) ,
+                              colors: <Color>[Colors.red,Colors.deepOrange]) ,
                           text: Text("Closing",
                             style: TextStyle(color: Colors.white,
                               fontWeight: FontWeight.bold,fontSize: 16,),

@@ -16,7 +16,7 @@ class _assignmentcompleteState extends State<assignmentcomplete> {
 
   GetTest() async{
 
-    await http.post("http://edusupportapp.com/api/get_assignments.php",
+    await http.post(GlobalData.applink+"get_assignments.php",
         body: {
           "UserId":GlobalData.uid
         }).then((res){
@@ -223,7 +223,7 @@ class _assignmentcompleteState extends State<assignmentcomplete> {
                                       },
                                       linearGradient: LinearGradient(
                                           colors: <Color>[
-                                            GlobalData.purple,
+                                            GlobalData.greya,
                                             GlobalData.pink
                                           ]),
                                       text: Text(

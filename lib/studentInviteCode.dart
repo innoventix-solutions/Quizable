@@ -30,7 +30,7 @@ class _StudentInviteCodeState extends State<StudentInviteCode> {
             gradient: LinearGradient(
               begin: Alignment.topCenter,
               end: Alignment.bottomRight,
-              colors: [GlobalData.gradientblue, GlobalData.gradientviolet],
+              colors: [GlobalData.darkblue, GlobalData.darkpurple],
             ),
           ),
         ),

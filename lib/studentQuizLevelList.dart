@@ -20,7 +20,7 @@ class _StudentLevelListState extends State<StudentLevelList> {
 
 
   GetLevels() async{
-    await http.post("http://edusupportapp.com/api/get_user_quiz_result_by_level.php",
+    await http.post(GlobalData.applink+"get_user_quiz_result_by_level.php",
         body: {
           "user_id":GlobalData.uid,
           "quiz_id":GlobalData.QuizID
@@ -60,7 +60,7 @@ class _StudentLevelListState extends State<StudentLevelList> {
       onWillPop: () async => false,
       child: Scaffold(
         appBar: AppBar(
-
+          backgroundColor: GlobalData.darkpurple,
           automaticallyImplyLeading: false,
           actions: <Widget>[
             GestureDetector(

@@ -54,7 +54,7 @@ class _createnewclassState extends State<createnewclass> {
 
 
   createclass() async {
-    http.post("http://edusupportapp.com/api/create_class.php",body:{
+    http.post(GlobalData.applink+"create_class.php",body:{
     "ClassName": classname.text.toString(),
       "UserId":GlobalData.uid,
       "class_icon":image64
@@ -221,7 +221,7 @@ class _createnewclassState extends State<createnewclass> {
                       ],
                     )),
                 GradientButtonText(
-                  linearGradient: LinearGradient(colors: <Color>[GlobalData.purple, GlobalData.pink]),
+                  linearGradient: LinearGradient(colors: <Color>[GlobalData.greya, GlobalData.pink]),
                   text: Text(
                     "Create a Class",
                     style: TextStyle(
@@ -232,7 +232,9 @@ class _createnewclassState extends State<createnewclass> {
                   ),
                   ButtonClick: () {
 
-                    if(GlobalData.Class_list.length>=1 && (GlobalData.MyMembership==null ||GlobalData.MyMembership.isActive==false) )
+
+                    createclass();
+                    /*if(GlobalData.Class_list.length>=1 && (GlobalData.MyMembership==null ||GlobalData.MyMembership.isActive==false) )
                       {
                         CustomShowDialog(context,title: "Subscription Required",msg:
                         "Please Subscribe to create more Classes.",onPressed:(){
@@ -242,7 +244,7 @@ class _createnewclassState extends State<createnewclass> {
                        // Navigator.of(context).pushNamed('ManageAccount');
                       }else {
                       createclass();
-                    }
+                    }*/
 
                     print(GlobalData.Class_list.length);
                  //print(classname.text.toString());

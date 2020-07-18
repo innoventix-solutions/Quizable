@@ -23,7 +23,7 @@ class _splashState extends State<splash> {
 
 
     await http.post(
-        "http://edusupportapp.com/api/get_user_membership.php",
+        GlobalData.applink+"get_user_membership.php",
         body: {
           "uid": GlobalData.uid,
         }).then((response) async {
@@ -60,12 +60,12 @@ class _splashState extends State<splash> {
   }
 
 
-  getclassMembershipdetails()async{
+  /*getclassMembershipdetails()async{
 
 
 
     await http.post(
-        "http://edusupportapp.com/api/get_user_membership.php",
+        GlobalData.applink+"get_user_membership.php",
         body: {
           "uid": GlobalData.classadminid,
         }).then((response) async {
@@ -97,7 +97,7 @@ class _splashState extends State<splash> {
       }
     });
 
-  }
+  }*/
 
   GetUserdetails()async{
     prefs = await SharedPreferences.getInstance();
@@ -127,7 +127,7 @@ class _splashState extends State<splash> {
       GlobalData.adminmembership.toString();
       getMembershipdetails();
 
-      getclassMembershipdetails();
+      //getclassMembershipdetails();
 
 
       await GetMyClasses();
@@ -230,7 +230,7 @@ class _splashState extends State<splash> {
     print("aaadddd");
     print(GlobalData.adminmembership.toString());
     GetShared();
-    getclassMembershipdetails();
+    //getclassMembershipdetails();
     registerNotification();
     // TODO: implement initState
     super.initState();
@@ -244,7 +244,8 @@ class _splashState extends State<splash> {
 
   Widget build(BuildContext context) {
     return Scaffold(
-      body:Container(decoration: BoxDecoration(image: DecorationImage(image:AssetImage('assets/images/bg.png')
+      body:Container(decoration: BoxDecoration(
+          image: DecorationImage(image:AssetImage('assets/images/bg2.png')
     ,fit: BoxFit.cover)
 
 
@@ -255,7 +256,7 @@ class _splashState extends State<splash> {
     child:Center(
     child: Column(mainAxisAlignment: MainAxisAlignment.center,
     children: <Widget>[
-    Image.asset('assets/images/wlogo.png',width: 200,),
+    Image.asset('assets/images/quizablewhite.png',width: 200,),
    ], ),),),
     );
   }

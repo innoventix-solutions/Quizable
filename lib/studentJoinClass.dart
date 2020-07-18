@@ -67,7 +67,7 @@ class _studentjoinState extends State<studentjoin> {
   }
 
   joinclass() async{
-    http.post("http://edusupportapp.com/api/join_class.php",
+    http.post(GlobalData.applink+"join_class.php",
         body: {
           'UserId':GlobalData.uid,
           'Invite_Code':classjoinstu.text.toString()
@@ -121,7 +121,7 @@ class _studentjoinState extends State<studentjoin> {
                   size: 22,
                 ),
               ),
-            ],backgroundColor: Color(0Xff1F0BE6),
+            ],backgroundColor: GlobalData.darkpurple,
           ),
 
           body: SingleChildScrollView(
@@ -175,7 +175,7 @@ class _studentjoinState extends State<studentjoin> {
                   child: Container(
                     width: 200,
                     child: GradientButtonText(
-                      linearGradient: LinearGradient(colors: <Color>[GlobalData.purple, GlobalData.pink]),
+                      linearGradient: LinearGradient(colors: <Color>[GlobalData.greya, GlobalData.pink]),
                       text: Text(
                         "Join",
                         style: TextStyle(

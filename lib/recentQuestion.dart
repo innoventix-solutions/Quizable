@@ -26,7 +26,7 @@ class _RecentQuestionState extends State<RecentQuestion> {
     setState(() {
 
     });
-    await http.post("http://edusupportapp.com/api/get_assignments_by_class.php",
+    await http.post(GlobalData.applink+"get_assignments_by_class.php",
         body: {"user_id": GlobalData.uid,
           "Class_id":GlobalData.classid,
           "publish_onhold_both":"dd"
@@ -60,7 +60,7 @@ class _RecentQuestionState extends State<RecentQuestion> {
     setState(() {
 
     });
-    await http.post("http://edusupportapp.com/api/get_quizzes_by_class.php",
+    await http.post(GlobalData.applink+"get_quizzes_by_class.php",
         body: {"UserId": GlobalData.uid,
           "Class_id":GlobalData.classid,
           "publish_onhold_both":"dd"
@@ -95,7 +95,7 @@ class _RecentQuestionState extends State<RecentQuestion> {
 
     });
 
-    await http.post("http://edusupportapp.com/api/get_spelling_by_class.php",
+    await http.post(GlobalData.applink+"get_spelling_by_class.php",
         body: {"UserId": GlobalData.uid,
           "Class_id":GlobalData.classid,
           "publish_onhold_both":"dd"

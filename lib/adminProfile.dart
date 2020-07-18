@@ -58,9 +58,9 @@ class _adminprofileState extends State<adminprofile> {
 
 
   check() {
-    if(Phone.text.length>15 || Phone.text.length<=10)
+    if(Phone.text.length>11 || Phone.text.length<=9)
     {
-      _showDialog(Msg: "Phone Number must contain 11 Or 15 digit");
+      _showDialog(Msg: "Phone Number must contain 10 Or 11 digit");
     }
     else
      {
@@ -113,7 +113,7 @@ class _adminprofileState extends State<adminprofile> {
 
   editprofile()async{
 
-    await http.post("http://edusupportapp.com/api/update_profile.php",
+    await http.post(GlobalData.applink+"update_profile.php",
         body:{
           "user_id":GlobalData.uid,
           "image":image64,
@@ -237,7 +237,7 @@ getvalue();
 
   Delete() async{
 
-    await http.post("http://edusupportapp.com/api/delete_user_from_class.php",
+    await http.post(GlobalData.applink+"delete_user_from_class.php",
         body: {
           "class_id":GlobalData.classid,
           "user_id":GlobalData.uid,
@@ -435,7 +435,7 @@ getvalue();
                     Padding(
                       padding: const EdgeInsets.only(top: 20,bottom: 20),
                       child: GradientButtonText(
-                        linearGradient:LinearGradient(colors: <Color>[GlobalData.purple,GlobalData.pink]) ,
+                        linearGradient:LinearGradient(colors: <Color>[GlobalData.greya,GlobalData.pink]) ,
                         text: Text("Save Changes",style: TextStyle(color: Colors.white,
                           fontWeight: FontWeight.bold,fontSize: 15,),textAlign: TextAlign.center,),
                         ButtonClick: (){

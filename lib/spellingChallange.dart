@@ -49,7 +49,7 @@ class _SpellingChallangeState extends State<SpellingChallange> {
                       padding: const EdgeInsets.all(20),
                       child: Column(mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
-                          Text('SpellingChallange EduSupport',style: TextStyle(fontSize: 25,
+                          Text('SpellingChallange Quizable',style: TextStyle(fontSize: 25,
                               fontWeight: FontWeight.bold),),
                           //SizedBox(height: 20,),
                           Padding(

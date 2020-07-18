@@ -69,7 +69,7 @@ class _techerjoinclassState extends State<techerjoinclass> {
   TextEditingController classjointec = new TextEditingController();
 
   joinclass() async{
-    http.post("http://edusupportapp.com/api/join_class.php",
+    http.post(GlobalData.applink+"join_class.php",
         body: {
           'UserId':GlobalData.uid,
           'Invite_Code':classjointec.text.toString()
@@ -137,7 +137,7 @@ centerTitle: true,
                   size: 22,
                 ),
               ),
-            ],backgroundColor: Color(0Xff1F0BE6),
+            ],backgroundColor: GlobalData.darkpurple,
           ),
 
           body: SingleChildScrollView(
@@ -194,7 +194,7 @@ centerTitle: true,
                     width: 200,
                     child: GradientButtonText(
                       linearGradient:
-                          LinearGradient(colors: <Color>[GlobalData.purple, GlobalData.pink]),
+                          LinearGradient(colors: <Color>[GlobalData.greya, GlobalData.pink]),
                       text: Text(
                         "Join",
                         style: TextStyle(

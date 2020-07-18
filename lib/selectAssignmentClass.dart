@@ -31,7 +31,7 @@ class _SelectassignmentclassState extends State<Selectassignmentclass> {
   }
 
   Getteacherclasses() async{
-    await http.post("http://edusupportapp.com/api/get_teacher_classes.php",body: {
+    await http.post(GlobalData.applink+"get_teacher_classes.php",body: {
       "UserId":GlobalData.uid,
 
     }).then((response) {
@@ -199,7 +199,7 @@ class _SelectassignmentclassState extends State<Selectassignmentclass> {
                               Navigator.of(context).pushNamed('AssignmentQuestionBank');
 
                             },
-                            linearGradient:LinearGradient(colors: <Color>[GlobalData.purple,GlobalData.pink]) ,
+                            linearGradient:LinearGradient(colors: <Color>[GlobalData.greya,GlobalData.pink]) ,
                             text: Text("Apply",
                               style: TextStyle(color: Colors.white,
                                 fontWeight: FontWeight.bold,fontSize: 18,),

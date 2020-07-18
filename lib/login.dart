@@ -95,7 +95,7 @@ class _loginState extends State<login> {
 
     FirebaseMessaging().getToken().then((token) {
 
-      http.post("http://edusupportapp.com/api/login.php", body: {
+      http.post(GlobalData.applink+"login.php", body: {
         "username_email": email.text.toString().trim(),
         "password": pass.text.toString(),
         "access_token":token
@@ -181,7 +181,7 @@ class _loginState extends State<login> {
 
 
 
-          await getMembershipdetails();
+          //await getMembershipdetails();
 
 
 
@@ -270,7 +270,7 @@ class _loginState extends State<login> {
                 children: <Widget>[
 
                   Image.asset(
-                    'assets/images/wlogo.png',
+                    'assets/images/quizablewhite.png',
                     width: 80,
                   ),
                   Container(
@@ -462,12 +462,12 @@ class _loginState extends State<login> {
 
   }
 
-  getMembershipdetails()async{
+  /*getMembershipdetails()async{
 
 
 
     await http.post(
-        "http://edusupportapp.com/api/get_user_membership.php",
+        GlobalData.applink+"get_user_membership.php",
         body: {
           "uid": GlobalData.uid,
         }).then((response) async {
@@ -499,7 +499,7 @@ class _loginState extends State<login> {
       }
     });
 
-  }
+  }*/
 
 
 

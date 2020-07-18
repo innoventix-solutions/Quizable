@@ -20,7 +20,7 @@ class _GlobalSpellinglistState extends State<GlobalSpellinglist> {
 
   GetTest() async{
 
-    await http.post("http://edusupportapp.com/api/get_global_spellings.php",
+    await http.post(GlobalData.applink+"get_global_spellings.php",
         body: {
           "UserId":GlobalData.uid,
           "subject":GlobalData.Selected_subject
@@ -61,7 +61,7 @@ class _GlobalSpellinglistState extends State<GlobalSpellinglist> {
               gradient: LinearGradient(
                 begin: Alignment.topCenter,
                 end: Alignment.bottomRight,
-                colors: [GlobalData.green, GlobalData.green],
+                colors: [GlobalData.pinkred, GlobalData.pinkred],
               ),
             ),
           ),
@@ -87,7 +87,7 @@ class _GlobalSpellinglistState extends State<GlobalSpellinglist> {
             Container(
               width: MediaQuery.of(context).size.width,
 
-              decoration: BoxDecoration(color: Colors.green),
+              decoration: BoxDecoration(color: GlobalData.pinkred),
 
               child: Column(
 
@@ -128,7 +128,7 @@ class _GlobalSpellinglistState extends State<GlobalSpellinglist> {
                               }
 
                             },
-                              child: Card(color:Colors.blue,
+                              child: Card(color:GlobalData.gradientEnd,
                                 child: Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: Text("New Spelling",textAlign: TextAlign.center,
@@ -181,7 +181,7 @@ class _GlobalSpellinglistState extends State<GlobalSpellinglist> {
                           child: GradientButtonText(
                             linearGradient:LinearGradient(begin:Alignment.topCenter,
                                 end: Alignment.bottomCenter,
-                                colors: <Color>[Colors.orange,Colors.deepOrange]) ,
+                                colors: <Color>[Colors.red,Colors.deepOrange]) ,
                             text: Text("Closing",
                               style: TextStyle(color: Colors.white,
                                 fontWeight: FontWeight.bold,fontSize: 16,),
@@ -225,7 +225,7 @@ class _GlobalSpellinglistState extends State<GlobalSpellinglist> {
                       child: GlobalSpellingActivity(
                         spelling:spellinglist[i] ,
 
-                        color: GlobalData.green,
+                        color: GlobalData.pinkred,
                         heading: spellinglist[i].spelling_title,
                         paragraph: spellinglist[i].spelling_subject,
                         id:spellinglist[i].id ,

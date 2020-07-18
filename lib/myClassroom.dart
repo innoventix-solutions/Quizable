@@ -19,7 +19,7 @@ class _myclassroomState extends State<myclassroom> {
     print("class id : "+GlobalData.activeclass.id);
 
 
-    await http.post("http://edusupportapp.com/api/active_deactive_class.php",
+    await http.post(GlobalData.applink+"active_deactive_class.php",
         body: {
           "Class_id":GlobalData.activeclass.id,
           "action":action,
@@ -40,7 +40,7 @@ class _myclassroomState extends State<myclassroom> {
   getstudentcount()
   async {
 
-    await http.post("http://edusupportapp.com/api/get_teacher_classes.php"
+    await http.post(GlobalData.applink+"get_teacher_classes.php"
         ,body: {
           "UserId": GlobalData.uid,
         }).

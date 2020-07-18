@@ -40,23 +40,23 @@ class GlobalData{
   static Color pinkcard = Color(0XffEF5F7D); //a
   static Color blue = Color(0Xff575DFF);
   static Color white = Color(0XffFFFFFF);
-  static Color purple = Color(0Xff7629FB);
-  static Color pink = Color(0xffDA29E6);
+  static Color greya = Color(0Xff373B44);
+  static Color pink = Color(0xff4286f4);
   static Color black = Color(0Xff878787);
   static Color darkpink = Color(0XffFF4779);
-  static Color darkblue = Color(0Xff1F0BE5);
-  static Color darkpurple = Color(0Xff730676);
-  static Color lightblue = Color(0Xff6B70FC);
+  static Color darkblue = Color(0Xff000428);
+  static Color darkpurple = Color(0Xff004e92);
+  static Color lightblue = Color(0Xff004e92);
   static Color gray = Color(0Xff000000);
   static Color green = Color(0Xff19CB60);
-  static Color navy = Color(0Xff29D7FB);
-  static Color navyblue = Color(0xff5D63C2);
+  static Color navy = Color(0XffFF0099);
+  static Color navyblue = Color(0xff493240);
   static Color orange = Color(0xffFF8658);
   static Color greencard = Color(0xff6DCE8A);
-  static Color pinkred =  Color(0xffFF1665);
+  static Color pinkred =  Color(0xff7F00FF);
   static Color bgblue = Color(0xff4268B3);
   static Color bgdarkblue = Color(0xff4267B8);
-  static Color yellow = Color(0xffE39917);
+  static Color yellow = Color(0xffE100FF);
   static Color lightpink = Color(0xffE16B8B);
   static Color gradientStart = Colors.blue; //Change start gradient color here
   static Color gradientEnd = Colors.purple;
@@ -131,6 +131,7 @@ class GlobalData{
   static String assignmentteacehrid="";
   static String quiztecherid="";
   static String spellteacherid="";
+  static String applink="http://app.quizable.in/api/";
 
 
 
@@ -626,7 +627,7 @@ var bg = new BoxDecoration(
 
 var bg12 = BoxDecoration(
   gradient: LinearGradient(
-    colors: <Color>[GlobalData.gradientblue, GlobalData.gradientviolet],
+    colors: <Color>[GlobalData.darkblue, GlobalData.darkpurple],
     begin: Alignment.topCenter,
     end: Alignment.bottomRight,
   ),
@@ -1758,6 +1759,7 @@ LogoutFunction(context)async {
   GlobalData.Selected_class=null;
   GlobalData.accountname="";
   GlobalData.adminaccountname="";
+  GlobalData.accounttype="";
 
 
   // Navigator.of(context).dispose();
@@ -1772,7 +1774,7 @@ Getstudent() async {
 
 
 
-   await http.post("http://edusupportapp.com/api/login.php", body: {
+   await http.post(GlobalData.applink+"login.php", body: {
       "username_email": GlobalData.parentsemail,
       "type":"parents_login"
     }).then((response) async {
@@ -1799,7 +1801,7 @@ Getstudent() async {
 
  GetMyClasses() async{
 
-  await http.post("http://edusupportapp.com/api/get_teacher_classes.php",body: {
+  await http.post(GlobalData.applink+"get_teacher_classes.php",body: {
     "UserId":GlobalData.uid
   }).then((res) async {
 
@@ -2317,7 +2319,7 @@ class QuizResult extends StatelessWidget {
                                     child: PopupMenuButton(
                                       child: GestureDetector(
                                           onTap: (){
-                                            Share.share("My EduSupport Quiz Result \n \n"+ GlobalData.Username + " completed Quiz: " + heading + "\n \n"+"My result is: " + percent +" %"
+                                            Share.share("My Quizable Quiz Result \n \n"+ GlobalData.Username + " completed Quiz: " + heading + "\n \n"+"My result is: " + percent +" %"
                                                 +"\n"  + progresslabel);
 
 
@@ -2577,7 +2579,7 @@ class PreviewQuizs extends StatelessWidget {
   // 28-8-19 a
   Delete(String id) async{
 
-    await http.post("http://edusupportapp.com/api/delete_quiz.php",
+    await http.post(GlobalData.applink+"delete_quiz.php",
         body: {
           "quiz_id":GlobalData.QuizID,
         }).then((res){
@@ -3320,7 +3322,7 @@ class PreviewAssignments extends StatelessWidget
   // 28-8-19 a
   Delete(String id) async{
 
-    await http.post("http://edusupportapp.com/api/delete_assignment.php",
+    await http.post(GlobalData.applink+"delete_assignment.php",
         body: {
           "assignment_id":GlobalData.AssignmentID,
         }).then((res){
@@ -4086,7 +4088,7 @@ Getclassquiz() async {
   print("Classid ${GlobalData.classid}");
   print("classname ${GlobalData.class_name}");
   if(GlobalData.quizclass!=null){GlobalData.quizclass.clear();}
-  await http.post("http://edusupportapp.com/api/get_quizzes_by_class.php",
+  await http.post(GlobalData.applink+"get_quizzes_by_class.php",
       body: {"Class_id": GlobalData.classid,
       "publish_onhold_both":"as"}).then((res) {
     print(res.body);
@@ -4107,7 +4109,7 @@ GetclassSpellinng()async{
   print("Classid ${GlobalData.classid}");
   print("classname ${GlobalData.class_name}");
   if(GlobalData.spellingclass!=null){GlobalData.spellingclass.clear();}
-  await http.post("http://edusupportapp.com/api/get_spelling_by_class.php",
+  await http.post(GlobalData.applink+"get_spelling_by_class.php",
       body: {"Class_id": GlobalData.classid,
         "publish_onhold_both":"as"}).then((res) {
     print(res.body);
@@ -4126,7 +4128,7 @@ GetclassAssignment()async{
   print("Classid ${GlobalData.classid}");
   print("classname ${GlobalData.class_name}");
   if(GlobalData.assignmentclass!=null){GlobalData.assignmentclass.clear();}
-  await http.post("http://edusupportapp.com/api/get_assignments_by_class.php",
+  await http.post(GlobalData.applink+"get_assignments_by_class.php",
       body: {"Class_id": GlobalData.classid,
         "publish_onhold_both":"as"}).then((res) {
     print(res.body);
@@ -4176,7 +4178,7 @@ class PreviewSpellingss extends StatelessWidget {
   // 28-8-19 a
   Delete(String id) async{
 
-    await http.post("http://edusupportapp.com/api/delete_spelling.php",
+    await http.post(GlobalData.applink+"delete_spelling.php",
         body: {
           "spelling_id":GlobalData.spellingid,
         }).then((res){
@@ -5093,7 +5095,7 @@ class SpellingResult extends StatelessWidget {
                                       child: PopupMenuButton(
                                         child: GestureDetector(
                                             onTap: (){
-                                              Share.share("My EduSupport Spelling Bee Result \n \n"+ GlobalData.Username + " completed Spelling Bee: " + heading + "\n \n"+"My result is: " + percent +" %"
+                                              Share.share("My Quizable Spelling Bee Result \n \n"+ GlobalData.Username + " completed Spelling Bee: " + heading + "\n \n"+"My result is: " + percent +" %"
                                                   +"\n"  + progresslabel);
 
 
@@ -5390,7 +5392,7 @@ class AssignmentResult extends StatelessWidget {
                                       child: PopupMenuButton(
                                         child: GestureDetector(
                                             onTap: (){
-                                              Share.share("My EduSupport Assignment Result \n \n"+ GlobalData.Username + " completed Assignment: " + heading + "\n \n"+"My result is: " + percent +" %"
+                                              Share.share("My Quizable Assignment Result \n \n"+ GlobalData.Username + " completed Assignment: " + heading + "\n \n"+"My result is: " + percent +" %"
                                                   +"\n"  + progresslabel);
 
 
@@ -5576,7 +5578,7 @@ class ClassesPerAccount extends StatelessWidget {
                       print(GlobalData.activeclass.classname);
                       print(GlobalData.userType);
                       //print(GlobalData.classmemberships.isActive);
-                      print(GlobalData.MyMembership.isActive);
+
                       print(GlobalData.adminmembership);
                       print("asdadadadaddada");
 

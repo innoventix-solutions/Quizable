@@ -19,7 +19,7 @@ class _SpellingAnswerLogState extends State<SpellingAnswerLog> {
   List<pojo_anslog> newlist = new List();
 
   anslog() async{
-    await http.post("http://edusupportapp.com/api/get_user_spelling_question_answer.php",
+    await http.post(GlobalData.applink+"get_user_spelling_question_answer.php",
         body: {
           "user_id" : GlobalData.CurrentStudentID,
           "spelling_id" : GlobalData.spellingid

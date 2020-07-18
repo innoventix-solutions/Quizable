@@ -227,7 +227,7 @@ class MyApp extends StatelessWidget {
         'adminshareclass':(context)=>AdminClassShare(),
         'TeacherClassList':(context)=>TeacherClassList(),
         'Announcements':(context)=>Announcement(),
-        'AboutEduSupport':(context)=>AboutEdusupport(),
+        'AboutQuizable':(context)=>AboutEdusupport(),
         'ManageAccount':(context)=>ManageAccount(),
         'EditProfile':(context)=>adminprofile(),
         'EditProfileStudent':(context)=>StudentEditProfile(),

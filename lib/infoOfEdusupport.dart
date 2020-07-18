@@ -43,7 +43,7 @@ class _infoofedusupportState extends State<infoofedusupport> {
                                   padding: const EdgeInsets.only(top: 5,bottom: 5),
                                   child: Column(
                                     children: <Widget>[
-                                      Text('EduSupport',textAlign: TextAlign.center,
+                                      Text('Quizable',textAlign: TextAlign.center,
                                         style: TextStyle(color: Colors.white,fontSize: 16,fontWeight: FontWeight.bold),),
                                       Text('Global Quize & Spelling Bee',
                                         textAlign: TextAlign.center,
@@ -78,7 +78,7 @@ class _infoofedusupportState extends State<infoofedusupport> {
                             child: Padding(
                               padding: const EdgeInsets.only(top: 15,bottom: 10,left: 20,right: 20),
                               child:GradientButtonText(
-                                linearGradient:LinearGradient(colors: <Color>[GlobalData.purple,GlobalData.pink]) ,text: Text("Proceed",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 16,),textAlign: TextAlign.center,),
+                                linearGradient:LinearGradient(colors: <Color>[GlobalData.greya,GlobalData.pink]) ,text: Text("Proceed",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 16,),textAlign: TextAlign.center,),
                               ),
                             ),
                           ),),

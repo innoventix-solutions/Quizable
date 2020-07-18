@@ -20,7 +20,7 @@ class _TeacherSelectClassState extends State<TeacherSelectClass> {
 
 
     await http.post(
-        "http://edusupportapp.com/api/get_user_membership.php",
+        GlobalData.applink+"get_user_membership.php",
         body: {
           "uid": GlobalData.classadminid,
         }).then((response) async {
@@ -124,7 +124,7 @@ class _TeacherSelectClassState extends State<TeacherSelectClass> {
                                     },
                                     linearGradient: LinearGradient(
                                         colors: <Color>[
-                                          GlobalData.purple,
+                                          GlobalData.greya,
                                           GlobalData.pink
                                         ]),
                                     text: Text(
@@ -166,7 +166,7 @@ class _TeacherSelectClassState extends State<TeacherSelectClass> {
                                     .pushNamed('teacherjoinclass');
                               },
                               linearGradient: LinearGradient(colors: <Color>[
-                                GlobalData.purple,
+                                GlobalData.greya,
                                 GlobalData.pink
                               ]),
                               text: Text(

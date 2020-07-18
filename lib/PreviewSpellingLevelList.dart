@@ -12,6 +12,7 @@ class _PreviewSpellingLevelListssState extends State<PreviewSpellingLevelListss>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text("Levels"),
+        backgroundColor: GlobalData.darkpurple,
         automaticallyImplyLeading: false,
         actions: <Widget>[
           GestureDetector(

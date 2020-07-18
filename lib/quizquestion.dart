@@ -1043,7 +1043,7 @@ class _quizquestionState extends State<quizquestion> {
                           padding: const EdgeInsets.only(left:20,top: 25,bottom: 40),
                           child: SizedBox(width: 100,
                             child: GradientButtonText(
-                              linearGradient:LinearGradient(colors: <Color>[GlobalData.purple,GlobalData.pink]) ,
+                              linearGradient:LinearGradient(colors: <Color>[GlobalData.greya,GlobalData.pink]) ,
                               text: Text("Save",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 18,),
                                 textAlign: TextAlign.center,),
                             ),
